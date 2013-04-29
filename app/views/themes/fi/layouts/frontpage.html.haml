@@ -138,13 +138,13 @@
 
     
     #footer
-      Ptarmigan ry
+      = link_to 'Ptarmigan ry', 'mailto:helsinki@ptarmigan.fi' 
       |
       Helsinki, Finland
       |
       2013
       |
-      %em= link_to 'helsinki at ptarmigan.fi', 'mailto:helsinki@ptarmigan.fi'    
+      = link_to 'GitHub', 'https://github.com/cenotaph/ptarmigan'
 :javascript
   $(document).ready(function() {
     var toggleLoading = function() { $("#loading").toggle() };

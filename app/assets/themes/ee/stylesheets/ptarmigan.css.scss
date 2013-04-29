@@ -29,9 +29,13 @@ a img{
 	/*margin-bottom:20px;	*/
 }
 
-a{
+a, a:visited {
 	color: #3477B6;
 	text-decoration: none;
+}
+
+a:hover {
+  color:#3333CD !important;
 }
 .event_title a:hover {
   color: #3477B6;
@@ -155,7 +159,14 @@ a{
 }
 
 
-#footer{}
+#footer{
+  .ptarmigan_footer {
+    a {
+      color: #3477B6;
+    }
+  }
+
+}
 
 /**front page **/
 

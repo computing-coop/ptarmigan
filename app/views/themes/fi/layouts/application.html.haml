@@ -107,13 +107,13 @@
                 - Flicker.find_by_sql("select * from (select * from flickers where image_file_name is not null and image_file_size > 0 order by rand()) as t group by event_id order by rand() limit 28").each_with_index do |image, n|
                   %div{:class => (n % 4 == 0) ? :first : false}= link_to image_tag(image.image.url(:front_sidebar), :width => 61), image.event
       #footer
-        Ptarmigan ry
+        = link_to 'Ptarmigan ry', 'mailto:helsinki@ptarmigan.fi' 
         |
         Helsinki, Finland
         |
         2013
         |
-        %em= link_to 'helsinki at ptarmigan.fi', 'mailto:helsinki@ptarmigan.fi'
+        = link_to 'GitHub', 'https://github.com/cenotaph/ptarmigan'
 :javascript
   $(document).ready(function() {
     #{yield :jquery}

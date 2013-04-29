@@ -52,6 +52,10 @@ class Post < ActiveRecord::Base
     created_at
   end
 
+  def icon
+    carousel
+  end
+  
   def image
     carousel
   end

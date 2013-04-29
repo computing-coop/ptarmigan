@@ -74,27 +74,3 @@
 
 
 
--# .headline
--#   %h2= t :projects
-  
--# .spiel
--#   = t :project_spiel
-
--#   %p
--#     = "#{t :active_projects}: "
--#     = raw @projects.reject{|x| x.active == false}.map{|project| link_to(project.name, "##{project.id.to_s}")}.join(" &sdot; ")
-  
-
--# - if !@projects.empty?
--#   .projects
--#     = render :partial => "project", :collection => @projects.reject{|x| x.active == false}
-  
-  
--#   - unless @projects.reject{|x| x.active }.empty?
--#     .headline
--#       %h2= t(:inactive_projects)
--#     .projects
--#       = render :partial => "project", :collection => @projects.reject{|x| x.active}
-  
--# - else
--#   %p There are no projects to show yet.

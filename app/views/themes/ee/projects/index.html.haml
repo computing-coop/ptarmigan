@@ -1,0 +1,34 @@
+.headline
+  %h2= t :projects
+  
+.spiel
+  = t :project_spiel
+
+
+    
+= tabs_for do |tab|
+  = content_for :jquery do
+  
+    :plain
+      $("#tabs").tabs();
+
+  - tab.create('projects', t(:projects)) do
+    - if !@projects.empty?
+      .active_projects
+        = "#{t :active_projects}: "
+        = raw @projects.map{|project| link_to(project.name, "##{project.id.to_s}")}.join(" &sdot; ")
+
+      .projects
+        = render :partial => "project", :collection => @projects
+     
+    - else
+      %p There are no projects to show yet.
+  - tab.create('pastprojects', t(:past_projects)) do
+    - if !@past_projects.empty?
+      .active_projects
+        = raw "#{t :inactive_projects}: "
+        = raw @past_projects.map{|project| link_to(project.name, "##{project.id.to_s}")}.join(" &sdot; ")     
+      .projects
+        = render :partial => "project", :collection => @past_projects 
+    - else
+      %p There are no past projects  

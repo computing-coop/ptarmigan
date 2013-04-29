@@ -17,11 +17,15 @@ class ProjectsController < ApplicationController
   end
   
   def index
-    @projects = Project.by_location(@location.id).where(:active => true).order(:name).page(params[:projects_page]).per(5)
-    @past_projects = Project.by_location(@location.id).where(:active => false).order(:name).page(params[:past_projects_page]).per(5)
-    @artists = Artist.by_location(@location.id).order('enddate DESC').page params[:artists_page]
-    @upcoming = Event.by_location(@location.id).future.page params[:events_page]
-    @archive = Event.where(['public is true and date < ?', Time.now.to_date]).order('date DESC')
+    @projects = Project.by_location(@location.id).where(:active => true).where(:hidden => false).order(:name).page(params[:projects_page]).per(5)
+    @past_projects = Project.by_location(@location.id).where(:active => false).where(:hidden => false).order(:name).page(params[:past_projects_page]).per(5)
+    
+    # only pound the db here for the Finnish side
+    if @location.id == 1
+      @artists = Artist.by_location(@location.id).order('enddate DESC').page params[:artists_page]
+      @upcoming = Event.by_location(@location.id).future.page params[:events_page]
+      @archive = Event.where(['public is true and date < ?', Time.now.to_date]).order('date DESC')
+    end
 
      set_meta_tags :open_graph => {
       :title => 'Projects at Ptarmigan',

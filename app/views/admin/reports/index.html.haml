@@ -14,7 +14,7 @@
       - unless @activities.reverse[index+1].nil?
         - if (activity.trackable_id == @activities.reverse[index+1].trackable_id) && (activity.created_at == @activities.reverse[index+1].created_at) && (activity.trackable_type == 'User' && @activities.reverse[index+1].trackable_type == 'User')
           - next
-      = render_activity(activity) #rescue "error with message for #{activity.inspect}"
+      = render_activity(activity) rescue "error with message for #{activity.inspect}"
 
 -# %h4 Latest documents
 -# %p More documents to come, and this will be searchable soon.

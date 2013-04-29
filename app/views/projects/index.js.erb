@@ -1,0 +1,4 @@
+
+$('#artists_wrapper').html('<%= escape_javascript(render :partial => "artists", :locals => {:artists => @artists }) %>');
+$('#projects_wrapper').html('<%= escape_javascript(render :partial => "projects", :locals => {:projects => @projects }) %>');
+$('#past_projects_wrapper').html('<%= escape_javascript(render :partial => "past_projects", :locals => {:projects => @past_projects }) %>');

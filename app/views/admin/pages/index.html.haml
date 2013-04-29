@@ -1,0 +1,16 @@
+%h2 Static pages
+= button_to 'New page', new_admin_page_path, :method => :get
+
+- if !@pages.empty?
+  .projects
+    %table{:cellpadding => 5, :cellspacing => 5, :border => 0}
+      %thead
+        %th Title
+        %th First few words
+        %th Slug
+        %th Actions
+      = render :partial => "page", :collection => @pages
+  = paginate(@pages)
+- else
+  %p There are no pages to show yet.
+= button_to 'New page', new_admin_page_path, :method => :get

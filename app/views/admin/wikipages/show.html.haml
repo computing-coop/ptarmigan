@@ -1,0 +1,47 @@
+.wiki
+  .wiki_header
+    Ptarmigan wiki:
+    =  @wikipage.title.gsub('_', ' ')
+  %p
+    /= raw sanitize(@wikipage.wikirevisions.last.contents_linked, :tags => %w(b br p h1 h2 h3 h4 h5 h6 em i ol ul li strong a span div table thead tbody th style tr td), :attributes => %w(id class href style))
+    = raw RedCloth.new(@wikipage.wikirevisions.last.contents_linked).to_html
+  %br
+  - unless @wikipage.wikirevisions.last.wikifiles.empty?
+    %fieldset
+      %legend files attached to this wiki page
+      %ul.wikifiles
+        - @wikipage.wikirevisions.last.wikifiles.each do |wikifile|
+          %li.file
+            - if ["image/jpeg", "image/gif", "image/png", "image/jpg", "image/pjpeg"].include?(wikifile.attachment_content_type)
+              = image_tag wikifile.attachment.url
+            .category= wikifile.document_type_name
+            .column.description= wikifile.description
+            .column.metadata
+              = "(" + wikifile.attachment_file_size.to_s + " bytes)"
+            %p= link_to wikifile.attachment_file_name, wikifile.attachment.url
+            .timestamp
+              = "uploaded #{wikifile.created_at.strftime("%d %B %H:%M")} (#{time_ago_in_words(wikifile.created_at)} ago)"
+  .wikimetadata.clearfix
+    .one.column.alpha= image_tag @wikipage.wikirevisions.last.user.icon.url(:thumb), :height => 35
+    .twelve.columns.omega
+      last edited by
+      = link_to @wikipage.wikirevisions.last.user.name, [:admin,  @wikipage.wikirevisions.last.user]
+      on
+      = l @wikipage.wikirevisions.last.created_at, :format => :short 
+
+      .ago= "(#{time_ago_in_words(@wikipage.wikirevisions.last.created_at)} ago)"
+
+  
+%p.actions
+  = link_to 'Edit',  {:controller => 'admin/wikipages', :action => 'edit', :id => @wikipage.id}
+  |
+  = link_to 'Front page', '/admin/wiki'
+  |
+  = link_to 'List all pages', admin_wikipages_path
+  |
+  = link_to('new wiki page', '/admin/wikipages/new')
+  
+:javascript
+  $(document).ready(function() {
+    jQuery(".best_in_place").best_in_place();
+  })

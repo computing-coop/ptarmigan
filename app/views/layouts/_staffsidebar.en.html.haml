@@ -1,0 +1,39 @@
+%h4 Operations
+%ul
+  %li= link_to 'Latest', admin_reports_path
+  %li= link_to_unless current_user.is_guest?,  'Expenses/accounting', admin_expenses_path
+  %li= link_to 'Documents', admin_documents_path
+  %li= link_to 'Staff wiki', '/admin/wiki'
+  %li= link_to 'Staff chatter/discussion', '/admin/chatters'
+  %li= link_to 'Event registrations', admin_attendees_path
+  %li= link_to 'Proposals', admin_proposals_path
+  %li= link_to 'Google calendar', 'http://calendar.google.com/'
+  %li= link_to "Workflowy", 'https://workflowy.com/shared/ed302751-8cfb-6f63-de60-fa10a265099f/'
+  %li= link_to 'Ptarmigan gmail', 'https://www.google.com/a/ptarmigan.fi/ServiceLogin?service=mail&passive=true&rm=false&continue=http%3A%2F%2Fmail.google.com%2Fa%2Fptarmigan.fi%2F%3Ftextfield%3Dptarmigan.fi%26select%3Dhttp%253A%252F%252Fmail.google.com%252Fa%252F&bsv=zpwhtygjntrz&ltmpl=default&ltmplcache=2', :target => :_blank
+  %li= link_to 'Sign out', '/users/sign_out'    
+
+- unless current_user.is_guest?
+  %h4 Content
+  %ul
+    %li= link_to 'Events: Create', new_admin_event_path
+    %li= link_to 'Events: List/edit all', admin_events_path
+    %li= link_to 'Blog/News: Create post', new_admin_post_path
+    %li= link_to 'Blog/News: all', admin_posts_path
+    %li= link_to 'Projects', admin_projects_path
+    %li= link_to 'Artists', admin_artists_path
+    %li= link_to 'Static pages', admin_pages_path
+
+%h4 Archival
+%ul
+  %li= link_to_unless current_user.is_guest?, 'Photos', admin_flickers_path
+  %li= link_to_unless current_user.is_guest?,  'Videos', admin_videos_path
+  %li= link_to 'Other documents', admin_resources_path
+  %li= link_to_unless current_user.is_guest?,  'Press links', admin_presslinks_path
+
+%h4 Admin/setup
+%ul
+  %li= link_to('Your profile', edit_user_path(current_user))
+  %li= link_to_unless current_user.is_guest?,  'Locations/places', admin_places_path
+  %li= link_to_unless current_user.is_guest?,  'Budget areas', admin_budgetareas_path    
+
+

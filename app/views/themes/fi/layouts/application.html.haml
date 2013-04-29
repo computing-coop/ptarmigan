@@ -1,0 +1,120 @@
+!!! XML
+!!!
+%html{ :'xml:lang' => "en", :lang => "en" }
+  %head
+    = display_meta_tags :site => "Ptarmigan"   
+    %meta{ :"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8" }
+    %link{ :rel => "shortcut icon", :href => "/favicon.ico" }
+    %link{ :rel => "alternate", :type => "application/rss+xml", :title => "Ptarmigan RSS", :href => "/feed.rss"}
+    = stylesheet_link_tag :application
+    = stylesheet_link_tag theme_stylesheet_path(:application), :media => :screen
+
+    = javascript_include_tag :application
+
+    %script{:type => "text/javascript"}
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12518395-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+      var switchTo5x=false;
+    %script{:type => "text/javascript", :src => "http://w.sharethis.com/button/buttons.js"}
+    %script{:type => "text/javascript"} stLight.options({publisher: "ur-dae0667d-47dc-d390-f0b1-129d17517bbe"});
+    = yield :head
+  %body
+    #container
+      #top_bar
+        #logo_container
+          #logo
+            = link_to(image_tag(current_theme_image_path('/layout/ptarmigan.png')), '/')
+          
+        #top_nav_container
+          #language
+            = link_to(image_tag('system/fi.gif', :width => 20, :border => 0),:controller =>   controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'fi')
+            = link_to(image_tag('system/se_flag.gif', :width => 20, :border => 0),:controller =>   controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv-SE')              
+            = link_to(image_tag('system/uk_flag.gif', :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en')
+            = link_to(image_tag('system/ee_flag.gif', :width => 20, :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'et')
+            
+            = link_to(image_tag('system/ru_flag.gif', :width => 20, :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'ru')
+                     
+          #country_menu= render :partial => 'layouts/country_menu'
+          - if user_signed_in?
+            %li= link_to('staff', '/staff')
+            %li= link_to('sign out', '/users/sign_out')   
+          
+        #main_menu
+          #nav.inner
+            %ul
+              %li.first= link_to(t(:about), {:controller => 'pages', :action => 'show', :id => 'about'})
+              %li= link_to(t(:news), posts_path)
+              %li= link_to( (t(:projects) + "/" + t(:events)) , projects_path)
+              %li= link_to(t(:information) + "/" + t(:press), {:controller  => 'pages', :action => 'press', :id => 'press'})                     
+              %li= link_to(t(:archive), archive_events_path) 
+              %li= link_to(t(:contact), {:controller => 'pages', :action => 'show', :id => 'contact'})
+
+              %li= link_to(t(:stuff_we_like), witnessed_posts_path)
+
+          #web2_inline
+            - if I18n.locale.to_s == 'en'
+              = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed", :width => 20, :border => 0}), 'http://feeds.feedburner.com/PtarmiganEnglish')
+            - else
+              = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed",:width => 20,  :border => 0}), 'http://feeds.feedburner.com/PtarmiganSuomeksi')
+            = link_to(image_tag('layout/facebook.png', {:alt => 'facebook', :width => 20, :border => 0}), 'http://www.facebook.com/home.php#/pages/Ptarmigan/114272652824')
+            = link_to(image_tag('layout/twitter.png', {:alt => 'twitter', :width => 20, :border => 0}),   "http://twitter.com/PtarmiganHki")
+            = link_to(image_tag('layout/flickr.png', {:alt => 'flickr', :width => 20, :border => 0}), "http://www.flickr.com/groups/ptarmigan/")
+            = link_to(image_tag('layout/vimeo.png', {:alt => 'vimeo', :width => 20, :border => 0}), "http://vimeo.com/ptarmigan")  
+
+        
+      #dynamic_wrap
+        #left_column
+          .front_box
+            #flash
+              - unless flash.empty?
+                = content_tag :div, flash[:notice],  :class => "notice"  if flash[:notice]
+                = content_tag :div, flash[:warning], :class => "warning" if flash[:warning]
+                = content_tag :div, flash[:error],   :class => "error"   if flash[:error]
+              :javascript
+                $('#flash').effect("highlight", {}, 3000);
+            = yield
+        #right_column.sidebar
+          -# .front_box
+          -#   .headline.clearfix
+          -#     %h2= t :calendar
+          -#   #the_calendar= render :partial => 'calendar/cal', :locals => {:period => [Time.now.strftime("%Y"), Time.now.strftime('%m')]}
+          - unless @next_events.empty?
+            .headline
+              %h2= t :coming_up
+            = render :partial => 'shared/next_events', :locals => {:next_events => @next_events}
+
+          .front_box
+            .headline
+              %h2= t :search
+            = form_tag "/search/simple", :method => "post" do |f|
+              = text_field_tag :search
+              = submit_tag t :search
+          #web2.front_box
+            - unless is_admin_page?
+              = render :partial => 'layouts/web2'
+          - if @next_events.empty?
+            .front_box.archivewall
+              .headline
+                %h2= t :archive
+              .archive_container
+                - Flicker.find_by_sql("select * from (select * from flickers where image_file_name is not null and image_file_size > 0 order by rand()) as t group by event_id order by rand() limit 28").each_with_index do |image, n|
+                  %div{:class => (n % 4 == 0) ? :first : false}= link_to image_tag(image.image.url(:front_sidebar), :width => 61), image.event
+      #footer
+        Ptarmigan ry
+        |
+        Helsinki, Finland
+        |
+        2013
+        |
+        %em= link_to 'helsinki at ptarmigan.fi', 'mailto:helsinki@ptarmigan.fi'
+:javascript
+  $(document).ready(function() {
+    #{yield :jquery}
+  });    

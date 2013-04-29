@@ -1,0 +1,4 @@
+%h2 New place
+= render :partial => "form", :locals => {:place => @place}
+%ul
+  %li= link_to 'Back', admin_places_path

@@ -1,0 +1,7 @@
+= semantic_form_for([:admin, proposal, Proposalcomment.new]) do |f|
+  = f.input :comment, :as => :text, :label => current_user.name + ", add a comment (will be only seen by staff)"
+  = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }
+  = f.input :proposal_id, :as => :hidden, :input_html => { :value => proposal.id }
+  = f.input :archived, :as => :boolean, :label => "Archive this proposal (remove from main page)", :input_html => {:checked => proposal.archived }
+  = f.input :menuize, :as => :boolean,  :label => "Put link to this proposal on main staff menu", :input_html => {:checked => proposal.menuize } 
+  = f.submit "add comment"

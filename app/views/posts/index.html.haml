@@ -1,0 +1,9 @@
+- if !@posts.empty?
+  .posts
+    .headline
+      %h2= t :news
+      = paginate @posts
+    = render :partial => "post", :collection => @posts
+  .bottom_pagination= paginate @posts
+- else
+  %p= t(:no_posts)

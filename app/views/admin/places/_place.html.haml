@@ -1,0 +1,13 @@
+= content_tag_for :div, place, :class => " columns " do
+  .three.columns.alpha
+    .title
+      %strong= h place.name
+    .event_count
+      = pluralize(place.events.count, 'event')      
+  .six.columns.alpa
+    %span.smaller_text= place.full_address
+
+  .three.columns.omega
+    %span.smaller_text
+      = link_to '[edit details]', edit_admin_place_path(place)
+      %span.delete= link_to '[delete]', admin_place_url(:id => place), :confirm => 'Are you sure?', :method => :delete

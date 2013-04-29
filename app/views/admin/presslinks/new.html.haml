@@ -1,0 +1,7 @@
+%h3.heading
+  = 'New link to press, publicity, etc.'
+  
+= semantic_form_for([:admin, @presslink], :html => {:multipart => true}) do |form|
+  = render 'form', :form => form
+  = form.actions do
+    = form.submit 'Create'

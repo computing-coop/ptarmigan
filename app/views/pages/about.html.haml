@@ -1,0 +1,13 @@
+
+= tabs_for do |tab|
+  - tab.create('about', @page.title.titleize) do
+    = raw @page.body
+  - tab.create('who', t(:who_we_are)) do
+    = raw @who_we_are.body
+  - tab.create('contact', @contact.title) do
+    = raw @contact.body
+    
+:javascript
+  $(function() {
+    $("#tabs").tabs();
+  });

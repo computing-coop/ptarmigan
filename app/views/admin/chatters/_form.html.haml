@@ -1,0 +1,10 @@
+= semantic_form_for [:admin, @chatter], :html => {:multipart => true} do |f| 
+
+  = f.input :subject
+  = f.input :user_id, :as => :hidden, :value => current_user.id.to_s
+  = f.input :body
+  - if f.object.image?
+    = image_tag f.object.image.url(:regular)
+  = f.input :image, :label => 'Upload an image (optional)'
+  = f.submit
+

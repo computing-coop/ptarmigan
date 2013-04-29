@@ -1,0 +1,100 @@
+-# - cache @location.name + "_projects_page" do
+
+
+= tabs_for do |tab|
+  - unless @upcoming.empty?
+    = content_for :jquery do
+      - if controller.controller_name == 'projects' && controller.action_name == 'index'
+        :plain
+          $("#tabs").tabs({active: 1});
+      - else
+        :plain
+          $("#tabs").tabs({active: 0});
+    - tab.create('events', t(:events)) do
+      .events
+        = paginate(@upcoming)
+        %p
+          %b= t(:googlecalendar) + ': '
+          = link_to('(xml) ',   'http://www.google.com/calendar/feeds/7rkvdo1n6irtviq6va9f96k5l0%40group.calendar.google.com/public/basic')
+          = link_to('(ical) ', 'http://www.google.com/calendar/ical/7rkvdo1n6irtviq6va9f96k5l0%40group.calendar.google.com/public/basic.ics')
+          = link_to('(html)', 'http://www.google.com/calendar/embed?src=7rkvdo1n6irtviq6va9f96k5l0%40group.calendar.google.com&ctz=Europe/Helsinki')
+          - if @upcoming.empty?
+            = t :noevents
+          - else
+            = render :partial => "events/event", :collection => @upcoming 
+            .bottom_paginate{:style => (@archive.empty? ? false : 'margin-bottom: 145px;')}= paginate(@upcoming)
+  - else
+    = content_for :jquery do
+      :plain
+        $("#tabs").tabs();
+  - tab.create('projects', t(:projects)) do
+    %p= t :project_spiel
+    %p{:style => "margin-top: 10px;"}
+      %span{:style => "margin-right: 15px; float: left;"}= t :jump_to_project
+      = select "project", "project", options_for_select(Project.active_menu(@location.id), :disabled => [' --- Suomi --- ', ' --- Eesti --- ', ' --- inactive --- ']), { :include_blank => true}, {:onchange => "document.location.href='/projects/' + this.value" }
+
+    #projects_wrapper= render :partial => 'projects', :locals => {:projects => @projects} 
+
+
+  - tab.create('artists', t(:artists)) do
+    %p= t :artists_spiel
+    #artists_wrapper= render :partial => 'artists', :locals => {:artists => @artists}
+
+  - tab.create('past_projects', t(:past_projects)) do
+    %p= t :past_projects_spiel
+    #past_projects_wrapper= render :partial => 'past_projects', :locals => {:projects => @past_projects}     
+  - tab.create('event_archive', t(:archive)) do
+    
+    %p
+      = t :event_archive_first
+      = Event.by_location(2).published.count.to_s
+      = t :in_tallinn
+      = Event.by_location(1).published.count.to_s
+      = t :in_helsinki
+    
+    %p
+      = form_tag "/search/simple", :method => "post" do |f|
+        %p{:style => "float: left; margin-top: 3px; margin-right: 5px;"}
+          Search for an event: 
+        = text_field_tag :search
+        = submit_tag 'search' 
+    .filters
+      Showing:
+      = link_to 'Tallinn', '#', :onclick => "$('.ee').fadeToggle(); $('.tallinn_link').toggleClass('active')", :class => "tallinn_link active"
+      = link_to 'Helsinki', '#', :onclick => "$('.fi').fadeToggle(); $('.helsinki_link').toggleClass('active')", :class => "helsinki_link active"
+    .archives
+      - @archive.group_by{|x| x.date.beginning_of_month}.each do |group|
+        .archive_box.month
+          %p= raw(I18n.localize(group.first, :format => "%B %Y"))
+        - group.last.each do |event|
+          .archive_box{:class => event.location.locale}
+            = link_to(event, html_options = {:class => 'brick', :style => 'background-image: url(\'http://ptarmigan.ee' + event.avatar.url(:archive) + '\');' } ) do
+              .inside_block
+              .user_hover{:style => "font-size: " + (event.name.size > 35 ? '12px;' : '17px;')}= event.name
+
+
+
+-# .headline
+-#   %h2= t :projects
+  
+-# .spiel
+-#   = t :project_spiel
+
+-#   %p
+-#     = "#{t :active_projects}: "
+-#     = raw @projects.reject{|x| x.active == false}.map{|project| link_to(project.name, "##{project.id.to_s}")}.join(" &sdot; ")
+  
+
+-# - if !@projects.empty?
+-#   .projects
+-#     = render :partial => "project", :collection => @projects.reject{|x| x.active == false}
+  
+  
+-#   - unless @projects.reject{|x| x.active }.empty?
+-#     .headline
+-#       %h2= t(:inactive_projects)
+-#     .projects
+-#       = render :partial => "project", :collection => @projects.reject{|x| x.active}
+  
+-# - else
+-#   %p There are no projects to show yet.

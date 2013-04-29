@@ -1,0 +1,20 @@
+.activity.ten.columns
+  .icon.columns
+    = image_tag trackable_icon(a.trackable), :width => 75
+
+  .metadata.seven.columns
+    .person
+      .info.column
+        %span.name= a.owner.name
+        %span.small
+          uploaded a file 
+          - if !a.trackable.nil?
+            %strong= a.trackable.attachment_file_name
+          - else
+            that was later deleted
+        %span.small to wiki page 
+        - unless a.trackable.nil?
+          = link_to a.trackable.source_name, a.trackable.source_resource
+        .timestamp
+          %span.small= time_ago_in_words(a.created_at) + " ago"
+  .one.column= image_tag a.owner.icon.url(:thumb), :height => 50          

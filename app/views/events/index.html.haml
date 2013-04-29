@@ -1,0 +1,32 @@
+
+
+
+- unless @upcoming.nil?
+  .events
+    .headline.clearfix
+      %h2= t :coming_up
+      = paginate(@upcoming)
+    %p
+      %b= t(:googlecalendar) + ': '
+      = link_to('(xml) ',   'http://www.google.com/calendar/feeds/7rkvdo1n6irtviq6va9f96k5l0%40group.calendar.google.com/public/basic')
+      = link_to('(ical) ', 'http://www.google.com/calendar/ical/7rkvdo1n6irtviq6va9f96k5l0%40group.calendar.google.com/public/basic.ics')
+      = link_to('(html)', 'http://www.google.com/calendar/embed?src=7rkvdo1n6irtviq6va9f96k5l0%40group.calendar.google.com&ctz=Europe/Helsinki')
+    - if @upcoming.empty?
+      = t :noevents
+    - else
+      = render :partial => "event", :collection => @upcoming 
+      .bottom_paginate{:style => (@archive.empty? ? false : 'margin-bottom: 145px;')}= paginate(@upcoming)
+
+
+- if @archive.empty?
+  .events{:style => "clear: both; margin-top: 15px; border-top: 1px dotted #999;"}
+    %h3= link_to "#{t(:event)} #{t(:archive)} ...", '/events/archives'
+- else
+  .events{:style => "clear: both; margin-top: 45px; border-top: 1px dotted #999;"}
+    .headline.clearfix
+      %h2
+        = t :archive
+        = " / #{t(:past)}"
+      = paginate @archive, :params => {:controller => 'events', :action => 'archives'}, :param_name => :archive_page
+    = render :partial => "event", :collection => @archive
+    .bottom_paginate= paginate @archive, :params => {:controller => 'events', :action => 'archives'}, :param_name => :archive_page

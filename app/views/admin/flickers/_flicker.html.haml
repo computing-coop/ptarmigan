@@ -1,0 +1,49 @@
+.flicker.clearfix
+
+  - if flicker.image?
+    .six.columns.alpha= image_tag flicker.image.url(:medium)
+    .six.columns.omega
+      .event= flicker.event.title
+      .date= l flicker.event.date, :format => :long
+      .description= flicker.description
+      .panorama
+        Possible panorama for new front carousel:
+        %div{:id => "ajax_#{flicker.id.to_s}"}
+          - if flicker.include_in_carousel == true
+            = link_to '[remove from carousel]', remove_carousel_admin_flicker_path(flicker), :class => :carousel_link, :remote => true
+          - else
+            = link_to '[add to front carousel]', set_carousel_admin_flicker_path(flicker), :class => :carousel_link, :remote => true
+
+        :javascript
+          $('.carousel_link').bind("ajax:success", function(evt, data, status, xhr) {
+            alert(xhr.responseText);
+          });  
+        .image
+          = image_tag flicker.image.url(:new_carousel), :width => 425
+          = link_to 'view in new tab', flicker.image.url(:new_carousel), :target => :_blank
+          (make sure it's not blurry if you are making it a carousel item)
+      %ul
+        %li= link_to 'Edit', edit_admin_flicker_path(flicker)
+        %li= link_to 'Destroy', [:admin, flicker], :confirm => 'Are you sure?', :method => :delete
+        %li= link_to 'Back', admin_flickers_path
+  -# - info = flickr.photos.getInfo :photo_id => flicker.hostid if flicker.hostid rescue nil
+
+  -# - if info.nil?
+  -#   no info
+  -# - else
+
+  -#   = content_tag_for :div, flicker do
+  -#     %ul
+  -#       %li
+  -#         %strong Event:
+  -#         =h flicker.event.title
+  -#       %li
+  -#         %strong Creator:
+  -#         =h flicker.creator
+  -#       - if flicker.hostid
+  -#         = image_tag( FlickRaw.url_s(info) )
+  -#       - else
+  -#         = image_tag flicker.image.url(:standard)
+  -#       %li
+  -#         %strong Description:
+  -#         =h flicker.description

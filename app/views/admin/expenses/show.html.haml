@@ -1,0 +1,24 @@
+%h2= "Expense \"#{@expense.to_param}\""
+= content_tag_for :div, @expense do
+  %ul
+    %li
+      %strong Date:
+      =h @expense.date
+    %li
+      %strong Name:
+      =h @expense.name
+    %li
+      %strong Expense type:
+      =h @expense.expense_type
+    %li
+      %strong Event:
+      =h @expense.event
+    %li
+      %strong Amount:
+      =h @expense.amount
+    %li
+      %strong Hidden:
+      =h @expense.hidden
+%ul
+  %li= link_to 'Edit', edit_admin_expense_path(@expense)
+  %li= link_to 'Back', admin_expenses_path

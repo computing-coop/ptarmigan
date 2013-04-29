@@ -1,0 +1,17 @@
+- content_tag_for :div, event, :class => "front clearfix" do
+  
+  .event_front_parameters
+    - unless event.avatar_file_name.blank?
+      =link_to(image_tag(event.avatar.url(:thumb), :width => 60, :align => :left), event_url(:id => event))
+    .event_front_title=link_to(event.title, event_path(:id => event))
+    .event_front_date
+      =l(event.date, :format => :short)
+      - unless event.enddate.blank?
+        ="#{t(:daterange)} #{l event.enddate, :format => :short}"
+      &sdot;
+      =ptarmigan_cost(event.cost)
+    = "@"
+    %b= event.place.name
+
+  .event_facebook=facebook_link(event, false)  
+  .front_read_more= link_to(read_more, event_url(:id => event))

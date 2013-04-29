@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  date: 2009-07-18
+  name: MyString
+  income_type: MyString
+  event_id: 
+  amount: 1.5
+  hidden: false
+
+two:
+  date: 2009-07-18
+  name: MyString
+  income_type: MyString
+  event_id: 
+  amount: 1.5
+  hidden: false

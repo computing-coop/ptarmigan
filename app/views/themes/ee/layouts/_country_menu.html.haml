@@ -1,0 +1,31 @@
+%ul
+  %li= link_to image_tag('layout/country_select/suomi_off.png'), "http://#{request.host.gsub(/\.ee$/, '.fi')}#{request.port != 80 ? ":" + request.port.to_s : ''}/"
+  %li= link_to image_tag('layout/country_select/eesti_on.png'), "/"
+
+
+
+  /%li= link_to(image_tag(current_theme_image_path('/layout/country_select_fi.png')), "http://#{request.host.gsub(/\.ee$/, '.fi')}#{request.port != 80 ? ":" + request.port.to_s : ''}/")
+  
+:javascript
+  $(document).ready(function(){
+
+  	$("ul.subnav").parent().append("<span></span>"); //Only shows drop down trigger when js is enabled (Adds empty span tag after ul.subnav*)
+
+  	$("ul.country_select li span").click(function() { //When trigger is clicked...
+
+  		//Following events are applied to the subnav itself (moving subnav up and down)
+  		$(this).parent().find("ul.subnav").slideDown('fast').show(); //Drop down the subnav on click
+
+  		$(this).parent().hover(function() {
+  		}, function(){
+  			$(this).parent().find("ul.subnav").slideUp('slow'); //When the mouse hovers out of the subnav, move it back up
+  		});
+
+  		//Following events are applied to the trigger (Hover events for the trigger)
+  		}).hover(function() {
+  			$(this).addClass("subhover"); //On hover over, add class "subhover"
+  		}, function(){	//On Hover Out
+  			$(this).removeClass("subhover"); //On hover out, remove class "subhover"
+  	});
+
+  });

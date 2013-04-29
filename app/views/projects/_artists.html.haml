@@ -1,0 +1,6 @@
+= paginate(artists, :param_name => :artists_page, :remote => true)
+= render :partial => "artists/artist", :collection => artists
+:javascript
+  $('#artists_wrapper nav.pagination a').click(function() {
+    $('#artists_wrapper nav.pagination').html("<img src=\"#{theme_image_path('layout/pagination_bar.gif')}\">");
+  });

@@ -1,0 +1,16 @@
+%h1.heading All pages on Ptarmigan wiki
+%p (sorted by most recently edited)
+  
+%p.actions
+  = link_to 'New Wikipage', new_admin_wikipage_path
+  
+%table
+  %thead.header
+    %tr
+      %th.title= 'Title'
+      %th.actions= 'Actions'
+  %tbody.items.wikipages
+    - @wikipages.each do |wikipage|
+      = render 'item', :wikipage => wikipage
+      
+= paginate(@wikipages)

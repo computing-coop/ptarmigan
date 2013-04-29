@@ -1,0 +1,24 @@
+%h3 projects
+= button_to 'Create new project', new_admin_project_path, :method => :get
+= paginate @projects
+
+.projects
+  - if !@projects.empty?
+    - @projects.group_by(&:location).each do |location,projects|
+      .six.columns
+        %h3= location.name
+        - projects.each do |project|
+          .project.cms_item{:class => project.location.name.downcase}
+            = link_to(project.name, edit_admin_project_path(:id => project.id))
+            - if project[:active] == false
+              %font{:color => 'red'} (inactive)
+            %span{:class => :smaller_font}
+              = link_to('(edit)', edit_admin_project_path(project))
+              = link_to('(delete)', admin_project_path(:id => project.id), {:confirm => 'Are you sure?', :method => :delete})
+
+  - else
+    %p There are no projects to show yet.
+
+.projects
+  = button_to 'Create new project', new_admin_project_path, :method => :get
+  = paginate @projects

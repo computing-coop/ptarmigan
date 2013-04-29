@@ -1,0 +1,36 @@
+= semantic_nested_form_for([:admin, @expense], :html => {:multipart => true}) do |f|
+  = f.input :location
+  %hr
+  .six.columns
+    %label= f.label "Date paid"
+    = f.text_field :when, :class => 'date-pick'
+    %label= f.label :recipient
+    = f.text_field :recipient
+    %label
+    = f.label :what_for
+    %label
+    = f.text_field :what_for
+  .six.columns
+    %label= f.label "Event (optional)"
+    = f.collection_select :event_id, Event.order('date DESC'), :id, :longer_title, :include_blank => true
+    %label= f.label :amount
+    = f.text_field :amount
+    = f.input :paid_by, :label => "Paid by?", :hint => "(examples, Ptarmigan, STMK, JWF)"
+    = f.input :budgetarea, :label => "Budget area (optional)"
+    = f.input :has_receipt, :label => "Do we have a receipt?"
+  .thirteen.columns
+    = f.semantic_fields_for :wikifiles do |ff|
+      - unless ff.object.new_record?
+        - unless ff.object.attachment_file_name.blank?
+          %p= link_to '[download: ' + ff.object.attachment_file_name + ']', ff.object.attachment.url
+      = ff.input :attachment, :label => (ff.object.new_record? ? 'Attach file' : 'Replace attachment')
+      = ff.input :documenttype, :as => :select, :label => "Type of document"
+      = ff.input :description, :as => :string, :label => "Description of this attachment, ex. 'the invoice'"
+      = ff.link_to_remove "Remove this attachment"
+  .thirteen.columns= f.link_to_add '+ Add an attachment (PDF or other file for invoice, receipt)', :wikifiles
+  %p
+    = f.label :hidden
+    %br
+    = f.check_box :hidden
+  %p
+    = f.submit "Submit"

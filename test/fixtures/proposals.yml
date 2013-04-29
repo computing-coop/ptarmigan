@@ -1,0 +1,39 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  location: MyString
+  name: MyString
+  organisation: MyString
+  email: MyString
+  address: MyString
+  country: MyString
+  phone_number: MyString
+  short_description: MyText
+  duration: MyString
+  long_description: MyText
+  public_engagement: MyText
+  materials: MyText
+  spatial_requirements: MyText
+  cost: MyText
+  bio: MyText
+  urls: MyText
+  ptarmigan_goodfit: MyText
+
+two:
+  location: MyString
+  name: MyString
+  organisation: MyString
+  email: MyString
+  address: MyString
+  country: MyString
+  phone_number: MyString
+  short_description: MyText
+  duration: MyString
+  long_description: MyText
+  public_engagement: MyText
+  materials: MyText
+  spatial_requirements: MyText
+  cost: MyText
+  bio: MyText
+  urls: MyText
+  ptarmigan_goodfit: MyText

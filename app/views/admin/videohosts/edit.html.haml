@@ -1,0 +1,6 @@
+%h2 Editing videohost
+= render :partial => "form", :locals => {:videohost => @videohost}
+%ul
+  %li= link_to 'Show', @videohost
+  %li= link_to 'Back', videohosts_path
+  %li= link_to 'Destroy', @videohost, :confirm => 'Are you sure?', :method => :delete  

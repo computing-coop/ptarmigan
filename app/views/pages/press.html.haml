@@ -1,0 +1,62 @@
+= tabs_for do |tab|
+  - tab.create('press', t(:materials)) do
+    = raw @page.body
+
+    - unless @resources.blank?
+      - @resources.in_groups_of(2).each do |group|
+        .line.clearfix
+          - group.each do |resource|
+            - next if resource.nil?
+            .resource
+              .resource_image= link_to image_tag(resource.icon.url(:thumb).gsub(/\s/, '%20')), resource.attachment.url
+              .resource_metadata
+                .resource_title= resource.name
+                .resource_description= raw resource.description
+                .resource_download_link
+                  = number_to_human_size(resource.attachment_file_size)
+                  [
+                  = link_to t(:download), resource.attachment.url
+                  ]
+  - tab.create('links', t(:press)) do
+    .press
+      - @pagelinks.each do |link|
+        .press_link.clearfix
+          .link_title= link_to link.title, link.url
+          - unless link.source.blank?
+            .link_source= link.source
+          - unless link.description.blank?
+            .link_description= link.description
+  - tab.create('posters', t(:posters_and_other_items)) do
+    .posters
+      - unless @other_resources.blank?
+        - @other_resources.in_groups_of(2).each do |group|
+          .line.clearfix
+            - group.each do |resource|
+              - next if resource.nil?
+              .resource
+                .resource_image= link_to image_tag(resource.icon.url(:thumb).gsub(/\s/, '%20')), resource.attachment.url
+                .resource_metadata
+                  .resource_title= resource.name
+                  .resource_description= raw resource.description
+                  - unless resource.item.nil?
+                    - if !resource.event.nil?
+                      .resource_link
+                        %span.small= t(:event) + ": "
+                        = link_to resource.event.name, resource.event
+                    - if !resource.artist.nil?
+                      .resource_link
+                        %span.small= t(:artist) + ": "
+                        = link_to resource.artist.name, resource.artist
+                    - if !resource.project.nil?
+                      .resource_link
+                        %span.small= t(:project) + ": "
+                        = link_to resource.project.name, resource.project
+                  .resource_download_link
+                    = number_to_human_size(resource.attachment_file_size)
+                    [
+                    = link_to t(:download), resource.attachment.url
+                    ]
+
+= content_for :jquery do
+  :plain
+    $("#tabs").tabs();

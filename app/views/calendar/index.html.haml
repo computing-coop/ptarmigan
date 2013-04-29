@@ -1,0 +1,7 @@
+#the_calendar
+  =  calendar_for(@period.first.to_i, @period.last.to_i,  {:next_and_previous_month => lambda { |date| link_to_remote(I18n.localize(date, :format => "%b (#{(Event.in_month(date).size)})"), :update => 'the_calendar', :url => {:controller => :calendar, :action => :update_calendar, :year => date.year, :month => date.month} ) } } ) do |day|
+    - unless Event.has_events_on(day).blank?
+      - [link_to(day.day, event_url(:id => day.to_s)), { :class => "dayWithEvents" }]
+    - else
+      - day.day
+

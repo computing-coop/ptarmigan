@@ -1,0 +1,8 @@
+%h2 Listing videohosts
+- if !@videohosts.empty?
+  .videohosts
+    = render :partial => "videohost", :collection => @videohosts
+  = will_paginate(@videohosts)
+- else
+  %p There are no videohosts to show yet.
+= link_to 'New videohost', new_admin_videohost_path

@@ -1,0 +1,15 @@
+%h1.heading
+  = "Wikirevision %s" % @wikirevision.id
+  
+- content_tag_for(:dl, @wikirevision) do
+  %dt.label= 'User'
+  %dd.user= h @wikirevision.try(:user)
+  %dt.label= 'Contents'
+  %dd.contents= h @wikirevision.try(:contents)
+  %dt.label= 'Page'
+  %dd.page= h @wikirevision.try(:wikipage)
+  
+%p.actions
+  = link_to 'Edit', edit_admin_wikirevision_path(@wikirevision)
+  |
+  = link_to 'Index', admin_wikipages_path

@@ -1,0 +1,6 @@
+%h2 Editing place
+= render :partial => "form", :locals => {:place => @place}
+%ul
+  %li= link_to 'Show', [:admin, @place]
+  %li= link_to 'Back', admin_places_path
+  %li= link_to 'Destroy', [:admin, @place], :confirm => 'Are you sure?', :method => :delete  

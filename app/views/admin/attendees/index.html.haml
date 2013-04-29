@@ -1,0 +1,29 @@
+%h3.heading
+  = "Registrations"
+- if params[:event]
+  %h3= "#{Event.where(:id => params[:event]).first.name}"
+
+.meta
+  %p.create
+    = link_to 'Create new attendee', new_attendee_path
+  %p
+    Filter by:
+    = collection_select(:event, :event, Event.where(:id => [Attendee.all.map(&:event_id).uniq]).sort_by{|x| x.date}.reverse, :id, :title_with_date, options ={:include_blank => true})
+    :javascript
+      $('#event_event').change(function() {
+        window.location.replace(window.location.href.replace(/\?event=\d+/g, '') + '?event=' + $('#event_event').val());
+      });
+%table
+  %thead.header
+    %tr
+      %th.name= 'Attendee'
+
+      %th.event= 'Event'
+      %th.comments= 'Comments'
+      %th.optional= 'Optional'
+      %th.actions= 'Actions'
+  %tbody.items.attendees
+    - @attendees.each do |attendee|
+      = render 'item', :attendee => attendee
+      
+= paginate(@attendees)

@@ -1,0 +1,73 @@
+%h1.heading
+  = "Application: #{@airform.applicant.realname}"
+%h3= "#{@airform.completed} completed"
+
+- if @airform.completed == '100%'
+  Your application is complete. 
+  - if @airform.can_edit?
+    You must now submit it to finish.
+    %input{:type => 'button', :class => 'final_submit', :value => 'Submit!'} 
+  - else
+    Your application has been submitted.
+  
+- content_tag_for(:dl, @airform) do
+  %h3 Your details
+  .application_details
+    = "Name: #{@airform.applicant.realname}"
+    %br/
+    = "Address: #{@airform.applicant.address} (#{@airform.applicant.country_of_residence})"
+    %br/
+    = "Phone: #{@airform.applicant.phone}"
+    %br/
+    = "Nationality: #{@airform.applicant.nationality}"
+    
+  %h3 Project details
+  %dt.label= 'Project summary'
+  %dd.answer=  simple_format(@airform.show_answer(:project_summary))
+  %dt.label= 'Detailed description'
+  %dd.answer=  simple_format(@airform.show_answer(:detailed_description))
+  %dt.label= 'Events'
+  %dd.answer=  simple_format(@airform.show_answer(:events))
+  %dt.label= 'Equipment'
+  %dd.answer=  simple_format(@airform.show_answer(:equipment)  )
+  %dt.label= 'Budget'
+  %dd.answer=  simple_format(@airform.show_answer(:budget))
+  %dt.label= 'Availability'
+  %dd.answer= @airform.dates
+  %dt.label= 'Cv file name'
+  %dd.cv_file_name
+    = h @airform.try(:cv_file_name)
+    - unless @airform.cv_file_name.blank?
+      = link_to '[download]', @airform.cv.url
+  %dt.label= 'Attachment file name'
+  %dd.attachment_file_name
+    = h @airform.try(:attachment_file_name)
+    - unless @airform.attachment_file_name.blank?
+      = link_to '[download]', @airform.attachment.url
+ 
+  %dt.label= 'Terms agreed to'
+  %dd.terms_agreed= @airform.show_answer(:terms_agreed)
+
+- if @airform.completed == '100%'
+  Your application is complete.
+  - if @airform.can_edit?
+    You must now submit it to finish.  
+    %br/
+    %input{:type => 'button', :class => 'final_submit', :value => 'Submit!'} 
+  - else
+    Your application has been submitted.
+%p.actions
+  %br/
+  - if @airform.can_edit?
+    = link_to 'Edit my application', edit_airform_path(@airform)
+  %br/
+  %br/
+  = link_to 'Return to Artist-in-Residency information page', '/air'
+  
+:javascript
+  $('.final_submit').click(function() {
+    if (confirm('Are you sure you wish to submit your application?  Once you do this, you will no longer be able to edit it.  If your application is not 100% complete, it will not be considered.')) {
+      document.location.href='/airforms/#{@airform.id.to_s}/submit';
+    }
+  
+  });

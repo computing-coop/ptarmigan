@@ -1,0 +1,20 @@
+%h3
+  info for user
+  = @user.name
+
+.seven.columns.alpha= image_tag @user.icon.url(:medium)
+.six.columns.omega.user_profile
+  .field.clearfix
+    %label Email:
+    .answer.three.columns.omega= @user.email
+  .field.clearfix
+    %label User account since:
+    .answer.three.columns.omega
+      = l @user.created_at.to_date, :format => :long
+  .field.clearfix
+    %label Has logged in:
+    .answer.three.columns.omega
+      = pluralize @user.sign_in_count, 'time'
+      =  "- last at #{l @user.current_sign_in_at, :format => :long} "
+      .ago= "#{time_ago_in_words(@user.current_sign_in_at)} ago"
+

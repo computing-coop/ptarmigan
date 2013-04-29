@@ -1,0 +1,11 @@
+%h2 Listing incomes
+- if !@incomes.empty?
+  .incomes
+    %table{:cellpadding => 5, :cellspacing => 5, :border => 0}
+      = render :partial => "income", :collection => @incomes
+  = will_paginate(@incomes)
+- else
+  %p There are no incomes to show yet.
+= link_to 'New income', new_admin_income_path
+%br
+= link_to 'Back to admin home', admin_reports_path

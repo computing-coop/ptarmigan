@@ -1,0 +1,31 @@
+%h1.heading
+  = "Resource %s" % @resource.id
+  
+- content_tag_for(:dl, @resource) do
+  %dt.label= 'Name'
+  %dd.name= h @resource.try(:name)
+  %dt.label= 'Description'
+  %dd.description= h @resource.try(:description)
+  - unless @resource.project.blank?
+    %dt.label= 'Project'
+    = link_to @resource.project.name, project_path(:id => @resource.project, :locale => 'en')
+  
+  - unless @resource.artist.blank?
+    %dt.label= 'Artist'
+    = link_to @resource.artist.name, artist_path(:id => @resource.artist, :locale => 'en')
+
+
+  - unless @resource.event.blank?
+    %dt.label= 'Event'
+    = link_to @resource.event.title, event_path(:id => @resource.event, :locale => 'en')
+  
+  %dt.label= 'Icon'
+  %dd.icon_file_name= image_tag @resource.icon.url(:thumb)
+  %dt.label= 'Attachment'
+  %dd.attachment_file_name= link_to '[download]', @resource.attachment.url
+
+  
+%p.actions
+  = link_to 'Edit', edit_admin_resource_path(@resource)
+  |
+  = link_to 'Index', admin_resources_path

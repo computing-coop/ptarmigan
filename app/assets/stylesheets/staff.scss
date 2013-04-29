@@ -1,0 +1,422 @@
+#flash {
+  .error {
+    font-size: 14pt;
+    font-weight: bold;
+    color: red;
+  }
+  .notice {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    color: #513219;
+  }
+}
+
+span.smaller_text {
+  font-size: 12px;
+}
+form.button_to {
+  float: left;
+  margin-right: 25px;
+  margin-bottom: 0px;
+}
+
+.accounting {
+
+  li {
+
+    list-style-type: none;
+    label { float: left; font-size: 10px; }
+    select {
+      float: left;
+      font-size: 10px;
+    }
+    float: left;
+  }
+}
+
+td.suomi {
+  a {
+    color: #00A329 !important;
+  }
+}
+
+tr.document {
+  border-bottom: 1px dotted #00A329;
+  padding: 5px 0px 5px 0px;
+  td {
+    font-size: 14px;
+  }
+}
+
+td.eesti {
+  a {
+    color: #3477B6 !important;
+  }
+}
+
+p {
+  a {
+    color: #3477B6 ;
+  }
+}
+
+.existing-image {
+  margin-left: 100px;
+}
+p.inline-errors {
+  color: red;
+  margin-left: 111px;
+  font-weight: bold;
+  margin-top: -20px;
+}
+
+.cms_item {
+  &.eesti {
+    a {
+      color: #3477B6;
+    }
+  }
+  &.suomi {
+    a {
+      color: #00A329;
+    }
+  }
+
+  font-size: 11pt;
+  margin-bottom: 3px;
+}
+
+nav.pagination {
+  padding-top: 7px;
+}
+
+.events, .artists, .projects {
+  clear: both;
+}
+span.delete {
+  a {
+    color: red !important;
+  }
+}
+.artist {
+  border: none;
+}
+
+.pagination span {
+  font-size: 15px;
+  float: left;
+  text-align: center;
+  width: 21px;
+}
+
+#staff_menu ul li {
+  font-size: 12px;
+  margin-bottom: 2px;
+  font-weight: bold;
+  padding: 8px 5px;
+  border: 1px dotted #3477B6 ;
+  &:hover {
+    background-color: #EEE;
+  }
+  a {
+    text-decoration: none;
+    &:hover {
+      color: #3477B6;
+
+    }
+  }
+}
+
+#nav {
+  .small {
+    clear: left;
+    input[type=text] {
+      width: 140px;
+      height: 8px;
+      margin: 0px;
+    }
+  }
+}
+.staff_header {
+  text-align: left;
+  font-size: 24px;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid green;
+  input {
+    float: left;
+   
+  }
+  input[type=text] {
+    width: 140px;
+    height: 11px;
+    margin: 0px;
+  }
+  input[type=submit] {
+    margin: 0px;
+    height: 14px;
+  }
+}
+
+.proposals {
+  fieldset { border:1px solid green;padding: 5px;}
+  table {
+    td {
+      padding: 0px 5px 0px 0px;
+    }
+  }
+
+}
+
+.ago {
+  font-size: 9px;
+  color: #333;
+  font-style: italic;
+
+}
+
+.user_profile {
+  .field { 
+    clear: both;
+    margin-bottom: 15px;
+    label {
+      float: left;
+      margin-right: 10px;
+      line-height: 15px;
+      text-align: right;
+      width: 100px;
+    }
+    .answer {
+      float: left;
+    }
+  }
+}
+/**** wiki styles *****/
+.wiki {
+  p {
+    line-height: 16px;
+  }
+  .wikimetadata {
+    border-top: 1px dotted #999;
+    border-bottom: 1px dotted #999;
+    padding: 5px 0px 0px 0px;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 16px;
+    color: #333;
+  }
+  ul {
+    li {
+      line-height: 18px;
+      list-style-type: disc;
+      margin-left: 25px;
+    }
+  }
+
+  ol {
+    li {
+      list-style-type: decimal;
+    }
+  }
+  .wiki_header {
+    text-align: left;
+    font-size: 24px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid green;
+  }
+  table {
+    border-collapse: collapse; 
+  }
+  fieldset { border:1px solid green; }
+
+  legend {
+    padding: 0.2em 0.5em;
+    border:1px solid green;
+    color:green;
+    font-size:90%;
+    text-align:right;
+  }
+
+  ul.wikifiles {
+    padding: 15px;
+    li.file {
+      float: left;
+      padding: 5px;
+      border: 1px solid #98FB21; 
+
+      .category {
+        font-style: italic;
+        text-transform: uppercase;
+        color: #333;
+      }
+
+      .description {
+        font-size: 14px;
+      }
+      .metadata {
+        color: #666;
+      }
+      .timestamp {
+        margin-top: 15px;
+        color: #333;
+        font-style: italic;
+      }
+    }
+  }
+  td {
+    border: 1px dotted #98FB21;
+    padding: 5px; 
+  }
+}
+
+
+form .six label {
+  width: 100px;
+  margin-right: 10px;
+  float: left;
+  text-align: right; 
+}
+form .six input[type=text], form .six input[type=file] {
+  width: 200px;
+}
+
+form .six li.boolean {
+  margin-top: 50px;
+  p.inline-hints {
+    margin-left: 107px;
+    text-align: left;
+    width: 230px;
+  }
+  label {
+  
+    width: 340px;
+    text-align: left;
+    margin-bottom: 0px;
+
+  }
+}
+
+#event_public_input {
+  margin-top: 75px;
+  label {
+    font-size: 23px;
+  }
+}
+
+.wf_container {
+  clear: left;
+}
+
+form {
+  li {
+    list-style-type: none;
+  }
+}
+#event_registration_required_input {
+  margin-top: 10px;
+  float: left;
+  margin-bottom: 25px;
+  label {
+    font-size: 18px;
+  }
+}
+form .six input[type=checkbox] {
+  width: 15px;
+  margin-left: 88px;
+  float: left;
+}
+
+.video {
+  margin-bottom: 10px;
+  padding: 5px 0px;
+  border-bottom: 1px dotted #3477B6;
+  clear: both;
+  .title {
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .event {
+    font-size: 10px;
+  }
+}
+table {
+  thead {
+    th {
+      font-weight: bold;
+      font-size: 14px;
+    }
+  }
+  tbody {
+    tr:hover {
+      background-color: #EEE;
+    }
+  }
+}
+
+.place {
+  clear:left;
+  padding: 5px 0px;
+  border-bottom: 1px dotted #3477B6;
+
+  &:hover {
+    background-color: #EEE;
+  }
+  .event_count {
+    font-style: italic;
+    font-size: 13px;
+  }
+}
+
+#expenses {
+  padding: 5px;
+  nav.pagination {
+    clear: left;
+    padding-top: 7px;
+  }
+}
+
+.expenses {
+  clear: both;
+  margin-top: 15px;
+
+  table {
+    th {
+      font-size: 11px;
+      line-height: 12px;
+      font-weight: bold;
+    }
+    font-size: 11px;
+  }
+}
+
+.activity {
+  clear: both;
+  padding: 5px;
+  border-bottom: 1px dotted #3477B6;
+  .icon {
+    float: left;
+    width: 75px;
+    margin-right: 10px;
+  }
+  .metadata {
+    float: left;
+    .person {
+      float: left;
+      margin-right: 10px;
+      span.small {
+        color: #999;
+        font-size: 11px;
+      }
+      span.name {
+        font-weight: bold;
+        font-size: 12px;
+      }
+      float: left;
+    }
+    .action {
+      font-size: 13px;
+
+    }
+  }
+}

@@ -1,0 +1,89 @@
+%h3 Proposals
+.proposals
+  - active = @proposals.reject{|x| x.archived }
+  - archived = @proposals.reject{|x| !x.archived}
+
+  .six.columns.alpha
+    %fieldset
+      %label Regular residency proposals
+      %table
+        %thead
+          %tr
+            %th Date
+            %th Name
+            %th Country
+            %th comments (#)
+        %tbody
+          - active.select{|x| x.project_id == 15}.sort{|x, y| y.created_at <=> x.created_at}.each do |proposal|
+            %tr
+              %td= l proposal.created_at.to_date, :format => :long
+              %td= link_to proposal.name, admin_proposal_path(proposal)
+              %td= Country[proposal.country].name
+              %td= proposal.proposalcomments.count.to_s
+
+  .six.columns.omega
+    %fieldset
+      %label Axis of Praxis proposals
+      %table
+        %thead
+          %th Date
+          %th Name
+          %th Country
+          %th comments (#)
+        %tbody
+          - active.select{|x| x.project_id == 35}.sort{|x, y| y.created_at <=> x.created_at}.each do |proposal|
+            %tr
+              %td= l proposal.created_at.to_date, :format => :long
+              %td= link_to proposal.name, admin_proposal_path(proposal)
+              %td= Country[proposal.country].name
+              %td= proposal.proposalcomments.count.to_s     
+
+  .twelve.columns
+    %fieldset
+      %label Other active proposals             
+      %table
+        %thead
+          %tr
+            %th Date
+            %th Name / organisation
+            %th Location
+            %th Project?
+            %th Comments (#)
+
+        %tbody
+          - active.select{|x| x.project_id != 35 && x.project_id != 15}.sort{|x, y| y.created_at <=> x.created_at}.each do |proposal|
+            %tr{:class => "proposal_grid_#{proposal.location}" }
+              %td= l proposal.created_at.to_date, :format => :long
+              %td= link_to proposal.name, admin_proposal_path(proposal)
+              %td
+                - if proposal.location == "0"
+                  Both!
+                - elsif proposal.location == "1"
+                  Helsinki
+                - elsif proposal.location == "2"
+                  Tallinn
+              %td= proposal.project_name
+              %td= proposal.proposalcomments.count.to_s
+  .twelve.columns
+
+    - unless archived.blank?
+      %p
+      #show_link= link_to 'Show archived proposals', '#', :onclick => 'javascript:$("#archived").slideDown(); $("#show_link").fadeOut();'
+    #archived{:style => "display: none"}
+      %fieldset
+        %label Archived proposals
+        %table
+          %thead
+            %tr
+              %th Date
+              %th Name / organisation
+              %th Project?
+              %th Staff comments (#)
+          %tbody
+            - archived.sort{|x, y| y.created_at <=> x.created_at}.each do |proposal|
+              %tr{:class => "proposal_grid_#{proposal.location}" }
+                %td= l proposal.created_at.to_date, :format => :long
+                %td= link_to proposal.name, admin_proposal_path(proposal)  
+                %td= proposal.project_name
+                %td= proposal.proposalcomments.count.to_s
+

@@ -1,0 +1,9 @@
+<%= @proposalcomment.user.name %> has posted a comment on the proposal:
+<%= @proposalcomment.proposal.name %>
+
+<Br />
+<hr>
+<%= raw simple_format(@proposalcomment.comment.gsub(/\n/, '<br />')) %>
+
+<hr>
+To respond to this comment, or review the proposal, please visit <%= link_to 'the Ptarmigan website', @host  + admin_proposal_path(@proposalcomment.proposal) %>.

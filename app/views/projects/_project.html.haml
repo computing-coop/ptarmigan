@@ -1,0 +1,51 @@
+
+= content_tag_for :div, project do
+  %a{:name => project.id.to_s}
+  - unless project.avatar_file_name.blank?
+    .project_image=image_tag project.avatar.url(:medium) 
+  .project_parameters
+
+    .project_name= link_to_unless controller.action_name == 'show', project.name, project
+
+
+  .project_description= raw project.description(params[:locale])
+
+
+  - unless project.website1.blank?
+    .project_links= link_to(project.website1, to_url(project.website1))
+  - unless project.website2.blank?
+    .project_links= link_to(project.website2, to_url(project.website2))
+
+  - unless project.resources.blank?
+    .project_hideshow= raw link_to("#{t :see} #{project.name} #{t :resources} (#{project.resources.size})",  "javascript:$('#project_resources_#{project.id.to_s}').slideDown();")  
+    .project_events
+      %div{:id => "project_resources_#{project.id.to_s}", :style => "display: none;"}
+        - project.resources.sort{|x, y| y.created_at <=> x.created_at}.each do |r|
+          - unless r.icon_file_size.blank?
+            = link_to image_tag(r.icon.url(:thumb)), r.attachment.url
+            %br/
+          = link_to r.name, r.attachment.url
+          %br/
+          = raw r.description
+          %br/
+          %br/
+  - unless project.events.delete_if{|x| !x.public }.blank?
+    .project_hideshow= raw link_to("#{t :see} #{project.name} #{t :events} (#{project.events.size})",  "javascript:$('#project_events_#{project.id.to_s}').slideDown();")
+    .project_events
+      %div{:id => "project_events_#{project.id.to_s}", :style => "display: none;"}
+        - project.events.delete_if{|x| !x.public }.sort{|x, y| y.date <=> x.date}.each_with_index do |e, index|
+          .project_event.clearfix{:class => (index == (project.events.size - 1) ? "last" : "")}
+            .project_event_image= image_tag e.avatar.url(:thumb) 
+            .project_event_metadata
+              .project_event_date= l e.date, :format => :long
+              .project_event_title= link_to(e.title, event_path(:id => e.id))
+              .project_event_archive
+                = raw facebook_link(e, false)
+          
+       
+  / - if current_user
+  / 
+  /     = link_to 'Edit', edit_admin_project_path(:id => project)
+  /     = link_to 'Destroy', admin_project_url(:id => project), :confirm => 'Are you sure?', :method => :delete
+  /    %br
+  /    %br

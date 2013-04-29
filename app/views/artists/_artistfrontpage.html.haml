@@ -1,0 +1,9 @@
+= content_tag_for :div, artist, :class => "front clearfix" do
+  .artist_front_parameters
+    - unless artist.avatar_file_name.blank?
+      =link_to(image_tag(artist.avatar.url(:thumb), :width => 60, :align => :left), artist_url(:id => artist))
+    .artist_front_title=link_to(artist.name, artist_path(:id => artist)) 
+    .artist_front_description= raw awesome_truncate(artist.bio, 90)
+    .front_read_more= link_to(read_more, artist_url(:id => artist))
+    
+      

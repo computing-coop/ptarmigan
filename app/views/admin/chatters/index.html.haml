@@ -1,0 +1,10 @@
+%h3 staff chatter
+
+= link_to 'post some new chatter', new_admin_chatter_path
+%ul
+  - @chatters.each do |chatter|
+    .chatter_line
+      = link_to chatter.subject, admin_chatter_path(chatter)
+      = "posted by #{chatter.user.name}, #{time_ago_in_words(chatter.created_at)} ago" 
+      - unless chatter.comments.empty?
+        = "(#{pluralize(chatter.comments.size, 'reply')}, latest #{time_ago_in_words(chatter.latest)} ago)"

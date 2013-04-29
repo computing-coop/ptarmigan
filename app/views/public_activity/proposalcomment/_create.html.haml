@@ -1,0 +1,18 @@
+.activity.ten.columns
+  .icon.columns
+    = image_tag trackable_icon(a.trackable), :width => 75
+
+  .metadata.seven.columns
+    .person
+      .info.column
+        %span.name= a.owner.name
+        %span.small
+          - if a.trackable.comment =~ /<span class="comment_system">Proposal was archived./
+            archived the proposal by
+          - else
+            commented on the proposal by
+        = link_to a.trackable.proposal.name, [:admin, a.trackable.proposal ]
+
+        .timestamp
+          %span.small= time_ago_in_words(a.created_at) + " ago"
+  .one.column= image_tag a.owner.icon.url(:thumb), :height => 50          

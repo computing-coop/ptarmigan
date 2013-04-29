@@ -1,0 +1,98 @@
+.whitebg
+  .residency
+    
+    = image_tag('/images/layout/kknord.jpg', :align => :right, :width => 150)
+    %h1 Ptarmigan Artist-in-Residency Programme
+
+    = image_tag('/images/layout/Culture_ENG_SMALL.jpg', :align => :right, :width => 200)
+    
+    %h2 Call for submissions
+    %p
+      Ptarmigan project space (Helsinki, Finland) is pleased to announce a new residency programme for artists and cultural workers from the Baltic and Nordic regions (excluding Finland). We are seeking proposals from individuals and collectives who work to expand traditional structures of art and cultural production in creative and innovative ways.  
+    %p
+      Residencies will last for approximately two months each.   Our residency programme will focus on dialogue and exchange between visiting artists and the Helsinki-based audience. Preference will be given to proposals that respond to location, community and the environment. We encourage applicants to propose projects that include artist talks, workshops or other community based activity. This programme is made possible by The Nordic Baltic Mobility Programme for Culture administrated by the
+      = link_to 'Nordic Culture Point.', 'http://www.kknord.org/'
+
+
+    %h3 About Ptarmigan
+    %p Ptarmigan provides an open space to create original artistic work outside of commercial pressures. The space is housed at an industrial location in the Vallila neighbourhood of Helsinki.  It is a not-for-profit, artist-operated space that regularly hosts workshops, exhibitions, performances and sound events.  Our gallery space -- or project room -- is a non-traditional art space.  The project room will function as a studio for the working artist.   It is a white room, approximately 21 square metres, with fluorescent lighting.  On one wall there is a screen for projections, and the floor is tiled with a rough office-type of flooring. We require that artists create original work during their stay, hopefully utilising the physical characteristics of the space.
+
+    %p The resident will have the use of this room as a studio and exhibition space for the duration of their stay, and they may also use the public/front area (which is frequently used for performances) if required. Various events programming such as workshops and concerts will occur at Ptarmigan during their residency, and the resident will be encouraged to get involved and participate in these, as well as organising events of his or her own design.
+
+    %h3 What we're looking for
+    %p Ptarmigan is a multi-purpose space that is focused on art and culture.  Over the past year the space has hosted a wide variety of projects, events and encounters. These events and exhibitions have both conformed to conventional structures, such as music concerts or exhibition openings, while others have explored areas of alternative education or social/group experimentation.  
+
+    %p We have an interest in cultural production and projects that do not fit comfortably into conventional boundaries.  We seek work that is transdisciplinary, mixed-media, and interactive in that it finds some way to engage directly with an audience.  We support practices that maintain the author/audience relationship, but our preference will be for practitioners who create a two-way dialogue with the audience - exchanging experiences, skills and ideas.
+
+    %p Ptarmigan exists as an alternative to commercially-driven cultural production and relies on volunteer efforts and support from its community.  There is a very human-driven basis to Ptarmigan, so residents must be willing to meet people and contribute to the social community.  You will be sharing the space with a few artists who have permanent studio space there, as well as interacting with the many participants in our ongoing projects.  
+    %h3 Residency dates
+    %p Three residencies are on offer for the periods of July - August, September - October, and November - December.
+
+
+    %h3 What the residency offers
+    %ul
+      %li A studio/working space - this may also function as a gallery space for exhibition of work, a seminar room, meeting place, or workshop space.  High speed internet.
+      %li Full kitchen facilities
+      %li Accommodation in a nearby apartment (within walking distance from the studio)
+      %li A stipend to cover subsistence costs
+      %li A materials budget
+      %li Travel costs to and from Helsinki
+
+
+    %h3 Who can apply
+    %p Applications are open to artists who reside in the Nordic and Baltic countries outside of Finland.  This covers Iceland, Norway, Sweden, Denmark, Estonia, Latvia and Lithuania and the autonomous areas of the Faroe Islands, Greenland and Åland.
+  
+    %h2 Applying
+  
+    %h3 Electronic applications
+    %a{:name => 'myapps'}
+    - if applicant_in?
+      You are logged in as
+      = current_applicant.realname
+      = link_to '[Logout]', '/logout'
+      %br/
+      - if @airforms.empty?
+        You have not yet started your application.  
+        = link_to 'Begin your application', new_airform_path
+      - else
+        .airforms
+          - @airforms.each do |airform|
+            - if airform.can_edit?
+              = link_to 'Edit your application', edit_airform_path(airform)
+              = "(#{airform.completed} complete)"
+            - else
+              Your application was submitted on 
+              = airform.updated_at.strftime('%b %d %Y')
+            %br/
+            = link_to 'View your application', airform
+          
+    
+    - else
+      To apply to the Ptarmigan artist-in-reisdency programme, you must first
+      = link_to 'register as an applicant.', new_applicant_path
+      %br/
+      %br/
+      If you have already registered, click here to
+      = link_to 'begin your application', new_airform_path
+      ="." 
+  
+    %h3 Analogue applications
+    If you do not wish to apply electronically, you may download our
+    = link_to 'application form', '/downloads/Ptarmigan-AIR-app.pdf' 
+    and send it via post to:
+    %dd
+      Ptarmigan
+      %br/
+      Nilsiänkatu 10
+      %br/
+      00510 Helsinki
+      %br/
+      FINLAND
+  
+    %h3 Deadlines
+    All applications must be submitted/postmarked by 15 May 2010!
+
+#clearer
+  &nbsp;
+  %br/
+  %br/

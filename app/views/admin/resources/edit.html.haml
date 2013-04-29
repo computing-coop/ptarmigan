@@ -1,0 +1,7 @@
+%h3.heading
+  = "Editing document details"
+  
+= semantic_form_for([:admin, @resource], :html => {:multipart => true}) do |form|
+  = render 'form', :form => form
+  = form.actions do
+    = form.submit 'Update'

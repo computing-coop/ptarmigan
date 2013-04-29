@@ -1,0 +1,8 @@
+- content_tag_for :div, videohost do
+  %ul
+    %li
+      %strong Name:
+      =h videohost.name
+    = link_to 'Show', admin_videohost_url(:id => videohost)
+    = link_to 'Edit', edit_admin_videohost_path(videohost)
+    = link_to 'Destroy', admin_videohost_url(:id => videohost), :confirm => 'Are you sure?', :method => :delete

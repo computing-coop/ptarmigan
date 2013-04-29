@@ -1,0 +1,10 @@
+= image_tag('/images/layout/kknord.jpg', :align => :right, :width => 150)
+%h1.heading Your application
+  
+- semantic_form_for(@airform, :html => {:multipart => true}) do |form|
+  = render 'form', :form => form
+  - form.buttons do
+    = form.commit_button 'Save'
+    
+%p.actions
+  = link_to 'Cancel', airforms_path

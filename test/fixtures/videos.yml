@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  videohost: 
+  event: 
+  creator: MyString
+  hostid: 
+  name: MyString
+  description: MyText
+
+two:
+  videohost: 
+  event: 
+  creator: MyString
+  hostid: 
+  name: MyString
+  description: MyText

@@ -1,0 +1,60 @@
+.registration_form
+  - if event.is_full?
+    %h3= t(:event_full)
+    %p= t :waiting_list_text
+  - else
+    - if controller.action_name == 'index'
+      %h3= link_to t(:you_must_register), event
+    - else
+      %h3= t :you_must_register
+      / %div{:id => "clear_me_#{event.id.to_s}"}= link_to_function t(:click_here_to_register), "$('#reg_form_#{event.id.to_s}').slideDown(); $('#clear_me_#{event.id.to_s}').fadeOut();"
+  %div{:id => "form_container_#{event.id.to_s}"} 
+    %div{:id => "reg_form_#{event.id.to_s}"}
+      - if event.registration_limit
+        - if event.hide_registrants == true
+          - blurb = 'This event requires advance registration.'
+        - else
+          - blurb = "This event is limited to #{event.registration_limit} participants, with currently  #{pluralize((event.registration_limit - event.attendees.size.to_i), 'space')} free."
+      - if blurb
+        .blurb= blurb
+      = form_for @attendee = Attendee.new, :html => {:id => "new_attendee_#{event.id.to_s}"}, :update => "reg_form_#{event.id.to_s}", :remote => true do |form|
+        %p
+          %label= t :your_name
+          = form.text_field :name
+        %p
+          %label= t :your_email
+          = form.text_field :email
+          - if event.is_full?
+            = form.hidden_field :waiting_list, :value => 1
+        %p
+          %label= t :your_phone
+          = form.text_field :phone
+          = form.hidden_field :event_id, :value => event.id.to_s
+        - unless event.registration_optional_q.blank?
+          %p
+            %label= event.registration_optional_q
+            = form.text_area :optional, :rows => 4
+        %p
+          .clearfix 
+            %label= t :extra_info_or_qs 
+            = form.text_area :comments, :rows => 4
+        %p
+          .clearfix
+            %label= t :verify_you_are_human
+            = recaptcha_tags(:ajax => true, :display => {:theme => 'white', :tabindex => 10})
+
+        .clearfix
+          %label &nbsp;
+          %div{:id => "attendee_submit_" + event.id.to_s}= form.submit  t :sign_up 
+
+        .clearfix
+          %label &nbsp;
+          %div{:id => "loading_#{event.id.to_s}", :style => 'display: none'}= image_tag('ajax-loader.gif')
+      :javascript
+        $('#attendee_submit_#{event.id.to_s} input').click(function() {
+          $("ul#errors_#{event.id.to_s}").html('');
+          $("#loading_#{event.id.to_s}").toggle();
+          $("#attendee_submit_#{event.id.to_s}").attr('disabled', 'disabled');
+          $("#attendee_submit_#{event.id.to_s}").fadeOut();
+          // $("#new_attendee_#{event.id.to_s}").submit();
+        });

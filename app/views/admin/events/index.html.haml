@@ -1,0 +1,21 @@
+%h3 Events
+
+= button_to 'new event', new_admin_event_path, :method => :get
+= paginate(@events)
+
+= will_filter_tag(@events) 
+.events
+  - @events.each do |event|
+    %p
+      %span{:class => :smaller_font}= l event.date, :format => :long
+      %span{:class => event.location.locale + "_event"}
+        = link_to(event.title, edit_admin_event_path(:id => event.id))
+        -if event[:public] == false
+          %span{:class => 'read_more'}
+            %font{:color => 'red'} (Not yet public)
+        %span.smaller_font
+          = link_to('(edit)', edit_admin_event_path(event))
+          %span.delete= link_to('[delete]', admin_event_path(:id => event.id), {:confirm => 'Are you sure?', :method => :delete})
+
+= button_to 'new event', new_admin_event_path, :method => :get
+= paginate(@events)

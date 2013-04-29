@@ -1,0 +1,13 @@
+When,Where,Source,What for,Event or budget area,Receipt,Amount
+<%= CSV.generate do |csv|
+   @incomes.each do |cs|
+     csv << [ cs.when.strftime('%d.%m.%Y'), cs.location.name,  cs.source, cs.what_for,
+        (cs.event.nil? ? "" : cs.event.name + " - ") + (cs.budgetarea.blank? ? "" :  cs.budgetarea.name),
+        cs.has_receipt, 
+          sprintf("%.2f", cs.amount)
+        ]
+    end
+    csv << [ 'Totals', nil, nil, nil, nil, nil, 
+          sprintf("%.2f", @expenses.map(&:amount).flatten.sum)
+        ]
+end %>

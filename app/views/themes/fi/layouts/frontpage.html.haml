@@ -1,0 +1,161 @@
+!!! XML
+!!!
+%html{ :'xml:lang' => "en", :lang => "en" , :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    = display_meta_tags :site => "Ptarmigan"
+    %meta{ :"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8" }
+    %link{ :rel => "shortcut icon", :href => "/favicon.ico" }
+
+    %link{ :rel => "alternate", :type => "application/rss+xml", :title => "Ptarmigan RSS", :href => "/feed.rss"}
+    
+    = stylesheet_link_tag :application
+    = stylesheet_link_tag theme_stylesheet_path(:application), :media => :screen
+    = javascript_include_tag :application
+
+
+    %script{:type => "text/javascript"}
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12518395-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    - if @carousel.compact.blank?
+      :javascript
+        function slideShow(speed) {
+          return true;
+        }
+    - elsif @carousel.compact.size == 1
+      :javascript
+        function slideShow(speed) {
+          $('ul.carousel').append('<li id="carousel-caption" class="caption"><div class="carousel-caption-container"><h3></h3><p></p></div></li>');
+          $('ul.carousel li').css({opacity: 1.0});
+          $('ul.carousel li:first').css({opacity: 1.0});
+          $('#carousel-caption h3').html($('ul.carousel a:first').find('img').attr('title'));
+          $('#carousel-caption p').html($('ul.carousel a:first').find('img').attr('alt'));
+          $('#carousel-caption').css({opacity: 0.7, bottom:0});
+        }
+    - else
+      :javascript  
+        function slideShow(speed) {
+          $('ul.carousel').append('<li id="carousel-caption" class="caption"><div class="carousel-caption-container"><h3></h3><p></p></div></li>');
+          $('ul.carousel li').css({opacity: 0.0});
+     
+          //Get the first image and display it (set it to full opacity)
+          $('ul.carousel li:first').css({opacity: 1.0});
+     
+          //Get the caption of the first image from REL attribute and display it
+          $('#carousel-caption h3').html($('ul.carousel a:first').find('img').attr('title'));
+          $('#carousel-caption p').html($('ul.carousel a:first').find('img').attr('alt'));
+         
+          //Display the caption
+          $('#carousel-caption').css({opacity: 0.7, bottom:0});
+     
+          //Call the gallery function to run the carousel    
+          var timer = setInterval('gallery()',speed);
+     
+          //pause the carousel on mouse over
+          $('ul.carousel').hover(
+              function () {
+                  clearInterval(timer);   
+              },  
+              function () {
+                  timer = setInterval('gallery()',speed);         
+              }
+          );
+     
+        }
+ 
+        function gallery() {
+          var current = ($('ul.carousel li.show')?  $('ul.carousel li.show') : $('#ul.carousel li:first'));
+          var next = ((current.next().length) ? ((current.next().attr('id') == 'carousel-caption')? $('ul.carousel li:first') :current.next()) : $('ul.carousel li:first'));
+          var title = next.find('img').attr('title'); 
+          var desc = next.find('img').attr('alt');    
+          next.css({opacity: 0.0}).addClass('show').animate({opacity: 1.0}, 1000);
+
+          $('#carousel-caption').slideToggle(300, function () { 
+            $('#carousel-caption h3').html(title); 
+            $('#carousel-caption p').html(desc); 
+            $('#carousel-caption').slideToggle(500); 
+          }); 
+ 
+          current.animate({opacity: 0.0}, 1000).removeClass('show');
+          }
+  %body
+    #container
+      #top_bar
+        #logo_container
+          #logo
+            = link_to(image_tag(current_theme_image_path('layout/ptarmigan.png')), '/')
+          
+        #top_nav_container
+          #language
+            = link_to(image_tag('system/fi.gif', :width => 20, :border => 0),:controller =>   controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'fi')
+            = link_to(image_tag('system/se_flag.gif', :width => 20, :border => 0),:controller =>   controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv-SE')                  
+            = link_to(image_tag('system/uk_flag.gif', :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en')
+            = link_to(image_tag('system/ee_flag.gif', :width => 20, :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'et')
+            
+            = link_to(image_tag('system/ru_flag.gif', :width => 20, :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'ru')
+                     
+          #country_menu= render :partial => 'layouts/country_menu'
+          - if user_signed_in?
+            %li= link_to('staff', '/staff')
+            %li= link_to('sign out', '/users/sign_out')              
+
+        #main_menu
+          #nav
+            %ul
+              %li.first= link_to(t(:about), {:controller => 'pages', :action => 'show', :id => 'about'})
+              %li= link_to(t(:news), posts_path)
+              %li= link_to( (t(:projects) + "/" + t(:events)) , projects_path)
+              %li= link_to(t(:information) + "/" + t(:press), {:controller  => 'pages', :action => 'press', :id => 'press'})
+              %li= link_to(t(:archive), archive_events_path)
+              %li= link_to(t(:contact), {:controller => 'pages', :action => 'show', :id => 'contact'})
+              %li= link_to(t(:stuff_we_like), witnessed_posts_path)
+
+          #web2_inline
+            - if I18n.locale.to_s == 'en'
+              = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed", :width => 20, :border => 0}), 'http://feeds.feedburner.com/PtarmiganEnglish')
+            - else
+              = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed",:width => 20,  :border => 0}), 'http://feeds.feedburner.com/PtarmiganSuomeksi')
+            = link_to(image_tag('layout/facebook.png', {:alt => 'facebook', :width => 20, :border => 0}), 'http://www.facebook.com/home.php#/pages/Ptarmigan/114272652824')
+            = link_to(image_tag('layout/twitter.png', {:alt => 'twitter', :width => 20, :border => 0}),   "http://twitter.com/PtarmiganHki")
+            = link_to(image_tag('layout/flickr.png', {:alt => 'flickr', :width => 20, :border => 0}), "http://www.flickr.com/groups/ptarmigan/")
+            = link_to(image_tag('layout/vimeo.png', {:alt => 'vimeo', :width => 20, :border => 0}), "http://vimeo.com/ptarmigan")  
+        .front_box
+          #flash
+            - unless flash.empty?
+              = content_tag :div, flash[:notice],  :class => "notice"  if flash[:notice]
+              = content_tag :div, flash[:warning], :class => "warning" if flash[:warning]
+              = content_tag :div, flash[:error],   :class => "error"   if flash[:error]
+            :javascript
+              $('#flash').effect("highlight", {}, 3000);
+        
+      #dynamic_wrap= yield
+
+    
+    #footer
+      Ptarmigan ry
+      |
+      Helsinki, Finland
+      |
+      2013
+      |
+      %em= link_to 'helsinki at ptarmigan.fi', 'mailto:helsinki@ptarmigan.fi'    
+:javascript
+  $(document).ready(function() {
+    var toggleLoading = function() { $("#loading").toggle() };
+        $('button.email_signup').click(function() {
+          $('button.email_signup').attr('disabled', 'disabled');   
+          toggleLoading();
+          $('#email_form').submit();
+        });
+        $("input.clearfield").clearField();
+    #{yield :jquery}
+  });    
+
+
+

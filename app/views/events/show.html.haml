@@ -1,0 +1,19 @@
+- if @events.nil?
+  = render :partial => "event",  :locals => {:event => @event, :datespan => @datespan}
+- else
+  - unless @datespan.blank?
+    .headline.clearfix
+      %h2
+        = t :events
+        = ":"
+        = l @datespan.to_date, :format => :long
+    - unless @tiib.empty?
+      .tiib_announce
+        Please see the
+        = link_to 'Tiib website', "http://tiib.net/calendar/" + @datespan.to_date.year.to_s + '/' + @datespan.to_date.month.to_s
+        for events and exhibitions at Tiib.
+      .headline.clearfix
+        %h2 &nbsp;
+        
+  - @events.each do |event|
+    = render :partial => "event", :locals => {:event => event, :datespan => @datespan}

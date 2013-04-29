@@ -1,0 +1,11 @@
+= semantic_form_for [:admin, chatter, Comment.new], :html => {:multipart => true} do |f|
+  - if current_user.icon?
+    .comment_icon
+      = image_tag current_user.icon.url(:thumb)
+      %p= current_user.name + ", add a reply!"
+  = f.input :body, :as => :text, :label => false 
+  = f.input :user_id, :as => :hidden, :value => current_user.id
+  = f.input :image, :label => 'Upload an image (optional)'
+  = f.input :chatter_id, :as => :hidden, :value => chatter.id
+  = f.input :menuize, :as => :boolean, :label => "Put link to this discussion on staff menu", :input_html => {:checked => chatter.menuize}
+  = f.submit "add comment"

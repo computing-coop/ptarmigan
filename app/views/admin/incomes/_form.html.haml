@@ -1,0 +1,29 @@
+= semantic_nested_form_for([:admin, @income], :html => {:multipart => true}) do |f|
+  = f.input :location
+  %hr
+  .six.columns
+    = f.input :when, :as => :string, :input_html => {:class => 'date-pick' }
+    = f.input :what_for
+    %label For event (optional):
+    = f.collection_select :event_id, Event.order('date DESC'), :id, :longer_title, :include_blank => true
+  .six.columns
+    = f.input :amount
+    = f.input :source, :label => "Source of income?", :hint => "(examples, KK Nord, Arts council, etc.)" 
+    = f.input :budgetarea, :label => "Budget area (optional)"
+    = f.input :has_receipt, :label => "Do we have a receipt?"
+  .thirteen.columns
+    = f.semantic_fields_for :wikifiles do |ff|
+      - unless ff.object.new_record?
+        - unless ff.object.attachment_file_name.blank?
+          %p= link_to '[download: ' +  ff.object.attachment_file_name  + "]", ff.object.attachment.url
+      = ff.input :attachment, :label => (ff.object.new_record? ? 'Attach file' : 'Replace attachment')
+      = ff.input :documenttype, :as => :select, :label => "Type of document"      
+      = ff.input :description, :as => :string, :label => "Description of this attachment, ex. 'the invoice'"
+      = ff.link_to_remove "Remove this attachment"
+    = f.link_to_add 'Add an attachment (PDF or other file for invoice, receipt)', :wikifiles
+  %p
+    = f.label :hidden
+    %br
+    = f.check_box :hidden
+  %p
+    = f.submit "Submit"

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style type="text/css">
+      .chatter .field label {
+        width: 30%;
+        text-align: right;
+        float: left;
+        margin-right: 25px;
+      }
+      
+      .chatter .field {
+        width: 80%;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <%= @chatter.user.name %> has posted some new chatter on the Ptarmigan staff chatter board!
+  <Br />
+  ---------------------------------------
+<div id="chatter">
+  <%= raw simple_format(@chatter.body.gsub(/\n/, '<br />')) %>
+</div>
+
+<div class="metadata">
+  To see this chatter and comment on it (in conversation with other Ptarmigan staffers), please visit
+   <%= link_to "here", @host + admin_chatter_path(@chatter) %>
+</div>
+</body>
+</html>

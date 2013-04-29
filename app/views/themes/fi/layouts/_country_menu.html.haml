@@ -1,0 +1,4 @@
+%ul
+  %li= link_to image_tag('layout/country_select/suomi_on.png'), "/"
+  %li= link_to image_tag('layout/country_select/eesti_off.png'), "http://#{request.host.gsub(/\.fi$/, '.ee')}#{request.port != 80 ? ":" + request.port.to_s : ''}/"
+

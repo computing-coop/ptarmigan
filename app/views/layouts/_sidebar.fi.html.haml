@@ -1,0 +1,11 @@
+%ul
+  %li= link_to('esittely', {:controller => 'pages', :action => 'show', :id => 'about'})
+  %li= link_to('tapahtumat', events_path)
+  %li= link_to('taiteilijoita', artists_path)
+  %li= link_to('projektit', projects_path)
+  %li= link_to('arkisto',  archive_events_path)
+  %li= link_to('residenssit', {:controller => 'pages', :action => 'show', :id => 'residencies'})
+  %li= link_to('sijainti', {:controller => 'pages', :action => 'show', :id => 'where'})
+  %li= link_to('yhteystiedot', {:controller => 'pages', :action => 'show', :id => 'contact'})
+  - if user_signed_in?
+    %li= link_to('staff', '/staff')

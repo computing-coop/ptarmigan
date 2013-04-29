@@ -1,0 +1,6 @@
+<%= @chatter.user.name %> has posted some new chatter on the Ptarmigan staff chatter board!
+---------------------------------------
+<%= @chatter.body  %>
+
+To see this chatter and comment on it (in conversation with other Ptarmigan staffers), please visit
+   <%= link_to "here", @host + admin_chatter_path(@chatter) %>

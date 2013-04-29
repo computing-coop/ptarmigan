@@ -1,0 +1,15 @@
+%h1 Log in to your Artist-in-Residency application
+- form_tag '/session/applicant_create', :method => :put do
+  %p
+    %label{:for => "login"} Login (this is your email address)
+    %br/
+    = text_field_tag 'login', @login
+  %p
+    %label{:for => "password"} Password
+    %br/
+    = password_field_tag 'password', nil
+  %p
+    %label{:for => "remember_me"} Remember me:
+    %br/
+    = check_box_tag 'remember_me', '1', @remember_me
+  %p= submit_tag "Log in"

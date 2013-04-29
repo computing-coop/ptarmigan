@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style type="text/css">
+      .proposal .field label {
+        width: 30%;
+        text-align: right;
+        float: left;
+        margin-right: 25px;
+      }
+      
+      .proposal .field {
+        width: 80%;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    A proposal has been submitted by <%= @proposal.name %>!
+  <Br />
+  ---------------------------------------
+<div id="proposal">
+  <div class='field'> 
+    <label for="proposal_location">Where would you like to do this project?</label>
+    <%= @location == "1" ? 'Helsinki' : (@location == "2" ? 'Tallinn' : 'Helsinki + Tallinn') %>
+  </div>
+
+  <div class='field'>
+    <label for="proposal_name">Name:</label>
+    <%= @proposal.name %>
+  </div> 
+
+  <div class='field'>
+    <label for="proposal_organisation">Organisation or group (optional):</label>
+    <%= @proposal.organisation %>
+  </div> 
+
+  <div class='field'>
+    <label for="proposal_email">Email contact:</label>
+    <%= @proposal.email %>
+  </div> 
+
+  <div class='field'>
+    <label for="proposal_address">Postal address:</label>
+    <%= @proposal.address %>
+  </div>
+  
+  <div class='field'>
+    <label for="country"> Country:</label>
+    <%= @proposal.country %>
+  </div>
+  
+  <div class='field'>
+    <label for="proposal_address">Phone:</label>
+    <%= @proposal.phone_number %>
+  </div>
+  
+  <div class='field'>
+    <label for="short_description">Short description of project:</label>
+    <%= @proposal.short_description %>
+  </div>
+  
+  <div class="field">
+    <label>Intended for project:</label>
+    <%= !@proposal.project.blank? ? @proposal.project.name : "none" %>
+  </div>
+  
+  <div class='field'>
+    <label for="proposal_address">Postal address:</label>
+    <%= @proposal.address %>
+  </div>
+  
+  <div class='field'>
+    <label for="duration">Duration:</label>
+    <%= @proposal.duration %>
+  </div>
+  
+  <div class='field'>
+    <label for="materials">Materials needed:</label>
+    <%= @proposal.materials %>
+  </div>
+  
+  <div class='field'>
+    <label for="public_engagement">Engagement with public:</label>
+    <%= @proposal.public_engagement %>
+  </div>
+  
+  <div class='field'>
+    <label for="spatial_requirements">Spatial requirements:</label>
+    <%= @proposal.spatial_requirements %>
+  </div>
+  
+  <div class='field'>
+    <label for="cost">Cost/budget:</label>
+    <%= @proposal.cost %>
+  </div>
+  
+  <div class='field'>
+    <label for="long_description">Longer/full description:</label>
+    <%= @proposal.long_description %>
+  </div>
+  
+  <div class='field'>
+    <label for="bio">Bio of proposer:</label>
+    <%= @proposal.bio %>
+  </div>
+  
+  <div class='field'>
+    <label for="ptarmigan_goodfit">Why should this be at Ptarmigan?</label>
+    <%= @proposal.ptarmigan_goodfit %>
+  </div>
+</div>
+
+<div class="metadata">
+  To see this proposal and comment on it (in conversation with other Ptarmigan staffers), please visit
+   <%= link_to "here", @host + admin_proposal_path(@proposal) %>
+</div>
+</body>
+</html>

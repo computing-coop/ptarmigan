@@ -1,0 +1,13 @@
+:javascript
+  $("#loading_#{event.id.to_s}").toggle();
+  $("#attendee_submit_#{event.id.to_s}").removeAttr('disabled');
+  $("#attendee_submit_#{event.id.to_s}").fadeIn();
+  Recaptcha.create('6LdlLsQSAAAAAM8YsJLAAlHZRThgXNKf91cRsmOM', document.getElementById('dynamic_recaptcha') , '')
+.clearfix
+  %label= t(:errors_with_form);
+  %ul{:class => 'reg_errors', :id => "errors_#{event.id.to_s}"}
+    - target.errors.full_messages.each do |error|
+      %li= escape_javascript( error ).gsub(/\\\'/, "'")
+    
+    
+

@@ -1,0 +1,13 @@
+%h3 User info
+
+
+= semantic_form_for @user, :html => {:multipart => true} do |f|
+  = f.input :name, :label => "Your name"
+  = f.input :email
+  - if f.object.new_record?
+    = f.input :password
+    = f.input :password_confirmation
+  - if f.object.icon?
+    = image_tag f.object.icon.url(:medium)
+  = f.input :icon, :label => "Your profile photo"
+  = f.submit "Save"

@@ -1,0 +1,35 @@
+
+
+
+#chatter_wrap
+  %h3= @chatter.subject
+  .root_chatter
+    - if @chatter.user.icon?
+      .chatter_metadata
+        .chatter_icon= image_tag @chatter.user.icon(:thumb)
+    = "posted by #{@chatter.user.name}, #{time_ago_in_words(@chatter.created_at)} ago"
+    - if @chatter.user == current_user
+      = link_to '[edit]', edit_admin_chatter_path(@chatter)
+    .chatter_content
+      - if @chatter.image?
+        = image_tag @chatter.image.url(:regular)
+        .comment_image_download= link_to '[view original]', @chatter.image.url
+      .comment_body= simple_format(@chatter.body)
+  .chatter_comments
+    - if @chatter.comments
+      - @chatter.comments.each do |comment|
+        .comment
+          .left
+            - if comment.user.icon?
+              .proposal_icon= image_tag comment.user.icon.url(:thumb) 
+            Comment from
+            %span.comment_user= comment.user.name
+            on
+            %span.comment_date= comment.created_at.strftime("%B %d %Y, %H:%M")
+          .right
+            - if comment.image?
+              = image_tag comment.image.url(:regular)
+              .comment_image_download= link_to '[view original]', comment.image.url
+            .comment_body= raw simple_format(comment.body)
+    %div &nbsp;      
+    = render :partial => 'comment', :locals => {:chatter => @chatter}

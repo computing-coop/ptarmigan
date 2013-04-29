@@ -1,0 +1,186 @@
+= render :partial => 'shared/new_carousel', :locals => {:new_carousel => @new_carousel}
+
+.front_main_container.clearfix
+  .blog.clearfix
+    .headline
+      %h2= t :latest
+    .posts
+      - @posts.each do |post|
+        .front_single.clearfix
+          .blog_title= link_to post.title, post
+          .post_metadata
+            - if post.is_personal == true
+              = "posted by #{post.user.email.gsub(/\@.+$/, '')} on #{l(post.created_at, :format => :long)}"
+            - else
+              = "posted by Ptarmigan on #{l(post.created_at, :format => :long)}"
+          .blog_body= raw post.body
+  .sidebar.clearfix
+    - unless @upcoming.empty?
+    
+      .headline
+        %h2= t :upcoming
+      = render :partial => 'shared/next_events', :locals => {:next_events => @upcoming }
+    - if @upcoming.empty?
+      .front_box
+        .headline
+          %h2= t :search
+        = form_tag "/search/simple", :method => "post" do |f|
+          = text_field_tag :search
+          = submit_tag t :search
+    .headline
+      %h2= t :about
+    .where= raw @where.excerpt
+    = render :partial => 'shared/email_signup'
+
+
+-# .top_wide.clearfix
+-#   .left_side_front
+-#     - unless @carousel.empty?
+-#       .headline
+-#         %h2= t :current
+-#       #carousel_wrapper  
+-#         %ul.carousel
+-#           - @carousel.each_with_index do |carousel_entry, index|
+-#             %li{:class => (index == 0 ? 'show' : '')}
+-#               - if carousel_entry.class == Event
+-#                 - if carousel_entry.place_id != 8
+-#                   - loc = " @ <b>#{carousel_entry.place.name}</b>"  
+-#                 - else 
+-#                   - loc = ""
+-#                 = link_to image_tag(carousel_entry.carousel.url(:full), :title => "#{carousel_entry.name}", :alt => l(carousel_entry.date, :format => :long) + loc, :width => 600, :height => 400) , carousel_entry
+-#               - elsif carousel_entry.class == Project
+-#                 = link_to image_tag(carousel_entry.carousel.url(:full), :title => "#{carousel_entry.name}", :alt => 'project', :width => 600, :height => 400), carousel_entry
+-#               - elsif carousel_entry.class == Artist
+-#                 = link_to image_tag(carousel_entry.carousel.url(:full), :title => "#{carousel_entry.name}", :alt => "On residency from " + l(carousel_entry.startdate, :format => :long) + ' - ' + l(carousel_entry.enddate, :format => :long)), carousel_entry
+-#               - elsif carousel_entry.class == Post
+-#                 = link_to image_tag(carousel_entry.carousel.url(:full), :title => "#{carousel_entry.title}", :alt => "posted on #{l(carousel_entry.updated_at, :format => :short)}"), carousel_entry
+            
+-#     .events.clearfix.front_box
+-#       .headline
+-#         %h2= t :coming_up
+-#       - if @upcoming.empty?
+-#         = t(:noevents)
+-#       - @upcoming.each do |event|
+-#         .event_front.clearfix
+-#           .event_image= image_tag event.avatar(:small)
+-#           .event_facebook= facebook_link(event, false)  
+-#           .event_metadata.clearfix
+-#             .event_title
+            
+-#               = link_to event.title, event
+-#             .event_type= event.event_type
+-#             .event_date
+-#               =l event.date, :format => :long
+-#               - unless event.enddate.blank?
+-#                 = "#{t(:daterange)} #{l event.enddate,:format => :long}"
+-#               = raw event.notes
+-#             - unless event.project.blank?
+-#               .event_promoter
+-#                 = t(:part_of_project) + ": "
+-#                 = link_to(event.project.name, event.project)
+-#             - unless event.artist.blank?
+-#               .event_promoter
+-#                 featuring artist:
+-#                 = link_to(event.artist.name, event.artist)
+-#             .event_notes
+-#               - unless event.place_id == 8
+-#                 = "@"    
+-#                 %b= event.place.name
+-#                 .event_place_details
+-#                   = [event.place.address1, event.place.postcode + ' ' + event.place.city].join(' / ')
+-#                   - if event.place.map_url
+-#                     = link_to t(:map), event.place.map_url, :target => "_blank"
+-#               %span.event_cost
+-#                 - if !event.cost
+-#                   - if event.donations_requested == true
+-#                     = t(:donations)
+-#                   - else 
+-#                     = t(:free)
+-#                 - else
+-#                   =  ptarmigan_cost(event.cost, event.donations_requested)
+-#                   - if event.discountedcost.blank?
+-#                     - if !event.discountreason.blank?
+-#                       = " (#{event.discountreason})"
+-#                   - else
+-#                     = "or " + ptarmigan_cost(event.discountedcost) + " (#{event.discountreason})"
+-#               - if event.registration_required && event.future?
+-#                 .event_cost
+-#                   - if event.is_full?
+-#                     %i= t(:event_full)
+-#                   - else
+-#                     = link_to t(:you_must_register), event
+
+-#           .event_description
+-#             - if event.description.size > 500
+-#               = raw awesome_truncate(event.description, 500)
+-#               = link_to t(:read_more), event
+-#             - else 
+-#               = raw event.description
+-#           - if current_user
+-#             %p= link_to '[edit this event]', edit_admin_event_path(event)  
+-#       .see_all= link_to(t(:seeall) + ' ' + t(:events), events_path)
+
+-#   .right_side_front
+   
+
+
+-#     .front_calendar.front_box
+-#       .headline
+-#         %h2= t :calendar
+-#       #the_calendar
+-#         = render :partial => 'calendar/cal', :locals => {:period => [Time.now.strftime("%Y"), Time.now.strftime('%m')]}
+    
+-#     = render :partial => 'shared/email_signup'
+
+-#     .front_box.find_us
+-#       .headline
+-#         %h2= t :find_us
+-#       = raw @where.body
+      
+-#     .front_box.archivewall
+-#       .headline
+-#         %h2= t :archive
+-#       - @flickrwall.each do |image|
+-#         = link_to image_tag(image.image.url(:front_sidebar)), image.event
+-#     #search
+-#       .front_box
+-#         .headline
+-#           %h2= t :search
+-#         = form_tag "/search/simple", :method => "post" do |f|
+-#           = text_field_tag :search
+-#           = submit_tag 'search'              
+-#     / .projects.front_box
+-#     /   .headline
+-#     /     %h2= t :projects
+-#     /   - @projects.each do |project|
+-#     /     .project_front_parameters.clearfix
+-#     /       - unless project.avatar_file_name.blank?
+-#     /         .project_front_image=link_to(image_tag(project.avatar.url(:thumb)), project_url(:id => project))
+-#     /       .project_front_metadata
+-#     /         .project_front_title=link_to(project.name, project_path(:id => project)) 
+-#     /         .project_front_description= raw awesome_truncate(project.description, 150)
+-#     /         .front_read_more= link_to(read_more, project_url(:id => project))
+-#     /   = link_to "#{t(:seeall)} #{t(:projects)}", projects_path
+
+
+-# / .front_about.clearfix
+-# /   .headline= image_tag(current_theme_image_path("layout/#{I18n.locale}/about.png"))
+-# /   = raw @frontpage_text.body
+-# :javascript
+  
+-#   $(document).ready(function() {      
+-#     slideShow(5000);
+  
+-#     var toggleLoading = function() { $("#loading").toggle() };
+    
+-#     $('button.email_signup').click(function() {
+-#       $('button.email_signup').attr('disabled', 'disabled');   
+-#       toggleLoading();
+-#       $('#email_form').submit();
+-#     });
+-#     $("input.clearfield").clearField();
+-#     });
+ 
+
+
+-#    

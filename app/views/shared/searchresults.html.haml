@@ -1,0 +1,48 @@
+
+.front_box
+  .headline
+    %h2
+      - if @nosearch == 1
+        = t :no_searchterm
+      - else
+        = t :search_results
+        %em= "\"#{@searchterm}\" (#{@hits.size})"
+  - if @hits.blank? && @nosearch != 1
+    Sorry, no results for
+    %em= "\"#{@searchterm}\"."
+  - else
+    - @hits.each do |hit|
+      .hit.clearfix
+        .search_image
+          - if hit.respond_to?('avatar')
+            = image_tag hit.avatar.url(:thumb)
+          - else
+            &nbsp;
+        .search_other
+          .hit_title{:class => (hit.respond_to?('location_id') ? (hit.location_id == 1 ? 'helsinki' : 'tallinn') : '')}
+            = t hit.class.to_s.downcase.to_sym
+            = ": "
+            - if hit.class == Resource
+              = link_to hit.source_name, hit.source_resource
+            - else 
+              = link_to hit.name, hit
+            - if hit.class == Project
+              = hit.respond_to?('location_id') ? " [#{hit.location_id == 1 ? 'Helsinki' : 'Tallinn'}]" : ''
+              
+          - if hit.respond_to?(:date)
+            .hit_date
+              - if hit.date.class == Array 
+                - unless hit.date.empty?
+                  = l hit.date.first, :format => :long
+                  = " - "
+                  = l hit.date.last, :format => :long
+              - else
+                = l hit.date, :format => :long
+              = hit.respond_to?('location_id') ? " [#{hit.location_id == 1 ? 'Helsinki' : 'Tallinn'}]" : ''
+          - elsif hit.class == Artist
+            .hit_date
+              = l(hit.startdate, :format => :long) + " - " + l(hit.enddate, :format => :long)
+              = hit.respond_to?('location_id') ? " [#{hit.location_id == 1 ? 'Helsinki' : 'Tallinn'}]" : ''
+          .hit_desc
+            = raw awesome_truncate(hit.description, 500)
+            = link_to t(:read_more), hit unless hit.class == Resource

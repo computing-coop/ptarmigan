@@ -1,0 +1,11 @@
+%ul
+  %li= link_to('about', {:controller => 'pages', :action => 'show', :id => 'about'})
+  %li= link_to('events', events_path)
+  %li= link_to('projects', projects_path)
+  %li= link_to('artists', artists_path)
+  %li= link_to('archive', archive_events_path)
+  %li= link_to('residencies', {:controller => 'pages', :action => 'show', :id => 'residencies'})
+  %li= link_to('find us', {:controller => 'pages', :action => 'show', :id => 'where'})
+  %li= link_to('contact', {:controller => 'pages', :action => 'show', :id => 'contact'})
+  - if user_signed_in?
+    %li= link_to('staff', '/staff')

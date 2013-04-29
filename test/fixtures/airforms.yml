@@ -1,0 +1,20 @@
+basic:
+  project_summary: Lorem ipsum dolor sit amet...
+  detailed_description: Lorem ipsum dolor sit amet...
+  events: Lorem ipsum dolor sit amet...
+  equipment: Lorem ipsum dolor sit amet...
+  applicant: 
+  budget: Lorem ipsum dolor sit amet...
+  jul_aug: false
+  sept_oct: false
+  nov_dec: false
+  submitted: false
+  cv_file_name: Hello
+  cv_file_size: 1
+  cv_content_type: Hello
+  cv_updated_at: 2010-04-11 20:46:32
+  attachment_file_name: Hello
+  attachment_file_size: 1
+  attachment_content_type: Hello
+  attachment_updated_at: 2010-04-11 20:46:32
+  terms_agreed: false

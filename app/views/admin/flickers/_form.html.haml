@@ -1,0 +1,8 @@
+= semantic_form_for([:admin, @flicker], :html => {:multipart => true}) do |f|
+  = f.input :event, :as => :select, :label_method => :title_with_date
+  /> Event.find(:all, :order => 'date DESC'), :id, :title)
+  = f.input :hostid, :label => "Flickr id # (optional)"
+  = f.input :creator, :value => ''
+  = f.input :image
+  = f.input :description
+  = f.submit "Submit"

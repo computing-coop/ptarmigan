@@ -1,0 +1,7 @@
+- content_tag_for :div, project, :class => "front clearfix" do
+  .project_front_parameters
+    - unless project.avatar_file_name.blank?
+      =link_to(image_tag(project.avatar.url(:thumb), :width => 60, :align => :left), project_url(:id => project))
+    .project_front_title=link_to(project.name, project_path(:id => project)) 
+    .project_front_description= raw awesome_truncate(project.description, 90)
+    .front_read_more= link_to(read_more, project_url(:id => project))

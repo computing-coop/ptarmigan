@@ -1,0 +1,153 @@
+= content_tag_for :div, event do
+  - unless event.avatar_file_name.blank?
+    .event_image=image_tag event.avatar.url(:medium) 
+  .event_facebook= raw facebook_link(event)
+  
+  .event_parameters
+    .event_title
+      - if controller.action_name == 'show' && datespan.nil?
+        = event.title
+      - else 
+        =link_to(event.title, event_url(:id => event))
+
+    .event_type= event.event_type
+    .event_date
+      =l event.date, :format => :long
+      - unless event.enddate.blank?
+        = "#{t(:daterange)} #{l event.enddate,:format => :long}"
+      = raw event.notes
+    - unless event.artist.nil?
+      Featuring artist: 
+      = link_to(event.artist.name, artist_path(:id => event.artist.id))
+    - unless event.project.blank?
+      .event_promoter
+        = t(:part_of_project) + ": "
+        = link_to(event.project.name, event.project)
+    - unless event.promoter.blank?
+      .event_promoter= t(:presented_by) + " " + event.promoter
+    .event_metadata
+      %span.event_cost
+        - if !event.cost
+          - if event.donations_requested == true
+            = t :donations
+          - else
+            = t(:free)
+        - else
+          =  ptarmigan_cost(event.cost, event.donations_requested)
+          - if event.discountedcost.blank?
+            - if !event.discountreason.blank?
+              = " (#{event.discountreason})"
+          - else
+            = "or " + ptarmigan_cost(event.discountedcost) + " (#{event.discountreason})"
+      - unless event.place_id == 8 && @location.id == 2
+        = "@"    
+        %b= event.place.name
+        .event_place_details
+          = [event.place.address1, event.place.postcode + ' ' + event.place.city].join(' / ')
+          - if event.place.map_url
+            = link_to t(:map), event.place.map_url, :target => "_blank"
+  .event_description
+    - if event.registration_required && event.future?
+      - if event.registration_limit
+        - if event.is_full?
+          .event_full= t(:event_full)
+          .click_here= link_to_function t(:join_the_waiting_list),  "$('html,body').animate({ scrollTop: $('#reg_form_#{event.id.to_s}').offset().top }, 'fast');"
+        - else
+          - if controller.action_name == 'index'
+            %span.click_here= link_to t(:click_here_to_register), event
+          - else
+            %div{:id => "first_reg_#{event.id.to_s}", :class => :reg_link}
+              %span.click_here= link_to_function t(:click_here_to_register), "$('html,body').animate({ scrollTop: $('#reg_form_#{event.id.to_s}').offset().top }, 'fast');"
+      - else
+        - if controller.action_name == 'index'
+          %span.click_here= link_to t(:click_here_to_register), event
+        - else
+          %div{:id => "first_reg_#{event.id.to_s}", :class => :reg_link}
+            %span.click_here= link_to_function t(:click_here_to_register), "$('html,body').animate({ scrollTop: $('#reg_form_#{event.id.to_s}').offset().top }, 'fast');"
+      .am_i_reg
+        = " / "
+        = link_to_function t(:am_i_registered), "javscript:$('#check_#{event.id}').fadeToggle();"
+      .check_registration_form{:id => "check_#{event.id}"}
+        = form_tag "/attendees/check", :id => "check_reg_form_" + event.id.to_s, :remote => true do
+          %p
+            %label= t :enter_your_reg_email
+            = text_field_tag 'email'
+            = hidden_field_tag 'event_id', event.id
+            %div{:id => "loading_check_reg", :style => 'display: none'}= image_tag('/images/ajax-loader.gif')
+            = submit_tag t(:check_registrations), {:style => "margin-bottom: 5px; ", :id => "check_reg_" + event.id.to_s}
+      :javascript
+        $('#check_reg_#{event.id.to_s}').click(function() {
+              $("ul#errors_#{event.id.to_s}").html('');
+              $("#loading_check_reg").toggle();
+              $("#check_reg_#{event.id.to_s}").attr('disabled', 'disabled');
+              $("#check_reg_#{event.id.to_s}").fadeOut();
+              $("#check_reg_form_#{event.id.to_s}").submit();
+            });
+    .event_the_description= raw sanitize(event.description, :tags => %w(b br p img  em strong i u a ul li ol ), :attributes => %w(id class src  href))
+    - if current_user
+      %p= link_to '[edit this event]', edit_admin_event_path(event)
+  
+  / - if current_user
+  / 
+  /   = link_to 'Edit', edit_admin_event_path(:id => event)
+  /   = link_to 'Destroy', admin_event_url(:id => event), :confirm => 'Are you sure?', :method => :delete
+
+
+  - if event.registration_required && event.future?
+    - if controller.action_name == 'show'
+      .opened= render :partial => 'shared/register', :locals => {:event => event}
+    - else
+      .click_here= link_to t(:click_here_to_register), event
+
+     
+  - if controller.action_name == 'show'
+    - unless event.resources.empty?
+      %a{:name => 'resources'}
+      .resources.clearfix
+        .user_content_title Resources
+        - event.resources.each do |resource|
+          - unless resource.icon_file_size.blank?
+            = link_to image_tag(resource.icon.url(:medium)), resource.attachment.url
+
+          .resource_description
+            = link_to resource.name, resource.attachment.url
+            = raw resource.description
+  
+        
+    - unless event.videos.empty?
+      %a{:name => 'videos'}
+      .user_content_title Videos
+      - event.videos.each do |video|
+        = render :partial => 'video', :locals => {:video => video}
+    
+    %br
+    - unless event.flickers.empty?
+      :javascript 
+        Galleria.loadTheme('/javascripts/themes/classic/galleria.classic.js');
+      %a{:name => 'photos'}
+      .user_content_title Photos
+      #image_entry
+      .slideshow.clearfix
+        - event.flickers.each do |flicker|
+          - if flicker.hostid.blank?
+            = image_tag flicker.image.url(:standard)
+          - else
+            - info = flickr.photos.getInfo(:photo_id => flicker.hostid)
+            = image_tag(FlickRaw.url(info), {:title => flicker.name, :alt => flicker.description + ' photo by ' + (info.owner.realname.nil? ? info.owner.realname : info.owner.username)})
+      :javascript
+        //$('#image_entry').galleria({data_source: '.slideshow'});
+      %br/
+
+        
+      %br/
+      %br/      
+  -else
+    - unless event.resources.empty?
+      = link_to(pluralize(event.resources.size, 'resource'), event_path(:id => event))
+      %br/
+    - unless event.videos.empty?
+      = link_to(pluralize( event.videos.size, 'video'), event_path(:id => event))
+      %br/
+    - unless event.flickers.empty?
+      = link_to(pluralize(event.flickers.count, 'photo'), event_path(:id => event))
+  .share_this= share_this(event)      

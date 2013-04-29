@@ -1,0 +1,21 @@
+.video.thirteen.columns
+  .two.columns.alpha
+    .title= video.name
+    .cms_item{:class => video.event.location.name.downcase}= link_to video.event.name, video.event, :target => :_blank
+  .nine.columns.alpha
+    - if video.videohost.id == 1
+      %object{:width => 400, :height => 300}
+        %param{:name => :allowfullscreen, :value => :true}
+        %param{:name => :allowscriptaccess, :value => :always}
+        %param{:name => :movie, :value => "http://vimeo.com/moogaloop.swf?clip_id=" + video.hostid.to_s + "&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1"}
+        %embed{:src => "http://vimeo.com/moogaloop.swf?clip_id=" + video.hostid.to_s + "&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1", :type => "application/x-shockwave-flash", :allowfullscreen => "true",  :allowscriptaccess => :always, :width => 400, :height => 300}
+
+        
+        %strong Creator:
+        =h video.creator
+        = link_to(video.event.title, event_path(:id => video.event))
+        %br 
+        =h video.description
+  .two.columns.omega.cms_item{:class => video.event.location.name.downcase}
+    %span.small_text= link_to '[edit details]', edit_admin_video_path(video)
+    %span.delete= link_to '[delete]', admin_video_path(:id => video), :confirm => 'Are you sure?', :method => :delete

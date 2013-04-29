@@ -1,0 +1,6 @@
+= paginate(projects, :param_name => :past_projects_page, :remote => true)
+= render :partial => "projects/project", :collection => projects
+:javascript
+  $('#past_projects_wrapper nav.pagination a').click(function() {
+    $('#past_projects_wrapper nav.pagination').html("<img src=\"#{theme_image_path('layout/pagination_bar.gif')}\">");
+  });

@@ -1,0 +1,71 @@
+.staff_header.thirteen.columns
+  .nine.columns.alpha
+    = t :search_results
+    %em= "\"#{@searchterm}\" (#{@hits.size + @staff_hits.size})"
+  .one.columns.alpha{:style=> "font-size: 14px;"} Search:
+  .three.columns.omega
+    = form_tag "/admin/reports/search", :method => "post" do |f|
+      = text_field_tag :search
+
+    
+.six.columns
+  %h4 public site hits
+  .front_box
+    .headline
+      %h2
+        - if @nosearch == 1
+          = t :no_searchterm
+        - else
+          
+    - if @hits.blank? && @nosearch != 1
+      Sorry, no results for
+      %em= "\"#{@searchterm}\"."
+    - else
+      - @hits.each do |hit|
+        .hit.clearfix
+          .search_image
+            - if hit.respond_to?('avatar')
+              = image_tag hit.avatar.url(:thumb)
+            - else
+              &nbsp;
+          .search_other
+            .hit_title{:class => (hit.respond_to?('location_id') ? (hit.location_id == 1 ? 'helsinki' : 'tallinn') : '')}
+              = t hit.class.to_s.downcase.to_sym
+              = ": "
+              - if hit.class == Resource
+                = link_to hit.source_name, hit.source_resource
+              - else 
+                = link_to hit.name, hit
+              - if hit.class == Project
+                = hit.respond_to?('location_id') ? " [#{hit.location_id == 1 ? 'Helsinki' : 'Tallinn'}]" : ''
+                
+            - if hit.respond_to?(:date)
+              .hit_date
+                - if hit.date.class == Array
+                  - unless hit.date.empty?
+                    = l hit.date.first, :format => :long
+                    = " - "
+                    = l hit.date.last, :format => :long
+                - else
+                  = l hit.date, :format => :long
+                = hit.respond_to?('location_id') ? " [#{hit.location_id == 1 ? 'Helsinki' : 'Tallinn'}]" : ''
+            - elsif hit.class == Artist
+              .hit_date
+                = l(hit.startdate, :format => :long) + " - " + l(hit.enddate, :format => :long)
+                = hit.respond_to?('location_id') ? " [#{hit.location_id == 1 ? 'Helsinki' : 'Tallinn'}]" : ''
+            .hit_desc
+              = raw awesome_truncate(hit.description, 500)
+              = link_to t(:read_more), hit unless hit.class == Resource
+.six.columns
+  %h4 staff site hits
+  - @staff_hits.each do |hit|
+    .hit
+      - if hit.class == Wikirevision
+        Wiki page:
+        = link_to hit.name, "/admin/wiki/#{hit.name}"
+      - elsif hit.class == Wikifile
+        Document:
+        = link_to hit.source_name, hit.source_resource 
+      - else
+        = hit.class.to_s + ": "
+        = link_to hit.name, [:admin, hit]

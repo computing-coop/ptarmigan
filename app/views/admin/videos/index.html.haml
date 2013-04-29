@@ -1,0 +1,9 @@
+%h2 Videos
+= button_to 'Add new video', new_admin_video_path, :method => :get
+- if !@videos.empty?
+  .projects
+    = render :partial => "video", :collection => @videos
+  = paginate(@videos)
+- else
+  %p There are no videos to show yet.
+= button_to 'Add new video', new_admin_video_path, :method => :get

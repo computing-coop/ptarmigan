@@ -1,0 +1,64 @@
+
+= semantic_form_for([:admin,  @project],  :html => {:multipart => true } ) do |f|
+  = f.input :location
+  %hr
+  .six.columns
+    = f.input :name
+    = f.input :website1
+    = f.input :website2
+  .thirteen.columns
+    = tabs_for do |tab|
+      - tab.create('english', 'English') do
+        = f.globalize_fields_for :en do |en|
+          = en.label :description
+          %br
+          = en.cktext_area :description
+
+      - tab.create('finnish', 'Finnish') do
+        = f.globalize_fields_for :fi do |fi|
+          = fi.label :description
+          %br
+          = fi.cktext_area :description
+
+      - tab.create('estonian', 'Estonian') do
+        = f.globalize_fields_for :et do |et|
+          = et.label :description
+          %br
+          = et.cktext_area :description
+
+      - tab.create('russian', 'Russian') do
+        = f.globalize_fields_for :ru do |ru|
+          = ru.label :description
+          %br
+          = ru.cktext_area :description
+
+  %p
+    = f.label (f.object.avatar? ? 'Change image' : 'Image')
+    - if f.object.avatar?
+      .form_image
+        = image_tag f.object.avatar.url(:medium)
+        = f.check_box :remove_avatar
+        Delete image
+    = f.input :avatar
+  %hr{:style => "clear: left"}
+  %p
+    = f.label (f.object.carousel? ? 'Change carousel image' : 'Carousel image') + '(must be at least 960x400 and will be cropped)'
+    - if f.object.carousel?
+      .form_image
+        = image_tag f.object.carousel.url(:small)
+        = f.check_box :remove_carousel
+        Delete carousel image
+    = f.input :carousel
+  %hr{:style => "clear: left"}    
+  .six.columns
+    = f.input :include_in_carousel, :label => "Include in frontpage carousel?"
+    = f.input :active , :hint => "(show at top of projects page)"
+    = f.input :proposable, :hint => "(Allow this project to appear in the drop-down menu on the proposal form)"
+    = f.input :hidden, :hint => "Don't show this project on the public site; overrrides active checkbox above)"
+  .twelve.columns
+    = f.submit "Submit"
+    
+:javascript
+  $(function() {
+    $("#tabs").tabs();
+  });    

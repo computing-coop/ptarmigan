@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  source: MyString
+  title: MyString
+  link_url: MyString
+  content: MyText
+  order: 1
+
+two:
+  source: MyString
+  title: MyString
+  link_url: MyString
+  content: MyText
+  order: 1

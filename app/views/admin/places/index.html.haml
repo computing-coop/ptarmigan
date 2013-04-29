@@ -1,0 +1,9 @@
+%h3 Locations/places
+= button_to 'Create new place', new_admin_place_path, :method => :get
+- if !@places.empty?
+  .projects
+    = render :partial => "place", :collection => @places
+  = paginate(@places)
+- else
+  %p There are no places to show yet.
+= button_to 'Create new place', new_admin_place_path, :method => :get

@@ -1,0 +1,9 @@
+.event_front_single.clearfix
+  .blog_title= link_to post.title, post
+  
+  .blog_body= raw post.body
+  %div{:style => 'float: right; font-size: 9pt;'}
+    - if post.is_personal == true
+      = "posted by #{post.user.email.gsub(/\@.+$/, '')} on #{l(post.updated_at, :format => :short)}"
+    - else
+      = "posted by Ptarmigan on #{l(post.updated_at, :format => :short)}"

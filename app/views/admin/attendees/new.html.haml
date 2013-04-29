@@ -1,0 +1,10 @@
+%h3.heading
+  = 'New Attendee'
+  
+= semantic_form_for(@attendee) do |form|
+  = render 'form', :form => form
+  = form.actions do
+    = form.submit 'Create'
+    
+%p.actions
+  = link_to 'Cancel', attendees_path

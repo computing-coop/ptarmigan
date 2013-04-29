@@ -1,0 +1,16 @@
+= form.inputs do
+  .six.columns
+    = form.input :title, :label => 'Title', :hint => 'Title of article or link'
+    = form.input :source, :label => 'Source of press'
+    = form.input :description, :label => 'Description'
+  .six.columns
+    = form.input :url, :as => :string,  :label => 'URL to link'
+    = form.input :when, :as => :string,  :input_html => {:class => 'date-pick'}, :label => 'Date of story', :hint => "will be sorted in press page unless overridden"
+    = form.input :location
+    = form.input :all_locations, :hint => "Show on pages for both Eesti and Suomi"
+
+    = form.input :sortorder, :hint => "Optional - sort order resources appear on an event, press, etc page. Enter a number, sort will be numeric ascending"
+    = form.input :project, :label => 'Project'
+    = form.input :artist, :label => 'Artist'
+    = form.input :event, :label => 'Event'
+

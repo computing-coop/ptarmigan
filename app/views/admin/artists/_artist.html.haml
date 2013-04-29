@@ -1,0 +1,62 @@
+= content_tag_for :div, artist do
+  %ul
+    %li
+      %strong Startdate:
+      =h artist.startdate
+    %li
+      %strong Enddate:
+      =h artist.enddate
+    %li
+      %strong Name:
+      =h artist.name
+    %li
+      %strong Country:
+      =h artist.country
+    %li
+      %strong Website1:
+      =h artist.website1
+    %li
+      %strong Website2:
+      =h artist.website2
+    = tabs_for do |tab|
+      - tab.create('english', 'English') do
+        = f.globalize_fields_for :en do |en|
+          = en.label :description
+          %br
+          = en.cktext_area :description
+
+      - tab.create('finnish', 'Finnish') do
+        = f.globalize_fields_for :fi do |fi|
+          = fi.label :description
+          %br
+          = fi.cktext_area :description
+
+      - tab.create('estonian', 'Estonian') do
+        = f.globalize_fields_for :et do |et|
+          = et.label :description
+          %br
+          = et.cktext_area :description
+
+      - tab.create('russian', 'Russian') do
+        = f.globalize_fields_for :ru do |ru|
+          = ru.label :description
+          %br
+          = ru.cktext_area :description
+    %li
+      %strong Avatar file name:
+      =h artist.avatar_file_name
+    %li
+      %strong Avatar content type:
+      =h artist.avatar_content_type
+    %li
+      %strong Avatar file size:
+      =h artist.avatar_file_size
+    %li
+      %strong Avatar updated at:
+      =h artist.avatar_updated_at
+
+= content_for :jquery do
+  :plain
+    $("#tabs").tabs();
+
+

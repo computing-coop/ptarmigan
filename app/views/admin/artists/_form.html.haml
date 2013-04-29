@@ -1,0 +1,57 @@
+
+= semantic_form_for([:admin, @artist],  :html => {:multipart => true }) do |f|
+
+  = f.input :location
+  %hr
+  .six.columns
+    = f.input :name  
+    = f.input :startdate, :as => :string, :input_html => { :class => 'date-pick'}
+    = f.input :enddate, :as => :string, :input_html => { :class => 'date-pick'}
+
+  .six.columns
+    = f.input :country
+    = f.input :website1
+    = f.input :website2
+  .twelve.columns
+    = tabs_for do |tab|
+      - tab.create('english', 'English') do
+        = f.globalize_fields_for :en do |en|
+          = en.label :bio
+          %br
+          = en.cktext_area :bio
+
+      - tab.create('finnish', 'Finnish') do
+        = f.globalize_fields_for :fi do |fi|
+          = fi.label :bio
+          %br
+          = fi.cktext_area :bio
+
+      - tab.create('estonian', 'Estonian') do
+        = f.globalize_fields_for :et do |et|
+          = et.label :bio
+          %br
+          = et.cktext_area :bio
+
+      - tab.create('russian', 'Russian') do
+        = f.globalize_fields_for :ru do |ru|
+          = ru.label :bio
+          %br
+          = ru.cktext_area :bio
+  %hr
+  .thirteen.columns
+    - if f.object.avatar?
+      .form_image
+        = image_tag f.object.avatar.url(:medium)
+        = f.check_box :remove_avatar
+    = f.input :avatar
+  
+  .thirteen.columns
+    - if f.object.carousel?
+      .form_image
+        = image_tag f.object.carousel.url(:small)
+        = f.check_box :remove_carousel
+    = f.input :carousel, :hint => "(must be at least 960x400, will be cropped to that)"
+  .twelve.columns= f.submit "Submit"
+= content_for :jquery do
+  :plain
+    $("#tabs").tabs();

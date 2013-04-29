@@ -1,0 +1,31 @@
+.staff_header.thirteen.columns
+  .nine.columns.alpha Ptarmigan staff homepage
+  .one.columns.alpha{:style=> "font-size: 14px;"} Search:
+  .three.columns.omega
+    = form_tag "/admin/reports/search", :method => "post" do |f|
+      = text_field_tag :search
+
+-# %h3 Recent / important:
+-# .active_topics= generate_active_cloud
+.thirteen.columns
+  %h4 Latest activity
+  .activities.twelve.columns
+    - @activities.reverse.each_with_index do |activity, index|
+      - unless @activities.reverse[index+1].nil?
+        - if (activity.trackable_id == @activities.reverse[index+1].trackable_id) && (activity.created_at == @activities.reverse[index+1].created_at) && (activity.trackable_type == 'User' && @activities.reverse[index+1].trackable_type == 'User')
+          - next
+      = render_activity(activity) #rescue "error with message for #{activity.inspect}"
+
+-# %h4 Latest documents
+-# %p More documents to come, and this will be searchable soon.
+-# %table
+-#   %thead
+-#     %th Type
+-#     %th Date
+-#     %th Description
+-#     %th Public?
+-#     %th Actions
+-#   %tbody
+-#     - @latest.each do |document|
+-#       = render :partial => 'admin/documents/document', :locals => {:document => document}
+  

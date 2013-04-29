@@ -1,0 +1,16 @@
+%h3.heading
+  = 'New resource'
+  
+%p
+  Use this to upload a document associated to an event, project or artist, or for public documents that are displayed on the 
+  = link_to 'press page.', '/press', :target => :_blank
+%p
+  To upload internal documents (bills, invitation letters, unfinished publications, etc), please attach the files to a page on the
+  = link_to 'wiki', '/wiki'
+  or to the appropriate entry in the 
+  = link_to 'accounting system', admin_expenses_path
+
+= semantic_form_for([:admin, @resource], :html => {:multipart => true}) do |form|
+  = render 'form', :form => form
+  = form.actions do
+    = form.submit 'Create'

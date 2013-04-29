@@ -1,0 +1,10 @@
+= semantic_form_for([:admin, @place]) do |f|
+  = f.input :name
+  = f.input :address1
+  = f.input :address2
+  = f.input :city
+  = f.input :country
+  = f.input :postcode
+  = f.input :map_url
+  = f.actions do
+    = f.submit

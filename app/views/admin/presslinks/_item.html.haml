@@ -1,0 +1,8 @@
+= content_tag_for(:tr, presslink, :class => cycle(:odd, :even)) do
+  %td.name= h presslink.try(:title)
+
+  %td.actions
+
+    %span.small_text= link_to '[edit]', edit_admin_presslink_path(presslink)
+    |
+    %span.delete= link_to '[delete]', [:admin, presslink], :confirm => 'Are you sure?', :method => :delete

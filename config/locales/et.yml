@@ -1,0 +1,276 @@
+# Estonian localization for Ruby on Rails 2 and 3
+# by Zahhar Kirillov <zahhar@gmail.com>
+# contributors:
+#  - Mart Karu - http://github.com/martkaru <karu@metal.ee>
+
+et:
+  number:
+    currency:
+        format:
+            format: "%n%u"
+            unit: "&euro;"
+            # These three are to override number.format and are optional
+            separator: "."
+            delimiter: ","
+            precision: 2
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "..."
+  am_i_registered: 'Kas ma olen juba registreeritud?'      
+  no_searchterm: "You must enter a search term."
+  active_projects: "Active projects"
+  residencies: "külalisstuudio"
+  about: "Meist"
+  contact: "Kontakt"
+  event: "Sündmuse"
+  events: "Sündmused"
+  search: "Otsi"
+  current: 'Hetkel'
+  project: "Projekt"
+  page: ""
+  projects: "Projektid"
+  artists: "Kunstnikud"
+  artist: "Kunstniku"
+  archive: "Arhiiv"
+  search_results: "Otsingu"
+  find_us: "Kaart"
+  helsinki: "Helsingi"
+  tallinn: "Tallinn"
+  both: "mõlemad!"
+  news: "Uudised"
+  map: 'Kaart'
+  artist_in_residence: 'Kunstnik residentuuris'
+  calendar: 'Kalender'
+  latest: "Värsked säutsud"
+  donations: "Annetused on teretulnud!"
+  seeall: "vaata kõiki"
+  see: "vaata"
+  language: "Keel"
+  presented_by: "juhendab"
+  read_more: "loe edasi"
+  no_artists: "There are no artists to show yet."
+  noevents: "Hetkel ei ole planeeritud üritusi. Külasta lehte tulevikus, jälgi meie Twitteri voogu, Facebooki või RSS'i."
+  googlecalendar: "Ptarmigani üritusted on nähtavad üle RSS-voo ja avaliku Google'i kalendri."
+  free: "sissepääs tasuta"
+  part_of_project: "osa projektist"
+  event_full: 'Vabandame, see sündmus on täis.'
+  your_name: "Sinu nimi"
+  your_email: "Sinu email"
+  your_phone: "Sinu telefon"
+  what_is_ptarmigan: "Mis on Ptarmigan?"
+  extra_info_or_qs: "Lisainfot või küsimusi?"
+  click_here_to_register: "Registreeru!"
+  you_must_register: "Osalemine eelneva registreerumisega."
+  thanks_register: "Tänan registreerumast! Saadame kohe sulle ka registreerumist kinnitava teate. Ole hea ja teavita Ptarmigani meeskonda kui plaanid muutuvad ja sa ei saa üritusel osaleda. Kui tahad ka kedagi teist üritusele registreerida, ole hea ja taaslae lehekülg/registreerumisvorm ning sisesta andmed uuesti."
+  join_our_mailing_list: "Liitu meie meililistiga!"
+  coming_up: "Tulemas"
+  join: "littu"
+  thanks_signup: "Täname liitumast!"
+  sign_up: "pane nimi kirja!"
+  proposals: 'ideed ja ettepanekud'
+  daterange: ' - '
+  proposal_attachment: 'Lisada võib ühe faili, maksimaalne maht 5 MB.'
+  proposals: 'Ettepanekud'
+  proposal_header: "Ptarmigan on projektipind mille programm sõltub Sinu ideedest! Selle vormiga saad need meile edastada. Sisuks võivad olla nii üksikud performace'id kui ka pikaajalised residentuurid. Saada meile järgnev info ja me võtame Sinuga esimesel võimalusel ühendust."
+  proposal_location: 'Kus sa tahaksid oma projekti ette võtta?'
+  proposal_organisation: 'Organisatsioon'
+  optional: 'valikuline'
+  postal_address: 'Postiaadress'
+  country: 'Elukohamaa'
+  proposal_phone: 'Telefon (lisa ka riigi kood):'
+  proposal_shortdescription: 'Kirjelda oma projekti saja või vähem sõnaga.'
+  proposal_duration: 'Kui palju aega Sa vajad? (nt: üks õhtu, kaks kuud, nädal, jne.) Millal on Sulle sobiv aeg?'
+  proposal_longdescription: 'Kirjuta oma projektist pikemalt.'
+  proposal_public_engagement: 'Kas Sinu projekt kaasab ka publikut? Kui jah, siis palun nimeta üritusi milles publik osa võtaks. Näiteks workshopid, arutelud, seminarid vms.'
+  proposal_materials: 'Millised materjale Sinu projektiks vaja läheb (endal puuduvad)?'
+  proposal_spatial_requirements: 'Kas ruumidele on erilisi nõudeid? Näiteks ruumide dekoreerimine, valjud helid või muud asjad, mis võivad olla problemaatilised.'
+  proposal_costs: 'Palun hinnake oma projekti maksumust ja märkige, kas te finantseerite seda ise või vajate abi.'
+  proposal_shortbio: 'Räägi endast kasutades 200 või vähem sõna.'
+  proposal_project: 'Kas sinu ettepanek võiks olla osa meie käimasolevatest projektidest? Vali mõni, et näha rohkem informatsiooni.'
+  proposal_urls: 'Lisage linke tehtud või käimasolevatele töödele.'
+  proposal_why_ptarmigan: 'Miks Sa arvad, et just Ptarmigan on parim koht Sinu projektile?'
+  send_proposal: 'Submit your idea!'
+  inactive_projects: 'Inactive Projects'
+  nope: 'midagi põle'
+  date:
+    formats:
+      default: "%d.%m.%Y"
+      short: "%d.%m.%y"
+      long: "%d. %B %Y"
+    first_day_of_week: 1
+    day_names: [pühapäev, esmaspäev, teisipäev, kolmapäev, neljapäev, reede, laupäev]
+    standalone_day_names: [Pühapäev, Esmaspäev, Teisipäev, Kolmapäev, Neljapäev, Reede, Laupäev]
+    abbr_day_names: [P, E, T, K, N, R, L]
+
+    month_names: [~, jaanuar, veebruar, märts, aprill, mai, juuni, juuli, august, september, oktoober, november, detsember]
+    standalone_month_names: [~, Jaanuar, Veebruar, Märts, Aprill, Mai, Juuni, Juuli, August, September, Oktoober, November, Detsember]
+    abbr_month_names: [~, jaan., veebr., märts, apr., mai, juuni, juuli, aug., sept., okt., nov., dets.]
+    standalone_abbr_month_names: [~, jaan., veebr., märts, apr., mai, juuni, juuli, aug., sept., okt., nov., dets.]
+
+    order: [ :day, :month, :year ]
+
+  time:
+    formats:
+      default: "%d. %B %Y, %H:%M"
+      short: "%d.%m.%y, %H:%M"
+      long: "%a, %d. %b %Y, %H:%M:%S %z"
+
+    am: "enne lõunat"
+    pm: "pärast lõunat"
+
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " ja "
+      last_word_connector: " ja "
+
+    select:
+      prompt: "Palun vali"
+
+  number:
+    format:
+      separator: ","
+      delimiter: " "
+      precision: 2
+      significant: false
+      strip_insignificant_zeros: false
+
+    currency:
+      format:
+        format: "%n %u"
+        unit: "kr"
+        separator: ","
+        delimiter: " "
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+        
+    percentage:
+      format:
+        delimiter: ""
+        
+    precision:
+      format:
+        delimiter: ""
+        
+    human:
+      format:
+        delimiter: ""
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: "bait"
+            other: "baiti"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: tuhat
+          million: miljon
+          billion: miljard
+          trillion: triljon
+          quadrillion: kvadriljon
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "pool minutit"
+      less_than_x_seconds:
+        one:   "vähem kui %{count} sekund"
+        other: "vähem kui %{count} sekundit"
+      x_seconds:
+        one:   "%{count} sekund"
+        other: "%{count} sekundit"
+      less_than_x_minutes:
+        one:   "vähem kui %{count} minut"
+        other: "vähem kui %{count} minutit"
+      x_minutes:
+        one:   "%{count} minut"
+        other: "%{count} minutit"
+      about_x_hours:
+        one:   "umbes %{count} tund"
+        other: "umbes %{count} tundi"
+      x_days:
+        one:   "%{count} päev"
+        other: "%{count} päeva"
+      about_x_months:
+        one:   "umbes %{count} kuu"
+        other: "umbes %{count} kuud"
+      x_months:
+        one:   "%{count} kuu"
+        other: "%{count} kuud"
+      about_x_years:
+        one:   "umbes %{count} aasta"
+        other: "umbes %{count} aastat"
+      over_x_years:
+        one:   "üle %{count} aasta"
+        other: "üle %{count} aastat"
+      almost_x_years:
+        one:   "peaaegu üks aasta"
+        other: "peaaegu %{count} aastat"
+    prompts:
+      year: "Aasta"
+      month: "Kuu"
+      day: "Päev"
+      hour: "Tunde"
+      minute: "Minutit"
+      second: "Sekundit"
+
+  helpers:
+    select:
+      prompt: "Palun vali"
+
+    submit:
+      create: 'Loo uus %{model}'
+      update: 'Uuenda objekti %{model}'
+      submit: 'Salvesta %{model}'
+
+  errors:
+    format: "%{attribute} %{message}"
+    messages: &errors_messages
+      inclusion: "ei leidu nimekirjas"
+      exclusion: "on reserveeritud"
+      invalid: "ei ole korrektne"
+      confirmation: "ei vasta kinnitusele"
+      accepted: "peab olema heaks kiidetud"
+      empty: "on tühi"
+      blank: "on täitmata"
+      too_long: "on liiga pikk (maksimum on %{count} tähemärki)"
+      too_short: "on liiga lühike (miinimum on %{count} tähemärki)"
+      wrong_length: "on vale pikkusega (peab olema %{count} tähemärki)"
+      not_a_number: "ei ole number"
+      not_an_integer: "peab olema täisarv"
+      greater_than: "ei tohi olla suurem kui %{count}"
+      greater_than_or_equal_to: "peab olema suurem või võrdne arvuga %{count}"
+      equal_to: "peab võrdne arvuga %{count}"
+      less_than: "peab olema vähem kui %{count}"
+      less_than_or_equal_to: "peab olema vähem või võrdne arvuga %{count}"
+      odd: "peab olema paaritu arv"
+      even: "peab olema paarisarv"
+
+  activerecord:
+    errors:
+      template:
+        header:
+          one:    "Üks viga takistas objekti %{model} salvestamist"
+          other:  "%{count} viga takistasid objekti %{model} salvestamist"
+        body: "Probleeme ilmnes järgmiste väljadega:"
+
+      messages:
+        taken: "on juba võetud"
+        record_invalid: "Valideerimine ebaõnnestus: %{errors}"
+        <<: *errors_messages
+
+      full_messages:
+        format: "%{attribute} %{message}"

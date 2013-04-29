@@ -1,0 +1,15 @@
+#nav {
+  display: none;
+}
+
+.actions, td.actions, th.actions { 
+  display: none; 
+}
+
+.meta {
+  display: none;
+}
+
+tr.attendee td {
+  border-bottom: 1px solid black;
+}

@@ -1,0 +1,21 @@
+%h1.heading
+  = "Attendee %s" % @attendee.id
+  
+= content_tag_for(:dl, @attendee) do
+  %dt.label= 'Name'
+  %dd.name= h @attendee.try(:name)
+  %dt.label= 'Email'
+  %dd.email= h @attendee.try(:email)
+  %dt.label= 'Phone'
+  %dd.phone= h @attendee.try(:phone)
+  %dt.label= 'Pay received'
+  %dd.pay_received= h @attendee.try(:pay_received)
+  %dt.label= 'Event'
+  %dd.event= h @attendee.try(:event)
+  %dt.label= 'Comments'
+  %dd.comments= h @attendee.try(:comments)
+  
+%p.actions
+  = link_to 'Edit', edit_attendee_path(@attendee)
+  |
+  = link_to 'Index', attendees_path

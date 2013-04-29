@@ -1,0 +1,34 @@
+= content_tag_for :div, event do
+  - unless event.avatar_file_name.blank?
+    =image_tag event.avatar.url(:thumb) 
+  .event_facebook=facebook_link(event)  
+  .event_parameters
+
+    .event_title= link_to(event.title, event_path(:id => event))
+    .event_type
+      =h event.event_type
+      - unless event.project_id.blank?
+        (
+        = link_to(event.project.name, project_url(:id => event.project))
+        )
+    .event_date
+      =l event.date
+      - unless event.enddate.blank?
+        = "#{t(:daterange)} #{l event.enddate}"
+    - unless event.promoter.blank?
+      .event_promoter= event.local_promoter(I18n.locale.to_s)
+    .event_metadata= event.metadata(I18n.locale.to_s)
+    .event_cost= event.price(I18n.locale)
+
+  .event_description
+    = awesome_truncate(event.description(I18n.locale.to_s), 600, '...')
+    - if event.description(I18n.locale.to_s).chars.to_a.size > 600
+      .read_more= link_to(read_more, event_url(:id => event))
+
+
+  
+  / - if current_user
+  / 
+  /   = link_to 'Edit', edit_admin_event_path(:id => event)
+  /   = link_to 'Destroy', admin_event_url(:id => event), :confirm => 'Are you sure?', :method => :delete
+

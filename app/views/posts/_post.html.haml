@@ -1,0 +1,10 @@
+.event_front_single.clearfix
+  .blog_title= link_to post.title, post
+  .post_metadata
+    - if post.is_personal == true
+      = "posted by #{post.user.email.gsub(/\@.+$/, '')} on #{l(post.created_at, :format => :long)}"
+    - else
+      = "posted by Ptarmigan on #{l(post.created_at, :format => :long)}"
+  - if post.carousel?
+    .blog_image= image_tag post.carousel.url(:full)
+  .blog_body= raw post.body

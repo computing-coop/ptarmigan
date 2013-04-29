@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  location: 
+  title: MyString
+  description: MyText
+  url: MyText
+  when: 2012-03-02
+  sortorder: 1
+  source: MyString
+
+two:
+  location: 
+  title: MyString
+  description: MyText
+  url: MyText
+  when: 2012-03-02
+  sortorder: 1
+  source: MyString

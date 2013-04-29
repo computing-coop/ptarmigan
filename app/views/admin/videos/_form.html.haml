@@ -1,0 +1,29 @@
+= form_for([:admin, @video]) do |f|
+  .six.columns.alpha
+    %p
+      = f.label :videohost
+      %br
+      = f.collection_select :videohost_id, Videohost.order(:name), :id, :name
+      = f.label :event
+      %br
+      = f.collection_select:event_id, Event.order('date DESC'), :id, :title, :include_blank => true
+    %p
+      = f.label :creator
+      %br
+      = f.text_field :creator
+  .six.columns.omega
+    %p
+      = f.label :hostid
+      %br
+      = f.text_field :hostid
+    %p
+      = f.label :name
+      %br
+      = f.text_field :name
+  .twelve.columns
+    %p
+      = f.label :description
+      %br
+      = f.text_area :description
+    %p
+      = f.submit "Submit"

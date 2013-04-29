@@ -1,0 +1,22 @@
+%h1.heading
+  = "2010 Residency proposals"
+  
+%p These are now obsolete and here for historical purposes only.
+  
+%table
+  %thead.header
+    %tr
+      %th Applicant
+      %th country
+      %th Submitted?
+      %th actions
+  %tbody.items.airforms
+    - @airforms.each do |airform|
+      %tr
+        %td= airform.applicant.realname
+        %td= airform.applicant.country_of_residence
+        %td= airform.submitted.to_s
+        %td
+          = link_to '[show]', admin_airform_path(airform)
+      
+= will_paginate(@airforms)

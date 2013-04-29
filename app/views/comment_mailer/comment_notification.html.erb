@@ -1,0 +1,9 @@
+<%= @comment.user.name %> has posted a comment on the chatter topic:
+<%= @comment.chatter.subject %>
+
+<Br />
+<hr>
+<%= raw simple_format(@comment.body.gsub(/\n/, '<br />')) %>
+
+<hr>
+To respond to this comment, or review the thread, please visit <%= link_to 'the Ptarmigan website', @host  + admin_chatter_path(@comment.chatter) %>.

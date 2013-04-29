@@ -1,0 +1,18 @@
+%h3.heading
+  = "Press/publicity links"
+%p Enter URLs here to off-site articles about Ptarmigan, specific events, artists or projects. These will appear on the press page for Ptarmigan or the individual event pages.
+  
+= button_to 'New link', new_admin_presslink_path, :method => :get
+
+.projects
+  %table
+    %thead.header
+      %tr
+        %th.name= 'Name'
+   
+        %th.actions= 'Actions'
+    %tbody.items.presslinks
+      - @presslinks.each do |presslink|
+        = render 'item', :presslink => presslink
+        
+= paginate(@presslinks)

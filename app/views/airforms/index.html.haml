@@ -1,0 +1,29 @@
+
+%table
+  %thead.header
+    %tr
+      %th.project_summary= 'Project summary'
+      %th.detailed_description= 'Detailed description'
+      %th.events= 'Events'
+      %th.equipment= 'Equipment'
+      %th.applicant= 'Applicant'
+      %th.budget= 'Budget'
+      %th.jul_aug= 'Jul aug'
+      %th.sept_oct= 'Sept oct'
+      %th.nov_dec= 'Nov dec'
+      %th.submitted= 'Submitted'
+      %th.cv_file_name= 'Cv file name'
+      %th.cv_file_size= 'Cv file size'
+      %th.cv_content_type= 'Cv content type'
+      %th.cv_updated_at= 'Cv updated at'
+      %th.attachment_file_name= 'Attachment file name'
+      %th.attachment_file_size= 'Attachment file size'
+      %th.attachment_content_type= 'Attachment content type'
+      %th.attachment_updated_at= 'Attachment updated at'
+      %th.terms_agreed= 'Terms agreed'
+      %th.actions= 'Actions'
+  %tbody.items.airforms
+    - @airforms.each do |airform|
+      = render 'item', :airform => airform
+      
+= will_paginate(@airforms)

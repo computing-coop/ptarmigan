@@ -1,0 +1,17 @@
+# move this into config/initializers
+
+module Ptarmigan
+  ALLOWED_USERS = [ 
+    "someone@example.com"
+  ]
+end
+
+MAILCHIMP_API_KEY = "replace with your mailchimp key"
+REST_AUTH_SITE_KEY         = 'replace with something'
+
+RECAPTCHA_PUBLIC_KEY  = 'put your RECPATCHA public key here'
+RECAPTCHA_PRIVATE_KEY = 'put your RECAPTCHA private key here'
+Recaptcha.configure do |config|
+    config.public_key  = RECAPTCHA_PUBLIC_KEY    
+    config.private_key = RECAPTCHA_PRIVATE_KEY
+end

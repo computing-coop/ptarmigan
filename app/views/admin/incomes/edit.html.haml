@@ -1,0 +1,6 @@
+%h2 Editing income
+= render :partial => "form", :locals => {:income => @income}
+%ul
+  %li= link_to 'Show', [:admin, @income]
+  %li= link_to 'Back', admin_incomes_path
+  %li= link_to 'Destroy',  [:admin, @income], :confirm => 'Are you sure?', :method => :delete  

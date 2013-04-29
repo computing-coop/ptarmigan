@@ -1,0 +1,8 @@
+%h3.heading
+  = "Editing press link"
+  
+= semantic_form_for([:admin, @presslink], :html => {:multipart => true}) do |form|
+  = render 'form', :form => form
+  = form.actions do
+    = form.submit 'Update'
+    

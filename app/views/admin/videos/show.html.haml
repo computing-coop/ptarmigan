@@ -1,0 +1,18 @@
+%h2= @video.name
+- content_tag_for :div, @video do
+  - if @video.videohost.id == 1
+    %object{:width => 400, :height => 300}
+      %param{:name => :allowfullscreen, :value => :true}
+      %param{:name => :allowscriptaccess, :value => :always}
+      %param{:name => :movie, :value => "http://vimeo.com/moogaloop.swf?clip_id=" + @video.hostid.to_s + "&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1"}
+      %embed{:src => "http://vimeo.com/moogaloop.swf?clip_id=" + @video.hostid.to_s + "&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1", :type => "application/x-shockwave-flash", :allowfullscreen => "true",  :allowscriptaccess => :always, :width => 400, :height => 300}
+    %br
+      
+      %strong Creator:
+      =h @video.creator
+      = link_to(@video.event.title, event_path(:id => @video.event))
+      %br 
+      =h @video.description
+%ul
+  %li= link_to 'Edit', edit_admin_video_path(@video)
+  %li= link_to 'Back', admin_videos_path

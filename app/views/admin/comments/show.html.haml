@@ -1,0 +1,27 @@
+- title "Comment"
+
+%p
+  %strong User:
+  = @comment.user
+%p
+  %strong Chatter:
+  = @comment.chatter
+%p
+  %strong Body:
+  = @comment.body
+%p
+  %strong Image File Name:
+  = @comment.image_file_name
+%p
+  %strong Image File Size:
+  = @comment.image_file_size
+%p
+  %strong Image Content Type:
+  = @comment.image_content_type
+%p
+  %strong Image Updated At:
+  = @comment.image_updated_at
+
+%p
+  = link_to "Edit", edit_comment_path(@comment)
+  |

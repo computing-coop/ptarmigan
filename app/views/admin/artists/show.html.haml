@@ -1,0 +1,42 @@
+%h2= "Artist \"#{@artist.to_param}\""
+= content_tag_for :div, @artist do
+  %ul
+    %li
+      %strong Startdate:
+      =h @artist.startdate
+    %li
+      %strong Enddate:
+      =h @artist.enddate
+    %li
+      %strong Name:
+      =h @artist.name
+    %li
+      %strong Country:
+      =h @artist.country
+    %li
+      %strong Website1:
+      =h @artist.website1
+    %li
+      %strong Website2:
+      =h @artist.website2
+    %li
+      %strong Bio fi:
+      =h @artist.bio_fi
+    %li
+      %strong Bio en:
+      =h @artist.bio_en
+    %li
+      %strong Avatar file name:
+      =h @artist.avatar_file_name
+    %li
+      %strong Avatar content type:
+      =h @artist.avatar_content_type
+    %li
+      %strong Avatar file size:
+      =h @artist.avatar_file_size
+    %li
+      %strong Avatar updated at:
+      =h @artist.avatar_updated_at
+%ul
+  %li= link_to 'Edit', edit_artist_path(@artist)
+  %li= link_to 'Back', artists_path

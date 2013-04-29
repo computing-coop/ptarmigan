@@ -1,0 +1,24 @@
+%h2= "Income \"#{@income.to_param}\""
+- content_tag_for :div, @income do
+  %ul
+    %li
+      %strong Date:
+      =h @income.date
+    %li
+      %strong Name:
+      =h @income.name
+    %li
+      %strong Income type:
+      =h @income.income_type
+    %li
+      %strong Event:
+      =h @income.event_id
+    %li
+      %strong Amount:
+      =h @income.amount
+    %li
+      %strong Hidden:
+      =h @income.hidden
+%ul
+  %li= link_to 'Edit', edit_income_path(@income)
+  %li= link_to 'Back', incomes_path

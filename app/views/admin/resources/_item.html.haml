@@ -1,0 +1,7 @@
+= content_tag_for(:tr, resource, :class => cycle(:odd, :even) + ' document') do
+  %td{:class => (resource.location.blank? ? false : resource.location.name.downcase)}= link_to resource.try(:name), resource.item, :target => :_blank
+
+  %td.actions
+    %span.smaller_text= link_to '[edit details]', edit_admin_resource_path(resource)
+    |
+    %span.delete= link_to '[delete]', [:admin, resource], :confirm => 'Are you sure?', :method => :delete

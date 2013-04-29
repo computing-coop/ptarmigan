@@ -1,0 +1,31 @@
+#twitter
+  .headline
+    %h2= t :latest
+  %ul#twitter_update_list
+  - twitter_status.each do |twit|
+    .tweet
+      = raw twit.content
+      .meta
+        = link_to time_ago_in_words(Time.at(twit.order.to_i)) + " ago", "https://twitter.com/#!/PtarmiganHki/status/#{twit.title.to_s}"
+        - unless twit.title == 0
+          &sdot;
+          = link_to 'reply', 'http://twitter.com/intent/tweet?in_reply_to=' + twit.title.to_s
+          &sdot;
+          = link_to 'retweet', 'http://twitter.com/intent/retweet?tweet_id=' + twit.title.to_s
+          &sdot;
+          = link_to 'favorite', 'http://twitter.com/intent/favorite?tweet_id=' + twit.title.to_s
+  = link_to 'Follow @PtarmiganHki', 'http://twitter.com/PtarmiganHki', :class => "twitter-follow-button"
+  %script{:src => "http://platform.twitter.com/widgets.js", :type => "text/javascript"} 
+  / 
+  / %script{:type => "text/javascript", :src => "http://twitter.com/javascripts/blogger.js"}
+  / %script{:type => "text/javascript", :src => "http://twitter.com/statuses/user_timeline/PtarmiganHki.json?&count=4"}
+
+/ #rss
+/   - if I18n.locale.to_s == 'en'
+/     = link_to(image_tag('/images/layout/rss.png', {:alt => "RSS Feed", :border => 0}), 'http://feeds.feedburner.com/PtarmiganEnglish')
+/   - else
+/     = link_to(image_tag('/images/layout/rss.png', {:alt => "RSS Feed", :border => 0}), 'http://feeds.feedburner.com/PtarmiganSuomeksi')
+/   = link_to(image_tag('/images/layout/facebook.png', {:alt => 'facebook', :border => 0}), 'http://www.facebook.com/home.php#/pages/Ptarmigan/114272652824')
+/   = link_to(image_tag('/images/layout/twitter.png', {:alt => 'twitter', :border => 0}),   "http://twitter.com/PtarmiganHki")
+/   = link_to(image_tag('/images/layout/flickr.png', {:alt => 'flickr', :border => 0}),   "http://www.flickr.com/groups/ptarmigan/")
+/   = link_to(image_tag('/images/layout/vimeo.png', {:alt => 'vimeo', :border => 0}), 'http://vimeo.com/ptarmigan')

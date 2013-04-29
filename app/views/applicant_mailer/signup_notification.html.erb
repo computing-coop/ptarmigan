@@ -1,0 +1,12 @@
+Your account to apply for the Ptarmigan artist-in-residency programme has been created.
+
+  Username: <%=h @applicant.login %>
+  Password (first four characters are blacked out): <%=h @applicant.password.gsub(/^.{4}/, '****') %>
+
+Visit this url to activate your account:
+
+  <%=h @url %>
+
+After activation, you will be able to log into the application site at http://ptarmigan.fi/air and submit your application.
+
+Thanks for your interest!

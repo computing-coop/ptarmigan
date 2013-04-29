@@ -1,0 +1,110 @@
+.accounting.thirteen.columns.alpha.omega
+  = tabs_for do |tab|
+    - tab.create('expenses', 'Expenses/money spent') do
+      .two.columns.alpha= button_to 'Add expense', new_admin_expense_path, :method => :get
+      .filters.ten.columns.omega
+        %ul
+          %h6 Filter by:
+          %li
+            %label Location: 
+            = select_tag "location", options_from_collection_for_select(Location.all, :id, :name, params[:by_location]), {:include_blank => true, :onchange => "document.location.href='/admin/expenses?i_budgetarea=" + params[:i_budgetarea].to_s + "&i_source=" + params[:i_source].to_s + "&i_location=" + params[:i_location].to_s + "&i_month=" + params[:i_month].to_s + "&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_payer=" + params[:by_payer].to_s + "&by_recipient=" + params[:by_recipient].to_s + "&by_month=" + params[:by_month].to_s + "&by_location=' + $(this).val()" }
+          %li
+            %label Month:
+            = select_tag "month", options_for_select(Expense.order('expenses.when').map(&:when).map{|x| x.strftime('%B %Y')}.uniq, params[:by_month]), { :include_blank => true, :onchange => "document.location.href='/admin/expenses?i_budgetarea=" + params[:i_budgetarea].to_s + "&i_source=" + params[:i_source].to_s + "&i_location=" + params[:i_location].to_s + "&i_month=" + params[:i_month].to_s + "&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_location=" + params[:by_location].to_s + "&by_recipient=" + params[:by_recipient].to_s + "&by_payer=" + params[:by_payer].to_s + "&by_month=' + $(this).val()" }
+          %li
+            %label Recipient:
+            = select_tag "recipient", options_for_select(Expense.select(:recipient).map(&:recipient).uniq.sort, params[:by_recipient]), { :include_blank => true, :onchange => "document.location.href='/admin/expenses?i_budgetarea=" + params[:i_budgetarea].to_s + "&i_source=" + params[:i_source].to_s + "&i_location=" + params[:i_location].to_s + "&i_month=" + params[:i_month].to_s + "&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_location=" + params[:by_location].to_s + "&by_payer=" + params[:by_payer].to_s + "&by_month=" + params[:by_month].to_s + "&by_recipient=' + $(this).val()" }
+
+          %li
+            %label Budget area:
+            = select_tag "budget_area", options_from_collection_for_select(Budgetarea.active, :id, :name, params[:by_budgetarea]), { :include_blank => true, :onchange => "document.location.href='/admin/expenses?i_budgetarea=" + params[:i_budgetarea].to_s + "&i_source=" + params[:i_source].to_s + "&i_location=" + params[:i_location].to_s + "&i_month=" + params[:i_month].to_s + "&by_payer=" + params[:by_payer].to_s + "&by_location=" + params[:by_location].to_s + "&by_recipient=" + params[:by_recipient].to_s + "&by_month=" + params[:by_month].to_s + "&by_budgetarea=' + $(this).val()"  }
+
+          %li
+            %label Paid by:
+            = select_tag "paid_by", options_for_select(Expense.select(:paid_by).map(&:paid_by).uniq.sort, params[:by_payer]), { :include_blank => true, :onchange => "document.location.href='/admin/expenses?i_budgetarea=" + params[:i_budgetarea].to_s + "&i_source=" + params[:i_source].to_s + "&i_location=" + params[:i_location].to_s + "&i_month=" + params[:i_month].to_s + "&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_location=" + params[:by_location].to_s + "&by_recipient=" + params[:by_recipient].to_s + "&by_month=" + params[:by_month].to_s + "&by_payer=' + $(this).val()"  }
+
+      .twelve.columns 
+        Total shown here:
+        = number_to_currency(@expenses.map(&:amount).sum, :unit => "&euro;", :format => "%n%u")
+        = link_to '[export to CSV]', "/admin/expenses?render_csv=1&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_location=" + params[:by_location].to_s + "&by_recipient=" + params[:by_recipient].to_s + "&by_month=" + params[:by_month].to_s + "&by_payer=" + params[:by_payer].to_s 
+    
+      - if !@expenses.empty?
+        .expenses.twelve.columns.alpha.omega
+          %table{:cellpadding => 5, :cellspacing => 5, :border => 0}
+            %thead
+              %th When
+              %th Where
+              %th Recipient
+              %th What for
+              %th Event or budget area?
+              %th Receipt?
+              %th How much?
+         
+            %tbody= render :partial => "expense", :collection => @expenses
+        = paginate(@expenses)
+      - else
+        %p There are no expenses to show yet.
+      %p= link_to 'New expense', new_admin_expense_path
+      
+      
+      
+    -tab.create('income', 'Income') do
+      .two.columns.alpha= button_to 'Add income', new_admin_income_path, :method => :get
+      .filters.ten.columns.omega
+        %ul
+          %h6 Filter by:
+          %li
+            %label Location: 
+            = select_tag "ilocation", options_from_collection_for_select(Location.all, :id, :name, params[:i_location]), {:include_blank => true, :onchange => "document.location.href='/admin/expenses?incometab=1&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_location=" + params[:by_location].to_s + "&by_payer=" + params[:by_payer].to_s + "&by_recipient=" + params[:by_recipient].to_s + "&by_month=" + params[:by_month].to_s + "&i_budgetarea=" + params[:i_budgetarea].to_s + "&i_month=" + params[:i_month].to_s + "&i_source=" + params[:i_source].to_s + "&i_location=' +  $(this).val()" }
+          %li
+            %label Month:
+            = select_tag "imonth", options_for_select(Income.order('incomes.when').map(&:when).map{|x| x.strftime('%B %Y')}.uniq, params[:i_month]), { :include_blank => true, :onchange => "document.location.href='/admin/expenses?incometab=1&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_location=" + params[:by_location].to_s + "&by_payer=" + params[:by_payer].to_s + "&by_recipient=" + params[:by_recipient].to_s + "&by_month=" + params[:by_month].to_s + "&i_budgetarea=" + params[:i_budgetarea].to_s + "&i_location=" + params[:i_location].to_s + "&i_source=" + params[:i_source].to_s + "&i_month=' +  $(this).val()"  }
+
+          %li
+            %label Budget area:
+            = select_tag "ibudget_area", options_from_collection_for_select(Budgetarea.active, :id, :name, params[:i_budgetarea]), { :include_blank => true, :onchange => "document.location.href='/admin/expenses?incometab=1&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_location=" + params[:by_location].to_s + "&by_payer=" + params[:by_payer].to_s + "&by_recipient=" + params[:by_recipient].to_s + "&by_month=" + params[:by_month].to_s + "&i_month=" + params[:i_month].to_s + "&i_location=" + params[:i_location].to_s + "&i_source=" + params[:i_source].to_s + "&i_budgetarea=' +  $(this).val()" }
+
+          %li
+            %label Source:
+            = select_tag "isource", options_for_select(Income.select(:source).map(&:source).compact.uniq.sort, params[:i_source]), { :include_blank => true, :onchange => "document.location.href='/admin/expenses?incometab=1&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_location=" + params[:by_location].to_s + "&by_payer=" + params[:by_payer].to_s + "&by_recipient=" + params[:by_recipient].to_s + "&by_month=" + params[:by_month].to_s + "&i_month=" + params[:i_month].to_s + "&i_location=" + params[:i_location].to_s + "&i_budgetarea=" + params[:i_budgetarea].to_s + "&i_source=' +  $(this).val()" }
+
+
+
+      %p 
+        Total shown here:
+        = number_to_currency(@incomes.map(&:amount).sum, :unit => "&euro;", :format => "%n%u")
+        = link_to '[export to CSV]', "/admin/incomes?render_csv=1&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_location=" + params[:by_location].to_s + "&by_recipient=" + params[:by_recipient].to_s + "&by_month=" + params[:by_month].to_s + "&by_payer=" + params[:by_payer].to_s + "&i_month=" + params[:i_month].to_s + "&i_location=" + params[:i_location].to_s + "&i_budgetarea=" + params[:i_budgetarea].to_s + "&i_source=" + params[:i_source].to_s 
+    
+      - if !@incomes.empty?
+        .incomes
+          %table{:cellpadding => 5, :cellspacing => 5, :border => 0}
+            %thead
+              %th When
+              %th Where
+              %th Source
+              %th What for
+              %th Event or budget area?
+              %th Receipt?
+              %th How much?
+              %th Actions
+            %tbody= render :partial => "income", :collection => @incomes
+        = paginate(@incomes)
+      - else
+        %p There are no incomes to show yet.
+      %p= link_to 'New income', new_admin_income_path
+      
+      
+  %p= link_to 'Back to admin home', admin_reports_path
+
+  - if params[:incometab].nil?
+    :javascript
+      $(function() {
+        $("#tabs").tabs();
+      });
+    
+  - else
+    :javascript
+      $(function() {
+        $("#tabs").tabs({ selected: 1 });
+      });
+    

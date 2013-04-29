@@ -1,0 +1,48 @@
+= semantic_form_for(@proposal, :html => {:multipart => true}) do |f|
+  - if @proposal.errors.any?
+    #errorExplanation
+      %h3= "#{pluralize(@proposal.errors.count, 'error')} in your proposal!"
+      %ul
+      - @proposal.errors.full_messages.each do |msg|
+        %li= msg
+  
+  .field
+    = f.input :location, :label => t(:proposal_location), :as => :select, :collection => {t(:helsinki) => "1", t(:tallinn) => "2", t(:both) => "0"}, :include_blank => false
+  .field= f.input :name, :label => t(:your_name)
+
+  .field= f.input :organisation, :label => t(:proposal_organisation) + " (#{t(:optional)})"
+
+  .field= f.input :email, :label => t(:your_email)
+  .field= f.input :address, :label => t(:postal_address)
+  .field= f.input :country, :label => t(:country)
+  .field= f.input :phone_number, :label => t(:proposal_phone)
+  .field= f.input :short_description, :label => t(:proposal_shortdescription), :input_html => {:rows => 5}
+  .field= f.input :project, :as => :select,  :label => t(:proposal_project), :include_blank => 'nope!', :collection => Project.proposable.active.group(:name).order(:name)
+  .project_info
+  .field= f.input :duration, :label => t(:proposal_duration)
+  .field= f.input :long_description, :label => t(:proposal_longdescription)
+  .field= f.input :public_engagement, :label => t(:proposal_public_engagement)
+  .field= f.input :materials, :label => t(:proposal_materials)
+  .field= f.input :spatial_requirements, :label => t(:proposal_spatial_requirements)
+  .field= f.input :cost, :label => t(:proposal_costs)
+  .field= f.input :bio, :label => t(:proposal_shortbio)
+  .field= f.input :urls, :label => t(:proposal_urls)
+  .field= f.input :ptarmigan_goodfit, :label => t(:proposal_why_ptarmigan)
+  .field.clearfix= f.input :attachment, :label => t(:proposal_attachment)
+  .field
+    %label Please complete the CAPTCHA:
+    = recaptcha_tags(:display => {:theme => 'white', :tabindex => 10})    
+  .field
+    %label
+    = f.submit t(:send_proposal)
+
+:javascript
+  $('select#proposal_project_id').change( function() {
+    $('.project_info').load('/projects/' + $('select#proposal_project_id').val() + ".js .project_description");
+      });
+  $('select#proposal_location').change(function() {
+
+    $('select#proposal_project_id').load('/projects/by_location/' + $('select#proposal_location').val() + ".js");
+  });
+
+

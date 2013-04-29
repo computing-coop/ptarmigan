@@ -1,0 +1,10 @@
+.front_box
+  .headline
+    %h2= t :join_our_mailing_list
+
+  = form_tag url_for('/add_to_list'), :id => :email_form, :method => :get, :remote => true do 
+    #loading{:style => 'display: none'}= image_tag('ajax-loader.gif')
+    #email_error
+    .email_signup_form   
+      = text_field_tag :email, 'email address', { :class => "clearfield"}
+      %button{:class => :email_signup , :type => :submit }= t(:join)

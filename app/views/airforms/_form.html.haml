@@ -1,0 +1,44 @@
+- form.inputs do
+  %h3 Project Details
+  Project summary (max 5 lines):
+  = form.input :project_summary, :label => '', :input_html => {:cols => 60, :rows => 8}
+  %br/
+  Provide a detailed description of your project, including the possible outcomes during the residency.  
+  = form.input :detailed_description, :label => '', :input_html => {:cols => 60, :rows => 60}
+  %br/
+  Do you plan to organise any workshops, events or other community interactions during the residency?  If so, please describe below.
+  %i We can assist in organisation, promotion, and other logistics.
+  = form.input :events, :label => '', :input_html => {:cols => 60, :rows => 20}
+  %br/
+  What equipment is required for your project?  
+  %i Please indicate if you already own this equipment or how you hope to access it.  We can provide limited tools and assist with access to other equipment.
+  = form.input :equipment, :label => '', :input_html => {:cols => 60, :rows => 20}
+  = form.input :applicant_id, :value => current_applicant.id, :as => :hidden
+  Please provide a small approximate project budget including your travel and project costs.
+  = form.input :budget, :label => '', :input_html => {:cols => 60, :rows => 30}
+  %br/
+  Time period of interest (check at least one):
+  = form.input :jul_aug, :label => 'July/August 2010'
+  = form.input :sept_oct, :label => 'September/October 2010'
+  = form.input :nov_dec, :label => 'November/December 2010'
+  %h3 Supporting material
+  Please attach a CV in a standard format (PDF, RTF, ASCII, Microsoft Word, HTML).
+  %br/
+  - unless @airform.cv_file_name.blank?
+    Currently uploaded file: 
+    = @airform.cv_file_name
+    %br/
+  = form.file_field :cv, :label => 'Your CV'
+  %br/
+  %br/
+  Please attach a sample of your work.  This is ideally a ZIP file.  Maximum upload size is 50MB.
+  %br/
+  - unless @airform.attachment_file_name.blank?
+    Currently uploaded file: 
+    = @airform.attachment_file_name
+    %br/
+  = form.file_field :attachment, :label => 'Your CV'
+  %br/
+  %br/
+  
+  = form.input :terms_agreed, :label => 'By checking this, I agree that I am a resident of one of the following countries: ¨Åland Islands, Denmark, Estonia, Faroe Islands, Finland, Greenland, Latvia, Lithuania, Norway, Sweden.'

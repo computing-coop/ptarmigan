@@ -1,0 +1,9 @@
+%h2 Archive images
+= button_to 'Upload new archive image ', new_admin_flicker_path, :method => :get
+- if !@flickers.empty?
+  .flickers.clearfix
+    = render :partial => "flicker", :collection => @flickers
+  = paginate(@flickers)
+- else
+  %p There are no flickers to show yet.
+= button_to 'Upload new archive image ', new_admin_flicker_path, :method => :get

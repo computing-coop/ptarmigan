@@ -1,0 +1,10 @@
+$("#loading").toggle();
+<% if @signup_success %>
+  $('#email_error').html('');
+  $('.email_signup_form').html('<%= @signup_success %>');
+<% end %>
+<% if @signup_error %>
+  $('#email_error').html('<%= @signup_error %>');
+  $('button.email_signup').removeAttr('disabled');
+<% end %>
+

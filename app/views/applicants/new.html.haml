@@ -1,0 +1,48 @@
+%h1 Ptarmigan Artist-in-Residency Programme
+%h3 Application: account creation
+
+You must create an account in order to apply electronically.
+
+.applicant_form
+  - @applicant.password = @applicant.password_confirmation = nil
+
+  = error_messages_for :applicant
+  - semantic_form_for :applicant, :url => applicants_path do |f|
+    %p
+      Please enter a valid email address.  This will also double as your login name.
+    
+      %br/
+      = f.input :login, :label => 'Email:'
+    %p
+      Please enter your real name.
+      %br/
+      = f.input :realname, :label => 'Real name:'
+    %p
+      = f.input :address, :as => :text, :label => "Please enter your postal address:<br />", :input_html => {:rows => 5}
+    %p 
+
+      Please enter a valid phone number where you can be contacted.
+      %br/
+      Don't forget to include the country code.
+      = f.input :phone, :label => 'Phone:'
+    %p
+      = f.label "Your country of residence:"
+      %br/
+      = f.country_select :country_of_residence, nil, {:include_blank => true}, {}
+    %p
+      = f.label "Your nationality:"
+      %br/
+      = f.country_select :nationality, nil, {:include_blank => true}, {}
+    %p
+      = f.label "Choose a password:"
+      %br/
+      = f.password_field :password
+    %p
+      = f.label "Please re-enter your password:"
+      %br/
+      = f.password_field :password_confirmation
+    %p
+      = f.label "Please complete the CAPTCHA below so we can be sure you're a human being."
+      = recaptcha_tags :display => {:theme => :clean}
+    
+    %p= f.submit "Sign up"

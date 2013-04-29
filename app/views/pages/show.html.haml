@@ -1,0 +1,18 @@
+.headline
+  %h2= @page.try(:title).humanize
+
+= raw @page.body
+
+- unless @resources.blank?
+  .headline
+    %h2= t :information_and_press
+  - @resources.each do |resource|
+    .resource
+      .resource_image= image_tag resource.icon.url(:thumb)
+      .resource_metadata
+        .resource_title= resource.name
+        .resource_description= raw resource.description
+        .resource_download_link
+          [
+          = link_to t(:download), resource.attachment.url
+          ]

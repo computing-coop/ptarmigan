@@ -1,0 +1,116 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  number:
+    currency:
+        format:
+            format: "%n%u"
+            unit: "&euro;"
+            # These three are to override number.format and are optional
+            separator: "."
+            delimiter: ","
+            precision: 2
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "..."
+  errors_with_form: 'There were errors with your registration.'
+  verify_you_are_human: 'Please verify that you are human:'
+  am_i_registered: 'Am I already registered?'
+  enter_your_reg_email: 'Which email address did you use to register?'
+  check_registrations: 'Check registrations'
+  no_one_registered: 'No, this email address is not registered yet. Please fill out the form below.'
+  yes_you_are_registered: 'Yes, you are registered for the event. See you there!'
+  join_the_waiting_list: 'Join the waiting list'
+  waiting_list_text: 'Though this event is full, you may sign up for the waiting list. We will notify you if a space becomes available.'
+  waiting_list_spaces: "There are currently #{count} people on the waiting list."
+  space_now_available: "Space now available"
+  resources: "files and downloads"
+  confirmation: "Confirmation"
+  googlecalendar: "Ptarmigan events are available on a Google Calendar"
+  about: "About"
+  archive: "Archive"
+  residencies: "Residencies"
+  find_us: "Find us"
+  contact: "Contact"  
+  see: "See"
+  seeall: "See all"
+  event: "Event"
+  artist_in_residence: "Artist in residence"
+  events: "Events"
+  artists: "Artists"
+  search: "Search"
+  no_searchterm: "You must enter a search term."
+  active_projects: "Active projects"
+  search_results: "Search results for"
+  join_us: "Join us!"
+  past: "In the past"
+  calendar: "Calendar"
+  current: "Current"
+  project: "Project"
+  projects: "Projects"
+  noevents: "There are currently no events scheduled.  Please check back in the future, or follow us on Twitter, Facebook or RSS."
+  helsinki: "Helsinki"
+  what_is_ptarmigan: "What is Ptarmigan?"
+  tallinn: "Tallinn"
+  latest: "Latest"
+  news: "News"
+  both: "Both!"
+  read_more: "read more"
+  language: "Language"
+  daterange: ' - '
+  free: "Free entry!"
+  map: "Map"
+  presented_by: "presented by"
+  part_of_project: "part of project"
+  event_full: 'Sorry, the event is now full.'
+  join_our_mailing_list: "Join our mailing list!"
+
+  join: "join"
+  your_name: "Your name:"
+  coming_up: "Upcoming"
+  your_email: "Your email:"
+  event_archive_first: 'Ptarmigan is an event-driven project space. Since we began in July 2009, we have organised '
+  event_archive_second: ' events at Ptarmigan - '
+  in_tallinn: ' events in Tallinn and '
+  in_helsinki: ' in Helsinki. Below is our entire history of events, and you may also search our site.'
+  your_phone: "Your phone number"
+  extra_info_or_qs: "Any extra information or questions?"
+  click_here_to_register: "Click here to register"
+  you_must_register: "You must register for this event!"
+  thanks_register: "Thank you for registering! You should receive a confirmation email. Please contact Ptarmigan if you cannot attend.  If you would like to register a second person for this event, please reload this page and enter the information again."
+  thanks_signup: "Thank you for signing up!"
+  sign_up: "Sign up!"
+  proposals: 'Proposals'
+  donations: 'Donations appreciated!'
+  proposal_header: 'Ptarmigan is a project space that relies on ideas from you for it’s programming! With this form you can submit your ideas to Ptarmigan. These ideas can be anything from a one-off artist talk or performance to a long-duration residency. Please fill in the required information and we’ll get back to you as soon as we can.'
+  proposal_location: 'Where would you like to do this project?'
+  proposal_organisation: 'Organisation or group'
+  optional: 'optional'
+  postal_address: 'Postal address'
+  country: 'Country of residence'
+  proposal_phone: 'Contact phone number (include country code)'
+  proposal_shortdescription: 'Please describe your proposed project in 100 words or less.'
+  proposal_duration: 'What duration of time do you require? (ex: one night, two months, one week, etc.) When would be a good time for you?'
+  proposal_longdescription: 'Please provide a longer description of your project.'
+  proposal_public_engagement: 'Does your project engage with the public in any way? Please describe any events that would occur in conjunction with your work - workshops, talks, seminars or other events that would engage the public in a participatory manner.'
+  proposal_materials: 'What sorts of materials will you require to complete this project (that you are not providing yourself)?'
+  proposal_spatial_requirements: 'Are there any unusual spatial requirements, such as physical makeup of a room or rooms, loud or unusual volumes, or other potentially problematic aspects?'
+  proposal_costs: 'Please estimate the cost required for your project, and indicate if you will be financing this yourself or if you will require support.'
+  proposal_shortbio: 'Tell us about yourself in 200 words or less.'
+  proposal_project: 'Does your proposal fit into one of our existing projects?  Select one for more information.'
+  proposal_urls: 'Please provide URLs for previous/existing work.'
+  proposal_why_ptarmigan: 'Why do you feel that Ptarmigan is a good platform for this project?'
+  proposal_attachment: 'You may attach one file, maximum size 5 MB.'
+  send_proposal: 'Submit your idea!'
+  inactive_projects: 'Inactive Projects'
+  nope: 'nope!'
+  project_spiel: "We call Ptarmigan a 'project space' and we like recurring events that can build on existing experiences.  Many of our events fall under one or more of these projects.  We're always open to proposals for new projects as well as new events under existing themes."
+  artists_spiel: "Ptarmigan has been proud to operate a residency programme since our inception. These residencies have ranged from two-month projects (supported by Kulturkontakt Nord) to shorter, grassroots/self-funded projects. Below are some of the artists, curators, and producers who we have hosted over the years."
+  past_projects_spiel: "Ptarmigan has hosted a variety of projects, some regular and some irregular. Here are former recurring projects that are currently inactive (but may come back to life)."
+  date:
+    first_day_of_week: 1

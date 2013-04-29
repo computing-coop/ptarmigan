@@ -1,0 +1,371 @@
+/*
+ *= require cms
+ *= require jquery.ui.all
+ *= require staff
+ */
+.staff_suomi a {
+  color: #00A329 !important;
+  text-decoration: none !important;
+}
+
+.staff_eesti a {
+  color: #3477B6  !important;
+  text-decoration: none !important;
+} 
+
+.flicker {
+  clear: right;
+  margin-bottom: 20px;
+}
+ .flicker .left {
+  float: left;
+  width: 500px;
+  margin-right: 10px;
+ }
+
+ .flicker .right .event {
+  font-weight: bold;
+  font-size: 14px;
+ }
+ .flicker .right {
+  float: left;
+  width: 450px;
+ }
+.proposal .comment {
+  width: 800px;
+  border-top: 1px dashed green;
+  margin-bottom: 25px;
+  padding: 10px;
+  clear: both; }
+
+span.comment_system {
+  color: #666;
+  font-style: italic; }
+
+.proposal .line {
+  line-height: 18px; }
+
+.proposal .comment .left {
+  float: left;
+  font-size: 9pt;
+  width: 180px;
+  margin-right: 25px; }
+
+.proposal .comment .right {
+  font-family: "Lucida Grande";
+  width: 570px;
+  float: right;
+  clear: right; }
+
+form#new_proposalcomment {
+  margin-top: 50px; }
+
+form#new_proposalcomment li {
+  list-style-type: none; }
+
+form#new_proposalcomment li label {
+  float: left;
+  vertical-align: top;
+  font-size: 10pt;
+  width: 180px;
+  text-align: right; }
+
+form#new_proposalcomment textarea {
+  margin-left: 25px;
+  height: 100px; }
+
+form#new_proposalcomment input#proposalcomment_submit {
+  margin-left: 205px;
+  background-color: grey;
+  color: white; }
+
+.proposal .line {
+  clear: left;
+  margin-bottom: 10px;
+  }
+
+.proposal span.answer {
+    float: left;
+    width: 600px;
+  }
+.proposal label {
+  font-weight: bold; 
+  float: left;
+  text-align: right;
+  width: 100px;
+  margin-right: 15px;
+}
+
+.fi_event a {
+  color: #00A329; }
+
+.ee_event a {
+  color: #62B8E3; }
+
+#nav ul li {
+  float: left;
+  list-style-type: none;
+  margin-left: 15px; }
+
+#dynamic {
+  clear: left; }
+
+#nav li a, #staffnav li a, #staffnav li a:visited {
+  color: black;
+  opacity: 1;
+  -webkit-transition: opacity 1.1s linear;
+  -moz-transition: opacity 1.1s linear; }
+
+#nav li a:visited {
+  color: black;
+  opacity: 1;
+  -webkit-transition: opacity 1.1s linear;
+  -moz-transition: opacity 1.1s linear; }
+
+#nav li a:hover, #staffnav li a:hover {
+  color: black;
+  opacity: .25;
+  -webkit-transition: opacity .1s linear;
+  -moz-transition: opacity .1s linear; }
+
+.proposal_icon img {
+  margin-right: 10px; }
+
+.proposal_icon {
+  float: left; }
+
+#chatter_wrap .chatter_metadata {
+  float: left;
+  width: 150px;
+  margin-right: 20px; }
+
+#chatter_wrap .chatter_content {
+  float: left;
+  width: 800px;
+  margin-bottom: 10px; }
+
+#chatter_wrap .chatter_metadata .chatter_image {
+  float: left; }
+
+#chatter_wrap .chatter_comments {
+  clear: left;
+  border-top: 1px dotted gray;
+  padding-top: 20px; }
+
+#chatter_wrap .chatter_comments form li {
+  list-style-type: none; }
+
+#chatter_wrap .chatter_comments form .comment_icon {
+  float: left;
+  width: 150px;
+  margin-right: 20px; }
+
+#chatter_wrap .chatter_comments form .comment_icon img {
+  float: right;
+  clear: both; }
+
+#chatter_wrap .chatter_comments form .comment_icon p {
+  margin-top: 10px;
+  clear: right; }
+
+#comment_image_input, #comment_submit {
+  margin-left: 170px; }
+
+.comment_body p {
+  margin-bottom: 5px;
+  margin-top: 10px;
+  line-height: 1.5em; }
+
+.chatter_comments .comment .left {
+  width: 150px;
+  float: left;
+  margin-right: 20px;
+  font-size: 7pt; }
+
+.comment .left {
+  float: left;
+  font-size: 7pt;
+  width: 180px;
+  margin-right: 25px; }
+  .comment .left span.comment_user {
+    font-weight: bold;
+    font-size: 8pt; }
+
+.chatter_comments .comment {
+  clear: both;
+  margin-bottom: 20px;
+  float: left; }
+
+.chatter_comments .comment .right {
+  width: 800px;
+  float: left; }
+
+.chatter_comments .comment .right .comment_image_download {
+  font-size: 6pt; }
+
+
+
+#new_event li.ui-state-default {
+  clear: none; }
+
+
+
+.two_column_form {
+  clear: both; }
+
+.two_column_form li {
+  clear: left; }
+
+.form_left {
+  width: 50%;
+  float: left; }
+
+.form_right {
+  width: 480px;
+  float: left; }
+
+.form_comment {
+  /*  margin-top: -10px;*/
+  margin-left: 60px;
+  margin-bottom: 25px;
+  font-size: 8pt;
+  float: left; }
+
+.chatter_line {
+  line-height: 1.8em; }
+
+.chatter_line a {
+  font-size: 1.2em; }
+
+
+
+tr.odd {
+  background-color: #eeeeff; }
+
+#nav .staff {
+  margin-top: 25px; }
+
+.add_link, a.add_nested_fields {
+  clear: left;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.new_wikifile, #new_expense .fields, #new_income .fields, .expense .fields, .income .fields {
+  margin-bottom: 20px;
+  border: 1px dotted #98FB21;
+  width: 300px;
+  padding: 15px;
+  float: left;
+  clear: right;
+}
+
+textarea#wikirevision_contents {
+  width: 650px;
+  height: 350px; }
+
+#nav h4 {
+  font-size: 8pt;
+  float: left; }
+
+#logo {
+  float: left;
+  width: 300px; }
+
+#nav {
+  float: left;
+  width: 660px; }
+
+.staff {
+  clear: left;
+  margin-bottom: 20px; }
+
+.active {
+  clear: left;
+  float: left; }
+
+#nav .public ul li {
+  background: none;
+  font-size: 9pt; }
+
+#nav .staff ul li {
+  background: none;
+  font-size: 10pt;
+  padding: 2px;
+  font-weight: normal; }
+
+#nav .staff ul li a {
+  color: #3477B6;
+  font-weight: bold; 
+  text-decoration: none;
+}
+
+span.active_type {
+  font-size: 8pt;
+  color: #bdbdbd; }
+
+.active_projects {
+  float: left;
+  border: 1px solid #888;
+  width: 500px;
+  padding: 10px;
+  margin-left: 25px; }
+
+.active_link {
+  float: left;
+  margin-right: 15px; }
+
+#dynamic {
+  margin-top: 25px; }
+
+.active_topics .active_link {
+  float: none; }
+  .active_topics .active_link a {
+    font-size: 14pt; }
+
+form.event select, form.resource select {
+  width: 230px;
+  height: 25px;
+  overflow: hidden;
+  background-color: #d6e5f4; }
+form.event li, form.resource li {
+  list-style-type: none;
+  margin-bottom: 20px; }
+
+  form.event li a.dp-choose-date, form.resource li a.dp-choose-date {
+    margin-left: 10px;
+    font-size: 9pt; }
+  form li p.inline-hints, form.resource li p.inline-hints {
+    width: 90px;
+    margin-top: -30px;
+    margin-right: 10px;
+    text-align: right;
+    font-size: 10px;
+    line-height: 10px;
+    font-style: italic; }
+form.event input, form.resource input {
+  font-size: 12px;
+  background-color: #d6e5f4;
+  padding: 8px; }
+  form.event input.date-pick, form.resource input.date-pick {
+    width: 100px; }
+
+.form_image {
+  float: left; }
+
+
+tr.expense {
+  border: 1px solid green; }
+
+tr.proposal_grid_1 {
+  background-color: #729539; }
+  tr.proposal_grid_1 a {
+    color: white !important; }
+
+tr.proposal_grid_2 {
+  background-color: #D2E0F5; }
+
+
+#tabs a {
+  color: #3477B6; }
+

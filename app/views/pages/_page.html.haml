@@ -1,0 +1,20 @@
+- content_tag_for :div, page do
+  %ul
+    %li
+      %strong Title en:
+      =h page.title_en
+    %li
+      %strong Title fi:
+      =h page.title_fi
+    %li
+      %strong Body en:
+      =h page.body_en
+    %li
+      %strong Body fi:
+      =h page.body_fi
+    %li
+      %strong Slug:
+      =h page.slug
+    = link_to 'Show', page
+    = link_to 'Edit', edit_page_path(page)
+    = link_to 'Destroy', page, :confirm => 'Are you sure?', :method => :delete

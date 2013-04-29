@@ -1,0 +1,19 @@
+%h3.heading
+  = "Documents and resources"
+(misc. files that aren't archive images or videos, linked to events, projects and/or artists)
+  
+= button_to 'Upload new resource', new_admin_resource_path, :method => :get
+
+.projects  
+  %table
+    %thead.header
+      %tr
+        %th.name= 'Name'
+   
+        %th.actions= 'Actions'
+    %tbody.items.resources
+      - @resources.each do |resource|
+        = render 'item', :resource => resource
+        
+  = paginate(@resources)
+= button_to 'Upload new resource', new_admin_resource_path, :method => :get

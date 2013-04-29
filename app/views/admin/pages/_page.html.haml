@@ -1,0 +1,13 @@
+= content_tag_for :div, page do
+  %tbody
+    %tr
+      %td{:class => page.location.name.downcase}
+        = link_to page.title, edit_admin_page_path(page)
+      %td
+        = awesome_truncate(page.excerpt)
+      %td
+        =h page.slug
+      %td{:class => page.location.name.downcase}
+        %span.small_text= link_to '[edit]', edit_admin_page_path(page)
+        %span.smaller_text= link_to 'see on public side', page_url(:id => page.slug), :target => :_blank
+        %span.delete= link_to '[delete]', [:admin, page], :confirm => 'Are you sure?', :method => :delete

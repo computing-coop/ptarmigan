@@ -1,0 +1,15 @@
+%h1.heading
+  - if @wikirevision.new_record?
+    = 'This page did not previously exist'
+  
+%p 
+  You can edit this page using the Textile markup language (or plain text).
+  = link_to 'Textile reference', 'http://redcloth.org/textile/writing-paragraph-text/', :target => :_blank
+  
+= semantic_nested_form_for([:admin, @wikirevision], :html => {:multipart => true}) do |form|
+  = render 'admin/wikirevisions/form', :form => form
+  = form.actions do
+    = form.submit 'Save'
+    
+%p.actions
+  = link_to 'Cancel', admin_wikirevisions_path

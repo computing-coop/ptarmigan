@@ -1,0 +1,6 @@
+%h2 Editing expense
+= render :partial => "form", :locals => {:expense => @expense}
+%ul
+  %li= link_to 'Show', admin_expenses_path(@expense)
+  %li= link_to 'Back', admin_expenses_path
+  %li= link_to 'Destroy', [:admin, @expense], :confirm => 'Are you sure?', :method => :delete  

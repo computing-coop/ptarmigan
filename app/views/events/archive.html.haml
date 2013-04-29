@@ -1,0 +1,29 @@
+%p
+  = t :event_archive_first
+  = Event.by_location(2).published.count.to_s
+  = t :in_tallinn
+  = Event.by_location(1).published.count.to_s
+  = t :in_helsinki
+
+%p
+  = form_tag "/search/simple", :method => "post" do |f|
+    %p{:style => "float: left; margin-top: 3px; margin-right: 5px;"}
+      Search for an event: 
+    = text_field_tag :search
+    = submit_tag 'search' 
+.filters
+  Showing:
+  = link_to 'Tallinn', '#', :onclick => "$('.ee').fadeToggle(); $('.tallinn_link').toggleClass('active')", :class => "tallinn_link active"
+  = link_to 'Helsinki', '#', :onclick => "$('.fi').fadeToggle(); $('.helsinki_link').toggleClass('active')", :class => "helsinki_link active"
+.archives
+  - @archive.group_by{|x| x.date.beginning_of_month}.each do |group|
+    .archive_box.month
+      %p= raw(I18n.localize(group.first, :format => "%B %Y"))
+    - group.last.each do |event|
+      .archive_box{:class => event.location.locale}
+        = link_to(event, html_options = {:class => 'brick', :style => 'background-image: url(\'http://ptarmigan.ee' + event.avatar.url(:archive) + '\');' } ) do
+          .inside_block
+          .user_hover{:style => "font-size: " + (event.name.size > 35 ? '12px;' : '17px;')}= event.name
+= content_for :jquery do
+  :plain
+    $("#tabs").tabs();

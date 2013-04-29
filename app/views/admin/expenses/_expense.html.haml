@@ -1,0 +1,26 @@
+= content_tag_for :tr, expense do
+
+  %td
+    = expense.when.strftime('%d %B %Y')
+  %td= expense.location_id.blank? ? "Both!" : expense.location.name
+  %td
+    = expense.recipient
+  %td
+    = expense.what_for
+    .actions
+      %span.small_text= link_to '[edit]', edit_admin_expense_path(expense)
+      %span.delete= link_to '[delete]', [:admin, expense], :confirm => 'Are you sure?', :method => :delete
+  %td
+    - unless expense.event.nil?
+      .expense_meta= expense.event.name
+    - unless expense.budgetarea.blank?
+      .expense_meta= expense.budgetarea.name
+  %td
+    = expense.has_receipt == false ? "no" : "yes"
+    - unless expense.wikifiles.blank?
+      - expense.wikifiles.each do |wf|
+        = link_to '[dl]', wf.attachment.url
+  %td
+    = number_to_currency(expense.amount, :unit => "&euro;", :format => "%n%u")
+    %span.small_text= "(#{expense.paid_by})"
+

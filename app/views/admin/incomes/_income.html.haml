@@ -1,0 +1,17 @@
+= content_tag_for :div, income do
+  %tbody
+    %tr
+      %td
+        =h income.date
+      %td
+        =h income.name
+      %td
+        =h income.income_type
+      %td
+        =h event_name(income.event)
+      %td
+        =h income.amount
+      %td
+        = link_to 'Show', admin_incomes_path(:id => income)
+        = link_to 'Edit', edit_admin_income_path(income)
+        = link_to 'Destroy', [:admin, income], :confirm => 'Are you sure?', :method => :delete

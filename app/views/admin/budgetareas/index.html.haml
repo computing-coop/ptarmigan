@@ -1,0 +1,10 @@
+%h4 Budget areas
+
+%p Budget areas can be defined to organise expenses and attempt to keep track of spending on specific projects.
+= button_to 'create new budget area', new_admin_budgetarea_path, :method => :get
+
+.projects
+  - @budgetareas.each do |ba|
+    .project= link_to ba.name, edit_admin_budgetarea_path(ba)
+  
+= button_to 'create new budget area', new_admin_budgetarea_path, :method => :get

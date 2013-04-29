@@ -1,0 +1,20 @@
+
+- next_events.each_with_index do |event, index|
+  .event.upcoming{:class => ((index + 1) == next_events.count) ? :last : false}
+    .image= image_tag event.avatar.url(:small), :width => 250
+    .title= link_to event.name, event
+    .event_date
+      =l event.date, :format => :long
+      - unless event.enddate.blank?
+        = "#{t(:daterange)} #{l event.enddate,:format => :long}"
+      = raw event.notes
+    
+    .tags= event.event_type
+  -# - @next_events.each do |event|
+  -#   .event_sidebar
+  -#     .event_title= link_to event.name, event
+  -#     .event_date= l event.date, :format => :long
+  -# .event_location{:class => (event.location_id == 1 ? 'helsinki' : 'tallinn')}
+  -#   = raw "[#{event.project.nil? ? '' : link_to(event.project.name, event.project) + ': '}#{event.location_id == 1 ? 'Helsinki' : 'Tallinn'}]"  
+  - unless (controller.controller_name == 'events' && controller.action_name == 'index')
+    .see_all= link_to t(:seeall) + " " + t(:events).downcase, events_path

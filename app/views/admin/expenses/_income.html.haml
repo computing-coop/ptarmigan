@@ -1,0 +1,25 @@
+= content_tag_for :tr, income do
+
+  %td
+    = income.when.strftime('%d %B %Y')
+  %td= income.location_id.blank? ? "Both!" : income.location.name
+  %td
+    = income.source
+  %td
+    = income.what_for
+  %td
+    - unless income.event.nil?
+      .income_meta= income.event.name
+    - unless income.budgetarea.blank?
+      .income_meta= income.budgetarea.name
+  %td
+    = income.has_receipt == false ? "no" : "yes"
+    - unless income.wikifiles.blank?
+      - income.wikifiles.each do |wf|
+        = link_to '[download]', wf.attachment.url
+  %td
+    = number_to_currency(income.amount, :unit => "&euro;", :format => "%n%u")
+
+  %td
+    = link_to 'Edit', edit_admin_income_path(income)
+    = link_to 'Destroy', [:admin, income], :confirm => 'Are you sure?', :method => :delete

@@ -1,0 +1,82 @@
+.proposal
+  %dl
+    .line.column
+      %label= Proposal.human_attribute_name :location
+      %span.answer
+      - if @proposal.location == "0"
+        Both Helsinki and Tallinn
+      - elsif @proposal.location == "1"
+        Helsinki
+      - elsif @proposal.location == "2"
+        Tallinn
+        
+    .line.column
+      %label= Proposal.human_attribute_name :name
+      %span.answer= @proposal.name
+    .line.column
+      %label= Proposal.human_attribute_name :organisation
+      %span.answer= @proposal.organisation
+    .line.column
+      %label= Proposal.human_attribute_name :email
+      %span.answer= @proposal.email
+    .line.column
+      %label= Proposal.human_attribute_name :address
+      %span.answer= @proposal.address
+    .line.column
+      %label= Proposal.human_attribute_name :country
+      %span.answer
+      - if @proposal.country.length == 2
+        = Country[@proposal.country].name
+      - else
+        = @proposal.country
+    .line.column
+      %label= Proposal.human_attribute_name :phone_number
+      %span.answer= @proposal.phone_number
+    .line.column
+      %label= Proposal.human_attribute_name :short_description
+      %span.answer= simple_format @proposal.short_description
+    .line.column
+      %label= Proposal.human_attribute_name :duration
+      %span.answer= @proposal.duration
+    .line.column
+      %label= Proposal.human_attribute_name :long_description
+      %span.answer= simple_format(@proposal.long_description)
+    .line.column
+      %label= Proposal.human_attribute_name :public_engagement
+      %span.answer= @proposal.public_engagement
+    .line.column
+      %label= Proposal.human_attribute_name :materials
+      %span.answer= simple_format @proposal.materials
+    .line.column
+      %label= Proposal.human_attribute_name :spatial_requirements
+      %span.answer= simple_format @proposal.spatial_requirements
+    .line.column
+      %label= Proposal.human_attribute_name :cost
+      %span.answer= @proposal.cost
+    .line.column
+      %label= Proposal.human_attribute_name :bio
+      %span.answer= simple_format @proposal.bio
+    .line.column
+      %label= Proposal.human_attribute_name :urls
+      %span.answer= simple_format @proposal.urls
+    .line.column
+      %label= Proposal.human_attribute_name :ptarmigan_goodfit
+      %span.answer= simple_format @proposal.ptarmigan_goodfit
+
+  - if @proposal.attachment?
+    .line.column
+      %label Attachment:
+      %span.answer= link_to "[download #{@proposal.attachment_file_name}]", @proposal.attachment.url
+  - if @proposal.proposalcomments
+    - @proposal.proposalcomments.each do |comment|
+      .comment
+        .left
+          - if comment.user.icon?
+            .proposal_icon= image_tag comment.user.icon.url(:thumb) 
+          Comment from
+          %span.comment_user= comment.user.name
+          on
+          %span.comment_date= comment.created_at.strftime("%B %d %Y, %H:%M")
+        .right= raw simple_format(comment.comment.gsub(/\n/, ''))
+  %div &nbsp;      
+  .twelve.columns= render :partial => 'comment', :locals => {:proposal => @proposal}

@@ -1,0 +1,31 @@
+.calendar
+
+  = calendar_for(period.first.to_i, period.last.to_i,  {:next_and_previous_month => lambda { |date| link_to( raw(I18n.localize(date, :format => "%b <span class=\"cal_size\">(#{(Event.in_month(date).size)})</span>".html_safe)), {:controller => '/calendar', :action => :update_calendar, :year => date.year, :month => date.month}, :remote => true ) } } ) do |day|
+    - locs =  Event.has_events_on(day).map{|x| x.location_id}
+    /- locs += Cash.tiib_events_on(day).map{|x| x.title.gsub(/\_\d+$/, '')}
+    /- locs += Cash.scorestore_events_on(day).map{|x| x.title.gsub(/\_\d+$/, '').gsub(/Event/, 'Scorestore')}
+    - if locs.blank?
+      - day.day
+    - else
+      - [link_to(day.day, event_url(:id => day.to_s), :style => (day.day.to_i > 10 ? "padding-left: 1px;" : false)), { :class => "dayWithEvents cal_day_" + calendar_circles(locs)  }]
+
+
+
+      
+
+.legend
+  .entry
+    = image_tag 'layout/calendar/H___.png'
+    .key Helsinki
+
+  /.legend_heading.tallinn.clearfix= t(:tallinn)
+  .entry
+    = image_tag 'layout/calendar/_E__.png'
+    .key Tallinn      
+/   .entry
+/     = image_tag 'layout/calendar/__T_.png'
+/     .key= link_to "Tiib", 'http://www.tiib.net'
+:javascript
+  $("tr.month_names a").click(function() { 
+    $("tr.month_names").html("<th><img src='ajax-loader.gif'></th>");
+  });

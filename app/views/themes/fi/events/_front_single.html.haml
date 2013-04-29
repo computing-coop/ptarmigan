@@ -1,0 +1,39 @@
+
+.event_front_single.clearfix
+  
+  .event_facebook=facebook_link(event, false)  
+  .event_data
+    .event_image
+      - unless event.avatar_file_name.blank?
+        =link_to(image_tag(event.avatar.url(:medium), :width => 250), event_url(:id => event))
+    .event_front_title_single= link_to(event.title, event_path(:id => event))
+    .event_front_date
+      =l(event.date, :format => :short)
+      - unless event.enddate.blank?
+        ="#{t(:daterange)} #{l event.enddate, :format => :short}"
+      = raw event.notes
+      .event_front_cost
+        =ptarmigan_cost(event.cost)
+        - unless event.discountedcost.blank?
+          = raw("or " + ptarmigan_cost(event.discountedcost) + " (#{event.discountreason})")
+      = "@"
+      %b= event.place.name
+      .event_place_details
+        = [event.place.address1, event.place.postcode + ' ' + event.place.city].join(' / ')
+        - unless event.place.map_url.blank?
+          = link_to t(:map), event.place.map_url, :target => "_blank"
+      - if event.registration_required && event.future?
+        .event_cost
+          - if event.is_full?
+            %i= t(:event_full)
+          - else
+            = link_to t(:you_must_register), event
+    .event_info
+      .description
+        - if event.description.size > 1300
+          = raw awesome_truncate(event.description, 1300)
+          = link_to t(:read_more), event
+        - else 
+          = raw event.description
+
+

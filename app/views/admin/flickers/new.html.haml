@@ -1,0 +1,5 @@
+%h2 New archive image
+%p either upload an image (better) or paste in the Flickr ID if it's on Flickr
+= render :partial => "form", :locals => {:flickers => @flickers}
+%ul
+  %li= link_to 'Back', admin_flickers_path

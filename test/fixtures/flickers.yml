@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  event: 
+  creator: MyString
+  hostid: 1
+  name: MyString
+  description: MyText
+
+two:
+  event: 
+  creator: MyString
+  hostid: 1
+  name: MyString
+  description: MyText

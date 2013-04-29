@@ -1,0 +1,23 @@
+%tr.document
+  %td= document.document_type_name
+  %td= l document.created_at.to_date, :format => :long
+  %td{:class => (document.location.blank? ? false : document.location.name.downcase)}
+    .cms_item= document.document_name
+    - unless document.source_resource.nil?
+      - if document.source_resource.class == Array
+        - if document.source_resource.last.respond_to?('budgetarea_id')
+          %div
+            %span.smaller_text Budget area:
+            = document.source_resource.last.budgetarea.try(:name)
+      %div
+        %span.smaller_text from:
+        = link_to document.source_name, document.source_resource, :target => :_blank
+  %td
+    - if document.class == Resource
+      yes
+    - else
+      no
+  %td{:class => (document.location.blank? ? false : document.location.name.downcase)}
+    %span.smaller_text= link_to '[download]', document.attachment.url
+    - if document.class == Resource
+      %span.smaller_text= link_to '[edit details]', edit_admin_resource_path(document)

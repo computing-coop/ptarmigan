@@ -1,0 +1,17 @@
+one:
+  subject: MyString
+  user: 
+  body: MyText
+  image_file_name: MyString
+  image_file_size: 1
+  image_content_type: MyString
+  image_updated_at: 2011-08-24 22:21:55
+
+two:
+  subject: MyString
+  user: 
+  body: MyText
+  image_file_name: MyString
+  image_file_size: 1
+  image_content_type: MyString
+  image_updated_at: 2011-08-24 22:21:55

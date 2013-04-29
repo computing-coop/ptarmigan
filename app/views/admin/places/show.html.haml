@@ -1,0 +1,9 @@
+%h2= "Place \"#{@place.to_param}\""
+- content_tag_for :div, @place do
+  %ul
+    %li
+      %strong Name:
+      =h @place.name
+%ul
+  %li= link_to 'Edit', edit_admin_place_path(@place)
+  %li= link_to 'Back', admin_places_path

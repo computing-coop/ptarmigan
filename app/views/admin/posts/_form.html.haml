@@ -1,0 +1,55 @@
+
+= semantic_form_for([:admin,  post],  :html => {:multipart => true } ) do |f|
+  .twelve.columns
+    = f.input :location
+    = f.input :user_id, :as => :hidden, :value => current_user.id
+    = f.input :is_personal, :label => "Post as " + current_user.email.gsub(/\@.+$/, '') + " instead of Ptarmigan"
+    = f.input :not_news, :label => "Include in 'stuff we like' section, not frontpage news"
+  .twelve.columns
+    = tabs_for do |tab|
+      - tab.create('english', 'English') do
+        = f.globalize_fields_for :en do |en|
+          %p
+            Title of post
+            = en.text_field :title
+          %p
+            Body
+            %br/
+            = en.cktext_area :body
+      - tab.create('finnish', 'Finnish') do
+        = f.globalize_fields_for :fi do |fi|
+          %p
+            Title of post
+            = fi.text_field :title
+          %p
+            Body
+            %br/
+            = fi.cktext_area :body
+      - tab.create('estonian', 'Estonian') do
+        = f.globalize_fields_for :et do |et|
+          %p
+            Title of post
+            = et.text_field :title
+          %p
+            Body
+            %br/
+            = et.cktext_area :body         
+      - tab.create('russian', 'Russian') do
+        = f.globalize_fields_for :ru do |ru|
+          %p
+            Title of post
+            = ru.text_field :title
+          %p
+            Body
+            %br/
+            = ru.cktext_area :body
+  = f.input :carousel, :label => "Carousel image (940x400) - will appear in frontpage carousel if exists"
+  = f.input :hide_carousel, :label => "Remove from carousel (if it's old)"
+  = f.input :published, :label => "Publish on site! (leave unchecked for draft mode)"  
+  = f.actions do
+    = f.submit "Submit"
+
+:javascript
+  $(function() {
+    $("#tabs").tabs();
+  });

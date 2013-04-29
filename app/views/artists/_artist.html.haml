@@ -1,0 +1,52 @@
+= content_tag_for :div, artist do
+
+  - unless artist.avatar_file_name.blank?
+    =image_tag artist.avatar.url(:medium) 
+  .artist_parameters
+
+    .artist_name
+      = link_to_unless controller.action_name == 'show',  artist.name, artist
+      %span.artist_country= ' (' + artist.country + ')'
+    .artist_dates= l(artist.startdate, :format => :long) + ' - ' + l(artist.enddate, :format => :long)
+
+
+  .artist_bio= raw artist.bio(params[:locale])
+
+ 
+  - unless artist.website1.blank?
+    .artist_links= link_to(artist.website1, to_url(artist.website1))
+  - unless artist.website2.blank?
+    .artist_links= link_to(artist.website2, to_url(artist.website2))
+  
+  - unless artist.resources.blank?
+    .artist_events
+      %b= "#{artist.name} resources:"
+      %br/
+      - artist.resources.sort{|x, y| y.created_at <=> x.created_at}.each do |r|
+        - unless r.icon_file_size.blank?
+          = link_to image_tag(r.icon.url(:thumb)), r.attachment.url
+          %br/
+        = link_to r.name, r.attachment.url
+        %br/
+        = raw r.description
+        %br/
+        %br/
+          
+  - unless artist.events.delete_if{|x| x.public == false}.blank?
+    .project_events
+      %strong= "Events featuring #{artist.name}:"
+      - artist.events.delete_if{|x| !x.public }.sort{|x, y| y.date <=> x.date}.each_with_index do |e, index|
+        .project_event.clearfix{:class => (index == (artist.events.size - 1) ? "last" : false)}
+          .project_event_image= image_tag e.avatar.url(:thumb) 
+          .project_event_metadata
+            .project_event_date= l e.date, :format => :long
+            .project_event_title= link_to(e.title, event_path(:id => e.id))
+            .project_event_archive
+              = raw facebook_link(e, false)
+         
+  / - if current_user
+  / 
+  /   = link_to 'Edit', edit_admin_artist_path(:id => artist)
+  /   = link_to 'Destroy', admin_artist_url(:id => artist), :confirm => 'Are you sure?', :method => :delete
+  / %br
+  %br

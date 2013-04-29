@@ -1,0 +1,17 @@
+= content_tag_for(:tr, attendee, :class => cycle(:odd, :even)) do
+  %td.name
+    %p= h attendee.try(:name)
+    %p= h attendee.try(:email)
+    %p= h attendee.try(:phone)
+    %p= attendee.pay_received.blank? ? '' : 'pay received'
+  %td.event= attendee.event.title_with_date
+  %td.comments= h attendee.try(:comments)
+  %td.optional
+    - if attendee.waiting_list == true
+      %p
+        %strong WAITING LIST!
+    = h attendee.try(:optional)
+  %td.actions
+    = link_to 'Edit', edit_admin_attendee_path(attendee)
+    |
+    = link_to 'Destroy', [:admin, attendee], :confirm => 'Are you sure?', :method => :delete

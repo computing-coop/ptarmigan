@@ -1,0 +1,26 @@
+- content_tag_for(:tr, airform, :class => cycle(:odd, :even)) do
+  %td.project_summary= h airform.try(:project_summary)
+  %td.detailed_description= h airform.try(:detailed_description)
+  %td.events= h airform.try(:events)
+  %td.equipment= h airform.try(:equipment)
+  %td.applicant= h airform.try(:applicant)
+  %td.budget= h airform.try(:budget)
+  %td.jul_aug= h airform.try(:jul_aug)
+  %td.sept_oct= h airform.try(:sept_oct)
+  %td.nov_dec= h airform.try(:nov_dec)
+  %td.submitted= h airform.try(:submitted)
+  %td.cv_file_name= h airform.try(:cv_file_name)
+  %td.cv_file_size= h airform.try(:cv_file_size)
+  %td.cv_content_type= h airform.try(:cv_content_type)
+  %td.cv_updated_at= h airform.try(:cv_updated_at)
+  %td.attachment_file_name= h airform.try(:attachment_file_name)
+  %td.attachment_file_size= h airform.try(:attachment_file_size)
+  %td.attachment_content_type= h airform.try(:attachment_content_type)
+  %td.attachment_updated_at= h airform.try(:attachment_updated_at)
+  %td.terms_agreed= h airform.try(:terms_agreed)
+  %td.actions
+    = link_to 'Show', airform_path(airform)
+    |
+    = link_to 'Edit', edit_airform_path(airform)
+    |
+    = link_to 'Destroy', airform, :confirm => 'Are you sure?', :method => :delete

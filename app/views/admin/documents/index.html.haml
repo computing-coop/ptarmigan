@@ -1,0 +1,16 @@
+%h3 All documents
+
+%p Combines public documents with wiki uploads and budgetary things.
+%p Sorting and filtering to come soon!
+%table
+  %thead
+    %th Type
+    %th Date
+    %th Description
+    %th Public?
+    %th Actions
+  %tbody
+    - @documents.each do |document|
+      = render :partial => 'document', :locals => {:document => document}
+  
+

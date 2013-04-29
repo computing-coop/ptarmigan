@@ -8,4 +8,8 @@ class Admin::PostsController < InheritedResources::Base
     @posts = Post.all
   end
   
+  def show
+    redirect_to post_path(:id => params[:id])
+  end
+
 end

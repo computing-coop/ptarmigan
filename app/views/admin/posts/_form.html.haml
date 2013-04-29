@@ -43,6 +43,8 @@
             Body
             %br/
             = ru.cktext_area :body
+  - unless f.object.carousel.nil?
+    = image_tag f.object.carousel.url(:full)
   = f.input :carousel, :label => "Carousel image (940x400) - will appear in frontpage carousel if exists"
   = f.input :hide_carousel, :label => "Remove from carousel (if it's old)"
   = f.input :published, :label => "Publish on site! (leave unchecked for draft mode)"  

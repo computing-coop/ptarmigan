@@ -39,7 +39,7 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.6.8)
     builder (3.0.4)
-    ckeditor (3.7.3)
+    ckeditor (4.0.4)
       mime-types
       orm_adapter
     cocaine (0.4.2)
@@ -112,7 +112,7 @@ GEM
     meta-tags (1.2.6)
       actionpack
     middleware (0.1.0)
-    mime-types (1.21)
+    mime-types (1.23)
     mocha (0.9.8)
       rake
     multi_json (1.7.2)
@@ -225,7 +225,7 @@ DEPENDENCIES
   best_in_place (= 1.0.6)
   better_errors
   binding_of_caller
-  ckeditor (= 3.7.3)
+  ckeditor
   coffee-rails
   countries
   dalli

@@ -19,7 +19,7 @@ pickle-email-*.html
 /config/deploy.rb
 /public/ckeditor_assets
 /public/fonts
-/public/images
+/public/images/*
 /public/downloads
 /public/wikiattachments
 /db/sphinx

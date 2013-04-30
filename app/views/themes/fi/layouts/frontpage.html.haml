@@ -117,10 +117,7 @@
               %li= link_to(t(:stuff_we_like), witnessed_posts_path)
 
           #web2_inline
-            - if I18n.locale.to_s == 'en'
-              = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed", :width => 20, :border => 0}), 'http://feeds.feedburner.com/PtarmiganEnglish')
-            - else
-              = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed",:width => 20,  :border => 0}), 'http://feeds.feedburner.com/PtarmiganSuomeksi')
+            = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed",:width => 20,  :border => 0}), '/feed.rss')
             = link_to(image_tag('layout/facebook.png', {:alt => 'facebook', :width => 20, :border => 0}), 'http://www.facebook.com/home.php#/pages/Ptarmigan/114272652824')
             = link_to(image_tag('layout/twitter.png', {:alt => 'twitter', :width => 20, :border => 0}),   "http://twitter.com/PtarmiganHki")
             = link_to(image_tag('layout/flickr.png', {:alt => 'flickr', :width => 20, :border => 0}), "http://www.flickr.com/groups/ptarmigan/")

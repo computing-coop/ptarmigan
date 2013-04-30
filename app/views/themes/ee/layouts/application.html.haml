@@ -68,7 +68,7 @@
 
           #web2_inline
             - if I18n.locale.to_s == 'en'
-              = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed", :width => 20, :border => 0}), 'http://feeds.feedburner.com/PtarmiganEnglish')
+              = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed", :width => 20, :border => 0}), '/feed.rss')
             - else
               = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed",:width => 20,  :border => 0}), 'http://feeds.feedburner.com/PtarmiganSuomeksi')
             = link_to(image_tag('layout/facebook.png', {:alt => 'facebook', :width => 20, :border => 0}), 'http://www.facebook.com/home.php#/pages/Ptarmigan/114272652824')

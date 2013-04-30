@@ -26,13 +26,13 @@
     %script{:type => "text/javascript"} stLight.options({publisher: "ur-dae0667d-47dc-d390-f0b1-129d17517bbe"});
     = yield :head
   %body
-    #container
-      #top_bar
-        #logo_container
+    .container
+      #top_bar.sixteen.columns
+        #logo_container.eleven.columns.alpha
           #logo
             = link_to(image_tag(current_theme_image_path('/layout/ptarmigan.png')), '/')
           
-        #top_nav_container
+        #top_nav_container.five.columns.omega
           #language
             = link_to(image_tag('system/fi.gif', :width => 20, :border => 0),:controller =>   controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'fi')
             = link_to(image_tag('system/se_flag.gif', :width => 20, :border => 0),:controller =>   controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv-SE')              
@@ -46,28 +46,28 @@
             %li= link_to('staff', '/staff')
             %li= link_to('sign out', '/users/sign_out')   
           
-        #main_menu
-          #nav.inner
-            %ul
-              %li.first= link_to(t(:about), {:controller => 'pages', :action => 'show', :id => 'about'})
-              %li= link_to(t(:news), posts_path)
-              %li= link_to( (t(:projects) + "/" + t(:events)) , projects_path)
-              %li= link_to(t(:information) + "/" + t(:press), {:controller  => 'pages', :action => 'press', :id => 'press'})                     
-              %li= link_to(t(:archive), archive_events_path) 
-              %li= link_to(t(:contact), {:controller => 'pages', :action => 'show', :id => 'contact'})
+      #main_menu.sixteen.columns
+        #nav.inner.eleven.columns.alpha
+          %ul
+            %li.first= link_to(t(:about), {:controller => 'pages', :action => 'show', :id => 'about'})
+            %li= link_to(t(:news), posts_path)
+            %li= link_to( (t(:projects) + "/" + t(:events)) , projects_path)
+            %li= link_to(t(:information) + "/" + t(:press), {:controller  => 'pages', :action => 'press', :id => 'press'})                     
+            %li= link_to(t(:archive), archive_events_path) 
+            %li= link_to(t(:contact), {:controller => 'pages', :action => 'show', :id => 'contact'})
 
-              %li= link_to(t(:stuff_we_like), witnessed_posts_path)
+            %li= link_to(t(:stuff_we_like), witnessed_posts_path)
 
-          #web2_inline
-            = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed",:width => 20,  :border => 0}), '/feed.rss')
-            = link_to(image_tag('layout/facebook.png', {:alt => 'facebook', :width => 20, :border => 0}), 'http://www.facebook.com/home.php#/pages/Ptarmigan/114272652824')
-            = link_to(image_tag('layout/twitter.png', {:alt => 'twitter', :width => 20, :border => 0}),   "http://twitter.com/PtarmiganHki")
-            = link_to(image_tag('layout/flickr.png', {:alt => 'flickr', :width => 20, :border => 0}), "http://www.flickr.com/groups/ptarmigan/")
-            = link_to(image_tag('layout/vimeo.png', {:alt => 'vimeo', :width => 20, :border => 0}), "http://vimeo.com/ptarmigan")  
+        #web2_inline.five.columns.omega
+          = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed",:width => 20,  :border => 0}), '/feed.rss')
+          = link_to(image_tag('layout/facebook.png', {:alt => 'facebook', :width => 20, :border => 0}), 'http://www.facebook.com/home.php#/pages/Ptarmigan/114272652824')
+          = link_to(image_tag('layout/twitter.png', {:alt => 'twitter', :width => 20, :border => 0}),   "http://twitter.com/PtarmiganHki")
+          = link_to(image_tag('layout/flickr.png', {:alt => 'flickr', :width => 20, :border => 0}), "http://www.flickr.com/groups/ptarmigan/")
+          = link_to(image_tag('layout/vimeo.png', {:alt => 'vimeo', :width => 20, :border => 0}), "http://vimeo.com/ptarmigan")  
 
         
-      #dynamic_wrap
-        #left_column
+      #dynamic_wrap.sixteen.columns
+        #left_column.eleven.columns.alpha
           .front_box
             #flash
               - unless flash.empty?
@@ -77,7 +77,7 @@
               :javascript
                 $('#flash').effect("highlight", {}, 3000);
             = yield
-        #right_column.sidebar
+        #right_column.sidebar.five.columns.omega
           -# .front_box
           -#   .headline.clearfix
           -#     %h2= t :calendar

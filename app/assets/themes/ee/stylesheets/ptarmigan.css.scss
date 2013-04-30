@@ -61,11 +61,6 @@ a:hover {
 
 
 
-#right_column{
-  width: 570px;
-	float: left;
-}
-
 #right_column p {
 	padding:10px;
 }
@@ -152,9 +147,9 @@ a:hover {
 	background:#FFFFFF none repeat scroll 0 0;
 }
 
-#top_bar #top_right #web2_inline {
-  width: 150px;
-  float: left;
+#web2_inline {
+  width: 120px;
+  float: right;
 }
 
 #top_bar  #top_right #language { 
@@ -186,13 +181,13 @@ a:hover {
 }
 
 #left_column {
-  width: 690px;
+
   float: left;
-  margin: 10px 10px 10px 0px;
+  margin: 0px 10px 10px 0px;
 }
 
 #right_column{
-  width: 250px;
+ 
   float: left;
 }
 

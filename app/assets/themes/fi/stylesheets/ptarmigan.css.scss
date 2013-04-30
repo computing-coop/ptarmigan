@@ -46,13 +46,11 @@ a:visited{
 }
 
 #left_column {
-  width: 690px;
 	float: left;
-	margin: 10px 10px 10px 0px;
+	margin: 0px 10px 10px 0px;
 }
 
 #right_column{
-  width: 250px;
 	float: left;
 }
 
@@ -62,12 +60,6 @@ a:visited{
 
 
 
-#nav{
-  float: left;
-  width: 840px;
-	margin-right:-5px;
-	background:#FFFFFF none repeat scroll 0 0;
-}
 
 #staffnav{
 	clear:right;
@@ -99,7 +91,8 @@ a:visited{
 }
 
 #web2_inline {
-	float: left;
+
+  width: 115px;
 	clear: none;
 
 }

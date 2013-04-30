@@ -28,13 +28,13 @@
 
 
   %body
-    #container
-      #top_bar
-        #logo_container
+    .container
+      #top_bar.sixteen.columns
+        #logo_container.eleven.columns.alpha
           #logo
             = link_to(image_tag(current_theme_image_path('layout/ptarmigan.png')), '/')
           
-        #top_nav_container
+        #top_nav_container.five.columns.omega
           #language
             = link_to(image_tag('system/ee_flag.gif', :width => 20, :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'et')
             = link_to(image_tag('system/uk_flag.gif', :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en')
@@ -45,26 +45,26 @@
           - if user_signed_in?
             %li= link_to('staff', '/staff')
             %li= link_to('sign out', '/users/sign_out') 
-        #main_menu.clearfix
-          #nav
-            %ul
-              %li.first= link_to(t(:events), events_path)
-              %li= link_to( t(:projects) , projects_path)
-              %li= link_to(t(:artists), artists_path)              
-              %li= link_to(t(:news), posts_path)
-              %li= link_to(t(:proposals), proposals_path)
-              %li= link_to(t(:about), {:controller => 'pages', :action => 'show', :id => 'about'})
-              %li= link_to(t(:press), {:controller  => 'pages', :action => 'press', :id => 'press'})
+      #main_menu.sixteen.columns
+        #nav.eleven.columns.alpha
+          %ul
+            %li.first= link_to(t(:events), events_path)
+            %li= link_to( t(:projects) , projects_path)
+            %li= link_to(t(:artists), artists_path)              
+            %li= link_to(t(:news), posts_path)
+            %li= link_to(t(:proposals), proposals_path)
+            %li= link_to(t(:about), {:controller => 'pages', :action => 'show', :id => 'about'})
+            %li= link_to(t(:press), {:controller  => 'pages', :action => 'press', :id => 'press'})
 
-              %li= link_to(t(:archive), archive_events_path) 
-              %li= link_to(t(:contact), {:controller => 'pages', :action => 'show', :id => 'contact'})
+            %li= link_to(t(:archive), archive_events_path) 
+            %li= link_to(t(:contact), {:controller => 'pages', :action => 'show', :id => 'contact'})
 
-          #web2_inline
-            = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed",:width => 20,  :border => 0}), '/feed.rss')
-            = link_to(image_tag('layout/facebook.png', {:alt => 'facebook', :width => 20, :border => 0}), 'http://www.facebook.com/home.php#/pages/Ptarmigan/114272652824')
-            = link_to(image_tag('layout/twitter.png', {:alt => 'twitter', :width => 20, :border => 0}),   "http://twitter.com/PtarmiganHki")
-            = link_to(image_tag('layout/flickr.png', {:alt => 'flickr', :width => 20, :border => 0}), "http://www.flickr.com/groups/ptarmigan/")
-            = link_to(image_tag('layout/vimeo.png', {:alt => 'vimeo', :width => 20, :border => 0}), "http://vimeo.com/ptarmigan")  
+        #web2_inline.five.columns.omega
+          = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed",:width => 20,  :border => 0}), '/feed.rss')
+          = link_to(image_tag('layout/facebook.png', {:alt => 'facebook', :width => 20, :border => 0}), 'http://www.facebook.com/home.php#/pages/Ptarmigan/114272652824')
+          = link_to(image_tag('layout/twitter.png', {:alt => 'twitter', :width => 20, :border => 0}),   "http://twitter.com/PtarmiganHki")
+          = link_to(image_tag('layout/flickr.png', {:alt => 'flickr', :width => 20, :border => 0}), "http://www.flickr.com/groups/ptarmigan/")
+          = link_to(image_tag('layout/vimeo.png', {:alt => 'vimeo', :width => 20, :border => 0}), "http://vimeo.com/ptarmigan")  
  
         .front_box
           #flash
@@ -74,8 +74,10 @@
               = content_tag :div, flash[:error],   :class => "error"   if flash[:error]
             :javascript
               $('#flash').effect("highlight", {}, 3000);
-      #dynamic_wrap= yield
-      #footer
+      #dynamic_wrap.sixteen.columns
+        = render :partial => 'shared/new_carousel', :locals => {:new_carousel => @new_carousel}
+        .sixteen.columns= yield
+      #footer.sixteen.columns
         .ptarmigan_footer
           = link_to 'MTÜ Ptarmigan', 'mailto:tallinn at ptarmigan dotee'
           | Toom-Kooli 13

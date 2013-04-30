@@ -1,6 +1,5 @@
-= render :partial => 'shared/new_carousel', :locals => {:new_carousel => @new_carousel}
 
-.front_main_container.clearfix
+.front_main_container.eleven.columns.alpha
   .blog.clearfix
     .headline
       %h2= t :latest
@@ -14,22 +13,22 @@
             - else
               = "posted by Ptarmigan on #{l(post.created_at, :format => :long)}"
           .blog_body= raw post.body
-  .sidebar.clearfix
+.sidebar.five.columns.omega
 
-    - unless @upcoming.empty?
-      .headline
-        %h2= t :upcoming
-      = render :partial => 'shared/next_events', :locals => {:next_events => @upcoming }
-    - if @upcoming.empty?
-      .front_box
-        .headline
-          %h2= t :search
-        = form_tag "/search/simple", :method => "post" do |f|
-          = text_field_tag :search
-          = submit_tag t :search
-
+  - unless @upcoming.empty?
     .headline
-      %h2= t :about
-    = raw @where.excerpt
-    = render :partial => 'shared/email_signup'
+      %h2= t :upcoming
+    = render :partial => 'shared/next_events', :locals => {:next_events => @upcoming }
+  - if @upcoming.empty?
+    .front_box
+      .headline
+        %h2= t :search
+      = form_tag "/search/simple", :method => "post" do |f|
+        = text_field_tag :search
+        = submit_tag t :search
+
+  .headline
+    %h2= t :about
+  = raw @where.excerpt
+  = render :partial => 'shared/email_signup'
 

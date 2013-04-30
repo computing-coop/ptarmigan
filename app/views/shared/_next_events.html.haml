@@ -18,5 +18,5 @@
   -#     .event_date= l event.date, :format => :long
   -# .event_location{:class => (event.location_id == 1 ? 'helsinki' : 'tallinn')}
   -#   = raw "[#{event.project.nil? ? '' : link_to(event.project.name, event.project) + ': '}#{event.location_id == 1 ? 'Helsinki' : 'Tallinn'}]"  
-  - unless (controller.controller_name == 'events' && controller.action_name == 'index')
-    .see_all= link_to t(:seeall) + " " + t(:events).downcase, events_path
+- unless (controller.controller_name == 'events' && controller.action_name == 'index')
+  .see_all= link_to t(:seeall) + " " + t(:events).downcase, events_path

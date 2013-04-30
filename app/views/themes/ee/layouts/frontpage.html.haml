@@ -46,7 +46,7 @@
             %li= link_to('staff', '/staff')
             %li= link_to('sign out', '/users/sign_out') 
       #main_menu.sixteen.columns
-        #nav.eleven.columns.alpha
+        #nav.fourteen.columns.alpha
           %ul
             %li.first= link_to(t(:events), events_path)
             %li= link_to( t(:projects) , projects_path)
@@ -59,7 +59,7 @@
             %li= link_to(t(:archive), archive_events_path) 
             %li= link_to(t(:contact), {:controller => 'pages', :action => 'show', :id => 'contact'})
 
-        #web2_inline.five.columns.omega
+        #web2_inline.two.columns.omega
           = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed",:width => 20,  :border => 0}), '/feed.rss')
           = link_to(image_tag('layout/facebook.png', {:alt => 'facebook', :width => 20, :border => 0}), 'http://www.facebook.com/home.php#/pages/Ptarmigan/114272652824')
           = link_to(image_tag('layout/twitter.png', {:alt => 'twitter', :width => 20, :border => 0}),   "http://twitter.com/PtarmiganHki")

@@ -97,6 +97,7 @@
 
 .project_image {
   margin-left: 5px;
+  margin-bottom: 10px;
 }
 
 .spiel {
@@ -127,7 +128,7 @@
 .event, .artist, .project {
 	border-bottom: 1px dotted gray;
 	padding-top: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   clear: left;
 
   ul {
@@ -466,8 +467,7 @@ margin-bottom: 10px;
 	color: #00D735;
 }
 .blog_title a {
-  color: black;
-  font-size: 12pt;
+  font-size: 16px;
   font-family: Helvetica, Aria, sans-serif;
 }
 
@@ -489,10 +489,12 @@ margin-bottom: 10px;
     }
     .blog_body {
       padding: 5px 20px 5px 20px;
-      font-size: 10pt;
-      /* text-align: justify; */
-      line-height: 18pt;
+      p {
+        font: 13px/18px 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+        margin-bottom: 5px;
+      }
     }
+
   }
 }
 .event_front_single {
@@ -515,12 +517,11 @@ margin-bottom: 10px;
     }
  .blog_body {
     padding: 10px 30px 5px 30px;
-    font-size: 10pt;
-    text-align: justify;
-    line-height: 13pt;
+
     p {
-       margin: 0px 0px 5px 0px;
-    }
+        font: 13px/18px 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+        margin-bottom: 5px;
+      }
   }
 }
 
@@ -1101,19 +1102,20 @@ h1 {
 
 
 .project_events .project_event {
-  clear: both;
-  margin-bottom: 20px;
+  height: 105px;
+  margin-bottom: 10px;
   border-bottom: 1px dotted #00D735;
 }
 
 .project_events .project_event .project_event_image {
   float: left;
+  width: 100px;
+  margin-right: 10px;
 
 }
 .project_events .project_event .project_event_metadata {
-  float: left;
-  padding-left: 10px;
-  width: 320px;
+  font-size: 12px;
+  line-height: 15px;
 }
 
 .actions {
@@ -1325,6 +1327,7 @@ input#search {
 }
 .project_hideshow {
   margin-top: 5px;
+  margin-bottom: 10px;
 }
 input[type="submit"] {
   border: 1px solid #006;
@@ -1704,6 +1707,13 @@ span.current {
   width: 960px;
   float: left;
   padding: 0;
+  .text {
+    .title {
+      a {
+        color: black !important;
+      }
+    }
+  }
 }
 
 .overlay {
@@ -1794,7 +1804,8 @@ span.current {
     margin: 10px 10px 10px 0px;
     .blog_body {
       p {
-        font: 13px/19px 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+        font: 13px/18px 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+        margin-bottom: 5px;
       }
     }
   }

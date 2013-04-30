@@ -10,7 +10,9 @@ class ArtistsController < ApplicationController
     if @location.id == 1
       redirect_to projects_path
     else  
-    @artists = Artist.by_location(@location.id).order('enddate DESC').page params[:page]
+    @artists = Artist.by_location(@location.id).where(["enddate > ?", Time.now.to_date]).order('enddate DESC').page params[:page]
+    @past_artists = Artist.by_location(@location.id).where(["enddate < ?", Time.now.to_date]).order('enddate DESC').page params[:page]
+
        set_meta_tags :open_graph => {
       :title => 'Artists at Ptarmigan',
       :type  => "ptarmigan:artist",

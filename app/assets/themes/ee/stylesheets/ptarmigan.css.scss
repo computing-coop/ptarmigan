@@ -1,9 +1,12 @@
+$tallinn-blue: #3477B6;
+
 body {
   text-align: left; 
   font-family:arial,sans-serif;
   color: #333333;
   font-family: 'Lucida Grande', 'Lucida Sans Unicode',  sans-serif;
   font-size: 12px;
+  line-height: 15px;
   background-color: white;
 /*  background:transparent url(/images/layout/stripebg-ee.png) repeat scroll 0 0;*/
 /*  background-color: #efefef;*/
@@ -230,6 +233,9 @@ a:hover {
   margin-bottom: 10px;
 }
 
+#projects .project, #pastprojects .project {
+  border-bottom: 1px solid #3477B6;
+}
 .event_front_date, .front_read_more, .event_front_cost {
 	margin-left: 62px;  
 	font-size: 9pt;

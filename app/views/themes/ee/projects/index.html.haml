@@ -19,7 +19,7 @@
         = raw @projects.map{|project| link_to(project.name, "##{project.id.to_s}")}.join(" &sdot; ")
 
       .projects
-        = render :partial => "project", :collection => @projects
+        .clearfix= render :partial => "project", :collection => @projects
      
     - else
       %p There are no projects to show yet.
@@ -29,6 +29,6 @@
         = raw "#{t :inactive_projects}: "
         = raw @past_projects.map{|project| link_to(project.name, "##{project.id.to_s}")}.join(" &sdot; ")     
       .projects
-        = render :partial => "project", :collection => @past_projects 
+        .clearfix= render :partial => "project", :collection => @past_projects 
     - else
       %p There are no past projects  

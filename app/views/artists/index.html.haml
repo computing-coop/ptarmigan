@@ -1,22 +1,26 @@
 
-- unless @artists.reject{|x| x.enddate < Time.now.to_date}.empty?
+- unless @artists.empty?
   .artists
     .headline
-      %h2= t :artists
+      %h2
+        = t :artists
+        = " : "
+        = t :current
       = paginate(@artists)
     = render :partial => "artist", :collection => @artists
 
 
 
-- unless @artists.reject{|x| x.enddate > Time.now.to_date}.empty?
+- unless @past_artists.empty?
   .events
     .headline
       %h2
         = t :artists
         = " : "
         = t :past
-      = paginate @artists
-    = render :partial => "artist", :collection => @artists.reject{|x| x.enddate > Time.now.to_date}
+      = paginate @past_artists
+    = render :partial => "artist", :collection => @past_artists
+    
 
 / - if current_user
 /   = link_to 'New artist', new_admin_artist_path

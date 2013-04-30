@@ -519,8 +519,9 @@ margin-bottom: 10px;
     padding: 10px 30px 5px 30px;
 
     p {
-        font: 13px/18px 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
-        margin-bottom: 5px;
+        font: 13px/16px 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+        margin-bottom: 15px;
+        margin-top: 5px;
       }
   }
 }
@@ -1617,11 +1618,17 @@ ul.reg_errors {
       margin-left: 25px;
       list-style-type: disc;
       margin-bottom: 0px;
+      p{
+        margin-bottom: 5px;
+      }
     }
   }
   ol {
     li {
       margin-bottom: 0px;
+      p{
+        margin-bottom: 5px;
+      }
     }
   }
 }

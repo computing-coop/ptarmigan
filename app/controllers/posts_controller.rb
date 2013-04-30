@@ -31,7 +31,7 @@ class PostsController < InheritedResources::Base
     return redirect_to @post, :status => :moved_permanently
   end
   set_meta_tags :open_graph => {
-      :title => "News | Ptarmigan" ,
+      :title => @post.title,
       :type  => "ptarmigan:news",
       :url   =>  url_for(@post) },
 

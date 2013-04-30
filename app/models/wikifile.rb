@@ -8,7 +8,7 @@ class Wikifile < ActiveRecord::Base
     :url => "/wikiattachments/:id/:basename.:extension"
   validates_attachment_presence :attachment
   # validates_presence_of :wikiattachment_id, :wikiattachment_type
-  validates_presence_of :documenttype_id
+  #validates_presence_of :documenttype_id
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }
   

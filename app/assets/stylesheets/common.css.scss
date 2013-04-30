@@ -109,11 +109,11 @@
 }
 
 .active_projects {
-  margin: 10px 0px 20px 15px;
+  margin: 10px 20px 20px 15px;
 }
 
 .project_name a {
-  color: black;
+
   margin-left: 5px;
 }
 .event_front_title {
@@ -522,7 +522,10 @@ margin-bottom: 10px;
         font: 13px/16px 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
         margin-bottom: 15px;
         margin-top: 5px;
-      }
+    }
+    li p {
+      margin-bottom: 5px;
+    }
   }
 }
 
@@ -738,7 +741,7 @@ span.cal_size {
   border-bottom: none;
 }
 .artist_name a, .project_name a {
-  color: black;
+
   font-family: Helvetica, Arial, sans-serif ;
 }
 span.artist_country {

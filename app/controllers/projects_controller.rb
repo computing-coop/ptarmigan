@@ -17,8 +17,8 @@ class ProjectsController < ApplicationController
   end
   
   def index
-    @projects = Project.by_location(@location.id).where(:active => true).where(:hidden => false).order(:name).page(params[:projects_page]).per(5)
-    @past_projects = Project.by_location(@location.id).where(:active => false).where(:hidden => false).order(:name).page(params[:past_projects_page]).per(5)
+    @projects = Project.by_location(@location.id).where(:active => true).where(:hidden => false).order(:name)
+    @past_projects = Project.by_location(@location.id).where(:active => false).where(:hidden => false).order(:name)
     
     # only pound the db here for the Finnish side
     if @location.id == 1

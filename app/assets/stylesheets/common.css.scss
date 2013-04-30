@@ -1,3 +1,7 @@
+
+$tallinn-blue: #3477B6;
+$helsinki-green: #00D735;
+
 .clearfix:after, .headline:after  {
     content: ".";
     display: block;
@@ -1694,12 +1698,15 @@ span.current {
   margin-top: -25px;
 }
 
+span.eesti.other_location {
+  color: $tallinn-blue;
+}
 
 /*  ******** New carousel ******************* */
 
 .new_carousel {
   width: 960px;
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
 }
 
 #slider {
@@ -1813,8 +1820,7 @@ span.current {
 .front_main_container {
   .blog {
     float: left;
-    width: 670px;
-    margin: 10px 10px 10px 0px;
+    margin: 0px 10px 10px 0px;
     .blog_body {
       p {
         font: 13px/18px 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
@@ -1846,6 +1852,12 @@ span.current {
         font-size: 12px;
         line-height: 15px;
         font-weight: bold;
+        &.eesti a{
+          color: $tallinn-blue;
+        }
+        &.suomi a {
+          color: $helsinki-green;
+        }
       }
       .event_date {
         font-size: 11px;

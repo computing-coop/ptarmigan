@@ -1,12 +1,7 @@
-body {
-  text-align: left; 
-  color: #333333;
-  /* font: normal normal normal 13px/1.3 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif; */
-  background-color: #FFFFFF;
-}
+$tallinn-blue: #3477B6;
+$helsinki-green: #00D735;
 
-h1 {
-}
+
 
 p {
 	margin-bottom: 5px;
@@ -27,8 +22,14 @@ a{
 }
 
 
-a:visited{
-	color:#00A329;
+
+a, a:visited {
+  color: $helsinki-green;
+  text-decoration: none;
+}
+
+a:hover {
+  color:#00A329 !important;
 }
 
 .whitebg{

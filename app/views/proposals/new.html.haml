@@ -1,7 +1,19 @@
 .headline
   %h2= t :proposals
 
-%div{:style => 'margin-bottom: 25px'}=t :proposal_header
+%div{:style => 'margin-bottom: 15px'}=t :proposal_header
 
-
-= render 'form'
+.axis_text
+  %p
+    %strong
+      To apply to the 
+      = link_to 'Axis of Praxis residency programme', project_path(:id => 35)
+      with MoKS, please use the separate
+      = link_to 'Axis of Praxis proposal form.', axis_of_praxis_proposals_path
+  %p
+    %strong
+      Please use this proposal form for the
+      = link_to 'Tallinn 2-month residencies', post_path(:id => 19)
+      and all other proposals.
+  %p &nbsp;
+#regular= render 'form'

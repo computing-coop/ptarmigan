@@ -14,20 +14,20 @@
 
   .field= f.input :email, :label => t(:your_email)
   .field= f.input :address, :label => t(:postal_address)
-  .field= f.input :country, :label => t(:country)
+  .field= f.input :country, :label => t(:country), :include_blank => true
   .field= f.input :phone_number, :label => t(:proposal_phone)
   .field= f.input :short_description, :label => t(:proposal_shortdescription), :input_html => {:rows => 5}
   .field= f.input :project, :as => :select,  :label => t(:proposal_project), :include_blank => 'nope!', :collection => Project.proposable.active.group(:name).order(:name)
   .project_info
-  .field= f.input :duration, :label => t(:proposal_duration)
+  .field= f.input :duration, :label => t(:proposal_duration), :hint => t(:proposal_duration_hint), :as => :text, :input_html => {:rows => 2}
   .field= f.input :long_description, :label => t(:proposal_longdescription)
-  .field= f.input :public_engagement, :label => t(:proposal_public_engagement)
-  .field= f.input :materials, :label => t(:proposal_materials)
-  .field= f.input :spatial_requirements, :label => t(:proposal_spatial_requirements)
-  .field= f.input :cost, :label => t(:proposal_costs)
-  .field= f.input :bio, :label => t(:proposal_shortbio)
-  .field= f.input :urls, :label => t(:proposal_urls)
-  .field= f.input :ptarmigan_goodfit, :label => t(:proposal_why_ptarmigan)
+  .field= f.input :public_engagement, :label => t(:proposal_public_engagement), :hint => t(:proposal_public_hint), :input_html => {:rows => 7}
+  .field= f.input :materials, :label => t(:proposal_materials), :input_html => {:rows => 3}
+  .field= f.input :spatial_requirements, :hint => t(:proposal_spatial_hint), :label => t(:proposal_spatial_requirements), :input_html => {:rows => 3}
+  .field= f.input :cost, :label => t(:proposal_costs), :hint => t(:proposal_cost_hint), :input_html => {:rows => 3}
+  .field= f.input :bio, :label => t(:proposal_shortbio), :input_html => {:rows => 4}
+  .field= f.input :urls, :label => t(:proposal_urls), :input_html => {:rows => 4}
+  .field= f.input :ptarmigan_goodfit, :label => t(:proposal_why_ptarmigan), :input_html => {:rows => 3}
   .field.clearfix= f.input :attachment, :label => t(:proposal_attachment)
   .field
     %label Please complete the CAPTCHA:

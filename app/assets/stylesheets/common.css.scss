@@ -1065,12 +1065,17 @@ td.day {
 
 .field label {
   width: 200px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   float: left;
+  line-height: 14px;
   text-align: right;
   padding-right: 5px;
   padding-top: 3px;
 }
+#regular #new_proposal .field label {
+  margin-bottom: 20px;
+}
+
 #new_proposal input[type="submit"] {
   width: 150px;
   padding: 4px;
@@ -1858,4 +1863,27 @@ span.current {
   a {
     padding: 2px;
   }
+}
+
+.axis_text  p {
+  font-size: 13px;
+  line-height: 16px;
+  margin-bottom: 8px;
+  text-align: justify;
+}
+
+p.inline-hints {
+  margin-left: 69px;
+  text-align: left;
+  width: 131px;
+  margin-top: -49px;
+  margin-right: 10px;
+  text-align: right;
+  font-size: 11px;
+  line-height: 11px;
+  
+}
+
+#proposal_public_engagement_input p.inline-hints {
+  margin-top: -90px;
 }

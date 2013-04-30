@@ -1,0 +1,69 @@
+.headline
+  %h2 Axis of Praxis residency programme
+
+= image_tag 'http://www.ptarmigan.ee/images/carousel/posts/20/full/20-moks_ptarmigan.jpg'
+.ten.columns.axis_text.alpha
+  %p
+  %p=raw "This is the application/proposal form for Axis of Praxis, the joint residency between #{link_to 'MoKS', 'http://www.moks.ee'} (Mooste) and #{link_to 'Ptarmigan', 'http://ptarmigan.ee/'} (Tallinn)."
+
+  %p The programme will offer the possibility to research and develop work in and between two distinctly different contexts within Estonia. MoKS is located in a village in rural south Estonia and Ptarmigan in the capital city of Tallinn. MoKS is an organisation run by artists and researchers, with experience in organising a diverse program of residencies, art symposia, projects, workshops and more. Ptarmigan is an event-driven organisation that focuses on trans-disciplinary projects, building participatory culture and social practices. 
+
+  %p
+    Before applying, please read carefully our complete
+    = link_to 'application guidelines', post_path(:id => 20)
+    as described in our open call.
+
+
+
+= semantic_form_for(@proposal, :html => {:multipart => true}) do |f|
+  - if @proposal.errors.any?
+    #errorExplanation
+      %h3= "#{pluralize(@proposal.errors.count, 'error')} in your proposal!"
+      %ul
+      - @proposal.errors.full_messages.each do |msg|
+        %li= msg
+  
+  .field
+    = f.input :location, :as => :hidden, :input_html => {:value => '2'}
+  .field= f.input :name, :label => t(:your_name)
+
+  .field= f.input :organisation, :label => t(:proposal_organisation) + " (#{t(:optional)})"
+
+  .field= f.input :email, :label => t(:your_email)
+  .field= f.input :cost, :as => :hidden, :input_html => {:value => "N/A"}
+  .field= f.input :address, :label => t(:postal_address)
+  .field= f.input :country, :label => t(:country), :include_blank => true
+  .field= f.input :phone_number, :label => t(:proposal_phone)
+  .field= f.input :short_description, :label => "Why are you interested in the Axis of Praxis residency programme?", :input_html => {:rows => 5}  
+  .field= f.input :long_description, :label => "What are your objectives for this residency period?"
+
+  .field= f.input :project_id, :as => :hidden, :input_html => {:value => "35"}
+
+  .project_info
+  .field= f.input :duration, :as => :text, :label => "What dates are availble for you, and what do you prefer?", :hint => "The residency is two months, one in each location. Example: 'September-October'", :input_html => {:rows => 2}  
+  -# .field= f.input :public_engagement, :label => t(:proposal_public_engagement)
+  -# .field= f.input :materials, :label => t(:proposal_materials)
+  -# .field= f.input :spatial_requirements, :label => t(:proposal_spatial_requirements)
+  -# .field= f.input :cost, :label => t(:proposal_costs)
+  -# .field= f.input :bio, :label => t(:proposal_shortbio)
+  .field= f.input :urls, :label => t(:proposal_urls), :input_html => {:rows => 5}
+  .project_info.clearfix{:style => "height: 75px;"}
+  -# .field= f.input :ptarmigan_goodfit, :label => t(:proposal_why_ptarmigan)
+  .field.clearfix= f.input :attachment, :label => t(:proposal_attachment), :hint => "Examples: previous work, your CV, documentation, etc."
+  .field
+    %label Please complete the CAPTCHA:
+    = recaptcha_tags(:display => {:theme => 'white', :tabindex => 10})    
+  .field
+    %label
+    = f.submit "Submit your proposal!"
+
+:javascript
+  $('select#proposal_project_id').change( function() {
+    $('.project_info').load('/projects/' + $('select#proposal_project_id').val() + ".js .project_description");
+      });
+  $('select#proposal_location').change(function() {
+
+    $('select#proposal_project_id').load('/projects/by_location/' + $('select#proposal_location').val() + ".js");
+  });
+
+

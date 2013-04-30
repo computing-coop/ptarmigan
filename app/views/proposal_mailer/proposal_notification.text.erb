@@ -1,7 +1,7 @@
 A proposal has been submitted by <%= @proposal.name %>!
 
 Where would you like to do this project?
-  -- <%= @proposal.location %> 
+  -- <%= @location == "1" ? 'Helsinki' : (@location == "2" ? 'Tallinn' : 'Helsinki + Tallinn') %> 
 
 Name:  <%= @proposal.name %>
 

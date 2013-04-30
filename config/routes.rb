@@ -28,6 +28,7 @@ Ptarmigan::Application.routes.draw do
   resources :proposals do
     collection do
       get :thank_you
+      get :axis_of_praxis
     end
   end
   

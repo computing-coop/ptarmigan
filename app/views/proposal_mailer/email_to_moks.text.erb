@@ -1,7 +1,5 @@
 A proposal has been submitted by <%= @proposal.name %>!
 
-Where would you like to do this project?
-  -- <%= @proposal.location %> 
 
 Name:  <%= @proposal.name %>
 
@@ -28,30 +26,14 @@ Short description of project:
 Duration of project:
   -- <%= @proposal.duration %>
   
-Materials needed:
-  -- <%= @proposal.materials %>
-
-Engagement with public:
-  -- <%= @proposal.public_engagement %>
-  
-Spatial requirements: 
-  -- <%= @proposal.spatial_requirements %>
-  
-Cost/budget:
-  -- <%= @proposal.cost %>
-
 Longer/full description:
   -- <%= @proposal.long_description %>
-  
-Bio of proposer:
-  -- <%= @proposal.bio %>
+
   
 URLs of other work:
   -- <%= @proposal.urls  %>
   
-Why should this be at Ptarmigan?
-  -- <%= @proposal.ptarmigan_goodfit %>
-  
+
   
 ------
 To see this proposal and comment on it (in conversation with other Ptarmigan staffers), please visit <%= link_to "here",@host + admin_proposal_path(@proposal) %>

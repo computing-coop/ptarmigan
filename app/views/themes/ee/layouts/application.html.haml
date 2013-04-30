@@ -36,7 +36,7 @@
           #logo
             = link_to(image_tag(current_theme_image_path('/layout/ptarmigan.png')), '/')
           
-        #top_nav_container.five.columns.omega
+        #top_nav_container.three.columns.omega
           #language
             = link_to(image_tag('system/ee_flag.gif', :width => 20, :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'et')
             = link_to(image_tag('system/uk_flag.gif', :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en')

@@ -47,7 +47,7 @@ class PagesController < ApplicationController
       projects.each {|x| @new_carousel.unshift(x) }
     end
 
-    events = Event.future
+    events = Event.future.delete_if{|x| !x.carousel? }
     unless events.empty?
       events.sort_by{rand}.each do |e|
         @new_carousel.unshift(e)

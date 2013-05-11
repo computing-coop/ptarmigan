@@ -12,7 +12,7 @@ gem 'mysql2',          '0.3.12b4'
 gem 'best_in_place', '1.0.6'
 group :development do
   gem "better_errors"
-  gem "binding_of_caller"
+  gem "binding_of_caller",">= 0.6.9.pre2" # :git => 'git://github.com/banister/binding_of_caller.git', :branch => 'ruby-2.0'
   gem 'nifty-generators'
   gem 'quiet_assets'
   gem 'sextant'
@@ -47,8 +47,8 @@ gem 'public_activity'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'RedCloth', ">= 4.2.7"
 gem 'sass'
-
 gem 'skeleton-rails'
+
 gem 'themes_for_rails'
 gem 'therubyracer', :group => :production
 

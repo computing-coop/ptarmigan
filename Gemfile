@@ -46,6 +46,7 @@ gem 'paperclip', "~> 3.0"
 gem 'public_activity'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'RedCloth', ">= 4.2.7"
+gem 'rvm-capistrano'
 gem 'sass'
 gem 'skeleton-rails'
 

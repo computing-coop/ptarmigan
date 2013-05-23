@@ -78,7 +78,7 @@ class PagesController < ApplicationController
     resources = Resource.where(["((location_id is null OR location_id = ?) OR all_locations is true)", @location.id])
     @pagelinks = Presslink.where(["((location_id is null OR location_id = ?) OR all_locations is true)", @location.id]).order("sortorder, presslinks.when DESC")
     @resources = resources.reject{|x| x.press_page != true}
-    @other_resources = resources.delete_if{|x| x.item_location != @location.id}
+    @other_resources = resources.delete_if{|x| x.item_location != @location}
   end
 
 

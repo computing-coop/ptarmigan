@@ -1,4 +1,14 @@
 %h2 Archive images
+
+%p
+  View only for event:
+  = collection_select(:event, :event, Event.where(:id => [Flicker.all.map(&:event_id).uniq]).sort_by{|x| x.date}.reverse, :id, :title_with_date, options ={:include_blank => true})
+  :javascript
+    $('#event_event').change(function() {
+      window.location.replace(window.location.href.replace(/\?event=\d+/g, '') + '?event=' + $('#event_event').val());
+    });
+
+
 = button_to 'Upload new archive image ', new_admin_flicker_path, :method => :get
 - if !@flickers.empty?
   .flickers.clearfix

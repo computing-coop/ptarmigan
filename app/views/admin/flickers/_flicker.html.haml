@@ -22,7 +22,7 @@
           = image_tag flicker.image.url(:new_carousel), :width => 425
           = link_to 'view in new tab', flicker.image.url(:new_carousel), :target => :_blank
           (make sure it's not blurry if you are making it a carousel item)
-      %ul
+      %ul.horizontal
         %li= link_to 'Edit', edit_admin_flicker_path(flicker)
         %li= link_to 'Destroy', [:admin, flicker], :confirm => 'Are you sure?', :method => :delete
         %li= link_to 'Back', admin_flickers_path

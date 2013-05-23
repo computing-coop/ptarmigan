@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
-class Admin::FlickersController < ApplicationController
-
+class Admin::FlickersController < InheritedResources::Base
+  has_scope :event
+  has_scope :page, :default => 1
+  respond_to :html, :js, :xml, :json
   before_filter :authenticate_user!
   before_filter :exclude_guests
   before_filter :find_flicker
@@ -36,13 +38,7 @@ class Admin::FlickersController < ApplicationController
     end
   end
 
-  def index
-    @flickers = Flicker.order('created_at DESC').page(params[:page]).per(40)
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @flickers }
-    end
-  end
+
 
   def edit
   end

@@ -16,6 +16,7 @@
 .flicker {
   clear: right;
   margin-bottom: 20px;
+  border-bottom: 1px dotted #00A329;
 }
  .flicker .left {
   float: left;
@@ -23,7 +24,7 @@
   margin-right: 10px;
  }
 
- .flicker .right .event {
+ .flicker .event {
   font-weight: bold;
   font-size: 14px;
  }

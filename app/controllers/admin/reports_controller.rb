@@ -2,7 +2,7 @@
 class Admin::ReportsController < ApplicationController
   layout 'staff'
   before_filter :authenticate_user!
-  
+  has_scope :page, :default => 1
 
   def check_for_icon
     unless current_user.icon?
@@ -18,7 +18,10 @@ class Admin::ReportsController < ApplicationController
     # # @latest = Resource.order('created_at DESC').limit(15)
     # # @latest = Wikifile.order('created_at DESC').limit(15)
     # # @latest = @latest[0..14]
-    @activities = PublicActivity::Activity.all
+    @activities = PublicActivity::Activity.order("created_at desc").page(params[:page]).per(15)
+    if request.xhr?
+      render :partial => 'admin/reports/activity', :locals => {:activities =>  @activities}
+    end
   end
 
   def search

@@ -129,7 +129,18 @@ module ApplicationHelper
     _html << %{</select>}
     raw _html
   end
-  
+
+  def pageless(total_pages, url=nil)
+      opts = {
+        :totalPages => total_pages,
+        :url        => url,
+        :loaderMsg  => 'Loading more results',
+        :loaderImage => '/assets/load.gif'
+      }
+
+      javascript_tag("$('#results').pageless(#{opts.to_json});")
+  end
+
     
   def ptarmigan_cost(cost, donations = nil)
     if cost == 0

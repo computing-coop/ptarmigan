@@ -1,0 +1,6 @@
+- @activities.each_with_index do |activity, index|
+  - unless @activities[index+1].nil?
+    - if (activity.trackable_id == @activities[index+1].trackable_id) && (activity.created_at == @activities[index+1].created_at) && (activity.trackable_type == 'User' && @activities[index+1].trackable_type == 'User')
+      - next
+
+  = render_activity(activity)  #rescue "error with message for #{activity.inspect}"

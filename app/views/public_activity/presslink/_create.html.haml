@@ -7,10 +7,8 @@
       .info.column
         %span.name= a.owner.name
         %span.small
-          created a new
-          %strong= a.trackable_type.downcase
-        = link_to_trackable a.trackable, a.trackable_type do
-          %blockquote= p[:summary]
+          created a new link to press
+        = link_to a.trackable.title, admin_presslink_path(a.trackable)
         .timestamp
           %span.small= time_ago_in_words(a.created_at) + " ago"
   .one.column= image_tag a.owner.icon.url(:thumb), :height => 50          

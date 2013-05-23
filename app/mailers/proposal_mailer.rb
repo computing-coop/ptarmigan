@@ -28,7 +28,7 @@ class ProposalMailer < ActionMailer::Base
     @proposal = proposal
     @location = location
     @host = 'http://ptarmigan.fi'
-    mail(:to => ['moks@moks.ee', 'siiri@moks.ee', 'jg@maaheli.ee'], :from => proposal.email, :subject =>"[Axis of Praxis proposal: #{proposal.name}]" )    
+    mail(:to => ['moks@moks.ee', 'siiri@moks.ee', 'jg@maaheli.ee'], :from => "john@ptarmigan.ee", :subject =>"[Axis of Praxis proposal: #{proposal.name}]" )    
   end
 
 end

@@ -7,4 +7,9 @@ class Presslink < ActiveRecord::Base
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }
     
+
+  def icon
+    'presslink.png'
+  end    
+
 end

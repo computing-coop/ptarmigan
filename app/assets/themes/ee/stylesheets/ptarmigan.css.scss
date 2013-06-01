@@ -32,7 +32,7 @@ a img{
 	/*margin-bottom:20px;	*/
 }
 
-a, a:visited {
+a, a:visited, .blog_title a:visited,  .blog_body a:visited  {
 	color: #3477B6;
 	text-decoration: none;
 }
@@ -41,7 +41,7 @@ a, a:visited {
   color: #3333CD;
 }
 
-.event_title a:hover, .blog_title a:hover, .tweet a:hover, .blog_title a:visited, .blog_body a:hover, .blog_body a:visited {
+.event_title a:hover, .blog_title a:hover, .tweet a:hover,  .blog_body a:hover {
   color: #3333CD;
 }
 

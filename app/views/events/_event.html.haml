@@ -95,7 +95,7 @@
 
   - if event.registration_required && event.future?
     - if controller.action_name == 'show'
-      .opened= render :partial => 'shared/register', :locals => {:event => event}
+      .opened= render :partial => 'shared/register', :locals => {:event => event, :title => nil }
     - else
       .click_here= link_to t(:click_here_to_register), event
 

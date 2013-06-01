@@ -55,4 +55,6 @@
       %br/
     - unless @event.flickers.empty?
       = link_to(pluralize(@event.flickers.count, 'photo'), event_path(:id => event))
-  .share_this= share_this(@event)      
+  .share_this= share_this(@event)
+= content_for :sidebar do
+  = render :partial => 'shared/sidebar_from_posts', :locals => {:current_post => nil}  

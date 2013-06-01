@@ -24,4 +24,4 @@
 
 
 = content_for :sidebar do
-  = render :partial => 'shared/sidebar'
+  = render :partial => 'shared/sidebar_from_posts', :locals => {:current_post => nil}

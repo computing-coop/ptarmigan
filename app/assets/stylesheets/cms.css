@@ -14,17 +14,17 @@
   }
 }
 
-.staff_eesti
-
+.staff_eesti {
   a {
     color: #3477B6  !important;
     text-decoration: none !important;
   } 
   .fi_event a {
     color: #00A329 !important;
-  text-decoration: none !important;
+   text-decoration: none !important;
   }
 }
+
 .flicker {
   clear: right;
   margin-bottom: 20px;

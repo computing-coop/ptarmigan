@@ -3,9 +3,9 @@
   .blog_title= link_to @post.title, @post
   .post_metadata
     - if @post.is_personal == true
-      = "posted by #{@post.user.email.gsub(/\@.+$/, '')} on #{l(@post.created_at, :format => :long)}"
+      = "posted by #{@post.user.email.gsub(/\@.+$/, '')} on #{l(@post.created_at, :format => :short)}"
     - else
-      = "posted by Ptarmigan on #{l(@post.created_at, :format => :long)}"
+      = "posted by Ptarmigan on #{l(@post.created_at, :format => :short)}"
   - if @post.carousel?
     .blog_image= image_tag @post.carousel.url(:full), :width => 620
   .blog_body= raw @post.body
@@ -14,4 +14,4 @@
   %p= link_to '[edit this post]', edit_admin_post_path(@post)
 
 = content_for :sidebar do
-  = render :partial => 'shared/sidebar'
+  = render :partial => 'shared/sidebar_from_posts', :locals => {:current_post => @post}

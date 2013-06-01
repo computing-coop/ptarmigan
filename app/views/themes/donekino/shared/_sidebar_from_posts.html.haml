@@ -1,0 +1,23 @@
+.page
+  = link_to(posts_path) do 
+    .title= t :recent_news, :scope => :donekino
+.contact_box
+  - Post.by_subsite(@subsite).published.order('created_at DESC').delete_if{|x| x== current_post }.each do |p|
+    %ul.news_title
+      %li
+        = link_to p.title, p
+        .post_metadata= l p.created_at, :format => :short
+
+- Page.by_subsite(@subsite).each do |p|
+  .page
+    .title= link_to p.title, page_path(p.slug)
+    = link_to(page_path(p.slug), :class => :block, :style => 'background: transparent url(' + p.carousel.url(:small) + ') no-repeat;') do
+
+      .outer_hover
+        = p.excerpt
+.page
+  .title= link_to t(:participants), event_attendees_path('done-kino')
+  = link_to(event_attendees_path('done-kino'), :class => :block, :style => 'background: transparent url(' + theme_image_path('participant_bg.jpg') + ') no-repeat;') do
+    .outer_hover
+      = t :who_is_coming, :scope => :donekino
+= render :partial => 'shared/sidebar'            

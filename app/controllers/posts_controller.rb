@@ -4,7 +4,7 @@ class PostsController < InheritedResources::Base
   
   def index
     if @subsite
-      @posts = Post.by_subsite(@subsite).by_location(@location.id).published.order('created_at DESC').page params[:page]
+      @posts = Post.by_subsite(@subsite).published.order('created_at DESC').page params[:page]
     else
       @posts = Post.by_location(@location.id).published.order('created_at DESC').page params[:page]
     end

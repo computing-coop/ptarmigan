@@ -22,7 +22,7 @@ class Post < ActiveRecord::Base
   scope :not_news, :conditions => {:not_news => true}
   scope :news, :conditions  => {:not_news => false}
   scope :published, :conditions => {:published => true }
-
+  validates_presence_of :location_id
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }  
   Paperclip.interpolates :normalized_resource_file_name do |attachment, style|

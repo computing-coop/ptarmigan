@@ -1,6 +1,7 @@
 .activity.ten.columns
   .icon.columns
-    = image_tag a.trackable.carousel.url(:small), :width => 75
+    - unless a.trackable.nil?
+      = image_tag a.trackable.carousel.url(:small), :width => 75
 
   .metadata.seven.columns
     .person

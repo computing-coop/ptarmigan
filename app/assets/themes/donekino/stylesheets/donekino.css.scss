@@ -1,5 +1,8 @@
+$nice-blue: #0BB0F0;
+$lighter-blue: #88D9F7;
+
 #logo_words {
-  margin-top: 100px;
+  margin-top: 49px;
   margin-left: 25px;
 }
 .dk_box {
@@ -8,14 +11,20 @@
 
 #date_header {
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 32px;
+  font-size: 25px;
   font-weight: bold;
 
   padding-right: 18px;
-  margin-top: 25px;
+  margin-top: 15px;
 }
 p {
   font: 14px/19px Helvetica, Arial, sans-serif;
+  a, a:visited {
+    color: $nice-blue;
+    &:hover {
+      color: $lighter-blue;
+    }
+  }
 }
 
 a, a:visited {
@@ -24,7 +33,7 @@ a, a:visited {
 }
 
 a:hover {
-  color: #ABA;
+  color: #0BB0F0;
 }
 
 h3 {
@@ -78,6 +87,9 @@ h3 {
   }
   .blog_body {
     padding: 10px 30px 5px 0px;
+    p {
+      margin-bottom: 10px;
+    }
   }
   .share_this {
     margin-left: 0px;
@@ -87,7 +99,7 @@ h3 {
 .sidebar {
   margin-top: 40px;
 }
-.frontpage {
+.frontpage, .sidebar {
   margin-top: 40px;
   .posts {
     border-top: 1px solid #999;
@@ -214,6 +226,22 @@ h3 {
   border-top: 1px solid #999;
   width: 290px;
   padding: 5px;
+  .news_title li {
+    list-style-type: disc;
+    margin-left: 25px;
+    font: 16px/18px Helvetica, Arial, sans-serif;
+    margin-bottom: 10px;
+    .post_metadata {
+      color: #666;
+      font-size: 11px;
+      line-height: 13px;
+    }
+    a {
+      color: $nice-blue;
+      &:hover { color: $lighter-blue; 
+      }
+    }
+  }
   p {
     font: 14px/19px Helvetica, Arial, sans-serif;
   }

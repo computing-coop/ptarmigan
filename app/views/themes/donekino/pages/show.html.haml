@@ -4,4 +4,4 @@
 .share_this= share_this(@page)
 
 = content_for :sidebar do
-  = render :partial => 'shared/sidebar'
+  = render :partial => 'shared/sidebar_from_pages', :locals => {:current_page => @page}

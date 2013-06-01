@@ -4,9 +4,15 @@
     %p= t :waiting_list_text
   - else
     - if controller.action_name == 'index'
-      %h3= link_to t(:you_must_register), event
+      - if title.nil?
+        %h3= link_to t(:you_must_register), event
+      - else
+        %h3= title
     - else
-      %h3= t :you_must_register
+      - if title.nil?
+        %h3= t :you_must_register
+      - else
+        %h3= title
       / %div{:id => "clear_me_#{event.id.to_s}"}= link_to_function t(:click_here_to_register), "$('#reg_form_#{event.id.to_s}').slideDown(); $('#clear_me_#{event.id.to_s}').fadeOut();"
   %div{:id => "form_container_#{event.id.to_s}"} 
     %div{:id => "reg_form_#{event.id.to_s}"}

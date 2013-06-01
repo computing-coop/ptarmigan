@@ -1,11 +1,23 @@
 = content_tag_for(:tr, attendee, :class => cycle(:odd, :even)) do
   %td.name
+
     %p= h attendee.try(:name)
     %p= h attendee.try(:email)
     %p= h attendee.try(:phone)
     %p= attendee.pay_received.blank? ? '' : 'pay received'
-  %td.event= attendee.event.title_with_date
-  %td.comments= h attendee.try(:comments)
+    - if attendee.event.require_approval == true
+      - if attendee.approved == true 
+        %p
+          %strong approved!
+  %td.event
+    %p= attendee.event.title_with_date
+    - if attendee.event.require_approval == true
+      %p
+        %em requires approval!
+  %td.comments
+    - if attendee.profile?
+      = image_tag attendee.profile.url(:thumb)
+    = h attendee.try(:comments)
   %td.optional
     - if attendee.waiting_list == true
       %p

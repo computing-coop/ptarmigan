@@ -1,0 +1,126 @@
+
+.one-third.column.alpha
+  .page
+    = link_to(posts_path) do 
+      .title= t :news
+
+  .posts
+    - @posts[0..1].each do |post|
+      .front_single.clearfix
+        .blog_title= link_to post.title, post
+        .post_metadata
+          - if post.is_personal == true
+            = "posted by #{post.user.email.gsub(/\@.+$/, '')} on #{l(post.created_at, :format => :long)}"
+          - else
+            = "posted by Ptarmigan on #{l(post.created_at, :format => :long)}"
+        = image_tag post.carousel.url(:small)
+        .blog_body= raw post.body
+        .share_this= share_this(post)
+
+    .see_all= link_to t(:see_all_news, :scope => :donekino), posts_path
+.one-third.column.alpha
+  - Page.by_subsite(@subsite).each do |p|
+    .page
+      .title= link_to p.title, page_path(p.slug)
+      = link_to(page_path(p.slug), :class => :block, :style => 'background: transparent url(' + p.carousel.url(:small) + ') no-repeat;') do
+
+        .outer_hover
+          = p.excerpt
+  .page
+    .title= link_to t(:participants), event_attendees_path('done-kino')
+    = link_to(event_attendees_path('done-kino'), :class => :block, :style => 'background: transparent url(' + image_path('participant_bg.png') + ') no-repeat;') do
+      .outer_hover
+        = t :who_is_coming, :scope => :donekino
+.one-third.column.omega
+  .page
+    = link_to(page_path('participants')) do 
+      .title= t :participate
+  .posts#form_container_412
+    %div{:id => "reg_form_412"}
+      %p= t :signupform, :scope => :donekino
+      = form_for @attendee = Attendee.new, :html => {:multipart => true, :id => "new_attendee_412"}, :update => "reg_form_412", :remote => true do |form|
+        .clearfix
+          %label= t :your_name
+          = form.text_field :name
+        .clearfix
+          %label= t :your_email
+          = form.text_field :email
+        .clearfix
+          %label &nbsp;
+          %button{:type => :button, :onClick => "$('.form_412_rest').slideDown(); $(this).fadeOut();"}= t(:more, :scope => :donekino)
+        .form_412_rest
+          .clearfix
+            %label= t :your_phone
+            = form.text_field :phone
+            = form.hidden_field :event_id, :value => 412
+          .clearfix
+            %label= t :tellus, :scope => :donekino
+            = form.text_area :bio, :rows => 4
+          -# .clearfix
+          -#   %label= t :profile_pic, :scope => :donekino
+          -#   = form.file_field :profile
+          .clearfix 
+            %label= t :extra_info_or_qs 
+            = form.text_area :comments, :rows => 4
+          .clearfix
+            %label= t :verify_you_are_human
+            = recaptcha_tags(:ajax => true, :display => {:theme => 'white', :tabindex => 10})
+
+          .clearfix
+            %label &nbsp;
+            %div{:id => "attendee_submit_412"}= form.submit  t :sign_up 
+
+        .clearfix
+          %label &nbsp;
+          %div{:id => "loading_412", :style => 'display: none'}= image_tag('ajax-loader.gif')
+
+      :javascript
+        $('#attendee_submit_412 input[name=commit]').click(function() {
+          $("ul#errors_412").html('');
+          $("#loading_412").toggle();
+          $("#attendee_submit_412").attr('disabled', 'disabled');
+          $("#attendee_submit_412").fadeOut();
+          // $("#new_attendee_412").submit();
+        });
+  - unless Attendee.by_event(412).approved.with_profile_pic.empty?
+    .page
+      = link_to(page_path('participants')) do 
+        .title= t :who_is_coming, :scope => :donekino
+      - random_participant = Attendee.by_event(412).approved.with_profile_pic.random
+      - if random_participant.nil?
+        %p= t :no_registrants_yet, :scope => :donekino
+      - else
+        - unless random_participant.filmstill_file_size.blank?
+          #slider
+            = image_tag random_participant.profile.url(:small)
+            = image_tag random_participant.filmstill.url(:small)
+          :javascript
+            $('#slider').cycle({ 
+              fx:      'fade', 
+            });
+        - else
+          = image_tag random_participant.profile.url(:small)
+        .participant_name= random_participant.name
+        - unless random_participant.comes_from.blank?
+          .participant_location= random_participant.comes_from
+        - unless random_participant.work_in_progress_title.blank?
+          .participant_project= "'#{random_participant.work_in_progress_title}'"
+        .blog_body= random_participant.bio
+        .see_all= link_to t(:see_all_participants, :scope => :donekino), event_attendees_path('done-kino')
+
+  .page
+    .title= t :contact
+    .contact_box
+
+      %p
+        = t :is_a_project_of, :scope => :donekino
+        = link_to 'Done Lab', 'http://ptarmigan.ee/projects/eesti-done-lab'
+        = " + "
+        = link_to 'Kino Kabaret', 'http://www.planetekino.com/'
+        = "."
+      %p
+        = t :contact_info, :scope => :donekino
+        = link_to 'donekino a) ptarmigan.ee', 'mailto:donekino a)ptarmigan.ee'
+      %div{:style => "float: right"}
+        = link_to image_tag(current_theme_image_path('little_ptarmigan.png')), 'http://ptarmigan.ee'
+        = link_to image_tag(current_theme_image_path('planete_kino.png')), 'http://www.planetekino.com/'

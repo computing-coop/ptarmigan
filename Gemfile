@@ -14,6 +14,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller",">= 0.6.9.pre2" # :git => 'git://github.com/banister/binding_of_caller.git', :branch => 'ruby-2.0'
   gem 'nifty-generators'
+  gem 'meta_request'
   gem 'quiet_assets'
   gem 'sextant'
   gem 'thin'end
@@ -44,6 +45,7 @@ gem 'nested_form' #, :git => 'git://github.com/ryanb/nested_form.git'
 
 gem 'paperclip', "~> 3.0"
 gem 'public_activity'
+gem 'randumb'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'RedCloth', ">= 4.2.7"
 gem 'rvm-capistrano'

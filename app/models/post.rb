@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :location
+  belongs_to :subsite
   has_attached_file :carousel, :styles => {:new_carousel => "960x400#", 
                                           :full => "600x400>", :small => "300x200#",
                                           :thumb => "100x100>" },
@@ -13,9 +14,10 @@ class Post < ActiveRecord::Base
                                           :url =>  "/images/carousel/posts/:id/:style/:normalized_resource_file_name"
 
   translates :title, :body
-  attr_accessible :translations, :user_id, :carousel, :not_news, :is_personal, :location_id, :translations_attributes, :hide_carousel, :published
+  attr_accessible :translations, :subsite_id, :show_on_main, :user_id, :carousel, :not_news, :is_personal, :location_id, :translations_attributes, :hide_carousel, :published
   accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['title'].blank? && attributes['body'].blank? }
-  scope :by_location, lambda {|x| {:conditions => {:location_id => x} }}
+  scope :by_location, lambda {|x| {:conditions => ['location_id = ? AND (subsite_id is null OR show_on_main is true)', x]}}
+  scope :by_subsite, lambda {|x| {:conditions => {:subsite_id => x} }}  
   scope :with_carousel, :conditions => ["hide_carousel is false AND carousel_file_name is not null AND carousel_file_size > 0" ]
   scope :not_news, :conditions => {:not_news => true}
   scope :news, :conditions  => {:not_news => false}

@@ -2,6 +2,16 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+
+  date_range:
+    long:
+      different_months_same_year: "%{from_month} %{from_day} %{sep} %{until_month} %{until_day}, %{year}"
+      different_years: "%{from_month} %{from_day}, %{from_year} %{sep} %{until_month} %{until_day}, %{until_year}"
+      same_month: "%{month} %{from_day} %{sep} %{until_day}, %{year}"
+    short:
+      different_months_same_year: "%{from_month} %{from_day} %{sep} %{until_month} %{until_day}, %{year}"
+      different_years: "%{from_month} %{from_day}, %{from_year} %{sep} %{until_month} %{until_day}, %{until_year}"
+      same_month: "%{month} %{from_day} %{sep} %{until_day}, %{year}"
   number:
     currency:
         format:
@@ -118,3 +128,18 @@ en:
   past_projects_spiel: "Ptarmigan has hosted a variety of projects, some regular and some irregular. Here are former recurring projects that are currently inactive (but may come back to life)."
   date:
     first_day_of_week: 1
+  donekino:
+    more: 'More....'
+    signupform: 'Join the team! Apply here to participate in Done Kino (as there is a limited amount of places).'
+    tellus: 'Tell us about yourself (max. 100 words):'
+    profile_pic: 'Upload a profile pic (max. resoluion 600x600):'
+    who_is_coming: "Who's coming?"
+    thanks_register: 'Thank you for applying. We will contact you soon with more information.'
+    no_registrants_yet: 'You can attend Done Kino! Sign up above.'
+    see_all_participants: 'All participants...'
+    see_all_news: 'All news...'
+    contact_info: 'For more information about Done Kino, email '
+    is_a_project_of: "Done Kino is a project of Ptarmigan's "
+    no_attendees_yet: 'Done Kino has a limited number of spaces for participants. If you would like to participate, register here and we will contact you for further information. Check back to this page as participants are added to see who is coming!'
+    register_here: 'Apply here!'
+    done_kino_register: 'Apply to participate in Done Kino'

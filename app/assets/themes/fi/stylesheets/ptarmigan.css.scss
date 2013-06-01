@@ -21,16 +21,20 @@ a{
 	text-decoration: none;
 }
 
-
+.tweet .meta a {
+  color: #00A329;
+}
 
 a, a:visited {
   color: $helsinki-green;
   text-decoration: none;
 }
 
-a:hover {
+.blog_title a:hover, .blog_body p a:hover, .blog_body a:hover, #creditslider .title a:hover {
   color:#00A329 !important;
 }
+
+
 
 .whitebg{
 	background:#ffffff;
@@ -475,7 +479,7 @@ dt.label {
 }
 
 .event_front_single {
-  margin: 10px;
+  margin: 10px 0px 10px 0px;
   padding: 5px;
 
   background-color: white;

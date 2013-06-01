@@ -24,7 +24,7 @@ class Admin::PagesController < ApplicationController
     respond_to do |format|
       if @page.destroy
         flash[:notice] = 'Page was successfully destroyed.'        
-        format.html { redirect_to pages_path }
+        format.html { redirect_to admin_pages_path }
         format.xml  { head :ok }
       else
         flash[:error] = 'Page could not be destroyed.'

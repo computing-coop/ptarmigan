@@ -11,7 +11,8 @@
     = stylesheet_link_tag :application
     = stylesheet_link_tag theme_stylesheet_path(:application), :media => :screen
     = javascript_include_tag :application
-
+    %script{:type => "text/javascript", :src => "http://w.sharethis.com/button/buttons.js"}
+    %script{:type => "text/javascript"} stLight.options({publisher: "ur-dae0667d-47dc-d390-f0b1-129d17517bbe"});
 
     %script{:type => "text/javascript"}
       var _gaq = _gaq || [];

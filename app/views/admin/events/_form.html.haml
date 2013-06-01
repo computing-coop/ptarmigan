@@ -1,5 +1,10 @@
 = semantic_form_for([:admin,  event],  :html => {:multipart => true } ) do |f|
-  = f.input :location, :label => "Which Ptarmigan?", :as => :select
+  .twelve.columns
+    .six.columns.alpha= f.input :location, :label => "Which Ptarmigan?", :as => :select
+    .six.columns.omega
+      = f.input :subsite, :label => 'Assign to sub-site', :hint => 'will appear in content of subdomain'
+      = f.input :show_on_main, :label => 'Also show on main site', :hint => 'Will appear in subdomain but also in main Ptarmigan news on regular site'
+
   %hr
   .twelve.columns
     .six.columns.clearfix.alpha
@@ -108,6 +113,7 @@
       = f.input :registration_limit, :label => 'Maximum participants', :hint => "leave blank for unlimited"
       = f.input :registration_optional_q, :label => 'Optional extra question for reg. form?', :hint => "Add an extra question to the registration form. Unfortunately, only in one language."
       = f.input :registration_recipient, :label => 'Send email after registration to', :hint => 'Defaults to helsinki or tallinn@ptarmigan, but you can have it go to someone else, or multiple addresses separated by commas'
+      = f.input :require_approval, :label => "Attendees must be approved by Ptarmigan staff"
       = f.input :hide_registrants, :as => :radio,  :hint => 'Hide the number of places left on the registration form'
   /= f.input :featured, :label => 'Include in forthcoming frontpage events carosel'
 

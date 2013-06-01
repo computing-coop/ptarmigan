@@ -4,7 +4,7 @@ class Admin::AttendeesController < InheritedResources::Base
   has_scope :page, :default => 1
   actions :index, :show, :new, :edit, :create, :update, :destroy
   respond_to :html, :js, :xml, :json
-  layout 'staff', :only => [:index]
+  layout 'staff', :only => [:index, :edit]
   before_filter :authenticate_user!, :only => [:index, :destroy, :edit]
   def create
     @attendee = Attendee.create(params[:attendee])

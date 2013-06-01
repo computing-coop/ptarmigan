@@ -1,7 +1,7 @@
 %h3.heading
   = "Editing attendee %s" % @attendee.id
   
-= semantic_form_for(@attendee) do |form|
+= semantic_form_for([:admin, @attendee], :html => {:multipart => true}) do |form|
   = render 'form', :form => form
   = form.actions   do
     = form.submit 'Update'

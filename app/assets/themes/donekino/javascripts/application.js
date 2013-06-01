@@ -1,0 +1,1 @@
+//= require donekino/javascripts/jquery.cycle.lite

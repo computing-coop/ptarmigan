@@ -3,16 +3,28 @@
  *= require jquery.ui.all
  *= require staff
  */
-.staff_suomi a {
-  color: #00A329 !important;
-  text-decoration: none !important;
+.staff_suomi {
+  a {
+    color: #00A329 !important;
+    text-decoration: none !important;
+  }
+  .ee_event a {
+    color: #3477B6  !important;
+    text-decoration: none !important;
+  }
 }
 
-.staff_eesti a {
-  color: #3477B6  !important;
-  text-decoration: none !important;
-} 
+.staff_eesti
 
+  a {
+    color: #3477B6  !important;
+    text-decoration: none !important;
+  } 
+  .fi_event a {
+    color: #00A329 !important;
+  text-decoration: none !important;
+  }
+}
 .flicker {
   clear: right;
   margin-bottom: 20px;

@@ -1,0 +1,9 @@
+- if !@posts.empty?
+  %h3= t :news
+  = paginate @posts
+  = render :partial => "post", :collection => @posts
+  .bottom_pagination= paginate @posts
+- else
+  %p= t(:no_posts)
+= content_for :sidebar do
+  = render :partial => 'shared/sidebar'

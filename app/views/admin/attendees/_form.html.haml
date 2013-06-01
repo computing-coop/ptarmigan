@@ -1,7 +1,24 @@
 = form.inputs do
-  = form.input :name, :label => 'Name'
-  = form.input :email, :label => 'Email'
-  = form.input :phone, :label => 'Phone'
-  = form.input :pay_received, :label => 'Pay received'
-  = form.input :event, :label => 'Event'
-  = form.input :comments, :label => 'Comments'
+  .twelve.columns
+    .six.columns.alpha
+      = form.input :name, :label => 'Name'
+      = form.input :email, :label => 'Email'
+      = form.input :phone, :label => 'Phone'
+      = form.input :pay_received, :label => 'Pay received'
+      = form.input :event, :label => 'Event'
+      = form.input :comments, :label => 'Comments', :hint => "Only seen by Ptarmigan staff"
+    .six.columns.omega
+      %h4 optional stuff we can add (for Done Kino):
+      - if form.object.profile_file_size > 0
+        existing profile pic:
+        = image_tag form.object.profile.url(:small)
+      = form.input :profile, :label => "Profile picture"
+      - if form.object.filmstill_file_size > 0
+        existing film still image:
+        = image_tag form.object.filmstill.url(:small)
+      = form.input :filmstill, :label => "Image from their film or video"
+
+      = form.input :comes_from, :label => "Location/home city:"
+      = form.input :work_in_progress_title, :label => "Title of work for Done Kino"
+      = form.input :approved
+      = form.input :bio

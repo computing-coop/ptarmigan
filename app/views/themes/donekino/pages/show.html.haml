@@ -1,0 +1,7 @@
+%h3= @page.try(:title).humanize
+= image_tag @page.carousel.url(:full), :width => 620
+= raw @page.body
+.share_this= share_this(@page)
+
+= content_for :sidebar do
+  = render :partial => 'shared/sidebar'

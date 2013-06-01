@@ -1,0 +1,101 @@
+!!! 5
+%html
+  %head
+    = display_meta_tags :site => "Done Kino | Ptarmigan Tallinn"
+    %meta{ :"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8" }
+    %link{ :rel => "shortcut icon", :href => "/favicon.ico" }
+    %link{ :rel => "alternate", :type => "application/rss+xml", :title => "Ptarmigan RSS", :href => "/feed.rss"}
+
+    = stylesheet_link_tag :application
+    = stylesheet_link_tag theme_stylesheet_path(:application), :media => :screen
+    = javascript_include_tag :application
+    = javascript_include_tag theme_javascript_path(:application)
+    = csrf_meta_tag
+    %script{:type => "text/javascript"}
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12518395-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+      var switchTo5x=true;
+    %script{:type => "text/javascript", :src => "http://w.sharethis.com/button/buttons.js"}
+    %script{:type => "text/javascript"} stLight.options({publisher: "ur-dae0667d-47dc-d390-f0b1-129d17517bbe"});
+
+
+
+
+  %body
+    .container
+      #top_bar.sixteen.columns
+        #logo_container.fourteen.columns.alpha
+          #logo
+            .four.columns.alpha.dk_box= link_to(image_tag(current_theme_image_path('layout/logo.png')), '/')
+            .nine.columns.omega#logo_words
+              = link_to(image_tag(current_theme_image_path('layout/donekino_words.png')), '/')
+              #date_header
+                %strong
+                  = t :tallinn
+                  = date_range('2013-08-06'.to_date, '2013-08-10'.to_date, :format => :long)
+        #top_nav_container.two.columns.omega
+          #language
+            = link_to('EST', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'et')
+            |
+            = link_to('ENG', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en')
+            |
+            = link_to('RUS', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'ru')
+            |
+            = link_to('FIN',:controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'fi')
+            |
+            = link_to('SWE',:controller =>   controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv-SE')            
+          -# #country_menu= render :partial => 'layouts/country_menu'
+          - if user_signed_in?
+            %li= link_to('staff', '/staff')
+            %li= link_to('sign out', '/users/sign_out') 
+      -# #main_menu.sixteen.columns
+      -#   #nav.thirteen.columns.alpha
+      -#     %ul
+      -#       %li.first= link_to(t(:events), events_path)
+      -#       %li= link_to( t(:projects) , projects_path)
+      -#       %li= link_to(t(:artists), artists_path)              
+      -#       %li= link_to(t(:news), posts_path)
+      -#       %li= link_to(t(:proposals), proposals_path)
+      -#       %li= link_to(t(:about), {:controller => 'pages', :action => 'show', :id => 'about'})
+      -#       %li= link_to(t(:press), {:controller  => 'pages', :action => 'press', :id => 'press'})
+
+      -#       %li= link_to(t(:archive), archive_events_path) 
+      -#       %li= link_to(t(:contact), {:controller => 'pages', :action => 'show', :id => 'contact'})
+
+        -# #web2_inline.two.columns.omega
+        -#   = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed",:width => 20,  :border => 0}), '/feed.rss')
+        -#   = link_to(image_tag('layout/facebook.png', {:alt => 'facebook', :width => 20, :border => 0}), 'http://www.facebook.com/home.php#/pages/Ptarmigan/114272652824')
+        -#   = link_to(image_tag('layout/twitter.png', {:alt => 'twitter', :width => 20, :border => 0}),   "http://twitter.com/PtarmiganHki")
+        -#   = link_to(image_tag('layout/flickr.png', {:alt => 'flickr', :width => 20, :border => 0}), "http://www.flickr.com/groups/ptarmigan/")
+        -#   = link_to(image_tag('layout/vimeo.png', {:alt => 'vimeo', :width => 20, :border => 0}), "http://vimeo.com/ptarmigan")  
+ 
+        .front_box
+          #flash
+            - unless flash.empty?
+              = content_tag :div, flash[:notice],  :class => "notice"  if flash[:notice]
+              = content_tag :div, flash[:warning], :class => "warning" if flash[:warning]
+              = content_tag :div, flash[:error],   :class => "error"   if flash[:error]
+            :javascript
+              $('#flash').effect("highlight", {}, 3000);
+      #dynamic_wrap.sixteen.columns
+
+        -# = render :partial => 'shared/new_carousel', :locals => {:new_carousel => @new_carousel}
+        .sixteen.columns.frontpage= yield
+      #footer.sixteen.columns
+        .ptarmigan_footer
+          = link_to 'MTÜ Ptarmigan', 'mailto:tallinn at ptarmigan dotee'
+          | Toom-Kooli 13
+          | 10130 Tallinn, Estonia 
+          |
+          = link_to 'GitHub', 'https://github.com/cenotaph/ptarmigan' 
+:javascript
+  $(document).ready(function() {
+    #{yield :jquery}
+  });

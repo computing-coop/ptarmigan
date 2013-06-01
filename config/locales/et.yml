@@ -96,6 +96,15 @@ et:
   send_proposal: 'Submit your idea!'
   inactive_projects: 'Inactive Projects'
   nope: 'midagi põle'
+  date_range:
+    long:
+      different_months_same_year: "%{from_day}. %{from_month} %{sep} %{until_day}. %{until_month} %{year}"
+      different_years: "%{from_day}. %{from_month}  %{from_year} %{sep}  %{until_day}. %{until_month} %{until_year}"
+      same_month: "%{from_day} %{sep} %{until_day}. %{month}  %{year}"
+    short:
+      different_months_same_year: "%{from_month} %{from_day} %{sep} %{until_month} %{until_day}, %{year}"
+      different_years: "%{from_month} %{from_day}, %{from_year} %{sep} %{until_month} %{until_day}, %{until_year}"
+      same_month: "%{from_day} %{sep} %{until_day}. %{month} %{year}"  
   date:
     formats:
       default: "%d.%m.%Y"

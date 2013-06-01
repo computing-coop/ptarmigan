@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class AttendeesController < InheritedResources::Base
   
-  actions :index, :show, :new, :edit, :create, :update, :destroy
+  actions :index, :show, :new, :create, :update
   respond_to :html, :js, :xml, :json
    before_filter :authenticate_user!, :only => [:destroy]
 
@@ -18,24 +18,31 @@ class AttendeesController < InheritedResources::Base
 
   def create
     @attendee = Attendee.new(params[:attendee])
-
     if verify_recaptcha(:model => @attendee, :message => "Oh! It's error with reCAPTCHA!") && @attendee.save 
-
       render :format => :js
     end      
   end
   
+  def index
+    unless params[:event_id]
+      flash[:error] = 'You can only view attendees of a specific event, not all.'
+      redirect_to '/'
+    else
+      @event = Event.find(params[:event_id])
+      if @event.show_guests_to_public == false && !user_signed_in?
+        flash[:error] = 'This event does not publicise the attendee list.'
+        redirect_to '/'
+      else
+        @attendees = @event.attendees
+      end
+    end
+  end
+
   def destroy
     destroy! { admin_attendees_path }
   end
   
   protected
     
-    def collection
-      paginate_options ||= {}
-      paginate_options[:page] ||= (params[:page] || 1)
-      paginate_options[:per_page] ||= (params[:per_page] || 20)
-      @attendees ||= end_of_association_chain.paginate(paginate_options)
-    end
-        
+
 end

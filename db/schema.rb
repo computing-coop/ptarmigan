@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425134740) do
+ActiveRecord::Schema.define(:version => 20130601102713) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -118,7 +118,19 @@ ActiveRecord::Schema.define(:version => 20130425134740) do
     t.datetime "updated_at"
     t.text     "optional"
     t.boolean  "showed_up"
-    t.boolean  "waiting_list", :default => false
+    t.boolean  "waiting_list",           :default => false
+    t.string   "profile_file_name"
+    t.integer  "profile_file_size"
+    t.string   "profile_content_type"
+    t.datetime "profile_updated_at"
+    t.text     "bio"
+    t.string   "filmstill_file_name"
+    t.integer  "filmstill_file_size"
+    t.string   "filmstill_content_type"
+    t.datetime "filmstill_updated_at"
+    t.string   "comes_from"
+    t.string   "work_in_progress_title"
+    t.boolean  "approved"
   end
 
   create_table "budgetareas", :force => true do |t|
@@ -238,6 +250,10 @@ ActiveRecord::Schema.define(:version => 20130425134740) do
     t.boolean  "donations_requested",                  :default => false, :null => false
     t.boolean  "hide_registrants",                     :default => false, :null => false
     t.string   "slug"
+    t.integer  "subsite_id"
+    t.boolean  "show_on_main"
+    t.boolean  "show_guests_to_public",                :default => false, :null => false
+    t.boolean  "require_approval",                     :default => false, :null => false
   end
 
   create_table "expenses", :force => true do |t|
@@ -341,7 +357,12 @@ ActiveRecord::Schema.define(:version => 20130425134740) do
     t.datetime "updated_at"
     t.text     "excerpt"
     t.text     "abstract_fi"
-    t.integer  "location_id", :default => 1, :null => false
+    t.integer  "location_id",           :default => 1, :null => false
+    t.integer  "subsite_id"
+    t.string   "carousel_file_name"
+    t.integer  "carousel_file_size"
+    t.string   "carousel_content_type"
+    t.datetime "carousel_updated_at"
   end
 
   create_table "places", :force => true do |t|
@@ -381,6 +402,8 @@ ActiveRecord::Schema.define(:version => 20130425134740) do
     t.boolean  "hide_carousel"
     t.string   "slug"
     t.boolean  "not_news",              :default => false, :null => false
+    t.integer  "subsite_id"
+    t.boolean  "show_on_main"
   end
 
   create_table "presslinks", :force => true do |t|
@@ -504,6 +527,25 @@ ActiveRecord::Schema.define(:version => 20130425134740) do
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
+
+  create_table "subsites", :force => true do |t|
+    t.string   "name"
+    t.string   "fallback_theme"
+    t.integer  "location_id"
+    t.string   "carousel_file_name"
+    t.string   "carousel_content_type"
+    t.date     "carousel_updated_at"
+    t.integer  "carousel_file_size"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.date     "avatar_updated_at"
+    t.integer  "avatar_file_size"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.boolean  "hide_from_carousel"
+  end
+
+  add_index "subsites", ["location_id"], :name => "index_subsites_on_location_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false

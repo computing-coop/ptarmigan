@@ -12,13 +12,15 @@
               = "posted by #{post.user.email.gsub(/\@.+$/, '')} on #{l(post.created_at, :format => :long)}"
             - else
               = "posted by Ptarmigan on #{l(post.created_at, :format => :long)}"
-          .blog_body= raw post.body
+          .blog_body
+            = raw post.body
+            .share_this= share_this(post)
 .sidebar.five.columns.omega
 
   - unless @upcoming.empty?
     .headline
       %h2= t :upcoming
-    = render :partial => 'shared/next_events', :locals => {:next_events => @upcoming }
+    = render :partial => 'shared/next_events', :locals => {:next_events => (@upcoming.size > 4 ? @upcoming.delete_if{|x| x.location != @location} : @upcoming) }
   - if @upcoming.empty?
     .front_box
       .headline

@@ -1,0 +1,17 @@
+%h3= t :news
+.event_front_single.clearfix
+  .blog_title= link_to @post.title, @post
+  .post_metadata
+    - if @post.is_personal == true
+      = "posted by #{@post.user.email.gsub(/\@.+$/, '')} on #{l(@post.created_at, :format => :long)}"
+    - else
+      = "posted by Ptarmigan on #{l(@post.created_at, :format => :long)}"
+  - if @post.carousel?
+    .blog_image= image_tag @post.carousel.url(:full), :width => 620
+  .blog_body= raw @post.body
+  .share_this= share_this(@post)      
+- if current_user
+  %p= link_to '[edit this post]', edit_admin_post_path(@post)
+
+= content_for :sidebar do
+  = render :partial => 'shared/sidebar'

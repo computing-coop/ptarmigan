@@ -1,0 +1,12 @@
+.twelve.columns
+  = semantic_form_for [:admin, @subsite], :html => {:multipart => true} do |f|
+    .six.columns.alpha
+      = f.input :name, :hint => 'no spaces - will be the subdomain, ie: donekino -> donekino.ptarmigan.ee'
+      = f.input :location
+      = f.input :fallback_theme, :as => :select, :collection => Location.all.map{|x| [x.locale, x.id]}
+    .six.columns.omega
+      = f.input :carousel, :hint => 'Carousel image: 960x400, will appear on main site'
+      = f.input :hide_from_carousel, :label => 'Remove from carousel', :hint => 'if old/no longer current'
+      = f.input :avatar, :hint => 'Non-carousel image', :hint => 'can be the same'
+    .six.columns
+      = f.submit

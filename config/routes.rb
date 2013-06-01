@@ -6,9 +6,11 @@ Ptarmigan::Application.routes.draw do
 
   themes_for_rails
   resources :attendees do
+    # resources :event, :only => [:index]
     collection do
       post :check
     end
+
   end
 
   match '/feed', :to => "feed#index"
@@ -101,6 +103,7 @@ Ptarmigan::Application.routes.draw do
     resources :wikipages
     resources :documents
     resources :expenses
+    resources :subsites
     resources :projects
     resources :pages
     resources :users

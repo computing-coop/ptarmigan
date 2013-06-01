@@ -2,14 +2,14 @@
 - next_events.each_with_index do |event, index|
   .event.upcoming{:class => ((index + 1) == next_events.count) ? :last : false}
     .image= image_tag event.avatar.url(:small), :width => 250
-    .title{:class => event.location.name.downcase}= link_to event.name, event
+    .title{:class => event.location.name.downcase}= link_to event.name, url_for(:action => :show, :controller => :events, :id => event.slug, :host => 'ptarmigan.' + event.location.locale)
     .event_date
       =l event.date, :format => :long
       - unless event.enddate.blank?
         = "#{t(:daterange)} #{l event.enddate,:format => :long}"
       = raw event.notes
-      - if event.location != @location
-        %span.other_location{:class => event.location.name.downcase}= "[#{event.location_id == 1 ? 'Helsinki' : 'Tallinn'}]"
+      //- if event.location != @location
+      %span.other_location{:class => event.location.name.downcase}= "[#{event.location_id == 1 ? 'Helsinki' : 'Tallinn'}]"
 
     .tags= event.event_type
   -# - @next_events.each do |event|

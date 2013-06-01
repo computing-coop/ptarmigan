@@ -1,64 +1,72 @@
 
 = semantic_form_for([:admin, page], :html => {:multipart => true}) do |f|
-  = f.input :location
-  = tabs_for do |tab|
-    - tab.create('english', 'English') do
-      = f.globalize_fields_for :en do |en|
-        = en.label :title
-        %br
-        = en.text_field :title
-        %br
-        = en.label :excerpt
-        %br
-        = en.text_area :excerpt 
-        %br
-        = en.label :body
-        %br
-        = en.cktext_area :body
-    - tab.create('finnish', 'Finnish') do
-      = f.globalize_fields_for :fi do |fi|
-        = fi.label :title
-        %br
-        = fi.text_field :title
-        %br
-        = fi.label :excerpt
-        %br
-        = fi.text_area :excerpt
-        %p
-        = fi.label :body
-        %br
-        = fi.cktext_area :body
-    - tab.create('estonian', 'Estonian') do
-      = f.globalize_fields_for :et do |et|
-        = et.label :title
-        %br
-        = et.text_field :title
-        %br
-        = et.label :excerpt
-        %br
-        = et.text_area :excerpt
-        %p
-        = et.label :body
-        %br
-        = et.cktext_area :body
-    - tab.create('russian', 'Russian') do
-      = f.globalize_fields_for :ru do |ru|
-        = ru.label :title
-        %br
-        = ru.text_field :title
-        %br
-        = ru.label :excerpt
-        %br
-        = ru.text_area :excerpt
-        %p
-        = ru.label :body
-        %br
-        = ru.cktext_area :body    
-  %br{:clear => :all}
-    = f.label :slug
-    %br
+  .six.columns.alpha
+    = f.input :location
+  .six.columns.omega
+    = f.input :subsite, :label => 'Assign to sub-site', :hint => 'will appear in content of subdomain'
+  .twelve.columns
+
+    = tabs_for do |tab|
+      - tab.create('english', 'English') do
+        = f.globalize_fields_for :en do |en|
+          = en.label :title
+          %br
+          = en.text_field :title
+          %br
+          = en.label :excerpt
+          %br
+          = en.text_area :excerpt 
+          %br
+          = en.label :body
+          %br
+          = en.cktext_area :body
+      - tab.create('finnish', 'Finnish') do
+        = f.globalize_fields_for :fi do |fi|
+          = fi.label :title
+          %br
+          = fi.text_field :title
+          %br
+          = fi.label :excerpt
+          %br
+          = fi.text_area :excerpt
+          %p
+          = fi.label :body
+          %br
+          = fi.cktext_area :body
+      - tab.create('estonian', 'Estonian') do
+        = f.globalize_fields_for :et do |et|
+          = et.label :title
+          %br
+          = et.text_field :title
+          %br
+          = et.label :excerpt
+          %br
+          = et.text_area :excerpt
+          %p
+          = et.label :body
+          %br
+          = et.cktext_area :body
+      - tab.create('russian', 'Russian') do
+        = f.globalize_fields_for :ru do |ru|
+          = ru.label :title
+          %br
+          = ru.text_field :title
+          %br
+          = ru.label :excerpt
+          %br
+          = ru.text_area :excerpt
+          %p
+          = ru.label :body
+          %br
+          = ru.cktext_area :body    
+  .six.columns.alpha
+    - unless f.object.new_record?
+      - if f.object.carousel?
+        = image_tag f.object.carousel.url(:full)
+    = f.input :carousel, :label => "Carousel image (940x400) - will appear in frontpage carousel if exists"
+  .six.columns.omega
     = f.input :slug
-  %p
+  .twelve.columns
     = f.submit "Submit"
     
 :javascript

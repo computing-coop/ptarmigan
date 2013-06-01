@@ -21,6 +21,21 @@ form.button_to {
   margin-bottom: 0px;
 }
 
+.attendees table {
+  width: 750px;
+  td {
+    vertical-align: top;
+    padding: 5px 15px 5px 5px;
+    p {
+      margin: 0px 0px 5px 0px;
+    }
+  }
+}
+li#attendee_comes_from_input {
+  clear: left;
+  margin-top: 60px;
+}
+
 .accounting {
 
   li {

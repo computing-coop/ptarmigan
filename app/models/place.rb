@@ -8,4 +8,9 @@ class Place < ActiveRecord::Base
   def full_address
     "#{name}, #{address1}#{address2.blank? ? '' : ', ' + address2}, #{postcode} #{city}, #{country}"
   end
+
+  def icon
+    'place.jpg'
+  end
+  
 end

@@ -46,8 +46,12 @@ class EventsController < ApplicationController
     if @location.id == 1
       redirect_to projects_path
     else
-      @upcoming = Event.by_location(@location.id).where(['public is true AND date >= ?', Time.now.to_date]).order(:date).page params[:page]
-      if @upcoming.size < 7
+      if @subsite
+        @upcoming = Event.by_subsite(@subsite).by_location(@location.id).where(['public is true AND date >= ?', Time.now.to_date]).order(:date).page params[:page]
+      else
+        @upcoming = Event.by_location(@location.id).where(['public is true AND date >= ?', Time.now.to_date]).order(:date).page params[:page]
+      end
+      if @upcoming.size < 7 && !@subsite
         @archive = Event.by_location(@location.id).where(['public is true AND date < ?', Time.now.to_date]).order('date DESC').page params[:archive_page]
       else
         @archive = []

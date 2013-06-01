@@ -1,0 +1,7 @@
+<% if @attendee.errors.any? %>
+  // Create a list of errors
+  $("#form_container_<%= @attendee.event.id.to_s %>").append("<%= escape_javascript(render :partial=>'js_errors', :content_type => 'text/html', :locals=>{:target=> @attendee, :event => @attendee.event}) %>");
+
+ <% else %>
+  $('#form_container_<%= @attendee.event.id.to_s %>').html('<p><%= t(:thanks_register, :scope => :donekino) %></p>');
+<% end %>

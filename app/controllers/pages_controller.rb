@@ -20,7 +20,7 @@ class PagesController < ApplicationController
       :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,culture,art,workshops,artist-run,project space,maker culture, DIY,experimental, avant-garde, music, sound, visual art, Tiib,Baltic,residency',
       :description => 'Ptarmigan is a cultural platform in ' + (@location.locale == 'fi' ? "Helsinki, Finland" : "Tallinn, Estonia."),
       :title => nil
-    @upcoming = Event.by_location(@location.id).all(:conditions => ['public = true and hide_from_front = false and date >= ?', Time.now.to_date], :order => 'date ASC')
+    @upcoming = Event.published.future.where(:hide_from_front => false).where("subsite_id is null OR show_on_main = true")
     @carousel = []
     @upcoming.reject{|x| !x.carousel? }.each {|x| @carousel << x }
     
@@ -64,8 +64,11 @@ class PagesController < ApplicationController
     Post.by_location(@location.id).with_carousel.published.each {|x| @new_carousel.unshift(x) }
 
     carousel = @carousel.reverse
-
-    @posts = Post.by_location(@location.id).published.news.order('created_at DESC').page params[:page]
+    if @subsite
+      @posts = Post.by_subsite(@subsite).published.order('created_at DESC').page params[:page]
+    else
+      @posts = Post.by_location(@location.id).published.news.order('created_at DESC').page params[:page]
+    end
     @new_carousel = @new_carousel[0..14]
     respond_to do |format|
       format.html { render :layout => 'frontpage'}
@@ -91,7 +94,7 @@ class PagesController < ApplicationController
       :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,proposals,application,residency,culture,art',
       :description => @page.description,
       :title => @page.title.humanize
-    if params[:id] == 'about'
+    if params[:id] == 'about' && @subsite.nil?
       @who_we_are = Page.by_location(@location.id).where(:slug => 'who_we_are').first
       @resources = Resource.where(["press_page is true AND ((location_id is null OR location_id = ?) OR all_locations is true)", @location.id])
       @pagelinks = Presslink.where(["((location_id is null OR location_id = ?) OR all_locations is true)", @location.id]).order("sortorder, presslinks.when DESC")
@@ -109,7 +112,18 @@ class PagesController < ApplicationController
   private
 
   def find_page
-    @page = Page.find_by_slug_and_location_id(params[:id], @location.id ) if params[:id]
+    if @subsite.nil?
+      @page = Page.where(:slug => params[:id]).where(:location_id => @location.id).where(:subsite_id => nil).first if params[:id]
+    else
+      if params[:id]
+        @page = Page.where(:slug => params[:id]).where(:location_id => @location.id).where(:subsite_id => @subsite.id)
+        if @page.blank?
+          @page = Page.find(params[:id])
+        else
+          @page = @page.first
+        end
+      end  
+    end
   end
 
 end

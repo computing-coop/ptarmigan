@@ -1,8 +1,7 @@
 <% if @attendee.errors.any? %>
   // Create a list of errors
-
   $("#form_container_<%= @attendee.event.id.to_s %>").append("<%= escape_javascript(render :partial=>'js_errors', :content_type => 'text/html', :locals=>{:target=> @attendee, :event => @attendee.event}) %>");
 
  <% else %>
-  $('#form_container_<%= @attendee.event.id.to_s %>').html('<div style="border-top: 1px solid black; padding-top: 15px;"><%= t(:thanks_register) %></div>');
+  $('#form_container_<%= @attendee.event.id.to_s %>').html('<div style="border-top: 1px solid black;  line-height: 15px; padding: 12px;"><%= t(:thanks_register) %></div>');
 <% end %>

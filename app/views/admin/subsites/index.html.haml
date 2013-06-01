@@ -1,0 +1,16 @@
+%h4 Subsites
+
+%p Subsites are for specific subdomain-based sites which will load blog/news posts, static pages and events categorised to a specific subdomain. Ex: donekino.ptarmigan.ee
+
+%p After creating a subsite here, you must register the DNS entry for it and set up a theme (if needed).
+
+= button_to 'create new subsite', new_admin_subsite_path, :method => :get
+
+.projects
+  - @subsites.each do |s|
+    .project
+      %strong= link_to s.name, edit_admin_subsite_path(s)
+      = link_to '[edit]', edit_admin_subsite_path(s)
+      %span.delete= link_to '[delete]', [:admin, s], :method => :delete, :confirm => "Are you sure?"
+  
+= button_to 'create new subsite', new_admin_subsite_path, :method => :get

@@ -3,6 +3,8 @@
     %tr
       %td{:class => page.location.name.downcase}
         = link_to page.title, edit_admin_page_path(page)
+        - unless page.subsite.nil?
+          %strong= "(#{page.subsite.name})"
       %td
         = awesome_truncate(page.excerpt)
       %td

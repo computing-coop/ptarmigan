@@ -7,7 +7,8 @@
         %li= msg
   
   .field
-    = f.input :location, :label => t(:proposal_location), :as => :select, :collection => {t(:helsinki) => "1", t(:tallinn) => "2", t(:both) => "0"}, :include_blank => false
+    = f.input :location, :as => :hidden, :value => 2
+    //:label => t(:proposal_location), :as => :select, :collection => {t(:helsinki) => "1", t(:tallinn) => "2", t(:both) => "0"}, :include_blank => false
   .field= f.input :name, :label => t(:your_name)
 
   .field= f.input :organisation, :label => t(:proposal_organisation) + " (#{t(:optional)})"

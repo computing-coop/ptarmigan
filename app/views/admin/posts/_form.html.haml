@@ -1,10 +1,14 @@
 
 = semantic_form_for([:admin,  post],  :html => {:multipart => true } ) do |f|
   .twelve.columns
-    = f.input :location
-    = f.input :user_id, :as => :hidden, :value => current_user.id
-    = f.input :is_personal, :label => "Post as " + current_user.email.gsub(/\@.+$/, '') + " instead of Ptarmigan"
-    = f.input :not_news, :label => "Include in 'stuff we like' section, not frontpage news"
+    .six.columns.alpha
+      = f.input :location
+      = f.input :user_id, :as => :hidden, :value => current_user.id
+      = f.input :is_personal, :label => "Post as " + current_user.email.gsub(/\@.+$/, '') + " instead of Ptarmigan"
+      = f.input :not_news, :label => "Include in 'stuff we like' section, not frontpage news"
+    .six.columns.omega
+      = f.input :subsite, :label => 'Assign to sub-site', :hint => 'will appear in content of subdomain'
+      = f.input :show_on_main, :label => 'Also show on main site', :hint => 'Will appear in subdomain but also in main Ptarmigan news on regular site'
   .twelve.columns
     = tabs_for do |tab|
       - tab.create('english', 'English') do

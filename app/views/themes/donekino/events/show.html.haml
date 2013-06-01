@@ -1,0 +1,58 @@
+- if @event.registration_required && @event.future?
+  - if controller.action_name == 'show'
+    .opened= render :partial => 'shared/register', :locals => {:event => @event, :title => t(:done_kino_register, :scope => :donekino) }
+  - else
+    .click_here= link_to t(:click_here_to_register), @event
+
+     
+  - if controller.action_name == 'show'
+    - unless @event.resources.empty?
+      %a{:name => 'resources'}
+      .resources.clearfix
+        .user_content_title Resources
+        - @event.resources.each do |resource|
+          - unless resource.icon_file_size.blank?
+            = link_to image_tag(resource.icon.url(:medium)), resource.attachment.url
+
+          .resource_description
+            = link_to resource.name, resource.attachment.url
+            = raw resource.description
+  
+        
+    - unless @event.videos.empty?
+      %a{:name => 'videos'}
+      .user_content_title Videos
+      - @event.videos.each do |video|
+        = render :partial => 'video', :locals => {:video => video}
+    
+    %br
+    - unless @event.flickers.empty?
+      :javascript 
+        Galleria.loadTheme('/javascripts/themes/classic/galleria.classic.js');
+      %a{:name => 'photos'}
+      .user_content_title Photos
+      #image_entry
+      .slideshow.clearfix
+        - @event.flickers.each do |flicker|
+          - if flicker.hostid.blank?
+            = image_tag flicker.image.url(:standard)
+          - else
+            - info = flickr.photos.getInfo(:photo_id => flicker.hostid)
+            = image_tag(FlickRaw.url(info), {:title => flicker.name, :alt => flicker.description + ' photo by ' + (info.owner.realname.nil? ? info.owner.realname : info.owner.username)})
+      :javascript
+        //$('#image_entry').galleria({data_source: '.slideshow'});
+      %br/
+
+        
+      %br/
+      %br/      
+  -else
+    - unless @event.resources.empty?
+      = link_to(pluralize(@event.resources.size, 'resource'), event_path(:id => event))
+      %br/
+    - unless @event.videos.empty?
+      = link_to(pluralize( @event.videos.size, 'video'), event_path(:id => event))
+      %br/
+    - unless @event.flickers.empty?
+      = link_to(pluralize(@event.flickers.count, 'photo'), event_path(:id => event))
+  .share_this= share_this(@event)      

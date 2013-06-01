@@ -13,17 +13,18 @@
       $('#event_event').change(function() {
         window.location.replace(window.location.href.replace(/\?event=\d+/g, '') + '?event=' + $('#event_event').val());
       });
-%table
-  %thead.header
-    %tr
-      %th.name= 'Attendee'
+.attendees
+  %table
+    %thead.header
+      %tr
+        %th.name= 'Attendee'
 
-      %th.event= 'Event'
-      %th.comments= 'Comments'
-      %th.optional= 'Optional'
-      %th.actions= 'Actions'
-  %tbody.items.attendees
-    - @attendees.each do |attendee|
-      = render 'item', :attendee => attendee
-      
+        %th.event= 'Event'
+        %th.comments= 'Comments'
+        %th.optional= 'Optional'
+        %th.actions= 'Actions'
+    %tbody.items.attendees
+      - @attendees.each do |attendee|
+        = render 'item', :attendee => attendee
+        
 = paginate(@attendees)

@@ -55,14 +55,29 @@ class ApplicationController < ActionController::Base
     end
   end 
   
-  
-  def get_location
+  def get_domain
     if request.host =~ /ptarmigan\.fi/
       @location = Location.where(:locale => 'fi').first
       "fi"
     else
       @location = Location.where(:locale => 'ee').first
       "ee"
+    end
+  end
+
+  def get_location
+    subsites = Subsite.all.map{|x| x.name}
+    toplevel = request.host.match(/^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\./)
+    if !toplevel.nil?
+      if subsites.include?(toplevel[1]) 
+        @subsite = Subsite.where(:name => toplevel[1]).first
+        @location = @subsite.location
+        @subsite.name
+      else
+        get_domain
+      end
+    else
+      get_domain
     end
   end
   

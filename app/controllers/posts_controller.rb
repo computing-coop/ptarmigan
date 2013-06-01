@@ -3,7 +3,11 @@ class PostsController < InheritedResources::Base
   actions :index, :show
   
   def index
-    @posts = Post.by_location(@location.id).published.order('created_at DESC').page params[:page]
+    if @subsite
+      @posts = Post.by_subsite(@subsite).by_location(@location.id).published.order('created_at DESC').page params[:page]
+    else
+      @posts = Post.by_location(@location.id).published.order('created_at DESC').page params[:page]
+    end
     set_meta_tags :open_graph => {
       :title => "News | Ptarmigan" ,
       :type  => "ptarmigan:news",

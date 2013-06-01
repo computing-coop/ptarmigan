@@ -1,10 +1,11 @@
+= raw @event.description
+     
 - if @event.registration_required && @event.future?
   - if controller.action_name == 'show'
     .opened= render :partial => 'shared/register', :locals => {:event => @event, :title => t(:done_kino_register, :scope => :donekino) }
   - else
     .click_here= link_to t(:click_here_to_register), @event
 
-     
   - if controller.action_name == 'show'
     - unless @event.resources.empty?
       %a{:name => 'resources'}

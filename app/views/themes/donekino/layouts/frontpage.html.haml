@@ -40,17 +40,7 @@
                 %strong
                   = t :tallinn
                   = date_range('2013-08-10'.to_date, '2013-08-16'.to_date, :format => :long)
-        #top_nav_container.two.columns.omega
-          #language
-            = link_to('EST', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'et')
-            |
-            = link_to('ENG', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en')
-            |
-            = link_to('RUS', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'ru')
-            |
-            = link_to('FIN',:controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'fi')
-            |
-            = link_to('SWE',:controller =>   controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv-SE')            
+            
           -# #country_menu= render :partial => 'layouts/country_menu'
           - if user_signed_in?
             %li= link_to('staff', '/staff')

@@ -8,11 +8,11 @@ class ApplicationController < ActionController::Base
   helper LaterDude::CalendarHelper
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   theme :get_location
-  before_filter :get_locale
   before_filter :get_location
   before_filter :get_next_events
-  before_filter :tiib_check
-  before_filter :scorestore_check
+  before_filter :get_locale
+  # before_filter :tiib_check
+  # before_filter :scorestore_check
   
   def add_to_mailchimp
     h = Hominid::Base.new({:api_key => MAILCHIMP_API_KEY})
@@ -53,6 +53,12 @@ class ApplicationController < ActionController::Base
     else
       I18n.locale = session[:locale]
     end
+
+    if @subsite
+      if @subsite.name == 'donekino'
+        I18n.locale = 'en'
+      end
+    end
   end 
   
   def get_domain
@@ -72,6 +78,7 @@ class ApplicationController < ActionController::Base
       if subsites.include?(toplevel[1]) 
         @subsite = Subsite.where(:name => toplevel[1]).first
         @location = @subsite.location
+
         @subsite.name
       else
         get_domain

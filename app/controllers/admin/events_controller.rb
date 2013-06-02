@@ -43,7 +43,7 @@ class Admin::EventsController < ApplicationController
   end
   
   def index
-    @events = Event.filter(:params => params, :filter => :event_filter)  #.order('date DESC').page(params[:page]).per(50)
+    @events = Event.order('date DESC').filter(:params => params, :filter => :event_filter) #.page(params[:page]).per(50)
     respond_to do |format|
       format.html
       format.rss { render :layout => false}

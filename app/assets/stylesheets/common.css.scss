@@ -185,7 +185,7 @@ margin-bottom: 10px;
 
 
 .top_wide .events .event_front .event_facebook {
-  float: right;
+  float: left;
   width: 20px;
 }
 
@@ -1254,6 +1254,21 @@ ul img {
 	line-height: 1.5em;
 	font-family: Helvetica, Arial, sans-serif;
 	color: black;
+  .event_subparams {
+    float: left;
+  }
+  .event_facebook {
+    float: right;
+    a {
+      display: block;
+    }
+    img {
+      padding-right: 3px;
+    }
+    font-size: 13px;
+    line-height: 15px;
+    margin-left: 100px;
+  }
 }
 .hit {
   margin-bottom: 20px;
@@ -1902,6 +1917,7 @@ span.suomi.other_location {
         color: #333;
         line-height: 13px;
         margin: 5px 0px 5px 0px;
+
       }
       .tags {
         font-size: 11px;
@@ -1946,4 +1962,13 @@ p.inline-hints {
 
 #proposal_public_engagement_input p.inline-hints {
   margin-top: -90px;
+}
+
+.event_date {
+  h3 {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    line-height: 29px;
+    margin-bottom: 0px;
+  }
 }

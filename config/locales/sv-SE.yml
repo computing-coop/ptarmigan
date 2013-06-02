@@ -70,7 +70,9 @@
   inactive_projects: 'Inaktiva projekt'
   nope: 'nix!'
   project_spiel: "Vi kallar Ptarmigan för ett 'projektrum' och uppskattar återkommande arrangemang som bygger på tidigare erfarenheter. Ofta utgör våra arrangemang delar av mer omfattande projekt. Vi är alltjämt öppna för förslag både vad gäller nya projekt och nya arrangemang inom ramverket av våra befintliga teman."  
-
+  documents_resources: 'dokument/resurser'
+  photos: 'bilder'
+  videos: 'videor'
   number:
     # Used in number_with_delimiter()
     # These are also the defaults for 'currency', 'percentage', 'precision', and 'human'

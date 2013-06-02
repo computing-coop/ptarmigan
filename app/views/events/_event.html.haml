@@ -1,7 +1,6 @@
 = content_tag_for :div, event do
   - unless event.avatar_file_name.blank?
     .event_image=image_tag event.avatar.url(:medium) 
-  .event_facebook= raw facebook_link(event)
   
   .event_parameters
     .event_title
@@ -9,43 +8,44 @@
         = event.title
       - else 
         =link_to(event.title, event_url(:id => event))
-
-    .event_type= event.event_type
-    .event_date
-      =l event.date, :format => :long
-      - unless event.enddate.blank?
-        = "#{t(:daterange)} #{l event.enddate,:format => :long}"
-      = raw event.notes
-    - unless event.artist.nil?
-      Featuring artist: 
-      = link_to(event.artist.name, artist_path(:id => event.artist.id))
-    - unless event.project.blank?
-      .event_promoter
-        = t(:part_of_project) + ": "
-        = link_to(event.project.name, event.project)
-    - unless event.promoter.blank?
-      .event_promoter= t(:presented_by) + " " + event.promoter
-    .event_metadata
-      %span.event_cost
-        - if !event.cost
-          - if event.donations_requested == true
-            = t :donations
+    .event_subparams
+      .event_type= event.event_type
+      .event_date
+        =l event.date, :format => :long
+        - unless event.enddate.blank?
+          = "#{t(:daterange)} #{l event.enddate,:format => :long}"
+        = raw event.notes
+      - unless event.artist.nil?
+        Featuring artist: 
+        = link_to(event.artist.name, artist_path(:id => event.artist.id))
+      - unless event.project.blank?
+        .event_promoter
+          = t(:part_of_project) + ": "
+          = link_to(event.project.name, event.project)
+      - unless event.promoter.blank?
+        .event_promoter= t(:presented_by) + " " + event.promoter
+      .event_metadata
+        %span.event_cost
+          - if !event.cost
+            - if event.donations_requested == true
+              = t :donations
+            - else
+              = t(:free)
           - else
-            = t(:free)
-        - else
-          =  ptarmigan_cost(event.cost, event.donations_requested)
-          - if event.discountedcost.blank?
-            - if !event.discountreason.blank?
-              = " (#{event.discountreason})"
-          - else
-            = "or " + ptarmigan_cost(event.discountedcost) + " (#{event.discountreason})"
-      - unless event.place_id == 8 && @location.id == 2
-        = "@"    
-        %b= event.place.name
-        .event_place_details
-          = [event.place.address1, event.place.postcode + ' ' + event.place.city].join(' / ')
-          - if event.place.map_url
-            = link_to t(:map), event.place.map_url, :target => "_blank"
+            =  ptarmigan_cost(event.cost, event.donations_requested)
+            - if event.discountedcost.blank?
+              - if !event.discountreason.blank?
+                = " (#{event.discountreason})"
+            - else
+              = "or " + ptarmigan_cost(event.discountedcost) + " (#{event.discountreason})"
+        - unless event.place_id == 8 && @location.id == 2
+          = "@"    
+          %b= event.place.name
+          .event_place_details
+            = [event.place.address1, event.place.postcode + ' ' + event.place.city].join(' / ')
+            - if event.place.map_url
+              = link_to t(:map), event.place.map_url, :target => "_blank"
+    .event_facebook= raw facebook_link(event)
   .event_description
     - if event.registration_required && event.future?
       - if event.registration_limit

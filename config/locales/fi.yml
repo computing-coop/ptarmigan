@@ -35,6 +35,9 @@ fi:
   donations: 'Lahjoituksia otetaan ilolla vastaan'
   noevents: "There are currently no events scheduled.  Please check back in the future, or follow us on Twitter, Facebook or RSS."
   daterange: "-"
+  photos: 'kuvat'
+  videos: 'videoita'
+  documents_resources: 'asiakirjat/resurssit'  
   date:
     formats:
       default: "%e. %Bta %Y"

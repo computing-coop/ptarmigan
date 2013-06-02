@@ -96,6 +96,9 @@ et:
   send_proposal: 'Submit your idea!'
   inactive_projects: 'Inactive Projects'
   nope: 'midagi põle'
+  photos: 'pildigalerii'
+  videos: 'videod'
+  documents_resources: 'dokumendid / ressursid'  
   date_range:
     long:
       different_months_same_year: "%{from_day}. %{from_month} %{sep} %{until_day}. %{until_month} %{year}"

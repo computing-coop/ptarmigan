@@ -86,7 +86,7 @@ def date_range(from_date, until_date, options = {})
     if front == false
       width = 20
     else
-      width = 30
+      width = 16
     end
 
     
@@ -100,19 +100,25 @@ def date_range(from_date, until_date, options = {})
     if event.facebook.blank?
       out += ""
     else
-      out += link_to(image_tag('layout/facebook.png', {:alt => 'facebook event', :border => 0, :width => width}), 'http://www.facebook.com/event.php?eid=' + event.facebook.to_s)
+      out += link_to(image_tag('layout/facebook.png', {:alt => 'facebook event', :border => 0, :width => width}) + " facebook", 'http://www.facebook.com/event.php?eid=' + event.facebook.to_s)
     end
     
     if event.videos.empty?
       out += ''
     else
-      out += link_to(image_tag('layout/vimeo.png', {:alt => 'videos from this event', :border => 0, :width => width}), event_path(:id => event) + "#videos")
+      out += link_to(image_tag('layout/vimeo.png', {:alt => 'videos from this event', :border => 0, :width => width}) + " " + t(:videos), event_path(:id => event) + "#videos")
     end
     
     if event.flickers.empty?
       out += ''
     else
-      out += link_to(image_tag('layout/flickr.png', {:alt => 'photos from this event', :border => 0, :width => width}), event_path(:id => event) + "#photos")
+      out += link_to(image_tag('layout/flickr.png', {:alt => 'photos from this event', :border => 0, :width => width}) + " " + t(:photos), event_path(:id => event) + "#photos")
+    end
+
+    if event.resources.empty?
+      out += ''
+    else
+      out += link_to(image_tag('layout/document.png', {:alt => 'documents and resources from this event', :border => 0, :width => width}) + " " + t(:documents_resources), event_path(:id => event.slug) + "#resources")
     end
     return raw out
   end

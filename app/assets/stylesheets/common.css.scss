@@ -1900,15 +1900,15 @@ span.suomi.other_location {
         font-size: 12px;
         line-height: 15px;
         font-weight: bold;
-        &.eesti a{
+        &.eesti a, &.eesti a:visited {
           color: $tallinn-blue;
-          &:hover, &:visited {
+          &:hover {
             color: #3333CD;
           }
         }
-        &.suomi a {
+        &.suomi a, *.suomi a:visited {
           color: $helsinki-green;
-          &:hover, &:visited {
+          &:hover {
              color:#00A329;
           }
         }

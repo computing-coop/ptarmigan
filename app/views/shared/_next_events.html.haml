@@ -1,7 +1,7 @@
 
 - next_events.each_with_index do |event, index|
   .event.upcoming{:class => ((index + 1) == next_events.count) ? :last : false}
-    .image= image_tag event.avatar.url(:small), :width => 250
+    .image= image_tag event.avatar.url(:larger)
     .title{:class => event.location.name.downcase}= link_to event.name, url_for(:action => :show, :controller => :events, :id => event.slug, :host => 'ptarmigan.' + event.location.locale)
     .event_date
       =l event.date, :format => :long

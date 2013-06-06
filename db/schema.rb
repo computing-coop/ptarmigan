@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601102713) do
+ActiveRecord::Schema.define(:version => 20130606214214) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -404,6 +404,8 @@ ActiveRecord::Schema.define(:version => 20130601102713) do
     t.boolean  "not_news",              :default => false, :null => false
     t.integer  "subsite_id"
     t.boolean  "show_on_main"
+    t.integer  "embed_gallery_id"
+    t.boolean  "embed_above_post",      :default => false, :null => false
   end
 
   create_table "presslinks", :force => true do |t|

@@ -1,0 +1,20 @@
+#images
+  - if image_array.first.hostid.blank?
+    = image_tag image_array.first.image.url(:standard)
+  - else
+    - info = flickr.photos.getInfo(:photo_id => image_array.first.hostid)
+    = image_tag(FlickRaw.url(info), {:title => image_array.first.name, :alt => image_array.first.description + ' photo by ' + (info.owner.realname.nil? ? info.owner.realname : info.owner.username)})          
+- image_array.each do |flicker|
+  - if flicker.hostid.blank?
+    = link_to(image_tag(flicker.image.url(:front_sidebar), :class => :thumb, :border => 0), '#', :rel => flicker.image.url(:standard), :class => "slide_image")
+  - else
+    - info = flickr.photos.getInfo(:photo_id => flicker.hostid)
+    = image_tag(FlickRaw.url(info), {:title => flicker.name, :alt => flicker.description + ' photo by ' + (info.owner.realname.nil? ? info.owner.realname : info.owner.username)})
+:javascript
+  $(".slide_image").click(function() {
+    var image = $(this).attr("rel");
+    $('#images').hide();
+    $('#images').fadeIn('slow');
+    $('#images').html('<img src="' + image + '"/>');
+    return false;
+  });

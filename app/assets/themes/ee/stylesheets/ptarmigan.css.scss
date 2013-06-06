@@ -1,5 +1,5 @@
 $tallinn-blue: #3477B6;
-$helsinki-green: #00D735;
+$helsinki-green: $helsinki-green;
 body {
   text-align: left; 
   font-family:arial,sans-serif;
@@ -308,7 +308,7 @@ a, a:visited, .blog_title a:visited,  .blog_body a:visited  {
 }
 
 .day_names{
-	color: #00D735;
+	color: $helsinki-green;
 }
 
 /**twitter**/

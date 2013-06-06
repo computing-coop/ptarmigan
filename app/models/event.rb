@@ -18,7 +18,7 @@ class Event < ActiveRecord::Base
         :path =>  ":rails_root/public/images/events/:id/:style/:basename.:extension", 
         :url => "/images/events/:id/:style/:basename.:extension"
 
-  has_attached_file :carousel, :styles => {:largest => "1200x492#", :new_carousel => "960x400#", :full => "600x400#", :small => "300x200#"}, 
+  has_attached_file :carousel, :styles => {:largest => "1180x492#", :new_carousel => "960x400#", :full => "600x400#", :small => "300x200#"}, 
   :path =>  ":rails_root/public/images/carousel/events/:id/:style/:basename.:extension", :url => "/images/carousel/events/:id/:style/:basename.:extension"
   translates :notes, :description, :title
   accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['notes'].blank? && attributes['description'].blank?  && attributes['title'].blank? }

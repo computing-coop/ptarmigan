@@ -4,7 +4,7 @@
       .cover
         - new_carousel.each_with_index do |slide,i|
           .slide
-            = image_tag(slide.image.url(:new_carousel), :class => "slider button#{(i+1).to_s}" + (i == 0 ? " active" : ""), :width => 1180, :height => 500,:rel => i+1, :href=> 'javascript:void();')
+            = image_tag(slide.image.url(:largest), :class => "slider button#{(i+1).to_s}" + (i == 0 ? " active" : ""), :rel => i+1, :href=> 'javascript:void();')
     .overlay.clearfix
       #creditslider
         .cover

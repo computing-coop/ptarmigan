@@ -126,16 +126,26 @@
         Galleria.loadTheme('/javascripts/themes/classic/galleria.classic.js');
       %a{:name => 'photos'}
       .user_content_title Photos
-      #image_entry
-      .slideshow.clearfix
-        - event.flickers.each do |flicker|
-          - if flicker.hostid.blank?
-            = image_tag flicker.image.url(:standard)
-          - else
-            - info = flickr.photos.getInfo(:photo_id => flicker.hostid)
-            = image_tag(FlickRaw.url(info), {:title => flicker.name, :alt => flicker.description + ' photo by ' + (info.owner.realname.nil? ? info.owner.realname : info.owner.username)})
+      #images
+        - if event.flickers.first.hostid.blank?
+          = image_tag event.flickers.first.image.url(:standard)
+        - else
+          - info = flickr.photos.getInfo(:photo_id => event.flickers.first.hostid)
+          = image_tag(FlickRaw.url(info), {:title => event.flickers.first.name, :alt => event.flickers.first.description + ' photo by ' + (info.owner.realname.nil? ? info.owner.realname : info.owner.username)})          
+      - event.flickers.each do |flicker|
+        - if flicker.hostid.blank?
+          = link_to(image_tag(flicker.image.url(:front_sidebar), :class => :thumb, :border => 0), '#', :rel => flicker.image.url(:standard), :class => "slide_image")
+        - else
+          - info = flickr.photos.getInfo(:photo_id => flicker.hostid)
+          = image_tag(FlickRaw.url(info), {:title => flicker.name, :alt => flicker.description + ' photo by ' + (info.owner.realname.nil? ? info.owner.realname : info.owner.username)})
       :javascript
-        //$('#image_entry').galleria({data_source: '.slideshow'});
+        $(".slide_image").click(function() {
+          var image = $(this).attr("rel");
+          $('#images').hide();
+          $('#images').fadeIn('slow');
+          $('#images').html('<img src="' + image + '"/>');
+          return false;
+        });
       %br/
 
         

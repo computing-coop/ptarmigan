@@ -9,7 +9,7 @@
     .blog_image= image_tag post.carousel.url(:full)
   - unless post.embed_gallery_id.blank?
     - if post.embed_above_post == true
-      .blog_image= render :partial => 'shared/photo_gallery', :locals => {:image_array => (post.carousel? ? Event.find(post.embed_gallery_id).flickers.delete_if{|x| x.image.original_filename == post.carousel.original_filename} :Event.find(post.embed_gallery_id).flickers)}    
+      .blog_image= render :partial => 'shared/photo_gallery', :locals => {:image_array => (post.carousel? ? Event.find(post.embed_gallery_id).flickers.delete_if{|x| x.image.original_filename == post.carousel.original_filename} : Event.find(post.embed_gallery_id).flickers)}    
   .blog_body= raw post.body
   - unless post.embed_gallery_id.blank?
     - if post.embed_above_post != true

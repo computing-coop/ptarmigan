@@ -1,5 +1,5 @@
 $tallinn-blue: #3477B6;
-$helsinki-green: #00D735;
+$helsinki-green: #5BBA47;
 
 
 
@@ -196,7 +196,7 @@ a, a:visited {
 }
 
 #projects .project, #pastprojects .project {
-  border-bottom: 1px solid #00D735;
+  border-bottom: 1px solid $helsinki-green;
 }
 
 .event_front_date, .front_read_more, .event_front_cost {
@@ -215,7 +215,7 @@ a, a:visited {
 
 
 .event_description a {
-	color: #00D735;
+	color: $helsinki-green;
 }
 
 .event_metadata{
@@ -282,7 +282,7 @@ color:  white;
 }
 
 .day_names{
-	color: #00D735;
+	color: $helsinki-green;
 }
 
 /**twitter**/
@@ -469,7 +469,7 @@ dt.label {
 }
 #twitter_update_list li a{
 	clear:right;
-	color:#00D735;
+	color:$helsinki-green;
 /*  float:right;*/
 	font-size:10px;
 	padding-top:5px;

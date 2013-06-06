@@ -12,7 +12,16 @@
               = "posted by #{post.user.email.gsub(/\@.+$/, '')} on #{l(post.created_at, :format => :long)}"
             - else
               = "posted by Ptarmigan on #{l(post.created_at, :format => :long)}"
+          - unless post.embed_gallery_id.blank?
+            - if post.embed_above_post == true
+              .blog_image= render :partial => 'shared/photo_gallery', :locals => {:image_array => (post.carousel? ? Event.find(post.embed_gallery_id).flickers.delete_if{|x| x.image.original_filename == post.carousel.original_filename}.sort {rand } : Event.find(post.embed_gallery_id).flickers).sort {rand }}                 
           .blog_body= raw post.body
+          - unless post.embed_gallery_id.blank?
+            - if post.embed_above_post != true
+              .blog_image= render :partial => 'shared/photo_gallery', :locals => {:image_array => (post.carousel? ? Event.find(post.embed_gallery_id).flickers.delete_if{|x| x.image.original_filename == post.carousel.original_filename}.sort {rand } :Event.find(post.embed_gallery_id).flickers).sort {rand } }
+            .blog_callback
+              = t(:see_more) + ":"
+              = link_to Event.find(post.embed_gallery_id).name, Event.find(post.embed_gallery_id)   
           .share_this= share_this(post)
 .sidebar.five.columns.omega
   - unless @upcoming.empty?

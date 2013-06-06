@@ -1,6 +1,6 @@
 
 $tallinn-blue: #3477B6;
-$helsinki-green: #00D735;
+$helsinki-green: #5BBA47;
 
 .clearfix:after, .headline:after  {
     content: ".";
@@ -460,7 +460,7 @@ margin-bottom: 10px;
 }
 
 .event_description a {
-	color: #00D735;
+	color: $helsinki-green;
 }
 .blog_title a {
 
@@ -741,7 +741,7 @@ span.cal_size {
 }
 
 .day_names{
-	color: #00D735;
+	color: $helsinki-green;
 }
 
 /**twitter**/
@@ -941,7 +941,7 @@ dt.label {
   float: left;
 }
 .legend .entry .suomi {
-  background-color: #00D735;
+  background-color: $helsinki-green;
   width: 20px;
   float: left;
 }
@@ -1128,7 +1128,7 @@ h1 {
 .project_events .project_event {
   height: 105px;
   margin-bottom: 10px;
-  border-bottom: 1px dotted #00D735;
+  border-bottom: 1px dotted $helsinki-green;
 }
 
 .project_events .project_event .project_event_image {

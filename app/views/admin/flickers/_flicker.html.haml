@@ -19,7 +19,7 @@
             alert(xhr.responseText);
           });  
         .image
-          = image_tag flicker.image.url(:new_carousel), :width => 425
+          = image_tag flicker.image.url(:largerst), :width => 425
           = link_to 'view in new tab', flicker.image.url(:new_carousel), :target => :_blank
           (make sure it's not blurry if you are making it a carousel item)
       %ul.horizontal

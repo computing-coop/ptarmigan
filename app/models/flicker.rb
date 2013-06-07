@@ -7,7 +7,7 @@ class Flicker < ActiveRecord::Base
                     :path =>  ":rails_root/public/images/contrib/:id/:style/:basename.:extension", 
                     :url => "/images/contrib/:id/:style/:basename.:extension",
                     :styles => {:largest => "1180x492#", :new_carousel => "960x400#", :larger => "800x600>", :cropped => "600x400#", 
-                      :standard => "500x375>", :medium => "320x200#", 
+                      :standard => "500x375>", :medium => "320x200#", :thumb => "100x100>",
                       :front_sidebar => "72x72#"}
 
   include PublicActivity::Model

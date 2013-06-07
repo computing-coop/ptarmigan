@@ -1,103 +1,54 @@
-.new_carousel.clearfix
+.newer_carousel.clearfix
   - unless new_carousel.empty?
-    #slider
-      .cover
+    #ei-slider.ei-slider
+      %ul.ei-slider-large
         - new_carousel.each_with_index do |slide,i|
-          .slide
-            = image_tag(slide.image.url(:largest), :class => "slider button#{(i+1).to_s}" + (i == 0 ? " active" : ""), :rel => i+1, :href=> 'javascript:void();')
-    .overlay.clearfix
-      #creditslider
-        .cover
-          - new_carousel.each do |i|
-            .slide
+          %li
+            = image_tag slide.image.url(:largest) 
+            -#, :class => "slider button#{(i+1).to_s}" + (i == 0 ? " active" : ""), :rel => i+1, :href=> 'javascript:void();')
+            .ei-title
               .text
                 %span.category
-                  - if i.class == Flicker
+                  - if slide.class == Flicker
                     = t :archive
-                  - if i.class == Project
-                    - if i.active == false
+                  - if slide.class == Project
+                    - if slide.active == false
                       = t :archive
                     - else
                       = t :project
-                  - if i.class == Event
+                  - if slide.class == Event
                     = t :event
-                  - if i.class == Artist
+                  - if slide.class == Artist
                     = t :artist_in_residence
-                  - if i.class == Post
-                    - if i.not_news == false
+                  - if slide.class == Post
+                    - if slide.not_news == false
                       = t :news
                     - else
                       = t :blog
                   = ": "
                 .title
-                  = link_to i.name,  url_for(i.carousel_link)
-                  - if i.class == Project
-                    - if i.active == false
+                  = link_to slide.name,  url_for(slide.carousel_link)
+                  - if slide.class == Project
+                    - if slide.active == false
                       %span.archive= "(#{t :project})"
                 .date
-                  = i.carousel_date.empty? ? t(:active) : i.carousel_date.map{|x| l x, :format => :long}.join(' - ')
+                  = slide.carousel_date.empty? ? t(:active) : slide.carousel_date.map{|x| l x, :format => :long}.join(' - ')       
+
+      %ul.ei-slider-thumbs
+        %li.ei-slider-element Current
+        - new_carousel.each do |slide|
+          %li
+            = link_to slide.name, '#'
+            = image_tag(slide.image.url(:thumb))
       #buttons
         - new_carousel.each_with_index do |b, i|
           %a{:class => "button#{(i+1).to_s}" + (i == 0 ? " active" : ""), :rel => i+1, :href=> 'javascript:void();', :style => "background-image: url(#{theme_image_path('layout/pagination.png')});"} &nbsp;
 = content_for :jquery do
   :plain
-
-    var toggleLoading = function() { $("#loading").toggle() };
-    
-    $('button.email_signup').click(function() {
-      $('button.email_signup').attr('disabled', 'disabled');   
-      toggleLoading();
-      $('#email_form').submit();
+    $('#ei-slider').eislideshow({
+          animation     : 'center',
+          autoplay      : true,
+          slideshow_interval  : 3000,
+          titlesFactor    : 0
     });
-    $("input.clearfield").clearField();
-    function move_right(integer) {
-      $('#slider .cover').animate({left:-1180*(parseInt(integer)-1)}); 
-      $('#creditslider .cover').animate({left:-600*(parseInt(integer)-1)}); 
-      $('#buttons a').each(function(){
-        $(this).removeClass('active');
-        if($(this).hasClass('button'+integer)){
-          $(this).addClass('active')
-        }
-      });
-    }
-
-    function auto_move() {
-      var totalslides = $('#buttons a').size();
-      var current = $('#buttons a.active').attr('rel');
-      if (parseInt(current) == totalslides) {
-        current = 0;
-      }
-      move_right(parseInt(current)+1);
-      setTimeout(auto_move, 7000);
-    }
-
-    $('#buttons a').click(function(){
-      var integer = $(this).attr('rel');
-      move_right(integer);
-    }); 
-
-    $('img.slider').click(function(){
  
-      var integer = $(this).attr('rel');
-   
-
-      if (integer == #{@new_carousel.size}) {
-        var plus = 1;
-        $('#slider .cover').animate({left:0});  
-        $('#creditslider .cover').animate({left:0});
-
-      } else {
-        var plus = parseInt(integer) +1;
-        $('#slider .cover').animate({left:-1180*(parseInt(integer))});  
-        $('#creditslider .cover').animate({left:-600*(parseInt(integer))});        
-      }
-       
-      $('#buttons a').each(function(){
-        $(this).removeClass('active');
-        if($(this).hasClass('button'+plus)) {
-          $(this).addClass('active');
-        }
-      });
-    });     
-
-    setTimeout(auto_move, 7200);          

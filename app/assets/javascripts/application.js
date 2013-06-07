@@ -6,4 +6,7 @@
 //= require jquery.clearfield
 //= require jquery.purr
 //= require slideshow
+//= require jquery.eislideshow
+//= require jquery.easing.1.3
+
 

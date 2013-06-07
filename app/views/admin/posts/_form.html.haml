@@ -54,7 +54,7 @@
           = image_tag f.object.carousel.url(:full)
           = f.check_box :remove_carousel
           Delete carousel image          
-      = f.input :carousel, :label => "Carousel image (940x400)", :hint => "will appear in frontpage carousel if exists"
+      = f.input :carousel, :label => "Carousel image (1180x492)", :hint => "will appear in frontpage carousel if exists"
       = f.input :hide_carousel, :label => "Remove from carousel (if it's old)"
     .six.columns.omega
       = f.input :embed_gallery_id, :as => :select, :collection => Event.where(:id => [Flicker.all.map(&:event_id).uniq]).sort_by{|x| x.date}.reverse, :hint => "If archival images exist for an event, embed the gallery in this post"

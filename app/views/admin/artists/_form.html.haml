@@ -50,7 +50,7 @@
       .form_image
         = image_tag f.object.carousel.url(:small)
         = f.check_box :remove_carousel
-    = f.input :carousel, :hint => "(must be at least 960x400, will be cropped to that)"
+    = f.input :carousel, :hint => "(must be at least 1180x492, will be cropped to that)"
   .twelve.columns= f.submit "Submit"
 = content_for :jquery do
   :plain

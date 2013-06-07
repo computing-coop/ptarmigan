@@ -100,7 +100,7 @@
         = image_tag f.object.carousel(:small)
         = f.check_box :remove_carousel
         Delete carousel image
-      = f.input :carousel, :label => 'Carousel image' + (f.object.carousel? ?  ' -- change:' : ''), :hint => raw("optional, but recommended.  Must be at least 960x400, will be cropped if larger. THIS MUST BE JPG OR GIF OR PNG -- <strong><font size='+1'>NO TIFF FILES!!!</font></strong>")
+      = f.input :carousel, :label => 'Carousel image' + (f.object.carousel? ?  ' -- change:' : ''), :hint => raw("optional, but recommended.  Must be at least 1180x492, will be cropped if larger. THIS MUST BE JPG OR GIF OR PNG -- <strong><font size='+1'>NO TIFF FILES!!!</font></strong>")
   %hr
   .thirteen.columns
     .six.columns.alpha

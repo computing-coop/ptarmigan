@@ -42,7 +42,7 @@
     = f.input :avatar
   %hr{:style => "clear: left"}
   %p
-    = f.label (f.object.carousel? ? 'Change carousel image' : 'Carousel image') + '(must be at least 960x400 and will be cropped)'
+    = f.label (f.object.carousel? ? 'Change carousel image' : 'Carousel image') + '(must be at least 1180x492 and will be cropped)'
     - if f.object.carousel?
       .form_image
         = image_tag f.object.carousel.url(:small)

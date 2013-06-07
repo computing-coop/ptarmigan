@@ -1285,9 +1285,14 @@ ul img {
   .event_facebook {
     float: right;
     a {
+
+      clear: both;
+
       display: block;
     }
     img {
+      margin-right: 10px;
+      float: left;
       padding-right: 3px;
     }
     font-size: 13px;

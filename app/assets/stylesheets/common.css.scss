@@ -2,6 +2,10 @@
 $tallinn-blue: #3477B6;
 $helsinki-green: #5BBA47;
 
+h3 , h2{
+  font-family: Helvetiva, Arial, sans-serif;
+}
+
 .clearfix:after, .headline:after  {
     content: ".";
     display: block;
@@ -132,7 +136,7 @@ $helsinki-green: #5BBA47;
 }
 .event, .artist, .project {
 	border-bottom: 1px dotted gray;
-	padding-top: 10px;
+
   margin-bottom: 10px;
   clear: left;
 
@@ -396,6 +400,10 @@ margin-bottom: 10px;
 .event_image {
   float:left;
   margin: 0px 10px 0px 0px;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 .event_parameters{
@@ -1748,7 +1756,7 @@ span.page a, span.next a, span.prev a {
 }
 span.next a, span.prev a {
   font-size: 16pt;
-  margin-top: -5px;
+  margin-top: -3px;
   display: block;
 }
 span.gap , span.last , span.first  {

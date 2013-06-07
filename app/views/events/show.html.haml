@@ -1,4 +1,6 @@
+
 - if @events.nil?
+
   = render :partial => "event",  :locals => {:event => @event, :datespan => @datespan}
 - else
   - unless @datespan.blank?
@@ -16,4 +18,5 @@
         %h2 &nbsp;
         
   - @events.each do |event|
+
     = render :partial => "event", :locals => {:event => event, :datespan => @datespan}

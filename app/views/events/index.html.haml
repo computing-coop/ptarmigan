@@ -15,18 +15,19 @@
       = t :noevents
     - else
       = render :partial => "event", :collection => @upcoming 
-      .bottom_paginate{:style => (@archive.empty? ? false : 'margin-bottom: 145px;')}= paginate(@upcoming)
+      .clearfix{:style => (@archive.empty? ? false : 'margin-bottom: 145px;')}= paginate(@upcoming)
 
 
 - if @archive.empty?
-  .events{:style => "clear: both; margin-top: 15px; border-top: 1px dotted #999;"}
-    %h3= link_to "#{t(:event)} #{t(:archive)} ...", '/events/archives'
+  .events{:style => "clear: both;"}
+    .headline
+      %h2= link_to "#{t(:event)} #{t(:archive)} ...", '/events/archives'
 - else
-  .events{:style => "clear: both; margin-top: 45px; border-top: 1px dotted #999;"}
+  .events
     .headline.clearfix
       %h2
         = t :archive
         = " / #{t(:past)}"
       = paginate @archive, :params => {:controller => 'events', :action => 'archives'}, :param_name => :archive_page
     = render :partial => "event", :collection => @archive
-    .bottom_paginate= paginate @archive, :params => {:controller => 'events', :action => 'archives'}, :param_name => :archive_page
+    .clearfix= paginate @archive, :params => {:controller => 'events', :action => 'archives'}, :param_name => :archive_page

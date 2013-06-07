@@ -7,32 +7,32 @@
             = image_tag slide.image.url(:largest) 
             -#, :class => "slider button#{(i+1).to_s}" + (i == 0 ? " active" : ""), :rel => i+1, :href=> 'javascript:void();')
             .ei-title
-              .text
-                %span.category
-                  - if slide.class == Flicker
+
+              %span.category
+                - if slide.class == Flicker
+                  = t :archive
+                - if slide.class == Project
+                  - if slide.active == false
                     = t :archive
-                  - if slide.class == Project
-                    - if slide.active == false
-                      = t :archive
-                    - else
-                      = t :project
-                  - if slide.class == Event
-                    = t :event
-                  - if slide.class == Artist
-                    = t :artist_in_residence
-                  - if slide.class == Post
-                    - if slide.not_news == false
-                      = t :news
-                    - else
-                      = t :blog
-                  = ": "
-                .title
-                  = link_to slide.name,  url_for(slide.carousel_link)
-                  - if slide.class == Project
-                    - if slide.active == false
-                      %span.archive= "(#{t :project})"
-                .date
-                  = slide.carousel_date.empty? ? t(:active) : slide.carousel_date.map{|x| l x, :format => :long}.join(' - ')       
+                  - else
+                    = t :project
+                - if slide.class == Event
+                  = t :event
+                - if slide.class == Artist
+                  = t :artist_in_residence
+                - if slide.class == Post
+                  - if slide.not_news == false
+                    = t :news
+                  - else
+                    = t :blog
+                = ": "
+              .title
+                = link_to slide.name,  url_for(slide.carousel_link)
+                - if slide.class == Project
+                  - if slide.active == false
+                    %span.archive= "(#{t :project})"
+              .date
+                = slide.carousel_date.empty? ? t(:active) : slide.carousel_date.map{|x| l x, :format => :long}.join(' - ')       
 
       %ul.ei-slider-thumbs
         %li.ei-slider-element Current
@@ -40,13 +40,13 @@
           %li
             = link_to slide.name, '#'
             = image_tag(slide.image.url(:thumb))
-      #buttons
-        - new_carousel.each_with_index do |b, i|
-          %a{:class => "button#{(i+1).to_s}" + (i == 0 ? " active" : ""), :rel => i+1, :href=> 'javascript:void();', :style => "background-image: url(#{theme_image_path('layout/pagination.png')});"} &nbsp;
+      -# #buttons
+      -#   - new_carousel.each_with_index do |b, i|
+      -#     %a{:class => "button#{(i+1).to_s}" + (i == 0 ? " active" : ""), :rel => i+1, :href=> 'javascript:void();', :style => "background-image: url(#{theme_image_path('layout/pagination.png')});"} &nbsp;
 = content_for :jquery do
   :plain
     $('#ei-slider').eislideshow({
-          animation     : 'center',
+          animation     : 'sides',
           autoplay      : true,
           slideshow_interval  : 3000,
           titlesFactor    : 0

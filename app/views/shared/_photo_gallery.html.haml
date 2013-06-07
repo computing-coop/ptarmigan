@@ -9,7 +9,7 @@
     = link_to(image_tag(flicker.image.url(:front_sidebar), :class => :thumb, :border => 0), '#', :rel => flicker.image.url(:larger), :class => "slide_image")
   - else
     - info = flickr.photos.getInfo(:photo_id => flicker.hostid)
-    = image_tag(FlickRaw.url(info), {:title => flicker.name, :alt => flicker.description + ' photo by ' + (info.owner.realname.nil? ? info.owner.realname : info.owner.username)})
+    = link_to(image_tag(FlickRaw.url(info), {:title => flicker.name, :alt => flicker.description + ' photo by ' + (info.owner.realname.nil? ? info.owner.realname : info.owner.username), :class => :thumb, :width => 100, :border => 0}), '#', :rel => FlickRaw.url(info), :class => "slide_image")
 :javascript
   $(".slide_image").click(function() {
     var image = $(this).attr("rel");

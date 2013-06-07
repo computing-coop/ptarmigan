@@ -287,15 +287,24 @@
 			}	
 			
 			// titles animation
-			$nextSlide.find('div.ei-title > h2')
+			$nextSlide.find('div.ei-title > span.category')
 					  .css( 'margin-right', 50 + 'px' )
 					  .stop()
 					  .delay( this.options.speed * this.options.titlesFactor )
 					  .animate({ marginRight : 0 + 'px', opacity : 1 }, this.options.titlespeed, this.options.titleeasing )
 					  .end()
-					  .find('div.ei-title > h3')
+					  .find('div.ei-title > .title')
 					  .css( 'margin-right', -50 + 'px' )
 					  .stop()
+		
+						.animate({ marginRight : 0 + 'px', opacity : 1 }, this.options.titlespeed, this.options.titleeasing )
+						.end()					  
+					  .find('div.ei-title > .date')
+					  .css( 'margin-right', -50 + 'px' )
+					  .stop()
+
+					  .animate({ marginRight : 0 + 'px', opacity : 1 }, this.options.titlespeed, this.options.titleeasing )
+						.end()
 					  .delay( this.options.speed * this.options.titlesFactor )
 					  .animate({ marginRight : 0 + 'px', opacity : 1 }, this.options.titlespeed, this.options.titleeasing )
 			

@@ -4,7 +4,7 @@
       %ul.ei-slider-large
         - new_carousel.each_with_index do |slide,i|
           %li
-            = image_tag slide.image.url(:largest) 
+            = link_to image_tag(slide.image.url(:largest)), url_for(slide.carousel_link)
             -#, :class => "slider button#{(i+1).to_s}" + (i == 0 ? " active" : ""), :rel => i+1, :href=> 'javascript:void();')
             .ei-title
 

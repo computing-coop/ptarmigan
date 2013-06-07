@@ -129,8 +129,7 @@
               = content_tag :div, flash[:notice],  :class => "notice"  if flash[:notice]
               = content_tag :div, flash[:warning], :class => "warning" if flash[:warning]
               = content_tag :div, flash[:error],   :class => "error"   if flash[:error]
-            :javascript
-              $('#flash').effect("highlight", {}, 3000);
+
         
       #dynamic_wrap.sixteen.columns
         = render :partial => 'shared/new_carousel', :locals => {:new_carousel => @new_carousel}

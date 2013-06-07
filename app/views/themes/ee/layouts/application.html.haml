@@ -82,8 +82,7 @@
                 = content_tag :div, flash[:notice],  :class => "notice"  if flash[:notice]
                 = content_tag :div, flash[:warning], :class => "warning" if flash[:warning]
                 = content_tag :div, flash[:error],   :class => "error"   if flash[:error]
-              :javascript
-                $("#flash").effect("highlight", {}, 3000);
+
 
           = yield 
         #right_column.five.columns.omega.sidebar

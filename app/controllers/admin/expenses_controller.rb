@@ -34,8 +34,8 @@ class Admin::ExpensesController < InheritedResources::Base
       @expenses = apply_scopes(Expense).order('expenses.when DESC').page(params[:page]).per(100)
       @incomes = apply_scopes(Income).order('incomes.when DESC').page(params[:page]).per(100)
       if params[:render_csv] == "1"
-        @expenses = Expense.all.order('expenses.when DESC')
-        @incomes = Income.all.order('incomes.when DESC')
+        @expenses = Expense.order('expenses.when DESC')
+        @incomes = Income.order('incomes.when DESC')
         render_csv("expenses", "expenses")
       end
   end

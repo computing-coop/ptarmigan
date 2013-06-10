@@ -10,10 +10,13 @@ class Admin::IncomesController < InheritedResources::Base
   end
 
   def index
-    @expenses = apply_scopes(Expense).order('expenses.when DESC').paginate(:page => params[:page], :per_page => 50, :order => 'expenses.when')
-    @incomes = apply_scopes(Income).order('incomes.when DESC').paginate(:page => params[:page], :per_page => 50, :order => 'incomes.when')
     if params[:render_csv] == "1"
+      @expenses = Expense.order('expenses.when DESC')
+      @incomes = Income.order('incomes.when DESC')
       render_csv("incomes", "incomes")
+    else
+      @expenses = apply_scopes(Expense).order('expenses.when DESC').page(params[:page]).per(100)
+      @incomes = apply_scopes(Income).order('incomes.when DESC').page(params[:page]).per(100)
     end
   end  
   

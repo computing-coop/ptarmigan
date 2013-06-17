@@ -3,21 +3,5 @@
 
 %div{:style => 'margin-bottom: 15px'}=t :proposal_header
 
-.axis_text
-  %p
-    %strong
-      To apply to the 
-      = link_to 'Axis of Praxis residency programme', project_path(:id => 35)
-      with MoKS, please use the separate
-      = link_to 'Axis of Praxis proposal form.', axis_of_praxis_proposals_path
-  %p
-    %strong
-      Please use this proposal form for the
-      = link_to 'Tallinn 2-month residencies', post_path(:id => 19)
-      and all other proposals.
-  %p
-    Both residency programmes are offered to residents of: Latvia, Lithuania, Iceland, Faroe Islands, Greenland, Aland, Finland, Denmark, Sweden and Norway.
-    %strong 
-      If you are not a legal resident of one of these countries, do not bother applying. Your application will not be considered.
-    You may still apply for non-residency projects.
+
 #regular= render 'form'

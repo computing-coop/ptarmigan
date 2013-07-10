@@ -9,11 +9,11 @@
       = form.input :comments, :label => 'Comments', :hint => "Only seen by Ptarmigan staff"
     .six.columns.omega
       %h4 optional stuff we can add (for Done Kino):
-      - if form.object.profile_file_size > 0
+      - if form.object.profile?
         existing profile pic:
         = image_tag form.object.profile.url(:small)
       = form.input :profile, :label => "Profile picture"
-      - if form.object.filmstill_file_size > 0
+      - if form.object.filmstill? 
         existing film still image:
         = image_tag form.object.filmstill.url(:small)
       = form.input :filmstill, :label => "Image from their film or video"

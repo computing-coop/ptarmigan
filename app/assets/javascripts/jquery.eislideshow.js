@@ -110,8 +110,8 @@
 			// add loading status
 			this.$loading		= $('<div class="ei-slider-loading">Loading</div>').prependTo( _self.$el );
 			
-			$.when( this._preloadImages() ).done( function() {
-				
+			//$.when( this._preloadImages() ).done( function() {
+				$.when(1).done(function() {
 				// hide loading status
 				_self.$loading.hide();
 				

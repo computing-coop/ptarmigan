@@ -2,6 +2,7 @@
   = semantic_form_for [:admin, @subsite], :html => {:multipart => true} do |f|
     .six.columns.alpha
       = f.input :name, :hint => 'no spaces - will be the subdomain, ie: donekino -> donekino.ptarmigan.ee'
+      = f.input :human_name, :hint => "Proper name, can contain spaces"
       = f.input :location
       = f.input :fallback_theme, :as => :select, :collection => Location.all.map{|x| [x.locale, x.id]}
     .six.columns.omega

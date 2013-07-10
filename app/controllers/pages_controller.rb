@@ -13,9 +13,9 @@ class PagesController < ApplicationController
   
   def frontpage
     set_meta_tags :open_graph => {
-      :title => "Ptarmigan" ,
+      :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.name} | " : "#{@subsite.human_name} | ")) + "Ptarmigan" ,
       :type  => "ptarmigan:article",
-      :url   =>   'http://www.ptarmigan.' + @location.locale },
+      :url   =>   'http://' + (@subsite.nil? ? 'www.' : 'donekino.') + 'ptarmigan.' + @location.locale },
       :canonical =>  'http://www.ptarmigan.' + @location.locale,
       :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,culture,art,workshops,artist-run,project space,maker culture, DIY,experimental, avant-garde, music, sound, visual art, Tiib,Baltic,residency',
       :description => 'Ptarmigan is a cultural platform in ' + (@location.locale == 'fi' ? "Helsinki, Finland" : "Tallinn, Estonia."),
@@ -87,13 +87,13 @@ class PagesController < ApplicationController
 
   def show
     set_meta_tags :open_graph => {
-      :title => @page.title + " | Ptarmigan" ,
+      :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.name} : " : "#{@subsite.human_name} : ")) + @page.title + " | Ptarmigan" ,
       :type  => "ptarmigan:article",
       :url   =>  url_for(@page)},
       :canonical =>  url_for(@page),
       :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,proposals,application,residency,culture,art',
       :description => @page.description,
-      :title => @page.title.humanize
+      :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.name} : " : "#{@subsite.human_name} : ")) +  @page.title.humanize
     if params[:id] == 'about' && @subsite.nil?
       @who_we_are = Page.by_location(@location.id).where(:slug => 'who_we_are').first
       @resources = Resource.where(["press_page is true AND ((location_id is null OR location_id = ?) OR all_locations is true)", @location.id])

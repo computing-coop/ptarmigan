@@ -21,12 +21,12 @@ class PagesController < ApplicationController
       :description => 'Ptarmigan is a cultural platform in ' + (@location.locale == 'fi' ? "Helsinki, Finland" : "Tallinn, Estonia."),
       :title => nil
     @upcoming = Event.published.future.where(:hide_from_front => false).where("subsite_id is null OR show_on_main = true")
-    @carousel = []
-    @upcoming.reject{|x| !x.carousel? }.each {|x| @carousel << x }
-    
-    @carousel <<  Project.by_location(@location.id).with_carousel.order('rand()').first
-   
-    Artist.by_location(@location.id).current.with_carousel.order.each {|x| @carousel << x }
+    # @carousel = []
+  #   @upcoming.reject{|x| !x.carousel? }.each {|x| @carousel << x }
+  #   
+  #   @carousel <<  Project.by_location(@location.id).with_carousel.order('rand()').first
+  #  
+  #   Artist.by_location(@location.id).current.with_carousel.order.each {|x| @carousel << x }
 
     # @artists = Artist.by_location(@location.id).all(:order => 'startdate DESC', :limit => 3)
     
@@ -56,7 +56,7 @@ class PagesController < ApplicationController
 
 
     
-    @artist = Artist.current
+    @artist = Artist.by_location(@location.id).current
     unless @artist.empty?
       @new_carousel.unshift(@artist.first)
     end

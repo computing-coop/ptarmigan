@@ -24,67 +24,9 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
-    - if @carousel.compact.blank?
-      :javascript
-        function slideShow(speed) {
-          return true;
-        }
-    - elsif @carousel.compact.size == 1
-      :javascript
-        function slideShow(speed) {
-          $('ul.carousel').append('<li id="carousel-caption" class="caption"><div class="carousel-caption-container"><h3></h3><p></p></div></li>');
-          $('ul.carousel li').css({opacity: 1.0});
-          $('ul.carousel li:first').css({opacity: 1.0});
-          $('#carousel-caption h3').html($('ul.carousel a:first').find('img').attr('title'));
-          $('#carousel-caption p').html($('ul.carousel a:first').find('img').attr('alt'));
-          $('#carousel-caption').css({opacity: 0.7, bottom:0});
-        }
-    - else
-      :javascript  
-        function slideShow(speed) {
-          $('ul.carousel').append('<li id="carousel-caption" class="caption"><div class="carousel-caption-container"><h3></h3><p></p></div></li>');
-          $('ul.carousel li').css({opacity: 0.0});
-     
-          //Get the first image and display it (set it to full opacity)
-          $('ul.carousel li:first').css({opacity: 1.0});
-     
-          //Get the caption of the first image from REL attribute and display it
-          $('#carousel-caption h3').html($('ul.carousel a:first').find('img').attr('title'));
-          $('#carousel-caption p').html($('ul.carousel a:first').find('img').attr('alt'));
-         
-          //Display the caption
-          $('#carousel-caption').css({opacity: 0.7, bottom:0});
-     
-          //Call the gallery function to run the carousel    
-          var timer = setInterval('gallery()',speed);
-     
-          //pause the carousel on mouse over
-          $('ul.carousel').hover(
-              function () {
-                  clearInterval(timer);   
-              },  
-              function () {
-                  timer = setInterval('gallery()',speed);         
-              }
-          );
-     
-        }
- 
-        function gallery() {
-          var current = ($('ul.carousel li.show')?  $('ul.carousel li.show') : $('#ul.carousel li:first'));
-          var next = ((current.next().length) ? ((current.next().attr('id') == 'carousel-caption')? $('ul.carousel li:first') :current.next()) : $('ul.carousel li:first'));
-          var title = next.find('img').attr('title'); 
-          var desc = next.find('img').attr('alt');    
-          next.css({opacity: 0.0}).addClass('show').animate({opacity: 1.0}, 1000);
 
-          $('#carousel-caption').slideToggle(300, function () { 
-            $('#carousel-caption h3').html(title); 
-            $('#carousel-caption p').html(desc); 
-            $('#carousel-caption').slideToggle(500); 
-          }); 
  
-          current.animate({opacity: 0.0}, 1000).removeClass('show');
-          }
+
   %body
     .container
       #top_bar.sixteen.columns

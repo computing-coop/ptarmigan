@@ -63,7 +63,7 @@ class PagesController < ApplicationController
 
     Post.by_location(@location.id).with_carousel.published.each {|x| @new_carousel.unshift(x) }
 
-    carousel = @carousel.reverse
+   
     if @subsite
       @posts = Post.by_subsite(@subsite).published.order('created_at DESC').page params[:page]
     else

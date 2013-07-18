@@ -2,14 +2,20 @@
   - if image_array.first.hostid.blank?
     = image_tag image_array.first.image.url(:larger)
   - else
-    - info = flickr.photos.getInfo(:photo_id => image_array.first.hostid)
-    = image_tag(FlickRaw.url(info), {:title => image_array.first.name, :alt => image_array.first.description + ' photo by ' + (info.owner.realname.nil? ? info.owner.realname : info.owner.username)})          
+    - begin
+      - info = flickr.photos.getInfo(:photo_id => image_array.first.hostid) rescue nil
+      = image_tag(FlickRaw.url(info), {:title => image_array.first.name, :alt => image_array.first.description + ' photo by ' + (info.owner.realname.nil? ? info.owner.realname : info.owner.username)})          
+    - rescue
+      - nil
 - image_array.each do |flicker|
   - if flicker.hostid.blank?
     = link_to(image_tag(flicker.image.url(:front_sidebar), :class => :thumb, :border => 0), '#', :rel => flicker.image.url(:larger), :class => "slide_image")
   - else
-    - info = flickr.photos.getInfo(:photo_id => flicker.hostid)
-    = link_to(image_tag(FlickRaw.url(info), {:title => flicker.name, :alt => flicker.description + ' photo by ' + (info.owner.realname.nil? ? info.owner.realname : info.owner.username), :class => :thumb, :width => 100, :border => 0}), '#', :rel => FlickRaw.url(info), :class => "slide_image")
+    - begin
+      - info = flickr.photos.getInfo(:photo_id => flicker.hostid)
+      = link_to(image_tag(FlickRaw.url(info), {:title => flicker.name, :alt => flicker.description + ' photo by ' + (info.owner.realname.nil? ? info.owner.realname : info.owner.username), :class => :thumb, :width => 100, :border => 0}), '#', :rel => FlickRaw.url(info), :class => "slide_image")
+    - rescue
+      - nil
 :javascript
   $(".slide_image").click(function() {
     var image = $(this).attr("rel");

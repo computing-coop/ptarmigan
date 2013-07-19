@@ -6,7 +6,7 @@
     - else
       = "posted by Ptarmigan on #{l(post.created_at, :format => :long)}"
   - if post.carousel?
-    .blog_image= image_tag post.carousel.url(:full)
+    .blog_image= image_tag post.carousel.url(:new_carousel)
   - unless post.embedded_images.empty?
     - if post.embed_above_post == true
       .blog_image= render :partial => 'shared/photo_gallery', :locals => {:image_array => post.embedded_images }    

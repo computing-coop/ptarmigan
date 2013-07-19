@@ -104,31 +104,32 @@ h3 , h2{
 } 
 
 @media (max-width: 979px) and (min-width: 768px) {
-  #images {
+  .pg_image_container {
     height: 345px;
   }
 }
 
 @media (max-width: 1120px) and (min-width: 980px) {
-  #images {
+  .pg_image_container {
     height: 430px;
   }
 }
 @media (min-width: 1121px) {
-  #images {
+  .pg_image_container {
     height: 540px;
   }
 }
 
 @media all and (max-width: 767px) {
 
-  #images {
+  .pg_image_container {
     height: 285px;
   }
 }
 
-#images {
+.pg_image_container {
   margin-bottom: 10px;
+  overflow: hidden;
 }
 
 .event img {

@@ -105,28 +105,31 @@ h3 , h2{
 
 @media (max-width: 979px) and (min-width: 768px) {
   #images {
-    height: 340px;
+    height: 345px;
   }
 }
 
 @media (max-width: 1120px) and (min-width: 980px) {
   #images {
-    height: 421px;
+    height: 430px;
   }
 }
 @media (min-width: 1121px) {
   #images {
-    height: 533px;
+    height: 540px;
   }
 }
 
 @media all and (max-width: 767px) {
 
   #images {
-    height: 282px;
+    height: 285px;
   }
 }
 
+#images {
+  margin-bottom: 10px;
+}
 
 .event img {
   max-width: 100%;

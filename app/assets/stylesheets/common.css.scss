@@ -103,6 +103,38 @@ h3 , h2{
   margin: 0px 10px 0px 5px;
 } 
 
+@media (max-width: 979px) and (min-width: 768px) {
+  #images {
+    height: 340px;
+  }
+}
+
+@media (max-width: 1120px) and (min-width: 980px) {
+  #images {
+    height: 421px;
+  }
+}
+@media (min-width: 1121px) {
+  #images {
+    height: 533px;
+  }
+}
+
+@media all and (max-width: 767px) {
+
+  #images {
+    height: 282px;
+  }
+}
+
+
+.event img {
+  max-width: 100%;
+  height: auto;
+  padding-right:10px;
+}
+
+
 .project_image {
   margin-left: 5px;
   margin-bottom: 10px;
@@ -872,7 +904,8 @@ form {
 }
 
 .user_content_title {
-	font-size: 15pt;
+	font-size: 19px;
+  line-height: 26px;
 }
 .video_title {
 	font-size: 13pt;

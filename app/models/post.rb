@@ -15,7 +15,7 @@ class Post < ActiveRecord::Base
                                           :url =>  "/images/carousel/posts/:id/:style/:normalized_resource_file_name"
 
   translates :title, :body
-  attr_accessible :translations,  :remove_carousel, :embed_above_post, :embed_gallery_id, :subsite_id, :show_on_main, :user_id, :carousel, :not_news, :is_personal, :location_id, :translations_attributes, :hide_carousel, :published
+  attr_accessible :translations,  :remove_carousel, :embed_above_post, :second_embed_gallery_id, :embed_gallery_id, :subsite_id, :show_on_main, :user_id, :carousel, :not_news, :is_personal, :location_id, :translations_attributes, :hide_carousel, :published
   accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['title'].blank? && attributes['body'].blank? }
   scope :by_location, lambda {|x| {:conditions => ['location_id = ? AND (subsite_id is null OR show_on_main is true)', x]}}
   scope :by_subsite, lambda {|x| {:conditions => {:subsite_id => x} }}  
@@ -43,7 +43,25 @@ class Post < ActiveRecord::Base
   def description
     body
   end
-
+  
+  def embedded_images
+    out = []
+    if embed_gallery_id.blank? && second_embed_gallery_id.blank?
+      out
+    elsif !embed_gallery_id.blank? && second_embed_gallery_id.blank?
+      out << Event.find(embed_gallery_id).flickers
+    elsif !embed_gallery_id.blank? && !second_embed_gallery_id.blank?
+      out << Event.find(embed_gallery_id).flickers
+      out << Event.find(second_embed_gallery_id).flickers
+    end
+    if self.carousel?
+      out.flatten.delete_if{|x| x.image.original_filename == self.carousel.original_filename }.flatten
+    else
+      out.flatten
+    end
+  end        
+      
+      
   def rss_description(locale = :en)
     out = ""
     if carousel?

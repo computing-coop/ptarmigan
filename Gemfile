@@ -5,7 +5,7 @@ end
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.13'
-gem 'mysql2',          '0.3.12b4'
+gem 'mysql2'
 # Bundle edge Rails instead:
 # gem 'http_accept_language', '1.1.2'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -17,7 +17,9 @@ group :development do
   gem 'meta_request'
   gem 'quiet_assets'
   gem 'sextant'
-  gem 'thin'end
+  gem 'thin'
+end
+
 # gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git'
 gem 'ckeditor'
 gem 'countries'

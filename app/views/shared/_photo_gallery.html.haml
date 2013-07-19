@@ -17,10 +17,11 @@
     - rescue
       - nil
 :javascript
+
   $(".slide_image").click(function() {
     var image = $(this).attr("rel");
     $('#images').hide();
     $('#images').fadeIn('slow');
-    $('#images').html('<img src="' + image + '"/>');
+    $('#images').html('<img src="#{Rails.env.development? ? 'http://ptarmigan.fi/' : ''}' + image + '"/>');
     return false;
   });

@@ -91,9 +91,10 @@
 .page
   .title= t :partners
   .news_box
-    %div{:style => "float: right"}
+    .partners
       = link_to image_tag(current_theme_image_path('little_ptarmigan.png')), 'http://ptarmigan.ee'
       = link_to image_tag(current_theme_image_path('planete_kino.png')), 'http://www.planetekino.com/'
-      = link_to image_tag(current_theme_image_path('helicam.png')), 'http://helicam.aero/'
       = link_to image_tag(current_theme_image_path('kehrwieder.png')), 'http://www.kohvik.ee/'
+      = link_to image_tag(current_theme_image_path('helicam.png')), 'http://helicam.aero/'
+
       = link_to image_tag(current_theme_image_path('bfp.jpg')), 'http://beerforpunks.ee/'

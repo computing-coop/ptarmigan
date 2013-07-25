@@ -1,17 +1,17 @@
 .page
   = link_to(posts_path) do 
     .title= t :recent_news, :scope => :donekino
-.contact_box
+.news_box
   - Post.by_subsite(@subsite).published.order('created_at DESC').delete_if{|x| x== current_post }.each do |p|
     %ul.news_title
       %li
         = link_to p.title, p
-        .post_metadata= l p.created_at, :format => :short
+        .post_metadata= "posted #{l p.created_at, :format => :short}"
 
 - Page.by_subsite(@subsite).each do |p|
   .page
     .title= link_to p.title, page_path(p.slug)
-    = link_to(page_path(p.slug), :class => :block, :style => 'background: transparent url(' + p.carousel.url(:small) + ') no-repeat;') do
+    = link_to(page_path(p.slug), :class => :block, :style => 'background: transparent url(' + p.carousel.url(:full) + ') no-repeat;') do
 
       .outer_hover
         = p.excerpt

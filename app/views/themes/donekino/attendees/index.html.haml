@@ -8,17 +8,21 @@
   - if @attendees.empty?
     %p= t(:no_attendees_yet, :scope => :donekino)
     %p= link_to t(:register_here, :scope => :donekino), event_path('done-kino')
-  - @attendees.each do |attendee|
-    .attendee.eight.columns
-      - unless attendee.profile_file_size.blank?
-        .columns.alpha= image_tag attendee.profile.url(:small)
-      .two.columns.omega
+  - @attendees.sort{ rand }.each do |attendee|
+    .attendee.column.alpha.omega
+      .one-third.column.alpha.participant_image
+        - unless attendee.profile_file_size.blank?
+          = image_tag attendee.profile.url(:full)
+      .one-third.column.omega
         .participant_name= attendee.name
         - unless attendee.comes_from.blank?
           .participant_location= attendee.comes_from
         - unless attendee.bio.blank?
           .participant_bio= attendee.bio
-
+        - unless attendee.filmstill_file_size.blank?
+          %div 
+            %em A sample of their unfinished material:
+          = image_tag attendee.filmstill.url(:small)
 
 .twelve.columns.share_this= share_this(@event)
 

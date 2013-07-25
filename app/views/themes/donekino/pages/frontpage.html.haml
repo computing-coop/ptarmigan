@@ -23,7 +23,7 @@
   - Page.by_subsite(@subsite).each do |p|
     .page
       .title= link_to p.title, page_path(p.slug)
-      = link_to(page_path(p.slug), :class => :block, :style => 'background: transparent url(' + p.carousel.url(:small) + ') no-repeat;') do
+      = link_to(page_path(p.slug), :class => :block, :style => 'background: transparent url(' + p.carousel.url(:full) + ') no-repeat;') do
 
         .outer_hover
           = p.excerpt

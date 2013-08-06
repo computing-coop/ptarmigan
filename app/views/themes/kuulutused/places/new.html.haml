@@ -1,13 +1,13 @@
-%h2 Add to Kuulutused
+%h2= t "kuulutused.add_to_kuulutused"
 
-%p If you know of a place (restaurant, cafe, bar, public space, etc.) that allows for posters to be hung, submit it here.
+%p= t "kuulutused.submit_tagline"
 
 = semantic_form_for(@place, :remote => true) do |f|
-  = f.input :name
-  = f.input :address1, :label => "Street address"
-  = f.input :city, :input_html => {:disabled => true}
-  = f.input :country, :input_html => {:disabled => true}
+  = f.input :name, :label => t("kuulutused.name")
+  = f.input :address1, :label => t("kuulutused.street_address")
+  = f.input :city, :input_html => {:disabled => true}, :label => t("kuulutused.city")
+  = f.input :country, :input_html => {:disabled => true}, :label => t("kuulutused.country")
   %h3 Optional:
   = f.input :comment, :as => :text
   = f.input :contact_email, :as => :string, :label => "Your email address"
-  = f.submit "Submit to database"
+  = f.submit t("kuulutused.submit_to_database")

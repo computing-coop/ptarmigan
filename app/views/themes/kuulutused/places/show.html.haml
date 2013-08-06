@@ -17,7 +17,7 @@
         .words= simple_format(comment.comment)
         
 = form_tag(vote_place_path(@place), :id => :vote_form, :remote => true) do |f|
-  %p Do you think this is a good place to put up posters?
+  %p= t :other_comment
   = text_area_tag :comment
   = hidden_field_tag :vote, :value => 0
   %button.icon-thumbs-up.icon-large#for_submit{:value => "for"}= " Vote for"

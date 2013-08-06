@@ -18,5 +18,18 @@
     .container
       %header.clearfix.sixteen.columns
         .header_text Kuulutused
+        .languages
+          = link_to_unless(I18n.locale == :et, 'EST', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'et')
+          |
+          = link_to_unless(I18n.locale == :en, 'ENG', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en')
       .sixteen.columns.yield= yield
-      %footer= yield :scripts
+    %footer.container
+
+      .sixteen.columns
+        .nine.columns.alpha= t "kuulutused.subtitle"
+        .one.columns &nbsp;
+        .six.columns.omega.icons
+          = link_to image_tag(theme_image_path('github.png'), :height => 30), 'http://github.com/cenotaph/ptarmigan'
+          = link_to image_tag(theme_image_path('tiny_ptarmigan.png'), :height => 30), 'http://ptarmigan.ee/'
+
+      = yield :scripts

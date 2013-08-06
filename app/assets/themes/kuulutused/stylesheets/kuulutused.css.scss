@@ -8,6 +8,17 @@ header {
     font-weight: 600;
     font-size: 56px;
   }
+  .languages {
+    float: right;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    a {
+      text-decoration: none;
+      color: green;
+
+    }
+  }
 }
 
 body {
@@ -106,4 +117,28 @@ body {
   }
   
 
+}
+
+footer {
+
+    div {
+      padding-top: 10px;
+      line-height: 14px;
+      .icons {
+     
+        a {
+             float: right;
+          margin-left: 15px;
+          opacity: 0.6;
+          -webkit-transition: opacity 0.7s linear;
+          -moz-transition: opacity 0.7s linear;
+          &:hover {
+            opacity: 1;
+            -webkit-transition: opacity 0.7s linear;
+            -moz-transition: opacity  0.7s linear;
+          }
+        }
+      }
+    }
+ 
 }

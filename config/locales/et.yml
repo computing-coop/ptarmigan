@@ -80,6 +80,7 @@ et:
   proposal_organisation: 'Organisatsioon'
   optional: 'valikuline'
   postal_address: 'Postiaadress'
+
   country: 'Elukohamaa'
   proposal_phone: 'Telefon (lisa ka riigi kood):'
   proposal_shortdescription: 'Kirjelda oma projekti saja või vähem sõnaga.'
@@ -98,7 +99,27 @@ et:
   nope: 'midagi põle'
   photos: 'pildigalerii'
   videos: 'videod'
-  documents_resources: 'dokumendid / ressursid'  
+  documents_resources: 'dokumendid / ressursid'
+  kuulutused:
+    tagline: 'A user-maintained database of sites in Tallinn where one can hang posters.'
+    subtitle: "Intended to support grassroots, independent cultural announcements. Please do not use this to advertise businesses or other commercial ventures. Keep Tallinn's walls clean from further advertising!"
+    submit: 'Submit a new location'
+    submit_tagline: 'If you know of a place (restaurant, cafe, bar, public space, etc.) that allows for posters to be hung, submit it here.'
+    add_to_kuulutused: '+ to Kuulutused'
+    name: 'Nimi'
+    street_address: 'Aaddress'
+    city: 'Linn'
+    country: 'Country'
+    optional: 'Optional'
+    your_comment: 'Your thoughts on this location'
+    your_email_address: 'Your email address (will not be public)'
+    submit_to_database: 'Submit to database'
+    submitting: 'Your information is being submitted.'
+    votes_for: 'votes for'
+    votes_agaist: 'votes against'
+    ago: 'ago'
+    other_comment: 'Do you think this is a good place to put up posters?'
+    your_input: 'Thank you for your input.'  
   date_range:
     long:
       different_months_same_year: "%{from_day}. %{from_month} %{sep} %{until_day}. %{until_month} %{year}"

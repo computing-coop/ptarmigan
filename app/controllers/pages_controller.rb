@@ -14,7 +14,7 @@ class PagesController < ApplicationController
   def frontpage
     if !@subsite.nil?
       if @subsite.name == 'kuulutused' 
-        @places = Place.approved_posters
+        @places = Place.approved_posters.delete_if{|x| x.votes_against >= 5}
         @json = @places.to_gmaps4rails do |place,marker|
           marker.json({:id => place.id})
         end

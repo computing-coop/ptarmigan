@@ -4,9 +4,9 @@
 
 .vote_count
   .for
-    %i.icon-thumbs-up= " " + pluralize(@place.votes_for, 'vote') + " for"
+    %i.icon-thumbs-up= " " + pluralize(@place.votes_for, t("kuulutused.vote")) + " " + t("kuulutused.for")
   .against
-    %i.icon-thumbs-down= " " + pluralize(@place.votes_against, 'vote') + " against"
+    %i.icon-thumbs-down= " " + pluralize(@place.votes_against, t("kuulutused.vote")) + " " + t("kuulutused.against")
 
 - unless @place.postervotes.delete_if{|x| x.comment.blank? }.empty?
   .comments
@@ -17,11 +17,11 @@
         .words= simple_format(comment.comment)
         
 = form_tag(vote_place_path(@place), :id => :vote_form, :remote => true) do |f|
-  %p= t :other_comment
+  %p= t "kuulutused.other_comment"
   = text_area_tag :comment
   = hidden_field_tag :vote, :value => 0
-  %button.icon-thumbs-up.icon-large#for_submit{:value => "for"}= " Vote for"
-  %button.icon-thumbs-down.icon-large#against_submit{:value => "against"}= " Vote against"
+  %button.icon-thumbs-up.icon-large#for_submit{:value => "for"}= " " + t("kuulutused.vote_for")
+  %button.icon-thumbs-down.icon-large#against_submit{:value => "against"}= " " + t("kuulutused.vote_against")
 
 :javascript
   $('form#vote_form button').click(function(event) {

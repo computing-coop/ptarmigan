@@ -8,6 +8,6 @@
   = f.input :city, :input_html => {:disabled => true}, :label => t("kuulutused.city")
   = f.input :country, :input_html => {:disabled => true}, :label => t("kuulutused.country")
   %h3 Optional:
-  = f.input :comment, :as => :text
-  = f.input :contact_email, :as => :string, :label => "Your email address"
+  = f.input :comment, :as => :text, :label => t("kuulutused.your_comment")
+  = f.input :contact_email, :as => :string, :label => t("kuulutused.your_email_address")
   = f.submit t("kuulutused.submit_to_database")

@@ -12,7 +12,7 @@
       = f.input :enddate, :as => :string, :input_html => {:class => 'date-pick'}, :label => "Ending date", :hint => 'leave blank unless a multi-day event; not for things that will run past midnight'
       = f.input :promoter, :label => "Promoter", :hint => "optional, ex: Äänen Lumo, usually blank though"      
     .six.columns.clearfix.omega
-      = f.input :place, :as => :select,:collection => Place.all.map{|x| [x.name + "/" + x.address1, x.id]}, :hint => "Don't accidentally pick the old Ptarmigan on Nilsiänkatu!", :include_blank => true
+      = f.input :place, :as => :select,:collection => Place.for_events.map{|x| [x.name + "/" + x.address1, x.id]}, :hint => "Don't accidentally pick the old Ptarmigan on Nilsiänkatu!", :include_blank => true
 
       = f.input :event_type, :label => "Event type", :hint => "usually a set of keywords separated by colons, that we haven't set up to link as tags YET"
   .thirteen.columns

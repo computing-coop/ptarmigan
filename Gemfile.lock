@@ -85,10 +85,12 @@ GEM
     formtastic (2.2.1)
       actionpack (>= 3.0)
     friendly_id (4.0.9)
+    geocoder (1.1.8)
     globalize3 (0.3.0)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
       paper_trail (~> 2)
+    gmaps4rails (1.5.6)
     haml (4.0.2)
       tilt
     has_scope (0.5.1)
@@ -267,7 +269,9 @@ DEPENDENCIES
   flickraw
   formtastic
   friendly_id (~> 4.0.9)
+  geocoder
   globalize3
+  gmaps4rails
   haml
   has_scope
   hominid (= 2.1.9)

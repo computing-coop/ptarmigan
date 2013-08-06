@@ -62,11 +62,18 @@ class ApplicationController < ActionController::Base
   end 
   
   def get_domain
+
     if request.host =~ /ptarmigan\.fi/
       @location = Location.where(:locale => 'fi').first
+      if @subsite.nil?
+        @subsite = Subsite.new(:name => 'fi')
+      end
       "fi"
     else
       @location = Location.where(:locale => 'ee').first
+      if @subsite.nil?
+        @subsite = Subsite.new(:name => 'ee')
+      end      
       "ee"
     end
   end

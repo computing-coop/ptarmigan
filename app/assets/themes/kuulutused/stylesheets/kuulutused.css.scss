@@ -1,0 +1,36 @@
+
+header {
+  margin-top: 40px;
+  margin-bottom: 25px;
+  .header_text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 56px;
+  }
+}
+
+body {
+  p {
+    font-family: 'Gentium Book Basic', serif;
+    font-weight: 400;
+    font-size: 15px;
+  }
+  
+  #infobox {
+    display: none;
+    
+    .title {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      font-size: 26px;
+    }
+    .address {
+      font-family: 'Gentium Book Basic', serif;
+      font-weight: 400;
+      font-size: 15px;
+      margin-top: 10px;
+    }
+  }
+  
+
+}

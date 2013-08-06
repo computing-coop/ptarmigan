@@ -1,0 +1,36 @@
+%p
+  Places in Tallinn you can hang posters:
+  
+
+
+#big_map= gmaps("markers" => { "data" => @json, "options" => {"auto_zoom" => true, "auto_adjust" => true}  })
+.three.columns#infobox
+  Info here
+  
+= content_for :scripts do
+  :javascript
+    function onMarkerClick(marker, event){
+      return function(event){
+        $('#infobox').load("/places/" + marker.id);
+      }
+    }
+    
+    Gmaps.map.listen_to_markers = function(markers){
+      for(var i = 0; i < markers.length; i++){
+        marker = markers[i];
+        var the_id = markers[i].id;
+        google.maps.event.addListener(marker.serviceObject, 'click', onMarkerClick(marker, event));
+        google.maps.event.addListener(marker.serviceObject, 'click', function() {
+          
+          $('#big_map').css('width', '75%');
+          $('#big_map').css('float', 'left');
+          $('#infobox').css('display', 'block');
+          
+        });
+      }
+    }
+
+    Gmaps.map.callback = function(){
+      Gmaps.map.listen_to_markers(Gmaps.map.markers);
+    }
+

@@ -12,7 +12,7 @@ class Admin::PlacesController < ApplicationController
     respond_to do |format|
       if @place.save
         flash[:notice] = 'Place was successfully created.'
-        format.html { redirect_to [:admin, @place] }
+        format.html { redirect_to admin_places_path  }
         format.xml  { render :xml => @place, :status => :created, :location => @place }
       else
         format.html { render :action => "new" }
@@ -25,11 +25,11 @@ class Admin::PlacesController < ApplicationController
     respond_to do |format|
       if @place.destroy
         flash[:notice] = 'Place was successfully destroyed.'        
-        format.html { redirect_to places_path }
+        format.html { redirect_to admin_places_path }
         format.xml  { head :ok }
       else
         flash[:error] = 'Place could not be destroyed.'
-        format.html { redirect_to @place }
+        format.html { redirect_to admin_places_path}
         format.xml  { head :unprocessable_entity }
       end
     end
@@ -65,7 +65,7 @@ class Admin::PlacesController < ApplicationController
     respond_to do |format|
       if @place.update_attributes(params[:place])
         flash[:notice] = 'Place was successfully updated.'
-        format.html { redirect_to @place }
+        format.html { redirect_to admin_places_path }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

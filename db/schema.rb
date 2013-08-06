@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130719122810) do
+ActiveRecord::Schema.define(:version => 20130805152510) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -375,6 +375,10 @@ ActiveRecord::Schema.define(:version => 20130719122810) do
     t.string   "map_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "approved_for_posters"
+    t.boolean  "allow_ptarmigan_events"
   end
 
   create_table "post_translations", :force => true do |t|

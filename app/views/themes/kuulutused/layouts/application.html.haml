@@ -1,0 +1,22 @@
+!!! 5
+%html
+  %head
+    = display_meta_tags :site => "Kuulutused | Ptarmigan Tallin", :og => {:url => 'http://kuulutused.ptarmigan.ee', :title => 'Kuulutused, places you can put posters in Talinn'}
+    %meta{ :"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8" }
+    %link{ :rel => "shortcut icon", :href => "/favicon.ico" }
+    %link{ :rel => "alternate", :type => "application/rss+xml", :title => "Ptarmigan RSS", :href => "/feed.rss"}
+    %link{:href => "http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,700,400italic&subset=latin,latin-ext", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,300,600&subset=latin,latin-ext", :rel => "stylesheet", :type => "text/css"}/
+    = stylesheet_link_tag :application
+    = stylesheet_link_tag theme_stylesheet_path(:application), :media => :screen
+    = javascript_include_tag :application
+    = javascript_include_tag theme_javascript_path(:application)
+    = csrf_meta_tag
+ 
+    = csrf_meta_tag
+  %body
+    .container
+      %header.clearfix.sixteen.columns
+        .header_text Kuulutused
+      .sixteen.columns.yield= yield
+      %footer= yield :scripts

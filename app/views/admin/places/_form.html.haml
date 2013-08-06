@@ -1,10 +1,18 @@
 = semantic_form_for([:admin, @place]) do |f|
-  = f.input :name
-  = f.input :address1
-  = f.input :address2
-  = f.input :city
-  = f.input :country
-  = f.input :postcode
-  = f.input :map_url
-  = f.actions do
-    = f.submit
+  .six.columns.alpha
+    = f.input :name
+    = f.input :address1
+    = f.input :address2
+    = f.input :city
+    = f.input :country
+    = f.input :postcode
+    = f.input :map_url
+  .six.columns.omega
+    %p For poster database:
+    = f.input :latitude
+    = f.input :longitude
+    = f.input :approved_for_posters, :hint => "Check to approve for poster map"
+    = f.input :allow_ptarmigan_events, :hint => "Uncheck to remove from event form drop-down"
+  .twelve.columns
+    = f.actions do
+      = f.submit

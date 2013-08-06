@@ -4,7 +4,7 @@
   
 
 
-#big_map= gmaps("markers" => { "data" => @json, "options" => {"auto_zoom" => true, "auto_adjust" => true}  })
+#big_map= gmaps(:map_options => {:raw => "{styles: myStyle}" },  "markers" => { "data" => @json, "options" => {"auto_zoom" => true, "auto_adjust" => true}  })
 .three.columns
   #message
   #infobox
@@ -17,6 +17,76 @@
         $('#infobox').load("/places/" + marker.id);
       }
     }
+    var myStyle = [ 
+      { featureType: "all", stylers: [{ "hue": "#001aff"}]}, 
+      {featureType: "landscape",
+      elementType: "all",
+      stylers: [
+      { hue: "#b6cba6" },
+      { lightness: -20 }]}
+      ,
+      {featureType: "water",
+      elementType: "all",
+      stylers: [
+      { saturation: 90 },         
+      { lightness: 60 }]}
+      ,
+      {featureType: "administrative",
+      elementType: "labels",
+      stylers: [      
+      { hue: "#1100ff" },
+      { saturation: -100 },
+      { lightness: -18 }]}
+      ,
+      {featureType: "poi",
+      elementType: "all",
+      stylers: [
+      { lightness: -18 },
+      { visibility: "off" }]}
+      ,
+      {featureType: "landscape",
+      elementType: "all",
+      stylers: [
+      { visibility: "on" }]}
+      ,
+      {featureType: "water",
+      elementType: "labels",
+      stylers: [      
+      { lightness: -18 },
+      { visibility: "off" }]}
+      ,
+      {featureType: "road",
+      elementType: "labels",
+      stylers: [
+      { hue: "#ffa235" },
+      { visibility: "on" }]}
+      ,
+      {featureType: "administrative",
+      elementType: "geometry",
+      stylers: [
+      { visibility: "simplified" }]}
+      ,
+      {featureType: "road.highway",
+      elementType: "geometry",
+      stylers: [
+      { saturation: -100 }]}
+      ,
+      {featureType: "road.arterial",
+      elementType: "geometry",
+      stylers: [
+      { saturation: -100 }]}
+      ,
+      {featureType: "road.local",
+      elementType: "geometry",
+      stylers: [
+      { lightness: -27 }]}
+      ,
+      {featureType: "transit",
+      elementType: "all",
+      stylers: [
+      { visibility: "off" }]}
+      
+    ];
     
     Gmaps.map.listen_to_markers = function(markers){
       for(var i = 0; i < markers.length; i++){

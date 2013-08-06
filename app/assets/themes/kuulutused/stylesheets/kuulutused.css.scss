@@ -14,11 +14,31 @@ body {
     font-family: 'Gentium Book Basic', serif;
     font-weight: 400;
     font-size: 15px;
+    line-height: 18px;
   }
   
   #infobox {
     display: none;
     
+    h2 {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      font-size: 26px;
+      line-height: 30px;
+    }
+    
+    h3 {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
+    }
+    textarea {
+      height: 80px;
+    }
+    li {
+      list-style-type: none;
+    }
     .title {
       font-family: 'Open Sans', sans-serif;
       font-weight: 600;

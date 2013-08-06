@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805152510) do
+ActiveRecord::Schema.define(:version => 20130806154839) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -391,6 +391,18 @@ ActiveRecord::Schema.define(:version => 20130805152510) do
   end
 
   add_index "post_translations", ["post_id"], :name => "index_post_translations_on_post_id"
+
+  create_table "postervotes", :force => true do |t|
+    t.integer  "place_id"
+    t.integer  "vote"
+    t.string   "ip_address"
+    t.string   "contact_email"
+    t.text     "comment"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "postervotes", ["place_id"], :name => "index_postervotes_on_place_id"
 
   create_table "posts", :force => true do |t|
     t.integer  "user_id",                                    :null => false

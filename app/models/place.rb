@@ -5,7 +5,9 @@ class Place < ActiveRecord::Base
   reverse_geocoded_by :latitude, :longitude
   acts_as_gmappable :process_geocoding => false
   
+  attr_accessor :contact_email, :comment
   after_validation :geocode  
+  validates_presence_of :city, :country
   
   # include PublicActivity::Model
   # tracked owner: ->(controller, model) { controller.current_user }

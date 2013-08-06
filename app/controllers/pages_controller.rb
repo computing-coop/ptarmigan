@@ -12,10 +12,12 @@ class PagesController < ApplicationController
   end
   
   def frontpage
-    if @subsite.name == 'kuulutused' 
-      @places = Place.approved_posters
-      @json = @places.to_gmaps4rails do |place,marker|
-        marker.json({:id => place.id})
+    if !@subsite.nil?
+      if @subsite.name == 'kuulutused' 
+        @places = Place.approved_posters
+        @json = @places.to_gmaps4rails do |place,marker|
+          marker.json({:id => place.id})
+        end
       end
     else
       set_meta_tags :open_graph => {

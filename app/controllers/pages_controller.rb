@@ -18,6 +18,8 @@ class PagesController < ApplicationController
         @json = @places.to_gmaps4rails do |place,marker|
           marker.json({:id => place.id})
         end
+      else
+        @posts = Post.by_subsite(@subsite).published.order('created_at DESC').page params[:page]
       end
     else
       set_meta_tags :open_graph => {

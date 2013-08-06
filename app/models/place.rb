@@ -4,9 +4,9 @@ class Place < ActiveRecord::Base
   geocoded_by :full_address
   reverse_geocoded_by :latitude, :longitude
   acts_as_gmappable :process_geocoding => false
-  
+  has_many :postervotes
   attr_accessor :contact_email, :comment
-  after_validation :geocode  
+  after_validation :maybe_geocode  
   validates_presence_of :city, :country
   
   # include PublicActivity::Model
@@ -34,6 +34,20 @@ class Place < ActiveRecord::Base
 
   def icon
     'place.jpg'
+  end
+  
+  def maybe_geocode
+    if latitude.blank? && longitude.blank?
+      geocode
+    end
+  end
+  
+  def votes_for
+    postervotes.where(:vote => 1).size
+  end
+  
+  def votes_against
+    postervotes.where(:vote => -1).size
   end
   
 end

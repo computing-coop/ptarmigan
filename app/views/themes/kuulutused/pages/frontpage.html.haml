@@ -5,8 +5,10 @@
 
 
 #big_map= gmaps("markers" => { "data" => @json, "options" => {"auto_zoom" => true, "auto_adjust" => true}  })
-.three.columns#infobox
-  Info here
+.three.columns
+  #message
+  #infobox
+
   
 = content_for :scripts do
   :javascript

@@ -1,3 +1,4 @@
+@import 'font-awesome';
 
 header {
   margin-top: 40px;
@@ -15,10 +16,45 @@ body {
     font-weight: 400;
     font-size: 15px;
     line-height: 18px;
+    a {
+      text-decoration: none;
+      color: green;
+      padding-left: 20px;
+    }
   }
+  
+ #message {
+   .title {
+     font-family: 'Open Sans', sans-serif;
+     font-weight: 600;
+     font-size: 26px;
+   }
+   .address {
+     font-family: 'Gentium Book Basic', serif;
+     font-weight: 400;
+     font-size: 15px;
+     margin-top: 10px;
+   }
+
+ }
   
   #infobox {
     display: none;
+    
+    .vote_count {
+      width: 100%;
+      float: left;
+      margin-bottom: 25px;
+      .for {
+        float: left;
+        margin-right: 10px;
+        color: green;
+      }
+      .against {
+        float: left;
+        color: red;
+      }
+    }
     
     h2 {
       font-family: 'Open Sans', sans-serif;
@@ -49,6 +85,23 @@ body {
       font-weight: 400;
       font-size: 15px;
       margin-top: 10px;
+    }
+    
+    .comments {
+
+      .comment {
+        margin-bottom: 10px;
+        span.date {
+          color: #999;
+          font-family: 'Gentium Book Basic', serif;
+          font-size: 12px;
+          line-height: 13px;
+        }
+        .words {
+          padding-left: 16px;
+          color: #333;
+        }
+      }
     }
   }
   

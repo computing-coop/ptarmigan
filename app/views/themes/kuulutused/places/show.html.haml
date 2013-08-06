@@ -1,3 +1,36 @@
 .title= @place.name
 
 .address= @place.address1
+
+.vote_count
+  .for
+    %i.icon-thumbs-up= " " + pluralize(@place.votes_for, 'vote') + " for"
+  .against
+    %i.icon-thumbs-down= " " + pluralize(@place.votes_against, 'vote') + " against"
+
+- unless @place.postervotes.delete_if{|x| x.comment.blank? }.empty?
+  .comments
+    - @place.postervotes.delete_if{|x| x.comment.blank? }.sort_by{|x| x.created_at }.each do |comment|
+      .comment
+        %i.icon-comment
+        %span.date= " " + time_ago_in_words(comment.created_at) + " " +  t(:ago)
+        .words= simple_format(comment.comment)
+        
+= form_tag(vote_place_path(@place), :id => :vote_form, :remote => true) do |f|
+  %p Do you think this is a good place to put up posters?
+  = text_area_tag :comment
+  = hidden_field_tag :vote, :value => 0
+  %button.icon-thumbs-up.icon-large#for_submit{:value => "for"}= " Vote for"
+  %button.icon-thumbs-down.icon-large#against_submit{:value => "against"}= " Vote against"
+
+:javascript
+  $('form#vote_form button').click(function(event) {
+    event.preventDefault();
+    if ($(this).val() == 'for') {
+      $('#vote').val('1');
+    }
+    if ($(this).val() == 'against') {
+      $('#vote').val('-1');
+    }
+    $('form#vote_form').submit();
+  });

@@ -25,4 +25,10 @@ class PlacesController < ActionController::Base
   def new
     @place = Place.new(:city => "Tallinn", :country => 'EE')
   end
+  
+  def vote
+    @place = Place.find(params[:id])
+    @place.postervotes << Postervote.create(:ip_address => request.remote_ip, :comment => params[:comment], :vote => params[:vote])
+  end
+  
 end

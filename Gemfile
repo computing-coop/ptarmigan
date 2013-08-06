@@ -27,6 +27,7 @@ gem 'dalli'
 gem 'devise'
 gem 'devise-encryptable'
 gem 'flickraw'
+gem 'font-awesome-sass-rails'
 gem 'formtastic'
 gem "friendly_id", "~> 4.0.9"
 gem 'geocoder'

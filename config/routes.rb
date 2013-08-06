@@ -27,7 +27,11 @@ Ptarmigan::Application.routes.draw do
   # signup '/air/signup', :controller => 'applicants', :action => 'new'
   # activate '/air/activate/:activation_code', :controller => 'applicants', :action => 'activate', :activation_code => nil
   resources :applicants
-  resources :places
+  resources :places do
+    member do
+      post :vote
+    end
+  end
   
   resources :proposals do
     collection do

@@ -1,0 +1,13 @@
+%h2 Add to Kuulutused
+
+%p If you know of a place (restaurant, cafe, bar, public space, etc.) that allows for posters to be hung, submit it here.
+
+= semantic_form_for(@place, :remote => true) do |f|
+  = f.input :name
+  = f.input :address1, :label => "Street address"
+  = f.input :city, :input_html => {:disabled => true}
+  = f.input :country, :input_html => {:disabled => true}
+  %h3 Optional:
+  = f.input :comment, :as => :text
+  = f.input :contact_email, :as => :string, :label => "Your email address"
+  = f.submit "Submit to database"

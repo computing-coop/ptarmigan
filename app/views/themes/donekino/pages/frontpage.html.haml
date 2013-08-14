@@ -32,4 +32,5 @@
     = link_to(event_attendees_path('done-kino'), :class => :block, :style => 'background: transparent url(' + theme_image_path('participant_bg.jpg') + ') no-repeat;') do
       .outer_hover
         = t :who_is_coming, :scope => :donekino
-.one-third.column.omega= render :partial => 'shared/sidebar'
+= content_for :sidebar do
+  = render :partial => 'shared/sidebar'

@@ -5,11 +5,14 @@
   .metadata.seven.columns
     .person
       .info.column
-        %span.name= a.trackable.name
-        %span.small
-          registered for the event
-          %strong= a.trackable.event.name
-        = link_to '[see registrations]', '/admin/attendees?event=' + a.trackable.event_id.to_s
+        - if a.trackable.nil?
+          An event registration that has since been deleted
+        - else 
+          %span.name= a.trackable.name
+          %span.small
+            registered for the event
+            %strong= a.trackable.event.name
+          = link_to '[see registrations]', '/admin/attendees?event=' + a.trackable.event_id.to_s
         .timestamp
           %span.small= time_ago_in_words(a.created_at) + " ago"
   .one.column= image_tag trackable_icon(a.trackable), :width => 50

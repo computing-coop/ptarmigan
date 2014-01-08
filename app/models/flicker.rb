@@ -8,7 +8,7 @@ class Flicker < ActiveRecord::Base
                     :url => "/images/contrib/:id/:style/:basename.:extension",
                     :styles => {:largest => "1180x492#", :new_carousel => "960x400#", :larger => "800x600>", :cropped => "600x400#", 
                       :standard => "500x375>", :medium => "320x200#", :thumb => "100x100>",
-                      :front_sidebar => "72x72#"}
+                      :front_sidebar => "72x72#"}, :default_url => "/assets/missing.png"
 
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }

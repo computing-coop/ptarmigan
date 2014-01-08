@@ -13,7 +13,7 @@ class Resource < ActiveRecord::Base
                         :url => "/system/attachments/:id/:style/:basename.:extension"
   has_attached_file :icon, :styles => { :medium => "400x400>", :thumb => "100x100>" },
                         :path =>  ":rails_root/public/system/icons/:id/:style/:normalized_resource_file_name", 
-                        :url => "/system/icons/:id/:style/:normalized_resource_file_name"
+                        :url => "/system/icons/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }
   Paperclip.interpolates :normalized_resource_file_name do |attachment, style|

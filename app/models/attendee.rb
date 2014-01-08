@@ -12,13 +12,13 @@ class Attendee < ActiveRecord::Base
       :full => "600x400>", :small => "300x200#",
       :thumb => "100x100>" },
       :path =>  ":rails_root/public/images/users/attendees/filmstills/:id/:style/:normalized_filmstill_file_name",
-      :url =>  "/images/users/attendees/filmstills/:id/:style/:normalized_filmstill_file_name"
+      :url =>  "/images/users/attendees/filmstills/:id/:style/:normalized_filmstill_file_name", :default_url => "/assets/missing.png"
 
   has_attached_file :profile, :styles => {
       :full => "600x400>", :small => "300x200#",
       :thumb => "100x100#" },
       :path =>  ":rails_root/public/images/users/attendees/profiles/:id/:style/:normalized_profile_file_name",
-      :url =>  "/images/users/attendees/profiles/:id/:style/:normalized_profile_file_name"
+      :url =>  "/images/users/attendees/profiles/:id/:style/:normalized_profile_file_name", :default_url => "/assets/missing.png"
 
 
   scope :by_event, ->(event_id) { where(:event_id => event_id) }

@@ -15,7 +15,7 @@ class Page < ActiveRecord::Base
     :full => "600x400>", :small => "300x200#",
     :thumb => "100x100>" },
     :path =>  ":rails_root/public/images/carousel/pages/:id/:style/:normalized_resource_file_name",
-    :url =>  "/images/carousel/pages/:id/:style/:normalized_resource_file_name"
+    :url =>  "/images/carousel/pages/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"
 
   Paperclip.interpolates :normalized_resource_file_name do |attachment, style|
     attachment.instance.normalized_resource_file_name

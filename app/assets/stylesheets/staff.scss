@@ -254,27 +254,41 @@ span.delete {
   }
 
   ul.wikifiles {
-    padding: 15px;
+    padding: 2px;
     li.file {
       float: left;
-      padding: 5px;
-      border: 1px solid #98FB21; 
+      margin-left: 0px;
+      padding: 2px;
+      list-style-type: none;
+      border-bottom: 1px solid #98FB21; 
 
       .category {
         font-style: italic;
         text-transform: uppercase;
+        text-decoration: underline;
         color: #333;
+        font-size: 9px;
       }
 
       .description {
-        font-size: 14px;
+        font-size: 12px;
+        color: black;
       }
       .metadata {
         color: #666;
+        font-size: 9px;
+      }
+      p {
+        a {
+          font-weight: bold;
+          font-size: 11px;
+        }
+        margin-bottom: 0px;
       }
       .timestamp {
-        margin-top: 15px;
+        margin-top: 2px;
         color: #333;
+        font-size: 9px;
         font-style: italic;
       }
     }

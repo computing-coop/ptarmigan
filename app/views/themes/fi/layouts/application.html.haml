@@ -45,7 +45,23 @@
           - if user_signed_in?
             %li= link_to('staff', '/staff')
             %li= link_to('sign out', '/users/sign_out')   
-          
+        #top_nav_mobile
+          %select#country_change
+            %option{:selected => (request.host =~ /ee$/ ? false : :selected), :value => :fi} Helsinki
+            %option{:selected => (request.host =~ /fi$/ ? false : :selected), :value => :ee} Tallinn
+          %select#language_change
+            %option{:selected => (I18n.locale == :fi ? :selected : false), :value => :fi} Suomeksi
+            %option{:selected => (I18n.locale == :en ? :selected : false), :value => :en} English
+            %option{:selected => (I18n.locale.to_s == "sv-SE" ? :selected : false), :value => "sv-SE"} Svensk
+            %option{:selected => (I18n.locale == :et ? :selected : false), :value => :et} Eesti
+            %option{:selected => (I18n.locale == :ru ? :selected : false), :value => :ru} русский
+          :javascript
+            $('#country_change').change(function() {
+              document.location.href = "http://ptarmigan." + $(this).val();
+            });  
+            $('#language_change').change(function() {
+              document.location.href = "#{request.url.gsub(/\?*locale\=\D\D\-*\D*\D*/, '')}?locale=" + $(this).val();
+            });          
       #main_menu.sixteen.columns
         #nav.inner.thirteen.columns.alpha
           %ul

@@ -254,6 +254,18 @@ margin-bottom: 10px;
   width: 240px;
   margin-left: 10px;
 }
+#top_nav_container {
+
+  float: right;
+  li {
+    list-style-type: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px;
+  }
+}
+
+
 
 #country_menu {
   clear: left;
@@ -261,22 +273,23 @@ margin-bottom: 10px;
 }
 
 #country_menu ul {
-  width: 160px;
   clear: none;
   display: inline;
+  li {
+    float: right;
+    list-style-type: none;
+    margin-right: 2px;
+  }
 }
-#country_menu img {
-  margin-left: 10px;
-}
-#country_menu  ul li{
-  float: right;
-  list-style-type: none;
-}
+
+
 
 #country_menu ul li img {
   opacity: 1;
   -webkit-transition: opacity 1.4s linear;
   -moz-transition: opacity 1.4s linear;
+  max-width: 100%;
+  height: auto;
 }
 
 #country_menu ul li a:hover img {
@@ -401,16 +414,6 @@ margin-bottom: 10px;
 	
 }
 
-#top_nav_container {
-
-  float: right;
-  li {
-    list-style-type: none;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 16px;
-  }
-}
 
 /**other pages**/
 #other_wrap{
@@ -1827,6 +1830,7 @@ span.suomi.other_location {
 }
 /* New, new carousel **/
 
+
 .ei-slider{
     position: relative;
     width: 100%;
@@ -1835,6 +1839,42 @@ span.suomi.other_location {
     margin: 0 auto;
 }
 
+#logo{
+  clear: right;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media only screen and (max-width: 959px)  {
+  .ei-slider{
+      height: 312px;
+  }
+}
+#top_nav_mobile {
+  display: none;
+  select {
+    width: 45%;
+    margin-right: 15px;
+    float: left;
+  }
+}
+
+@media only screen and (max-width:767px) {
+  #top_nav_container {
+    display: none;
+  }
+  #top_nav_mobile {
+    display: inline;
+  }
+}
+
+@media only screen and (min-width: 960px) and (max-width: 1199px)  {
+  .ei-slider{
+      height: 392px;
+  }
+}
 .ei-slider-loading{
     width: 100%;
     height: 100%;
@@ -1953,6 +1993,10 @@ span.suomi.other_location {
     bottom: 13px;
 }
 @media screen and (max-width: 830px) {
+
+  .ei-slider {
+    height: 175px;
+  }
     .ei-title{
         position: absolute;
         right: 0px;
@@ -1968,12 +2012,12 @@ span.suomi.other_location {
         text-align: center;
     }
     .ei-title .title{
-        font-size: 20px;
-        line-height: 24px;
+        font-size: 16px;
+        line-height: 19px;
     }
     .ei-title .date{
-        font-size: 30px;
-        line-height: 40px;
+        font-size: 13px;
+        line-height: 18px;
     }
 }
 

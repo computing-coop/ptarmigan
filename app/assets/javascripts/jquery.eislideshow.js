@@ -10,33 +10,37 @@
 	* Licensed under the MIT license.
 	*/
 
-	var $event = $.event, resizeTimeout;
+  var $event = $.event,
+  	$special,
+  	resizeTimeout;
 
-	$event.special.smartresize 	= {
-		setup: function() {
-			$(this).bind( "resize", $event.special.smartresize.handler );
-		},
-		teardown: function() {
-			$(this).unbind( "resize", $event.special.smartresize.handler );
-		},
-		handler: function( event, execAsap ) {
-			// Save the context
-			var context = this,
-				args 	= arguments;
+  $special = $event.special.debouncedresize = {
+  	setup: function() {
+  		$( this ).on( "resize", $special.handler );
+  	},
+  	teardown: function() {
+  		$( this ).off( "resize", $special.handler );
+  	},
+  	handler: function( event, execAsap ) {
+  		// Save the context
+  		var context = this,
+  			args = arguments,
+  			dispatch = function() {
+  				// set correct event type
+  				event.type = "debouncedresize";
+  				$event.dispatch.apply( context, args );
+  			};
 
-			// set correct event type
-			event.type = "smartresize";
+  		if ( resizeTimeout ) {
+  			clearTimeout( resizeTimeout );
+  		}
 
-			if ( resizeTimeout ) { clearTimeout( resizeTimeout ); }
-			resizeTimeout = setTimeout(function() {
-				jQuery.event.handle.apply( context, args );
-			}, execAsap === "execAsap"? 0 : 100 );
-		}
-	};
-
-	$.fn.smartresize 			= function( fn ) {
-		return fn ? this.bind( "smartresize", fn ) : this.trigger( "smartresize", ["execAsap"] );
-	};
+  		execAsap ?
+  			dispatch() :
+  			resizeTimeout = setTimeout( dispatch, $special.threshold );
+  	},
+  	threshold: 150
+  };
 	
 	$.Slideshow 				= function( options, element ) {
 	
@@ -339,8 +343,8 @@
 			var _self	= this;
 			
 			// window resize
-			$(window).on( 'smartresize.eislideshow', function( event ) {
-				
+			$(window).on( 'debouncedresize.eislideshow', function( event ) {
+			
 				// resize the images
 				_self._setImagesSize();
 			

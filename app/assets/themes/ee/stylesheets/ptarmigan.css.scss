@@ -96,6 +96,10 @@ a, a:visited, .blog_title a:visited,  .blog_body a:visited  {
 
 #logo{
   clear: right;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 #top_bar {
@@ -115,7 +119,7 @@ a, a:visited, .blog_title a:visited,  .blog_body a:visited  {
 
 #logo_container {
   float: left;
-  width: 760px;
+
 }
 
 #about{
@@ -556,35 +560,7 @@ ul.country_select li ul.subnav {
   margin-left: 10px;
 }
 
-#country_menu {
-  clear: left;
-  float: right;
-}
 
-#country_menu ul {
-  width: 160px;
-  clear: none;
-  display: inline;
-}
-#country_menu img {
-  margin-left: 10px;
-}
-#country_menu  ul li{
-  float: right;
-  list-style-type: none;
-}
-
-#country_menu ul li img {
-  opacity: 1;
-  -webkit-transition: opacity 1.4s linear;
-  -moz-transition: opacity 1.4s linear;
-}
-
-#country_menu ul li a:hover img {
-  opacity: .25;
-  -webkit-transition: opacity .1s linear;
-  -moz-transition: opacity .1s linear;
-}
 
 .front_about {
   clear: both;

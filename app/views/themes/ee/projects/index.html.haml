@@ -12,7 +12,7 @@
     :plain
       $("#tabs").tabs();
 
-  - tab.create('projects', t(:projects)) do
+  - tab.create('projects', t(:active_projects)) do
     - if !@projects.empty?
       .active_projects
         = "#{t :active_projects}: "

@@ -27,7 +27,7 @@
     = content_for :jquery do
       :plain
         $("#tabs").tabs();
-  - tab.create('projects', t(:projects)) do
+  - tab.create('projects', t(:active_projects)) do
     %p= t :project_spiel
     %p{:style => "margin-top: 10px;"}
       %span{:style => "margin-right: 15px; float: left;"}= t :jump_to_project

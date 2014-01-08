@@ -140,7 +140,7 @@ h3 , h2{
 
 
 .project_image {
-  margin-left: 5px;
+  margin-left: 0px;
   margin-bottom: 10px;
 }
 
@@ -153,13 +153,12 @@ h3 , h2{
 }
 
 .active_projects {
-  margin: 10px 20px 20px 15px;
+  margin: 10px 20px 20px 0px;
+  font-size: 15px;
+  line-height: 20px;
 }
 
-.project_name a {
 
-  margin-left: 5px;
-}
 .event_front_title {
 	font-weight:bold;
 	font-size: 13px;
@@ -1460,7 +1459,9 @@ input[type="submit"] {
 
 .ui-tabs { position: relative; padding: 0px; margin-top: -2px; zoom: 1; } /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
 .ui-tabs .ui-tabs-nav { margin: 0; padding: .2em .2em 0; }
-.ui-tabs .ui-tabs-nav li { list-style: none; float: left; position: relative; top: 7px; border-bottom: 0 !important; padding: 0; white-space: nowrap; }
+.ui-tabs .ui-tabs-nav li { list-style: none; float: left; position: relative; top: 7px; border-bottom: 0 !important; padding: 0; white-space: nowrap; 
+  &.ui-tabs-active { font-weight: bold; a { color: black; } }
+}
 .ui-tabs .ui-tabs-nav li a { 
   font-family: Helvetica, Arial, sans-serif;
   color: #888;

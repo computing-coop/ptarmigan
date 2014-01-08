@@ -5,5 +5,9 @@ class Admin::ResourcesController < InheritedResources::Base
   respond_to :html, :js, :xml, :json
   layout 'staff'
   has_scope :page, :default => 1
-        
+  
+  def index
+    @resources = Resource.order('created_at DESC').page(params[:page])
+  end
+  
 end

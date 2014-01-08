@@ -108,6 +108,14 @@ nav.pagination {
 
 .events, .artists, .projects {
   clear: both;
+  table {
+    width: 100%;
+    td {
+      span.small {
+        font-size: 9px;
+      }
+    }
+  }
 }
 span.delete {
   a {

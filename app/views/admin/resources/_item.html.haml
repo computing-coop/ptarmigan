@@ -1,6 +1,20 @@
 = content_tag_for(:tr, resource, :class => cycle(:odd, :even) + ' document') do
-  %td{:class => (resource.location.blank? ? false : resource.location.name.downcase)}= link_to resource.try(:name), resource.item, :target => :_blank
-
+  %td{:class => (resource.location.blank? ? false : resource.location.name.downcase)}
+    = link_to resource.try(:name), resource.item, :target => :_blank
+    - unless resource.event.blank? && resource.artist.blank? && resource.project.blank?
+      .under
+        - if resource.event
+          %span.small
+            &sdot;
+            = link_to resource.event.name, resource.event, :target => :_blank
+        - if resource.artist
+          %span.small
+            &sdot;
+            = link_to resource.artist.name, resource.artist, :target => :_blank        
+        - if resource.project
+          %span.small
+            &sdot;
+            = link_to resource.project.name, resource.project, :target => :_blank
   %td.actions
     %span.smaller_text= link_to '[edit details]', edit_admin_resource_path(resource)
     |

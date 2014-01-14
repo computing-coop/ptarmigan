@@ -1976,6 +1976,7 @@ span.suomi.other_location {
     bottom: 50px;
     opacity: 0;
     z-index: 999;
+    width: 100%;
     max-width: 100%;
     transition: all 0.4s ease;
     -webkit-box-reflect: 
@@ -2026,6 +2027,7 @@ span.suomi.other_location {
 .new_carousel {
   width: 1180px;
   margin: 0 auto 20px auto;
+  width: 100%;
   max-width: 100%;
 }
 
@@ -2037,6 +2039,7 @@ span.suomi.other_location {
   min-height: 398px;
   margin-bottom: 10px;
   img {
+    width: 100%;
     max-width: 100%;
     height: auto;
   }
@@ -2053,6 +2056,7 @@ span.suomi.other_location {
   padding: 0;
   img {
     max-width: 100%;
+    width: 100%;
     height: auto;
   }
   .text {
@@ -2153,6 +2157,7 @@ span.suomi.other_location {
       img { 
         padding: 0px;
         max-width: 100%;
+        width: 100%;
         height: auto;
       }
       &.last {

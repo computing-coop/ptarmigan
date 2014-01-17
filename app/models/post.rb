@@ -31,8 +31,9 @@ class Post < ActiveRecord::Base
   scope :published, :conditions => {:published => true }
   scope :sticky, where(sticky: true)
   validates_presence_of :location_id
-  attr_accessor :remove_carousel
+  attr_accessor :remove_carousel, :remove_alternateimg
   before_validation { carousel.clear if remove_carousel == '1' }
+    before_validation { alternateimg.clear if remove_alternateimg == '1' }
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }  
   Paperclip.interpolates :normalized_resource_file_name do |attachment, style|

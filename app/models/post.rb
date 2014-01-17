@@ -18,7 +18,7 @@ class Post < ActiveRecord::Base
                                           :full => "600x400>", :small => "300x200#",
                                           :thumb => "100x100>" },
                                           :path =>  ":rails_root/public/images/posts/alt/:id/:style/:normalized_resource_file_name",
-                                          :url =>  "/images/posts/alt/:id/:style/:normalized_resource_alt_name", :default_url => "/assets/missing.png"
+                                          :url =>  "/images/posts/alt/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"
 
   translates :title, :body
   attr_accessible :translations,  :remove_carousel, :embed_above_post, :second_embed_gallery_id, :embed_gallery_id, :subsite_id, :show_on_main, :user_id, :carousel, :not_news, :is_personal, :location_id, :translations_attributes, :hide_carousel, :published, :alternateimg, :sticky

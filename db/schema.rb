@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130806154839) do
+ActiveRecord::Schema.define(:version => 20140117112324) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -405,10 +405,10 @@ ActiveRecord::Schema.define(:version => 20130806154839) do
   add_index "postervotes", ["place_id"], :name => "index_postervotes_on_place_id"
 
   create_table "posts", :force => true do |t|
-    t.integer  "user_id",                                    :null => false
-    t.integer  "location_id",                                :null => false
-    t.boolean  "published",               :default => false, :null => false
-    t.boolean  "is_personal",             :default => false, :null => false
+    t.integer  "user_id",                                      :null => false
+    t.integer  "location_id",                                  :null => false
+    t.boolean  "published",                 :default => false, :null => false
+    t.boolean  "is_personal",               :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "carousel_file_name"
@@ -417,12 +417,17 @@ ActiveRecord::Schema.define(:version => 20130806154839) do
     t.datetime "carousel_updated_at"
     t.boolean  "hide_carousel"
     t.string   "slug"
-    t.boolean  "not_news",                :default => false, :null => false
+    t.boolean  "not_news",                  :default => false, :null => false
     t.integer  "subsite_id"
     t.boolean  "show_on_main"
     t.integer  "embed_gallery_id"
-    t.boolean  "embed_above_post",        :default => false, :null => false
+    t.boolean  "embed_above_post",          :default => false, :null => false
     t.integer  "second_embed_gallery_id"
+    t.boolean  "sticky",                    :default => false, :null => false
+    t.string   "alternateimg_file_name"
+    t.integer  "alternateimg_file_size"
+    t.string   "alternateimg_content_type"
+    t.datetime "alternateimg_updated_at"
   end
 
   create_table "presslinks", :force => true do |t|

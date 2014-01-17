@@ -116,7 +116,7 @@ h3 , h2{
 }
 @media (min-width: 1121px) {
   .pg_image_container {
-    height: 540px;
+//    height: 540px;
   }
 }
 
@@ -320,10 +320,16 @@ margin-bottom: 10px;
 
 
 
-#right_column p {
+#right_column {
+  img {
+    width: 100%;
+    height: auto; 
+    max-width: 100%;
+  }
+ p {
 	padding:10px;
+ }
 }
-
 .headline{
 
   border-bottom: 1px dotted black;  
@@ -2023,6 +2029,12 @@ span.suomi.other_location {
     }
 }
 
+.readmore-js-toggle {
+  margin-bottom: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
 /*  ******** New carousel ******************* */
 
 .new_carousel {
@@ -2169,13 +2181,13 @@ span.suomi.other_location {
         font-size: 12px;
         line-height: 15px;
         font-weight: bold;
-        &.eesti a, &.eesti a:visited {
+        &.eesti a, &.eesti a:visited, &.eesti {
           color: $tallinn-blue;
           &:hover {
             color: #3333CD;
           }
         }
-        &.suomi a, *.suomi a:visited {
+        &.suomi a, *.suomi a:visited, &.suomi {
           color: $helsinki-green;
           &:hover {
              color:#00A329;

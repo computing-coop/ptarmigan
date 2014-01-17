@@ -93,7 +93,11 @@ class ApplicationController < ActionController::Base
   
   def get_next_events
     unless (params[:controller] == 'pages' && params[:action] == 'frontpage')
-      @next_events = Event.where(["date >= ? AND public is true", Time.now.strftime('%Y-%m-%d')]).order(:date).limit(5)
+      @next_events = []
+      unless (params[:controller] == 'posts' && params[:action] == 'index' && !params[:page].blank?)
+        @next_events = Post.by_location(@location.id).published.news.sticky.order("created_at DESC")
+      end
+      @next_events += Event.where(["date >= ? AND public is true", Time.now.strftime('%Y-%m-%d')]).order(:date).limit(5)
     end
   end
 

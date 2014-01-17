@@ -7,33 +7,36 @@
       - @posts.each do |post|
         .front_single.clearfix
           .blog_title= link_to post.title, post
-          .post_metadata
-            - if post.is_personal == true
-              = "posted by #{post.user.email.gsub(/\@.+$/, '')} on #{l(post.created_at, :format => :long)}"
-            - else
-              = "posted by Ptarmigan on #{l(post.created_at, :format => :long)}"
-          - unless post.embedded_images.empty?
-            - if post.embed_above_post == true
-              .blog_image= render :partial => 'shared/photo_gallery', :locals => {:image_array => post.embedded_images.sort {rand }}                 
-          .blog_body= raw post.body
-          - unless post.embedded_images.empty?
-            - if post.embed_above_post != true
-              .blog_image= render :partial => 'shared/photo_gallery', :locals => {:image_array => post.embedded_images.sort {rand } }
-            .blog_callback
-              = t(:see_more) + ":"
-              = link_to Event.find(post.embed_gallery_id).name, Event.find(post.embed_gallery_id)   
+          .post_inner
+            .post_metadata
+              - if post.is_personal == true
+                = "posted by #{post.user.email.gsub(/\@.+$/, '')} on #{l(post.created_at, :format => :long)}"
+              - else
+                = "posted by Ptarmigan on #{l(post.created_at, :format => :long)}"
+            - unless post.embedded_images.empty?
+              - if post.embed_above_post == true
+                .blog_image= render :partial => 'shared/photo_gallery', :locals => {:image_array => post.embedded_images.sort {rand }}                 
+            .blog_body= raw post.body
+            - unless post.embedded_images.empty?
+              - if post.embed_above_post != true
+                .blog_image= render :partial => 'shared/photo_gallery', :locals => {:image_array => post.embedded_images.sort {rand } }
+              .blog_callback
+                = t(:see_more) + ":"
+                = link_to Event.find(post.embed_gallery_id).name, Event.find(post.embed_gallery_id)   
           .share_this= share_this(post)
     .see_all= link_to t(:see_all) + " " + t(:news), posts_path
 .sidebar.five.columns.omega
-  .headline
-    %h2= t :about
-  .where= raw @where.excerpt
-  = render :partial => 'shared/email_signup'
+
   - unless @upcoming.empty?
     .front_box
       .headline
         %h2= t :upcoming
       = render :partial => 'shared/next_events', :locals => {:next_events => (@upcoming.size > 5 ? @upcoming.delete_if{|x| x.location != @location} : @upcoming) }
+  .headline
+    %h2= t :about
+  .where= raw @where.excerpt
+  = render :partial => 'shared/email_signup'
+
   - if @upcoming.empty?
     .front_box
       .headline
@@ -41,5 +44,8 @@
       = form_tag "/search/simple", :method => "post" do |f|
         = text_field_tag :search
         = submit_tag t :search
-
+        
+= content_for :jquery do
+  :plain
+    $('.blog_body').readmore();
 

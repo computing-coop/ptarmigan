@@ -1,3 +1,6 @@
+.events
+  .headline.clearfix
+    %h2= t :archive
 %p
   = t :event_archive_first
   = Event.by_location(2).published.count.to_s

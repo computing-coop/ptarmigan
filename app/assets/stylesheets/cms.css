@@ -350,7 +350,7 @@ form.event li, form.resource li {
     font-size: 9pt; }
   form li p.inline-hints, form.resource li p.inline-hints {
     width: 90px;
-    margin-top: -30px;
+/*    margin-top: -30px;*/
     margin-right: 10px;
     text-align: right;
     font-size: 10px;
@@ -382,3 +382,7 @@ tr.proposal_grid_2 {
 #tabs a {
   color: #3477B6; }
 
+  form.post img {
+    width: 100%;
+    height: auto;
+  }

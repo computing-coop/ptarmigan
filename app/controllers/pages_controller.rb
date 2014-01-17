@@ -27,7 +27,7 @@ class PagesController < ApplicationController
         :type  => "ptarmigan:article",
         :url   =>   'http://' + (@subsite.nil? ? 'www.' : 'donekino.') + 'ptarmigan.' + @location.locale },
         :canonical =>  'http://www.ptarmigan.' + @location.locale,
-        :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,culture,art,workshops,artist-run,project space,maker culture, DIY,experimental, avant-garde, music, sound, visual art, Tiib,Baltic,residency',
+        :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,culture,art,workshops,artist-run,project space,maker culture, DIY,experimental, avant-garde, music, sound, visual art,Baltic,residency',
         :description => 'Ptarmigan is a cultural platform in ' + (@location.locale == 'fi' ? "Helsinki, Finland" : "Tallinn, Estonia."),
         :title => nil
       @upcoming = Event.published.future.where(:hide_from_front => false).where("subsite_id is null OR show_on_main = true")
@@ -49,8 +49,6 @@ class PagesController < ApplicationController
         end
       end
 
-
-    
       @artist = Artist.by_location(@location.id).current
       unless @artist.empty?
         @new_carousel.unshift(@artist.first)
@@ -58,11 +56,10 @@ class PagesController < ApplicationController
 
       Post.by_location(@location.id).with_carousel.published.each {|x| @new_carousel.unshift(x) }
 
-   
       if @subsite
-        @posts = Post.by_subsite(@subsite).published.order('created_at DESC').page params[:page]
+        @posts = Post.by_subsite(@subsite).published.order('sticky DESC, created_at DESC').page(params[:page]).per(6)
       else
-        @posts = Post.by_location(@location.id).published.news.order('created_at DESC').page params[:page]
+        @posts = Post.by_location(@location.id).published.news.order('sticky DESC, created_at DESC').page(params[:page]).per(6)
       end
       @new_carousel = @new_carousel[0..14]
       respond_to do |format|

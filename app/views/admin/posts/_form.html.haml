@@ -64,7 +64,7 @@
           = image_tag f.object.alternateimg.url
           = f.check_box :remove_alternateimg
           Delete alternate image
-        = f.input :alternateimg, :label => 'Alternate image', :hint => "Different from carousel; will appear  on standalone post page (if it exists), at the top of the post,  instead of the carousel image"
+      = f.input :alternateimg, :label => 'Alternate image', :hint => "Different from carousel; will appear  on standalone post page (if it exists), at the top of the post,  instead of the carousel image"
     .six.columns.omega
       = f.input :embed_gallery_id, :as => :select, :collection => Event.where(:id => [Flicker.all.map(&:event_id).uniq]).sort_by{|x| x.date}.reverse, :hint => "If archival images exist for an event, embed the gallery in this post"
       = f.input :second_embed_gallery_id, :as => :select, :collection => Event.where(:id => [Flicker.all.map(&:event_id).uniq]).sort_by{|x| x.date}.reverse, :hint => "Optional second gallery - will be combined with first gallery as one slideshow"      

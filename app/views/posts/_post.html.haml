@@ -9,7 +9,7 @@
         = "posted by Ptarmigan on #{l(post.created_at, :format => :long)}"
     - if post.alternateimg?
       - unless use_alternate.nil?
-        .blog_image= image_tag post.alternateimg.url(:largest)
+        .blog_image= image_tag post.alternateimg.url
     - if post.carousel? && use_alternate.nil?
       .blog_image= image_tag post.carousel.url(:new_carousel)
     - unless post.embedded_images.empty?

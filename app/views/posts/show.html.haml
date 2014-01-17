@@ -1,4 +1,4 @@
 .headline
   %h2= t :news
-= render :partial => "post", :locals => {:post => @post, :use_alternate => true}
+= render :partial => "post", :locals => {:post => @post, :use_alternate => @post.use_alternate? ? true : false}
 

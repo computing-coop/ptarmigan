@@ -93,9 +93,7 @@ class Post < ActiveRecord::Base
     carousel
   end
 
-  def normalized_resource_alt_name
-    "#{self.id}-#{self.alternateimg_file_name.gsub( /[^a-zA-Z0-9_\.]/, '_')}"
-  end  
+
   
   def normalized_resource_file_name
     "#{self.id}-#{self.carousel_file_name.gsub( /[^a-zA-Z0-9_\.]/, '_')}"

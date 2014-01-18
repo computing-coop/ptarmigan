@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class UsersController < InheritedResources::Base
   # Be sure to include AuthenticationSystem in Application Controller instead
-  layout 'staff'
+  layout 'staff', :except => :new
   before_filter :authenticate_user!, :only => [:update,  :edit, :index]
   actions :new, :create, :update, :edit, :index
   # # render new.rhtml

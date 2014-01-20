@@ -37,7 +37,7 @@
               - if !event.discountreason.blank?
                 = " (#{event.discountreason})"
             - else
-              = "or " + ptarmigan_cost(event.discountedcost) + " (#{event.discountreason})"
+              = raw "or " + ptarmigan_cost(event.discountedcost) + " (#{event.discountreason})"
         - unless event.place_id == 8 && @location.id == 2
           = "@"    
           %b= event.place.name

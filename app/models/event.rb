@@ -27,7 +27,7 @@ class Event < ActiveRecord::Base
   
   scope :in_month, lambda {|*args| { :conditions => { :public => 1,  :date => args.first.to_date.beginning_of_month..args.first.to_date.end_of_month }} }
   scope :future, where(['public is true AND date >= ?', Time.now.to_date]).order(:date)
-  scope :published, where(:public => true).order('date')
+  scope :published, where(:public => true)
   scope :by_location, lambda {|x| {:conditions => ['location_id = ? AND (subsite_id is null OR show_on_main is true)', x] }}
   scope :by_subsite, ->(subsite_id) { where(subsite_id: subsite_id) }
   validates_presence_of :location_id, :date

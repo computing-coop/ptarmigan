@@ -4,7 +4,7 @@ if RUBY_VERSION =~ /1.9/
 end
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.17'
 gem 'mysql2'
 # Bundle edge Rails instead:
 # gem 'http_accept_language', '1.1.2'

@@ -4,4 +4,8 @@ class Video < ActiveRecord::Base
   belongs_to :event
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }  
+  
+  def icon
+    'video.png'
+  end
 end

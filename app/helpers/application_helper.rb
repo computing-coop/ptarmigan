@@ -187,7 +187,7 @@ def date_range(from_date, until_date, options = {})
         t :free
       end
     else 
-       number_to_currency(cost, :unit => '&euro;')
+       number_to_currency(cost, :unit => '&euro;'.html_safe)
     end
   end
   

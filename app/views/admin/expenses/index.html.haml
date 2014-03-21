@@ -25,7 +25,7 @@
 
       .twelve.columns 
         Total shown here:
-        = number_to_currency(@expenses.map(&:amount).sum, :unit => "&euro;", :format => "%n%u")
+        = number_to_currency(@expenses.map(&:amount).sum, :unit => "&euro;".html_safe, :format => "%n%u")
         = link_to '[export to CSV]', "/admin/expenses?render_csv=1&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_location=" + params[:by_location].to_s + "&by_recipient=" + params[:by_recipient].to_s + "&by_month=" + params[:by_month].to_s + "&by_payer=" + params[:by_payer].to_s 
     
       - if !@expenses.empty?
@@ -72,7 +72,7 @@
 
       %p 
         Total shown here:
-        = number_to_currency(@incomes.map(&:amount).sum, :unit => "&euro;", :format => "%n%u")
+        = number_to_currency(@incomes.map(&:amount).sum, :unit => "&euro;".html_safe, :format => "%n%u")
         = link_to '[export to CSV]', "/admin/incomes?render_csv=1&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_location=" + params[:by_location].to_s + "&by_recipient=" + params[:by_recipient].to_s + "&by_month=" + params[:by_month].to_s + "&by_payer=" + params[:by_payer].to_s + "&i_month=" + params[:i_month].to_s + "&i_location=" + params[:i_location].to_s + "&i_budgetarea=" + params[:i_budgetarea].to_s + "&i_source=" + params[:i_source].to_s 
     
       - if !@incomes.empty?

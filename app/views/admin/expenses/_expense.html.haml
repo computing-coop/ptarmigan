@@ -21,6 +21,6 @@
       - expense.wikifiles.each do |wf|
         = link_to '[dl]', wf.attachment.url
   %td
-    = number_to_currency(expense.amount, :unit => "&euro;", :format => "%n%u")
+    = number_to_currency(expense.amount, :unit => "&euro;".html_safe, :format => "%n%u")
     %span.small_text= "(#{expense.paid_by})"
 

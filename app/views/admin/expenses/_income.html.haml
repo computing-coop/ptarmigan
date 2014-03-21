@@ -18,7 +18,7 @@
       - income.wikifiles.each do |wf|
         = link_to '[download]', wf.attachment.url
   %td
-    = number_to_currency(income.amount, :unit => "&euro;", :format => "%n%u")
+    = number_to_currency(income.amount, :unit => "&euro;".html_safe, :format => "%n%u")
 
   %td
     = link_to 'Edit', edit_admin_income_path(income)

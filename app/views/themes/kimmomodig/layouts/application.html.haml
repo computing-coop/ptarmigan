@@ -1,0 +1,67 @@
+!!! 5
+%html
+  %head
+    = display_meta_tags :site => "Kimmo Modig | Ptarmigan", :og => {:url => 'http://kimmomodig.ptarmigan.ee', :title => 'Kimmo Modig, artist in residence at Ptarmigan, May 2014'}
+    %meta{ :"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8" }
+    %link{ :rel => "shortcut icon", :href => "/favicon.ico" }
+    %link{ :rel => "alternate", :type => "application/rss+xml", :title => "Ptarmigan RSS", :href => "/feed.rss"}
+    = stylesheet_link_tag :application
+    = stylesheet_link_tag theme_stylesheet_path(:application), :media => :screen
+    = javascript_include_tag :application
+    = javascript_include_tag theme_javascript_path(:application)
+    = csrf_meta_tag
+    %script{:type => "text/javascript"}
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12518395-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+      var switchTo5x=true;
+    %script{:type => "text/javascript", :src => "http://w.sharethis.com/button/buttons.js"}
+    %script{:type => "text/javascript"} stLight.options({publisher: "ur-dae0667d-47dc-d390-f0b1-129d17517bbe"});
+    
+
+    %meta{ :content => "1 day", :name => "revisit-after" }
+
+  %body
+    .container
+      %header
+        .sixteen.columns.alpha
+          %h1 Kimmo Modig's experiences at Ptarmigan
+
+
+    .container
+      .thirteen.columns.alpha
+        - @posts.each do |post|
+          %article
+            .post.thirteen.columns.alpha[post]
+              %h3= post.title
+              %p
+                %time= "Posted by #{post.user.email.gsub(/\@.+$/, '')} on #{l(post.created_at, :format => :long)}"
+              .body.nine.columns.alpha= raw post.body
+      
+      %aside
+        .sidebar.three.columns.omega
+          %p
+            Kimmo Modig is artist-in-residence at Ptarmigan for May 2014. The
+            = link_to "Axis of Praxis", project_path('eesti-axis-of-praxis')
+            residency, in conjunction with 
+            = link_to 'MoKS', 'http://moks.ee'
+            , is supported by
+            = link_to 'Kulturkontakt Nord', 'http://kulturkontaktnord.org'
+              
+    .container
+      %footer
+        .ptarmigan_footer
+          MTÜ Ptarmigan | Toom-Kooli 13
+          | 10130 Tallinn, Estonia 
+          |
+          = link_to 'GitHub', 'https://github.com/cenotaph/ptarmigan' 
+:javascript
+  $(document).ready(function() {
+    #{yield :jquery}
+  });    

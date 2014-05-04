@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  place: 
+  vote: 1
+  ip_address: MyString
+  contact_email: MyString
+  comment: MyText
+
+two:
+  place: 
+  vote: 1
+  ip_address: MyString
+  contact_email: MyString
+  comment: MyText

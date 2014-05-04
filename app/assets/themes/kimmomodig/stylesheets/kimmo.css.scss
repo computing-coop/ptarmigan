@@ -1,0 +1,37 @@
+article {
+  .post {
+    padding: 30px 0px;
+    margin: 0;
+    border-bottom: 1px dotted #222;
+    .body {
+      font-size: 1.3em;
+      line-height: 1.7em;
+      img {
+        max-width: 955px;
+        height: auto !important;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1199px) and (min-width: 960px) {
+  article .post .body img {
+    max-width: 760px;
+    height: auto !important;
+  }
+}
+
+
+@media only screen and (max-width: 959px) and (min-width: 768px) {
+  article .post .body img {
+    max-width: 604px;
+    height: auto !important;
+  }
+}
+
+@media only screen and (max-width: 767px)  { 
+  article .post .body img {
+    max-width: 420px;
+    height: auto !important;
+  }
+}

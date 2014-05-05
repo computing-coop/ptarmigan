@@ -13,6 +13,7 @@ gem 'best_in_place', '1.0.6'
 group :development do
   gem "better_errors"
   gem "binding_of_caller",">= 0.6.9.pre2" # :git => 'git://github.com/banister/binding_of_caller.git', :branch => 'ruby-2.0'
+  gem 'letter_opener'
   gem 'nifty-generators'
   gem 'meta_request'
   gem 'quiet_assets'

@@ -29,9 +29,17 @@ article {
   }
 }
 
-@media only screen and (max-width: 767px)  { 
+@media only screen and (max-width: 767px) and (min-width: 480px) { 
   article .post .body img {
     max-width: 420px;
     height: auto !important;
   }
 }
+
+@media only screen and (max-width: 479px) { 
+  article .post .body img {
+    max-width: 300px;
+    height: auto !important;
+  }
+}
+  

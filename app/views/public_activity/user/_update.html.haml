@@ -1,20 +1,20 @@
 /- unless a.trackable.remember_created_at != a.updated_at
+- unless a.owner.nil?
+  .activity.ten.columns
+    .icon.columns
+      = image_tag trackable_icon(a.trackable), :width => 75
 
-.activity.ten.columns
-  .icon.columns
-    = image_tag trackable_icon(a.trackable), :width => 75
-
-  .metadata.seven.columns
-    .person
-      .info.column
-        %span.name= a.owner.name
-        %span.small
-          - if a.trackable.current_sign_in_at == a.created_at
-            logged in
-          - else
-            edited their profile 
+    .metadata.seven.columns
+      .person
+        .info.column
+          %span.name= a.owner.name 
+          %span.small
+            - if a.trackable.current_sign_in_at == a.created_at
+              logged in
+            - else
+              edited their profile 
 
 
-        .timestamp
-          %span.small= time_ago_in_words(a.created_at) + " ago"
-  .one.column= image_tag a.owner.icon.url(:thumb), :height => 50          
+          .timestamp
+            %span.small= time_ago_in_words(a.created_at) + " ago"
+    .one.column= image_tag a.owner.icon.url(:thumb), :height => 50          

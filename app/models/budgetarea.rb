@@ -4,5 +4,8 @@ class Budgetarea < ActiveRecord::Base
   scope :active, where(:active => true)
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }
-    
+   
+  def icon
+    ''
+  end
 end

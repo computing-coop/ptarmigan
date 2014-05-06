@@ -6,6 +6,6 @@ class Budgetarea < ActiveRecord::Base
   tracked owner: ->(controller, model) { controller.current_user }
    
   def icon
-    ''
+    'expense_icon.png' 
   end
 end

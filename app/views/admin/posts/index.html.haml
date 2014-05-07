@@ -5,6 +5,7 @@
 .projects
   %table
     %thead
+      %th Site
       %th Title
       %th Published?
       %th News?
@@ -13,6 +14,11 @@
     %tbody
       - @posts.sort_by(&:created_at).reverse.each do |post|
         %tr.cms_item
+          %td
+            - if post.subsite
+              = post.subsite.name
+            - else
+              = post.location.name
           %td{:class => post.location.name.downcase}
             = link_to post.title, edit_admin_post_path(post)
             %span.smaller_font= l post.created_at.to_date, :format => :long

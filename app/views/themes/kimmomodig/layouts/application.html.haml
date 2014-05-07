@@ -10,6 +10,9 @@
     = javascript_include_tag :application
     = javascript_include_tag theme_javascript_path(:application)
     = csrf_meta_tag
+
+    %script{:type => "text/javascript", :src => "http://w.sharethis.com/button/buttons.js"}
+    %script{:type => "text/javascript"} stLight.options({publisher: "ur-dae0667d-47dc-d390-f0b1-129d17517bbe"});
     %script{:type => "text/javascript"}
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-12518395-2']);
@@ -28,21 +31,24 @@
     %meta{ :content => "1 day", :name => "revisit-after" }
 
   %body
+    #fb-root
+    :javascript
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=1472879426262623&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
     .container
       %header
         .sixteen.columns.alpha
-          %h1 Kimmo Modig's experiences at Ptarmigan
+          %h1= link_to  "Kimmo Modig's experiences at Ptarmigan", '/'
 
 
     .container
-      .thirteen.columns.alpha
-        - @posts.each do |post|
-          %article
-            .post.thirteen.columns.alpha[post]
-              %h3= post.title
-              %p
-                %time= "Posted by #{post.user.email.gsub(/\@.+$/, '')} on #{l(post.created_at, :format => :long)}"
-              .body.nine.columns.alpha= raw post.body
+      .thirteen.columns.alpha= yield
+
       
       %aside
         .sidebar.three.columns.omega

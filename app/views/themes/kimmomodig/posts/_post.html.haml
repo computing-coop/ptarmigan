@@ -1,0 +1,6 @@
+%h3= link_to post.title, post
+%p
+  %time= raw "Posted by <b>#{post.user.email.gsub(/\@.+$/, '')}</b> on #{l(post.created_at, :format => :long)}"
+.body.nine.columns.alpha= raw post.body
+.share_this= share_this(post)  
+.fb-comments{:"data-href" => url_for(:controller => :posts, :action => :show, :id => post.slug, :host => 'kimmomodig.ptarmigan.ee'),  :"data-numposts" => 8, :"data-colorscheme" => "light"}

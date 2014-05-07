@@ -4,14 +4,14 @@ class FeedController < ApplicationController
 
   def index
     @feed = []
-    @feed += Event.published.order('date desc').limit(20)
-    @feed += Post.published.order('created_at DESC').limit(20)
+    @feed += Event.published.order('date desc').limit(30)
+    @feed += Post.published.where(["created_at >= ?", @feed.last.feed_date]).order('created_at').limit(20)
     @feed = @feed.sort_by{|x| x.feed_date}
 
     @feed.reverse!
 
-    @feed = @feed[0..19]
-
+    @feed = @feed[0..25]
+    @feed = @feed.sort_by{|x| x.created_at}.reverse
   end
 
 end

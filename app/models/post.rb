@@ -76,9 +76,13 @@ class Post < ActiveRecord::Base
     if carousel?
       out += ActionController::Base.helpers.image_tag("http://ptarmigan.fi" + carousel.url(:full)) 
     end
-    out += "<p>#{I18n.l(feed_date.to_date, :format => :long)}</p>"
+    out += "<p>posted #{I18n.l(feed_date.to_date, :format => :long)}"
+    if subsite
+      out += "in <a href=\"http://#{subsite.name}.ptarmigan.#{subsite.location.locale}\"/>#{subsite.name.humanize}</a>"
+    end
+    out += "</p>"
     out + body(locale)
-    body(locale)
+    # body(locale)
   end
 
   def feed_date

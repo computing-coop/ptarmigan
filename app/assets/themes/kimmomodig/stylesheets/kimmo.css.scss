@@ -1,3 +1,14 @@
+body {
+  padding-top: 40px;
+}
+
+.sidebar {
+  ul {
+    li {
+      font-size: 1.2em;
+    }
+  }
+}
 article {
   .post {
     .share_this {
@@ -15,6 +26,11 @@ article {
       }
     }
   }
+}
+
+a {
+  text-decoration: none;
+  color: #999;
 }
 
 @media only screen and (max-width: 1199px) and (min-width: 960px) {
@@ -45,4 +61,6 @@ article {
     height: auto !important;
   }
 }
-  
+footer {
+  padding: 20px 0px;
+}

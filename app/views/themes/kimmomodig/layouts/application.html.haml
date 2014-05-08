@@ -43,9 +43,11 @@
     .container
       %header
         .sixteen.columns.alpha
-          %h1= link_to  "Kimmo Modig's experiences at Ptarmigan", '/'
+          %h1= link_to  "Kimmo Modig: Tallinn stories", '/'
 
-
+        .sixteen.columns.alpha
+          %p Each one of these texts have been written in an hour. I haven't edited them after writing. This is how I express myself in 2014.
+          
     .container
       .thirteen.columns.alpha= yield
 
@@ -58,8 +60,11 @@
             residency, in conjunction with 
             = link_to 'MoKS', 'http://moks.ee'
             , is supported by
-            = link_to 'Kulturkontakt Nord', 'http://kulturkontaktnord.org'
-              
+            = link_to 'Kulturkontakt Nord.', 'http://kulturkontaktnord.org'
+          %ul
+            %li= link_to 'Kimmo Modig website', 'http://kimmomodig.com'
+            %li= link_to 'Ptarmigan website', 'http://ptarmigan.ee'
+            
     .container
       %footer
         .ptarmigan_footer

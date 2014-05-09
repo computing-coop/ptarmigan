@@ -78,7 +78,7 @@ class Post < ActiveRecord::Base
     end
     out += "<p>posted #{I18n.l(feed_date.to_date, :format => :long)}"
     if subsite
-      out += "in <a href=\"http://#{subsite.name}.ptarmigan.#{subsite.location.locale}\"/>#{subsite.name.humanize}</a>"
+      out += " in <a href=\"http://#{subsite.name}.ptarmigan.#{subsite.location.locale}\"/>#{subsite.name.humanize}</a>"
     end
     out += "</p>"
     out + body(locale)

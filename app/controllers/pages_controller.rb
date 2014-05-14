@@ -57,7 +57,7 @@ class PagesController < ApplicationController
       Post.by_location(@location.id).with_carousel.published.each {|x| @new_carousel.unshift(x) }
  
       if @subsite
-        @posts = Post.by_subsite(@subsite).published.order('sticky DESC, created_at DESC').page(params[:page]).per(6)
+        @posts = Post.by_subsite(@subsite).published.order('sticky DESC, created_at DESC').page(params[:page]).per(1)
       else
         @posts = Post.by_location(@location.id).published.news.order('sticky DESC, created_at DESC').page(params[:page]).per(6)
       end

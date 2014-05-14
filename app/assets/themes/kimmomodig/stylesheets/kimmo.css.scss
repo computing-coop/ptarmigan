@@ -64,3 +64,17 @@ a {
 footer {
   padding: 20px 0px;
 }
+
+nav.pagination {
+  color: black;
+  float: left;
+  font-size: 1.2em;
+  span.current {
+    color: black;
+    font-size: 1.2em;
+  }
+  span.page {
+    color: black;
+    font-size: 1.2em;    
+  }
+}

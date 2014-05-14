@@ -1,3 +1,7 @@
+
 - @posts.each do |post|
   %article
     .post.thirteen.columns.alpha[post]= render :partial => 'post', :locals => {:post => post }
+    
+.thirteen.columns.alpha
+  = paginate @posts

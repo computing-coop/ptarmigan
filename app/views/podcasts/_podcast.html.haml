@@ -1,0 +1,35 @@
+.title= "##{podcast.number}: #{podcast.name}"
+- if podcast.event
+  .event
+    = t :from_the_event
+    = link_to podcast.event.name, podcast.event, :target => :_blank
+.description= podcast.description
+
+- unless podcast.cloudfront_filename.blank?
+  %div{:id => "mediaplayer_#{podcast.id.to_s}"}
+    %audio{:controls => "true", :src => "http://media.ptarmigan.ee/#{File.basename(podcast.cloudfront_filename)}"}
+      Your browser does not support the audio element.
+- if podcast.event        
+  :javascript
+    jwplayer("mediaplayer_#{podcast.id.to_s}").setup({
+        'width': '100%',
+        'image': "http://ptarmigan.ee#{podcast.event.avatar.url(:medium)}",
+        'controlbar': 'bottom',
+        'provider': 'rtmp',
+        'file': "rtmp://media.ptarmigan.ee/cfx/st/mp4:#{podcast.cloudfront_filename}",
+        'modes': [
+           {type: 'flash', src: 'https://d1aq2zv9qzn8wc.cloudfront.net/jwplayer.flash.swf'},
+          ]
+    });
+- else
+  :javascript
+    jwplayer("mediaplayer_#{podcast.id.to_s}").setup({
+        'width': '100%',
+        'height': 30,
+        'controlbar': 'bottom',
+        'provider': 'rtmp',
+        'file': "rtmp://media.ptarmigan.ee/cfx/st/mp4:#{podcast.cloudfront_filename}",
+        'modes': [
+           {type: 'flash', src: 'https://d1aq2zv9qzn8wc.cloudfront.net/jwplayer.flash.swf'},
+          ]
+    });  

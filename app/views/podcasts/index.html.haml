@@ -1,0 +1,9 @@
+.headline
+  %h2 Ptarmigan podcasts
+  
+%p Ptarmigan podcasts contain audio recordings of talks, discussions, workshops and other events that have taken place at Ptarmigan. While we are initially posting our Avatud Toimingud/Opening Operations events, we hope to unearth other recordings from the archives.
+
+.podcast_index
+  - @podcasts.each do |podcast|
+    .podcast= render :partial => 'podcast', :locals => {:podcast => podcast}
+  

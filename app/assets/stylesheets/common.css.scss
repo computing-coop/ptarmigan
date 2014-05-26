@@ -2255,6 +2255,13 @@ p.inline-hints {
   }
 }
 
+.podcast_index {
+  .podcast {
+    margin-top: 25px;
+    padding: 20px 0px;
+    border-top: 1px dotted #333;
+  }
+}
 .podcast {
   .title {
     font-size: 1.7em;

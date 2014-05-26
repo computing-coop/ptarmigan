@@ -1,11 +1,12 @@
 class Podcast < ActiveRecord::Base
   belongs_to :event
-  attr_accessible :cloudfront_filename, :description, :name, :number, :published, :event_id
+  attr_accessible :cloudfront_filename, :description, :name, :number, :published, :event_id, :file_length
   extend FriendlyId
   friendly_id :number_and_name, :use => :history
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }  
-  validates_presence_of :number, :name, :cloudfront_filename
+  validates_presence_of :number, :name, :cloudfront_filename, :file_length
+  
   
   scope :published, :conditions => {:published => true }
     

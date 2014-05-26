@@ -7,6 +7,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :location
   belongs_to :subsite
+  has_many :podcasts
 
   has_attached_file :carousel, :styles => {:largest => "1180x492#", :new_carousel => "960x400#", 
                                           :full => "600x400>", :small => "300x200#",

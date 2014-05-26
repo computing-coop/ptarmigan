@@ -33,6 +33,8 @@ Ptarmigan::Application.routes.draw do
     end
   end
   
+  resources :podcasts
+  
   resources :proposals do
     collection do
       get :thank_you
@@ -111,6 +113,7 @@ Ptarmigan::Application.routes.draw do
     resources :expenses
     resources :subsites
     resources :projects
+    resources :podcasts
     resources :pages
     resources :users
     resources :reports do

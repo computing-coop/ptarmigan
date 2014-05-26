@@ -80,7 +80,7 @@ en:
   part_of_project: "part of project"
   event_full: 'Sorry, the event is now full.'
   join_our_mailing_list: "Join our mailing list!"
-
+  from_the_event: 'From the event: '
   join: "join"
   your_name: "Your name:"
   coming_up: "Upcoming"

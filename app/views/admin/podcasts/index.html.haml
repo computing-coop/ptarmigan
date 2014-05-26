@@ -1,0 +1,16 @@
+%h2 Podcasts
+= button_to 'New podcast', new_admin_podcast_path, :method => :get
+
+- if !@podcasts.empty?
+  .projects
+    %table{:cellpadding => 5, :cellspacing => 5, :border => 0}
+      %thead
+        %th Number 
+        %th Name
+        %th Published?
+        %th Actions
+      = render :partial => "podcast", :collection => @podcasts
+  = paginate(@podcasts)
+- else
+  %p There are no podcasts to show yet.
+= button_to 'New podcast', new_admin_podcast_path, :method => :get

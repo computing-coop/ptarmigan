@@ -1,0 +1,17 @@
+.activity.ten.columns
+  .icon.columns
+    - unless a.trackable.nil?
+      = image_tag a.trackable.icon, :width => 75
+
+  .metadata.seven.columns
+    .person
+      .info.column
+        %span.name= a.owner.name
+        %span.small
+          created a new
+          %strong= a.trackable_type.downcase
+        = link_to_trackable a.trackable, a.trackable_type do
+          %blockquote= p[:summary]
+        .timestamp
+          %span.small= time_ago_in_words(a.created_at) + " ago"
+  .one.column= image_tag a.owner.icon.url(:thumb), :height => 50          

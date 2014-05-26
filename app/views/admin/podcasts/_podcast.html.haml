@@ -1,0 +1,10 @@
+%tr
+  %td= podcast.number
+  %td= podcast.name
+  %td= podcast.published == true ? 'yes' : 'no'
+  %td.actions
+    = link_to 'Edit', edit_admin_podcast_path(podcast)
+    |
+    = link_to 'Delete', [:admin, podcast], :method => :delete, :data => {:confirm => "Are you sure?"}
+    |
+    = link_to 'View on site', podcast

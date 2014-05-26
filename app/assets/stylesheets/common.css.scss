@@ -2254,3 +2254,20 @@ p.inline-hints {
     margin-bottom: 0px;
   }
 }
+
+.podcast {
+  .title {
+    font-size: 1.7em;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  .event {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    border-bottom: none;
+  }
+  .description {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+  }
+}

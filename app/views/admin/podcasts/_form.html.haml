@@ -1,0 +1,8 @@
+= semantic_form_for([:admin, @podcast], :html => {:multipart => true}) do |f|
+  = f.input :number
+  = f.input :name
+  = f.input :description
+  = f.input :cloudfront_filename, :hint => 'Filename as it is uploaded to Amazon S3 bucket'
+  = f.input :event
+  = f.input :published
+  = f.submit

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140505130154) do
+ActiveRecord::Schema.define(:version => 20140526155448) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -380,6 +380,20 @@ ActiveRecord::Schema.define(:version => 20140505130154) do
     t.boolean  "approved_for_posters"
     t.boolean  "allow_ptarmigan_events"
   end
+
+  create_table "podcasts", :force => true do |t|
+    t.string   "number"
+    t.string   "name"
+    t.integer  "event_id"
+    t.string   "cloudfront_filename"
+    t.boolean  "published"
+    t.text     "description"
+    t.string   "slug"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "podcasts", ["event_id"], :name => "index_podcasts_on_event_id"
 
   create_table "post_translations", :force => true do |t|
     t.integer  "post_id"

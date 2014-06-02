@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Artist < ActiveRecord::Base
-  paginates_per 4
+  paginates_per 8
   extend FriendlyId
   friendly_id :name, :use => :history
   has_many :events

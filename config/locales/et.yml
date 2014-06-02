@@ -80,7 +80,7 @@ et:
   proposal_organisation: 'Organisatsioon'
   optional: 'valikuline'
   postal_address: 'Postiaadress'
-
+  podcasts: 'Podcastid'
   country: 'Elukohamaa'
   proposal_phone: 'Telefon (lisa ka riigi kood):'
   proposal_shortdescription: 'Kirjelda oma projekti saja või vähem sõnaga.'

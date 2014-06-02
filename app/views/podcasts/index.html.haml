@@ -3,6 +3,17 @@
   
 %p Ptarmigan podcasts contain audio recordings of talks, discussions, workshops and other events that have taken place at Ptarmigan. While we are initially posting our Avatud Toimingud/Opening Operations events, we hope to unearth other recordings from the archives.
 
+%br/
+%p
+  %strong Subscribe to our podcasts!
+
+%p 
+  You can subscribe to our podcasts via 
+  = link_to "iTunes", 'https://itunes.apple.com/us/podcast/ptarmigan-podcasts/id882572294'
+  or through our 
+  = link_to 'podcasts RSS', 'http://www.ptarmigan.ee/podcasts.rss'
+  feed.
+
 .podcast_index
   - @podcasts.each do |podcast|
     .podcast= render :partial => 'podcast', :locals => {:podcast => podcast}

@@ -1,4 +1,4 @@
-.title= "##{podcast.number}: #{podcast.name}"
+.title= link_to "##{podcast.number}: #{podcast.name}", podcast
 - if podcast.event
   .event
     = t :from_the_event

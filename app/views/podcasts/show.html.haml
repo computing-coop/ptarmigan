@@ -2,3 +2,15 @@
   %h2 Podcast
   
 .podcast= render :partial => 'podcast', :locals => {:podcast => @podcast }
+
+%br/
+%br/
+%p
+  %strong Subscribe to our podcasts!
+
+%p 
+  You can subscribe to our podcasts via
+  = link_to "iTunes", 'https://itunes.apple.com/us/podcast/ptarmigan-podcasts/id882572294'
+  or through our 
+  = link_to 'podcasts RSS', 'http://www.ptarmigan.ee/podcasts.rss'
+  feed.

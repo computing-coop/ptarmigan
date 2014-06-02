@@ -14,8 +14,28 @@ class Podcast < ActiveRecord::Base
     'podcast_icon.png'
   end
   
+  def feed_date
+    created_at
+  end
+  
   def number_and_name
     "#{number}-#{name}"
   end
+  
+  def location
+    false
+  end
 
+
+  def title
+    number_and_name
+  end
+  
+  def subsite
+    false
+  end
+  
+  def rss_description(locale)
+    description
+  end
 end

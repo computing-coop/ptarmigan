@@ -5,6 +5,16 @@ class PodcastsController < ApplicationController
   
   def index
     @podcasts = Podcast.published.order('number DESC')
+    set_meta_tags :og => {
+        :title => "Ptarmigan podcasts",
+        :type  => "ptarmigan:podcast",
+        :image => "http://ptarmigan.ee/ptarmigan_two_circles.jpg",
+        :url   =>  "http://ptarmigan.ee/podcasts" },
+
+        :canonical => "http://ptarmigan.ee/podcasts",
+        :keywords => 'Tallinn,Estonia,Ptarmigan,podcasts,discussion,art,dialogue,social practice',
+        :description => "Ptarmigan podcasts contain audio recordings of talks, discussions, workshops and other events that have taken place at Ptarmigan project space in Tallinn, Estonia (or possibly nearby).",
+        :title => "Ptarmigan podcasts"
   end
   
   def show

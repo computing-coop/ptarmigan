@@ -173,6 +173,8 @@ en:
     for: 'for'
     against: 'against'
     vote_for: 'Vote for'  
+    here: 'here'
+    register_here: 'register here'
   kompass:
     ptarmigan_location: 'Ptarmigan project rooms, Tallinn, Estonia'
     register_to_attend: 'Register to attend Kompass!'

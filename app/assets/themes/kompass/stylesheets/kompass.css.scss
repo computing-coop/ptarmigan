@@ -309,9 +309,11 @@ iframe[src="about:blank"] { display: none; }
         opacity: 0.8;
         width: 100%;
         padding: 15px;
-        top: 0px;
+        bottom: -225px;
         position: relative;
         z-index: 8;
+        height: 175px;
+        overflow: hidden;
 
         .bio {
           overflow : hidden;

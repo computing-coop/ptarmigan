@@ -30,7 +30,7 @@
             - unless participant.bio.blank?
               .bio
                 %h2.quote= raw('&#8220;')
-                %p= raw truncate_html(participant.bio, :length => 350)
+                %p= raw truncate_html(participant.bio, :length => 250)
     .see_all_participants
       %center
         %h4= link_to t("kompass.all_participants"), event_attendees_path('kompass')

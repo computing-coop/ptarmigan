@@ -116,9 +116,7 @@ body {
     li {
       margin-bottom: 3px;
       padding-left: 5px;
-      &:hover {
-        padding-bottom: 2px;
-      };
+  
       a {
         font-size: 16px;
         line-height: 18px;
@@ -136,10 +134,8 @@ body {
     white-space: nowrap;
     -webkit-transition: background .2s;
     transition: background .2s;
-    padding-bottom: 2px;
-    &:hover {
-      padding-top: 0px;
-    }
+    
+
 
   }
 }

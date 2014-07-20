@@ -2,13 +2,14 @@
   .twelve.columns
     .six.columns.alpha
       = form.input :name, :label => 'Name'
+      = form.input :project_or_organisation, :label => 'Project or organisation:'
       = form.input :email, :label => 'Email'
       = form.input :phone, :label => 'Phone'
       = form.input :pay_received, :label => 'Pay received'
       = form.input :event, :label => 'Event'
       = form.input :comments, :label => 'Comments', :hint => "Only seen by Ptarmigan staff"
     .six.columns.omega
-      %h4 optional stuff we can add (for Done Kino):
+      %h4 optional stuff we can add (for Done Kino, Kompass, etc.):
       - if form.object.profile?
         existing profile pic:
         = image_tag form.object.profile.url(:small)
@@ -19,6 +20,7 @@
       = form.input :filmstill, :label => "Image from their film or video"
 
       = form.input :comes_from, :label => "Location/home city:"
-      = form.input :work_in_progress_title, :label => "Title of work for Done Kino"
+      = form.input :work_in_progress_title, :label => "URL to website"
       = form.input :approved
+      = form.input :invited
       = form.input :bio

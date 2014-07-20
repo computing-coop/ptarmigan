@@ -1,0 +1,514 @@
+$main_color: #FFF4BC;
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  margin: 0px;
+}
+
+h1 {
+  font-size: 4em;
+}
+
+h2 {
+  font-size: 2.5em;
+}
+
+h3 {
+  font-size: 1.8em;
+}
+
+h4 {
+  font-size: 1.5em;
+}
+
+header {
+  background-color: #000;
+  color: $main_color;
+  padding: 20px 0px 10px 0px;
+
+  .small_logo {
+    display: none !important;
+  }
+  ul.language {
+    float: right;
+    li {
+      list-style-type: none;
+      padding: 0px 5px;
+      font-size: 0.7em;
+      border-right: 1px dotted $main_color;
+      float: left;
+      text-transform: uppercase;
+      &.last {
+        border-right: none;
+      }
+    }
+  }
+  #sticky-menu {
+    // without kompass logo, the default
+    .kompass {
+      img {
+        float: left;
+      }
+      display: none;
+    }
+    ul {
+      padding: 0px; margin: 0px;
+      li {
+        float: left;
+        list-style-type: none;
+        width: 25%;
+        color: #EEE;
+        &:hover {
+          color: $main_color;
+   
+        }
+
+        a { 
+          float: right;
+
+        }
+        &.first a {
+          float: left;
+        }
+      
+        font-weight: 900;
+        font-size: 1.5em;
+        text-transform: uppercase;
+      }
+    }
+  }
+  
+  // sticky version
+  .is-sticky {
+    #sticky-menu {
+      background-color: #000;
+      width: 100%;
+      z-index: 10;
+      .kompass {
+        display: block;
+        float: left;
+        font-size: 1.6em;
+        text-transform: uppercase;
+        width: 22%;
+        color: #FFF;
+      }
+      ul {
+        width: 78%;
+        margin: 0px;
+        li {
+          padding-top: 5px;
+          font-size: 1.4em;
+          width: 25%;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  p {
+    font-size: 0.7em;
+    color: #555;
+    a {
+      color: #555;
+    }
+  }
+  .footer_info {
+    border-top: 1px solid $main_color;
+    ul {
+      float: left;
+      padding:0;
+      width: 100%;
+      opacity: 0.75;
+      li {
+        list-style-type: none;
+        float: left;
+        margin-right: 3em;
+      }
+    }
+  }
+}
+.event_registration {
+  padding: 25px 0px;
+  background: url(/assets/kompass/images/marciena.png) no-repeat center;
+  background-size: cover;
+  
+  form.new_attendee {
+    p {
+      clear: both;
+      margin: 25px 0px;
+    }
+    label {
+      display: block;
+      width: 17vw;
+      text-align: right;
+      float: left;
+      margin-right: 1em;
+      font-size: 1.1em;
+
+    }
+    input {
+      display: block;
+      height: 2.2em;
+      font-size: 1em;
+      border-radius: 4px;
+    }
+    input[type=file] {
+      float: left;
+      width: 36vw;
+    }
+    input[type=submit] {
+      margin: 35px 0px 0px 19vw;
+      font-size: 1.5em;
+      background-color: white;
+      padding: 6px;
+    }
+    textarea {
+      font-size: 1em;
+      border-radius: 4px;
+      width: 36vw;
+    }
+  }
+}
+iframe[src="about:blank"] { display: none; }
+
+#page_about {
+  color: #000;
+  padding: 25px 0px;
+}
+
+#dynamic_recaptcha {
+  float: left;
+  width: 36vw;
+  
+}
+#page_theme {
+  background: url(/assets/kompass/images/factory.png) no-repeat center;
+  min-height: 400px;
+  background-size: cover;
+  background-color: #AAA;
+  color: #000;
+  padding: 25px 0px;
+  .space_overlay {
+    opacity: 0.7;
+    border-radius: 13px;
+    background-color: $main_color;
+    padding: 1.2em;
+    h1 {
+      font-size: 4em;
+      text-align: center;
+    }
+  }
+  h5 {
+    a {
+      color: #000;
+      &:hover { 
+        color: $main_color;
+      }
+    }
+  }
+  .space_blurb {
+     font-size: 1.5em; 
+     line-height: 1.4em;
+  }
+}
+
+.front_overview {
+//  background: url(/assets/kompass/images/wall_window.png) no-repeat center;
+  min-height: 400px;
+  background-size: cover;
+  background-color: #AAA;
+  color: #000;
+  padding: 25px 0px;
+  
+  .text_box {
+    float: right;
+    background-color: $main_color;
+    opacity: 0.9;
+    border-radius: 13px;
+    width: 40%;
+    padding: 20px;
+    margin: 20px;
+    h4 {
+      font-weight: 300;
+      line-height: 1.4em;
+      p {
+        margin: 0px; padding: 0px;
+      }
+    }
+  }
+}
+
+.activities {
+  background: url(http://ptarmigan.ee/system/kompass/unconference.jpg) no-repeat center;
+  min-height: 400px;
+  background-size: cover;
+  padding: 80px 0px 40px 0px;
+  background-color: #333;
+  color: #CCC;
+  a {
+    float: left;
+  }
+  .hbg {
+    opacity: 0.75;
+    &:hover {
+      opacity: 1.0;
+      -webkit-transition: opacity 0.6s linear;
+      -moz-transition: opacity 0.6s linear;
+    }
+    background-color: $main_color;
+    border-radius: 13px;
+    padding: 6px;
+    float: left;
+    margin-bottom: 25px;
+    color: #222;
+    width: 85%;
+    text-align: center;
+    a {
+        color: #444;
+      float: none;
+    }
+    h2 {
+
+      opacity: 1.0;
+      margin-bottom:20px;
+
+    }
+    h4 {
+      font-weight: normal;
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+  }
+
+  
+
+}
+
+.who_is_coming {
+  border-top: 2px solid black;
+  border-bottom: 1px solid black;
+  .see_all_participants {
+    clear: both;
+    margin: 15px 0px;
+    a {
+      color: #999;
+    }
+  }
+  padding: 25px 0px;
+
+  #slider {
+    overflow: hidden;
+    height: 400px;
+  }
+
+    .participant {
+      background-size: cover;
+      min-height: 400px;
+      .participant_info {
+        background-color: $main_color;
+        opacity: 0.8;
+        width: 100%;
+        padding: 15px;
+        top: 0px;
+        position: relative;
+        z-index: 8;
+
+        .bio {
+          overflow : hidden;
+          font-size: 0.8em;
+          white-space:normal;
+        }
+      }
+      
+
+  }
+}
+
+// static pages
+.page {
+  padding: 40px 0px;
+  
+  .body {
+    
+    p {
+      font-size: 1.2em;
+      line-height: 1.4em;
+    }
+  }
+}
+
+.attendees {
+  h1 {
+    margin-bottom: 20px;
+  }
+  h3 {
+    margin: 25px 0px;
+  }
+  
+  h5 {
+    font-size: 1.2em;
+    color: #666;
+  }
+  h2 {
+    margin: 0px 5px 25px 0px;
+    &.quote {
+      float: left;
+    }
+  }
+  .bio p {
+    margin: 10px 0px 0px 0px;
+    font-size: 0.9em;
+  }
+}
+
+.map_container {
+    padding: 20px 0px 0px 0px;
+    a {
+      color: #666;}
+  }
+  
+#map_canvas {
+  height: 350px;
+  width: 50%;
+  float: right;
+  z-index: 8;
+  background-color: #fff !important;
+  img { max-width: none; }
+}
+
+
+// media queries
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+  .front_overview .text_box h4 {
+    font-size: 1.1em;
+    line-height: 1.4em;
+  }
+  #page_theme .space_blurb {
+    font-size: 1.2em;
+    line-height: 1.5em;
+  }
+  
+  .activities .hbg {
+    h2 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 0.9em;
+    }
+  }
+  h2 {
+    font-size: 2em;
+  }
+  h4 {
+    font-size: 1.3em;
+  }
+  #page_theme {
+    .space_overlay {
+      h1 {
+        font-size: 3em;
+      }
+    }
+  }
+  header {
+    #sticky-menu {
+      ul {
+        li {
+          font-size: 1.0em;
+          a {
+            font-size: 1.0em;
+          }
+        }
+      }
+    }   
+
+    .is-sticky {
+      #sticky-menu {
+        .title {
+          font-size: 2vw;
+          padding-top: 3px;
+        }
+        ul {
+          li {
+            font-size: 1.0em;
+            a {
+              font-size: 1.0em;
+            }
+          }
+        }
+      }
+      font-size: 1.0em;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .event_registration form.new_attendee label {
+    width: 20%;
+    font-size: 0.9em;
+  }
+  h1 {
+    font-size: 2.5em;
+  }
+
+  h2 {
+    font-size: 2.0em;
+  }
+
+  h3 {
+    font-size: 1.3em;
+  }
+
+  h4 {
+    font-size: 1.1em;
+  }  
+  header {
+    .language {
+      margin: 0px; padding: 0px;
+    }
+    .logo {
+      display: none;
+    }
+    .small_logo {
+      display: block !important;
+    }
+    #sticky-menu {
+      .sixteen {
+        width: 100%;
+      } 
+      ul {
+        li {
+          font-size: 2vw;
+        }
+      }
+    }
+    .is-sticky {
+      #sticky-menu {
+        .kompass {
+          img {
+            height: 20px;
+          }
+          .title {
+            font-size: 2vw;
+            padding-top: 3px;
+          }
+        }
+        ul {
+          li {
+            font-size: 2vw;
+            a {
+              font-size: 2vw;
+            }
+          }
+        }
+      }
+      font-size: 1.0em;
+    }
+  }
+  #map_canvas {
+    height: 350px;
+    width: 100%;
+    float: right;
+    background-color: #fff !important;
+  }
+}

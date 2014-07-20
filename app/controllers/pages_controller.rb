@@ -18,6 +18,10 @@ class PagesController < ApplicationController
         @json = @places.to_gmaps4rails do |place,marker|
           marker.json({:id => place.id})
         end
+      elsif @subsite.name == 'kompass'
+        @pages = Page.by_subsite(@subsite)
+        @event = Event.find('kompass')
+        @random_participants = @event.attendees.approved.delete_if{|x| x.profile.blank? }
       else
         @posts = Post.by_subsite(@subsite).published.order('created_at DESC').page params[:page]
       end

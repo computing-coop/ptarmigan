@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140526181143) do
+ActiveRecord::Schema.define(:version => 20140719123657) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(:version => 20140526181143) do
     t.datetime "updated_at"
     t.text     "optional"
     t.boolean  "showed_up"
-    t.boolean  "waiting_list",           :default => false
+    t.boolean  "waiting_list",            :default => false
     t.string   "profile_file_name"
     t.integer  "profile_file_size"
     t.string   "profile_content_type"
@@ -131,6 +131,8 @@ ActiveRecord::Schema.define(:version => 20140526181143) do
     t.string   "comes_from"
     t.string   "work_in_progress_title"
     t.boolean  "approved"
+    t.string   "project_or_organisation"
+    t.boolean  "invited"
   end
 
   create_table "budgetareas", :force => true do |t|
@@ -254,6 +256,7 @@ ActiveRecord::Schema.define(:version => 20140526181143) do
     t.boolean  "show_on_main"
     t.boolean  "show_guests_to_public",                :default => false, :null => false
     t.boolean  "require_approval",                     :default => false, :null => false
+    t.string   "redirect_url"
   end
 
   create_table "expenses", :force => true do |t|

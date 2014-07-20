@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  number: MyString
+  name: MyString
+  event: 
+  cloudfront_filename: MyString
+  published: false
+  description: MyText
+
+two:
+  number: MyString
+  name: MyString
+  event: 
+  cloudfront_filename: MyString
+  published: false
+  description: MyText

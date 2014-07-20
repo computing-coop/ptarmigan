@@ -8,6 +8,7 @@ class Page < ActiveRecord::Base
   attr_accessible :location_id, :location, :subsite, :subsite_id, :translations_attributes, :carousel, :slug
   accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['title'].blank? && attributes['body'].blank? && attributes['abstract'].blank? }
   validates_presence_of :slug
+  validates_uniqueness_of :slug, :scope => :subsite_id
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }
 

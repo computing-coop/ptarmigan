@@ -82,19 +82,25 @@ class EventsController < ApplicationController
   def show
     find_event
     unless @event.nil?
-      set_meta_tags :open_graph => {
-        :title =>  @event.title + " | Ptarmigan" ,
-        :type  => "ptarmigan:event",
-        :url   => url_for(@event),
+      if @event.redirect_url.blank?
+        set_meta_tags :open_graph => {
+          :title =>  @event.title + " | Ptarmigan" ,
+          :type  => "ptarmigan:event",
+          :url   => url_for(@event),
 
-        :image => 'http://' + request.host + @event.avatar.url(:small)
-        }, 
-        :canonical => url_for(@event), 
-        :keywords => 
-        (@event.location.id == 1 ? 'Helsinki,Finland,' : 'Tallinn,Estonia') + ',Ptarmigan,culture,art, ' + 
-        (@event.event_type.blank? ? '' : @event.event_type.split(/\:/).each(&:strip).join(',')),
-        :description => @event.description,
-        :title => @event.title
+          :image => 'http://' + request.host + @event.avatar.url(:small)
+          }, 
+          :canonical => url_for(@event), 
+          :keywords => 
+          (@event.location.id == 1 ? 'Helsinki,Finland,' : 'Tallinn,Estonia') + ',Ptarmigan,culture,art, ' + 
+          (@event.event_type.blank? ? '' : @event.event_type.split(/\:/).each(&:strip).join(',')),
+          :description => @event.description,
+          :title => @event.title
+      elsif request.original_url != @event.redirect_url
+        if @subsite || @event.subsite
+          redirect_to @event.redirect_url 
+        end
+      end
     end
   end
 
@@ -112,7 +118,7 @@ class EventsController < ApplicationController
       unless @event.flickers.empty?
           require 'flickraw'
       end
-      if request.path != event_path(@event)
+      if request.path != event_path(@event) && @event.redirect_url.blank?
         return redirect_to @event, :status => :moved_permanently
       end
     end

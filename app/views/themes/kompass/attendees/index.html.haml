@@ -1,0 +1,52 @@
+.attendees.page
+  .container
+    .sixteen.columns
+      %h1
+        = t :participants
+      - if @event.require_approval == true
+        - @attendees.reject!{|x| x.approved != true }
+    .sixteen.columns
+      %h3= t "kompass.invited_participants"
+    - @attendees.where(:invited => true).in_groups_of(2) do |attendee_group|
+      .sixteen.columns
+        - attendee_group.each_with_index do |attendee, index|
+          - next if attendee.nil?
+          .attendee.eight.columns{:class => index == 0 ? :alpha : :omega}
+            %h4= attendee.name
+            - unless attendee.project_or_organisation.blank?
+              %h5= attendee.project_or_organisation
+            - unless attendee.comes_from.blank?
+              %h5= attendee.comes_from                
+            .four.columns.alpha
+              - if attendee.profile?
+                = image_tag attendee.profile.url(:full)
+              - else
+                &nbsp;
+            .four.columns.omega
+              - unless attendee.bio.blank?
+                .bio
+                  %h2.quote= raw('&#8220;')
+                  %p= raw attendee.bio
+    .sixteen.columns
+      %h3= t "kompass.other_participants"
+    - @attendees.where("invited is not true").in_groups_of(2) do |attendee_group|
+      .sixteen.columns
+        - attendee_group.each_with_index do |attendee, index|
+          - next if attendee.nil?
+          .attendee.eight.columns{:class => index == 0 ? :alpha : :omega}
+            %h4= attendee.name
+            - unless attendee.project_or_organisation.blank?
+              %h5= attendee.project_or_organisation
+            - unless attendee.comes_from.blank?
+              %h5= attendee.comes_from                
+            .four.columns.alpha
+              - if attendee.profile?
+                = image_tag attendee.profile.url(:full)
+              - else
+                &nbsp;
+            .four.columns.omega
+              - unless attendee.bio.blank?
+                .bio
+                  %h2.quote= raw('&#8220;')
+                  %p= raw attendee.bio
+              

@@ -115,6 +115,8 @@
       = f.input :registration_recipient, :label => 'Send email after registration to', :hint => 'Defaults to helsinki or tallinn@ptarmigan, but you can have it go to someone else, or multiple addresses separated by commas'
       = f.input :require_approval, :label => "Attendees must be approved by Ptarmigan staff"
       = f.input :hide_registrants, :as => :radio,  :hint => 'Hide the number of places left on the registration form'
+      = f.input :show_guests_to_public, :as => :radio,  :hint => 'Show guest list to public through special URL'
+      = f.input :redirect_url, :label => 'Redirect to URL', :hint => 'Enter a full URL here (with http://) and the site will redirect to this URL instead of showing the Ptarmigan page. Use for off-site registration form'
   /= f.input :featured, :label => 'Include in forthcoming frontpage events carosel'
 
 

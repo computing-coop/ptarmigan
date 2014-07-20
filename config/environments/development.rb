@@ -36,7 +36,7 @@ Ptarmigan::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = false
   config.action_controller.asset_host = Proc.new { |source|
-   if source.starts_with?('/images')  || source.starts_with?('/system/icons') 
+   if source.starts_with?('/images')  || source.starts_with?('/system/icons')
      "http://ptarmigan.fi"
    else
      "http://localhost:3000"

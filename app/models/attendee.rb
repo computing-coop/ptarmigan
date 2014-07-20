@@ -2,7 +2,7 @@
 class Attendee < ActiveRecord::Base
   scope :event, proc { |event| where(:event_id => event) } 
   belongs_to :event
-
+  default_scope order('created_at DESC')
   
   validates_presence_of :event_id, :name, :email
   validates_uniqueness_of :email, :scope => :event_id, :message => "address is already registered for this event.  Thanks!"
@@ -24,7 +24,7 @@ class Attendee < ActiveRecord::Base
   scope :by_event, ->(event_id) { where(:event_id => event_id) }
   scope :with_profile_pic, -> { where("profile_file_size > 0") }
   scope :approved, -> { where(approved: true)}
-  attr_accessible :event_id, :comes_from, :approved, :optional, :work_in_progress_title, :event, :profile, :pay_received, :filmstill, :bio, :name, :email, :phone, :comments
+  attr_accessible :event_id, :comes_from, :approved, :optional, :work_in_progress_title, :event, :profile, :pay_received, :filmstill, :bio, :name, :email, :phone, :comments, :project_or_organisation, :profile, :invited
   
   after_create :send_notifications
   include PublicActivity::Model

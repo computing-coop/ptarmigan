@@ -58,12 +58,13 @@ gem 'redcarpet'
 gem 'rvm-capistrano'
 gem 'sass'
 gem 'skeleton-rails'
-
+gem 'superfish-rails'
 gem 'themes_for_rails'
 gem 'therubyracer', :group => :production
 
 gem 'thinking-sphinx', '3.0.0'
 gem 'tlsmail', :group => :production
+gem 'truncate_html'
 gem 'twitter', '4.4.4'
 # gem 'will_paginate', '~> 3.0.pre2'
 gem 'will_filter', "~> 3.1.0" 

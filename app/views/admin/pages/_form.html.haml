@@ -1,5 +1,6 @@
 
 = semantic_form_for([:admin, page], :html => {:multipart => true}) do |f|
+
   .six.columns.alpha
     = f.input :location
   .six.columns.omega
@@ -58,7 +59,20 @@
           %p
           = ru.label :body
           %br
-          = ru.cktext_area :body    
+          = ru.cktext_area :body
+      - tab.create('latvian', 'Latvian') do
+        = f.globalize_fields_for :lv do |lv|
+          = lv.label :title
+          %br
+          = lv.text_field :title
+          %br
+          = lv.label :excerpt
+          %br
+          = lv.text_area :excerpt
+          %p
+          = lv.label :body
+          %br
+          = lv.cktext_area :body            
   .six.columns.alpha
     - unless f.object.new_record?
       - if f.object.carousel?

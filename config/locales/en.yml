@@ -7,11 +7,11 @@ en:
     long:
       different_months_same_year: "%{from_month} %{from_day} %{sep} %{until_month} %{until_day}, %{year}"
       different_years: "%{from_month} %{from_day}, %{from_year} %{sep} %{until_month} %{until_day}, %{until_year}"
-      same_month: "%{month} %{from_day} %{sep} %{until_day}, %{year}"
+      same_month: "%{from_day}  %{sep} %{until_day} %{month} %{year}"
     short:
       different_months_same_year: "%{from_month} %{from_day} %{sep} %{until_month} %{until_day}, %{year}"
       different_years: "%{from_month} %{from_day}, %{from_year} %{sep} %{until_month} %{until_day}, %{until_year}"
-      same_month: "%{month} %{from_day} %{sep} %{until_day}, %{year}"
+      same_month: "%{from_day} %{sep} %{until_day}  %{month} %{year}"
   number:
     currency:
         format:
@@ -173,3 +173,40 @@ en:
     for: 'for'
     against: 'against'
     vote_for: 'Vote for'  
+  kompass:
+    ptarmigan_location: 'Ptarmigan project rooms, Tallinn, Estonia'
+    register_to_attend: 'Register to attend Kompass!'
+    project_or_organisation: 'Your project(s) or organisation?'
+    optional: 'optional'
+    register: 'Register!'
+    bio: 'Tell us a bit about yourself! Just a few sentences...'
+    profile_photo: 'How about a photo of you? (optional, max res. 600x600 please)'
+    thank_you_for_registering: 'Thank you for registering!'
+    you_will_hear_from_us: 'You will receive more information from us via email. If there are any questions, please email kompass@ptarmigan.ee'
+    participants: 'Participants'
+    invited_participants: 'Invited participants'
+    other_participants: 'Other participants'
+    register_link: 'Register!'
+    contact: 'Contact'
+    programme: 'Programme'
+    theme: 'Theme: public space'
+    public_space: 'Public space'
+    schedule: 'Schedule'
+    tallinn: 'Tallinn, Estonia'
+    activities: 'Activities'
+    who_is_coming: 'Who will be there?'
+    more_info: 'More information...'
+    comes_from: 'What city/town are you coming from?'
+    all_participants: "See all participants ..."
+    public_space_and_collaboration: 'Public space & collaboration'
+    registration_cost: 'Participation in Kompass is open to anyone, though we have a limited number of spaces available. A fee of 6€ will be collected which covers your Friday dinner (at Koogel Mogel café) and administrative costs.'
+    unconference: 'Unconference'
+    unconference_blurb: "An afternoon un-conference, where participants make their own programme and content. In the style of %{bar_camp}."
+    speakers: 'Presentations'
+    speakers_blurb: 'Prominent activists in Riga and Tallinn present their projects, followed by a group discussion.'
+    speed_workshops: 'Speed workshops'
+    where_to_find_us: 'Where to find us'
+    schedule_blurb: "The opening talks and discussion are on Thursday, and the main event is Friday. The full schedule can be viewed %{here}."
+    you_can_register: 'We kindly request a fee of 6€ to participate in Kompass. This covers our organising costs and includes dinner on Friday from Koogel Moogel. You can %{register}.'
+    address: "Ptarmigan is located at Toom-Kooli 13, in the Toompea district of Tallinn's Old Town. It shares a building with the Canadian Embassy and the Koogel Moogel café."
+    speed_workshops_blurb: "Let's solve some problems! One hour workshops are designed to produce action, not just talk."

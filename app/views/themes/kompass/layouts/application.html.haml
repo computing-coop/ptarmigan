@@ -1,0 +1,111 @@
+!!! 5
+%html
+  %head
+    = display_meta_tags :site => "Kompass | Ptarmigan", :og => {:url => 'http://kompass.ptarmigan.ee', :title => 'Kompass (21-22 August 2014)'}
+    %meta{ :"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8" }
+    %link{ :rel => "shortcut icon", :href => "/favicon.ico" }
+    %link{ :rel => "alternate", :type => "application/rss+xml", :title => "Ptarmigan RSS", :href => "/feed.rss"}
+    //= stylesheet_link_tag :application
+    = stylesheet_link_tag theme_stylesheet_path(:application), :media => :screen
+    = javascript_include_tag :application
+    = javascript_include_tag theme_javascript_path(:application)
+    %script{:src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyAFlkw7SUgPOTDy8XkWVo_kszw20I22d4g&sensor=false", :type => "text/javascript"}
+
+    = csrf_meta_tag
+
+    %script{:type => "text/javascript", :src => "http://w.sharethis.com/button/buttons.js"}
+    %script{:type => "text/javascript"} stLight.options({publisher: "ur-dae0667d-47dc-d390-f0b1-129d17517bbe"});
+    %script{:type => "text/javascript"}
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12518395-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+      var switchTo5x=true;
+    %script{:type => "text/javascript", :src => "http://w.sharethis.com/button/buttons.js"}
+    %link{:href => 'http://fonts.googleapis.com/css?family=Arimo:400,700|Raleway:400,900&subset=latin,latin-ext', :rel => :stylesheet, :type => 'text/css'}
+    %script{:type => "text/javascript"} stLight.options({publisher: "ur-dae0667d-47dc-d390-f0b1-129d17517bbe"});
+    
+
+    %meta{ :content => "1 day", :name => "revisit-after" }
+
+  %body
+    #fb-root
+    :javascript
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=1472879426262623&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    %header
+      .container
+        .sixteen.columns.alpha
+          %ul.language
+            %li= link_to 'ENG', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en'
+            %li= link_to 'EST', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'et'
+            %li= link_to 'LAT', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'lv'
+            %li.last= link_to 'Рус', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'ru'
+        .sixteen.columns.alpha
+          .four.columns.alpha
+            .logo= image_tag current_theme_image_path("kompass_wip#{1 + rand(2)}.gif")
+          .twelve.columns.omega
+            .small_logo.column= image_tag current_theme_image_path("small_logo.gif")
+            %h1= link_to  "Kompass", '/'
+            %h3= date_range('2014-08-21'.to_date, '2014-08-22'.to_date)
+            %h4= t "kompass.ptarmigan_location"
+
+      .container#sticky-menu
+        .sixteen.columns
+          .kompass
+            = image_tag current_theme_image_path("small_logo.gif")
+            .title Kompass
+          %ul.sf-menu
+            %li.first
+              = link_to t("kompass.programme"), '#'
+              %ul
+                %li= link_to t("kompass.theme"), page_path('theme')
+                %li= link_to t("kompass.activities"), page_path('activities')
+                %li= link_to t("kompass.schedule"), page_path('schedule')
+            %li= link_to t("kompass.participants"), event_attendees_path('kompass')
+
+            %li= link_to t("kompass.register_link"), event_path('kompass')
+            %li= link_to t("kompass.contact"), page_path('contact')
+
+    = yield
+
+      
+
+
+          
+    %footer
+      .footer_info
+        .container
+          .sixteen.columns
+            %p
+              Kompass :
+              = t "kompass.public_space"
+              &sdot;
+              = date_range('2014-08-21'.to_date, '2014-08-22'.to_date)
+              &sdot;
+              = t "kompass.tallinn"
+              &sdot;
+              = link_to "kompass @ ptarmigan - ee", "mailto:kompass@ptarmigan(changetodot)ee"
+          .sixteen.columns
+            %ul
+              %li= link_to image_tag(current_theme_image_path("totaldobze_logo.png")), 'http://totaldobze.com'
+              %li= link_to image_tag(current_theme_image_path("ptarmigan_logo.png")), 'http://ptarmigan.ee'
+              %li= link_to image_tag(current_theme_image_path("koogel_moogel.png")), 'https://www.facebook.com/lastekohvik'
+              %li= link_to image_tag(current_theme_image_path("kkf_logo.png")), 'http://kkf.lv/'
+              %li= link_to image_tag(current_theme_image_path("GitHub-Mark-32px.png")), 'https://github.com/cenotaph/ptarmigan'
+
+:javascript
+  $(document).ready(function() {
+    $("#sticky-menu").sticky({ topSpacing: 0 });
+    #{yield :jquery}
+  });    

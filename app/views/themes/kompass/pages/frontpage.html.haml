@@ -1,0 +1,66 @@
+- overview = @pages.first.body.split(/\n/)
+.front_overview{:style => "background: url(http://ptarmigan.ee/system/kompass/kompassbg#{1 + rand(6)}.jpg) no-repeat center center; background-size: cover;"}
+  .container.sixteen.columns
+    .text_box
+      %h4= raw overview[0]
+
+
+      
+#page_theme
+  .container.sixteen.columns
+    .eight.columns.alpha.space_overlay
+      %h1= t("kompass.public_space_and_collaboration")
+    .one.column &nbsp;
+    .seven.columns.omega.space_blurb
+      = raw overview[1..-1].join(' ')    
+      %h5= link_to t("kompass.more_info"), page_path('theme')
+.who_is_coming
+  .container.sixteen_columns
+    %center
+      %h2= t("kompass.who_is_coming")
+    #slider.cycle-slideshow{:"data-cycle-fx" => "carousel" , :"data-cycle-timeout" => 5000, :"data-cycle-carousel-visible" => 5, :"data-cycle-slides" => ".participant", :"data-cycle-carousel-visible" =>2}
+      - @random_participants.each do |participant|
+        .participant.eight.columns{:style => "background: url(#{participant.profile.url}) no-repeat center; background-size: cover"}
+          .participant_info
+            %h4= participant.name.split(/\s+/).map(&:humanize).join(' ')
+            - unless participant.project_or_organisation.blank?
+              %h5= participant.project_or_organisation
+            - unless participant.comes_from.blank?
+              %h5= participant.comes_from
+            - unless participant.bio.blank?
+              .bio
+                %h2.quote= raw('&#8220;')
+                %p= raw truncate_html(participant.bio, :length => 350)
+    .see_all_participants
+      %center
+        %h4= link_to t("kompass.all_participants"), event_attendees_path('kompass')
+
+.activities
+  .container
+    
+    .one-third.column
+      
+      .hbg
+        = link_to page_path('activities') do
+          %h2= t "kompass.unconference"
+        %h4= raw(t "kompass.unconference_blurb", bar_camp: raw(link_to "Bar Camp", "http://en.wikipedia.org/wiki/Bar_camp#Structure_and_participatory_process"))
+    .one-third.column
+      .hbg
+        = link_to page_path('activities') do
+          %h2= t "kompass.speakers"
+        %h4= t "kompass.speakers_blurb"
+    .one-third.column
+      .hbg
+        = link_to page_path('activities') do
+          %h2= t "kompass.speed_workshops"
+        %h4= t "kompass.speed_workshops_blurb"
+.map
+  #map_canvas
+  .container.map_container
+    .eight.columns.alpha
+      %h2= t("kompass.where_to_find_us")
+      %p= t("kompass.address")
+      %p= raw(t "kompass.schedule_blurb", here: raw(link_to 'here', page_path('schedule')))
+      %p= raw (t "kompass.you_can_register", register: raw(link_to 'register here', event_path('kompass')))
+    = render :partial => 'google_map'
+

@@ -1,4 +1,13 @@
 lv:
+  date_range:
+    long:
+      different_months_same_year: "%{from_month} %{from_day} %{sep} %{until_month} %{until_day}, %{year}"
+      different_years: "%{from_month} %{from_day}, %{from_year} %{sep} %{until_month} %{until_day}, %{until_year}"
+      same_month: "%{from_day}  %{sep} %{until_day} %{month} %{year}"
+    short:
+      different_months_same_year: "%{from_month} %{from_day} %{sep} %{until_month} %{until_day}, %{year}"
+      different_years: "%{from_month} %{from_day}, %{from_year} %{sep} %{until_month} %{until_day}, %{until_year}"
+      same_month: "%{from_day} %{sep} %{until_day}  %{month} %{year}"
   date:
     abbr_day_names:
     - Sv.
@@ -227,3 +236,43 @@ lv:
       long: ! '%Y. gada %e. %B, %H:%M:%S'
       short: ! '%d.%m.%Y., %H:%M'
     pm: pēcpusdiena
+  website: 'Mājas lapa'
+  here: 'šeit'
+  register_here: 'reģistrēties šeit' 
+  kompass:
+    ptarmigan_location: 'Ptarmigan projektu telpa, Tallina, Igaunija'
+    register_to_attend: 'Reģistrējies, lai piedalītos KOMPASĀ'
+    project_or_organisation: 'Projekts vai organizācija, ko Tu pārstāvi?'
+    optional: 'Papildus info'
+    register: 'Reģistrējies!'
+    bio: 'Dažos teikumos apraksti sevi..'
+    profile_photo: 'Kā būtu ar Tavu foto? (lūgums ne lielāku par 600x600 pikseļiem)'
+    thank_you_for_registering: 'Paldies, ka reģistrējies'
+    you_will_hear_from_us: 'Pēc reģistrēšanās saņemsi vairāk info savā e-pastā. Neskaidrības gadījumā, lūdzu, sūti e-pastu angļu valodā uz kompass@ptarmigan.ee'
+    participants: 'Visi dalībnieki'
+    invited_participants: 'Uzaicinātie dalībnieki'
+    other_participants: 'Pieteikušies dalībnieki'
+    register_link: 'Reģistrēties'
+    contact: 'Kontakti'
+    programme: 'Programma'
+    theme: 'Tēma "Publiskā telpa"'
+    public_space: 'Publiskā telpa'
+    schedule: 'Norišu secība'
+    tallinn: 'Norišu secība'
+    activities: 'Norises'
+    who_is_coming: 'Kurš piedalīsies?'
+    more_info: 'Vairāk info'
+    comes_from: 'Kur tu dzīvo (pilsēta)'
+    all_participants: "Aplūkot visus dalībniekus"
+    public_space_and_collaboration: 'Publiskā telpa un sadarbība'
+    registration_cost: 'Piedalīties KOMPASĀ drīkst jebkurš, bet vietu skaits ir ierobežots. Dalības maksa – 6 eiro nosegs Tavu maltīti Koogel Moogel bārā, kur notiks kopīgas KOMPASA vakariņas piektdienas vakarā.'
+    unconference: 'Ne-konference'
+    unconference_blurb: "Pēcpusdienas ne-konference, kur dalībnieki paši izveido programmu un norises. Pielietojot %{bar_camp} metodoloģiju."
+    speakers: 'Prezentācijas'
+    speakers_blurb: 'Rīgas un Tallinas aktīvistu iniciatīvu prezentācijas un paneļdiskusija'
+    speed_workshops: 'Ātr-darbnīcas'
+    where_to_find_us: 'Kā mūs atrast?'
+    schedule_blurb: "Atklāšana, prezentācijas un diskusija ceturtdien, savukārt ideju, risinājumu un metodoloģiju darbnīcas – piektdien. Ieplānoto norišu secība %{here}."
+    you_can_register: 'Dalība KOMPASĀ 6 eiro. No ienākumiem tiks segti Tavas maltītes izdevumi piektdien Koogel Moogel kafejnīcā. Lūdzu %{register}'
+    address: 'Ptarmigan atrodas Toom-Kooli ielā 13, Toompea rajonā Tallinas vecpilsētā, vienā mājā ar Kanādas vēstniecību un kafejnīcu "Koogel Moogel".'
+    speed_workshops_blurb: "Mums nepieciešami risinājumi! Vienas stundas darbnīcas domātas pilnvērtīgam darbam, nevis tukšām sarunām."    

@@ -2,7 +2,7 @@
   .container
     .sixteen.columns
       %h1
-        = t :participants
+        = t "kompass.participants"
       - if @event.require_approval == true
         - @attendees.reject!{|x| x.approved != true }
     .sixteen.columns

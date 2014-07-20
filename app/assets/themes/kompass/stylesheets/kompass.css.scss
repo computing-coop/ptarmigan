@@ -271,7 +271,7 @@ iframe[src="about:blank"] { display: none; }
 
       opacity: 1.0;
       margin-bottom:20px;
-
+      font-size: 2.0em;
     }
     h4 {
       font-weight: normal;
@@ -357,9 +357,15 @@ iframe[src="about:blank"] { display: none; }
       float: left;
     }
   }
-  .bio p {
-    margin: 10px 0px 0px 0px;
-    font-size: 0.9em;
+  .bio {
+    a {
+      
+      color: #669;
+    }
+    p {
+      margin: 10px 0px 0px 0px;
+      font-size: 0.9em;
+    }
   }
 }
 

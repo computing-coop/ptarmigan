@@ -309,12 +309,14 @@ iframe[src="about:blank"] { display: none; }
         opacity: 0.8;
         width: 100%;
         padding: 15px;
-        bottom: -225px;
+        bottom: -250px;
         position: relative;
         z-index: 8;
-        height: 175px;
+        height: 150px;
         overflow: hidden;
-
+        h2.quote {
+          float: left;
+        }
         .bio {
           overflow : hidden;
           font-size: 0.8em;

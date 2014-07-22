@@ -37,8 +37,8 @@ class PostsController < InheritedResources::Base
   set_meta_tags :open_graph => {
       :title => @post.title,
       :type  => "ptarmigan:news",
-      :url   =>  url_for(@post) },
-
+      :url   =>  url_for(@post) ,
+      :image => (@post.alternateimg? ? 'http://' + request.host + @post.alternateimg.url(:small)  : (@post.carousel? ? 'http://' + request.host +  @post.carousel.url(:small) : 'http://www.ptarmigan.fi/ptarmigan_two_circles.jpg' ))},
       :canonical => url_for(@post),
       :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,proposals,application,residency,culture,art',
       :description => @post.body,

@@ -18,6 +18,10 @@ class Expense < ActiveRecord::Base
       Date.new(*(Date.parse(month).strftime('%Y %m') + " 1").split.map{|x| x.to_i }),
      Date.new(*(Date.parse(month).strftime('%Y %m') + " -1").split.map{|x| x.to_i })]
     }}
+  scope :by_year, proc {|year| {:conditions => ["expenses.when >= ? AND expenses.when <= ?", 
+    Date.parse(year + "-01-01").to_s,
+    Date.parse(year + "-12-31").to_s]
+  }}    
   scope :by_budgetarea, proc {|budgetarea| { :conditions => {:budgetarea_id => budgetarea }}}
   scope :by_event, proc {|event| {:conditions => {:event_id => event}}}
   scope :by_payer, proc {|payer| {:conditions => {:paid_by => payer}}}
@@ -30,6 +34,7 @@ class Expense < ActiveRecord::Base
               {:scope => 'by_month', :label => "Month"},
               {:scope => "by_budgetarea", :label => "Budget area"},
               {:scope => "by_event", :label => "Event"},
+              {:scope => "by_year", :label => 'Year'},
               {:scope => "by_payer", :label => "Paid by"},
               {:scope => "has_receipt", :label => "Has receipt?"}
     ]

@@ -17,6 +17,10 @@ class Income < ActiveRecord::Base
       Date.new(*(Date.parse(month).strftime('%Y %m') + " 1").split.map{|x| x.to_i }),
      Date.new(*(Date.parse(month).strftime('%Y %m') + " -1").split.map{|x| x.to_i })]
     }}
+  scope :by_year, proc {|year| {:conditions => ["incomes.when >= ? AND incomes.when <= ?", 
+    Date.parse(year + "-01-01").to_s,
+    Date.parse(year + "-12-31").to_s]
+  }}      
   scope :i_budgetarea, proc {|budgetarea| { :conditions => {:budgetarea_id => budgetarea }}}
   scope :i_event, proc {|event| {:conditions => {:event_id => event}}}
   scope :i_source, proc {|payer| {:conditions => {:source => payer}}}

@@ -17,6 +17,7 @@ class Admin::ExpensesController < InheritedResources::Base
   has_scope :has_receipt, :type => :boolean
   has_scope :by_recipient
   has_scope :by_month
+  has_scope :by_year
   has_scope :i_month
   has_scope :by_period, :using => [:started_at, :ended_at]
   has_scope :by_budgetarea
@@ -32,8 +33,9 @@ class Admin::ExpensesController < InheritedResources::Base
   
   def index
     if params[:render_csv] == "1"
-      @expenses = Expense.order('expenses.when DESC')
-      @incomes = Income.order('incomes.when DESC')
+      
+      @expenses = apply_scopes(Expense).order('expenses.when DESC').per(9999)
+      @incomes = apply_scopes(Income).order('incomes.when DESC').per(9999)
       render_csv("expenses", "expenses")
     else
       @expenses = apply_scopes(Expense).order('expenses.when DESC').page(params[:page]).per(100)

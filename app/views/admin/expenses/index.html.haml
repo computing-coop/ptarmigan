@@ -12,6 +12,9 @@
             %label Month:
             = select_tag "month", options_for_select(Expense.order('expenses.when').map(&:when).map{|x| x.strftime('%B %Y')}.uniq, params[:by_month]), { :include_blank => true, :onchange => "document.location.href='/admin/expenses?i_budgetarea=" + params[:i_budgetarea].to_s + "&i_source=" + params[:i_source].to_s + "&i_location=" + params[:i_location].to_s + "&i_month=" + params[:i_month].to_s + "&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_location=" + params[:by_location].to_s + "&by_recipient=" + params[:by_recipient].to_s + "&by_payer=" + params[:by_payer].to_s + "&by_month=' + $(this).val()" }
           %li
+            %label Year:
+            = select_tag "year", options_for_select(Expense.order('expenses.when').map(&:when).map{|x| x.strftime('%Y')}.uniq.sort.reverse, params[:by_year]), { :include_blank => true, :onchange => "document.location.href='/admin/expenses?i_budgetarea=" + params[:i_budgetarea].to_s + "&i_source=" + params[:i_source].to_s + "&i_location=" + params[:i_location].to_s + "&i_month=" + params[:i_month].to_s + "&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_location=" + params[:by_location].to_s + "&by_recipient=" + params[:by_recipient].to_s + "&by_payer=" + params[:by_payer].to_s + "&by_year=' + $(this).val()" }            
+          %li
             %label Recipient:
             = select_tag "recipient", options_for_select(Expense.select(:recipient).map(&:recipient).uniq.sort, params[:by_recipient]), { :include_blank => true, :onchange => "document.location.href='/admin/expenses?i_budgetarea=" + params[:i_budgetarea].to_s + "&i_source=" + params[:i_source].to_s + "&i_location=" + params[:i_location].to_s + "&i_month=" + params[:i_month].to_s + "&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_location=" + params[:by_location].to_s + "&by_payer=" + params[:by_payer].to_s + "&by_month=" + params[:by_month].to_s + "&by_recipient=' + $(this).val()" }
 
@@ -26,7 +29,7 @@
       .twelve.columns 
         Total shown here:
         = number_to_currency(@expenses.map(&:amount).sum, :unit => "&euro;".html_safe, :format => "%n%u")
-        = link_to '[export to CSV]', "/admin/expenses?render_csv=1&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_location=" + params[:by_location].to_s + "&by_recipient=" + params[:by_recipient].to_s + "&by_month=" + params[:by_month].to_s + "&by_payer=" + params[:by_payer].to_s 
+        = link_to '[export to CSV]', "/admin/expenses?render_csv=1&by_budgetarea=" + params[:by_budgetarea].to_s + "&by_location=" + params[:by_location].to_s + "&by_recipient=" + params[:by_recipient].to_s + "&by_month=" + params[:by_month].to_s + "&by_payer=" + params[:by_payer].to_s + "&by_year=" + params[:by_year].to_s
     
       - if !@expenses.empty?
         .expenses.twelve.columns.alpha.omega

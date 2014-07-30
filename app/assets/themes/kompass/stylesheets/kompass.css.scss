@@ -95,8 +95,9 @@ header {
         width: 78%;
         margin: 0px;
         li {
+          text-align: center;
           padding-top: 5px;
-          font-size: 1.4em;
+          font-size: 1.25em;
           width: 25%;
         }
       }
@@ -194,7 +195,7 @@ iframe[src="about:blank"] { display: none; }
     background-color: $main_color;
     padding: 1.2em;
     h1 {
-      font-size: 4em;
+      font-size: 3em;
       text-align: center;
     }
   }
@@ -332,11 +333,13 @@ iframe[src="about:blank"] { display: none; }
 .page {
   padding: 40px 0px;
   
-  .body {
-    
+  .body {  
     p {
       font-size: 1.2em;
       line-height: 1.4em;
+      a {
+        color: #777;
+      }
     }
   }
 }

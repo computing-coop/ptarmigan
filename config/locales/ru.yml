@@ -267,3 +267,43 @@ ru:
       words_connector: ", "
       two_words_connector: " и "
       last_word_connector: " и "
+  here: 'здесь'
+  website: 'Веб-сайт'
+  register_here: 'Зарегистрироваться вы можете здесь'  
+  kompass:
+    ptarmigan_location: 'Проектное пространство Ptarmigan, Таллинн, Эстония'
+    register_to_attend: 'Зарегистрируйся и посети Kompass!'
+    project_or_organisation: 'Your project(s) or organisation?'
+    optional: 'optional'
+    register: 'Зарегистрируйся!'
+    bio: 'Tell us a bit about yourself! Just a few sentences...'
+    profile_photo: 'How about a photo of you? (optional, max res. 600x600 please)'
+    thank_you_for_registering: 'Thank you for registering!'
+    you_will_hear_from_us: 'You will receive more information from us via email. If there are any questions, please email kompass@ptarmigan.ee'
+    participants: 'Участники'
+    invited_participants: 'Приглашенные участники'
+    other_participants: 'Другие участники'
+    register_link: 'Зарегистрируйся!'
+    contact: 'КОНТАКТЫ'
+    programme: 'Программа'
+    theme: 'Тема - публичное пространство'
+    public_space: 'публичное пространство'
+    schedule: 'Расписание'
+    tallinn: 'Таллинн, Эстония'
+    activities: 'Пункты программы'
+    who_is_coming: 'Кто там будет?'
+    more_info: 'Подробнее...'
+    comes_from: 'What city/town are you coming from?'
+    all_participants: "See all participants ..."
+    public_space_and_collaboration: 'Публичное пространство и сотрудничество'
+    registration_cost: 'Участвовать в Kompass может любой, но количество мест ограничено. Плата за участие - 6 евро. Они покрывают ваш пятничный обед (в кафе Koogel Mogel) и административные издержки.'
+    unconference: 'Неконференция'
+    unconference_blurb: 'Послеобеденная "неконференция", чьи участники сами придумывают тему и программу. Проходит в формате BarCamp.'
+    speakers: 'Презентации'
+    speakers_blurb: 'Видные активисты из Риги и Таллинна рассказывают о своих проектах, после чего проходят обсуждения в группах.'
+    speed_workshops: 'Быстрые "воркшопы"'
+    where_to_find_us: 'Где нас найти'
+    schedule_blurb: "В четверг пройдут дискуссии и обсуждения, а основные события намечены на пятницу. С программой всего мероприятия вы можете ознакомиться %{here}."
+    you_can_register: 'За участие в Kompass мы просим внести плату в размере 6 евро. Они пойдут на покрытие затрат организаторов и оплату совместного обеда в пятницу в кафе Koogel Moogel. %{register}.'
+    address: "Ptarmigan находится по адресу Toom-Kooli 13, в районе Тоомпеа в Старом Таллинне, в одном здании с посольством Канады и кафе Koogel Moogel."
+    speed_workshops_blurb: "Давайте решим часть проблем! "Воркшопы" длительностью один час сделаны для того, чтобы что-то сделать, а не просто для разговоров."

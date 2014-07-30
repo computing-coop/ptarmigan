@@ -61,6 +61,7 @@ en:
   join_us: "Join us!"
   past: "In the past"
   calendar: "Calendar"
+  website: "Website"
   current: "Current"
   project: "Project"
   projects: "Projects"
@@ -123,6 +124,7 @@ en:
   proposal_attachment: 'You may attach one file, maximum size 5 MB.'
   send_proposal: 'Submit your idea!'
   inactive_projects: 'Inactive Projects'
+  register_here: 'register here'
   nope: 'nope!'
   photos: 'photos and images'
   videos: 'videos'

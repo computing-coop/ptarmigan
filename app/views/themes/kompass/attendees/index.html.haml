@@ -28,7 +28,7 @@
                   %h2.quote= raw('&#8220;')
                   %p= raw attendee.bio
                   - unless attendee.work_in_progress_title.blank?
-                    %p= link_to 'Website', attendee.work_in_progress_title
+                    %p= link_to t(:website), attendee.work_in_progress_title
     .sixteen.columns
       %h3= t "kompass.other_participants"
     - @attendees.where("invited is not true").in_groups_of(2) do |attendee_group|
@@ -52,5 +52,5 @@
                   %h2.quote= raw('&#8220;')
                   %p= raw attendee.bio
                   - unless attendee.work_in_progress_title.blank?
-                    %p= link_to 'Website', attendee.work_in_progress_title
+                    %p= link_to t(:website), attendee.work_in_progress_title
               

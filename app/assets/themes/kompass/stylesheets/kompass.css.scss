@@ -61,7 +61,7 @@ header {
           color: $main_color;
    
         }
-
+        text-align: center;
         a { 
           float: right;
 
@@ -427,6 +427,7 @@ iframe[src="about:blank"] { display: none; }
     #sticky-menu {
       ul {
         li {
+ 
           font-size: 1.0em;
           a {
             font-size: 1.0em;

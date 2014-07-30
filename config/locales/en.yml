@@ -128,6 +128,8 @@ en:
   nope: 'nope!'
   photos: 'photos and images'
   videos: 'videos'
+  here: 'here'
+  register_here: 'register here'
   documents_resources: 'documents/resources'
   project_spiel: "We call Ptarmigan a 'project space' and we like recurring events that can build on existing experiences.  Many of our events fall under one or more of these projects.  We're always open to proposals for new projects as well as new events under existing themes."
   artists_spiel: "Ptarmigan has been proud to operate a residency programme since our inception. These residencies have ranged from two-month projects (supported by Kulturkontakt Nord) to shorter, grassroots/self-funded projects. Below are some of the artists, curators, and producers who we have hosted over the years."
@@ -175,8 +177,7 @@ en:
     for: 'for'
     against: 'against'
     vote_for: 'Vote for'  
-    here: 'here'
-    register_here: 'register here'
+
   kompass:
     ptarmigan_location: 'Ptarmigan project rooms, Tallinn, Estonia'
     register_to_attend: 'Register to attend Kompass!'

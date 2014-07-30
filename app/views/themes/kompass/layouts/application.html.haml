@@ -97,12 +97,13 @@
               &sdot;
               = link_to "kompass @ ptarmigan - ee", "mailto:kompass@ptarmigan(changetodot)ee"
           .sixteen.columns
-            %ul
-              %li= link_to image_tag(current_theme_image_path("totaldobze_logo.png")), 'http://totaldobze.com'
-              %li= link_to image_tag(current_theme_image_path("ptarmigan_logo.png")), 'http://ptarmigan.ee'
-              %li= link_to image_tag(current_theme_image_path("koogel_moogel.png")), 'https://www.facebook.com/lastekohvik'
-              %li= link_to image_tag(current_theme_image_path("kkf_logo.png")), 'http://kkf.lv/'
-              %li= link_to image_tag(current_theme_image_path("GitHub-Mark-32px.png")), 'https://github.com/cenotaph/ptarmigan'
+            .logos
+              %ul
+                %li= link_to image_tag(current_theme_image_path("totaldobze_logo.png")), 'http://totaldobze.com'
+                %li= link_to image_tag(current_theme_image_path("ptarmigan_logo.png")), 'http://ptarmigan.ee'
+                %li= link_to image_tag(current_theme_image_path("koogel_moogel.png")), 'https://www.facebook.com/lastekohvik'
+                %li= link_to image_tag(current_theme_image_path("kkf_logo.png")), 'http://kkf.lv/'
+                %li= link_to image_tag(current_theme_image_path("GitHub-Mark-32px.png")), 'https://github.com/cenotaph/ptarmigan'
 
 :javascript
   $(document).ready(function() {

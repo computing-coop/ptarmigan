@@ -114,6 +114,7 @@ footer {
     }
   }
   .footer_info {
+    padding-top: 40px;
     border-top: 1px solid $main_color;
     ul {
       float: left;
@@ -300,6 +301,7 @@ iframe[src="about:blank"] { display: none; }
   #slider {
     overflow: hidden;
     height: 400px;
+    margin-top: 20px;
   }
 
     .participant {

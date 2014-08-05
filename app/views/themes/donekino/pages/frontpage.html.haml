@@ -28,10 +28,10 @@
 
         .outer_hover
           = p.excerpt
-  .page
-    .title= link_to t(:participants), event_attendees_path('done-kino')
-    = link_to(event_attendees_path('done-kino'), :class => :block, :style => 'background: transparent url(' + theme_image_path('participant_bg.jpg') + ') no-repeat;') do
-      .outer_hover
-        = t :who_is_coming, :scope => :donekino
+  / .page
+  /   .title= link_to t(:participants), event_attendees_path('done-kino')
+  /   = link_to(event_attendees_path('done-kino'), :class => :block, :style => 'background: transparent url(' + theme_image_path('participant_bg.jpg') + ') no-repeat;') do
+  /     .outer_hover
+  /       = t :who_is_coming, :scope => :donekino
 = content_for :sidebar do
   = render :partial => 'shared/sidebar'

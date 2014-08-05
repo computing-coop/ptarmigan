@@ -1,3 +1,9 @@
+.page{:style => "margin-bottom: 40px;"}
+  = link_to(page_path('participants')) do
+    .title= t :register
+  .participants
+    %h2= link_to 'Register to participate in Done Kino!', '/events/done-kino-2014'
+
 .page
   = link_to(posts_path) do 
     .title= t :recent_news, :scope => :donekino
@@ -10,15 +16,16 @@
 
 - Page.by_subsite(@subsite).each do |p|
   - next if p == current_page
+  - next unless p.slug =~ /2014$/
   .page
     .title= link_to p.title, page_path(p.slug)
     = link_to(page_path(p.slug), :class => :block, :style => 'background: transparent url(' + p.carousel.url(:full) + ') no-repeat;') do
 
       .outer_hover
         = p.excerpt
-.page
-  .title= link_to t(:participants), event_attendees_path('done-kino')
-  = link_to(event_attendees_path('done-kino'), :class => :block, :style => 'background: transparent url(' + theme_image_path('participant_bg.jpg') + ') no-repeat;') do
-    .outer_hover
-      = t :who_is_coming, :scope => :donekino        
+/ .page
+/   .title= link_to t(:participants), event_attendees_path('done-kino')
+/   = link_to(event_attendees_path('done-kino'), :class => :block, :style => 'background: transparent url(' + theme_image_path('participant_bg.jpg') + ') no-repeat;') do
+/     .outer_hover
+/       = t :who_is_coming, :scope => :donekino    
 = render :partial => 'shared/sidebar'      

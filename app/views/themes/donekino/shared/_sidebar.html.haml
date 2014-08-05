@@ -25,6 +25,11 @@
 /         .blog_body= random_participant.bio
 /         .see_all= link_to t(:see_all_participants, :scope => :donekino), event_attendees_path('done-kino')
 
+.page{:style => "margin-bottom: 40px;"}
+  = link_to(page_path('participants')) do
+    .title= t :register
+  .participants
+    %h2= link_to 'Register to participate in Done Kino!', '/events/done-kino-2014'
 .page
   .title= t :contact
   .news_box

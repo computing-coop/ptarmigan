@@ -1,34 +1,39 @@
-- unless Attendee.by_event(412).approved.with_profile_pic.empty?
-  .page{:style => "margin-bottom: 40px;"}
-    = link_to(page_path('participants')) do 
-      .title= t :who_is_coming, :scope => :donekino
-    .participants
-      - random_participant = Attendee.by_event(412).approved.with_profile_pic.random
-      - if random_participant.nil?
-        %p= t :no_registrants_yet, :scope => :donekino
-      - else
-        - unless random_participant.filmstill_file_size.blank?
-          #slider
-            = image_tag random_participant.profile.url(:full)
-            = image_tag random_participant.filmstill.url(:full)
-          :javascript
-            $('#slider').cycle({ 
-              fx:      'fade', 
-            });
-        - else
-          %center= image_tag random_participant.profile.url(:full)
-        .participant_name= random_participant.name
-        - unless random_participant.comes_from.blank?
-          .participant_location= random_participant.comes_from
-        - unless random_participant.work_in_progress_title.blank?
-          .participant_project= "'#{random_participant.work_in_progress_title}'"
-        .blog_body= random_participant.bio
-        .see_all= link_to t(:see_all_participants, :scope => :donekino), event_attendees_path('done-kino')
+/ - unless Attendee.by_event(412).approved.with_profile_pic.empty?
+/   .page{:style => "margin-bottom: 40px;"}
+/     = link_to(page_path('participants')) do
+/       .title= t :who_is_coming, :scope => :donekino
+/     .participants
+/       - random_participant = Attendee.by_event(412).approved.with_profile_pic.random
+/       - if random_participant.nil?
+/         %p= t :no_registrants_yet, :scope => :donekino
+/       - else
+/         - unless random_participant.filmstill_file_size.blank?
+/           #slider
+/             = image_tag random_participant.profile.url(:full)
+/             = image_tag random_participant.filmstill.url(:full)
+/           :javascript
+/             $('#slider').cycle({
+/               fx:      'fade',
+/             });
+/         - else
+/           %center= image_tag random_participant.profile.url(:full)
+/         .participant_name= random_participant.name
+/         - unless random_participant.comes_from.blank?
+/           .participant_location= random_participant.comes_from
+/         - unless random_participant.work_in_progress_title.blank?
+/           .participant_project= "'#{random_participant.work_in_progress_title}'"
+/         .blog_body= random_participant.bio
+/         .see_all= link_to t(:see_all_participants, :scope => :donekino), event_attendees_path('done-kino')
 
 .page
   .title= t :contact
   .news_box
-
+    %p
+      Done Kino 2014 couldn't happen without 
+      = link_to 'The Penitentiary: Battery Project' , 'http://the-penitentiary.com/'
+      and 
+      = link_to 'Ptarmigan', 'http://ptarmigan.ee'
+    = "."
     %p
       = t :is_a_project_of, :scope => :donekino
       = link_to 'Done Lab', 'http://ptarmigan.ee/projects/eesti-done-lab'
@@ -36,11 +41,12 @@
       = link_to 'Kino Kabaret', 'http://www.planetekino.com/'
       = "."
     %p
-      = t :contact_info, :scope => :donekino
+      For more information about Done Kino, email
       = link_to 'done.kino a) ptarmigan.ee', 'mailto:done.kino a)ptarmigan.ee'
 .page
   .title= t :partners
   .news_box
     .partners
+      = link_to image_tag(current_theme_image_path('logo_thepenitentiary.jpg')), 'http://the-penitentiary.com/'
       = link_to image_tag(current_theme_image_path('little_ptarmigan.png')), 'http://ptarmigan.ee'
       = link_to image_tag(current_theme_image_path('planete_kino.png')), 'http://www.planetekino.com/'

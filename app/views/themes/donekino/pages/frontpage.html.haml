@@ -21,6 +21,7 @@
     .see_all= link_to t(:see_all_news, :scope => :donekino), posts_path
 .one-third.column.alpha
   - Page.by_subsite(@subsite).each do |p|
+    - next unless p.slug =~ /2014$/
     .page
       .title= link_to p.title, page_path(p.slug)
       = link_to(page_path(p.slug), :class => :block, :style => 'background: transparent url(' + p.carousel.url(:full) + ') no-repeat;') do

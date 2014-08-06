@@ -314,3 +314,40 @@ et:
 
       full_messages:
         format: "%{attribute} %{message}"
+  kompass:
+    ptarmigan_location: 'Ptarmigani projektiruumid, Tallinn, Eesti'
+    register_to_attend: 'Registreeri, et Kompassil osaleda!'
+    project_or_organisation: 'Teie projekt(id) või organisatsioon?'
+    optional: 'valikuline'
+    register: 'Registreeri!'
+    bio: 'Rääkige veidi enda kohta! Vaid paar lauset...'
+    profile_photo: 'Kuidas oleks fotoga teist endast? (valikuline, max res. 600x600 palun)'
+    thank_you_for_registering: 'Aitäh, et registreerisite!'
+    you_will_hear_from_us: 'Saadame teile täpsemat informatsiooni meili teel. Kui tekib küsimusi, siis saatke palun email aadressil kompass@ptarmigan.ee'
+    participants: 'Osalejad'
+    invited_participants: 'Kutsutud osalejad'
+    other_participants: 'Ülejäänud osalejad'
+    register_link: 'Registreeri!'
+    contact: 'Kontakt'
+    programme: 'Programm'
+    theme: 'Teema: avalik ruum'
+    public_space: 'Avalik ruum'
+    schedule: 'Ajakava'
+    tallinn: 'Tallinn, Eesti'
+    activities: 'Tegevused'
+    who_is_coming: 'Kes tulevad?'
+    more_info: 'Rohkem infot...'
+    comes_from: 'Millisest linnast tulete?'
+    all_participants: "Vaata kõiki osalejaid..."
+    public_space_and_collaboration: 'Avalik ruum & koostöö'
+    registration_cost: 'Kompassil osalemine on kõigile avatud, kuid kohti on piiratud arv. 6€ suurune tasu katab teie reedese õhtusöögi (restoranis Koogel Moogel) ja administratiivkulud.'
+    unconference: 'Mittekonverents'
+    unconference_blurb: "Pärastlõunane mittekonverents, kus osalised ise oma programmi ning selle sisu välja mõtlevad. %{bar_camp} stiilis."
+    speakers: 'Ettekanded'
+    speakers_blurb: 'Prominent Riia ja Tallinna aktivistid esitlevad oma projekte, millele järgneb arutlus rühmas.'
+    speed_workshops: 'Kiir-töötoad'
+    where_to_find_us: 'Kust meid leida'
+    schedule_blurb: "Avakõned ja arutlused toimuvad neljapäeval ja reedel võtab aset ürituse põhiosa. Täielikku ajakava võite näha %{here}."
+    you_can_register: 'Kompassil osalemise eest ootame teilt heasoovlikult 6€ tasu. Teie panus aitab katta meie korralduskulud ning sisaldab endas õhtusöögi hinda reedel restoranis Koogel Moogel. Siin võite %{register}.'
+    address: "Ptarmigan asub aadressil Toom-Kooli 13, Tallinna Vanalinnas Toompeal, jagades hoonet Kanada saatkonna ning restoraniga Koogel Moogel."
+    speed_workshops_blurb: "Lahendame oma probleemid! Ühetunnised töötoad on mõeldud arendama tegevusi ja mitte ainult juttu."

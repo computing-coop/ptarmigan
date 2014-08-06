@@ -1,6 +1,17 @@
 
 .one-third.column.alpha
   .page
+    .title= t :events
+    = link_to event_path('done-kino-2014') do
+      = image_tag Event.find('done-kino-2014').avatar.url(:medium)
+      %h5 Done Kino 2014 - register here!
+
+    %br/
+    = link_to event_path('done-kino-2014-public-screening') do
+      = image_tag Event.find('done-kino-2014-public-screening').avatar.url(:medium)
+      %h5 Done Kino Public Screening - 17 August 2014
+    %br/
+  .page
     = link_to(posts_path) do 
       .title= t :news
 

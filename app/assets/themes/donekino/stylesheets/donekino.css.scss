@@ -1,10 +1,12 @@
 $nice-blue: #0BB0F0;
 $lighter-blue: #88D9F7;
 
-
+h5 , h4, h2, h6 {
+  font-family: Helvetica, Arial, sans-serif;
+}
 .participants {
   border-top: 1px solid #999;
-  padding-bottom: 30px;
+//  padding-bottom: 30px;
   .blog_body {
     line-height: 15px;
   }

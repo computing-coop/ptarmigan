@@ -29,7 +29,8 @@
   = link_to(page_path('participants')) do
     .title= t :register
   .participants
-    %h2= link_to 'Register to participate in Done Kino!', '/events/done-kino-2014'
+    %h4= link_to 'Register to participate in Done Kino!', '/events/done-kino-2014'
+    
 .page
   .title= t :contact
   .news_box
@@ -37,14 +38,9 @@
       Done Kino 2014 couldn't happen without 
       = link_to 'The Penitentiary: Battery Project' , 'http://the-penitentiary.com/'
       and 
-      = link_to 'Ptarmigan', 'http://ptarmigan.ee'
-    = "."
-    %p
-      = t :is_a_project_of, :scope => :donekino
-      = link_to 'Done Lab', 'http://ptarmigan.ee/projects/eesti-done-lab'
-      = " + "
-      = link_to 'Kino Kabaret', 'http://www.planetekino.com/'
-      = "."
+      = link_to 'Ptarmigan.', 'http://ptarmigan.ee'
+
+
     %p
       For more information about Done Kino, email
       = link_to 'done.kino a) ptarmigan.ee', 'mailto:done.kino a)ptarmigan.ee'

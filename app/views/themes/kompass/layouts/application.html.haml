@@ -66,16 +66,16 @@
             = image_tag current_theme_image_path("small_logo.gif")
             .title Kompass
           %ul.sf-menu
-            %li.first
+            %li.first{:class => locale.to_s}
               = link_to t("kompass.programme"), '#'
               %ul
                 %li= link_to t("kompass.theme"), page_path('theme')
                 %li= link_to t("kompass.activities"), page_path('activities')
                 %li= link_to t("kompass.schedule"), page_path('schedule')
-            %li= link_to t("kompass.participants"), event_attendees_path('kompass')
+            %li{:class => locale.to_s}= link_to t("kompass.participants"), event_attendees_path('kompass')
 
-            %li= link_to t("kompass.register_link"), event_path('kompass')
-            %li= link_to t("kompass.contact"), page_path('contact')
+            %li{:class => locale.to_s}= link_to t("kompass.register_link"), event_path('kompass')
+            %li{:class => locale.to_s}= link_to t("kompass.contact"), page_path('contact')
 
     = yield
 

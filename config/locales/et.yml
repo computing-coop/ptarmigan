@@ -344,7 +344,7 @@ et:
     unconference: 'Mittekonverents'
     unconference_blurb: "Pärastlõunane mittekonverents, kus osalised ise oma programmi ning selle sisu välja mõtlevad. %{bar_camp} stiilis."
     speakers: 'Ettekanded'
-    speakers_blurb: 'Prominent Riia ja Tallinna aktivistid esitlevad oma projekte, millele järgneb arutlus rühmas.'
+    speakers_blurb: 'Tuntud Riia ja Tallinna aktivistid esitlevad oma projekte, millele järgneb arutlus rühmas.'
     speed_workshops: 'Kiir-töötoad'
     where_to_find_us: 'Kust meid leida'
     schedule_blurb: "Avakõned ja arutlused toimuvad neljapäeval ja reedel võtab aset ürituse põhiosa. Täielikku ajakava võite näha %{here}."

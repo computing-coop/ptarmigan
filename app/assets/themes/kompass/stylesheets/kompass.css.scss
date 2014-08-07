@@ -95,7 +95,13 @@ header {
         width: 78%;
         margin: 0px;
         li {
-          text-align: center;
+          text-align: left;
+          &.ru {
+            text-align: center;
+          }
+          ul {
+            width: 100%;
+          }
           padding-top: 5px;
           font-size: 1.25em;
           width: 25%;
@@ -510,6 +516,7 @@ iframe[src="about:blank"] { display: none; }
           }
         }
         ul {
+
           li {
             font-size: 2vw;
             a {

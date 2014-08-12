@@ -17,8 +17,10 @@ h3 {
 }
 
 h4 {
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
+
+
 
 header {
   background-color: #000;
@@ -353,6 +355,17 @@ iframe[src="about:blank"] { display: none; }
 }
 
 .attendees {
+  
+  .attendee {
+    margin-bottom: 50px;
+    img {
+      max-height: 250px;
+    }
+    .bio {
+      padding-right: 25px;
+    }
+  }
+  
   h1 {
     margin-bottom: 20px;
   }
@@ -361,7 +374,7 @@ iframe[src="about:blank"] { display: none; }
   }
   
   h5 {
-    font-size: 1.2em;
+    font-size: 1.0em;
     color: #666;
   }
   h2 {

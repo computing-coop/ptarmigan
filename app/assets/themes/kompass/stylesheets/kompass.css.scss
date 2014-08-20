@@ -26,7 +26,11 @@ header {
   background-color: #000;
   color: $main_color;
   padding: 20px 0px 10px 0px;
-
+  .logo {
+    img {
+      float: right;
+    }
+  }
   .small_logo {
     display: none !important;
   }

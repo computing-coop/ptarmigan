@@ -53,9 +53,11 @@ header {
     .kompass {
       img {
         float: left;
+        height: 20px;
       }
       display: none;
     }
+
     ul {
       padding: 0px; margin: 0px;
       li {
@@ -96,6 +98,17 @@ header {
         text-transform: uppercase;
         width: 22%;
         color: #FFF;
+      }
+      ul.sf-menu {
+        li {
+          a { color: #FFF; }
+          ul {
+            li {
+              background-color: #000;
+              a { color: #FFF; }
+            }
+          }
+        }
       }
       ul {
         width: 78%;

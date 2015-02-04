@@ -58,6 +58,9 @@ class ApplicationController < ActionController::Base
       if @subsite.name == 'donekino'
         I18n.locale = 'en'
       end
+      if @subsite.name == 'creativeterritories'
+        I18n.locale = 'lv'
+      end
     end
   end 
   

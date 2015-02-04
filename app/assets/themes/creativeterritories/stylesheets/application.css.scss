@@ -1,0 +1,152 @@
+/*
+ *= require layout
+ *= require skeleton1200
+ *= require creativeterritories/stylesheets/ct
+
+ */
+
+$main_color: #FFF4BC;
+
+* {
+  font-family: 'Arimo', sans-serif;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+
+}
+
+a:hover {
+  color: $main_color;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+.gmnoprint img { max-width: none !important; }
+body {
+  margin: 0px;
+}
+
+/* superfish overrides */
+
+.sf-menu, .sf-menu * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+.sf-menu li {
+
+
+  cursor: pointer;
+  position: relative;
+}
+.sf-menu ul {
+  position: absolute;
+  display: none;
+  top: 100%;
+  left: 0;
+  z-index: 99;
+  margin: 0;
+}
+.sf-menu li {
+  a {
+    color: #000;
+    &:hover {
+      color: #999;
+    }
+  }
+}
+.sf-menu ul li ul {
+  margin: 0px;
+
+}
+
+.sf-menu li ul li {
+  width: 100% !important;
+  background-color: #000;
+  color: #000;
+
+  margin-bottom: 0px;
+  border-bottom: 1px solid $main_color;
+  padding: 4px;
+}
+.sf-menu li:hover ul li {
+  color: #999;
+}
+.sf-menu li ul li a {
+  font-size: 0.6em;
+}
+.sf-menu li ul li:hover a {
+  color: $main_color;
+}
+.sf-menu > li {
+  float: left;
+}
+.sf-menu li:hover > ul,
+.sf-menu li.sfHover > ul {
+  display: block;
+  border-top: 1px solid $main_color;
+  margin-top: 4px;
+
+}
+
+.sf-menu a {
+  display: block;
+  position: relative;
+}
+.sf-menu ul ul {
+  top: 0;
+  left: 100%;
+}
+
+
+.sf-menu {
+  float: left;
+  margin-bottom: 1em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  
+  .sf-sub-indicator {
+    display: none;
+  }
+  a {
+    display: block;
+    position: relative;
+  }
+  ul {
+    margin-top: 0px;
+    padding-top: 5px;
+    width: 24vw;
+    background-color: #000;
+    li {
+      margin-bottom: 3px;
+      padding-left: 5px;
+  
+      a {
+        font-size: 16px;
+        line-height: 18px;
+        &:hover {
+          padding-top: 0px;
+          padding-bottom: 0px;
+          text-decoration: none;
+          border-bottom: none;
+        }
+      }
+
+    }
+  }
+  li {
+    white-space: nowrap;
+    -webkit-transition: background .2s;
+    transition: background .2s;
+    
+
+
+  }
+}

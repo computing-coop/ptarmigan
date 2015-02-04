@@ -1,0 +1,57 @@
+.attendees.page
+  .container
+    - if @event.require_approval == true
+      - @attendees.reject!{|x| x.approved != true }
+    .sixteen.columns
+      %h2= t "kompass.invited_participants"
+    - @attendees.where(:invited => true).shuffle.in_groups_of(2) do |attendee_group|
+      .sixteen.columns
+        - attendee_group.each_with_index do |attendee, index|
+          - next if attendee.nil?
+          .attendee.eight.columns{:class => index == 0 ? :alpha : :omega}
+            %h4= attendee.name
+            - unless attendee.project_or_organisation.blank?
+              %h5= attendee.project_or_organisation
+            - unless attendee.comes_from.blank?
+              %h5= attendee.comes_from                
+            .four.columns.alpha
+              - if attendee.profile?
+                = image_tag attendee.profile.url(:full)
+              - else
+                &nbsp;
+            .four.columns.alpha
+              - unless attendee.bio.blank?
+                .bio
+                  .column.omega.alpha
+                    %h2.quote= raw('&#8220;')
+                  .three.columns.alpha
+                    %p= raw attendee.bio
+                    - unless attendee.work_in_progress_title.blank?
+                      %p= link_to t(:website), attendee.work_in_progress_title
+    .sixteen.columns
+      %h2= t "kompass.other_participants"
+    - @attendees.where("invited is not true").shuffle.in_groups_of(2) do |attendee_group|
+      .sixteen.columns
+        - attendee_group.each_with_index do |attendee, index|
+          - next if attendee.nil?
+          .attendee.eight.columns{:class => index == 0 ? :alpha : :omega}
+            %h4= attendee.name
+            - unless attendee.project_or_organisation.blank?
+              %h5= attendee.project_or_organisation
+            - unless attendee.comes_from.blank?
+              %h5= attendee.comes_from                
+            .four.columns.alpha
+              - if attendee.profile?
+                = image_tag attendee.profile.url(:full)
+              - else
+                &nbsp;
+            .four.columns.alpha
+              - unless attendee.bio.blank?
+                .bio
+                  .column.omega.alpha
+                    %h2.quote= raw('&#8220;')
+                  .three.columns.alpha
+                    %p= raw attendee.bio
+                    - unless attendee.work_in_progress_title.blank?
+                      %p= link_to t(:website), attendee.work_in_progress_title
+              

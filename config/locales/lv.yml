@@ -276,3 +276,54 @@ lv:
     you_can_register: 'Dalība KOMPASĀ 6 eiro. No ienākumiem tiks segti Tavas maltītes izdevumi piektdien Koogel Moogel kafejnīcā. Lūdzu %{register}'
     address: 'Ptarmigan atrodas Toom-Kooli ielā 13, Toompea rajonā Tallinas vecpilsētā, vienā mājā ar Kanādas vēstniecību un kafejnīcu "Koogel Moogel".'
     speed_workshops_blurb: "Mums nepieciešami risinājumi! Vienas stundas darbnīcas domātas pilnvērtīgam darbam, nevis tukšām sarunām."    
+
+  ct:
+    ptarmigan_location: 'Ptarmigan projektu telpa, Tallina, Igaunija'
+    register_to_attend: 'Reģistrējies, lai piedalītos KOMPASĀ'
+    project_or_organisation: 'Your project or organisation?'
+    optional: 'Papildus info'
+    register: 'Reģistrējies!'
+    bio: 'Tell us about yourself in a few sentences.'
+    profile_photo: 'Please upload a photo of yourself (max resolution 600x600)'
+    thank_you_for_registering: 'Paldies, ka reģistrējies'
+    you_will_hear_from_us: 'Pēc reģistrēšanās saņemsi vairāk info savā e-pastā. Neskaidrības gadījumā, lūdzu, sūti e-pastu angļu valodā uz kompass@ptarmigan.ee'
+    participants: 'Dalībnieki'
+    invited_participants: 'Uzaicinātie dalībnieki'
+    other_participants: 'Pieteikušies dalībnieki'
+    register_link: 'Reģistrēties'
+    contact: 'Kontakti'
+    programme: 'Programma'
+    place: 'Vieta'
+    theme: 'Tēma "Publiskā telpa"'
+    public_space: 'Publiskā telpa'
+    schedule: 'Norišu secība'
+    tallinn: 'Norišu secība'
+    activities: 'Norises'
+    who_is_coming: 'Kurš piedalīsies?'
+    more_info: 'Vairāk info'
+    comes_from: 'Kur tu dzīvo (pilsēta)'
+    all_participants: "Aplūkot visus dalībniekus"
+    theme_longer: 'Esošo, bet neizmantoto resursu izmantošanas iespējas kultūras un radošo industriju attīstībai Rīgā'
+    registration_cost: 'Piedalīties KOMPASĀ drīkst jebkurš, bet vietu skaits ir ierobežots. Dalības maksa – 6 eiro nosegs Tavu maltīti Koogel Moogel bārā, kur notiks kopīgas KOMPASA vakariņas piektdienas vakarā.'
+    unconference: 'Ne-konference'
+    unconference_blurb: "Pēcpusdienas ne-konference, kur dalībnieki paši izveido programmu un norises. Pielietojot %{bar_camp} metodoloģiju."
+    speakers: 'Prezentācijas'
+    speakers_blurb: 'Rīgas un Tallinas aktīvistu iniciatīvu prezentācijas un paneļdiskusija'
+    speed_workshops: 'Ātr-darbnīcas'
+    where_to_find_us: 'Vieta un info par organizatoriem'
+    schedule_blurb: "Atklāšana, prezentācijas un diskusija ceturtdien, savukārt ideju, risinājumu un metodoloģiju darbnīcas – piektdien. Ieplānoto norišu secība %{here}."
+    you_can_register: 'Dalība KOMPASĀ 6 eiro. No ienākumiem tiks segti Tavas maltītes izdevumi piektdien Koogel Moogel kafejnīcā. Lūdzu %{register}'
+    address: 'Forums notiks 17/02/2015 Rīgas Mākslas telpā, Kungu ielā 3.'
+    address_2: 'Ieeja ir bez maksas, iepriekš reģistrējoties.'
+    register_by: 'REĢISTRĒTIES var līdz 15/02/2015 17:00'
+    organize: 'Organizē “Radošo kvartālu un teritoriju asociācija.'
+    atbalsta: 'Atbalsta Rīgas Domes Izglītības, Kultūras un Sporta departaments, Rīgas pašvaldības kultūras iestāžu apvienība.'
+    speed_workshops_blurb: "Mums nepieciešami risinājumi! Vienas stundas darbnīcas domātas pilnvērtīgam darbam, nevis tukšām sarunām."
+    1012: "10:00-12:00"
+    1213: "12:00-13:00"
+    1315: "13:00-15:00"
+    1517: "15:00-17:00"
+    1012_blurb: 'Problēmu identificēšana (Prezentācijas, debates)'
+    1213_blurb: 'Pusdienu pauze (Zupa pret ziedojumiem)'
+    1315_blurb: 'Risinājumu modelēšana (Dom-darbnīcas, debates)'
+    1517_blurb: 'Risinājumus komentē valsts un pašvaldības pārstāvji (Paneļ-diskusija)'

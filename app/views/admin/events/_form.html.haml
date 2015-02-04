@@ -68,7 +68,20 @@
           %p
             Заметки и метаданные (время начала, и т.д.)
             %br/
-            = ru.text_area :notes, {:cols => 40, :rows => 5}          
+            = ru.text_area :notes, {:cols => 40, :rows => 5}  
+      - tab.create('latvian', 'Latvian') do
+        = f.globalize_fields_for :lv do |lv|
+          %p 
+            Title
+            = lv.text_field :title
+            Note: you must enter content in all three fields (title, description, notes) for a language
+          %p
+            Description of event
+            = lv.cktext_area :description
+          %p
+            Notes and metadata (start time, etc.)
+            %br/
+            = lv.text_area :notes, {:cols => 40, :rows => 5}                    
       - tab.create('swedish', 'Swedish') do
         = f.globalize_fields_for "sv-SE" do |sv|
           %p 

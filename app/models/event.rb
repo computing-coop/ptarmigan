@@ -83,7 +83,7 @@ class Event < ActiveRecord::Base
   end
   
   def title_en
-    self.title(:en)
+     self.title(:en).blank? ? self.translations.first.title : self.title(:en)
   end
 
   def title_with_date

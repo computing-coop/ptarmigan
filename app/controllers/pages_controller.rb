@@ -21,7 +21,7 @@ class PagesController < ApplicationController
       elsif @subsite.name == 'kompass' || @subsite.name == 'creativeterritories'
         @pages = Page.by_subsite(@subsite)
         @event = @subsite.events.first
-        @random_participants = @event.attendees.approved.delete_if{|x| x.profile.blank? }
+        @random_participants = @event.attendees.delete_if{|x| x.profile.blank? }
       else
         @posts = Post.by_subsite(@subsite).published.order('created_at DESC').page params[:page]
       end

@@ -13,8 +13,9 @@
     .three.columns &nbsp;
 
     .seven.columns.omega.space_blurb
-      = raw overview[5..-1].join(' ')    
-      %h5= link_to t("ct.more_info"), page_path('theme')
+      = raw overview[5..-1].join(' ')
+      %h4= link_to t("ct.register"), event_path('grassroots')
+      %h5= link_to t("ct.more_info"), page_path('tema')
 .who_is_coming
   .container.sixteen_columns
     %center
@@ -34,7 +35,7 @@
                 %p= raw truncate_html(participant.bio, :length => 300)
     .see_all_participants
       %center
-        %h4= link_to t("ct.all_participants"), event_attendees_path('kompass')
+        %h4= link_to t("ct.all_participants"), event_attendees_path('grassroots')
 
 .activities
   .container

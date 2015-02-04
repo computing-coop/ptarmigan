@@ -57,13 +57,13 @@
             %li.first{:class => locale.to_s}
               = link_to t("ct.programme"), '#'
               %ul
-                %li= link_to t("ct.theme"), page_path('theme')
-                %li= link_to t("ct.activities"), page_path('activities')
-                %li= link_to t("ct.schedule"), page_path('schedule')
-            %li{:class => locale.to_s}= link_to t("ct.participants"), event_attendees_path('kompass')
+                %li= link_to t("ct.programme"), page_path('forums')
+                %li= link_to t("ct.theme"), page_path('tema')
+                %li= link_to t("ct.activities"), page_path('norise')
+            %li{:class => locale.to_s}= link_to t("ct.participants"), event_attendees_path('grassroots')
 
             %li{:class => locale.to_s}= link_to t("ct.register_link"), event_path('grassroots')
-            %li{:class => locale.to_s}= link_to t("ct.place"), page_path('contact')
+            %li{:class => locale.to_s}= link_to t("ct.place"), page_path('vieta')
 
     = yield
 
@@ -76,23 +76,21 @@
         .container
           .sixteen.columns
             %p
-              Kompass :
-              = t "kompass.public_space"
+              Grassroots* 
               &sdot;
-              = date_range('2014-08-21'.to_date, '2014-08-22'.to_date)
-              &sdot;
-              = t "kompass.tallinn"
+              = l '2015-02-17'.to_date, format: :long
               &sdot;
               = link_to "info @ creativeterritories - lv", "mailto:info@creativeterritories(changetodot)lv"
+              &sdot;
+              
           .sixteen.columns
             .logos
               %ul
-                %li= link_to image_tag(current_theme_image_path("Bottom.jpg")), 'http://totaldobze.com'
-                / %li= link_to image_tag(current_theme_image_path("ptarmigan_logo.png")), 'http://ptarmigan.ee'
-                / %li= link_to image_tag(current_theme_image_path("koogel_moogel.png")), 'https://www.facebook.com/lastekohvik'
-                / %li= link_to image_tag(current_theme_image_path("kkf_logo.png")), 'http://kkf.lv/'
-                / %li= link_to image_tag(current_theme_image_path("Lux_Express_logo.png")), 'http://www.luxexpress.eu/'
-                %li= link_to image_tag(current_theme_image_path("GitHub-Mark-32px.png")), 'https://github.com/cenotaph/ptarmigan'
+                %li= image_tag(current_theme_image_path("Bottom_1.png"))
+                %li= image_tag(current_theme_image_path("Bottom_2.png"))
+
+          .sixteen.columns
+            = link_to image_tag(current_theme_image_path("GitHub-Mark-32px.png")), 'https://github.com/cenotaph/ptarmigan'
 
 :javascript
   $(document).ready(function() {

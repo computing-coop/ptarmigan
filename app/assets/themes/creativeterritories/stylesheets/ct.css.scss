@@ -224,6 +224,14 @@ iframe[src="about:blank"] { display: none; }
   .space_blurb {
      font-size: 1.2em; 
      line-height: 1.4em;
+     h4 {
+       font-size: 1.4em;
+       text-transform: uppercase;
+       margin-bottom: 1rem;
+       a {
+         color: black;
+       }
+     }
   }
 }
 

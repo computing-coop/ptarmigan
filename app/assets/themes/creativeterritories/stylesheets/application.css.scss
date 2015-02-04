@@ -56,8 +56,11 @@ body {
   a {
     color: #000;
     &:hover {
-      color: #999;
+      color: #fff4bc;
     }
+  }
+  &:hover {
+    color: #fff4bc;
   }
 }
 .sf-menu ul li ul {
@@ -67,15 +70,15 @@ body {
 
 .sf-menu li ul li {
   width: 100% !important;
-  background-color: #000;
-  color: #000;
+  background-color: #FFF;
+  color: #FFF;
 
   margin-bottom: 0px;
   border-bottom: 1px solid $main_color;
   padding: 4px;
 }
 .sf-menu li:hover ul li {
-  color: #999;
+  color: #fff4bc;
 }
 .sf-menu li ul li a {
   font-size: 0.6em;

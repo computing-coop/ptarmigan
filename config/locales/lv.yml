@@ -279,32 +279,37 @@ lv:
 
   ct:
     ptarmigan_location: 'Ptarmigan projektu telpa, Tallina, Igaunija'
-    register_to_attend: 'Reģistrējies, lai piedalītos KOMPASĀ'
-    project_or_organisation: 'Your project or organisation?'
+    register_to_attend: 'Reģistrējies un piedalies Forumā!'
+    project_or_organisation: 'Ja pārstāvat institūciju, tad kuru? '
     optional: 'Papildus info'
-    register: 'Reģistrējies!'
-    bio: 'Tell us about yourself in a few sentences.'
-    profile_photo: 'Please upload a photo of yourself (max resolution 600x600)'
+    register: 'Reģistrējies...'
+    your_email: 'Jūsu e-pasts'
+    your_phone: 'Jūsu tālr. Nr'
+    bio: 'Lūdzu raksturojiet vienā teikumā savu saistību ar kultūras vai radošajām industrijām '
+    will_be_published: '(informācija tiks publicēta)'
+    profile_photo: 'Lūdzu nosūtiet mums Jūsu fotoattēlu (maks. izmērs 600x600px), kas tiks pievienots pie apraksta par Jūsu darbību'
     thank_you_for_registering: 'Paldies, ka reģistrējies'
     you_will_hear_from_us: 'Pēc reģistrēšanās saņemsi vairāk info savā e-pastā. Neskaidrības gadījumā, lūdzu, sūti e-pastu angļu valodā uz kompass@ptarmigan.ee'
     participants: 'Dalībnieki'
+    extra_info_or_qs: 'Vieta Jūsu jautājumam vai papildus informācijai, ja tāda ir'
+    verify_captcha: 'Lūdzu apstipriniet savu informāciju '
     invited_participants: 'Uzaicinātie dalībnieki'
     other_participants: 'Pieteikušies dalībnieki'
     register_link: 'Reģistrēties'
     contact: 'Kontakti'
     programme: 'Programma'
     place: 'Vieta'
-    theme: 'Tēma "Publiskā telpa"'
+    theme: 'Tēma'
     public_space: 'Publiskā telpa'
     schedule: 'Norišu secība'
     tallinn: 'Norišu secība'
     activities: 'Norises'
     who_is_coming: 'Kurš piedalīsies?'
-    more_info: 'Vairāk info'
+    more_info: 'Vairāk info...'
     comes_from: 'Kur tu dzīvo (pilsēta)'
     all_participants: "Aplūkot visus dalībniekus"
     theme_longer: 'Esošo, bet neizmantoto resursu izmantošanas iespējas kultūras un radošo industriju attīstībai Rīgā'
-    registration_cost: 'Piedalīties KOMPASĀ drīkst jebkurš, bet vietu skaits ir ierobežots. Dalības maksa – 6 eiro nosegs Tavu maltīti Koogel Moogel bārā, kur notiks kopīgas KOMPASA vakariņas piektdienas vakarā.'
+    registration_cost: 'Dalība ir bez maksas. Aicinām piedalīties jebkuru kultūras un radošo industriju procesos iesaistīto personā.'
     unconference: 'Ne-konference'
     unconference_blurb: "Pēcpusdienas ne-konference, kur dalībnieki paši izveido programmu un norises. Pielietojot %{bar_camp} metodoloģiju."
     speakers: 'Prezentācijas'
@@ -319,6 +324,7 @@ lv:
     organize: 'Organizē “Radošo kvartālu un teritoriju asociācija.'
     atbalsta: 'Atbalsta Rīgas Domes Izglītības, Kultūras un Sporta departaments, Rīgas pašvaldības kultūras iestāžu apvienība.'
     speed_workshops_blurb: "Mums nepieciešami risinājumi! Vienas stundas darbnīcas domātas pilnvērtīgam darbam, nevis tukšām sarunām."
+    your_name: 'Vārds, uzvārds'
     1012: "10:00-12:00"
     1213: "12:00-13:00"
     1315: "13:00-15:00"

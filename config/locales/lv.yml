@@ -284,6 +284,8 @@ lv:
     optional: 'Papildus info'
     register: 'Reģistrējies...'
     your_email: 'Jūsu e-pasts'
+    registered_participants: 'Reģistrētie dalībnieki.'
+    register_by: 'Reģistrācija atvērta līdz 15/02 17:00'
     your_phone: 'Jūsu tālr. Nr'
     bio: 'Lūdzu raksturojiet vienā teikumā savu saistību ar kultūras vai radošajām industrijām '
     will_be_published: '(informācija tiks publicēta)'
@@ -322,7 +324,7 @@ lv:
     address_2: 'Ieeja ir bez maksas, iepriekš reģistrējoties.'
     register_by: 'REĢISTRĒTIES var līdz 15/02/2015 17:00'
     organize: 'Organizē “Radošo kvartālu un teritoriju asociācija.'
-    atbalsta: 'Atbalsta Rīgas Domes Izglītības, Kultūras un Sporta departaments, Rīgas pašvaldības kultūras iestāžu apvienība.'
+    atbalsta: 'Atbalsta Rīgas domes Izglītības, kultūras un sporta departaments, Rīgas pašvaldības kultūras iestāžu apvienība.'
     speed_workshops_blurb: "Mums nepieciešami risinājumi! Vienas stundas darbnīcas domātas pilnvērtīgam darbam, nevis tukšām sarunām."
     your_name: 'Vārds, uzvārds'
     1012: "10:00-12:00"

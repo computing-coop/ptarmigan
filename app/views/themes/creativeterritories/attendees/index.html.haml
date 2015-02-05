@@ -3,7 +3,8 @@
     - if @event.require_approval == true
       - @attendees.reject!{|x| x.approved != true }
     .sixteen.columns
-      %h2= t "kompass.other_participants"
+      %h2= t "ct.registered_participants"
+      %p= link_to t("ct.register_by"), event_path('grassroots')
     - @attendees.shuffle.in_groups_of(2) do |attendee_group|
       .sixteen.columns
         - attendee_group.each_with_index do |attendee, index|

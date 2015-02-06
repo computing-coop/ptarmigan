@@ -281,7 +281,7 @@ lv:
   ct:
     ptarmigan_location: 'Ptarmigan projektu telpa, Tallina, Igaunija'
     register_to_attend: 'Reģistrējies un piedalies Forumā!'
-    project_or_organisation: 'Ja pārstāvat institūciju, tad kuru? '
+    project_or_organisation: 'Ja pārstāvat organizāciju, tad kuru?'
     optional: 'Papildus info'
     register: 'Reģistrējies...'
     your_email: 'Jūsu e-pasts'

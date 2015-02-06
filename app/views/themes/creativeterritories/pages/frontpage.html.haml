@@ -72,6 +72,6 @@
       %p= t("ct.organize")
       %p= t("ct.atbalsta")
       %p= raw(t "ct.schedule_blurb", here: raw(link_to t(:here), page_path('schedule')))
-      %p= raw (t "ct.you_can_register", register: raw(link_to t(:register_here), event_path('kompass')))
+
     = render :partial => 'google_map'
 

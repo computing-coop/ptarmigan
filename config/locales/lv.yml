@@ -239,6 +239,7 @@ lv:
   website: 'Mājas lapa'
   here: 'šeit'
   register_here: 'reģistrēties šeit' 
+  thanks_register: ''
   kompass:
     ptarmigan_location: 'Ptarmigan projektu telpa, Tallina, Igaunija'
     register_to_attend: 'Reģistrējies, lai piedalītos KOMPASĀ'
@@ -314,7 +315,7 @@ lv:
     registration_cost: 'Dalība ir bez maksas. Aicinām piedalīties jebkuru kultūras un radošo industriju procesos iesaistīto personā.'
     unconference: 'Ne-konference'
     unconference_blurb: "Pēcpusdienas ne-konference, kur dalībnieki paši izveido programmu un norises. Pielietojot %{bar_camp} metodoloģiju."
-    speakers: 'Prezentācijas'
+    speakers: 'Prezentācijas'   
     speakers_blurb: 'Rīgas un Tallinas aktīvistu iniciatīvu prezentācijas un paneļdiskusija'
     speed_workshops: 'Ātr-darbnīcas'
     where_to_find_us: 'Vieta un info par organizatoriem'

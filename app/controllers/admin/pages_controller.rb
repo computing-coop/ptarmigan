@@ -61,13 +61,7 @@ class Admin::PagesController < ApplicationController
     respond_to do |format|
       if @page.update_attributes(params[:page])
         flash[:notice] = 'Page was successfully updated.'
-        format.html { 
-          if @page.subsite
-            redirect_to @page.subsite.name + page_url(:id => @page.slug)
-          else
-            redirect_to page_url(:id => @page.slug) 
-          end
-        }
+        format.html { redirect_to admin_page_path  }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -48,8 +48,21 @@ class Event < ActiveRecord::Base
     carousel
   end
 
+  def bordercss
+    out = []
+    eventcategories.each_with_index do |ec, index|
+      next if index == 0
+      out << "0 -#{(index)* 3}px 0 ##{ec.colour}"
+    end
+    "border-top-color: ##{eventcategories.first.colour}; box-shadow: " + out.join(',')
+  end
+  
   def begin_time
     [date, event_time].join(' ').to_time
+  end
+  
+  def end_time
+    [ enddate.blank? ?  date : enddate, '23:59'].join(' ').to_datetime
   end
   
   def carousel_link
@@ -70,15 +83,15 @@ class Event < ActiveRecord::Base
     enddate.blank? ? date.to_time : enddate.to_time
   end
 
-  def end_time
-    if self.notes.nil? || self.notes.match(/\d\d\:\d\d/).nil?
-      (date.to_s + ' 22:30').to_datetime
-    elsif self.notes.scan(/\d\d\:\d\d/).size > 1
-      (self.date.to_s + " " + self.notes.scan(/\d\d\:\d\d/)[1]).to_datetime 
-    else
-      DateTime.strptime((self.start_time.to_i + 10800).to_s, '%s')
-    end
-  end
+  # def end_time
+  #   if self.notes.nil? || self.notes.match(/\d\d\:\d\d/).nil?
+  #     (date.to_s + ' 22:30').to_datetime
+  #   elsif self.notes.scan(/\d\d\:\d\d/).size > 1
+  #     (self.date.to_s + " " + self.notes.scan(/\d\d\:\d\d/)[1]).to_datetime
+  #   else
+  #     DateTime.strptime((self.start_time.to_i + 10800).to_s, '%s')
+  #   end
+  # end
     
   def start_time
     if self.notes.nil? || self.notes.match(/\d\d\:\d\d/).nil?

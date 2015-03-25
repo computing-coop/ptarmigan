@@ -50,10 +50,27 @@ module Calendrier
                   trs << @context.content_tag(:tr, nil) do
                     tds = "".html_safe
                     tds << @context.content_tag(:td, "#{index}h") if display == :week
+                    if row.first[:time].nil?
+                      starting_missing = row.map{|x| x[:time] }.compact.first.at_beginning_of_week
+                      row.each_with_index do |r, index|
+                        if r[:time].nil?
+                          r[:time] = starting_missing + index.days
+                        end
+                      end
+                    end
+                    if row.reverse.first[:time].nil?
+                      ending_missing = row.reverse.map{|x| x[:time] }.compact.first.at_end_of_week
+                      row.reverse.each_with_index do |r, index|
+                        if r[:time].nil?
+                          r[:time] = ending_missing - index.days
+                        end
+                      end
+                    end
+                    
                     row.collect do |cell|
                       cell_content = "<div class='cell_header'>".html_safe
                       cell_time = cell[:time]
-                      cell_content << @context.content_tag(:div, cell_time.day, class: :date_number) if display == :month && !cell_time.nil?
+                      cell_content << @context.content_tag(:div, cell_time.day,  class: cell[:time].month != @options[:month] ? "inactive date_number" : "date_number") # if display == :month && !cell_time.nil?
                       cell_content <<  @context.content_tag(:div, I18n.l(header[index], :format => "%A"), class: :weekday) + "</div><div class='events'>".html_safe
                       cell_content << cell[:content]
                       cell_content << '</div>'.html_safe

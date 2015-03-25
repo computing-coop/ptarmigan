@@ -3,9 +3,12 @@
     width: 100%;
     border-collapse: collapse;
     tr {
+      vertical-align: top;
+      
       border-collapse: collapse;
     }
     td {
+      width: 14.28%;
       border-collapse: collapse;
       padding: 0;
       .cell_header {
@@ -14,14 +17,33 @@
         .date_number {
           text-align: left;
           font-size: 2rem;
+          font-weight: bold;
         }
         .weekday {
           font-size: 0.9rem;
         }
-        .events {
-          font-size: 1rem;
+      }
+      .events {
+        min-height: 150px;
+        font-size: 1rem;
+
+        ul {
+          padding: 0;
+          li {
+            margin: 0.1rem 2.1rem 1.4rem 0rem;
+            list-style-type: none;
+            font-size: 0.8rem;
+            border-top-width: 3px;
+            border-top-style: solid;
+            color: #444;
+            .smaller {
+              font-size: 0.65rem;
+              color: #444;
+            }
+          }
         }
       }
+
     }
   }
   

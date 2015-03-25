@@ -5,7 +5,7 @@
       %span.active_month= t('dates.ctmonths')[params[:month]]
       %span.next_month= link_to raw('&#8594;'),  calendar_path(:year => params[:month] < 12 ?  params[:year] : params[:year] + 1, :month => params[:month] < 12 ? (params[:month] + 1) : 1 )
 .event_categories_list#sticky-menu
-  %center
+  %nav
     %ul.event_categories
       - @eventcategories.each do |ec|
         %li= link_to ec.name, '#', style: "color: ##{ec.colour}"

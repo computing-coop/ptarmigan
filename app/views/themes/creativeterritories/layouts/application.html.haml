@@ -45,19 +45,20 @@
       fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     %header
+      .container
+        .three.columns.logo.alpha= link_to image_tag(current_theme_image_path("RKTA_logo_web.png")), '/'
+        .ten.columns.main_title
+          .event_list_title_box= link_to t("ct.events_list"), '/'
+          .event_list_tagline= t("ct.events_tagline")
+        .three.columns.omega.language_container
+          %ul.language
+            %li= link_to_unless I18n.locale == :en, 'ENG', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en'
+            %li= " | "
+            %li= link_to_unless I18n.locale == :lv,  'LAT', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'lv'
 
-      .logo= link_to image_tag(current_theme_image_path("RKTA_logo_web.png")), '/'
-      .title_container
-        .event_list_title_box= link_to t("ct.events_list"), '/'
-        .event_list_tagline= t("ct.events_tagline")
-      .language_container
-        %ul.language
-          %li= link_to_unless I18n.locale == :en, 'ENG', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en'
-          %li= " | "
-          %li= link_to_unless I18n.locale == :lv,  'LAT', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'lv'
 
-
-    = yield
+    %section
+      %article= yield
 
       
 

@@ -74,7 +74,7 @@ module Calendrier
                       cell_content <<  @context.content_tag(:div, I18n.l(cell_time, :format => "%A"), class: :weekday) + "</div><div class='events'>".html_safe
                       cell_content << cell[:content]
                       cell_content << '</div>'.html_safe
-                      tds << @context.content_tag(:td, cell_content, class: cell[:time].month != @options[:month] ? "inactive " : (cell[:content].blank? ? "empty" : ''))
+                      tds << @context.content_tag(:td, cell_content, class: [cell[:time].to_date == Time.now.to_date ? 'today' : '' ,  cell[:time].month != @options[:month] ? "inactive " : (cell[:content].blank? ? "empty" : '')])
                     end
                     tds
                   end

@@ -15,14 +15,9 @@ $main_color: #FFF4BC;
 }
 header {
   padding-top: 1.3rem;
+  position: relative;
   .logo {
-    float: left;
-    max-width: 25%;
-    padding-right: 1rem;
-    img {
-      max-width: 100%;
-      height: auto;
-    }
+    width: 280px;
   }
   .title_container {
     float: left;
@@ -30,7 +25,7 @@ header {
   .language_container {
     float: right;
 
-    padding-right: 2rem;
+
     ul.language {
       float: right;
       margin: 0;

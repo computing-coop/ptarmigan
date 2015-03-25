@@ -1,5 +1,19 @@
 
 @media screen and (max-device-width: 480px) {
+  header {
+    .container {
+      .logo {
+        display: none;
+      }
+      .main_title {
+        width: 95% !important;
+      }
+      .language_container {
+        width: 4% !important;
+      }
+    }
+  }
+  
   table {
     border-spacing: 0;
     border: 1px solid #bbb;

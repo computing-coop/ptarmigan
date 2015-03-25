@@ -47,14 +47,14 @@ Ptarmigan::Application.routes.draw do
   # connect '/fi/pages/air', :controller => 'pages', :action => 'air'
 
 
-
+  match '/admin', :controller => 'admin/reports', :action => :index
 
   match '/staff', :controller => 'admin/reports', :action => :index
-  resources :calendar do
-    collection do
-      get :update_calendar
-    end
-  end
+  # resources :calendar do
+  #   collection do
+  #     get :update_calendar
+  #   end
+  # end
   #register '/register', :controller => 'users', :action => 'create'
   #signup '/signup', :controller => 'users', :action => 'new'
   resources :users
@@ -102,9 +102,10 @@ Ptarmigan::Application.routes.draw do
 
   match '/admin/wiki/:title/history', :controller => 'admin/wikipages', :action => 'history', :as => :admin_wikipage_history
   match '/admin/:title/history.:format', :controller => 'admin/wikipages', :action => 'history'
-  
+  match '/calendar' => 'pages#frontpage'
   match '/admin/wiki/:title/edit', :controller => 'admin/wikipages', :action => 'edit'
-
+  match '/calendar(/:year(/:month))' => 'pages#frontpage', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+  
   namespace :admin do
     resources :events
     resources :eventcategories

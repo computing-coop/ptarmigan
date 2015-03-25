@@ -1,7 +1,7 @@
 /*
  *= require layout
  *= require skeleton1200
- *= require creativeterritories/stylesheets/ct
+ 
  *= require creativeterritories/stylesheets/calendar
  *= require featherlight
  */
@@ -11,6 +11,22 @@ $main_color: #FFF4BC;
 * {
   font-family: 'Open Sans', sans-serif;
   box-sizing: border-box;
+}
+header {
+  padding-top: 2rem;
+  ul.language {
+    float: right;
+    li {
+      font-size: 0.8rem;
+      font-weight: bold;
+      float: left;
+      list-style-type: none;
+      padding: 0 0.2rem;
+      a {
+        color: #49ff9b;
+      }
+    }
+  }
 }
 
 .event_categories_list {

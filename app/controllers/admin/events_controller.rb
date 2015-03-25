@@ -64,7 +64,7 @@ class Admin::EventsController < ApplicationController
   
   
   def new
-    @event = Event.new(:location => @location, :place_id => nil)
+    @event = Event.new(:location_id => @subsite.id, :place_id => nil)
     if @subsite.name == 'creativeterritories'
       @event.location_id = 3
       @event.subsite_id = 5

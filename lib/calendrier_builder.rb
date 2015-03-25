@@ -71,7 +71,7 @@ module Calendrier
                       cell_content = "<div class='cell_header'>".html_safe
                       cell_time = cell[:time]
                       cell_content << @context.content_tag(:div, cell_time.day , class: :date_number ) # if display == :month && !cell_time.nil?
-                      cell_content <<  @context.content_tag(:div, I18n.l(header[index], :format => "%A"), class: :weekday) + "</div><div class='events'>".html_safe
+                      cell_content <<  @context.content_tag(:div, I18n.l(cell_time, :format => "%A"), class: :weekday) + "</div><div class='events'>".html_safe
                       cell_content << cell[:content]
                       cell_content << '</div>'.html_safe
                       tds << @context.content_tag(:td, cell_content, class: cell[:time].month != @options[:month] ? "inactive date_number" : "date_number")

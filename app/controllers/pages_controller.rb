@@ -22,7 +22,15 @@ class PagesController < ApplicationController
         @events = @subsite.events.published
         @events = sort_events(@events)
         @eventcategories = Eventcategory.all
-        
+        if params[:month].nil?
+          params[:month] = Time.now.month
+        end
+        if params[:year].nil?
+          params[:year] = Time.now.year
+        end
+        params[:day] = 15
+        params[:month] = params[:month].to_i
+        params[:year] = params[:year].to_i
       elsif @subsite.name == 'kompass'
         @pages = Page.by_subsite(@subsite)
         @event = @subsite.events.first

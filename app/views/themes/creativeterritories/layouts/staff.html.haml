@@ -20,26 +20,14 @@
   %body
     #admin_top_column.clearfix
       #logo= link_to image_tag(current_theme_image_path("RKTA_logo_web.png"), :width => 300), '/'
-      #nav
-        .public
-          %h4 Public site:
-          = render :partial => 'layouts/sidebar'
-        .small
-          .one.column.alpha{:style=> 'float: left; '} Search: 
-          .three.columns.omega
-            = form_tag "/admin/reports/search", :method => "post" do |f|
-              = text_field_tag :search
-          
-        -# - unless controller.controller_name == 'reports'
-        -#   .active.clearfix
-        -#     %h4 Active lately:
-        -#     .active_projects= generate_active_cloud
+      #nav= render :partial => 'layouts/staffsidebar.en'
+
     #dynamic{:class => 'staff_' + @location.name.downcase}
 
 
       .container
         .three.columns.alpha#staff_menu
-          = render :partial => 'layouts/staffsidebar.en'
+
         .thirteen.columns.omega
           .headline
             #flash

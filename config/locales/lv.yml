@@ -43,6 +43,7 @@ lv:
       default: ! '%d.%m.%Y.'
       long: ! '%Y. gada %e. %B'
       short: ! '%e. %B'
+
     month_names:
     -
     - janvārī
@@ -61,6 +62,21 @@ lv:
     - :year
     - :month
     - :day
+  dates:
+    ctmonths:
+    - 
+    - janvāris
+    - februāris
+    - marts
+    - aprīlis
+    - maijs
+    - jūnijs
+    - jūlijs
+    - augusts
+    - septembris
+    - oktobris
+    - novembris
+    - decembris
   datetime:
     distance_in_words:
       about_x_hours:

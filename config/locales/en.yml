@@ -28,6 +28,21 @@ en:
       previous: "&lsaquo;"
       next: "&rsaquo;"
       truncate: "..."
+  dates:
+    ctmonths:
+    -
+    - january
+    - february
+    - march
+    - april
+    - may
+    - june
+    - july
+    - august
+    - september
+    - october
+    - november
+    - december      
   errors_with_form: 'There were errors with your registration.'
   verify_you_are_human: 'Please verify that you are human:'
   am_i_registered: 'Am I already registered?'

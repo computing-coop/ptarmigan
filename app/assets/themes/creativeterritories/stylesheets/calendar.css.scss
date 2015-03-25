@@ -1,0 +1,28 @@
+.calendar {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    tr {
+      border-collapse: collapse;
+    }
+    td {
+      border-collapse: collapse;
+      padding: 0;
+      .cell_header {
+        color: #FFF;
+        background-color: #49ff9b;
+        .date_number {
+          text-align: left;
+          font-size: 2rem;
+        }
+        .weekday {
+          font-size: 0.9rem;
+        }
+        .events {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  
+}

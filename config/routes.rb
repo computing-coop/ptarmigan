@@ -107,6 +107,7 @@ Ptarmigan::Application.routes.draw do
 
   namespace :admin do
     resources :events
+    resources :eventcategories
     resources :wikirevisions
     resources :wikipages
     resources :documents

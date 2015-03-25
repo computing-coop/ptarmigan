@@ -261,6 +261,7 @@ lv:
     schedule: 'Norišu secība'
     tallinn: 'Norišu secība'
     activities: 'Norises'
+    events_list: 'Events list'
     who_is_coming: 'Kurš piedalīsies?'
     more_info: 'Vairāk info'
     comes_from: 'Kur tu dzīvo (pilsēta)'
@@ -279,6 +280,8 @@ lv:
     speed_workshops_blurb: "Mums nepieciešami risinājumi! Vienas stundas darbnīcas domātas pilnvērtīgam darbam, nevis tukšām sarunām."    
 
   ct:
+    events_list: 'Events List'
+    events_tagline: 'Piedāvā Radošo kvartālu un teritoriju asociācija!'
     ptarmigan_location: 'Ptarmigan projektu telpa, Tallina, Igaunija'
     register_to_attend: 'Reģistrējies un piedalies Forumā!'
     project_or_organisation: 'Ja pārstāvat organizāciju, tad kuru?'

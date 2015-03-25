@@ -1,0 +1,76 @@
+- overview = @pages.first.body.split(/\n/)
+.front_overview{:style => "background: url(#{theme_image_path('doms1.jpg')}) no-repeat center center; background-size: cover;"}
+  .container.sixteen.columns
+    .text_box
+      %h4= raw overview[0..4].join(" ")
+
+
+      
+#page_theme
+  .container.sixteen.columns
+    .six.columns.alpha.space_overlay
+      %h1= t("ct.theme_longer")
+    .three.columns &nbsp;
+
+    .seven.columns.omega.space_blurb
+      = raw overview[5..-1].join(' ')
+      %h4= link_to t("ct.register"), event_path('grassroots')
+      %h5= link_to t("ct.more_info"), page_path('tema')
+.who_is_coming
+  .container.sixteen_columns
+    %center
+      %h2= t("ct.participants")
+    #slider.cycle-slideshow{:"data-cycle-fx" => "carousel" , :"data-cycle-timeout" => 5000, :"data-cycle-carousel-visible" => 5, :"data-cycle-slides" => ".participant", :"data-cycle-carousel-visible" =>2}
+      - @random_participants.each do |participant|
+        .participant.eight.columns{:style => "background: url(#{participant.profile.url}) no-repeat center; background-size: cover"}
+          .participant_info
+            %h4= participant.name.split(/\s+/).map(&:humanize).join(' ')
+            - unless participant.project_or_organisation.blank?
+              %h5= participant.project_or_organisation
+            - unless participant.comes_from.blank?
+              %h5= participant.comes_from
+            - unless participant.bio.blank?
+              .bio
+                %h2.quote= raw('&#8220;')
+                %p= raw truncate_html(participant.bio, :length => 300)
+    .see_all_participants
+      %center
+        %h4= link_to t("ct.all_participants"), event_attendees_path('grassroots')
+
+.activities
+  .container
+    
+    .four.columns
+      
+      .hbg
+        = link_to page_path('norise') do
+          %h3 10:00 - 12:00
+        %h4= raw(t "ct.1012_blurb", bar_camp: raw(link_to "Bar Camp", "http://en.wikipedia.org/wiki/Bar_camp#Structure_and_participatory_process"))
+    .four.columns
+      .hbg
+        = link_to page_path('norise') do
+          %h3 12:00 - 13:00
+        %h4= t "ct.1213_blurb"
+    .four.columns
+      .hbg
+        = link_to page_path('norise') do
+          %h3 13:00 - 15:00
+        %h4= t "ct.1315_blurb"
+    .four.columns
+      .hbg
+        = link_to page_path('norise') do
+          %h3 15:00 - 17:00
+        %h4= t "ct.1517_blurb"        
+.map
+  #map_canvas
+  .container.map_container
+    .eight.columns.alpha
+      %h2= t("ct.where_to_find_us")
+      %p= t("ct.address")
+      %p= t("ct.address_2")
+      %p= link_to t("ct.register_by"), '/events/grassroots'
+      %p= t("ct.organize")
+      %p= t("ct.atbalsta")
+  
+    = render :partial => 'google_map'
+

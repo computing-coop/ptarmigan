@@ -13,6 +13,7 @@ class Place < ActiveRecord::Base
   # tracked owner: ->(controller, model) { controller.current_user }
     
   scope :for_events, -> { where(allow_ptarmigan_events: true)}
+  scope :creativeterritories, -> { where(country: 'LV')}
   scope :approved_posters, -> { where(approved_for_posters: true)}
 
   def address_or_coordinates

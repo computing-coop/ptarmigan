@@ -3,6 +3,7 @@
 //= require ckeditor/init
 //= require jquery_nested_form
 //= require jquery.pageless
+//= require jpicker-1.1.6.min
 
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults

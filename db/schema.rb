@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140719123657) do
+ActiveRecord::Schema.define(:version => 20150325091814) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -213,6 +213,24 @@ ActiveRecord::Schema.define(:version => 20140719123657) do
 
   add_index "event_translations", ["event_id"], :name => "index_event_translations_on_event_id"
 
+  create_table "eventcategories", :force => true do |t|
+    t.string   "colour"
+    t.string   "slug"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "eventcategory_translations", :force => true do |t|
+    t.integer  "eventcategory_id"
+    t.string   "locale"
+    t.string   "name"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "eventcategory_translations", ["eventcategory_id"], :name => "index_eventcategory_translations_on_eventcategory_id"
+  add_index "eventcategory_translations", ["locale"], :name => "index_eventcategory_translations_on_locale"
+
   create_table "events", :force => true do |t|
     t.date     "date"
     t.string   "oldtitle"
@@ -257,7 +275,16 @@ ActiveRecord::Schema.define(:version => 20140719123657) do
     t.boolean  "show_guests_to_public",                :default => false, :null => false
     t.boolean  "require_approval",                     :default => false, :null => false
     t.string   "redirect_url"
+    t.time     "event_time"
+    t.string   "otherweb"
   end
+
+  create_table "events_eventcategories", :id => false, :force => true do |t|
+    t.integer "event_id",         :null => false
+    t.integer "eventcategory_id", :null => false
+  end
+
+  add_index "events_eventcategories", ["event_id", "eventcategory_id"], :name => "index_events_eventcategories_on_event_id_and_eventcategory_id", :unique => true
 
   create_table "expenses", :force => true do |t|
     t.date     "when"

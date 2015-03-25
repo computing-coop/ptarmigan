@@ -2,16 +2,55 @@
  *= require layout
  *= require skeleton1200
  *= require creativeterritories/stylesheets/ct
-
+ *= require creativeterritories/stylesheets/calendar
  */
 
 $main_color: #FFF4BC;
 
 * {
-  font-family: 'Arimo', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   box-sizing: border-box;
 }
 
+.event_categories_list {
+
+  ul.event_categories {
+    text-align: justify;
+    &:after{ 
+      content: '';
+      display: inline-block;
+      width: 100%;
+    }
+    li {
+      display: inline-block;
+      list-style-type: none;
+      font-weight: bold;
+      font-size: 2rem;
+      padding-right: 1rem;
+
+      white-space: nowrap;
+      text-align: center;
+    }
+  }
+}
+
+
+.event_list_title_box {
+  font-size: 5rem;
+  font-weight: bold;
+  text-align: center;
+  a { color: #FFF; }
+  background-color: black;
+  padding: 1.2rem;
+}
+.event_list_tagline {
+ font-size: 1.4rem;
+ text-transform: uppercase;
+ margin-top: 0.3rem;
+ font-weight: bold;
+ color: #000;
+ text-align: center;
+}
 a {
   text-decoration: none;
 

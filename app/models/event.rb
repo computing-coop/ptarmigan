@@ -13,6 +13,8 @@ class Event < ActiveRecord::Base
   has_many :flickers, :dependent => :destroy
   has_many :resources, :dependent => :destroy
   has_many :attendees, :dependent => :destroy
+  has_and_belongs_to_many :eventcategories
+  accepts_nested_attributes_for :eventcategories
   has_attached_file :avatar, :styles => { :larger => "350x350>", :medium => "400x400>",  :small => "240x240>",
                                        :thumb => "100x100>", :archive => "115x115#" },
         :path =>  ":rails_root/public/images/events/:id/:style/:basename.:extension", 
@@ -21,7 +23,7 @@ class Event < ActiveRecord::Base
   has_attached_file :carousel, :styles => {:largest => "1180x492#", :new_carousel => "960x400#", :full => "600x400#", :small => "300x200#", :thumb => "100x100>"}, 
   :path =>  ":rails_root/public/images/carousel/events/:id/:style/:basename.:extension", :url => "/images/carousel/events/:id/:style/:basename.:extension"
   translates :notes, :description, :title
-  accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['notes'].blank? && attributes['description'].blank?  && attributes['title'].blank? }
+  accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['title'].blank? }
   has_many :translations
   scope :has_events_on, lambda { |*args| { :conditions => ['public is true and (date = ? OR (enddate is not null AND (date <= ? AND enddate >= ?)))', args.first, args.first, args.first] } }
   
@@ -30,7 +32,7 @@ class Event < ActiveRecord::Base
   scope :published, where(:public => true)
   scope :by_location, lambda {|x| {:conditions => ['location_id = ? AND (subsite_id is null OR show_on_main is true)', x] }}
   scope :by_subsite, ->(subsite_id) { where(subsite_id: subsite_id) }
-  validates_presence_of :location_id, :date
+  validates_presence_of :location_id, :date, :place_id
   alias_attribute :name, :title
   before_save :perform_avatar_removal 
   attr_accessor :remove_avatar, :remove_carousel
@@ -46,6 +48,10 @@ class Event < ActiveRecord::Base
     carousel
   end
 
+  def begin_time
+    [date, event_time].join(' ').to_time
+  end
+  
   def carousel_link
     self
   end

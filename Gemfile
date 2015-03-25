@@ -20,7 +20,7 @@ group :development do
   gem 'sextant'
   gem 'thin'
 end
-
+gem 'calendrier'
 # gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git'
 gem 'ckeditor'
 gem 'countries'

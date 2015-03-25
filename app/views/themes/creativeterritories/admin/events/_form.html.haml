@@ -1,0 +1,48 @@
+= semantic_form_for([:admin,  event],  :html => {:multipart => true } ) do |f|
+  .twelve.columns
+    .six.columns.alpha= f.input :location_id, :label => "Which site?", :as => :hidden
+    .six.columns.omega= f.input :subsite_id, :label => 'Assign to sub-site', :hint => 'will appear in content of subdomain',  as: :hidden
+  %hr
+  .twelve.columns
+    .six.columns.clearfix.alpha
+      = f.input :date, :as => :string,  :input_html => {:class => 'date-pick'}
+      = f.input :enddate, :as => :string, :input_html => {:class => 'date-pick'}, :label => "Ending date", :hint => 'leave blank unless a multi-day event; not for things that will run past midnight'
+      = f.input :event_time, as: :string, hint: "format: HH:MM", label: 'Start time'
+    .six.columns.omega
+      = f.input :promoter, :label => "Promoter", :hint => "optional, ex: Totaldobze, can be blank though"
+      = f.input :place, :as => :select, :collection => Place.creativeterritories.map{|x| [x.name + "/" + x.address1, x.id]}, :include_blank => true
+      %br/
+      Place not on this list? 
+      = link_to 'Add it!', new_admin_place_path
+  %hr
+  .eight.columns.alpha
+    = tabs_for do |tab|
+      - tab.create('english', 'English') do
+        = f.globalize_fields_for :en do |en|
+          %p 
+            Title
+            = en.text_field :title
+          %p
+            Description of event
+            = en.text_area :description, rows: 4    
+      - tab.create('latvian', 'Latvian') do
+        = f.globalize_fields_for :lv do |lv|
+          %p 
+            Title
+            = lv.text_field :title
+          %p
+            Description of event
+            = lv.text_area :description, rows: 4              
+  .five.columns.omega
+    = f.input :eventcategories, as: :check_boxes, collection: Eventcategory.all, label: 'Type of event?', hint: 'Check as many as necessary'
+  %hr
+  .thirteen.columns
+    .six.columns.alpha= f.input :facebook, :label =>  'ID of Facebook event (12 digits or so)'
+    .six.columns.omega= f.input :otherweb, label: 'Non-facebook web link', hint: 'Include full URL with http://'
+  .sixteen.columns
+    .six.columns.omega= f.input :public, :label => 'Publish to site?', :hint => "If unchecked, event will only be seen by staff. Leave unchecked unless you are ready to announce this."    
+  .sixteen.columns= f.submit 'Save'
+  
+= content_for :jquery do
+  :plain
+    $("#tabs").tabs();

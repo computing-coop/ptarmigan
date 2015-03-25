@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class PagesController < ApplicationController
-
+  include Calendrier::EventExtension
   before_filter :find_page
 
 
@@ -18,7 +18,12 @@ class PagesController < ApplicationController
         @json = @places.to_gmaps4rails do |place,marker|
           marker.json({:id => place.id})
         end
-      elsif @subsite.name == 'kompass' || @subsite.name == 'creativeterritories'
+      elsif @subsite.name == 'creativeterritories'
+        @events = @subsite.events
+        @events = sort_events(@events)
+        @eventcategories = Eventcategory.all
+        
+      elsif @subsite.name == 'kompass'
         @pages = Page.by_subsite(@subsite)
         @event = @subsite.events.first
         @random_participants = @event.attendees.delete_if{|x| x.profile.blank? }

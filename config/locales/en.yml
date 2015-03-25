@@ -43,6 +43,7 @@ en:
   confirmation: "Confirmation"
   googlecalendar: "Ptarmigan events are available on a Google Calendar"
   about: "About"
+
   archive: "Archive"
   residencies: "Residencies"
   ago: 'ago'
@@ -177,7 +178,9 @@ en:
     for: 'for'
     against: 'against'
     vote_for: 'Vote for'  
-
+  ct:
+    events_list: 'Events List'
+    events_tagline: 'By Creative Quarters and Territories in Riga!'
   kompass:
     ptarmigan_location: 'Ptarmigan project rooms, Tallinn, Estonia'
     register_to_attend: 'Register to attend Kompass!'

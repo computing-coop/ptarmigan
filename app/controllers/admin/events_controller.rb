@@ -16,7 +16,14 @@ class Admin::EventsController < ApplicationController
       if @event.save
         # expire_fragment(@event.location.name + '_projects_page')
         flash[:notice] = 'Event was successfully created.'
-        format.html { redirect_to event_url(:id => @event) }
+        format.html { 
+          if @event.subsite.name == 'creativeterritories'
+            redirect_to admin_events_path
+          else
+            redirect_to @event
+          end
+        
+        }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
         format.html { render :action => "new" }
@@ -43,7 +50,11 @@ class Admin::EventsController < ApplicationController
   end
   
   def index
-    @events = Event.order('date DESC').filter(:params => params, :filter => :event_filter) #.page(params[:page]).per(50)
+    if @subsite.name == 'creativeterritories'
+      @events = Event.by_subsite(@subsite.id).order('date DESC').page(params[:page])
+    else
+      @events = Event.order('date DESC').filter(:params => params, :filter => :event_filter)
+    end
     respond_to do |format|
       format.html
       format.rss { render :layout => false}
@@ -54,6 +65,10 @@ class Admin::EventsController < ApplicationController
   
   def new
     @event = Event.new(:location => @location, :place_id => nil)
+    if @subsite.name == 'creativeterritories'
+      @event.location_id = 3
+      @event.subsite_id = 5
+    end
     respond_to do |format|
       format.html
       format.xml  { render :xml => @event }
@@ -65,7 +80,14 @@ class Admin::EventsController < ApplicationController
       if @event.update_attributes(params[:event])
         # expire_fragment(@event.location.name + '_projects_page')
         flash[:notice] = 'Event was successfully updated.'
-        format.html { redirect_to event_path(:id => @event.id) }
+        format.html { 
+          if @event.subsite.name == 'creativeterritories'
+            redirect_to admin_events_path
+          else
+            redirect_to @event
+          end
+        
+        }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

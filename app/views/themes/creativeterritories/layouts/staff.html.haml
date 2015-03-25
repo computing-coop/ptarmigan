@@ -2,7 +2,7 @@
 !!!
 %html{ :'xml:lang' => "en", :lang => "en" }
   %head
-    %title= "Ptarmigan staff: #{controller.class.to_s.gsub(/^Admin\:\:/, '').gsub(/Controller/, '')}"
+    %title= "CreativeTerritories staff: #{controller.class.to_s.gsub(/^Admin\:\:/, '').gsub(/Controller/, '')}"
     %meta{ :"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8" }
     %link{ :rel => "shortcut icon", :href => "/favicon.ico" }
 
@@ -19,7 +19,7 @@
     = csrf_meta_tag 
   %body
     #admin_top_column.clearfix
-      #logo= link_to(image_tag(current_theme_image_path('/layout/ptarmigan.png'), :width => 300), '/')
+      #logo= link_to(image_tag(current_theme_image_path('top.png'), :width => 300), '/')
       #nav
         .public
           %h4 Public site:

@@ -1,0 +1,20 @@
+
+@media screen and (max-device-width: 480px) {
+  table {
+    border-spacing: 0;
+    border: 1px solid #bbb;
+    overflow-x: auto;
+ 		display: block;
+    td, th {
+      width: 100%;
+      padding: 4px 8px;
+
+    }
+    tbody tr:nth-child(even)  td { background-color: #eee; }
+  
+  }
+  #sticky-menu {
+    height: 120px;
+  }
+  
+}

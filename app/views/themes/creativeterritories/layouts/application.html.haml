@@ -45,16 +45,16 @@
       fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     %header
-      .container
-        .four.columns.alpha= link_to image_tag(current_theme_image_path("RKTA_logo_web.png")), '/'
-        .eight.columns
-          .event_list_title_box= link_to t("ct.events_list"), '/'
-          .event_list_tagline= t("ct.events_tagline")
-        .four.columns.omega
-          %ul.language
-            %li= link_to_unless I18n.locale == :en, 'ENG', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en'
-            %li= " | "
-            %li= link_to_unless I18n.locale == :lv,  'LAT', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'lv'
+
+      .logo= link_to image_tag(current_theme_image_path("RKTA_logo_web.png")), '/'
+      .title_container
+        .event_list_title_box= link_to t("ct.events_list"), '/'
+        .event_list_tagline= t("ct.events_tagline")
+      .language_container
+        %ul.language
+          %li= link_to_unless I18n.locale == :en, 'ENG', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en'
+          %li= " | "
+          %li= link_to_unless I18n.locale == :lv,  'LAT', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'lv'
 
 
     = yield
@@ -65,21 +65,19 @@
           
     %footer
       .footer_info
-        .container
-          .eight.columns.alpha
-            %p
-              CreativeTerritories* 
-              &sdot;
-              = link_to "info @ creativeterritories - lv", "mailto:info@creativeterritories(changetodot)lv"
-              &sdot;
-              = link_to t(:about), page_path('about-creative-territories')
-        .container
-          .six.columns.alpha
-            .logos
-              %ul
-                %li{style: "max-width: 35%"}= link_to image_tag(current_theme_image_path("rkta_small.png")), page_path('about-creative-territories')
-                %li= link_to image_tag(current_theme_image_path("freeriga.png")), 'http://freeriga.lv', target: :_blank
-                %li= link_to image_tag(current_theme_image_path("GitHub-Mark-64px.png"), height: 55), 'https://github.com/cenotaph/ptarmigan'
+        .eight.columns.alpha
+          %p
+            CreativeTerritories* 
+            &sdot;
+            = link_to "info @ creativeterritories - lv", "mailto:info@creativeterritories(changetodot)lv"
+            &sdot;
+            = link_to t(:about), page_path('about-creative-territories')
+        .six.columns.alpha
+          .logos
+            %ul
+              %li{style: "max-width: 35%"}= link_to image_tag(current_theme_image_path("rkta_small.png")), page_path('about-creative-territories')
+              %li= link_to image_tag(current_theme_image_path("freeriga.png")), 'http://freeriga.lv', target: :_blank
+              %li= link_to image_tag(current_theme_image_path("GitHub-Mark-64px.png"), height: 55), 'https://github.com/cenotaph/ptarmigan'
 
 
             

@@ -31,6 +31,7 @@ class PagesController < ApplicationController
         params[:day] = 15
         params[:month] = params[:month].to_i
         params[:year] = params[:year].to_i
+
       elsif @subsite.name == 'kompass'
         @pages = Page.by_subsite(@subsite)
         @event = @subsite.events.first

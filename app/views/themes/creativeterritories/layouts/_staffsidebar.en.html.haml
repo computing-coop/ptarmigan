@@ -8,6 +8,7 @@
   
     %li= link_to 'Events: Create', new_admin_event_path
     %li= link_to 'Events: List/edit all', admin_events_path
+    %li= link_to 'Event categories', admin_eventcategories_path
     %li= link_to 'Static pages', admin_pages_path
     %li= link_to('Your profile', edit_user_path(current_user))
     %li= link_to_unless current_user.is_guest?,  'Locations/places', admin_places_path

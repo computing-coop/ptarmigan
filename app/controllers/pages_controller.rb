@@ -19,7 +19,7 @@ class PagesController < ApplicationController
           marker.json({:id => place.id})
         end
       elsif @subsite.name == 'creativeterritories'
-        @events = @subsite.events
+        @events = @subsite.events.published
         @events = sort_events(@events)
         @eventcategories = Eventcategory.all
         

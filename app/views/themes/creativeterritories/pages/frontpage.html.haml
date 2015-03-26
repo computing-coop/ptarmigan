@@ -37,7 +37,7 @@
             = "at #{obj.place.name}"
             - if obj.place.latitude && obj.place.longitude
               = link_to t(:map), "http://maps.google.com/maps?q=#{obj.place.latitude},#{obj.place.longitude}", target: :_blank
-          .description= obj.description
+          .description= simple_format(obj.description)
 
           - if obj.facebook
             %p= link_to 'Facebook', 'http://www.facebook.com/event.php?eid=' + obj.facebook.to_s, target: :_blank

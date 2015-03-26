@@ -4,7 +4,7 @@ class Admin::IncomesController < InheritedResources::Base
   before_filter :exclude_guests  
   actions :index, :show, :new, :edit, :create, :update, :destroy
   layout 'staff'
-  
+  load_and_authorize_resource
   def create
     create! { admin_expenses_path }
   end

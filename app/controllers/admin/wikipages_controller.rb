@@ -5,6 +5,7 @@ class Admin::WikipagesController < ApplicationController
   before_filter :load_and_paginate_resources, :only => [:index]
   before_filter :authenticate_user!
   has_scope :page, :default => 1
+  load_and_authorize_resource
   
   # GET /wikipages
   # GET /wikipages.js

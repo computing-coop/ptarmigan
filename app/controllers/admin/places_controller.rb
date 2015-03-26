@@ -4,7 +4,7 @@ class Admin::PlacesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_place
   layout 'staff'
-
+  load_and_authorize_resource
   PLACES_PER_PAGE = 20
 
   def create
@@ -48,6 +48,11 @@ class Admin::PlacesController < ApplicationController
 
   def new
     @place = Place.new
+    if @subsite
+      if @subsite.name == 'creativeterritories'
+        @place.country = 'LV'
+      end
+    end
     respond_to do |format|
       format.html
       format.xml  { render :xml => @place }

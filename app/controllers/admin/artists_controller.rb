@@ -3,7 +3,7 @@ class Admin::ArtistsController < ApplicationController
   
   before_filter :authenticate_user!
   before_filter :find_artist
-
+  load_and_authorize_resource
   layout 'staff'
   has_scope :page, :default => 1
 

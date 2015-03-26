@@ -6,7 +6,7 @@ class Admin::ProjectsController < ApplicationController
   before_filter :find_project
   layout 'staff'
   has_scope :page, :default => 1
-
+  load_and_authorize_resource
   
   
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150325091814) do
+ActiveRecord::Schema.define(:version => 20150326101920) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -220,6 +220,13 @@ ActiveRecord::Schema.define(:version => 20150325091814) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "eventcategories_events", :id => false, :force => true do |t|
+    t.integer "event_id",         :null => false
+    t.integer "eventcategory_id", :null => false
+  end
+
+  add_index "eventcategories_events", ["event_id", "eventcategory_id"], :name => "index_eventcategories_events_on_event_id_and_eventcategory_id", :unique => true
+
   create_table "eventcategory_translations", :force => true do |t|
     t.integer  "eventcategory_id"
     t.string   "locale"
@@ -275,16 +282,9 @@ ActiveRecord::Schema.define(:version => 20150325091814) do
     t.boolean  "show_guests_to_public",                :default => false, :null => false
     t.boolean  "require_approval",                     :default => false, :null => false
     t.string   "redirect_url"
-    t.time     "event_time"
     t.string   "otherweb"
+    t.string   "event_time",              :limit => 5
   end
-
-  create_table "events_eventcategories", :id => false, :force => true do |t|
-    t.integer "event_id",         :null => false
-    t.integer "eventcategory_id", :null => false
-  end
-
-  add_index "events_eventcategories", ["event_id", "eventcategory_id"], :name => "index_events_eventcategories_on_event_id_and_eventcategory_id", :unique => true
 
   create_table "expenses", :force => true do |t|
     t.date     "when"
@@ -585,6 +585,17 @@ ActiveRecord::Schema.define(:version => 20150325091814) do
     t.integer  "documenttype_id"
   end
 
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
+  add_index "roles", ["name"], :name => "index_roles_on_name"
+
   create_table "slugs", :force => true do |t|
     t.string   "name"
     t.integer  "sluggable_id"
@@ -642,6 +653,13 @@ ActiveRecord::Schema.define(:version => 20150325091814) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "users_roles", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
+
+  add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
 
   create_table "videohosts", :force => true do |t|
     t.string   "name"

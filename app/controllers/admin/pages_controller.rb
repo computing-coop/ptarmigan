@@ -2,7 +2,7 @@
 class Admin::PagesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_page
-
+  load_and_authorize_resource
   has_scope :page, :default => 1
   layout 'staff'
   

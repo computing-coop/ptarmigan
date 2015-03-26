@@ -20,6 +20,8 @@ group :development do
   gem 'sextant'
   gem 'thin'
 end
+gem 'cancancan'
+
 gem 'calendrier'
 # gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git'
 gem 'ckeditor'
@@ -55,6 +57,7 @@ gem 'randumb'
 gem 'recaptcha', :require => 'recaptcha/rails'
 # gem 'RedCloth', ">= 4.2.7"
 gem 'redcarpet'
+gem 'rolify'
 gem 'rvm-capistrano'
 gem 'sass'
 gem 'skeleton-rails'

@@ -6,7 +6,7 @@ class Expense < ActiveRecord::Base
   belongs_to :location
   belongs_to :budgetarea
   validates_presence_of :location_id, :amount, :when, :recipient, :what_for
-  
+  resourcify
   scope :i_month
   scope :i_location
   scope :i_budgetarea

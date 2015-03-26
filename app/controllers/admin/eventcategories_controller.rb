@@ -2,7 +2,7 @@
 class Admin::EventcategoriesController < InheritedResources::Base
   layout 'staff'
   before_filter :authenticate_user!
-  
+  load_and_authorize_resource
   def create
     create! { admin_eventcategories_path }
   end

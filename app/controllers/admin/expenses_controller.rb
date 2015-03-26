@@ -6,7 +6,7 @@ class Admin::ExpensesController < InheritedResources::Base
   actions :index, :show, :new, :edit, :create, :update, :destroy
   respond_to :html, :js, :xml, :json, :csv
   layout 'staff'
-
+  load_and_authorize_resource
   has_scope :page, :default => 1
   
   has_scope :render_csv

@@ -1,0 +1,19 @@
+= semantic_form_for([:admin, @place]) do |f|
+  .six.columns.alpha
+    = f.input :name
+    = f.input :address1
+    = f.input :address2
+    = f.input :city, input_html: {value: 'Rīga'}
+    = f.input :country, input_html: {value: 'LV'}
+    = f.input :postcode
+    -#= f.input :map_url
+  .six.columns.omega
+    %p For poster database that we'll make in the future.
+    %p If you leave latitude and longitude blank, the system should be able to figure it out automatically.
+    = f.input :latitude
+    = f.input :longitude
+    = f.input :approved_for_posters, :hint => "Check to approve for poster map"
+    = f.input :allow_ptarmigan_events, as: :hidden, value: 1
+  .twelve.columns
+    = f.actions do
+      = f.submit

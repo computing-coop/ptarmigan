@@ -7,7 +7,7 @@ class Admin::FlickersController < InheritedResources::Base
   before_filter :exclude_guests
   before_filter :find_flicker
   layout 'staff'
-  
+  load_and_authorize_resource
   has_scope :page, :default => 1
   
   def create

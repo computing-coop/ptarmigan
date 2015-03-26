@@ -6,7 +6,7 @@ class Admin::EventsController < ApplicationController
   before_filter :exclude_guests
   layout 'staff'
   EVENTS_PER_PAGE = 100
-
+  load_and_authorize_resource
   # cache_sweeper :event_sweeper, :only => [ :create, :update , :destroy] 
   
   
@@ -50,8 +50,12 @@ class Admin::EventsController < ApplicationController
   end
   
   def index
-    if @subsite.name == 'creativeterritories'
-      @events = Event.by_subsite(@subsite.id).order('date DESC').page(params[:page])
+    if @subsite
+     if @subsite.name == 'creativeterritories'
+        @events = Event.by_subsite(@subsite.id).order('date DESC').page(params[:page])
+      else
+        @events = Event.order('date DESC').filter(:params => params, :filter => :event_filter)
+      end
     else
       @events = Event.order('date DESC').filter(:params => params, :filter => :event_filter)
     end

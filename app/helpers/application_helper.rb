@@ -310,7 +310,17 @@ def date_range(from_date, until_date, options = {})
   def trackable_icon(object)
     if object
       if object.icon.respond_to?('url')
-        object.icon.url(:thumb)
+        if object.icon.url =~ /missing.png$/
+          if object.class == Event
+            if object.subsite_id == 5
+              '/assets/creativeterritories/images/rkta_small.png'
+            else
+              object.icon.url(:thumb)
+            end
+          else
+            object.icon.url(:thumb)
+          end
+        end
       else 
         image_path(object.icon)
       end

@@ -2,7 +2,7 @@
 class Admin::VideohostsController < ApplicationController
 
   before_filter [:authenticate_user!, :find_videohost]
-
+  load_and_authorize_resource
   VIDEOHOSTS_PER_PAGE = 20
 
   def create

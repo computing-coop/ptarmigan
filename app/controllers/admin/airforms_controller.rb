@@ -5,7 +5,7 @@ class Admin::AirformsController < InheritedResources::Base
   respond_to :html, :js, :xml, :json
   before_filter :authenticate_user!
   before_filter :exclude_guests
-  
+  load_and_authorize_resource
   protected
     
     def collection

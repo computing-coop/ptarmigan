@@ -2,7 +2,7 @@
 - unless a.owner.nil?
   .activity.ten.columns
     .icon.columns
-      = image_tag trackable_icon(a.trackable), :width => 75
+      = image_tag trackable_icon(a.trackable), :width => 75 rescue nil
 
     .metadata.seven.columns
       .person

@@ -13,7 +13,9 @@
     }
     td {
       &.today {
-        border: 2px solid rgb(223, 223, 151);
+        .cell_header {
+          background-color: cyan;
+        }
       }
       &.inactive {
         opacity: 0.5;

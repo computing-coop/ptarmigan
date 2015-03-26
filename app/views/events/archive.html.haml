@@ -22,11 +22,12 @@
   - @archive.group_by{|x| x.date.beginning_of_month}.each do |group|
     .archive_box.month
       %p= raw(I18n.localize(group.first, :format => "%B %Y"))
-    - group.last.each do |event|
+    - group.last.compact.each do |event|
+      - die if event.name.nil?
       .archive_box{:class => event.location.locale}
         = link_to(event, html_options = {:class => 'brick', :style => 'background-image: url(\'http://ptarmigan.ee' + event.avatar.url(:archive) + '\');' } ) do
           .inside_block
-          .user_hover{:style => "font-size: " + (event.name.size > 35 ? '12px;' : '17px;')}= event.name
+          .user_hover{:style => "font-size: " + (event.name.length > 35 ? '12px;' : '17px;')}= event.name
 = content_for :jquery do
   :plain
     $("#tabs").tabs();

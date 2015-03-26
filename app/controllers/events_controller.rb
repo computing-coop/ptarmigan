@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
   def archive
   #  unless read_fragment({:page => params[:page] || 1})
-      @archive = Event.where(['public is true and date < ?', Time.now.to_date]).order('date DESC')
+      @archive = Event.where(['public is true and location_id < 3 and date < ?', Time.now.to_date]).order('date DESC')
       @flickers = Flicker.limit(5).order('rand()')
       @videos = Video.limit(3).order('rand()')
       @projects = Project.by_location(@location.id).order(:name).page params[:page]

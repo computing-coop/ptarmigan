@@ -43,6 +43,16 @@ header {
   }
 }
 
+#sticky-menu-sticky-wrapper.is-sticky {
+  .event_categories_list {
+    ul.event_categories {
+      background-color: white;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
 .event_categories_list {
 
   ul.event_categories {

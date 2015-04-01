@@ -36,7 +36,12 @@ class Admin::PlacesController < ApplicationController
   end
 
   def index
-    @places = Place.page(params[:page]).per(50)
+    if @subsite
+      if @subsite.name == 'creativeterritories'
+        @places = Place.where(country: 'LV')
+      end
+    end
+    @places = Place.all if @places.nil?
     respond_to do |format|
       format.html
       format.xml  { render :xml => @places }

@@ -44,9 +44,10 @@ header {
 }
 
 #sticky-menu-sticky-wrapper.is-sticky {
-  .event_categories_list {
+  #sticky-menu {
+    width: 100%;
+    background-color: white;
     ul.event_categories {
-      background-color: white;
       margin: 0;
       padding: 0;
     }

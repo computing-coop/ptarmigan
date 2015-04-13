@@ -3,7 +3,7 @@ class Admin::EventsController < ApplicationController
   
   before_filter :authenticate_user!
   before_filter :find_event
-  before_filter :exclude_guests
+  # before_filter :exclude_guests
   layout 'staff'
   EVENTS_PER_PAGE = 100
   load_and_authorize_resource

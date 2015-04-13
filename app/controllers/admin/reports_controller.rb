@@ -12,7 +12,7 @@ class Admin::ReportsController < ApplicationController
   end
 
   def index
-    #check_for_icon
+    check_for_icon
     # @expenses = Expense.sum('amount')
     # @income = Income.sum('amount') 
     # # @latest = Resource.order('created_at DESC').limit(15)

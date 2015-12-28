@@ -63,7 +63,7 @@ gem 'sass'
 gem 'skeleton-rails'
 gem 'superfish-rails'
 gem 'themes_for_rails', github: 'cenotaph/themes_for_rails', branch: 'master'
-gem 'therubyracer', :group => :production
+gem 'execjs'
 
 gem 'thinking-sphinx', '3.0.0'
 gem 'tlsmail', :group => :production

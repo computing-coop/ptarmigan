@@ -7,3 +7,5 @@ ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 # require 'yaml'
 # YAML::ENGINE.yamler = 'syck'
+ENV['EXECJS_RUNTIME'] = 'Node'
+# ExecJS.runtime = ExecJS::Runtimes::Node

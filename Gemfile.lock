@@ -149,7 +149,6 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.4.1)
       launchy (~> 2.2)
-    libv8 (3.16.14.13)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -234,7 +233,6 @@ GEM
     recaptcha (1.0.2)
       json
     redcarpet (3.3.3)
-    ref (2.0.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     riddle (1.5.12)
@@ -260,9 +258,6 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     superfish-rails (1.6.0.1)
-    therubyracer (0.12.2)
-      libv8 (~> 3.16.14.0)
-      ref
     thin (1.6.4)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -304,6 +299,7 @@ DEPENDENCIES
   dalli
   devise
   devise-encryptable
+  execjs
   flickraw
   font-awesome-sass-rails
   formtastic
@@ -343,7 +339,6 @@ DEPENDENCIES
   skeleton-rails
   superfish-rails
   themes_for_rails!
-  therubyracer
   thin
   thinking-sphinx (= 3.0.0)
   tlsmail

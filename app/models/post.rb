@@ -22,19 +22,19 @@ class Post < ActiveRecord::Base
                                           :url =>  "/images/posts/alt/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"
 
   translates :title, :body
-  attr_accessible :translations,  :remove_carousel, :embed_above_post, :second_embed_gallery_id, :embed_gallery_id, :subsite_id, :show_on_main, :user_id, :carousel, :not_news, :is_personal, :location_id, :translations_attributes, :hide_carousel, :published, :alternateimg, :sticky, :remove_alternateimg
+  # attr_accessible :translations,  :remove_carousel, :embed_above_post, :second_embed_gallery_id, :embed_gallery_id, :subsite_id, :show_on_main, :user_id, :carousel, :not_news, :is_personal, :location_id, :translations_attributes, :hide_carousel, :published, :alternateimg, :sticky, :remove_alternateimg
   accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['title'].blank? && attributes['body'].blank? }
-  scope :by_location, lambda {|x| {:conditions => ['location_id = ? AND (subsite_id is null OR show_on_main is true)', x]}}
-  scope :by_subsite, lambda {|x| {:conditions => {:subsite_id => x} }}  
-  scope :with_carousel, :conditions => ["hide_carousel is false AND carousel_file_name is not null AND carousel_file_size > 0" ]
-  scope :not_news, :conditions => {:not_news => true}
-  scope :news, :conditions  => {:not_news => false}
-  scope :published, :conditions => {:published => true }
-  scope :sticky, where(sticky: true)
+  scope :by_location, -> (x) { where(['location_id = ? AND (subsite_id is null OR show_on_main is true)', x])}
+  scope :by_subsite, -> (x) { where(:subsite_id => x) }
+  scope :with_carousel, -> () { where(["hide_carousel is false AND carousel_file_name is not null AND carousel_file_size > 0" ])}
+  scope :not_news, -> () { where(not_news: true)}
+  scope :news, -> () { where(not_news: false)}
+  scope :published, -> () { where(published: true)}
+  scope :sticky, -> () { where(sticky: true)}
   validates_presence_of :location_id
   attr_accessor :remove_carousel, :remove_alternateimg
   before_validation { carousel.clear if remove_carousel == '1' }
-    before_validation { alternateimg.clear if remove_alternateimg == '1' }
+  before_validation { alternateimg.clear if remove_alternateimg == '1' }
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }  
   Paperclip.interpolates :normalized_resource_file_name do |attachment, style|

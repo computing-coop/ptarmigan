@@ -49,18 +49,18 @@ class PagesController < ApplicationController
         :description => 'Ptarmigan is a cultural platform in ' + (@location.locale == 'fi' ? "Helsinki, Finland" : "Tallinn, Estonia."),
         :title => nil
       @upcoming = Event.published.future.where(:hide_from_front => false).where("subsite_id is null OR show_on_main = true")
-      @new_carousel = Flicker.includes(:event).where(:include_in_carousel => true).where("events.location_id = ?", @location.id).group("events.id")
-        @new_carousel = @new_carousel.sort_by{ rand }[0..5]
+      @new_carousel = Flicker.joins(:event).where(:include_in_carousel => true).where("events.location_id = ?", @location.id).group("events.id")
+      @new_carousel = @new_carousel.to_a.sort_by{ rand }[0..5]
 
       @about = Page.find_by_slug('about')
-      @where = Page.by_location(@location.id).where(:slug => 'where').first
+      @where = Page.where(:slug => 'where').by_location(@location.id).first
 
-      projects = Project.by_location(@location.id).where(:include_in_carousel => true)
+      projects = Project.where(:include_in_carousel => true).by_location(@location.id)
       unless projects.empty?
         projects.each {|x| @new_carousel.unshift(x) }
       end
 
-      events = Event.by_location(@location.id).future.delete_if{|x| !x.carousel? }
+      events = Event.future.by_location(@location.id).to_a.delete_if{|x| !x.carousel? }
       unless events.empty?
         events.sort_by{rand}.each do |e|
           @new_carousel.unshift(e)

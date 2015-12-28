@@ -2,13 +2,13 @@
 class Page < ActiveRecord::Base
   belongs_to :location
   belongs_to :subsite
-  scope :by_location, lambda {|x| {:conditions => {:location_id => x} }}
-  scope :by_subsite, lambda{|x| {:conditions => {:subsite_id => x } } }
+  scope :by_location, ->(x) { where(location_id: x)}
+  scope :by_subsite, ->(x) { where(subsite_id: x)}
   translates :title, :excerpt, :body
-  attr_accessible :location_id, :location, :subsite, :subsite_id, :translations_attributes, :carousel, :slug
+  # attr_accessible :location_id, :location, :subsite, :subsite_id, :translations_attributes, :carousel, :slug
   accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['title'].blank? && attributes['body'].blank? && attributes['abstract'].blank? }
   validates_presence_of :slug
-  validates_uniqueness_of :slug, :scope => :subsite_id
+  validates_uniqueness_of :slug, :scope => [:location_id, :subsite_id]
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }
 

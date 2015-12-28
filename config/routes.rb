@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 Ptarmigan::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
-  mount WillFilter::Engine => "/will_filter"  
+  # mount WillFilter::Engine => "/will_filter"
   devise_for :users, :controllers => {:registrations => 'registrations'}
 
   themes_for_rails
@@ -13,12 +13,12 @@ Ptarmigan::Application.routes.draw do
 
   end
 
-  match '/feed', :to => "feed#index"
-  match '/archive', :to => "events#archive"
-  match '/about', :controller => "pages", :action => "show", :id => "about"
-  match '/press', :controller => "pages", :action => "press", :id => "press"
-  match "ckeditor/pictures", :via => :post, :controller => 'ckeditor/pictures', :action => :create
-  match '/search/simple', :controller => 'application', :action => 'search'
+  get '/feed', :to => "feed#index"
+  get '/archive', :to => "events#archive"
+  get '/about', :controller => "pages", :action => "show", :id => "about"
+  get '/press', :controller => "pages", :action => "press", :id => "press"
+  get "ckeditor/pictures", :via => :post, :controller => 'ckeditor/pictures', :action => :create
+  post '/search/simple', :controller => 'application', :action => 'search'
   resources :airforms, :member => {:submit => :get}, :collection => {:submitted => :get}
 
   # logout '/air/logout', :controller => 'sessions', :action => 'destroy'
@@ -42,14 +42,14 @@ Ptarmigan::Application.routes.draw do
     end
   end
   
-  match '/air', :controller => 'pages', :action => 'air'
+  get '/air', :controller => 'pages', :action => 'air'
   # connect '/en/pages/air', :controller => 'pages', :action => 'air'
   # connect '/fi/pages/air', :controller => 'pages', :action => 'air'
 
 
-  match '/admin', :controller => 'admin/reports', :action => :index
+  get '/admin', :controller => 'admin/reports', :action => :index
 
-  match '/staff', :controller => 'admin/reports', :action => :index
+  get '/staff', :controller => 'admin/reports', :action => :index
   # resources :calendar do
   #   collection do
   #     get :update_calendar
@@ -58,8 +58,8 @@ Ptarmigan::Application.routes.draw do
   #register '/register', :controller => 'users', :action => 'create'
   #signup '/signup', :controller => 'users', :action => 'new'
   resources :users
-  match '/pages/frontpage', {:controller => :pages, :action => :frontpage}
-  match '/pages/:id', {:controller => :pages, :action => :show, :id => :id }
+  get '/pages/frontpage', {:controller => :pages, :action => :frontpage}
+  get '/pages/:id', {:controller => :pages, :action => :show, :id => :id }
   # resource :session, :member => {:new_applicant => :get, :applicant_create => :put}
   resources :events do
     resources :attendees
@@ -91,20 +91,20 @@ Ptarmigan::Application.routes.draw do
     
   resources :institutions
   
-  match '/admin/wiki',  :controller => 'admin/wikipages',  :action => 'show', :title => 'Home page'
-  match '/admin/wiki/:title', :controller => 'admin/wikipages',  :action => 'show', :title => :title
+  get '/admin/wiki',  :controller => 'admin/wikipages',  :action => 'show', :title => 'Home page'
+  get '/admin/wiki/:title', :controller => 'admin/wikipages',  :action => 'show', :title => :title
 
-  match '/admin/wikipages.:format', :controller => 'admin/wikipages', :action => 'index'
-  match '/admin/wikirevisions.:format', :controller => 'admin/wikirevisions', :action => 'index'
+  get '/admin/wikipages.:format', :controller => 'admin/wikipages', :action => 'index'
+  get '/admin/wikirevisions.:format', :controller => 'admin/wikirevisions', :action => 'index'
 
-  match '/admin/wiki/:title', :controller => 'admin/wikipages', :action => 'show'
+  get '/admin/wiki/:title', :controller => 'admin/wikipages', :action => 'show'
   # connect ':title.:format', :controller => 'admin/wikipages', :action => 'show'
 
-  match '/admin/wiki/:title/history', :controller => 'admin/wikipages', :action => 'history', :as => :admin_wikipage_history
-  match '/admin/:title/history.:format', :controller => 'admin/wikipages', :action => 'history'
-  match '/calendar' => 'pages#frontpage'
-  match '/admin/wiki/:title/edit', :controller => 'admin/wikipages', :action => 'edit'
-  match '/calendar(/:year(/:month))' => 'pages#frontpage', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+  get '/admin/wiki/:title/history', :controller => 'admin/wikipages', :action => 'history', :as => :admin_wikipage_history
+  get '/admin/:title/history.:format', :controller => 'admin/wikipages', :action => 'history'
+
+  get '/admin/wiki/:title/edit', :controller => 'admin/wikipages', :action => 'edit'
+  get '/calendar(/:year(/:month))' => 'pages#frontpage', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
   
   namespace :admin do
     resources :events
@@ -150,7 +150,7 @@ Ptarmigan::Application.routes.draw do
     resources :resources
     resources :attendees
   end
-  match   '/add_to_list', :controller => :application, :action => :add_to_mailchimp
+  post '/add_to_list', :controller => :application, :action => :add_to_mailchimp
   root :controller => 'pages', :action => 'frontpage'
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -191,7 +191,7 @@ Ptarmigan::Application.routes.draw do
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
-  match '/:controller/:action/:id'
-  match '/:controller/:action/:id.:format'
+  # match '/:controller/:action/:id'
+#   match '/:controller/:action/:id.:format'
   
 end

@@ -11,7 +11,7 @@ class Admin::EventsController < ApplicationController
   
   
   def create
-    @event = Event.new(params[:event])
+    @event = Event.new(event_params)
     respond_to do |format|
       if @event.save
         # expire_fragment(@event.location.name + '_projects_page')
@@ -54,10 +54,10 @@ class Admin::EventsController < ApplicationController
      if @subsite.name == 'creativeterritories'
         @events = Event.by_subsite(@subsite.id).order('date DESC').page(params[:page])
       else
-        @events = Event.order('date DESC').filter(:params => params, :filter => :event_filter)
+        @events = Event.page(params[:page]).per(50).order('date DESC')
       end
     else
-      @events = Event.order('date DESC').filter(:params => params, :filter => :event_filter)
+      @events = Event.page(params[:page]).per(50).order('date DESC')
     end
     respond_to do |format|
       format.html
@@ -68,8 +68,8 @@ class Admin::EventsController < ApplicationController
   
   
   def new
-    @event = Event.new(:location_id => @subsite.id, :place_id => nil)
-    if @subsite.name == 'creativeterritories'
+    @event = Event.new(:location_id => @subsite.try(:id), :place_id => nil)
+    if @subsite && @subsite.name == 'creativeterritories'
       @event.location_id = 3
       @event.subsite_id = 5
     end
@@ -81,16 +81,11 @@ class Admin::EventsController < ApplicationController
   
   def update
     respond_to do |format|
-      if @event.update_attributes(params[:event])
+      if @event.update_attributes(event_params)
         # expire_fragment(@event.location.name + '_projects_page')
         flash[:notice] = 'Event was successfully updated.'
         format.html { 
-          if @event.subsite.name == 'creativeterritories'
             redirect_to admin_events_path
-          else
-            redirect_to @event
-          end
-        
         }
         format.xml  { head :ok }
       else
@@ -106,7 +101,20 @@ class Admin::EventsController < ApplicationController
   private
 
   def find_event
-    @event = Event.find(params[:id]) if params[:id]
+    @event = Event.friendly.find(params[:id]) if params[:id]
   end
   
+  protected
+  
+  def event_params
+     params.require(:event).permit( [:date, :promoter, :event_type, :cost, :metadata, :notes, :avatar, :public, :enddate, 
+      :discountedcost, :project_id, :discountreason, :facebook, :registration_required, :registration_limit, :location_id,
+      :place_id, :registration_recipient, :registration_optional_q, :featured, :hide_from_front, :carousel, 
+      :donations_requested, :hide_registrants, :slug, :subsite_id, :show_on_main, :show_guests_to_public, 
+      :require_approval, :redirect_url, :otherweb, :event_time,
+      eventcategory_ids: [],
+      translations_attributes: [:title, :description, :notes, :id, :locale, :_destroy]])
+  end
+    
+
 end

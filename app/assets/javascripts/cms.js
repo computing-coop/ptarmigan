@@ -1,5 +1,5 @@
-//= require jquery.ui.datepicker
-//= require jquery.ui.tabs
+//= require jquery-ui/datepicker
+//= require jquery-ui/tabs
 //= require ckeditor/init
 //= require jquery_nested_form
 //= require jquery.pageless

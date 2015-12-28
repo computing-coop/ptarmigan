@@ -7,7 +7,7 @@ class Admin::PagesController < ApplicationController
   layout 'staff'
   
   def create
-    @page = Page.new(params[:page])
+    @page = Page.new(page_params)
     respond_to do |format|
       if @page.save
         flash[:notice] = 'Page was successfully created.'
@@ -59,9 +59,9 @@ class Admin::PagesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @page.update_attributes(params[:page])
+      if @page.update_attributes(page_params)
         flash[:notice] = 'Page was successfully updated.'
-        format.html { redirect_to admin_page_path  }
+        format.html { redirect_to admin_pages_path  }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -80,4 +80,12 @@ class Admin::PagesController < ApplicationController
         @page = Page.find_by_slug(params[:id]) if params[:id]
     end
   end
+  
+  protected
+  
+  def page_params
+    params.require(:page).permit( [:carpusel, :slug, :location_id, :subsite_id, 
+       translations_attributes: [:id, :locale, :title, :excerpt, :body] ])
+  end
+
 end

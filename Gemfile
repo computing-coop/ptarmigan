@@ -4,12 +4,12 @@ if RUBY_VERSION =~ /1.9/
 end
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.17'
+gem 'rails', '4.2.5'
 gem 'mysql2'
 # Bundle edge Rails instead:
 # gem 'http_accept_language', '1.1.2'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-gem 'best_in_place', '1.0.6'
+# gem 'best_in_place', '1.0.6'
 group :development do
   gem "better_errors"
   gem "binding_of_caller",">= 0.6.9.pre2" # :git => 'git://github.com/banister/binding_of_caller.git', :branch => 'ruby-2.0'
@@ -32,14 +32,14 @@ gem 'devise-encryptable'
 gem 'flickraw'
 gem 'font-awesome-sass-rails'
 gem 'formtastic'
-gem "friendly_id", "~> 4.0.9"
+gem "friendly_id" #, "~> 4.0.9"
 gem 'geocoder'
-gem 'globalize3'
-gem 'gmaps4rails'
+gem 'globalize', '~> 5.0.0'
+# gem 'gmaps4rails'
 # gem 'google-api-client'
 gem 'haml'
 gem 'has_scope'
-gem 'hominid', '2.1.9'
+gem 'hominid'#, '2.1.9'
 gem 'http_accept_language'
 gem 'inherited_resources'
 gem 'jquery-rails'
@@ -51,7 +51,7 @@ gem 'later_dude', '>= 0.3.1'
 gem 'meta-tags', :require => 'meta_tags'
 gem 'nested_form' #, :git => 'git://github.com/ryanb/nested_form.git'
 
-gem 'paperclip', "~> 3.0"
+gem 'paperclip'#, "~> 3.0"
 gem 'public_activity'
 gem 'randumb'
 gem 'recaptcha', :require => 'recaptcha/rails'
@@ -62,7 +62,7 @@ gem 'rvm-capistrano'
 gem 'sass'
 gem 'skeleton-rails'
 gem 'superfish-rails'
-gem 'themes_for_rails'
+gem 'themes_for_rails', github: 'cenotaph/themes_for_rails', branch: 'master'
 gem 'therubyracer', :group => :production
 
 gem 'thinking-sphinx', '3.0.0'
@@ -70,7 +70,7 @@ gem 'tlsmail', :group => :production
 gem 'truncate_html'
 gem 'twitter', '4.4.4'
 # gem 'will_paginate', '~> 3.0.pre2'
-gem 'will_filter', "~> 3.1.0" 
+# gem 'will_filter', "~> 3.1.0"
 
 group :assets do
   gem 'sass-rails'

@@ -3,7 +3,7 @@
 = button_to 'new event', new_admin_event_path, :method => :get
 = paginate(@events)
 
-= will_filter_tag(@events) 
+
 .events
   - @events.each do |event|
     %p

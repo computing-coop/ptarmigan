@@ -3,7 +3,7 @@ class Place < ActiveRecord::Base
   has_many :events
   geocoded_by :full_address
   reverse_geocoded_by :latitude, :longitude
-  acts_as_gmappable :process_geocoding => false
+  # acts_as_gmappable :process_geocoding => false
   has_many :postervotes
   attr_accessor :contact_email, :comment
   after_validation :maybe_geocode  

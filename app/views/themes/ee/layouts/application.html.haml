@@ -69,15 +69,15 @@
         #nav.thirteen.columns.alpha
           %ul
             %li.first= link_to(t(:events), events_path)
-            %li= link_to( t(:projects) , projects_path)
-            %li= link_to(t(:artists), artists_path)              
-            %li= link_to(t(:news), posts_path)
-            %li= link_to(t(:podcasts), podcasts_path)
-            %li= link_to(t(:about), {:controller => 'pages', :action => 'show', :id => 'about'})
-            %li= link_to(t(:press), {:controller  => 'pages', :action => 'press', :id => 'press'})
+            %li= link_to t(:projects) , projects_path
+            %li= link_to t(:artists), artists_path              
+            %li= link_to t(:news), posts_path
+            %li= link_to t(:podcasts), podcasts_path
+            %li= link_to t(:about), page_path('about')
+            %li= link_to t(:press), page_path('press')
 
-            %li= link_to(t(:archive), archive_events_path) 
-            %li= link_to(t(:contact), {:controller => 'pages', :action => 'show', :id => 'contact'})
+            %li= link_to t(:archive), archive_events_path 
+            %li= link_to t(:contact), page_path('contact')
 
 
         #web2_inline.two.columns.omega

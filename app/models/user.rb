@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  # attr_accessible :email, :password, :password_confirmation, :remember_me
 
   attr_accessor :new_user_password
   
@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :icon
+  # attr_accessible :login, :email, :name, :password, :password_confirmation, :icon
 
   has_attached_file :icon, :styles => { :medium => "400x400>",  :small => "240x240#", :thumb => "100x100>" },
                             :path =>  ":rails_root/public/images/users/:id/:style/:basename.:extension",

@@ -3,6 +3,7 @@
     #ei-slider.ei-slider
       %ul.ei-slider-large
         - new_carousel.each_with_index do |slide,i|
+          - next if slide.class == Array
           %li
             = link_to image_tag(slide.image.url(:largest)), url_for(slide.carousel_link)
             -#, :class => "slider button#{(i+1).to_s}" + (i == 0 ? " active" : ""), :rel => i+1, :href=> 'javascript:void();')
@@ -37,6 +38,7 @@
       %ul.ei-slider-thumbs
         %li.ei-slider-element Current
         - new_carousel.each do |slide|
+          - next if slide.class == Array
           %li
             = link_to slide.name, '#'
             = image_tag(slide.image.url(:thumb))

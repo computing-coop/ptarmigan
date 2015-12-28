@@ -15,12 +15,12 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['description'].blank? }
   validates_presence_of :name
   scope :by_location, lambda {|x| {:conditions => {:location_id => x} }}
-  scope :proposable, :conditions => {:proposable => true}
-  scope :active, :conditions => {:active => true }
-  scope :with_carousel, :conditions => ["active is true AND carousel_file_name is not null AND carousel_file_size > 0" ]
+  scope :proposable, -> () { where(proposable: true ) }
+  scope :active, -> () {   where(:active => true )}
+  scope :with_carousel, -> () {  where(["active is true AND carousel_file_name is not null AND carousel_file_size > 0" ]) }
   before_save :perform_avatar_removal 
   attr_accessor :remove_avatar, :remove_carousel
-  attr_accessible :include_in_carousel,:translations_attributes, :avatar, :carousel, :location_id, :name, :website1, :website2, :remove_avatar, :remove_carousel, :active, :proposable, :hidden
+  # attr_accessible :include_in_carousel,:translations_attributes, :avatar, :carousel, :location_id, :name, :website1, :website2, :remove_avatar, :remove_carousel, :active, :proposable, :hidden
   
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }

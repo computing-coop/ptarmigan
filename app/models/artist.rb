@@ -16,12 +16,12 @@ class Artist < ActiveRecord::Base
   translates :bio
   accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['bio'].blank? }
   validates_presence_of :name, :location_id, :startdate, :enddate, :country
-  scope :by_location, lambda {|x| {:conditions => {:location_id => x} }}
-  scope :current, {:conditions => ["enddate >= ?", Time.now.strftime('%Y-%m-%d')]}
-  scope :with_carousel, :conditions => ["carousel_file_name is not null AND carousel_file_size > 0" ]
+  scope :by_location, -> (x) { where(location_id: x)}
+  scope :current, -> () { where(["enddate >= ?", Time.now.strftime('%Y-%m-%d')] )}
+  scope :with_carousel,  -> () { where(["carousel_file_name is not null AND carousel_file_size > 0" ] )}
   before_save :perform_avatar_removal 
   attr_accessor :remove_avatar, :remove_carousel
-  attr_accessible :remove_avatar, :remove_carousel, :include_in_carousel, :location_id, :startdate, :enddate, :name, :country, :website1, :website2, :translations_attributes, :avatar, :carousel
+  # attr_accessible :remove_avatar, :remove_carousel, :include_in_carousel, :location_id, :startdate, :enddate, :name, :country, :website1, :website2, :translations_attributes, :avatar, :carousel
   
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }

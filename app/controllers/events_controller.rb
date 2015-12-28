@@ -114,7 +114,7 @@ class EventsController < ApplicationController
       @tiib = Cash.tiib_events_on(params[:id])
       @datespan = params[:id]
     else
-      @event = Event.find(params[:id], :include => [:flickers, :videos])
+      @event = Event.friendly.find(params[:id])
       unless @event.flickers.empty?
           require 'flickraw'
       end

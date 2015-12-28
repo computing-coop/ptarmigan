@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Event < ActiveRecord::Base
-  paginates_per  8
+  paginates_per 8
   extend FriendlyId
   friendly_id :title_en, :use => :history
   
@@ -25,12 +25,12 @@ class Event < ActiveRecord::Base
   translates :notes, :description, :title
   accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['title'].blank? }
   has_many :translations
-  scope :has_events_on, lambda { |*args| { :conditions => ['public is true and (date = ? OR (enddate is not null AND (date <= ? AND enddate >= ?)))', args.first, args.first, args.first] } }
+  scope :has_events_on, -> (*args) { where(['public is true and (date = ? OR (enddate is not null AND (date <= ? AND enddate >= ?)))', args.first, args.first, args.first] )}
   
-  scope :in_month, lambda {|*args| { :conditions => { :public => 1,  :date => args.first.to_date.beginning_of_month..args.first.to_date.end_of_month }} }
-  scope :future, where(['public is true AND date >= ?', Time.now.to_date]).order(:date)
-  scope :published, where(:public => true)
-  scope :by_location, lambda {|x| {:conditions => ['location_id = ? AND (subsite_id is null OR show_on_main is true)', x] }}
+  scope :in_month, -> (*args) { where( :public => 1,  :date => args.first.to_date.beginning_of_month..args.first.to_date.end_of_month ) }
+  scope :future, -> () { where(['public is true AND date >= ?', Time.now.to_date]).order(:date) }
+  scope :published,  -> () {where(:public => true) }
+  scope :by_location, -> (x) { where(['location_id = ? AND (subsite_id is null OR show_on_main is true)', x])}
   scope :by_subsite, ->(subsite_id) { where(subsite_id: subsite_id) }
   validates_presence_of :location_id, :date, :place_id
   alias_attribute :name, :title

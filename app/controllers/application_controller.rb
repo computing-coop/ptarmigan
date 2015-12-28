@@ -49,7 +49,8 @@ class ApplicationController < ActionController::Base
     
     if session[:locale].blank?
       available  = %w{en fi et ru sv-SE}
-      I18n.locale = request.preferred_language_from(available)
+      I18n.locale = http_accept_language.compatible_language_from(available)
+
     else
       I18n.locale = session[:locale]
     end

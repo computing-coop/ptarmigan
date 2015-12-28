@@ -57,6 +57,7 @@ gem 'nested_form' #, :git => 'git://github.com/ryanb/nested_form.git'
 
 gem 'paperclip'#, "~> 3.0"
 gem 'public_activity'
+gem 'rack-cache'
 gem 'randumb'
 gem 'recaptcha', :require => 'recaptcha/rails'
 # gem 'RedCloth', ">= 4.2.7"

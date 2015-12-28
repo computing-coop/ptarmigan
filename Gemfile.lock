@@ -198,6 +198,8 @@ GEM
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
+    rack-cache (1.5.0)
+      rack (>= 0.4)
     rack-contrib (1.4.0)
       git-version-bump (~> 0.15)
       rack (~> 1.4)
@@ -334,6 +336,7 @@ DEPENDENCIES
   paperclip
   public_activity
   quiet_assets
+  rack-cache
   rails (= 4.2.5)
   randumb
   recaptcha

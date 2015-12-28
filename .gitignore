@@ -29,3 +29,6 @@ et.txt
 et2.txt
 ptarmigan.sql
 sync_db
+Capfile
+
+config/deploy/*

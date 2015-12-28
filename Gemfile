@@ -23,6 +23,10 @@ end
 gem 'cancancan'
 
 gem 'calendrier'
+gem 'capistrano', '~> 3.4.0'
+gem 'capistrano-rails'#, '1.1.3'
+gem 'capistrano-rvm'
+gem 'capistrano-bundler'#, '1.1.4'
 # gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git'
 gem 'ckeditor'
 gem 'countries'
@@ -58,7 +62,6 @@ gem 'recaptcha', :require => 'recaptcha/rails'
 # gem 'RedCloth', ">= 4.2.7"
 gem 'redcarpet'
 gem 'rolify'
-gem 'rvm-capistrano'
 gem 'sass'
 gem 'skeleton-rails'
 gem 'superfish-rails'

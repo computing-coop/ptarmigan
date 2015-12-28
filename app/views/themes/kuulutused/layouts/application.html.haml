@@ -8,7 +8,7 @@
     %link{:href => "http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,700,400italic&subset=latin,latin-ext", :rel => "stylesheet", :type => "text/css"}/
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,300,600&subset=latin,latin-ext", :rel => "stylesheet", :type => "text/css"}/
     = stylesheet_link_tag :application
-    = stylesheet_link_tag theme_stylesheet_path(:application), :media => :screen
+    = stylesheet_link_tag 'kuulutused/stylesheets/application', :media => :screen
     = javascript_include_tag :application
     = javascript_include_tag theme_javascript_path(:application)
     = csrf_meta_tag

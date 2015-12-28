@@ -7,8 +7,8 @@
     %link{ :rel => "shortcut icon", :href => "/favicon.ico" }
     %link{ :rel => "alternate", :type => "application/rss+xml", :title => "Ptarmigan RSS", :href => "/feed.rss"}
     = stylesheet_link_tag :application
-    = stylesheet_link_tag theme_stylesheet_path(:application), :media => :screen
-
+    -#= stylesheet_link_tag theme_stylesheet_path(:application), :media => :screen
+    = stylesheet_link_tag 'fi/stylesheets/application', :media => :screen
     = javascript_include_tag :application
 
     %script{:type => "text/javascript"}

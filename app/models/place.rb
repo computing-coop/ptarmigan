@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Place < ActiveRecord::Base
   has_many :events
+  has_and_belongs_to_many :locations
   geocoded_by :full_address
   reverse_geocoded_by :latitude, :longitude
   # acts_as_gmappable :process_geocoding => false
@@ -8,7 +9,7 @@ class Place < ActiveRecord::Base
   attr_accessor :contact_email, :comment
   after_validation :maybe_geocode  
   validates_presence_of :city, :country
-  
+  accepts_nested_attributes_for :locations
   # include PublicActivity::Model
   # tracked owner: ->(controller, model) { controller.current_user }
     

@@ -1,12 +1,10 @@
 # -*- encoding : utf-8 -*-
-class Admin::EventsController < ApplicationController
+class Admin::EventsController < Admin::BaseController
   
-  before_filter :authenticate_user!
   before_filter :find_event
   # before_filter :exclude_guests
-  layout 'staff'
   EVENTS_PER_PAGE = 100
-  load_and_authorize_resource
+
   # cache_sweeper :event_sweeper, :only => [ :create, :update , :destroy] 
   
   
@@ -17,12 +15,7 @@ class Admin::EventsController < ApplicationController
         # expire_fragment(@event.location.name + '_projects_page')
         flash[:notice] = 'Event was successfully created.'
         format.html { 
-          if @event.subsite.name == 'creativeterritories'
             redirect_to admin_events_path
-          else
-            redirect_to @event
-          end
-        
         }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
@@ -57,7 +50,11 @@ class Admin::EventsController < ApplicationController
         @events = Event.page(params[:page]).per(50).order('date DESC')
       end
     else
-      @events = Event.page(params[:page]).per(50).order('date DESC')
+      if @location.name == 'Mad House'
+        @events = Event.by_location(@location.id).page(params[:page]).per(50).order('date DESC')
+      else
+        @events = Event.page(params[:page]).per(50).order('date DESC')
+      end
     end
     respond_to do |format|
       format.html
@@ -68,7 +65,8 @@ class Admin::EventsController < ApplicationController
   
   
   def new
-    @event = Event.new(:location_id => @subsite.try(:id), :place_id => nil)
+
+    @event = Event.new(:location_id => @subsite.nil? ? @location.try(:id) : @subsite.try(:id), :place_id => nil)
     if @subsite && @subsite.name == 'creativeterritories'
       @event.location_id = 3
       @event.subsite_id = 5

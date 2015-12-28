@@ -9,5 +9,3 @@
 //= require jquery.eislideshow
 //= require jquery.easing.1.3
 //= require readmore.min
-
-

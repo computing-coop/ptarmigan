@@ -6,7 +6,7 @@
         .image= image_tag event.carousel.url(:full)
         .title{:class => event.location.name.downcase}= event.title
     - else
-      = link_to url_for(:action => :show, :controller => :events, :id => event.slug, :host => 'ptarmigan.' + event.location.locale) do
+      = link_to url_for(:action => :show, :controller => '/events', :id => event.slug, :host => 'ptarmigan.' + event.location.locale) do
         .image= image_tag event.avatar.url(:larger)
         .title{:class => event.location.name.downcase}=  event.name
       .event_date

@@ -107,7 +107,9 @@ Ptarmigan::Application.routes.draw do
   get '/calendar(/:year(/:month))' => 'pages#frontpage', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
   
   namespace :admin do
-    resources :events
+    resources :events do
+      resources :instances
+    end
     resources :eventcategories
     resources :wikirevisions
     resources :wikipages

@@ -1,0 +1,50 @@
+.row
+  .small-12.columns
+    %h2
+      Creating performance for 
+      = @event.name
+    %h3
+      Duration:
+      = date_range(@event.date, @event.enddate)
+    
+= semantic_form_for([:admin, @event, @instance], html: {multipart: true}) do |f|
+  .row
+    .small-6.medium-4.columns= f.input :start_at, as: :string, input_html: {class: :datetimepicker}
+  .row
+    .small-6.medium-4.columns= f.input :end_at,  as: :string, input_html: {class: :datetimepicker}
+  .row
+    .small-10.columns
+      = tabs_for do |tab|
+        - tab.create('english', 'English') do
+          = f.globalize_fields_for :en do |en|
+            %p
+              Special information about this night's performance:
+              = en.cktext_area :special_information
+
+        - tab.create('finnish', 'Finnish') do
+          = f.globalize_fields_for :fi do |fi|
+
+            %p
+              Special information about this night's performance:
+              = fi.cktext_area :special_information
+               
+        - tab.create('swedish', 'Swedish') do
+          = f.globalize_fields_for "sv-SE" do |sv|
+            %p
+              Special information about this night's performance:
+              = sv.cktext_area :special_information
+  .row
+    .small-6.columns
+
+      - if @event.avatar?
+        = image_tag @event.avatar.url(:medium)
+      %p Will use the event's image unless you wish to upload a special one for this instance of the performance:
+      = f.input :specialimage
+  .row
+    .small-6.columns= f.submit 'Save'
+    
+    
+:javascript
+  $(function() {
+    $('.datetimepicker').datetimepicker();
+  });    

@@ -70,9 +70,15 @@ class ApplicationController < ActionController::Base
 
       "fi"
     else
-      @location = Location.where(:locale => 'ee').first
+      # hardcode for now
+      if request.host =~ /madhouse/
+        @location = Location.where(:name => 'Mad House').first
+        "madhouse"
+      else
+        @location = Location.where(:locale => 'ee').first
       
-      "ee"
+        "ee"
+      end
     end
   end
 
@@ -99,7 +105,7 @@ class ApplicationController < ActionController::Base
       unless (params[:controller] == 'posts' && params[:action] == 'index' && !params[:page].blank?)
         @next_events = Post.by_location(@location.id).published.news.sticky.order("created_at DESC")
       end
-      @next_events += Event.where(["date >= ? AND public is true", Time.now.strftime('%Y-%m-%d')]).order(:date).limit(5)
+      @next_events += Event.by_location(@location.id).where(["date >= ? AND public is true", Time.now.strftime('%Y-%m-%d')]).order(:date).limit(5)
     end
   end
 

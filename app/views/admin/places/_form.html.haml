@@ -1,18 +1,20 @@
 = semantic_form_for([:admin, @place]) do |f|
-  .six.columns.alpha
-    = f.input :name
-    = f.input :address1
-    = f.input :address2
-    = f.input :city
-    = f.input :country
-    = f.input :postcode
-    = f.input :map_url
-  .six.columns.omega
-    %p For poster database:
-    = f.input :latitude
-    = f.input :longitude
-    = f.input :approved_for_posters, :hint => "Check to approve for poster map"
-    = f.input :allow_ptarmigan_events, :hint => "Uncheck to remove from event form drop-down"
-  .twelve.columns
-    = f.actions do
-      = f.submit
+  .row
+    .small-10.medium-6.columns
+      = f.input :name
+      = f.input :address1
+      = f.input :address2
+      = f.input :city
+      = f.input :country
+      = f.input :postcode
+      = f.input :map_url
+    .small-10.medium-6.columns
+      Leave blank and geocoding service should pick it up automatically:
+      = f.input :latitude
+      = f.input :longitude
+      %br/
+      = f.input :locations  , as: :check_boxes
+  .row
+    .small-10.medium-6.columns
+      = f.actions do
+        = f.submit

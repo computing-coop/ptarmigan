@@ -20,6 +20,11 @@ group :development do
   gem 'sextant'
   gem 'thin'
 end
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-datetimepicker'
+end
+
 gem 'cancancan'
 
 gem 'calendrier'
@@ -30,13 +35,14 @@ gem 'capistrano-rvm'
 gem 'capistrano-bundler'#, '1.1.4'
 # gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git'
 gem 'ckeditor'
-gem 'countries'
+gem 'country_select'
 gem 'dalli'
 gem 'devise'
 gem 'devise-encryptable'
 gem 'flickraw'
 gem 'font-awesome-sass-rails'
 gem 'formtastic'
+gem 'foundation-rails'#, github: 'dmitryzuev/foundation-rails', branch: 'feature-foundation6 '
 gem "friendly_id" #, "~> 4.0.9"
 gem 'geocoder'
 gem 'globalize', '~> 5.0.0'
@@ -61,7 +67,7 @@ gem 'public_activity'
 gem 'rack-cache'
 gem 'randumb'
 gem 'recaptcha', :require => 'recaptcha/rails'
-# gem 'RedCloth', ">= 4.2.7"
+gem 'responders'
 gem 'redcarpet'
 gem 'rolify'
 gem 'sass'

@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   paginates_per 8
   extend FriendlyId
   friendly_id :title_en, :use => :history
-  
+  has_many :instances
   belongs_to :location
   belongs_to :artist
   belongs_to :project
@@ -33,6 +33,8 @@ class Event < ActiveRecord::Base
   scope :by_location, -> (x) { where(['location_id = ? AND (subsite_id is null OR show_on_main is true)', x])}
   scope :by_subsite, ->(subsite_id) { where(subsite_id: subsite_id) }
   validates_presence_of :location_id, :date, :place_id
+  validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  validates_attachment_content_type :carousel, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   alias_attribute :name, :title
   before_save :perform_avatar_removal 
   attr_accessor :remove_avatar, :remove_carousel

@@ -1,6 +1,6 @@
 class Podcast < ActiveRecord::Base
   belongs_to :event
-  attr_accessible :cloudfront_filename, :description, :name, :number, :published, :event_id, :file_length
+  # attr_accessible :cloudfront_filename, :description, :name, :number, :published, :event_id, :file_length
   extend FriendlyId
   friendly_id :number_and_name, :use => :history
   include PublicActivity::Model
@@ -8,7 +8,7 @@ class Podcast < ActiveRecord::Base
   validates_presence_of :number, :name, :cloudfront_filename, :file_length
   
   
-  scope :published, :conditions => {:published => true }
+  scope :published, -> () {where(:published => true)}
     
   def icon
     'podcast_icon.png'

@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    = display_meta_tags :site => 'Mad House Helsinki'
+    = stylesheet_link_tag    'madhouse/stylesheets/application', media: 'screen'
+    = javascript_include_tag "vendor/modernizr"
+    = javascript_include_tag 'madhouse/javascripts/application', 'data-turbolinks-track' => true 
+    
+    = csrf_meta_tags
+    -#%link{:href => "/posts.rss", :rel => "alternate", :title => "RSS", :type => "application/rss+xml"}/
+
+  %body
+    %header 
+      .row
+        .small-10.columns.end.small-centered
+          = image_tag theme_image_path('top_banner.png')
+          
+    = yield
+  :javascript
+    $(document).ready(function() { #{yield :jquery} 
+    });

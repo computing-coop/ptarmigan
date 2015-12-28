@@ -1,0 +1,106 @@
+= semantic_form_for([:admin,  event],  :html => {:multipart => true } ) do |f|
+  .row
+    = f.input :location_id, :label => "Which place?", :as => :hidden, input_html: {value: @location.id }
+    .small-6.columns
+      = f.input :date, :as => :string,  :input_html => {:class => 'datetimepicker'}, label: 'Enter the starting date and time of the first performance'
+    .small-6.columns
+      = f.input :enddate, :as => :string, :input_html => {:class => 'datetimepicker'}, :label => "Ending date and time of last performance. You will add individual performances later.", :hint => 'if events run past midnight, put them as 23:59 '
+  .row
+    .small-6.columns= f.input :place, :as => :select, :collection => @location.places.map{|x| [x.name + "/" + x.address1, x.id]}, :hint => "Make sure you got this right.", :include_blank => false
+    .small-6.columns= f.input :promoter, :label => "External promoter", :hint => "optional, ex: Äänen Lumo, usually blank though"      
+
+
+    -#= f.input :event_type, :label => "Event type", :hint => "usually a set of keywords separated by colons, that we haven't set up to link as tags YET"
+  .row
+    .small-12.columns
+      = tabs_for do |tab|
+        - tab.create('english', 'English') do
+          = f.globalize_fields_for :en do |en|
+            %p 
+              Title/name of event
+              = en.text_field :title
+            %p.inline-hints
+              Note: you must enter content in all three fields (title, description, notes) for a language
+            %p
+              Description of event
+              = en.cktext_area :description
+            %p
+              Any special notes or other metadata
+              %br/
+              = en.text_area :notes, {:cols => 40, :rows => 5}
+        - tab.create('finnish', 'Finnish') do
+          = f.globalize_fields_for :fi do |fi|
+            %p
+              Title
+              = fi.text_field :title
+            %p.inline-hints
+              Note: you must enter content in all three fields (title, description, notes) for a language
+            %p
+              Tapahtuman kuvaus
+              = fi.cktext_area :description
+            %p
+              Huomautukset ja metatiedot
+              %br/
+              = fi.text_area :notes, {:cols => 40, :rows => 5}
+               
+        - tab.create('swedish', 'Swedish') do
+          = f.globalize_fields_for "sv-SE" do |sv|
+            %p 
+              Title
+              = sv.text_field :title
+            %p
+              Description of event
+              = sv.cktext_area :description
+            %p
+              Notes and metadata 
+              %br/
+              = sv.text_area :notes, {:cols => 40, :rows => 5}      
+  .row
+    .small-12.columns
+      %h4 Other information
+  .row
+    .small-6.columns
+      = f.input :cost, :label => "Cost", :hint => "enter 0 for free events, must be number, no characters besides numbers and . allowed"
+      = f.input :donations_requested, :label => 'Donations requested?', :hint => "Check this to replace 'FREE' on site with 'Donations requested'"
+      = f.input :discountedcost, :label => "Alternate discount cost?", :hint => "For events that are cheaper for some people (unemployed, members, etc.)"
+      = f.input :discountreason, :label => "Discount reason", :hint => "If discount cost above is enteres, this reason for the discount will be displayed on the lower price, eg: 'With mental alaska membership card'"
+    .small-6.columns
+      -#= f.input :artist, :collection => Artist.order("startdate DESC").map{|x| [x.name[0..40], x.id]}, :hint => "Choose an artist if this event related directly to a resident artist"
+      -#= f.input :project, :collection => Project.order(:location_id, :name).map{|x| ["#{x.name} (#{x.location.name})", x.id]}, :hint => "do NOT choose Tallinn or Helsinki residencies - pick from artist dropdown above if a resident is involved"
+      - if f.object.avatar?
+        = image_tag f.object.avatar(:thumb)
+        = f.check_box :remove_avatar
+        Delete image
+      = f.input :avatar, :label => "Image" + (f.object.avatar? ? ' -- change:' : ''), :hint => raw("This will be the MAIN image. You can upload additonal images for specific days of the performance later.  Can be any resolution or aspect ratio; will be automatically cropped.")
+      - if f.object.carousel?
+        = image_tag f.object.carousel(:small)
+        = f.check_box :remove_carousel
+        Delete carousel image
+      = f.input :carousel, :label => 'Carousel image' + (f.object.carousel? ?  ' -- change:' : ''), :hint => raw("Optional, but recommended.  Must be at least 1180x492, will be cropped if larger.")
+  %hr
+  .row
+    .small-6.columns
+      = f.input :facebook, :label =>  'ID of Facebook event (12 digits or so)'
+      /= f.input :publicschool, :label => 'ID of Public school class (4 digits or so)'
+      = f.input :hide_from_front, :label => 'Hide from frontpage upcoming events listing?'
+      = f.input :public, :label => 'Publish to site?', :hint => "If unchecked, event will only be seen by staff. Leave unchecked unless you are ready to announce this."
+    .small-6.columns{:style => "border: 1px solid black;"}
+      = f.input :registration_required, :label =>  'Registration required?'
+      = f.input :registration_limit, :label => 'Maximum participants', :hint => "leave blank for unlimited"
+      = f.input :registration_optional_q, :label => 'Optional extra question for reg. form?', :hint => "Add an extra question to the registration form. Unfortunately, only in one language."
+      = f.input :registration_recipient, :label => 'Send email after registration to', :hint => 'Defaults to helsinki or tallinn@ptarmigan, but you can have it go to someone else, or multiple addresses separated by commas'
+      = f.input :require_approval, :label => "Attendees must be approved by Ptarmigan staff"
+      = f.input :hide_registrants, :as => :radio,  :hint => 'Hide the number of places left on the registration form'
+      = f.input :show_guests_to_public, :as => :radio,  :hint => 'Show guest list to public through special URL'
+      = f.input :redirect_url, :label => 'Redirect to URL', :hint => 'Enter a full URL here (with http://) and the site will redirect to this URL instead of showing the Ptarmigan page. Use for off-site registration form'
+  /= f.input :featured, :label => 'Include in forthcoming frontpage events carosel'
+
+
+  = f.actions do
+    = f.submit "Save this event!"
+
+:javascript
+  $(function() {
+    $("#tabs").tabs();
+    $('.datetimepicker').datetimepicker();
+  });

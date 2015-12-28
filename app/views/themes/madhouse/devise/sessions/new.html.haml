@@ -1,0 +1,15 @@
+.row
+  .small-10.columns
+    %h2 Sign in
+= semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
+  .row
+    .small-6.columns= f.input :email, :autofocus => true
+  .row
+    .small-6.columns= f.input :password
+  .row
+    .small-6.columns= f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
+  .row
+    .small-6.columns= f.submit "Sign in"
+
+  .row
+    .small-10.columns.small-centered= render "devise/shared/links"

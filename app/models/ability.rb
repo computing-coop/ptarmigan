@@ -7,9 +7,14 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
       can :manage, :all
+    elsif user.has_role? :madhouse_staff
+      can :manage, Event, :subsite => {:name => 'Mad House' }
+      can :create, Event, :subsite => {:name => 'Mad House' }
+      can :manage, Post, :subsite => {:name => 'Mad House' }
+      can :manage, Place
     else
       cannot :manage, :all
-      can :manage, Event
+      cannot :manage, Event
       can :manage, Place
     end
     #

@@ -236,7 +236,7 @@ def date_range(from_date, until_date, options = {})
     if saved_tweet.empty?
       begin
         regex = Regexp.new '((https?:\/\/|www\.)([-\w\.]+)+(:\d+)?(\/([\w\/_\.]*(\?\S+)?)?)?)'
-        twit = Twitter.user_timeline("PtarmiganHki")[0..4]
+        twit = twitter_client.user_timeline("PtarmiganHki")[0..4]
         # out = [twit.text.gsub( regex, '<a href="\1">\1</a>').gsub(/\@([a-zA-Z0-9_]+)/, '<a href="http://www.twitter.com/#!/\1">@\1</a>'), twit.created_at, twit.id]
       rescue 
         twit =  ['Sorry, can\'t connect to Twitter right now - maybe you can <a href="http://www.twitter.com/hyksos">try</a>.', Time.now, 0]
@@ -251,7 +251,7 @@ def date_range(from_date, until_date, options = {})
     else
       begin
         regex = Regexp.new '((https?:\/\/|www\.)([-\w\.]+)+(:\d+)?(\/([\w\/_\.]*(\?\S+)?)?)?)'
-        twit = Twitter.user_timeline("PtarmiganHki")[0..4]
+        twit = twitter_client.user_timeline("PtarmiganHki")[0..4]
         # out = [twit.text.gsub( regex, '<a href="\1">\1</a>').gsub(/\@([a-zA-Z0-9_]+)/, '<a href="http://www.twitter.com/#!/\1">@\1</a>'), twit.created_at, twit.id]
         if twit.first.id == last_tweet.title
           return twit

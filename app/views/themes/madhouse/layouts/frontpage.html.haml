@@ -12,10 +12,19 @@
     -#%link{:href => "/posts.rss", :rel => "alternate", :title => "RSS", :type => "application/rss+xml"}/
 
   %body
-    %header 
-      .row
-        .small-10.columns.end.small-centered
-          = image_tag theme_image_path('top_banner.png')
+    %header
+      .title.text-center
+        =  retina_image_tag theme_image_path('madhousebanner.png')
+      .icons.text-left
+        = link_to fa_icon("twitter"), 'http://www.twitter.com/madhousehel'
+        = link_to fa_icon("facebook"), '#'
+      
+      .languages.end.text-right
+        EN
+        |
+        FI
+        |
+        SV
           
     = yield
   :javascript

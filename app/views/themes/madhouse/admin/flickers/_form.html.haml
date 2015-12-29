@@ -13,6 +13,8 @@
     .small-10.columns
       = f.input :image
   .row
+    .small-6.columns= f.input :include_in_carousel, as: :boolean
+  .row
     .small-10.columns= f.input :description
   .row
     .small-10.columns= f.submit "Submit"

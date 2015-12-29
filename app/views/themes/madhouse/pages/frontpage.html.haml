@@ -1,1 +1,3 @@
-test
+.carousel
+  - @carousel.each do |slide|
+    .slide= image_tag slide.image.url(:largest)

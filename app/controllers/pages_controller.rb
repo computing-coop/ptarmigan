@@ -43,7 +43,7 @@ class PagesController < ApplicationController
     else
       if @location.name == 'Mad House'
         @events = Event.published.by_location(@location.id)
-        
+        @carousel = @new_carousel = Flicker.by_location(@location.id).joins(:event).group("events.id")
       else  # it's Ptarmigan - an ugly hack for now but will work
         set_meta_tags :open_graph => {
           :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.name} | " : "#{@subsite.human_name} | ")) + "Ptarmigan" ,

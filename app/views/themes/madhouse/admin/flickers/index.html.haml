@@ -13,8 +13,17 @@
 
 - if !@flickers.empty?
   .row
-    = render :partial => "flicker", :collection => @flickers
-    = paginate(@flickers)
+    .small-12.columns
+      - @flickers.each do |flicker|
+        .small-6.columns
+          .image= image_tag flicker.image.url(:small)
+          .event= flicker.event.title
+          .date= l flicker.event.date, :format => :long
+          .description= flicker.description
+          %p= link_to 'Edit', edit_admin_flicker_path(flicker), class: [:button, :tiny]
+  .row
+    .small-12.columns= paginate(@flickers)
+    
 - else
   .row
     .small-12.columns

@@ -83,7 +83,7 @@ class Admin::FlickersController < Admin::BaseController
   protected
   
   def flicker_params
-    params.require(:flicker).permit([:description, :image, :event_id, :hostid, :creator])
+    params.require(:flicker).permit([:description, :image, :event_id, :hostid, :is_video, :include_in_carousel, :creator])
   end
   
 end

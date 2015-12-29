@@ -56,6 +56,7 @@ gem 'inherited_resources'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery_ui_rails_helpers'
+gem "jquery-slick-rails"
 gem 'kaminari'
 gem 'kgio'
 gem 'later_dude', '>= 0.3.1'

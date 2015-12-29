@@ -1,17 +1,17 @@
 .row
   .small-12.columns
     %h2
-      Creating performance for 
+      performance of 
       = @event.name
     %h3
-      Duration:
+      Overall duration:
       = date_range(@event.date, @event.enddate)
     
 = semantic_form_for([:admin, @event, @instance], html: {multipart: true}) do |f|
   .row
-    .small-6.medium-4.columns= f.input :start_at, as: :string, input_html: {class: :datetimepicker}
+    .small-6.medium-4.columns= f.input :start_at, as: :string, input_html: {class: :datetimepicker, value: f.object.new_record? ? '' : (f.object.start_at.nil? ? '' : f.object.start_at.strftime('%Y-%m-%d %H:%M'))}
   .row
-    .small-6.medium-4.columns= f.input :end_at,  as: :string, input_html: {class: :datetimepicker}
+    .small-6.medium-4.columns= f.input :end_at,  as: :string, input_html: {class: :datetimepicker, value: f.object.new_record? ? '' : (f.object.end_at.nil? ? '' : f.object.end_at.strftime('%Y-%m-%d %H:%M'))}
   .row
     .small-10.columns
       = tabs_for do |tab|
@@ -39,12 +39,15 @@
       - if @event.avatar?
         = image_tag @event.avatar.url(:medium)
       %p Will use the event's image unless you wish to upload a special one for this instance of the performance:
+      - if f.object.specialimage?
+        existing unique image:
+        = image_tag f.object.specialimage.url(:medium)
       = f.input :specialimage
   .row
     .small-6.columns= f.submit 'Save'
     
     
-:javascript
-  $(function() {
-    $('.datetimepicker').datetimepicker();
-  });    
+= content_for :jquery do
+  :plain
+    $("#tabs").tabs();
+    $('.datetimepicker').datetimepicker({format:'Y-m-d H:i'});

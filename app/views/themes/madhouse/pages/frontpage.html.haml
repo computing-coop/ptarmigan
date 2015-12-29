@@ -1,3 +1,11 @@
 .carousel
   - @carousel.each do |slide|
     .slide= image_tag slide.image.url(:largest)
+    
+= content_for :jquery do
+  :plain
+    $('.carousel').slick({
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 5500
+      })

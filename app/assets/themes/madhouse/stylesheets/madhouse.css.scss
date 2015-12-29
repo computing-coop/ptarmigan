@@ -2,7 +2,7 @@ header {
   
   .icons {
     float: left;
-    margin: -2rem 0 0 1rem;
+    margin: -2.7rem 0 0 1rem;
   }
   .title {
     min-height: 50px;
@@ -17,4 +17,14 @@ header {
   }
   
   clear: both;
+}
+
+.carousel {
+  text-align: center;
+  .slide {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
 }

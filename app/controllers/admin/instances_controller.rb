@@ -8,6 +8,11 @@ class Admin::InstancesController < Admin::BaseController
     end
   end
   
+  def edit
+    @event = Event.friendly.find(params[:event_id])
+    @instance = @event.instances.find(params[:id])\
+  end
+  
   def destroy
     @event = Event.friendly.find(params[:event_id])
     @instance = @event.instances.find(params[:id])

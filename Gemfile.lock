@@ -384,6 +384,7 @@ DEPENDENCIES
   redcarpet
   responders
   rolify
+  sass
   sass-rails (~> 5.0)
   sextant
   skeleton-rails

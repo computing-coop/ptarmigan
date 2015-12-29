@@ -70,7 +70,7 @@ gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'responders'
 gem 'redcarpet'
 gem 'rolify'
-
+gem 'sass'
 gem 'skeleton-rails'
 #gem 'superfish-rails'
 gem 'themes_for_rails', github: 'cenotaph/themes_for_rails', branch: 'master'

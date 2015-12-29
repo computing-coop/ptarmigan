@@ -31,6 +31,9 @@ form {
 }
 
 .row {
+  &.odd {
+    background-color: #efefef;
+  }
   &.instances {
     font-size: 0.8rem;
   }

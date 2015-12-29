@@ -2,9 +2,9 @@
   .row
     = f.input :location_id, :label => "Which place?", :as => :hidden, input_html: {value: @location.id }
     .small-6.columns
-      = f.input :date, :as => :string,  :input_html => {:class => 'datetimepicker'}, label: 'Enter the starting date and time of the first performance'
+      = f.input :date, :as => :string,  :input_html => {:class => 'datetimepicker', value: f.object.new_record? ? '' : (f.object.date.nil? ? '' : f.object.date.strftime('%Y-%m-%d %H:%M'))}, label: 'Enter the starting date and time of the first performance'
     .small-6.columns
-      = f.input :enddate, :as => :string, :input_html => {:class => 'datetimepicker'}, :label => "Ending date and time of last performance. You will add individual performances later.", :hint => 'if events run past midnight, put them as 23:59 '
+      = f.input :enddate, :as => :string, :input_html => {:class => 'datetimepicker', value: f.object.new_record? ? '' : (f.object.enddate.nil? ? '' : f.object.enddate.strftime('%Y-%m-%d %H:%M'))}, :label => "Ending date and time of last performance. You will add individual performances later.", :hint => 'if events run past midnight, put them as 23:59 '
   .row
     .small-6.columns= f.input :place, :as => :select, :collection => @location.places.map{|x| [x.name + "/" + x.address1, x.id]}, :hint => "Make sure you got this right.", :include_blank => false
     .small-6.columns= f.input :promoter, :label => "External promoter", :hint => "optional, ex: Äänen Lumo, usually blank though"      
@@ -99,8 +99,8 @@
   = f.actions do
     = f.submit "Save this event!"
 
-:javascript
-  $(function() {
+= content_for :jquery do
+  :plain
     $("#tabs").tabs();
-    $('.datetimepicker').datetimepicker();
-  });
+    $('.datetimepicker').datetimepicker({format:'Y-m-d H:i'});
+  

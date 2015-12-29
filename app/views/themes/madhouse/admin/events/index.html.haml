@@ -1,3 +1,6 @@
+.row
+  .small-12.columns
+    = link_to 'New event', new_admin_event_path, class: [:small, :button]
 - @events.each do |event|
   .row{class: cycle('odd', 'even')}
     .small-12.columns
@@ -10,18 +13,24 @@
         %span.smaller_font
           = link_to 'View', event, target: :_blank, class: [:tiny, :button, :secondary]
           %span.delete= link_to 'Remove', admin_event_path(event), data: {:confirm => 'Are you sure?'}, :method => :delete, class: [:tiny, :button, :alert]
-    .row.instances
-      = link_to 'Add a performance', new_admin_event_instance_path(event_id: event.slug), class: [:button, :small]
-      - if event.instances.empty?
-        .small-12.columns
-          No occurances yet defined for this event.
+      .row.instances
+        -# is it a one-night thing?
+        - if event.date.to_date == event.enddate.to_date
+          .small-12.columns
+            One-night event
+        - else
+          .small-12.columns= link_to 'Add a performance', new_admin_event_instance_path(event_id: event.slug), class: [:button, :small]
+          - if event.instances.empty?
+            .small-12.columns
+              No occurances yet defined for this event.
 
-      - else
-        - event.instances.in_groups_of(3).each do |group|
-          .small-6.columns
-            - group.each do |instance|
-              - next if instance.nil?
-              = instance.start_at.strftime("%d %B %H:%M")
-              = link_to 'Edit details', edit_admin_event_instance_path(event, instance), class: [:button, :tiny]
-              = link_to 'Delete', [:admin, event, instance], method: :delete, data: {confirm: 'Are you really sure?'}, class: [:button, :tiny, :alert]
-              %br/
+          - else
+            .row
+              - event.instances.in_groups_of(3).each do |group|
+                .small-6.columns
+                  - group.each do |instance|
+                    - next if instance.nil?
+                    = instance.start_at.strftime("%d %B %H:%M")
+                    = link_to 'Edit details', edit_admin_event_instance_path(event, instance), class: [:button, :tiny]
+                    = link_to 'Delete', [:admin, event, instance], method: :delete, data: {confirm: 'Are you really sure?'}, class: [:button, :tiny, :alert]
+                    %br/

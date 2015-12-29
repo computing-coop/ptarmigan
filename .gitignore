@@ -25,6 +25,7 @@ pickle-email-*.html
 /db/sphinx
 .svn
 
+.DS_Store
 et.txt
 et2.txt
 ptarmigan.sql

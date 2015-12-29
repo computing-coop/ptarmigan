@@ -1,7 +1,7 @@
 .flicker.clearfix
 
   - if flicker.image?
-    .six.columns.alpha= image_tag flicker.image.url(:medium)
+    .six.columns.alpha= image_tag flicker.image.url(:small)
     .six.columns.omega
       .event= flicker.event.title
       .date= l flicker.event.date, :format => :long

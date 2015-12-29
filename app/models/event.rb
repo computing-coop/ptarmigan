@@ -2,7 +2,7 @@
 class Event < ActiveRecord::Base
   paginates_per 8
   extend FriendlyId
-  friendly_id :title_en, :use => :history
+  friendly_id :title_en, :use => [:slugged, :finders, :history]
   has_many :instances
   belongs_to :location
   belongs_to :artist
@@ -22,9 +22,9 @@ class Event < ActiveRecord::Base
 
   has_attached_file :carousel, :styles => {:largest => "1583x454#", :new_carousel => "1180x338#", :full => "960x400#", :small => "320x92#", :thumb => "100x100>"}, 
   :path =>  ":rails_root/public/images/carousel/events/:id/:style/:basename.:extension", :url => "/images/carousel/events/:id/:style/:basename.:extension"
-  translates :notes, :description, :title
-  accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['title'].blank? }
-  has_many :translations
+  translates :notes, :description, :title, fallbacks_for_empty_translations: true
+  accepts_nested_attributes_for :translations, reject_if: proc { |attr| attr['title'].blank? || attr['description'].blank? }
+  #has_many :translations
   scope :has_events_on, -> (*args) { where(['public is true and (date = ? OR (enddate is not null AND (date <= ? AND enddate >= ?)))', args.first, args.first, args.first] )}
   
   scope :in_month, -> (*args) { where( :public => 1,  :date => args.first.to_date.beginning_of_month..args.first.to_date.end_of_month ) }
@@ -37,11 +37,17 @@ class Event < ActiveRecord::Base
   validates_attachment_content_type :carousel, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   alias_attribute :name, :title
   before_save :perform_avatar_removal 
+  after_save :remove_blank_translations
   attr_accessor :remove_avatar, :remove_carousel
   
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }
   
+  def remove_blank_translations
+    translations.each{|x| x.destroy if  x.title.nil? && x.description.nil? }
+  end
+    
+
   def icon
     avatar
   end
@@ -104,7 +110,7 @@ class Event < ActiveRecord::Base
   end
   
   def title_en
-     self.title(:en).blank? ? self.translations.first.title : self.title(:en)
+       self.title(:en).blank? ? self.translations.first.title : self.title(:en)
   end
 
   def title_with_date

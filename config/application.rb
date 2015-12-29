@@ -61,7 +61,7 @@ module Ptarmigan
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
     config.assets.precompile += %w( common.css print.css  jwplayer.js jwplayer.html5.js cms.css cms.js madhouse/stylesheets/staff.css madhouse/javascripts/staff.js )
-
+    config.i18n.fallbacks = true
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
     # like if you have constraints or database-specific column types

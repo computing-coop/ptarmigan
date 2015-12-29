@@ -71,7 +71,6 @@ gem 'responders'
 gem 'redcarpet'
 gem 'rolify'
 
-gem 'sass-rails'
 gem 'skeleton-rails'
 gem 'superfish-rails'
 gem 'themes_for_rails', github: 'cenotaph/themes_for_rails', branch: 'master'
@@ -84,8 +83,10 @@ gem 'twitter', '4.4.4'
 # gem 'will_paginate', '~> 3.0.pre2'
 # gem 'will_filter', "~> 3.1.0"
 
+gem 'sass-rails', '~> 5.0'
+
 group :assets do
-  gem 'sass-rails'
+
   gem 'coffee-rails'
   gem "uglifier"
 end

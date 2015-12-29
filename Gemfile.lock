@@ -360,7 +360,7 @@ DEPENDENCIES
   redcarpet
   responders
   rolify
-  sass-rails
+  sass-rails (~> 5.0)
   sextant
   skeleton-rails
   superfish-rails

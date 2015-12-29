@@ -51,8 +51,7 @@ Ptarmigan::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( common.css print.css  jwplayer.js jwplayer.html5.js cms.css cms.js will_filter/filter.css will_filter/calendar.css will_filter/exporter.css will_filter/actions.css will_filter/results.css will_filter/buttons.css will_filter/filter.js )
-  config.assets.precompile += Ckeditor.assets
+
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 

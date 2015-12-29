@@ -6,7 +6,7 @@ class Flicker < ActiveRecord::Base
   has_attached_file :image, 
                     :path =>  ":rails_root/public/images/contrib/:id/:style/:basename.:extension", 
                     :url => "/images/contrib/:id/:style/:basename.:extension",
-                    :styles => {:largest => "1583x454#", 
+                    :styles => {:largest => "1600x640#", 
     :new_carousel => "1200x480#", :full => "960x384", :small => "320x128#",
      :thumb => "100x100>"}, :default_url => "/assets/missing.png"
 

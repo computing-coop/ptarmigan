@@ -11,6 +11,8 @@ class Ability
       can :manage, Event, :subsite => {:name => 'Mad House' }
       can :create, Event, :subsite => {:name => 'Mad House' }
       can :manage, Post, :subsite => {:name => 'Mad House' }
+      can :manage, Flicker, event: {subsite: {:name => 'Mad House' } }
+      can :create, Flicker,  event: {subsite: {:name => 'Mad House' } }
       can :manage, Place
     else
       cannot :manage, :all

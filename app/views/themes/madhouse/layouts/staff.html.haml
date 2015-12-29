@@ -21,6 +21,9 @@
         = link_to admin_events_path do
           = image_tag theme_image_path('/icons/event_icon.png')
           %label Events
+        = link_to admin_flickers_path do
+          = image_tag theme_image_path('/icons/archive_icon.jpg')
+          %label Archival images
     = yield
   :javascript
     $(document).ready(function() { #{yield :jquery} 

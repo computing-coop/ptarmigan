@@ -20,7 +20,7 @@ class Event < ActiveRecord::Base
         :path =>  ":rails_root/public/images/events/:id/:style/:basename.:extension", 
         :url => "/images/events/:id/:style/:basename.:extension", :default_url => "/assets/missing.png"
 
-  has_attached_file :carousel, :styles => {:largest => "1180x492#", :new_carousel => "960x400#", :full => "600x400#", :small => "300x200#", :thumb => "100x100>"}, 
+  has_attached_file :carousel, :styles => {:largest => "1583x454#", :new_carousel => "1180x338#", :full => "960x400#", :small => "320x92#", :thumb => "100x100>"}, 
   :path =>  ":rails_root/public/images/carousel/events/:id/:style/:basename.:extension", :url => "/images/carousel/events/:id/:style/:basename.:extension"
   translates :notes, :description, :title
   accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['title'].blank? }

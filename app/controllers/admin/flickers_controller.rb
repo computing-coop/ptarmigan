@@ -1,26 +1,16 @@
 # -*- encoding : utf-8 -*-
-class Admin::FlickersController < InheritedResources::Base
+class Admin::FlickersController < Admin::BaseController
   has_scope :event
   has_scope :page, :default => 1
   respond_to :html, :js, :xml, :json
-  before_filter :authenticate_user!
-  before_filter :exclude_guests
+
   before_filter :find_flicker
-  layout 'staff'
-  load_and_authorize_resource
-  has_scope :page, :default => 1
+
   
   def create
-    @flicker = Flicker.new(params[:flicker])
-    respond_to do |format|
-      if @flicker.save
-        flash[:notice] = 'Flickers was successfully created.'
-        format.html { redirect_to [:admin, @flicker] }
-        format.xml  { render :xml => @flicker, :status => :created, :location => @flickers }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @flicker.errors, :status => :unprocessable_entity }
-      end
+    @flicker = Flicker.new(flicker_params)
+    if @flicker.save
+      respond_with @flicker, location: admin_flickers_path
     end
   end
 
@@ -38,7 +28,9 @@ class Admin::FlickersController < InheritedResources::Base
     end
   end
 
-
+  def index
+    @flickers = Flicker.by_location(@location.id).page(params[:page]).per(100)
+  end
 
   def edit
   end
@@ -77,15 +69,8 @@ class Admin::FlickersController < InheritedResources::Base
   end
 
   def update
-    respond_to do |format|
-      if @flicker.update_attributes(params[:flickers])
-        flash[:notice] = 'Flickers was successfully updated.'
-        format.html { redirect_to [:admin, @flicker] }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @flicker.errors, :status => :unprocessable_entity }
-      end
+    if @flicker.update_attributes(flicker_params)
+      respond_with @flicker, location: admin_flickers_path
     end
   end
 
@@ -95,4 +80,10 @@ class Admin::FlickersController < InheritedResources::Base
     @flicker = Flicker.find(params[:id]) if params[:id]
   end
 
+  protected
+  
+  def flicker_params
+    params.require(:flicker).permit([:description, :image, :event_id, :hostid, :creator])
+  end
+  
 end

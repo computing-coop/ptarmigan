@@ -1,0 +1,28 @@
+.row
+  .small-10.columns
+    %h2 Archive images
+.row
+  .small-10.columns
+    %p
+      View only for event:
+      = collection_select(:event, :event, Event.by_location(@location.id).where(:id => [Flicker.all.map(&:event_id).uniq]).sort_by{|x| x.date}.reverse, :id, :title_with_date, options ={:include_blank => true})
+.row
+  .small-10.columns
+    = link_to 'Upload new archive image ', new_admin_flicker_path, class: [:button, :small]
+
+
+- if !@flickers.empty?
+  .row
+    = render :partial => "flicker", :collection => @flickers
+    = paginate(@flickers)
+- else
+  .row
+    .small-12.columns
+      %p There are no archival images to show yet.
+      = link_to 'Upload new archive image ', new_admin_flicker_path, class: [:button, :small]
+
+= content_for :jquery do
+  :plain
+    $('#event_event').change(function() {
+      window.location.replace(window.location.href.replace(/\?event=\d+/g, '') + '?event=' + $('#event_event').val());
+    });

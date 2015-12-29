@@ -6,13 +6,18 @@ class Flicker < ActiveRecord::Base
   has_attached_file :image, 
                     :path =>  ":rails_root/public/images/contrib/:id/:style/:basename.:extension", 
                     :url => "/images/contrib/:id/:style/:basename.:extension",
-                    :styles => {:largest => "1180x492#", :new_carousel => "960x400#", :larger => "800x600>", :cropped => "600x400#", 
-                      :standard => "500x375>", :medium => "320x200#", :thumb => "100x100>",
-                      :front_sidebar => "72x72#"}, :default_url => "/assets/missing.png"
+                    :styles => {:largest => "1583x454#", 
+    :new_carousel => "1180x338#", :full => "960x400#", :small => "320x92#",
+     :thumb => "100x100>"}, :default_url => "/assets/missing.png"
 
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }
+  delegate :location, :to => :event, :allow_nil => false
   
+  scope :by_location, -> (loc) { joins(:event).where("events.location_id = ?", loc)}
+  
+  validates_presence_of :event_id
+    validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   def carousel_link
     event
   end

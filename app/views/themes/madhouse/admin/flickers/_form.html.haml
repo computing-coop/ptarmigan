@@ -1,0 +1,19 @@
+
+= semantic_form_for([:admin, @flicker], :html => {:multipart => true}) do |f|
+  .row
+    .small-10.columns
+      = f.input :event, :as => :select, :label_method => :title_with_date, collection: Event.by_location(@location.id).published.order('date DESC')
+  .row
+    .small-10.columns
+      = f.input :hostid, :label => "Flickr id #", hint: 'Optional'
+  .row
+    .small-10.columns
+      = f.input :creator, :value => '', label: 'Photo credit', hint: 'Optional'
+  .row
+    .small-10.columns
+      = f.input :image
+  .row
+    .small-10.columns= f.input :description
+  .row
+    .small-10.columns= f.submit "Submit"
+  

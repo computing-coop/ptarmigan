@@ -6,6 +6,12 @@ GIT
     themes_for_rails (0.5.1)
       rails (>= 4.2.2)
 
+GIT
+  remote: git://github.com/helios-technologies/skeleton-rails.git
+  revision: 7a0a32113ad87f439c349f629f9c5a52cdede10f
+  specs:
+    skeleton-rails (1.1.0)
+
 GEM
   remote: http://rubygems.org/
   remote: https://rails-assets.org/
@@ -277,7 +283,6 @@ GEM
     sextant (0.2.4)
       rails (>= 3.2)
     simple_oauth (0.3.1)
-    skeleton-rails (0.1.0)
     sort_alphabetical (1.0.1)
       unicode_utils (>= 1.2.2)
     sprockets (3.5.2)
@@ -387,7 +392,7 @@ DEPENDENCIES
   sass
   sass-rails (~> 5.0)
   sextant
-  skeleton-rails
+  skeleton-rails!
   themes_for_rails!
   thin
   thinking-sphinx (= 3.0.0)

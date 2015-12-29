@@ -1,0 +1,20 @@
+header {
+  
+  .icons {
+    float: left;
+    margin: -2rem 0 0 1rem;
+  }
+  .title {
+    min-height: 50px;
+    text-align: center;
+
+    padding: 0.7rem;
+  }
+  .languages {
+    float: right;
+    margin: -2.5rem 1rem 0 1rem;
+    font-size: 0.7rem;
+  }
+  
+  clear: both;
+}

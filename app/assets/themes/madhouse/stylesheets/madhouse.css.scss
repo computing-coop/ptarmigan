@@ -1,3 +1,4 @@
+$madhouseblue: rgb(35, 164, 170);
 header {
   
   .icons {
@@ -26,5 +27,47 @@ header {
       width: 100%;
       height: auto;
     }
+  }
+}
+
+.upcoming_events {
+  h3 {
+    font-family: 'Signika', sans-serif;
+    font-weight: 600;
+    color: $madhouseblue;
+    text-transform: uppercase;
+  }
+  .event {
+    margin: 1rem 0;
+    .top_box {
+      padding: 0.7rem;
+      font-family: 'Signika', sans-serif;
+      font-weight: 600;
+      font-size: 1.15rem;
+      line-height: 1.5rem;
+      height: 120px;
+      background-color: $madhouseblue;
+      color: white;
+      .date {
+        margin-top: 0.75rem;
+        font-size: 0.9rem;
+      }
+    }
+    .description {
+      padding: 0.7rem;
+      color: #444;
+      height: 180px;
+      overflow: hidden;
+
+      p {
+        font-size: 0.875rem;
+        line-height: 1.3rem;
+      }
+      border-left: 1px solid $madhouseblue;
+      border-right: 1px solid $madhouseblue;
+      border-bottom: 1px solid $madhouseblue;
+      
+    }
+
   }
 }

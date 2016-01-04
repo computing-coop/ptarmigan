@@ -42,7 +42,7 @@ class PagesController < ApplicationController
       end
     else
       if @location.name == 'Mad House'
-        @events = Event.published.by_location(@location.id)
+        @upcoming = Event.published.future.by_location(@location.id)
         @carousel = @new_carousel = Flicker.by_location(@location.id).joins(:event).group("events.id")
       else  # it's Ptarmigan - an ugly hack for now but will work
         set_meta_tags :open_graph => {

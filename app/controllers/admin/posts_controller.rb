@@ -1,11 +1,10 @@
 # -*- encoding : utf-8 -*-
-class Admin::PostsController < InheritedResources::Base
-  before_filter :authenticate_user!
-  layout 'staff'
+class Admin::PostsController < Admin::BaseController
   has_scope :page, :default => 1
-  load_and_authorize_resource
+
+
   def index
-    @posts = Post.all
+    @posts = Post.by_location(@location.id).page(params[:page]).per(50)
   end
   
   def show

@@ -1,6 +1,18 @@
 .carousel
   - @carousel.each do |slide|
     .slide= image_tag slide.image.url(:largest)
+
+.upcoming_events.row{:"data-equalizer" => ''}
+  
+  .text-center
+    %h3= t "madhouse.upcoming_events"
+  - @upcoming.take(9).each_with_index do |event, index|
+    = link_to event do
+      .small-11.medium-6.large-4.xlarge-3.columns.event{:"data-equalizer-watch" => '', class: (index == 8 ? 'show-for-large-only' : (index > 3 ? 'hide-for-medium-only hide-for-small-only' : false) )}
+        .top_box
+          = event.title
+          .date= date_range(event.date, event.enddate)
+        .description{style: (event.avatar? ? "background: url(#{event.avatar.url(:medium)}) center center;" : false)}= truncate_html(event.description, length: 200)
     
 = content_for :jquery do
   :plain
@@ -9,3 +21,6 @@
         autoplay: true,
         autoplaySpeed: 5500
       })
+      
+      
+      

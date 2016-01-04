@@ -1,0 +1,30 @@
+.row
+  .small-12.columns
+    %h2 News/blog posts
+    %p click a title to edit.
+    = link_to 'Create new post', new_admin_post_path, class: [:button]
+
+.row
+  .small-12.columns
+    %table
+      %thead
+        %th Title
+        %th Published?
+        %th News?
+        %th in carousel?
+        %th
+      %tbody
+        - @posts.sort_by(&:created_at).reverse.each do |post|
+          %tr.cms_item
+            %td{:class => post.location.name.downcase}
+              = link_to post.title, edit_admin_post_path(post)
+              %span.smaller_font= l post.created_at.to_date, :format => :long
+            %td= post.published? ? 'yes' : 'no'
+            %td= post.not_news ? 'no' : 'yes'
+            %td= post.carousel? ? 'yes' : 'no'
+            %td
+              %span.delete.smaller_font= link_to '[delete]' , [:admin, post], :method => :delete, :confirm => "are you sure?"
+.row
+  .small-12.columns
+    = paginate @posts
+    %p= link_to 'Create new post', new_admin_post_path, class: [:button]

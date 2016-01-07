@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   before_filter :get_next_events
   before_filter :get_locale
   # before_filter :tiib_check
+  before_filter :configure_permitted_parameters, if: :devise_controller?
   # before_filter :scorestore_check
   
   def add_to_mailchimp
@@ -221,6 +222,12 @@ class ApplicationController < ActionController::Base
     end  
   end
   
-  # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
+  protected
+  
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :slug, :avatar, :password, :remember_token, :remember_created_at, :sign_in_count) }
+    devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:name, :slug, :avatar, :username, :email,  authentications_attributes: [:id, :provider, :username ], role_ids: [] )}    
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :slug, :avatar, :name, :username, :password_confirmation, authentications_attributes: [:id, :provider, :username ] ) }
+  end
+
 end

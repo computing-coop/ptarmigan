@@ -48,7 +48,7 @@ Ptarmigan::Application.routes.draw do
 
 
   get '/admin', :controller => 'admin/reports', :action => :index
-
+  
   get '/staff', :controller => 'admin/reports', :action => :index
   # resources :calendar do
   #   collection do
@@ -60,6 +60,7 @@ Ptarmigan::Application.routes.draw do
   resources :users
   get '/pages/frontpage', {:controller => :pages, :action => :frontpage}
   get '/pages/:id', {:controller => :pages, :action => :show, :id => :id }
+
   # resource :session, :member => {:new_applicant => :get, :applicant_create => :put}
   resources :events do
     resources :attendees
@@ -107,6 +108,7 @@ Ptarmigan::Application.routes.draw do
   get '/calendar(/:year(/:month))' => 'pages#frontpage', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
   
   namespace :admin do
+    resources :calendar
     resources :events do
       resources :instances
     end

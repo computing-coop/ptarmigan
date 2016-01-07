@@ -43,6 +43,32 @@ class Event < ActiveRecord::Base
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }
   
+  scope :between, -> (start_time, end_time) { where(["date >= ? and enddate <= ?", start_time, end_time ]) }
+    
+  
+  def as_json(options = {})
+    {
+      :id => self.id,
+      :title => self.title,
+      :description => self.description || "",
+      :start => date.rfc822,
+      :end => enddate.nil? ? date.rfc822 : enddate.rfc822,
+      :allDay => false, 
+      :recurring => false,
+      :url => Rails.application.routes.url_helpers.event_path(slug),
+      #:color => "red"
+    }
+
+  end
+  
+  def one_day?
+   self.date.to_date == self.enddate.to_date
+  end
+   
+  def self.format_date(date_time)
+    Time.at(date_time.to_i).to_formatted_s(:db)
+  end
+  
   def remove_blank_translations
     translations.each{|x| x.destroy if  x.title.nil? && x.description.nil? }
   end

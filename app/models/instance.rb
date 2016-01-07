@@ -10,4 +10,18 @@ class Instance < ActiveRecord::Base
   validates_presence_of :event_id, :start_at, :end_at
   validates_attachment_content_type :specialimage, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"] 
   
+  def as_json(options = {})
+    {
+      :id => self.id,
+      :title => self.event.title,
+      :description => self.special_information.blank? ? self.event.description : self.special_information,
+      :start => start_at.rfc822,
+      :end => end_at.nil? ? start_at.rfc822 : end_at.rfc822,
+      :allDay => false, 
+      :recurring => false,
+      :url => Rails.application.routes.url_helpers.event_path(event.slug),
+      #:color => "red"
+    }
+  end
+    
 end

@@ -43,7 +43,8 @@ gem 'flickraw'
 gem "font-awesome-rails"
 gem 'formtastic'
 gem 'foundation-rails'#, github: 'dmitryzuev/foundation-rails', branch: 'feature-foundation6 '
-gem "friendly_id" #, "~> 4.0.9"
+gem "friendly_id"
+gem 'fullcalendar-rails'
 gem 'geocoder'
 gem 'globalize', '~> 5.0.0'
 # gem 'gmaps4rails'
@@ -61,6 +62,7 @@ gem 'kaminari'
 gem 'kgio'
 gem 'later_dude', '>= 0.3.1'
 gem 'meta-tags', :require => 'meta_tags'
+gem 'momentjs-rails'
 gem 'nested_form' #, :git => 'git://github.com/ryanb/nested_form.git'
 
 gem 'paperclip'#, "~> 3.0"

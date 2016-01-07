@@ -1,6 +1,11 @@
 .row
   .small-12.columns
     = link_to 'New event', new_admin_event_path, class: [:small, :button]
+    
+.row
+  .small-12.columns#calendar
+  
+
 - @events.each do |event|
   .row{class: cycle('odd', 'even')}
     .small-12.columns
@@ -18,7 +23,7 @@
           %span.delete= link_to 'Remove', admin_event_path(event), data: {:confirm => 'Are you sure?'}, :method => :delete, class: [:small, :button, :alert]
       .row.instances
         -# is it a one-night thing?
-        - if event.date.to_date == event.enddate.to_date
+        - if event.one_day?
           .small-12.columns
             One-night event
         - else

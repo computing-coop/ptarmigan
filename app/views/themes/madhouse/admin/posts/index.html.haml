@@ -23,7 +23,10 @@
             %td= post.not_news ? 'no' : 'yes'
             %td= post.carousel? ? 'yes' : 'no'
             %td
-              %span.delete.smaller_font= link_to '[delete]' , [:admin, post], :method => :delete, :confirm => "are you sure?"
+              - if can? :edit, post
+                = link_to 'Edit',  edit_admin_post_path(post), class: [:button, :tiny]
+              - if can? :destroy, post
+                = link_to 'Delete' , [:admin, post], :method => :delete, data: { confirm:  "are you sure?"}, class: [:button, :tiny, :alert]
 .row
   .small-12.columns
     = paginate @posts

@@ -9,10 +9,8 @@ class Post < ActiveRecord::Base
   belongs_to :subsite
   has_many :podcasts
 
-  has_attached_file :carousel, :styles => {:largest => "1180x492#", :new_carousel => "960x400#", 
-                                          :full => "600x400>", :small => "300x200#",
-                                          :thumb => "100x100>" },
-                                          :path =>  ":rails_root/public/images/carousel/posts/:id/:style/:normalized_resource_file_name",
+  has_attached_file :carousel, :styles =>  {:largest => "1583x454#", :new_carousel => "1180x338#", :full => "960x400#", :small => "320x92#", :thumb => "100x100>"},
+                                            :path =>  ":rails_root/public/images/carousel/posts/:id/:style/:normalized_resource_file_name",
                                           :url =>  "/images/carousel/posts/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"
 
   has_attached_file :alternateimg, :styles => {:largest => "960x400#", 
@@ -32,6 +30,9 @@ class Post < ActiveRecord::Base
   scope :published, -> () { where(published: true)}
   scope :sticky, -> () { where(sticky: true)}
   validates_presence_of :location_id
+  validates_attachment_content_type :alternateimg, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  validates_attachment_content_type :carousel, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  
   attr_accessor :remove_carousel, :remove_alternateimg
   before_validation { carousel.clear if remove_carousel == '1' }
   before_validation { alternateimg.clear if remove_alternateimg == '1' }

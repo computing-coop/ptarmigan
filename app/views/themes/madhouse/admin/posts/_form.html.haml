@@ -1,0 +1,70 @@
+
+= semantic_form_for([:admin,  post],  :html => {:multipart => true } ) do |f|
+  .row
+    .small-6.columns
+      = f.input :location_id, as: :hidden, input_html: {value: 4}
+      = f.input :user_id, :as => :hidden, input_html: {value: current_user.id }
+      = f.input :is_personal, :label => "Post as " + current_user.email.gsub(/\@.+$/, '') + " instead of Mad House"
+    .small-6.columns
+      - if f.object.carousel?
+        = f.input :hide_carousel, :label => "Remove this post from carousel", :hint => "Get old posts out of the carousel!"
+      = f.input :sticky, :label => 'Make "sticky"', :hint => "Will stay at top of frontpage while checked, and also appear in sidebars of other pages"
+  .row
+    .small-12.columns
+      = tabs_for do |tab|
+        - tab.create('english', 'English') do
+          = f.globalize_fields_for :en do |en|
+            %p
+              Title of post in English
+              = en.text_field :title
+            %p
+              Body of post in English
+              %br/
+              = en.cktext_area :body
+        - tab.create('finnish', 'Finnish') do
+          = f.globalize_fields_for :fi do |fi|
+            %p
+              Title of post in Finnish
+              = fi.text_field :title
+            %p
+              Body of post in Finnish
+              %br/
+              = fi.cktext_area :body
+        - tab.create('swedish', 'Swedish') do
+          = f.globalize_fields_for 'sv-SE' do |sv|
+            %p
+              Title of post in Swedish
+              = sv.text_field :title
+            %p
+              Body of post in Swedish
+              %br/
+              = sv.cktext_area :body         
+
+  .row
+    .small-6.columns
+      - unless f.object.new_record?
+        - if f.object.carousel?
+          = image_tag f.object.carousel.url(:full)
+          = f.check_box :remove_carousel
+          Delete carousel image          
+      = f.input :carousel, :label => "Carousel image (1583x454)", :hint => "Will appear in frontpage carousel if it exists"
+
+      - unless f.object.new_record?
+        - if f.object.alternateimg?
+          = image_tag f.object.alternateimg.url
+          = f.check_box :remove_alternateimg
+          Delete alternate image
+      = f.input :alternateimg, :label => 'Alternate image', :hint => "Different from carousel; will appear  on standalone post page (if it exists), at the top of the post,  instead of the carousel image"
+  .row
+    .small-10.columns
+      = f.input :embed_gallery_id, :as => :select, :collection => Event.where(:id => [Flicker.all.map(&:event_id).uniq]).sort_by{|x| x.date}.reverse, :hint => "If archival images exist for an event, embed the gallery in this post"
+      = f.input :second_embed_gallery_id, :as => :select, :collection => Event.where(:id => [Flicker.all.map(&:event_id).uniq]).sort_by{|x| x.date}.reverse, :hint => "Optional second gallery - will be combined with first gallery as one slideshow"      
+      = f.input :embed_above_post, :label => "Gallery above post?", :hint => "if an event archive photo gallery is embedded and this is checked, the gallery will appear above the post body, otherwise it will appear below"
+      = f.input :published, :label => "Publish on site!", :hint => "leave unchecked for draft mode"
+  = f.actions do
+    = f.submit "Submit"
+
+:javascript
+  $(function() {
+    $("#tabs").tabs();
+  });

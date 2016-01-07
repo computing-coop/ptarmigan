@@ -16,7 +16,7 @@
       .row
         .small-3.columns.end
           = image_tag theme_image_path('top_banner.png')
-
+          = link_to 'Sign out', destroy_user_session_path
       .icon-bar
         = link_to admin_events_path do
           = image_tag theme_image_path('/icons/event_icon.png')

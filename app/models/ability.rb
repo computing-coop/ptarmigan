@@ -8,12 +8,13 @@ class Ability
     if user.has_role? :admin
       can :manage, :all
     elsif user.has_role? :madhouse_staff
-      can :manage, Event, :subsite => {:name => 'Mad House' }
-      can :create, Event, :subsite => {:name => 'Mad House' }
-      can :manage, Post, :subsite => {:name => 'Mad House' }
-      can :manage, Flicker, event: {subsite: {:name => 'Mad House' } }
-      can :create, Flicker,  event: {subsite: {:name => 'Mad House' } }
+      can :manage, Event , location: {name: 'Mad House' }
+      # can :create, Event, location: {name: 'Mad House' }
+      can :manage, Post, location: {name: 'Mad House' }
+      can :manage, Flicker, event: {location: {:name => 'Mad House' } }
+      # can :create, Flicker,  event: {location: {:name => 'Mad House' } }
       can :manage, Place
+
     else
       cannot :manage, :all
       cannot :manage, Event

@@ -36,6 +36,30 @@ header {
       width: 100%;
       height: auto;
     }
+    .caption {
+      background-color: rgba(230, 230, 230, 0.8);
+      margin-top: -2rem;
+      position: fixed;
+      z-index: 3;
+      padding: 0.5rem;
+      bottom: 0;
+      max-width: 50%;
+      font-size: 1rem;
+      font-family: $signika;
+      color: $madhouseblue;
+      .category {
+        padding-right: 0.3rem;
+        float: left;
+        font-size: 1.5rem;
+      }
+      .title {
+        float: left;
+        font-size: 1.5rem;
+      }
+      .date {
+        clear: left;
+      }
+    }
   }
 }
 

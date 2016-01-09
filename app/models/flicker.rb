@@ -33,9 +33,13 @@ class Flicker < ActiveRecord::Base
 
   def carousel_date
     if event.enddate.blank?
-      [event.date]
+      [event.date.to_date]
     else
-      [event.date, event.enddate]
+      if event.date.to_date == event.enddate.to_date
+        [event.date.to_date]
+      else
+        [event.date.to_date, event.enddate.to_date]
+      end
     end
   end
 end

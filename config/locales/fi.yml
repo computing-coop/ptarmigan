@@ -39,6 +39,8 @@ fi:
   photos: 'kuvat'
   videos: 'videoita'
   documents_resources: 'asiakirjat/resurssit'  
+  madhouse:
+    upcoming_events: 'Tulossa'  
   date:
     formats:
       default: "%e. %Bta %Y"

@@ -104,7 +104,7 @@ class Event < ActiveRecord::Base
   end
 
   def carousel_date
-    enddate.blank? ? [date.to_date] : [date.to_time, enddate.to_date]
+    enddate.blank? ? [date.to_date] : [date.to_date, enddate.to_date]
   end
 
   def perform_avatar_removal 
@@ -142,6 +142,7 @@ class Event < ActiveRecord::Base
   def title_with_date
     "#{self.title(:en)} (#{self.date.strftime('%d %b %Y')})"
   end
+  
   
   def longer_title
     title_with_date + ", #{self.location.name}"

@@ -212,8 +212,7 @@ en:
   ct:
     events_list: 'Events List'
     events_tagline: 'By Creative Quarters and Territories in Riga!'
-  madhouse:
-    upcoming_events: 'Upcoming events'
+
   kompass:
     ptarmigan_location: 'Ptarmigan project rooms, Tallinn, Estonia'
     register_to_attend: 'Register to attend Kompass!'
@@ -251,3 +250,5 @@ en:
     you_can_register: 'We kindly request a fee of 6€ to participate in Kompass. This covers our organising costs and includes dinner on Friday from Koogel Moogel. You can %{register}.'
     address: "Ptarmigan is located at Toom-Kooli 13, in the Toompea district of Tallinn's Old Town. It shares a building with the Canadian Embassy and the Koogel Moogel café."
     speed_workshops_blurb: "Let's solve some problems! One hour workshops are designed to produce action, not just talk."
+  madhouse:
+    upcoming_events: 'Upcoming events'    

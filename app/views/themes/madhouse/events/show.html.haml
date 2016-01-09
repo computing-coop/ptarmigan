@@ -19,7 +19,7 @@
         .event_image
           = image_tag @event.avatar.url
       .event_info
-        = raw @event.notes.gsub(/\n/, '<br />')
+        = raw @event.notes.to_s.gsub(/\n/, '<br />')
         %br/
         = t(:performances) + ":"
         %br/

@@ -26,7 +26,10 @@
           %label Archival images
         = link_to admin_posts_path do
           = image_tag theme_image_path('/icons/post_icon.png')
-          %label Blog posts        
+          %label Blog posts    
+        = link_to admin_places_path do
+          = image_tag theme_image_path('/icons/place_icon.jpg')
+          %label Places
     = yield
   :javascript
     $(document).ready(function() { #{yield :jquery} 

@@ -56,7 +56,9 @@ module ApplicationHelper
       else
         month_names = I18n.t("date.month_names")
       end
-
+      day_names = I18n.t("date.day_names")
+      
+      from_weekday = day_names[from_date.wday]
       from_day = from_date.day
       from_month = month_names[from_date.month]
       from_year = from_date.year
@@ -66,25 +68,25 @@ module ApplicationHelper
         if from_date.day == until_date.day
           if until_date.strftime("%H:%M") == from_date.strftime("%H:%M")
             if from_date.strftime("%H:%M") == "00:00"
-              I18n.t("date_range.#{format}.same_day_no_time", from_day: from_date.day, from_month: from_month, year: from_date.year, start_time: from_date.strftime("%H:%M"), sep: separator, end_time: until_date.strftime("%H:%M"), :format => :long)      
+              I18n.t("date_range.#{format}.same_day_no_time", from_weekday: from_weekday, from_day: from_date.day, from_month: from_month, year: from_date.year, start_time: from_date.strftime("%H:%M"), sep: separator, end_time: until_date.strftime("%H:%M"), :format => :long)      
             else
-              I18n.t("date_range.#{format}.same_day_start_time", from_day: from_date.day, from_month: from_month, year: from_date.year, start_time: from_date.strftime("%H:%M"), sep: separator, end_time: until_date.strftime("%H:%M"), :format => :long)      
+              I18n.t("date_range.#{format}.same_day_start_time", from_weekday: from_weekday, from_day: from_date.day, from_month: from_month, year: from_date.year, start_time: from_date.strftime("%H:%M"), sep: separator, end_time: until_date.strftime("%H:%M"), :format => :long)      
             end
           else
-            I18n.t("date_range.#{format}.same_day", from_day: from_date.day, from_month: from_month, year: from_date.year, start_time: from_date.strftime("%H:%M"), sep: separator, end_time: until_date.strftime("%H:%M"), :format => :long)
+            I18n.t("date_range.#{format}.same_day", from_weekday: from_weekday, from_day: from_date.day, from_month: from_month, year: from_date.year, start_time: from_date.strftime("%H:%M"), sep: separator, end_time: until_date.strftime("%H:%M"), :format => :long)
           end
         elsif from_date.class == Date && until_date.class == Date
-          I18n.t("date_range.#{format}.same_month_no_time", from_day: from_date.day, until_day: until_date.day, month: from_month, year: from_year, sep: separator, start_time: nil, end_time: nil)
+          I18n.t("date_range.#{format}.same_month_no_time", from_weekday: from_weekday, from_day: from_date.day, until_day: until_date.day, month: from_month, year: from_year, sep: separator, start_time: nil, end_time: nil)
         else
-          I18n.t("date_range.#{format}.same_month", from_day: from_date.day, until_day: until_date.day, month: from_month, year: from_year, sep: separator, start_time: from_date.range_time, end_time: until_date.range_time)
+          I18n.t("date_range.#{format}.same_month", from_weekday: from_weekday, from_day: from_date.day, until_day: until_date.day, month: from_month, year: from_year, sep: separator, start_time: from_date.range_time, end_time: until_date.range_time)
         end
       else
         until_month = month_names[until_date.month]
         if from_date.year == until_date.year
-          I18n.t("date_range.#{format}.different_months_same_year", from_day: from_date.day, from_month: from_month, until_day: until_date.day, until_month: until_month, year: from_year, sep: separator)
+          I18n.t("date_range.#{format}.different_months_same_year", from_weekday: from_date.wday, from_day: from_date.day, from_month: from_month, until_day: until_date.day, until_month: until_month, year: from_year, sep: separator)
         else
           until_year = until_date.year
-          I18n.t("date_range.#{format}.different_years", from_day: from_date.day, from_month: from_month, from_year: from_year, until_day: until_date.day, until_month: until_month, until_year: until_year, sep: separator)
+          I18n.t("date_range.#{format}.different_years", from_weekday: from_date.wday, from_day: from_date.day, from_month: from_month, from_year: from_year, until_day: until_date.day, until_month: until_month, until_year: until_year, sep: separator)
         end
       end
     end

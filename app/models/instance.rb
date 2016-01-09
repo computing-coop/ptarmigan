@@ -23,5 +23,8 @@ class Instance < ActiveRecord::Base
       #:color => "red"
     }
   end
-    
+  
+  def future?
+    self.start_at >= Date.parse(Time.now.strftime('%Y/%m/%d'))
+  end
 end

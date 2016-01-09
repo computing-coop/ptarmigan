@@ -1,10 +1,17 @@
 $madhouseblue: rgb(35, 164, 170);
 $signika: 'Signika', sans-serif;
 $bodytext: 'Verdana', 'Arial', sans-serif;
+
 header {
-  
+  padding: 1.125rem 0;
   .icons {
     float: left;
+    a {
+      color: $madhouseblue;
+    }
+    i {
+      margin-right: 0.4rem;
+    }
     margin: -2.7rem 0 0 1rem;
   }
   .title {
@@ -30,6 +37,21 @@ header {
       height: auto;
     }
   }
+}
+
+footer {
+  margin-top: 1.2rem;
+  padding: 1.5rem 0;
+  background-color: $madhouseblue;
+  max-height: 150px;
+  .logos {
+    img {
+      max-height: 75px;
+      max-width: 20%;
+      padding: 0 1rem;
+    }
+  }
+  
 }
 
 .upcoming_events {
@@ -97,7 +119,8 @@ header {
     color: #333;
   }
   
-  .event_info {
+  .event_info, .event_info p {
+    margin-top: 1.5rem;
     color: $madhouseblue;
     font-family: $signika;
     line-height: 1.625rem;

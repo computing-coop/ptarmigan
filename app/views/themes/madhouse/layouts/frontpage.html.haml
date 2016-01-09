@@ -39,6 +39,7 @@
           %strong SV
           
     = yield
+    %footer= render partial: 'layouts/footer'
   :javascript
     $(document).ready(function() { #{yield :jquery} 
     });

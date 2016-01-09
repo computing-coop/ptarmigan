@@ -47,7 +47,7 @@
           = image_tag f.object.carousel.url(:full)
           = f.check_box :remove_carousel
           Delete carousel image          
-      = f.input :carousel, :label => "Carousel image (1583x454)", :hint => "Will appear in frontpage carousel if it exists"
+      = f.input :carousel, :label => "Carousel image (1600x712)", :hint => "Will appear in frontpage carousel if it exists."
 
       - unless f.object.new_record?
         - if f.object.alternateimg?
@@ -57,9 +57,9 @@
       = f.input :alternateimg, :label => 'Alternate image', :hint => "Different from carousel; will appear  on standalone post page (if it exists), at the top of the post,  instead of the carousel image"
   .row
     .small-10.columns
-      = f.input :embed_gallery_id, :as => :select, :collection => Event.where(:id => [Flicker.all.map(&:event_id).uniq]).sort_by{|x| x.date}.reverse, :hint => "If archival images exist for an event, embed the gallery in this post"
-      = f.input :second_embed_gallery_id, :as => :select, :collection => Event.where(:id => [Flicker.all.map(&:event_id).uniq]).sort_by{|x| x.date}.reverse, :hint => "Optional second gallery - will be combined with first gallery as one slideshow"      
-      = f.input :embed_above_post, :label => "Gallery above post?", :hint => "if an event archive photo gallery is embedded and this is checked, the gallery will appear above the post body, otherwise it will appear below"
+      / = f.input :embed_gallery_id, :as => :select, :collection => Event.where(:id => [Flicker.all.map(&:event_id).uniq]).sort_by{|x| x.date}.reverse, :hint => "If archival images exist for an event, embed the gallery in this post"
+      / = f.input :second_embed_gallery_id, :as => :select, :collection => Event.where(:id => [Flicker.all.map(&:event_id).uniq]).sort_by{|x| x.date}.reverse, :hint => "Optional second gallery - will be combined with first gallery as one slideshow"
+      / = f.input :embed_above_post, :label => "Gallery above post?", :hint => "if an event archive photo gallery is embedded and this is checked, the gallery will appear above the post body, otherwise it will appear below"
       = f.input :published, :label => "Publish on site!", :hint => "leave unchecked for draft mode"
   = f.actions do
     = f.submit "Submit"

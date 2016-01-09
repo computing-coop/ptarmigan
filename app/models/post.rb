@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
   belongs_to :subsite
   has_many :podcasts
 
-  has_attached_file :carousel, :styles =>  {:largest => "1583x454#", :new_carousel => "1180x338#", :full => "960x400#", :small => "320x92#", :thumb => "100x100>"},
+  has_attached_file :carousel, :styles =>  {:largest => "1600x712#",    :new_carousel => "1200x533#", :full => "960x427", :small => "320x143#", :thumb => "100x100>"},
                                             :path =>  ":rails_root/public/images/carousel/posts/:id/:style/:normalized_resource_file_name",
                                           :url =>  "/images/carousel/posts/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"
 
@@ -24,7 +24,7 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['title'].blank? && attributes['body'].blank? }
   scope :by_location, -> (x) { where(['location_id = ? AND (subsite_id is null OR show_on_main is true)', x])}
   scope :by_subsite, -> (x) { where(:subsite_id => x) }
-  scope :with_carousel, -> () { where(["hide_carousel is false AND carousel_file_name is not null AND carousel_file_size > 0" ])}
+  scope :with_carousel, -> () { where(["hide_carousel is not true AND carousel_file_name is not null AND carousel_file_size > 0" ])}
   scope :not_news, -> () { where(not_news: true)}
   scope :news, -> () { where(not_news: false)}
   scope :published, -> () { where(published: true)}

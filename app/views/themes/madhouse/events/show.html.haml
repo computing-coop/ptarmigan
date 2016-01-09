@@ -1,0 +1,24 @@
+.event
+  .event_title_bar
+    .row
+      .small-12.columns
+        %h1= @event.title
+    
+        .event_metadata
+          - if @event.future?
+            - if @event.ticket_url
+              = link_to @event.ticket_url do
+                = fa_icon 'ticket'
+                = t(:buy_ticket)
+            
+  .row
+    .small-12.medium-6.columns
+      .event_description= raw @event.description
+      
+    .small-12.medium-6.columns
+      - if @event.avatar?
+        .event_image
+          = image_tag @event.avatar.url
+      .event_info
+        = @event.notes
+        

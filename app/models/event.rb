@@ -151,6 +151,23 @@ class Event < ActiveRecord::Base
     self.date >= Date.parse(Time.now.strftime('%Y/%m/%d'))
   end
   
+  
+  def madhouse_season
+    return false unless location_id == 4
+    if date.year == 2014 
+      1
+    elsif date.year == 2015
+      2
+    elsif date.year == 2016
+      if date.month < 9
+        3
+      else
+        4
+      end
+    else
+      false
+    end
+  end
 
   def rss_description(locale)
     out = ""

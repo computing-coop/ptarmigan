@@ -61,6 +61,7 @@
   .row
     .small-6.columns
       = f.input :cost, :label => "Cost", :hint => "enter 0 for free events, must be number, no characters besides numbers and . allowed"
+      = f.input :ticket_url, label: 'URL to buy ticket (one-day events only):', hint: 'Only enter a URL if this happens once, otherwise create individual performances and add the individual ticket URLs there'
       = f.input :donations_requested, :label => 'Donations requested?', :hint => "Check this to replace 'FREE' on site with 'Donations requested'"
       = f.input :discountedcost, :label => "Alternate discount cost?", :hint => "For events that are cheaper for some people (unemployed, members, etc.)"
       = f.input :discountreason, :label => "Discount reason", :hint => "If discount cost above is enteres, this reason for the discount will be displayed on the lower price, eg: 'With mental alaska membership card'"

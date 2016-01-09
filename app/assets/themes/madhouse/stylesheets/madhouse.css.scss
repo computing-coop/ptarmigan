@@ -1,4 +1,6 @@
 $madhouseblue: rgb(35, 164, 170);
+$signika: 'Signika', sans-serif;
+$bodytext: 'Verdana', 'Arial', sans-serif;
 header {
   
   .icons {
@@ -32,7 +34,7 @@ header {
 
 .upcoming_events {
   h3 {
-    font-family: 'Signika', sans-serif;
+    font-family: $signika;
     font-weight: 600;
     color: $madhouseblue;
     text-transform: uppercase;
@@ -69,5 +71,36 @@ header {
       
     }
 
+  }
+}
+
+.event {
+  .event_title_bar {
+    background-color: black;
+    margin-bottom: 3.125rem;
+    color: white;
+    padding: 2.8rem 0;
+    a {
+      color: $madhouseblue;
+    }
+    h1 {
+      font-family: $signika;
+      font-size: 2.375rem;
+      line-height: 2.5rem;
+      color: white;
+    }
+  }
+  .event_description, .event_description p {
+    font-family: $bodytext;
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+    color: #333;
+  }
+  
+  .event_info {
+    color: $madhouseblue;
+    font-family: $signika;
+    line-height: 1.625rem;
+    font-size: 1.125rem;
   }
 }

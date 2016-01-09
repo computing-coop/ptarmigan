@@ -108,7 +108,7 @@ class Admin::EventsController < Admin::BaseController
      params.require(:event).permit( [:date, :promoter, :event_type, :cost, :metadata, :notes, :avatar, :public, :enddate, 
       :discountedcost, :project_id, :discountreason, :facebook, :registration_required, :registration_limit, :location_id,
       :place_id, :registration_recipient, :registration_optional_q, :featured, :hide_from_front, :carousel, 
-      :donations_requested, :hide_registrants, :slug, :subsite_id, :show_on_main, :show_guests_to_public, 
+      :donations_requested, :hide_registrants, :slug, :subsite_id, :show_on_main, :show_guests_to_public, :ticket_url,
       :require_approval, :redirect_url, :otherweb, :event_time,
       eventcategory_ids: [],
       translations_attributes: [:title, :description, :notes, :id, :locale, :_destroy]])

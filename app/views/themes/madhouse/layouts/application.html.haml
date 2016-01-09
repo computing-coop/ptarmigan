@@ -13,9 +13,29 @@
 
   %body
     %header 
-      .row
-        .small-10.columns.end.small-centered
-          = image_tag theme_image_path('top_banner.png')
+      .title.text-center
+        =  retina_image_tag theme_image_path('madhousebanner.png')
+      .icons.text-left
+        = link_to fa_icon("twitter"), 'http://www.twitter.com/madhousehel', target: :_blank
+        = link_to fa_icon("facebook"), 'http://www.facebook.com/madhousehelsinki', target: :_blank
+        = link_to fa_icon("instagram"), 'http://www.instagram.com/madhousehelsinki', target: :_blank
+        = link_to fa_icon("flickr"), 'https://www.flickr.com/photos/129272798@N06', target: :_blank
+        = link_to fa_icon("rss"), '/feed.rss', target: :_blank
+      .languages.end.text-right
+        - if I18n.locale.to_s != 'en'
+          = link_to('EN', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en')
+        - else
+          %strong EN
+        |
+        - if I18n.locale.to_s != 'fi'
+          = link_to('FI', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'fi')
+        - else
+          %strong FI
+        |
+        - if I18n.locale.to_s != 'sv-SE'
+          = link_to('SV', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv-SE') 
+        - else
+          %strong SV
           
     = yield
   :javascript

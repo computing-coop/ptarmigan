@@ -35,7 +35,7 @@
               = sv.cktext_area :special_information
   .row
     .small-6.columns
-
+      = f.input :ticket_url, label: 'URL to ticket link'
       - if @event.avatar?
         = image_tag @event.avatar.url(:medium)
       %p Will use the event's image unless you wish to upload a special one for this instance of the performance:

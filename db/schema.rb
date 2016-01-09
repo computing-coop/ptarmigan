@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160107111436) do
+ActiveRecord::Schema.define(version: 20160109115954) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -364,6 +364,7 @@ ActiveRecord::Schema.define(version: 20160107111436) do
     t.datetime "specialimage_updated_at"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.string   "ticket_url",                limit: 255
   end
 
   add_index "instances", ["event_id"], name: "index_instances_on_event_id", using: :btree

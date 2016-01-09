@@ -39,3 +39,12 @@ form {
     font-size: 0.8rem;
   }
 }
+
+.events_container {
+  .row {
+    &.new_year {
+      border-bottom: 4px solid red;
+      margin-bottom: 2rem;
+    }
+  }
+}

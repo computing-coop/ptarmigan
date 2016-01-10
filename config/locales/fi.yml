@@ -41,7 +41,7 @@ fi:
   documents_resources: 'asiakirjat/resurssit'  
   madhouse:
     upcoming_events: 'Tulossa'
-    posted_by: '#{poster} julkaissut %{when}'
+    posted_by: '%{poster} julkaissut %{when}'
     previous_post: 'Edellinen'
     next_post: 'Seuraava'
   date:

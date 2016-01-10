@@ -40,7 +40,7 @@
           %h3= t("madhouse.latest_news")
           - @posts.take(4).each do |post|
             .post_entry
-              .title= link_to post.title, '#'
+              .title= link_to post.title, post
               .date= timeago_tag post.published_at
 
       - @posts.each do |post|

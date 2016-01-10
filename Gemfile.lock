@@ -264,6 +264,9 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
+    rails-timeago (2.13.0)
+      actionpack (>= 3.1)
+      activesupport (>= 3.1)
     railties (4.2.5)
       actionpack (= 4.2.5)
       activesupport (= 4.2.5)
@@ -395,6 +398,7 @@ DEPENDENCIES
   rack-cache
   rails (= 4.2.5)
   rails-assets-datetimepicker!
+  rails-timeago (~> 2.0)
   randumb
   recaptcha
   redcarpet

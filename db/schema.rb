@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109135436) do
+ActiveRecord::Schema.define(version: 20160110101913) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -285,6 +285,8 @@ ActiveRecord::Schema.define(version: 20160109135436) do
     t.string   "otherweb",                limit: 255
     t.string   "event_time",              limit: 5
     t.string   "ticket_url",              limit: 255
+    t.string   "avatar_dimensions",       limit: 255
+    t.string   "carousel_dimensions",     limit: 255
   end
 
   create_table "expenses", force: :cascade do |t|
@@ -316,6 +318,7 @@ ActiveRecord::Schema.define(version: 20160109135436) do
     t.string   "image_content_type",  limit: 255
     t.boolean  "is_video"
     t.boolean  "include_in_carousel"
+    t.string   "image_dimensions",    limit: 255
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -510,6 +513,9 @@ ActiveRecord::Schema.define(version: 20160109135436) do
     t.integer  "alternateimg_file_size",    limit: 4
     t.string   "alternateimg_content_type", limit: 255
     t.datetime "alternateimg_updated_at"
+    t.datetime "published_at"
+    t.string   "carousel_dimensions",       limit: 255
+    t.string   "alternateimg_dimensions",   limit: 255
   end
 
   create_table "presslinks", force: :cascade do |t|

@@ -121,6 +121,55 @@ footer {
   }
 }
 
+.front_posts_container {
+  background-color: black;
+  padding: 1.5rem 0;
+  color: white;
+  
+  .single_post {
+    background-color: #FFF;
+    padding: 0.8rem 1.4rem;
+    margin: 0 1.4rem;
+    color: #333;
+  }
+  
+  .latest_post_container {
+    background-color: $madhouseblue;
+    color: white;
+    padding: 0.8rem 1.4rem;
+    h3 {
+      font-family: $signika;
+      font-size: 1.8rem;
+      line-height: 2rem;
+      margin-bottom: 0.8rem;
+      
+      color: #FFF;
+    }
+    .post_entry {
+      margin-bottom: 2rem;
+      .title {
+        font-family: $signika;
+        font-size: 1.125rem;
+        line-height: 1.4rem;
+        font-style: italic;
+        margin-bottom: 0.4rem;
+        a {
+          color: #ccc;
+          &:hover {
+            color: #FFF;
+          }
+        }
+      }
+      .date {
+        font-size: 0.7rem;
+
+        color: #EFEFEF;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
 .event {
   .event_title_bar {
     background-color: black;

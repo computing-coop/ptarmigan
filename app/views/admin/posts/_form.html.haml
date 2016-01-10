@@ -70,10 +70,12 @@
       = f.input :second_embed_gallery_id, :as => :select, :collection => Event.where(:id => [Flicker.all.map(&:event_id).uniq]).sort_by{|x| x.date}.reverse, :hint => "Optional second gallery - will be combined with first gallery as one slideshow"      
       = f.input :embed_above_post, :label => "Gallery above post?", :hint => "if an event archive photo gallery is embedded and this is checked, the gallery will appear above the post body, otherwise it will appear below"
       = f.input :published, :label => "Publish on site!", :hint => "leave unchecked for draft mode"
+      = f.input :published_at, label: 'Publication date and time?', hint: 'Leave blank for NOW', as: :string,  input_html: {class: 'datetimepicker', value: f.object.new_record? ? '' : (f.object.published_at.nil? ? '' : f.object.published_at.strftime('%Y-%m-%d %H:%M'))}
   = f.actions do
     = f.submit "Submit"
 
 :javascript
   $(function() {
     $("#tabs").tabs();
+    $('.datetimepicker').datetimepicker({format:'Y-m-d H:i'});
   });

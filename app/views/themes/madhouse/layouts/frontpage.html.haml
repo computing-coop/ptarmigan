@@ -7,7 +7,7 @@
     = stylesheet_link_tag    'madhouse/stylesheets/application', media: 'screen'
     = javascript_include_tag "vendor/modernizr"
     = javascript_include_tag 'madhouse/javascripts/application', 'data-turbolinks-track' => true 
-    
+    = timeago_script_tag
     = csrf_meta_tags
     -#%link{:href => "/posts.rss", :rel => "alternate", :title => "RSS", :type => "application/rss+xml"}/
 

@@ -6,7 +6,7 @@ class PostsController < InheritedResources::Base
     if @subsite
       @posts = Post.by_subsite(@subsite).published.order('created_at DESC').page params[:page]
     else
-      @posts = Post.by_location(@location.id).published.order('created_at DESC').page params[:page]
+      @posts = Post.by_location(@location.id).published.order('published_at DESC, created_at DESC').page params[:page]
     end
     set_meta_tags :open_graph => {
       :title => "News | Ptarmigan" ,
@@ -30,7 +30,7 @@ class PostsController < InheritedResources::Base
   end
 
  def show
-  @post = Post.find(params[:id])
+  @post = Post.friendly.find(params[:id])
   if request.path != post_path(@post)
     return redirect_to @post, :status => :moved_permanently
   end

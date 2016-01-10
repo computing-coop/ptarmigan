@@ -16,7 +16,7 @@ class Admin::PostsController < Admin::BaseController
   end
   
   def index
-    @posts = Post.by_location(@location.id).page(params[:page]).per(50)
+    @posts = Post.by_location(@location.id).order('published_at DESC, created_at DESC').page(params[:page]).per(50)
   end
   
   def show
@@ -44,7 +44,7 @@ class Admin::PostsController < Admin::BaseController
   
   def post_params
     params.require(:post).permit([:user_id, :location_id, :published, :is_personal, :carousel, :hide_carousel, :slug, :not_news,
-        :subsite_id, :show_on_main, :embed_gallery_id, :embed_above_post, :second_embed_gallery_id, :sticky,
+        :subsite_id, :show_on_main, :published_at, :embed_gallery_id, :embed_above_post, :second_embed_gallery_id, :sticky,
         :alternateimg, translations_attributes: [:id, :locale, :post_id, :body, :title]])
   end
 end

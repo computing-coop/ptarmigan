@@ -27,7 +27,7 @@ class Post < ActiveRecord::Base
   scope :with_carousel, -> () { where(["hide_carousel is not true AND carousel_file_name is not null AND carousel_file_size > 0" ])}
   scope :not_news, -> () { where(not_news: true)}
   scope :news, -> () { where(not_news: false)}
-  scope :published, -> () { where(published: true)}
+  scope :published, -> () { where(published: true).order('published_at DESC')}
   scope :sticky, -> () { where(sticky: true)}
   validates_presence_of :location_id
   validates_attachment_content_type :alternateimg, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
@@ -37,11 +37,22 @@ class Post < ActiveRecord::Base
   before_validation { carousel.clear if remove_carousel == '1' }
   before_validation { alternateimg.clear if remove_alternateimg == '1' }
   include PublicActivity::Model
-  tracked owner: ->(controller, model) { controller.current_user }  
+  # tracked owner: ->(controller, model) { controller.current_user }
   Paperclip.interpolates :normalized_resource_file_name do |attachment, style|
     attachment.instance.normalized_resource_file_name
   end
-
+  before_save :check_published
+  before_save :extract_dimensions
+  serialize :carousel_dimensions
+  serialize :alternateimg_dimensions
+  
+  def carousel_image?
+    carousel_content_type =~ %r{^(image|(x-)?application)/(bmp|gif|jpeg|jpg|pjpeg|png|x-png)$}
+  end
+  
+  def alternateimg_image?
+    alternateimg_content_type =~ %r{^(image|(x-)?application)/(bmp|gif|jpeg|jpg|pjpeg|png|x-png)$}
+  end
   
   def carousel_link
     self
@@ -51,6 +62,12 @@ class Post < ActiveRecord::Base
     [created_at]
   end
 
+  def check_published
+    if self.published == true
+      self.published_at ||= Time.now
+    end
+  end
+  
   def description
     body
   end
@@ -108,5 +125,35 @@ class Post < ActiveRecord::Base
     title
   end
 
+          
+  def previous_post
+    self.class.where("published is true and published_at < ?", published_at).order("published_at desc").first
+  end
+
+  def next_post
+    self.class.where("published is true and published_at > ?", published_at).order("published_at asc").first
+  end
+  
+  private
+
+  # Retrieves dimensions for image assets
+  # @note Do this after resize operations to account for auto-orientation.
+  def extract_dimensions
+    if carousel_image?
+      tempfile = carousel.queued_for_write[:original]
+      unless tempfile.nil?
+        geometry = Paperclip::Geometry.from_file(tempfile)
+        self.carousel_dimensions = [geometry.width.to_i, geometry.height.to_i].join('x')
+      end
+    end
+    if alternateimg_image?
+      atmp = alternateimg.queued_for_write[:original]
+      unless atmp.nil?
+        geometry = Paperclip::Geometry.from_file(atmp)
+        self.alternateimg_dimensions = [geometry.width.to_i, geometry.height.to_i].join('x')
+      end
+    end
+  end
+  
   
 end

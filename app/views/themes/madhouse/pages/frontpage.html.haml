@@ -31,8 +31,24 @@
           .date= date_range(event.date, event.enddate)
         .description{style: (event.avatar? ? "background: url(#{event.avatar.url(:medium)}) center center;" : false)}= truncate_html(event.description, length: 200)
     
+- unless @posts.empty?
+  .front_posts_container
+    .row
+      .latest_post_container.large-3.medium-4.small-6.columns
+        %h3= t("madhouse.latest_news")
+        - @posts.each do |post|
+          .post_entry
+            .title= link_to post.title, '#'
+            .date= timeago_tag post.published_at
+
+      - @posts.each do |post|
+        .single_post.columns.large-3
+          = post.try(:alternateimg_dimensions)
+          %br/
+          = post.try(:carousel_dimensions)
 = content_for :jquery do
   :plain
+
     $('.carousel').slick({
         dots: true,
         autoplay: true,

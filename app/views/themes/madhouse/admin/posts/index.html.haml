@@ -14,14 +14,18 @@
         %th in carousel?
         %th
       %tbody
-        - @posts.sort_by(&:created_at).reverse.each do |post|
+        - @posts.each do |post|
           %tr.cms_item
             %td{:class => post.location.name.downcase}
               = link_to post.title, edit_admin_post_path(post)
-              %span.smaller_font= l post.created_at.to_date, :format => :long
-            %td= post.published? ? 'yes' : 'no'
+              
+            %td
+              = post.published? ? 'yes' : 'no'
+              %br/
+              - unless post.published_at.blank?
+                %small= l post.published_at, :format => :long
             %td= post.not_news ? 'no' : 'yes'
-            %td= post.carousel? ? 'yes' : 'no'
+            %td= post.carousel? && post.hide_carousel != true  ? 'yes' : 'no'
             %td
               - if can? :edit, post
                 = link_to 'Edit',  edit_admin_post_path(post), class: [:button, :tiny]

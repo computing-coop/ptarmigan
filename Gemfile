@@ -58,6 +58,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery_ui_rails_helpers'
 gem "jquery-slick-rails"
+
 gem 'kaminari'
 gem 'kgio'
 gem 'later_dude', '>= 0.3.1'
@@ -68,6 +69,7 @@ gem 'nested_form' #, :git => 'git://github.com/ryanb/nested_form.git'
 gem 'paperclip'#, "~> 3.0"
 gem 'public_activity'
 gem 'rack-cache'
+gem 'rails-timeago', '~> 2.0'
 gem 'randumb'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'responders'

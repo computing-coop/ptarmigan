@@ -251,4 +251,5 @@ en:
     address: "Ptarmigan is located at Toom-Kooli 13, in the Toompea district of Tallinn's Old Town. It shares a building with the Canadian Embassy and the Koogel Moogel café."
     speed_workshops_blurb: "Let's solve some problems! One hour workshops are designed to produce action, not just talk."
   madhouse:
-    upcoming_events: 'Upcoming events'    
+    upcoming_events: 'Upcoming events'
+    latest_news: 'Latest news'

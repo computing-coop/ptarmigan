@@ -45,7 +45,7 @@ class PagesController < ApplicationController
         @upcoming = Event.published.future.by_location(@location.id)
         @carousel = Flicker.by_location(@location.id).joins(:event).group("events.id")
         Post.by_location(@location.id).with_carousel.published.each {|x| @carousel.unshift(x) }
-        @posts = Post.by_location(@location.id).published.limit(5)
+        @posts = Post.by_location(@location.id).published.limit(8)
       else  # it's Ptarmigan - an ugly hack for now but will work
         set_meta_tags :open_graph => {
           :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.name} | " : "#{@subsite.human_name} | ")) + "Ptarmigan" ,

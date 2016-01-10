@@ -13,13 +13,13 @@ class Post < ActiveRecord::Base
                                             :path =>  ":rails_root/public/images/carousel/posts/:id/:style/:normalized_resource_file_name",
                                           :url =>  "/images/carousel/posts/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"
 
-  has_attached_file :alternateimg, :styles => {:largest => "960x400#", 
-                                          :full => "600x400>", :small => "300x200#",
+  has_attached_file :alternateimg, :styles => {:largest => "1200x500#", 
+                                          :full => "960x400#", :small => "300x200#",
                                           :thumb => "100x100>" },
                                           :path =>  ":rails_root/public/images/posts/alt/:id/:style/:normalized_resource_file_name",
                                           :url =>  "/images/posts/alt/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"
 
-  translates :title, :body
+  translates :title, :body, fallbacks_for_empty_translations: true
   # attr_accessible :translations,  :remove_carousel, :embed_above_post, :second_embed_gallery_id, :embed_gallery_id, :subsite_id, :show_on_main, :user_id, :carousel, :not_news, :is_personal, :location_id, :translations_attributes, :hide_carousel, :published, :alternateimg, :sticky, :remove_alternateimg
   accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['title'].blank? && attributes['body'].blank? }
   scope :by_location, -> (x) { where(['location_id = ? AND (subsite_id is null OR show_on_main is true)', x])}
@@ -45,6 +45,7 @@ class Post < ActiveRecord::Base
   before_save :extract_dimensions
   serialize :carousel_dimensions
   serialize :alternateimg_dimensions
+  after_save :remove_blank_translations
   
   def carousel_image?
     carousel_content_type =~ %r{^(image|(x-)?application)/(bmp|gif|jpeg|jpg|pjpeg|png|x-png)$}
@@ -54,10 +55,32 @@ class Post < ActiveRecord::Base
     alternateimg_content_type =~ %r{^(image|(x-)?application)/(bmp|gif|jpeg|jpg|pjpeg|png|x-png)$}
   end
   
+  def remove_blank_translations
+    translations.each{|x| x.destroy if  x.title.nil? && x.body.nil? }
+  end
+  
   def carousel_link
     self
   end
-
+  
+  def alternateimg_width
+    if alternateimg?
+      width, height = alternateimg_dimensions.split('x')
+      return width.to_i
+    else
+      return 0
+    end
+  end
+  
+  def alternateimg_aspect?
+    if alternateimg?
+      width, height = alternateimg_dimensions.split('x')
+      return (width.to_f / height.to_f ).to_f >= 1 ? :landscape : :portrait
+    else
+      return nil
+    end
+  end
+  
   def carousel_date
     [created_at]
   end
@@ -128,11 +151,11 @@ class Post < ActiveRecord::Base
 
           
   def previous_post
-    self.class.where("published is true and published_at < ?", published_at).order("published_at desc").first
+    self.class.where("location_id = ? and published is true and published_at < ?", location_id, published_at).order("published_at desc").first
   end
 
   def next_post
-    self.class.where("published is true and published_at > ?", published_at).order("published_at asc").first
+    self.class.where("location_id = ? and published is true and published_at > ?", location_id, published_at).order("published_at asc").first
   end
   
   private

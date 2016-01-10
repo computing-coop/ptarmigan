@@ -36,7 +36,10 @@ class Event < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates_attachment_content_type :carousel, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   alias_attribute :name, :title
-  before_save :perform_avatar_removal 
+  before_save :perform_avatar_removal
+  before_save :extract_dimensions
+  serialize :carousel_dimensions
+  serialize :avatar_dimensions 
   after_save :remove_blank_translations
   attr_accessor :remove_avatar, :remove_carousel
 
@@ -60,6 +63,16 @@ class Event < ActiveRecord::Base
     }
 
   end
+  
+  def carousel_image?
+    carousel_content_type =~ %r{^(image|(x-)?application)/(bmp|gif|jpeg|jpg|pjpeg|png|x-png)$}
+  end
+  
+  def avatar_image?
+    avatar_content_type =~ %r{^(image|(x-)?application)/(bmp|gif|jpeg|jpg|pjpeg|png|x-png)$}
+  end
+  
+  
   
   def one_day?
    self.date.to_date == self.enddate.to_date
@@ -247,7 +260,26 @@ class Event < ActiveRecord::Base
    #   end
    # end
   
-  # protected
+   private
+
+   # Retrieves dimensions for image assets
+   # @note Do this after resize operations to account for auto-orientation.
+   def extract_dimensions
+     if carousel_image?
+       tempfile = carousel.queued_for_write[:original]
+       unless tempfile.nil?
+         geometry = Paperclip::Geometry.from_file(tempfile)
+         self.carousel_dimensions = [geometry.width.to_i, geometry.height.to_i].join('x')
+       end
+     end
+     if avatar_image?
+       atmp = avatar.queued_for_write[:original]
+       unless atmp.nil?
+         geometry = Paperclip::Geometry.from_file(atmp)
+         self.avatar_dimensions = [geometry.width.to_i, geometry.height.to_i].join('x')
+       end
+     end
+   end
 
   
 end

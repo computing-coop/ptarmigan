@@ -40,6 +40,14 @@ form {
   }
 }
 
+
+td {
+  .translations {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: #666;
+  }
+}
 .events_container {
   .row {
     &.new_year {

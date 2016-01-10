@@ -3,6 +3,7 @@
  *= require font-awesome
  *= require madhouse/stylesheets/madhouse
  *= require madhouse/stylesheets/foundation_and_overrides
+ *= require madhouse/stylesheets/mobile
  */
 
 @import 'foundation';
@@ -10,8 +11,3 @@
 @import 'slick-theme';
 @import url(https://fonts.googleapis.com/css?family=Signika:400,700,600&subset=latin,latin-ext);
 
-
-@media #{$xlarge-up} {
-    @include grid-html-classes($size:xlarge);
-    //may add push and pull, check _grid.scss, line 269
-}

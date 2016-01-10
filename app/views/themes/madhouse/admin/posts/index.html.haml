@@ -8,6 +8,7 @@
   .small-12.columns
     %table
       %thead
+        %th
         %th Title
         %th Published?
         %th News?
@@ -16,9 +17,15 @@
       %tbody
         - @posts.each do |post|
           %tr.cms_item
+            %td
+              - if post.alternateimg?
+                = image_tag post.alternateimg.url(:thumb)
             %td{:class => post.location.name.downcase}
               = link_to post.title, edit_admin_post_path(post)
-              
+              .translations
+                %strong= t "madhouse.available_in"
+                - post.translations.each do |t|
+                  %span= t.locale
             %td
               = post.published? ? 'yes' : 'no'
               %br/

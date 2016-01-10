@@ -25,7 +25,7 @@
     %h3= t "madhouse.upcoming_events"
   - @upcoming.take(9).each_with_index do |event, index|
     = link_to event do
-      .small-11.medium-6.large-4.xlarge-3.columns.event{:"data-equalizer-watch" => '', class: (index == 8 ? 'show-for-large-only' : (index > 3 ? 'hide-for-medium-only hide-for-small-only' : false) )}
+      .small-10.small-offset-1.medium-offset-0.medium-6.large-4.xlarge-3.columns.event{:"data-equalizer-watch" => '', class: (index == 8 ? 'show-for-large-only' : (index > 3 ? 'hide-for-medium-only hide-for-small-only' : false) )}
         .top_box
           = event.title
           .date= date_range(event.date, event.enddate)
@@ -34,18 +34,32 @@
 - unless @posts.empty?
   .front_posts_container
     .row
-      .latest_post_container.large-3.medium-4.small-6.columns
-        %h3= t("madhouse.latest_news")
-        - @posts.each do |post|
-          .post_entry
-            .title= link_to post.title, '#'
-            .date= timeago_tag post.published_at
+      - column_count = 3
+      .latest_post_container.columns.large-3.small-6
+        .inner
+          %h3= t("madhouse.latest_news")
+          - @posts.take(4).each do |post|
+            .post_entry
+              .title= link_to post.title, '#'
+              .date= timeago_tag post.published_at
 
       - @posts.each do |post|
-        .single_post.columns.large-3
-          = post.try(:alternateimg_dimensions)
-          %br/
-          = post.try(:carousel_dimensions)
+        - if column_count >= 12
+          - column_count = 0
+          
+        - if post.alternateimg_aspect? == :portrait
+          - column_count += 3
+        - else
+          - column_count += 6
+        %div{class: column_count == 0 ? :rowd  : :nothing}
+          .single_post.columns.small-6{class: [post.alternateimg? ? (post.alternateimg_aspect? == :portrait ? 'small-6 medium-6 large-3' : (column_count > 12 ? "small-12 medium-#{post.alternateimg_width > 900 ? 12 : 6}  large-3" : "medium-6 small-6 large-6")) : 'small-6 medium-6 large-3', post == @posts.last && column_count < 12 ? 'hide-for-large-up' : false]}
+            .inner{style: post.alternateimg? ? "background: url(http://ptarmigan.fi#{post.alternateimg.url(:full)}) no-repeat center center; background-size: cover;" : ''}
+              %h3= link_to post.title, post
+              .date
+                = t("madhouse.posted_by", poster: post.is_personal == true ? post.user.name : 'Mad House', when: l(post.published_at.to_date, format: :long))
+
+
+
 = content_for :jquery do
   :plain
 

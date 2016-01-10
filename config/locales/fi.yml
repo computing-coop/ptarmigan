@@ -40,7 +40,10 @@ fi:
   videos: 'videoita'
   documents_resources: 'asiakirjat/resurssit'  
   madhouse:
-    upcoming_events: 'Tulossa'  
+    upcoming_events: 'Tulossa'
+    posted_by: '#{poster} julkaissut %{when}'
+    previous_post: 'Edellinen'
+    next_post: 'Seuraava'
   date:
     formats:
       default: "%e. %Bta %Y"

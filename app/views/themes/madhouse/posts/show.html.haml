@@ -1,0 +1,29 @@
+.post_single
+  .post_title
+    .row
+      .small-10.small-offset-1.medium-8.medium-offset-2.columns
+        .blog_title= @post.title
+
+  .post_content
+    .row
+      .small-10.small-offset-1.medium-8.medium-offset-2.columns
+        .post_metadata
+          - if @post.is_personal == true
+            = t("madhouse.posted_by", poster: @post.user.name, when: l(@post.published_at, :format => :long))
+          - else
+            = t("madhouse.posted_by", poster: 'Mad House', when: l(@post.published_at, :format => :long))
+        
+        - if @post.alternateimg?
+          .blog_image= image_tag @post.alternateimg.url
+    .row
+      .small-10.small-offset-1.medium-8.medium-offset-2.columns
+        .blog_body= raw @post.body
+
+  .prev_next
+    .row
+      .small-4.small-offset-1.columns
+        - unless @post.previous_post.nil?
+          = link_to "<<< #{t("madhouse.previous_post")}: #{@post.previous_post.title}", @post.previous_post
+      .small-4.small-offset-1.columns
+        - unless @post.next_post.nil?
+          = link_to "#{t("madhouse.next_post")}: #{@post.next_post.title} >>>", @post.next_post

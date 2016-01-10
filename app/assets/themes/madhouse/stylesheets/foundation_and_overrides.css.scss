@@ -113,7 +113,7 @@ $default-float: left;
 //
 // Grid Variables
 //
-
+$include-xl-html-grid-classes: true;
 $row-width: emCalc(1200px);
 // $column-gutter: emCalc(30px);
 // $total-columns: 12;

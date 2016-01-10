@@ -119,6 +119,7 @@ class Post < ActiveRecord::Base
 
   
   def normalized_resource_file_name
+    return false unless carousel_image?
     "#{self.id}-#{self.carousel_file_name.gsub( /[^a-zA-Z0-9_\.]/, '_')}"
   end  
   def name

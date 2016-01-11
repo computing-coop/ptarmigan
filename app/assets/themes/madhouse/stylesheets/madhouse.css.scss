@@ -41,7 +41,7 @@ header {
       margin-top: -2rem;
       position: fixed;
       z-index: 3;
-      padding: 0.5rem;
+      padding: 0.5rem 1.4rem;
       bottom: 0;
       max-width: 50%;
       font-size: 1rem;
@@ -54,6 +54,9 @@ header {
       }
       .title {
         float: left;
+        a {
+          color: $madhouseblue;
+        }
         font-size: 1.5rem;
       }
       .date {
@@ -270,7 +273,9 @@ footer {
   .prev_next {
     font-size: 1.125rem;
     font-family: $signika;
-
+    a {
+      color: $madhouseblue;
+    }
   }
   
 }

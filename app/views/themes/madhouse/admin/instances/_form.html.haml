@@ -31,7 +31,7 @@
               = fi.cktext_area :special_information
                
         - tab.create('swedish', 'Swedish') do
-          = f.globalize_fields_for "sv-SE" do |sv|
+          = f.globalize_fields_for :sv do |sv|
             %p
               Special information about this night's performance:
               = sv.cktext_area :special_information

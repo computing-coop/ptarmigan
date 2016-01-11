@@ -40,7 +40,7 @@
             = link_to(image_tag('system/uk_flag.gif', :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en')
             = link_to(image_tag('system/ru_flag.gif', :width => 20, :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'ru')
             = link_to(image_tag('system/fi.gif', :width => 20, :border => 0),:controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'fi')
-            = link_to(image_tag('system/se_flag.gif', :width => 20, :border => 0),:controller =>   controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv-SE')            
+            = link_to(image_tag('system/se_flag.gif', :width => 20, :border => 0),:controller =>   controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv')            
           #country_menu.alpha.omega.columns= render :partial => 'layouts/country_menu'
           - if user_signed_in?
             %li= link_to('staff', '/staff')
@@ -54,7 +54,7 @@
             %option{:selected => (I18n.locale == :ru ? :selected : false), :value => :ru} русский
             %option{:selected => (I18n.locale == :en ? :selected : false), :value => :en} English                
             %option{:selected => (I18n.locale == :fi ? :selected : false), :value => :fi} Suomeksi
-            %option{:selected => (I18n.locale.to_s == "sv-SE" ? :selected : false), :value => "sv-SE"} Svensk
+            %option{:selected => (I18n.locale.to_s == :sv ? :selected : false), :value => :sv} Svensk
           :javascript
             $('#country_change').change(function() {
               document.location.href = "http://ptarmigan." + $(this).val();

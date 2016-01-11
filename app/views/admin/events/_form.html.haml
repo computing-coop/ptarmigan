@@ -83,7 +83,7 @@
             %br/
             = lv.text_area :notes, {:cols => 40, :rows => 5}                    
       - tab.create('swedish', 'Swedish') do
-        = f.globalize_fields_for "sv-SE" do |sv|
+        = f.globalize_fields_for :sv do |sv|
           %p 
             Title
             = sv.text_field :title

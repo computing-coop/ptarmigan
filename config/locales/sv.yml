@@ -1,0 +1,270 @@
+
+sv:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'Ett fel uppstod: %{errors}'
+        restrict_dependent_destroy:
+          has_one: Kan inte ta bort post då beroende %{record} finns
+          has_many: Kan inte ta bort poster då beroende %{record} finns
+  date:
+    abbr_day_names:
+    - sön
+    - mån
+    - tis
+    - ons
+    - tor
+    - fre
+    - lör
+    abbr_month_names:
+    -
+    - jan
+    - feb
+    - mar
+    - apr
+    - maj
+    - jun
+    - jul
+    - aug
+    - sep
+    - okt
+    - nov
+    - dec
+    day_names:
+    - söndag
+    - måndag
+    - tisdag
+    - onsdag
+    - torsdag
+    - fredag
+    - lördag
+    formats:
+      default: "%Y-%m-%d"
+      long: "%e %B %Y"
+      short: "%e %b"
+    month_names:
+    -
+    - januari
+    - februari
+    - mars
+    - april
+    - maj
+    - juni
+    - juli
+    - augusti
+    - september
+    - oktober
+    - november
+    - december
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: ungefär en timme
+        other: ungefär %{count} timmar
+      about_x_months:
+        one: ungefär en månad
+        other: ungefär %{count} månader
+      about_x_years:
+        one: ungefär ett år
+        other: ungefär %{count} år
+      almost_x_years:
+        one: nästan ett år
+        other: nästan %{count} år
+      half_a_minute: en halv minut
+      less_than_x_minutes:
+        one: mindre än en minut
+        other: mindre än %{count} minuter
+      less_than_x_seconds:
+        one: mindre än en sekund
+        other: mindre än %{count} sekunder
+      over_x_years:
+        one: mer än ett år
+        other: mer än %{count} år
+      x_days:
+        one: en dag
+        other: "%{count} dagar"
+      x_minutes:
+        one: en minut
+        other: "%{count} minuter"
+      x_months:
+        one: en månad
+        other: "%{count} månader"
+      x_seconds:
+        one: en sekund
+        other: "%{count} sekunder"
+    prompts:
+      day: Dag
+      hour: Timme
+      minute: Minut
+      month: Månad
+      second: Sekund
+      year: År
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: måste vara accepterad
+      blank: måste anges
+      present: får inte anges
+      confirmation: stämmer inte överens
+      empty: får ej vara tom
+      equal_to: måste vara samma som
+      even: måste vara jämnt
+      exclusion: är reserverat
+      greater_than: måste vara större än %{count}
+      greater_than_or_equal_to: måste vara större än eller lika med %{count}
+      inclusion: finns inte i listan
+      invalid: har fel format
+      less_than: måste vara mindre än %{count}
+      less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+      not_a_number: är inte ett nummer
+      not_an_integer: måste vara ett heltal
+      odd: måste vara udda
+      taken: används redan
+      too_long: är för lång (maximum är %{count} tecken)
+      too_short: är för kort (minimum är %{count} tecken)
+      wrong_length: har fel längd (ska vara %{count} tecken)
+      other_than: måste vara annat än %{count}
+    template:
+      body: 'Det var problem med följande fält:'
+      header:
+        one: Ett fel förhindrade denna %{model} från att sparas
+        other: "%{count} fel förhindrade denna %{model} från att sparas"
+  helpers:
+    select:
+      prompt: Välj
+    submit:
+      create: Skapa %{model}
+      submit: Spara %{model}
+      update: Ändra %{model}
+  number:
+    currency:
+      format:
+        delimiter: ''
+        format: "%n %u"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: kr
+    format:
+      delimiter: ''
+      precision: 2
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: Miljard
+          million: Miljon
+          quadrillion: Biljard
+          thousand: Tusen
+          trillion: Biljon
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: " och "
+      two_words_connector: " och "
+      words_connector: ", "
+  time:
+    am: ''
+    formats:
+      default: "%a, %e %b %Y %H:%M:%S %z"
+      long: "%e %B %Y %H:%M"
+      short: "%e %b %H:%M"
+    pm: ''  
+  googlecalendar: "Ptarmigans arrangemang kan också visas som Google Kalender."
+  about: "Om oss" 
+  calendar: "Kalender"
+  current: "Ström"
+  archive: "Arkiv"
+  residencies: "Residencies"
+  find_us: "Hitta hit"
+  contact: "Kontakt"  
+  seeall: "Visa alla"
+  events: "Arrangemang"
+  artists: "Konstnärer"
+  podcasts: "Podcasts"
+  projects: "Projekt"
+  noevents: "Just nu har vi inga arrangemang planerade. Besök gärna vår hemsida snart igen, eller följ oss på Twitter, Facebook eller RSS."
+  helsinki: "Helsingfors"
+  what_is_ptarmigan: "Vad är Ptarmigan?"
+  tallinn: "Tallinn"
+  latest: "Senaste"
+  news: "Nyheter"
+  both: "Båda!"
+  read_more: "läs mer"
+  language: "Språk"
+  daterange: ' - '
+  free: "Fritt inträde"
+  map: "Karta"
+  presented_by: "presenteras av"
+  part_of_project: "del av projektet"
+  event_full: 'Detta arrangemang är tyvärr fullbokat.'
+  join_our_mailing_list: "Prenumerera på vår mejllista!"
+  join: "prenumerera"
+  your_name: "Ditt namn"
+  coming_up: "Kommande"
+  your_email: "Din mejladress"
+  your_phone: "Ditt telefonnummer"
+  extra_info_or_qs: "Övrig information och andra frågor?"
+  click_here_to_register: "Klicka här för att anmäla dig"
+  you_must_register: "Du måste anmäla dig för detta arrangemang!"
+  thanks_register: "Tack för att du anmält dig!"
+  thanks_signup: "Tack för att du skapat ett konto!"
+  sign_up: "Skapa ett konto!"
+  proposals: 'Förslag'
+  donations: 'Donationer uppskattas!'
+  proposal_header: 'Ptarmigan är ett projektrum vars utbud beror på dina idéer! Via detta formulär kan du förse Ptarmigan med dina uppslag, vare sig det gäller en enstaka arbetspresentation eller performance, eller längre residencies. Var snäll och fyll i den information som efterfrågas så hör vi av oss så fort vi kan.'
+  proposal_location: 'Var skulle du vilja utföra projektet?'
+  proposal_organisation: 'Organisation eller grupp'
+  optional: 'valfritt'
+  postal_address: 'Postadress'
+  country: 'Vistelseland' 
+  proposal_phone: 'Telefonnummer (inklusive landskod)'
+  proposal_shortdescription: 'Vänligen beskriv ditt projekt i mindre än 100 ord.'
+  proposal_duration: 'Hur lång tid behöver du uppskattningsvis för att utföra projektet? (t.ex. en kväll, två månader, en vecka, osv.) När skulle vara en lämplig tid för dig att utföra projektet?'
+  proposal_longdescription: 'Var vänlig och förse oss med en mer utförlig projektbeskrivning.'
+  proposal_public_engagement: 'Omfattar ditt projekt på något sätt allmänheten? Var snäll och beskriv eventuella arrangemang som planeras i samband med ditt arbete - workshops, presentationer, seminarier eller andra arrangemang som omfattar allmänhetens medverkan.'
+  proposal_materials: 'Bortsett från vad du själv avser tillhandahålla, vad för material behöver du för att komplettera projektet?'
+  proposal_spatial_requirements: 'Ställer projektet ovanliga krav vad gäller utrymme, t.ex. ett rums fysiska beskaffenhet, höga eller ovanliga volymer, eller andra potentiellt problematiska aspekter?'
+  proposal_costs: 'Beräkna vänligen projektets kostnad, och ange om du kan bekosta projektet själv eller kommer att behöva finansiellt stöd.'
+  proposal_shortbio: 'Beskriv dig själv i mindre än 200 ord.'
+  proposal_project: 'Passar ditt förslag inom ramverket av något av våra befintliga projekt? Välj ett för mera information.'
+  proposal_urls: 'Vänligen förse oss med webadresser för befintliga arbeten.'
+  proposal_why_ptarmigan: 'På vilka grunder anser du att Ptarmigan utgör en bra plattform for ditt projekt?'
+  proposal_attachment: 'Du kan bifoga en fil med en storlek på upp till 5MB.'
+  send_proposal: 'Skicka ditt förslag!'
+  inactive_projects: 'Inaktiva projekt'
+  nope: 'nix!'
+  project_spiel: "Vi kallar Ptarmigan för ett 'projektrum' och uppskattar återkommande arrangemang som bygger på tidigare erfarenheter. Ofta utgör våra arrangemang delar av mer omfattande projekt. Vi är alltjämt öppna för förslag både vad gäller nya projekt och nya arrangemang inom ramverket av våra befintliga teman."  
+  documents_resources: 'dokument/resurser'
+  photos: 'bilder'
+  videos: 'videor'

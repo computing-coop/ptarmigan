@@ -32,7 +32,7 @@
               %br/
               = fi.cktext_area :body
         - tab.create('swedish', 'Swedish') do
-          = f.globalize_fields_for 'sv-SE' do |sv|
+          = f.globalize_fields_for :sv do |sv|
             %p
               Title of post in Swedish
               = sv.text_field :title

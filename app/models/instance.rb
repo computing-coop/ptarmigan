@@ -1,6 +1,6 @@
 class Instance < ActiveRecord::Base
   belongs_to :event
-  
+  belongs_to :place
   has_attached_file :specialimage, :styles => { :largest => "1280x800>", :medium => "400x400>",
                                        :thumb => "100x100>", :archive => "115x115#" },
         :path =>  ":rails_root/public/images/events/instances/:id/:style/:basename.:extension", 

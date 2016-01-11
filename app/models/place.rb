@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Place < ActiveRecord::Base
   has_many :events
+  has_many :instances
   has_and_belongs_to_many :locations
   geocoded_by :full_address
   reverse_geocoded_by :latitude, :longitude

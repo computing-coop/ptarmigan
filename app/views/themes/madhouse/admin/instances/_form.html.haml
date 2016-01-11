@@ -37,6 +37,7 @@
               = sv.cktext_area :special_information
   .row
     .small-6.columns
+      = f.input :place, :as => :select, :collection => @location.places.map{|x| [x.name + "/" + x.address1, x.id]}, :hint => "Leave blank if it's the same as the parent event (#{@event.place.name}).", :include_blank => true, label: 'Location (if different from parent event):'
       = f.input :ticket_url, label: 'URL to ticket link'
       - if @event.avatar?
         = image_tag @event.avatar.url(:medium)

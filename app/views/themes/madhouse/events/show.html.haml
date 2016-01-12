@@ -6,7 +6,7 @@
     
         .event_metadata
           - if @event.future?
-            - if @event.ticket_url
+            - unless @event.ticket_url.blank?
               = link_to @event.ticket_url do
                 = fa_icon 'ticket'
                 = t(:buy_ticket)
@@ -19,17 +19,93 @@
         .event_image
           = image_tag @event.avatar.url
       .event_info
+        = ptarmigan_cost(@event.cost)
+        %br/
+        = t :location
+        = ": " + @event.place.name
+        = link_to fa_icon('map-marker'), '#', onclick: "$('.google_map').slideToggle(function()  { google.maps.event.trigger(map, 'resize'); map.setCenter(new google.maps.LatLng(#{@event.place.latitude}, #{@event.place.longitude}));            $('p.map_link a').text($('.google_map').is(':visible') ? '#{t(:hide_map)}' : '#{t(:map)}');});return false;"
+        .google_map#mapcontainer= render partial: 'shared/small_map'
+        
+        %br/
         = raw @event.notes.to_s.gsub(/\n/, '<br />')
         %br/
         = t(:performances) + ":"
         %br/
+        
         - @event.instances.each do |instance|
           = date_range(instance.start_at, instance.end_at, format: :with_day)
           - if instance.future?
-            - if instance.ticket_url
+            - unless instance.ticket_url.blank?
               = link_to instance.ticket_url, :target => :_blank do
                 = fa_icon 'ticket'
                 = t(:buy_ticket)
           %br/
     .small-12.medium-6.medium-pull-6.columns
-      .event_description= raw @event.description          
+      .event_description= raw @event.description
+      
+= content_for :jquery do
+  - unless @event.place.latitude.blank?
+    :plain
+
+      function initialize() {
+        var myLatlng = new google.maps.LatLng(#{@event.place.latitude}, #{@event.place.longitude});
+        var myOptions = { zoom: 14, 
+              center: myLatlng,
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+              styles: 
+                [
+                  {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                      { "color": "#23a4aa" }
+                    ]
+                  },{
+                    "featureType": "road.highway",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                      { "color": "#333333" }
+                    ]
+                  },{
+                    "featureType": "water",
+                    "elementType": "geometry",
+                    "stylers": [
+                      { "visibility": "on" },
+                      { "color": "#23a4aa" },
+                      { "saturation": 81 },
+                      { "lightness": 28 },
+                      { "gamma": 4.17 }
+                    ]
+                  },{
+                    "featureType": "road.arterial",
+                    "stylers": [
+                      { "color": "#23a4aa" },
+                      { "weight": 0.3 },
+                      { "invert_lightness": true }
+                    ]
+                  },{
+                    "featureType": "road.local",
+                    "stylers": [
+                      { "color": "#23a4aa" },
+                      { "saturation": -64 },
+                      { "lightness": 7 },
+                      { "gamma": 2.94 }
+                    ]
+                  },{
+                  }
+                ]
+           }
+
+
+        map = new google.maps.Map(document.getElementById('mapcontainer'), myOptions);
+        var marker = new google.maps.Marker({  position: myLatlng, map: map, 
+          title: '#{escape_javascript(@event.name)}', 
+          icon: '/assets/livingspaces/images/pin.png',
+          map: map
+        });
+        return map;
+      }
+      //map = initialize();
+      map = google.maps.event.addDomListener(window, 'load', initialize);
+  
+    

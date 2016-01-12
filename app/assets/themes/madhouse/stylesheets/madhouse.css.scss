@@ -239,6 +239,9 @@ footer {
     line-height: 1.625rem;
     font-size: 1.125rem;
   }
+  .google_map {
+    display: none;
+  }
 }
 
 .post_single {
@@ -278,4 +281,8 @@ footer {
     }
   }
   
+}
+
+#mapcontainer {
+  height: 200px;
 }

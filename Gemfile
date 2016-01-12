@@ -40,6 +40,7 @@ gem 'dalli'
 gem 'devise'
 gem 'devise-encryptable'
 gem 'flickraw'
+gem 'figaro'
 gem "font-awesome-rails"
 gem 'formtastic'
 gem 'foundation-rails'#, github: 'dmitryzuev/foundation-rails', branch: 'feature-foundation6 '

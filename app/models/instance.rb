@@ -1,6 +1,8 @@
 class Instance < ActiveRecord::Base
   belongs_to :event
   belongs_to :place
+  extend FriendlyId
+  friendly_id :title_en, :use => [:slugged, :finders, :history]
   has_attached_file :specialimage, :styles => { :largest => "1280x800>", :medium => "400x400>",
                                        :thumb => "100x100>", :archive => "115x115#" },
         :path =>  ":rails_root/public/images/events/instances/:id/:style/:basename.:extension", 
@@ -27,4 +29,9 @@ class Instance < ActiveRecord::Base
   def future?
     self.start_at >= Date.parse(Time.now.strftime('%Y/%m/%d'))
   end
+  
+  def title_en
+       self.title.blank? ? self.id.to_s : self.title
+  end
+  
 end

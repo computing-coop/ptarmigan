@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111172741) do
+ActiveRecord::Schema.define(version: 20160112103437) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -373,6 +373,7 @@ ActiveRecord::Schema.define(version: 20160111172741) do
     t.float    "price",                     limit: 24
     t.float    "discounted_price",          limit: 24
     t.integer  "place_id",                  limit: 4
+    t.string   "slug",                      limit: 255
   end
 
   add_index "instances", ["event_id"], name: "index_instances_on_event_id", using: :btree

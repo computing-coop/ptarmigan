@@ -63,6 +63,7 @@ Ptarmigan::Application.routes.draw do
 
   # resource :session, :member => {:new_applicant => :get, :applicant_create => :put}
   resources :events do
+    resources :instances, :path => "performance/"
     resources :attendees
     collection do
       get :archive

@@ -256,4 +256,5 @@ en:
     available_in: 'Available in:'
     previous_post: 'Previous post'
     next_post: 'Next post'
+    also_related: 'Other related events:'
     posted_by: "Posted by %{poster} on %{when}"

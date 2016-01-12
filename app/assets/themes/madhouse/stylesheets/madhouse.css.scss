@@ -210,6 +210,14 @@ footer {
 }
 
 .event {
+  
+  .related_header {
+    margin-top: 4rem;
+    font-family: $signika;
+    color: $madhouseblue;
+    font-size: 2rem;
+    padding-left: 0;
+  }
   .event_title_bar {
     background-color: black;
     margin-bottom: 3.125rem;
@@ -223,6 +231,9 @@ footer {
       font-size: 2.375rem;
       line-height: 2.5rem;
       color: white;
+    }
+    h4 {
+      a { color: #BBB; }
     }
   }
   .event_description, .event_description p {
@@ -241,6 +252,37 @@ footer {
   }
   .google_map {
     display: none;
+  }
+  .festival_event {
+    padding-bottom: 25%;
+    height: 0;
+    margin: 0.5rem 0;
+    cursor: pointer;
+    &.odd {
+      background-color: $madhouseblue;
+    }
+    &.even {
+      background-color: #222;
+    }
+    
+    .title {
+      margin-top: 0.5rem;
+      font-family: $signika;
+      font-size: 1.4rem;
+      line-height: 1.76rem;
+      background-color: white;
+      padding: 0.3rem;
+      float: left;
+    }
+    .dates {
+      margin-top: 0.5rem;
+      font-family: $signika;
+      font-size: 0.9rem;
+      line-height: 1.76rem;
+      background-color: white;
+      padding: 0.3rem;
+      float: left;
+    }
   }
 }
 

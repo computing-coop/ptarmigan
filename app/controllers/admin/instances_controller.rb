@@ -41,7 +41,7 @@ class Admin::InstancesController < Admin::BaseController
   protected
   
   def instance_params
-    params.require(:instance).permit([:start_at, :end_at, :ticket_url, :specialimage, :place_id, :title, :event_id, :price, :discounted_price, :remove_specialimage, translations_attributes:[:id, :locale, :special_information, :_delete]])
+    params.require(:instance).permit([:start_at, :end_at, :ticket_url, :specialimage, :place_id, :title, :event_id, :price, :discounted_price, :remove_specialimage, translations_attributes:[:id, :locale, :special_information, :notes, :_delete]])
   end
 
 end

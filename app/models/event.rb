@@ -50,6 +50,16 @@ class Event < ActiveRecord::Base
     where( [ "(date >= ?  AND  enddate <= ?) OR ( enddate >= ? AND enddate <= ? ) OR (date >= ? AND date <= ?)  OR (date < ? AND enddate > ? )",
     start_time, end_time, start_time, end_time, start_time, end_time, start_time, end_time])
   }
+  
+  def is_festival?
+    if instances.empty?
+      return false
+    elsif instances.map(&:title).delete_if(&:blank?).empty?
+      return false
+    else
+      true
+    end
+  end
     
   
   def as_json(options = {})

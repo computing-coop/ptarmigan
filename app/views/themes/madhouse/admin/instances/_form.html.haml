@@ -20,25 +20,38 @@
         - tab.create('english', 'English') do
           = f.globalize_fields_for :en do |en|
             %p
-              Special information about this night's performance:
+              Custom description of this night's performance:
               = en.cktext_area :special_information
-
+            %p
+              Notes and other metadata
+              = en.text_area :notes
+              
         - tab.create('finnish', 'Finnish') do
           = f.globalize_fields_for :fi do |fi|
 
             %p
-              Special information about this night's performance:
+              Custom description of this night's performance:
               = fi.cktext_area :special_information
-               
+            %p
+              Notes and other metadata
+              = fi.text_area :notes               
         - tab.create('swedish', 'Swedish') do
           = f.globalize_fields_for :sv do |sv|
             %p
-              Special information about this night's performance:
+              Custom description of this night's performance:
               = sv.cktext_area :special_information
+            %p
+              Notes and other metadata
+              = sv.text_area :notes
+                            
   .row
     .small-6.columns
       = f.input :place, :as => :select, :collection => @location.places.map{|x| [x.name + "/" + x.address1, x.id]}, :hint => "Leave blank if it's the same as the parent event (#{@event.place.name}).", :include_blank => true, label: 'Location (if different from parent event):'
       = f.input :ticket_url, label: 'URL to ticket link'
+  .row
+    .small-6.columns
+      = f.input :price, label: 'Ticket price for this performance', hint: "Leave blank and it will inherit the price from the master event"
+      = f.input :discounted_price, label: 'Discounted ticket price for this performance', hint: "Leave blank and it will inherit the price from the master event"
       - if @event.avatar?
         = image_tag @event.avatar.url(:medium)
       %p Will use the event's image unless you wish to upload a special one for this instance of the performance:

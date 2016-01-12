@@ -2,7 +2,9 @@
   .event_title_bar
     .row
       .small-12.columns
-        %h1= @event.title
+        %h4
+          %em= link_to @event.title, @event
+        %h1= @instance.title
     
         .event_metadata
           - if @event.future?
@@ -15,36 +17,61 @@
 
       
     .small-12.medium-push-6.medium-6.columns
-      - if @event.avatar?
+      - if @instance.specialimage?
+        .event_image
+          = image_tag @instance.specialimage.url
+      - elsif @event.avatar?
         .event_image
           = image_tag @event.avatar.url
       .event_info
-        = ptarmigan_cost(@event.cost)
+        - if !@instance.price.blank?
+          = t :tickets
+
+          = ptarmigan_cost(@instance.price)
+        - else
+          - unless @event.cost.blank?
+            = t :tickets
+            = ptarmigan_cost(@event.cost)
         %br/
         = t :location
-        = ": " + @event.place.name
+        - if @instance.place.blank?
+          = ": " + @event.place.name
+        - else
+          = ": " + @instance.place.name
         = link_to fa_icon('map-marker'), '#', onclick: "$('.google_map').slideToggle(function()  { google.maps.event.trigger(map, 'resize'); map.setCenter(new google.maps.LatLng(#{@event.place.latitude}, #{@event.place.longitude}));            $('p.map_link a').text($('.google_map').is(':visible') ? '#{t(:hide_map)}' : '#{t(:map)}');});return false;"
         .google_map#mapcontainer= render partial: 'shared/small_map'
         
         %br/
-        = raw @event.notes.to_s.gsub(/\n/, '<br />')
+        - if @instance.notes.blank?
+          = raw @event.notes.to_s.gsub(/\n/, '<br />')
+        - else
+          = raw @instance.notes.to_s.gsub(/\n/, '<br />')
         %br/
         
+
+      
+        = t(:performances) + ":"
         %br/
-        - unless @event.is_festival?
-          = t(:performances) + ":"
-          - @event.instances.each do |instance|
-            = date_range(instance.start_at, instance.end_at, format: :with_day)
-            - if instance.future?
-              - unless instance.ticket_url.blank?
-                = link_to instance.ticket_url, :target => :_blank do
-                  = fa_icon 'ticket'
-                  = t(:buy_ticket)
+        - @instance.siblings.sort_by(&:start_at).each do |instance|
+          = date_range(instance.start_at, instance.end_at, format: :with_day)
+          - if instance.future?
+            - unless instance.ticket_url.blank?
+              = link_to instance.ticket_url, :target => :_blank do
+                = fa_icon 'ticket'
+                = t(:buy_ticket)
             %br/
         
     .small-12.medium-6.medium-pull-6.columns
-      .event_description= raw @event.description
+      .event_description
+        - if @instance.special_information
+          = raw @instance.special_information
+        - else
+          = raw @event.description
+          
+          
   - if @event.is_festival?
+    .row
+      .small-12.columns.text-left.related_header= t "madhouse.also_related"
     .row
       - @event.instances.group(:title).each_with_index do |instance, index|
         .medium-3.columns.festival_event{ style: (instance.specialimage? ? "background: url(http://ptarmigan.fi#{instance.specialimage.url}) no-repeat top center; background-size: cover;" : ''), class: [cycle('odd', 'even'), @event.instances.group(:title).last == instance ? :end : false]}
@@ -54,6 +81,8 @@
             - instance.siblings.sort_by(&:start_at).map(&:start_at).each do |date|  
               - dates.push(l(date.to_date, format: :short))
             = dates.join(' / ')
+            
+            
 = content_for :jquery do
   - unless @event.place.latitude.blank?
     :plain
@@ -111,7 +140,6 @@
         map = new google.maps.Map(document.getElementById('mapcontainer'), myOptions);
         var marker = new google.maps.Marker({  position: myLatlng, map: map, 
           title: '#{escape_javascript(@event.name)}', 
-
           map: map
         });
         return map;

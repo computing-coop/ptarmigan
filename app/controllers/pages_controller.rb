@@ -41,11 +41,21 @@ class PagesController < ApplicationController
         @posts = Post.by_subsite(@subsite).published.order('created_at DESC').page params[:page]
       end
     else
+      
+      
       if @location.name == 'Mad House'
         @upcoming = Event.published.future.by_location(@location.id)
         @carousel = Flicker.by_location(@location.id).joins(:event).group("events.id")
         Post.by_location(@location.id).with_carousel.published.each {|x| @carousel.unshift(x) }
         @posts = Post.by_location(@location.id).published.limit(8)
+        
+        events = @upcoming.to_a.reject{|x| !x.carousel? }
+ 
+        events.sort_by{rand}.each do |e|
+          @carousel.unshift(e)
+        end
+        
+        
       else  # it's Ptarmigan - an ugly hack for now but will work
         set_meta_tags :open_graph => {
           :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.name} | " : "#{@subsite.human_name} | ")) + "Ptarmigan" ,

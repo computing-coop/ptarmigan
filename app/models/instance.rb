@@ -7,8 +7,8 @@ class Instance < ActiveRecord::Base
                                        :thumb => "100x100>", :archive => "115x115#" },
         :path =>  ":rails_root/public/images/events/instances/:id/:style/:basename.:extension", 
         :url => "/images/events/instances/:id/:style/:basename.:extension"
-  translates :special_information
-  accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['special_information'].blank? }
+  translates :special_information, :notes
+  accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['special_information'].blank? && attributes['notes'].blank? }
   validates_presence_of :event_id, :start_at, :end_at
   validates_attachment_content_type :specialimage, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"] 
   
@@ -32,6 +32,10 @@ class Instance < ActiveRecord::Base
   
   def title_en
        self.title.blank? ? self.id.to_s : self.title
+  end
+  
+  def siblings
+    event.instances.where(title: title)
   end
   
 end

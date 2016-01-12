@@ -62,6 +62,7 @@ class ApplicationController < ActionController::Base
       end
 
     end
+    
   end 
   
   def get_domain

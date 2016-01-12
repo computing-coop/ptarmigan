@@ -29,7 +29,7 @@
         .top_box
           = event.title
           .date= date_range(event.date, event.enddate)
-        .description{style: (event.avatar? ? "background: url(#{event.avatar.url(:medium)}) center center;" : false)}= truncate_html(event.description, length: 200)
+        .description{style: (event.avatar? ? "background: url(#{event.avatar.url(:medium)}) center center;" : false)}= truncate_html(event.description, length: 180)
     
 - unless @posts.empty?
   .front_posts_container

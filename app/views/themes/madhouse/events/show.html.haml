@@ -33,6 +33,7 @@
         %br/
         - unless @event.is_festival?
           = t(:performances) + ":"
+          %br/
           - @event.instances.each do |instance|
             = date_range(instance.start_at, instance.end_at, format: :with_day)
             - if instance.future?

@@ -38,6 +38,7 @@ fi:
   daterange: "-"
   photos: 'kuvat'
   videos: 'videoita'
+  performances: 'Performances'
   documents_resources: 'asiakirjat/resurssit'  
   madhouse:
     upcoming_events: 'Tulossa'

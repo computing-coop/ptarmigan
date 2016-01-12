@@ -46,7 +46,10 @@ class Event < ActiveRecord::Base
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }
   
-  scope :between, -> (start_time, end_time) { where(["date >= ? and enddate <= ?", start_time, end_time ]) }
+  scope :between, -> (start_time, end_time) { 
+    where( [ "(date >= ?  AND  enddate <= ?) OR ( enddate >= ? AND enddate <= ? ) OR (date >= ? AND date <= ?)  OR (date < ? AND enddate > ? )",
+    start_time, end_time, start_time, end_time, start_time, end_time, start_time, end_time])
+  }
     
   
   def as_json(options = {})
@@ -75,7 +78,11 @@ class Event < ActiveRecord::Base
   
   
   def one_day?
-   self.date.to_date == self.enddate.to_date
+    if self.enddate.nil?
+      return true
+    else
+      self.date.to_date == self.enddate.to_date
+    end
   end
    
   def self.format_date(date_time)

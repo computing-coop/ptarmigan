@@ -45,6 +45,7 @@ fi:
     posted_by: '%{poster} julkaissut %{when}'
     previous_post: 'Edellinen'
     next_post: 'Seuraava'
+    share: 'Jaa:'
   date:
     formats:
       default: "%e. %Bta %Y"

@@ -46,7 +46,10 @@
             %br/
         
     .small-12.medium-6.medium-pull-6.columns
-      .event_description= raw @event.description
+      .event_description
+        = raw @event.description
+        %br/
+        = render partial: 'shared/share_buttons', locals: {url:  CGI::escape("http://#{request.host}#{request.port != 80 ? ":" + request.port.to_s : ''}#{url_for(@event)}"), title: CGI::escape(@event.name)}
   - if @event.is_festival?
     .row
       - @event.instances.group(:title).each_with_index do |instance, index|

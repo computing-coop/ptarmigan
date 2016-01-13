@@ -260,6 +260,7 @@ en:
     posted_by: "Posted by %{poster} on %{when}"
     no_more_pages: "That's all!"
     dates: 'Dates'
+    share: 'Share:'
   dates:
     zero: 'Dates'
     one: 'Date'

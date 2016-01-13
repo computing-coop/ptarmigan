@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
 class Event < ActiveRecord::Base
-  paginates_per 8
   extend FriendlyId
   friendly_id :title_en, :use => [:slugged, :finders, :history]
   has_many :instances

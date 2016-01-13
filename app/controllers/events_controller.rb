@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class EventsController < ApplicationController
-
+  respond_to :html, :js
+  
   def archive
   #  unless read_fragment({:page => params[:page] || 1})
       @archive = Event.where(['public is true and location_id < 3 and date < ?', Time.now.to_date]).order('date DESC')
@@ -49,7 +50,7 @@ class EventsController < ApplicationController
       if @subsite
         @upcoming = Event.by_subsite(@subsite).by_location(@location.id).where(['public is true AND date >= ?', Time.now.to_date]).order(:date).page params[:page]
       else
-        @upcoming = Event.by_location(@location.id).where(['public is true AND date >= ?', Time.now.to_date]).order(:date).page params[:page]
+        @upcoming = Event.by_location(@location.id).where(['date >= ?', Time.now.to_date]).order(:date).page(params[:page]).per(8)
       end
       if @upcoming.size < 7 && !@subsite
         @archive = Event.by_location(@location.id).where(['public is true AND date < ?', Time.now.to_date]).order('date DESC').page params[:archive_page]
@@ -69,6 +70,7 @@ class EventsController < ApplicationController
 
       respond_to do |format|
         format.html
+        format.js
         format.rss { render :layout => false}
         format.xml  { render :xml => @upcoming }
       end

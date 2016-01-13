@@ -8,25 +8,11 @@
             .title= link_to event.title, event
             .date= timeago_tag event.all_dates
     - column_count = 0
-    - @upcoming.future.sort_by(&:date).each do |event|
-
-
-
-      - if column_count >= 12
-        - column_count = 0
-        
-      - if event.avatar_aspect? == :portrait
-        - column_count += 3
-      - else
-        - column_count += 6
-        
-      %div{class: column_count == 0 ? :rowd  : :nothing}
-        .single_event.columns.small-6{class: [event.avatar? ? (event.avatar_aspect? == :portrait ? 'small-6 medium-6 large-3' : (column_count > 12 ? "small-12 medium-#{event.avatar_width > 900 ? 12 : 6}  large-3" : "medium-6 small-6 large-6")) : 'small-6 medium-6 large-3', event == @upcoming.last && column_count < 12 ? 'hide-for-large-up' : false]}
-          .inner{style: event.avatar? ? "background: url(http://ptarmigan.fi#{event.avatar.url}) no-repeat center center; background-size: cover;" : ''}
-            %h3= link_to event.title, event
-            .date
-              = event.all_dates
-  = paginate @upcoming      
+    .event_boxes
+      = render partial: 'eventfeed', locals: {column_count: column_count}
+  .row
+    .small-12.columns
+      %p.pagination= link_to_next_page(@upcoming, t(:next), :remote => true) 
   
 = content_for :jquery do
-  $('nav.pagination').infinitePages();
+  $('.events_index .pagination').infinitePages();

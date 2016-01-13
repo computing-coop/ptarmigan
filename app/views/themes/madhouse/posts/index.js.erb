@@ -1,0 +1,10 @@
+
+$("<%=j render(:partial => 'postfeed', locals: {column_count: 0}) %>")
+  .appendTo($(".front_posts_container .post_boxes"));
+  
+<% if @posts.last_page? %>
+  $('.pagination').html("<%= t('madhouse.no_more_pages')%>");
+<% else %>
+  $('.pagination')
+    .html("<%=j link_to_next_page(@posts, t(:next), :remote => true) %>");
+<% end %>  

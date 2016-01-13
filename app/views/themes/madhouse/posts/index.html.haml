@@ -1,0 +1,20 @@
+.front_posts_container
+  .row.post_boxes
+    - column_count = 3
+    .latest_post_container.columns.large-3.small-6
+      .inner
+        %h3= t("madhouse.latest_news")
+        - @posts.take(4).each do |post|
+          .post_entry
+            .title= link_to post.title, post
+            .date= timeago_tag post.published_at
+            
+
+    = render partial: 'postfeed', locals: {column_count: column_count}
+
+  .row
+    .small-12.columns
+      %p.pagination= link_to_next_page(@posts, t(:next), :remote => true) 
+  
+= content_for :jquery do
+  $('.front_posts_container .pagination').infinitePages();              

@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Post < ActiveRecord::Base
-  paginates_per 3
+  paginates_per 7
   extend FriendlyId
   friendly_id :title, :use => :history
 

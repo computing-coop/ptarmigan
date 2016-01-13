@@ -19,6 +19,7 @@ class PostsController < InheritedResources::Base
 
     respond_to do |format|
       format.html
+      format.js
       format.rss { render :layout => false}
       format.xml  { render :xml => @posts }
     end

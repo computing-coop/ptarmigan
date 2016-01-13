@@ -1,0 +1,15 @@
+- @posts.each do |post|
+  - if column_count >= 12
+    - column_count = 0
+    
+  - if post.alternateimg_aspect? == :portrait
+    - column_count += 3
+  - else
+    - column_count += 6
+    
+  %div{class: column_count == 0 ? :rowd  : :nothing}
+    .single_post.columns.small-6{class: [post.alternateimg? ? (post.alternateimg_aspect? == :portrait ? 'small-6 medium-6 large-3' : (column_count > 12 ? "small-12 medium-#{post.alternateimg_width > 900 ? 12 : 6}  large-3" : "medium-6 small-6 large-6")) : 'small-6 medium-6 large-3', post == @posts.last && column_count < 12 ? '' : false]}
+      .inner{style: post.alternateimg? ? "background: url(http://ptarmigan.fi#{post.alternateimg.url(:full)}) no-repeat center center; background-size: cover;" : ''}
+        %h3= link_to post.title, post
+        .date
+          = t("madhouse.posted_by", poster: post.is_personal == true ? post.user.name : 'Mad House', when: l(post.published_at.to_date, format: :long))

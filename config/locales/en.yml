@@ -259,3 +259,4 @@ en:
     also_related: 'Other related events:'
     posted_by: "Posted by %{poster} on %{when}"
     no_more_pages: "That's all!"
+    dates: 'Dates'

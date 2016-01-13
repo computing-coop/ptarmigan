@@ -50,7 +50,7 @@
         
 
       
-        = t(:performances) + ":"
+        = t("madhouse.dates") + ":"
         %br/
         - @instance.siblings.sort_by(&:start_at).each do |instance|
           = date_range(instance.start_at, instance.end_at, format: :with_day)

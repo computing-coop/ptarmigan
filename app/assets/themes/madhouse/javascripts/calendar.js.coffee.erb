@@ -1,4 +1,6 @@
+
 $(document).ready ->
+
   $('#calendar').fullCalendar
     editable: true,
     header:
@@ -6,11 +8,12 @@ $(document).ready ->
       center: 'title',
       right: 'month,agendaWeek,agendaDay'
     defaultView: 'month',
+    height: 'auto',
     contentHeight: 'auto',
     firstDay: 1,
     slotMinutes: 30,
     eventSources: [{
-      url: '/admin/calendar',
+      url: '/calendar',
     }],
 
     timeFormat: 'H:mm',
@@ -24,7 +27,7 @@ $(document).ready ->
 
 
 updateEvent = (the_event) ->
-  $.update "/admin/calendar/" + the_event.id,
+  $.update "/calendar/" + the_event.id,
     event:
       title: the_event.title,
       starts_at: "" + the_event.start,

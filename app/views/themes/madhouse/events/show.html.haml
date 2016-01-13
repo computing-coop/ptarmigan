@@ -32,7 +32,7 @@
         
         %br/
         - unless @event.is_festival?
-          = t(:performances) + ":"
+          = t("madhouse.dates") + ":"
           %br/
           - @event.instances.each do |instance|
             = date_range(instance.start_at, instance.end_at, format: :with_day)
@@ -55,6 +55,8 @@
             - instance.siblings.sort_by(&:start_at).map(&:start_at).each do |date|  
               - dates.push(l(date.to_date, format: :short))
             = dates.join(' / ')
+            
+            
 = content_for :jquery do
   - unless @event.place.latitude.blank?
     :plain

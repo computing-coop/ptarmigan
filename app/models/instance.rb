@@ -21,7 +21,8 @@ class Instance < ActiveRecord::Base
       :end => end_at.nil? ? start_at.rfc822 : end_at.rfc822,
       :allDay => false, 
       :recurring => false,
-      :url => Rails.application.routes.url_helpers.event_path(event.slug),
+      :url => self.title.blank? ? Rails.application.routes.url_helpers.event_path(self.event.slug) : 
+        Rails.application.routes.url_helpers.event_instance_path(self.event.slug, self.title.parameterize)
       #:color => "red"
     }
   end

@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
     if session[:locale].blank?
       available  = %w{en fi et ru sv}
       I18n.locale = http_accept_language.compatible_language_from(available)
-
+      session[:locale] = I18n.locale
     else
       I18n.locale = session[:locale]
     end
@@ -63,7 +63,7 @@ class ApplicationController < ActionController::Base
       end
 
     end
-    
+
   end 
   
   def get_domain

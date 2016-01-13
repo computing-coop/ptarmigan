@@ -39,6 +39,11 @@
         = link_to fa_icon("bars"), '#', onclick: 'javascript: $(".menu_bar").slideToggle();return false;'
       .menu_bar.text-center
         .menu_items= render partial: 'layouts/top_menu'           
+    .calendar#calendar_container
+      #calendar
+  
+      .calendar_tab
+        = link_to fa_icon("calendar"), '#', onclick: 'javascript:toggleCalendar();return false;'
     = yield
     %footer= render partial: 'layouts/footer'
 

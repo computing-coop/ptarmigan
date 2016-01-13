@@ -61,6 +61,8 @@ Ptarmigan::Application.routes.draw do
   get '/pages/frontpage', {:controller => :pages, :action => :frontpage}
   get '/pages/:id', {:controller => :pages, :action => :show, :id => :id }
 
+  resources :calendar
+
   # resource :session, :member => {:new_applicant => :get, :applicant_create => :put}
   resources :events do
     resources :instances, :path => "performance/"
@@ -106,7 +108,7 @@ Ptarmigan::Application.routes.draw do
   get '/admin/:title/history.:format', :controller => 'admin/wikipages', :action => 'history'
 
   get '/admin/wiki/:title/edit', :controller => 'admin/wikipages', :action => 'edit'
-  get '/calendar(/:year(/:month))' => 'pages#frontpage', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+  #get '/calendar(/:year(/:month))' => 'pages#frontpage', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
   
   namespace :admin do
     resources :calendar

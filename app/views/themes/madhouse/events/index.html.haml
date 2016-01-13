@@ -1,15 +1,21 @@
+.calendar#calendar_container
+  #calendar
+  
+  .calendar_tab
+    = link_to fa_icon("calendar"), '#', onclick: 'javascript:toggleCalendar();return false;'
+  
 .events_index
-  .row
-    .latest_event_container.columns.large-3.small-6
-      .inner
-        %h3= t("madhouse.upcoming")
-        - @upcoming.take(4).each do |event|
-          .event_entry
-            .title= link_to event.title, event
-            .date= timeago_tag event.all_dates
-    - column_count = 0
-    .event_boxes
-      = render partial: 'eventfeed', locals: {column_count: column_count}
+  / .row
+  /   .latest_event_container.columns.large-3.small-6
+  /     .inner
+  /       %h3= t("madhouse.upcoming")
+  /       - @upcoming.take(4).each do |event|
+  /         .event_entry
+  /           .title= link_to event.title, event
+  /           .date= timeago_tag event.all_dates
+  - column_count = 0
+  .event_boxes
+    = render partial: 'eventfeed', locals: {column_count: column_count}
   .row
     .small-12.columns
       %p.pagination= link_to_next_page(@upcoming, t(:next), :remote => true) 

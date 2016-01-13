@@ -171,6 +171,8 @@ GEM
       railties (>= 3.2, < 5)
       responders
     innertube (1.1.0)
+    jquery-easing-rails (0.0.2)
+      railties (>= 3.1.0)
     jquery-infinite-pages (0.2.0)
       coffee-script
       jquery-rails
@@ -384,6 +386,7 @@ DEPENDENCIES
   hominid
   http_accept_language
   inherited_resources
+  jquery-easing-rails
   jquery-infinite-pages
   jquery-rails
   jquery-slick-rails

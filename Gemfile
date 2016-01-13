@@ -58,6 +58,7 @@ gem 'inherited_resources'
 gem 'jquery-infinite-pages'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'jquery-easing-rails'
 gem 'jquery_ui_rails_helpers'
 gem "jquery-slick-rails"
 

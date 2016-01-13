@@ -6,7 +6,7 @@ $(document).ready ->
       center: 'title',
       right: 'month,agendaWeek,agendaDay'
     defaultView: 'month',
-
+    contentHeight: 'auto',
     firstDay: 1,
     slotMinutes: 30,
     eventSources: [{

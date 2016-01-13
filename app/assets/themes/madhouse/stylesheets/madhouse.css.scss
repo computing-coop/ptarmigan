@@ -475,3 +475,29 @@ footer {
     }
   }
 }
+
+// calendar pull-tab
+.calendar {
+  width: 85%;
+  left: -85%;
+  position: fixed;
+  z-index: 899;
+  opacity: 0.95;
+  background-color: yellow;
+  padding: 1.5rem;
+  
+  #calendar {
+    float: left;
+  }
+  .calendar_tab {
+    border-radius: 0px 30px 30px 0px;
+    padding: 0.75rem;
+    font-size: 2.15rem;
+    left: 100%;
+
+    position: absolute;
+    background-color: yellow;
+    margin: -24px 0 0 0;
+  }
+}
+

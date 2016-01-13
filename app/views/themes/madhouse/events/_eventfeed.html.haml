@@ -4,8 +4,7 @@
 
   - if column_count >= 12
     - column_count = 0
-    
-  - if event.avatar_aspect? == :portrait
+  - if !event.avatar? || event.avatar_aspect? == :portrait
     - column_count += 3
   - else
     - column_count += 6
@@ -15,5 +14,5 @@
       .inner{style: event.avatar? ? "background: url(http://ptarmigan.fi#{event.avatar.url}) no-repeat center center; background-size: cover;" : ''}
         %h3= link_to event.title, event
         .date
-          = event.all_dates
+          = date_range(event.date, event.enddate)
         

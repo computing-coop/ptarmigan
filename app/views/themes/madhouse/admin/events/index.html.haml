@@ -10,6 +10,9 @@
     .row{class: [cycle('odd', 'even'), @events[index+1] ? (@events[index+1].date.year != event.date.year ? :new_year : false) : false]}
       .small-12.medium-2.columns.span_date
         %span{:class => :smaller_font}= date_range(event.date, event.enddate)
+        - if event.avatar?
+          %br/
+          = image_tag event.avatar.url
       .medium-5.columns
         %span{:class => event.location.locale + "_event"}
           = event.title

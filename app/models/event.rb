@@ -51,6 +51,28 @@ class Event < ActiveRecord::Base
     start_time, end_time, start_time, end_time, start_time, end_time, start_time, end_time])
   }
   
+  def all_dates
+    date
+  end
+  
+  def avatar_width
+    if avatar?
+      width, height = avatar_dimensions.split('x')
+      return width.to_i
+    else
+      return 0
+    end
+  end
+  
+  def avatar_aspect?
+    if avatar?
+      width, height = avatar_dimensions.split('x')
+      return (width.to_f / height.to_f ).to_f >= 1 ? :landscape : :portrait
+    else
+      return nil
+    end
+  end
+  
   def is_festival?
     if instances.empty?
       return false

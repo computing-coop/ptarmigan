@@ -379,3 +379,99 @@ footer {
 #mapcontainer {
   height: 200px;
 }
+
+
+// events index page
+
+.events_index {
+  background-color: black;
+  padding: 1.5rem 0;
+  color: white;
+  .latest_event_container {
+    background-color: #000;
+    color: white;
+    padding: 0rem 1.1rem;
+    height: 500px;
+    overflow: hidden;
+    .inner {
+      padding: 0.8rem;
+      height: 100%;
+      background-color: $madhouseblue;
+    }
+    h3 {
+      font-family: $signika;
+      font-size: 1.8rem;
+      line-height: 2rem;
+      margin-bottom: 0.8rem;
+      
+      color: #FFF;
+    }
+    .event_entry {
+      margin-bottom: 2rem;
+      .title {
+        font-family: $signika;
+        font-size: 1.125rem;
+        line-height: 1.4rem;
+        font-style: italic;
+        margin-bottom: 0.4rem;
+        a {
+          color: #ccc;
+          &:hover {
+            color: #FFF;
+          }
+        }
+      }
+      .date {
+        font-size: 0.7rem;
+
+        color: #EFEFEF;
+        text-transform: uppercase;
+      }
+    }
+  }
+  
+  
+  h3 {
+    font-family: $signika;
+    font-size: 1.8rem;
+    line-height: 2rem;
+    margin-bottom: 0.8rem;
+    
+    color: #FFF;
+  }
+  .single_event {
+    background-color: #000;
+    padding: 0rem 1.1rem;
+    margin-bottom: 1.4rem;
+    color: #333;
+    height: 500px;
+    .inner {
+      padding: 0.8rem;
+      height: 100%;
+      h3 {
+        a { color: #EFEFEF; 
+          &:hover {
+            color: $madhouseblue;
+          }
+        }
+        float: left;
+        font-size: 1.625rem;
+        line-height: 1.8rem;
+        background-color: #000;
+        padding: 0.4rem 0.7rem;
+        font-family: $signika;
+        margin-bottom: 0;
+      }
+      .date {
+        clear: both;
+        color: #999;
+        background-color: #222;
+        padding: 0.4rem 0.7rem;
+        float: left;
+        font-size: 0.7rem;
+        margin-top: 0.25rem;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

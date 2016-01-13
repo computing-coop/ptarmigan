@@ -26,4 +26,7 @@
             %h3= link_to event.title, event
             .date
               = event.all_dates
-      
+  = paginate @upcoming      
+  
+= content_for :jquery do
+  $('nav.pagination').infinitePages();

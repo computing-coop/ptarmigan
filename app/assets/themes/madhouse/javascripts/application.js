@@ -10,6 +10,6 @@
 //= require rails-timeago
 //= require locales/jquery.timeago.fi.js
 //= require locales/jquery.timeago.sv.js
-
+//= require jquery.infinite-pages
 
 $(document).foundation();

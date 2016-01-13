@@ -35,7 +35,7 @@ class Admin::PagesController < ApplicationController
   end
 
   def index
-    @pages = Page.page(params[:page]).per(50)
+    @pages = Page.by_location(@location.id).page(params[:page]).per(50)
     respond_to do |format|
       format.html
       format.xml  { render :xml => @pages }
@@ -84,7 +84,7 @@ class Admin::PagesController < ApplicationController
   protected
   
   def page_params
-    params.require(:page).permit( [:carpusel, :slug, :location_id, :subsite_id, 
+    params.require(:page).permit( [:carousel, :slug, :location_id, :subsite_id, 
        translations_attributes: [:id, :locale, :title, :excerpt, :body] ])
   end
 

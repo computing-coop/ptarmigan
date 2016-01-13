@@ -1,0 +1,20 @@
+.row
+  .small-12.columns
+    %h2 Static pages
+    = link_to  'Create new page', new_admin_page_path, class: [:button]
+
+.row
+  .small-12
+    - if !@pages.empty?
+      .page_conatiner
+        %table{:cellpadding => 5, :cellspacing => 5, :border => 0}
+          %thead
+            %th Title
+            %th First few words
+            %th Slug
+            %th Actions
+          = render :partial => "page", :collection => @pages
+      = paginate(@pages)
+    - else
+      %p There are no pages to show yet.
+    = link_to  'Create new page', new_admin_page_path, class: [:button]

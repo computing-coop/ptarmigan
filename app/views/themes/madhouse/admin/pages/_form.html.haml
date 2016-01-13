@@ -1,0 +1,65 @@
+.row
+  .small-12.columns
+    = semantic_form_for([:admin, page], :html => {:multipart => true}) do |f|
+
+      .six.columns.alpha
+        = f.input :location_id, as: :hidden, data: {value: 4}
+
+      .twelve.columns
+
+        = tabs_for do |tab|
+          - tab.create('english', 'English') do
+            = f.globalize_fields_for :en do |en|
+              = en.label :title
+              %br
+              = en.text_field :title
+              %br
+              = en.label :excerpt
+              %br
+              = en.text_area :excerpt 
+              %br
+              = en.label :body
+              %br
+              = en.cktext_area :body
+          - tab.create('finnish', 'Finnish') do
+            = f.globalize_fields_for :fi do |fi|
+              = fi.label :title
+              %br
+              = fi.text_field :title
+              %br
+              = fi.label :excerpt
+              %br
+              = fi.text_area :excerpt
+              %p
+              = fi.label :body
+              %br
+              = fi.cktext_area :body
+
+          - tab.create('swedish', 'Swedish') do
+            = f.globalize_fields_for :sv do |sv|
+              = sv.label :title
+              %br
+              = sv.text_field :title
+              %br
+              = sv.label :excerpt
+              %br
+              = sv.text_area :excerpt
+              %p
+              = sv.label :body
+              %br
+              = sv.cktext_area :body
+
+      .six.columns.alpha
+        - unless f.object.new_record?
+          - if f.object.carousel?
+            = image_tag f.object.carousel.url(:full)
+        = f.input :carousel, :label => "Carousel image (940x400) - will appear in frontpage carousel if exists"
+      .six.columns.omega
+        = f.input :slug
+      .twelve.columns
+        = f.submit "Submit"
+    
+    :javascript
+      $(function() {
+        $("#tabs").tabs();
+      });

@@ -128,6 +128,29 @@ footer {
   }
 }
 
+.page  {
+  
+  .page_banner {
+    padding: 1.4rem 0;
+    background-color: $madhouseblue;
+    .title {
+      font-size: 2.2rem;
+      line-height: 2.65rem;
+      font-family: $signika;
+      color: #FFF;
+    }
+  }
+  .page_content {
+    margin-top: 2rem;
+    .description {
+      p {
+        font-size: 0.875rem;
+        line-height: 1.35rem;
+        color: #444;
+      }
+    }
+  }
+}
 .front_posts_container {
   background-color: black;
   padding: 1.5rem 0;

@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   # before_filter :tiib_check
   before_filter :configure_permitted_parameters, if: :devise_controller?
   # before_filter :scorestore_check
+
   
   def add_to_mailchimp
     h = Hominid::Base.new({:api_key => MAILCHIMP_API_KEY})
@@ -102,6 +103,9 @@ class ApplicationController < ActionController::Base
   end
   
   def get_next_events
+    if @location.name == 'Mad House'
+      @menu = Page.by_location(@location.id).all
+    end
     unless (params[:controller] == 'pages' && params[:action] == 'frontpage')
       @next_events = []
       unless (params[:controller] == 'posts' && params[:action] == 'index' && !params[:page].blank?)
@@ -222,6 +226,7 @@ class ApplicationController < ActionController::Base
       config.access_token_secret = ENV['TWITTER_ACCESS_SECRET']
     end  
   end
+
   
   protected
   

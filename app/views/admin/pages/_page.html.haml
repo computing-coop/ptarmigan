@@ -5,11 +5,16 @@
         = link_to page.title, edit_admin_page_path(page)
         - unless page.subsite.nil?
           %strong= "(#{page.subsite.name})"
+        .translations
+          %strong= t "madhouse.available_in"
+          - page.translations.each do |t|
+            %span= t.locale  
       %td
-        = awesome_truncate(page.excerpt)
+        = sanitize(awesome_truncate(page.body))
       %td
         =h page.slug
       %td{:class => page.location.name.downcase}
-        %span.small_text= link_to '[edit]', edit_admin_page_path(page)
-        %span.smaller_text= link_to 'see on public side', page_url(:id => page.slug), :target => :_blank
-        %span.delete= link_to '[delete]', [:admin, page], :confirm => 'Are you sure?', :method => :delete
+        = link_to 'View', page_url(:id => page.slug), :target => :_blank, class: [:button, :tiny, :secondary]
+        = link_to 'Edit', edit_admin_page_path(page), class: [:button, :tiny]
+       
+        = link_to 'Delete', [:admin, page], data: {:confirm => 'Are you sure?'}, :method => :delete, class: [:button, :tiny, :alert]

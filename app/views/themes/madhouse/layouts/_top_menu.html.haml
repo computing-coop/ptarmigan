@@ -1,0 +1,5 @@
+%ul.top_nav
+  %li{style: "width: #{(100.to_f / (@menu.size + 2)).to_f}%;"}= link_to t(:events), events_path
+  %li{style: "width: #{(100.to_f / (@menu.size + 2)).to_f}%;"}= link_to t(:news), posts_path
+  - @menu.each do |menu|
+    %li{style: "width: #{(100.to_f / (@menu.size + 2)).to_f}%;"}= link_to menu.title, page_path(menu.slug)

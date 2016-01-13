@@ -43,5 +43,13 @@ Ptarmigan::Application.configure do
      "http://localhost:3000"
    end
  }
+ config.middleware.insert_before 0, "Rack::Cors" do
+    allow do
+      origins '*'
+      resource '*', :headers => :any, :methods => [:get, :post, :options]
+    end
+  end
+ 
+ 
 end
 

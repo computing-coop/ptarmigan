@@ -248,6 +248,7 @@ GEM
     rack-contrib (1.4.0)
       git-version-bump (~> 0.15)
       rack (~> 1.4)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.5)
@@ -407,6 +408,7 @@ DEPENDENCIES
   public_activity
   quiet_assets
   rack-cache
+  rack-cors
   rails (= 4.2.5)
   rails-assets-datetimepicker!
   rails-timeago (~> 2.0)

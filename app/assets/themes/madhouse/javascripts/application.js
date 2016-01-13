@@ -5,8 +5,7 @@
 //= require jquery.slick
 //= require moment
 //= require fullcalendar
-//= require fullcalendar/lang/fi
-//= require fullcalendar/lang/sv
+//= require fullcalendar/lang-all
 //= require 'foundation/foundation' 
 //= require foundation
 //= require rails-timeago

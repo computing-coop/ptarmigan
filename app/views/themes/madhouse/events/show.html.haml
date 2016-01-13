@@ -30,12 +30,14 @@
         = raw @event.notes.to_s.gsub(/\n/, '<br />')
         %br/
         
-        %br/
+
         - unless @event.is_festival?
-          = t("madhouse.dates") + ":"
+          = t(:dates, count: @event.instances.size + 1) + ":"
           %br/
+          - if @event.one_day?
+            = l @event.date, format: :long
           - @event.instances.each do |instance|
-            = date_range(instance.start_at, instance.end_at, format: :with_day)
+            = l instance.start_at,  format: :long
             - if instance.future?
               - unless instance.ticket_url.blank?
                 = link_to instance.ticket_url, :target => :_blank do

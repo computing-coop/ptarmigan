@@ -37,6 +37,7 @@ header {
     font-family: $signika;
     display: none;
     .menu_items {
+      width: 100%;
       display: inline-block;
       ul.top_nav {
         display: table;

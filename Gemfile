@@ -72,6 +72,7 @@ gem 'nested_form' #, :git => 'git://github.com/ryanb/nested_form.git'
 gem 'paperclip'#, "~> 3.0"
 gem 'public_activity'
 gem 'rack-cache'
+gem "rack-cors", group: :development
 gem 'rails-timeago', '~> 2.0'
 gem 'randumb'
 gem 'recaptcha', :require => 'recaptcha/rails'

@@ -185,3 +185,7 @@ fi:
         less_than_or_equal_to: "täytyy olla pienempi tai yhtä suuri kuin {{count}}"
         odd: "täytyy olla pariton"
         even: "täytyy olla parillinen"
+  dates:
+    zero: 'Aikataulu'
+    one: 'Aikataulu'
+    other: 'Aikataulu'

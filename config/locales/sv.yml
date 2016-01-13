@@ -268,3 +268,7 @@ sv:
   documents_resources: 'dokument/resurser'
   photos: 'bilder'
   videos: 'videor'
+  dates:
+    zero: 'Datum'
+    one: 'Datum'
+    other: 'Datum'  

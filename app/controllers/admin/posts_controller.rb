@@ -43,7 +43,7 @@ class Admin::PostsController < Admin::BaseController
   protected
   
   def post_params
-    params.require(:post).permit([:user_id, :location_id, :published, :is_personal, :carousel, :hide_carousel, :slug, :not_news,
+    params.require(:post).permit([:user_id, :location_id, :published, :remove_carousel, :remove_alternateimg, :is_personal, :carousel, :hide_carousel, :slug, :not_news,
         :subsite_id, :show_on_main, :published_at, :embed_gallery_id, :embed_above_post, :second_embed_gallery_id, :sticky,
         :alternateimg, postcategory_ids: [], translations_attributes: [:id, :locale, :post_id, :body, :title]])
   end

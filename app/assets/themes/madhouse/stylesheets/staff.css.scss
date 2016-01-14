@@ -7,6 +7,12 @@
 
 @import 'foundation';
 
+.icons {
+  img {
+    max-width: 15%;
+    height: auto;
+  }
+}
 form {
   li {
     list-style-type: none;

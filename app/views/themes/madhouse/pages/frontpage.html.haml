@@ -47,7 +47,7 @@
         - if column_count >= 12
           - column_count = 0
           
-        - if post.alternateimg_aspect? == :portrait
+        - if post.alternateimg_aspect? == :portrait || !post.alternateimg?
           - column_count += 3
         - else
           - column_count += 6

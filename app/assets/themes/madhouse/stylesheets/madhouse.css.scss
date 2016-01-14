@@ -1,13 +1,36 @@
 $madhouseblue: rgb(35, 164, 170);
+$madhouselightblue: #8be1e5;
 $signika: 'Signika', sans-serif;
 $bodytext: 'Verdana', 'Arial', sans-serif;
 
+html,
+body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+
+
+
 a {
   color: $madhouseblue;
+  -moz-transition:color .2s ease-in;
+  -o-transition:color .2s ease-in;
+  -webkit-transition:color .2s ease-in;
+  &:hover {
+   color: $madhouselightblue; 
+  }
 }
+
+#container {
+   min-height:100%;
+   position:relative;
+}
+
 header {
   padding: 1.125rem 0 0.4rem 0;
   .icons {
+    position: absolute;
     float: left;
     a {
       color: $madhouseblue;
@@ -20,13 +43,23 @@ header {
   .title {
     min-height: 50px;
     text-align: center;
-
-    padding: 0.7rem;
+    &.front {
+      padding-bottom: 1rem;
+    }
   }
   .languages {
     float: right;
-    margin: 0rem 1rem 0 1rem;
+    right: 10px;
+    position: absolute;
+    margin: -0.4rem 1rem 0 1rem;
     font-size: 0.7rem;
+    .right_menu_link {
+      margin-top: 0.2rem;
+      font-size: 0.8rem;
+      overflow-y: hidden;
+      text-transform: uppercase;
+      font-family: $signika;
+    }
   }
   
   clear: both;
@@ -36,6 +69,9 @@ header {
     font-size: 0.9rem;
     font-family: $signika;
     display: none;
+    &.visible {
+      display: block;
+    }
     .menu_items {
       width: 100%;
       display: inline-block;
@@ -96,6 +132,9 @@ footer {
   padding: 1.5rem 0;
   background-color: $madhouseblue;
   max-height: 150px;
+
+  bottom: 0;
+  //  padding: 1rem;
   
   .logos {
     img {
@@ -107,6 +146,43 @@ footer {
   
 }
 
+span.ticket_button {
+  border: 1px solid $madhouseblue;
+  padding: 0.2rem;
+  border-radius: 5px;
+  margin-left: 10px;
+  background-color: $madhouseblue;
+  color: white;
+  a {
+    color: #FFF;
+    opacity: 1;
+       transition: opacity .25s ease-in-out;
+       -moz-transition: opacity .25s ease-in-out;
+       -webkit-transition: opacity .25s ease-in-out;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
+
+span.facebook_button {
+  border: 1px solid $madhouseblue;
+  padding: 0.2rem;
+  border-radius: 5px;
+  margin-left: 0px;
+  background-color: $madhouseblue;
+  color: white;
+  a {
+    color: #FFF;
+    opacity: 1;
+       transition: opacity .25s ease-in-out;
+       -moz-transition: opacity .25s ease-in-out;
+       -webkit-transition: opacity .25s ease-in-out;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
 .upcoming_events {
   h3 {
     font-family: $signika;
@@ -117,6 +193,7 @@ footer {
   .event {
     margin: 1rem 0;
     .top_box {
+      overflow-y: hidden;
       padding: 0.7rem;
       font-family: 'Signika', sans-serif;
       font-weight: 600;
@@ -180,39 +257,49 @@ footer {
   background-color: black;
   padding: 1.5rem 0;
   color: white;
+  a {
 
-  .single_post {
-    background-color: #000;
-    padding: 0rem 1.1rem;
-    margin-bottom: 1.4rem;
-    color: #333;
-    height: 500px;
-    .inner {
-      padding: 0.8rem;
-      height: 100%;
-      h3 {
-        a { color: #EFEFEF; 
-          &:hover {
-            color: $madhouseblue;
-          }
+    &:hover {
+     
+     .single_post {
+       
+       opacity: 0.9; 
+       .inner {
+         h3 {
+           color: $madhouselightblue;
+         }
+       }
+     }
+    }
+    .single_post {
+      background-color: #000;
+      padding: 0rem 1.1rem;
+      margin-bottom: 1.4rem;
+      color: #333;
+      height: 500px;
+      .inner {
+        padding: 0.8rem;
+        height: 100%;
+        h3 {
+          color: #EFEFEF; 
+          float: left;
+          font-size: 1.625rem;
+          line-height: 1.8rem;
+          background-color: #000;
+          padding: 0.4rem 0.7rem;
+          font-family: $signika;
+          margin-bottom: 0;
         }
-        float: left;
-        font-size: 1.625rem;
-        line-height: 1.8rem;
-        background-color: #000;
-        padding: 0.4rem 0.7rem;
-        font-family: $signika;
-        margin-bottom: 0;
-      }
-      .date {
-        clear: both;
-        color: #999;
-        background-color: #222;
-        padding: 0.4rem 0.7rem;
-        float: left;
-        font-size: 0.7rem;
-        margin-top: 0.25rem;
-        text-transform: uppercase;
+        .date {
+          clear: both;
+          color: #999;
+          background-color: #222;
+          padding: 0.4rem 0.7rem;
+          float: left;
+          font-size: 0.7rem;
+          margin-top: 0.25rem;
+          text-transform: uppercase;
+        }
       }
     }
   }
@@ -301,6 +388,14 @@ footer {
     font-family: $signika;
     line-height: 1.625rem;
     font-size: 1.125rem;
+    .aikataulu {
+      margin-top: 1.5rem;
+      .instance {
+        margin: 0 1rem;
+        font-size: 1rem;
+        padding: 0;
+      }
+    }
   }
   .google_map {
     display: none;
@@ -336,10 +431,21 @@ footer {
       float: left;
     }
   }
+  
+  .prev_next {
+    margin: 4rem 0;
+    font-size: 1.125rem;
+    font-family: $signika;
+    a {
+      color: $madhouseblue;
+    }
+  }
+  
+  
 }
 
 .post_single {
-  margin-top: 1.4rem;
+
   .post_title {
     padding: 1.5rem 0;
     margin-bottom: 0.8rem;
@@ -368,6 +474,7 @@ footer {
     }
   }
   .prev_next {
+    margin: 4rem 0;
     font-size: 1.125rem;
     font-family: $signika;
     a {
@@ -484,13 +591,17 @@ footer {
   position: fixed;
   z-index: 899;
   opacity: 0.95;
-  background-color: #8be1e5;
+  background-color: $madhouselightblue;
   padding: 1.5rem;
   
   #calendar {
     float: left;
-    
-
+    .fc-event-container .fc-event {
+      background-color: $madhouseblue;
+    }
+    .fc-day-grid-event .fc-content {
+      white-space: inherit;
+    }
     .fc-toolbar {
       margin-bottom: 0.2rem;
       .fc-left, .fc-left .fc-button-group, .fc-right .fc-button-group {

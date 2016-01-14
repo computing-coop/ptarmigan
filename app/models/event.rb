@@ -168,15 +168,14 @@ class Event < ActiveRecord::Base
     enddate.blank? ? date.to_time : enddate.to_time
   end
 
-  # def end_time
-  #   if self.notes.nil? || self.notes.match(/\d\d\:\d\d/).nil?
-  #     (date.to_s + ' 22:30').to_datetime
-  #   elsif self.notes.scan(/\d\d\:\d\d/).size > 1
-  #     (self.date.to_s + " " + self.notes.scan(/\d\d\:\d\d/)[1]).to_datetime
-  #   else
-  #     DateTime.strptime((self.start_time.to_i + 10800).to_s, '%s')
-  #   end
-  # end
+  def previous_event
+    self.class.where("location_id = ? and public is true and date < ?", location_id, date).order("date desc").first
+  end
+
+  def next_event
+    self.class.where("location_id = ? and public is true and date > ?", location_id, date).order("date asc").first
+  end
+  
     
   def start_time
     if self.notes.nil? || self.notes.match(/\d\d\:\d\d/).nil?
@@ -200,7 +199,15 @@ class Event < ActiveRecord::Base
   end
   
   def future?
-    self.date >= Date.parse(Time.now.strftime('%Y/%m/%d'))
+    if self.enddate
+      self.enddate >= Date.parse(Time.now.strftime('%Y/%m/%d'))
+    else 
+      self.date >= Date.parse(Time.now.strftime('%Y/%m/%d'))
+    end
+  end
+  
+  def name
+    title
   end
   
   

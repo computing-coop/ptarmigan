@@ -15,7 +15,7 @@ class Instance < ActiveRecord::Base
   def as_json(options = {})
     {
       :id => self.id,
-      :title => self.event.title,
+      :title => self.title.blank? ? self.event.title : self.title,
       :description => self.special_information.blank? ? self.event.description : self.special_information,
       :start => start_at.rfc822,
       :end => end_at.nil? ? start_at.rfc822 : end_at.rfc822,

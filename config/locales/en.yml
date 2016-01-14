@@ -2,7 +2,18 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-
+  time:
+    am: am
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%d %B, %Y %H:%M"
+      short: "%d %b %H:%M"
+    pm: pm
+  date:
+    formats:
+      default: "%d-%m-%Y"
+      long: "%d %B, %Y"
+      short: "%d %b"
   date_range:
     with_day:
       same_day: "%{from_weekday} %{from_day} %{from_month} %{year} %{start_time} %{sep} %{end_time}"
@@ -166,8 +177,6 @@ en:
   project_spiel: "We call Ptarmigan a 'project space' and we like recurring events that can build on existing experiences.  Many of our events fall under one or more of these projects.  We're always open to proposals for new projects as well as new events under existing themes."
   artists_spiel: "Ptarmigan has been proud to operate a residency programme since our inception. These residencies have ranged from two-month projects (supported by Kulturkontakt Nord) to shorter, grassroots/self-funded projects. Below are some of the artists, curators, and producers who we have hosted over the years."
   past_projects_spiel: "Ptarmigan has hosted a variety of projects, some regular and some irregular. Here are former recurring projects that are currently inactive (but may come back to life)."
-  date:
-    first_day_of_week: 1
   donekino:
     more: 'More....'
     signupform: 'Join the team! Apply here to participate in Done Kino (as there is a limited amount of places).'
@@ -256,11 +265,17 @@ en:
     available_in: 'Available in:'
     previous_post: 'Previous post'
     next_post: 'Next post'
+    previous_event: 'Previous event'
+    next_event: 'Next event'
     also_related: 'Other related events:'
     posted_by: "Posted by %{poster} on %{when}"
     no_more_pages: "That's all!"
     dates: 'Dates'
     share: 'Share:'
+    buy_tickets: 'Buy tickets'
+    tickets: 'Tickets'
+    facebook_link: 'See on Facebook'
+    buy: 'Buy'
   dates:
     zero: 'Dates'
     one: 'Date'

@@ -36,18 +36,18 @@
           %strong SV
       .title.text-center
         - if @event
-          = retina_image_tag theme_image_path("MHH_season#{@event.madhouse_season}.png")
+          = link_to retina_image_tag(theme_image_path("MHH_season#{@event.madhouse_season}.png")), '/'
         - else
-          =  retina_image_tag theme_image_path('madhousebanner.png')
-        = link_to fa_icon("bars"), '#', onclick: 'javascript: $(".menu_bar").slideToggle();return false;'
-      .menu_bar.text-center
+          =  link_to retina_image_tag(theme_image_path('madhousebanner.png')), '/'
+        -#= link_to fa_icon("bars"), '#', onclick: 'javascript: $(".menu_bar").slideToggle();return false;'
+      .menu_bar.visible.text-center
         .menu_items= render partial: 'layouts/top_menu'           
     .calendar#calendar_container
       #calendar
   
       .calendar_tab
         = link_to fa_icon("calendar"), '#', onclick: 'javascript:toggleCalendar();return false;'
-    = yield
+    #container= yield
     %footer= render partial: 'layouts/footer'
 
         
@@ -61,7 +61,7 @@
               right: 'month,agendaWeek,agendaDay'
             },
             defaultView: 'month',
-            height: 'auto',
+            contentHeight: '400px',
             lang: '#{I18n.locale.to_s}',
             contentHeight: 'auto',
             firstDay: 1,

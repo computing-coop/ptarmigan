@@ -9,7 +9,7 @@
             - unless @event.ticket_url.blank?
               = link_to @event.ticket_url do
                 = fa_icon 'ticket'
-                = t(:buy_ticket)
+                = t(:buy_tickets)
             
   .row
 
@@ -19,7 +19,17 @@
         .event_image
           = image_tag @event.avatar.url
       .event_info
-        = ptarmigan_cost(@event.cost)
+        - if @event.cost.blank? || @event.cost == 0
+          = t(:free)
+        - else
+          = t("madhouse.tickets") + ": "
+          = ptarmigan_cost(@event.cost)
+          - unless @event.discountedcost.blank?
+            = " / "
+            = ptarmigan_cost(@event.discountedcost)
+          - if @event.future?
+            - unless @event.ticket_url.blank?
+              %span.ticket_button= link_to fa_icon('ticket') + ' ' + t("madhouse.buy"), @event.ticket_url
         %br/
         = t :location
         = ": " + @event.place.name
@@ -28,27 +38,31 @@
         
         %br/
         = raw @event.notes.to_s.gsub(/\n/, '<br />')
-        %br/
-        
+  
+
 
         - unless @event.is_festival?
-          = t(:dates, count: @event.instances.size + 1) + ":"
-          %br/
-          - if @event.one_day?
-            = l @event.date, format: :long
-          - @event.instances.each do |instance|
-            = l instance.start_at,  format: :long
-            - if instance.future?
-              - unless instance.ticket_url.blank?
-                = link_to instance.ticket_url, :target => :_blank do
-                  = fa_icon 'ticket'
-                  = t(:buy_ticket)
+          .aikataulu
+            = t(:dates, count: @event.instances.size + 1) + ":"
             %br/
+            - if @event.one_day?
+              .instance= l @event.date.to_date, format: :long
+            - @event.instances.each do |instance|
+              .instance= l instance.start_at,  format: :long
+              - if instance.future?
+                - unless instance.ticket_url.blank?
+                  = link_to instance.ticket_url, :target => :_blank do
+                    = fa_icon 'ticket'
+                    = t(:buy_ticket)
+
         
     .small-12.medium-6.medium-pull-6.columns
       .event_description
         = raw @event.description
         %br/
+        - unless @event.facebook.blank?
+          %span.facebook_button= link_to t("madhouse.facebook_link"), "https://www.facebook.com/events/#{@event.facebook}/", target: :_blank
+          %br/
         = render partial: 'shared/share_buttons', locals: {url:  CGI::escape("http://#{request.host}#{request.port != 80 ? ":" + request.port.to_s : ''}#{url_for(@event)}"), title: CGI::escape(@event.name)}
   - if @event.is_festival?
     .row
@@ -60,7 +74,15 @@
             - instance.siblings.sort_by(&:start_at).map(&:start_at).each do |date|  
               - dates.push(l(date.to_date, format: :short))
             = dates.join(' / ')
-            
+
+  .prev_next
+    .row
+      .small-4.small-offset-1.columns
+        - unless @event.previous_event.nil?
+          = link_to raw(fa_icon('long-arrow-left') + " #{t("madhouse.previous_event")}: #{@event.previous_event.title}"), @event.previous_event
+      .small-4.small-offset-1.columns
+        - unless @event.next_event.nil?
+          = link_to raw("#{t("madhouse.next_event")}: #{@event.next_event.title}" + fa_icon('long-arrow-right')), @event.next_event            
             
 = content_for :jquery do
   - unless @event.place.latitude.blank?

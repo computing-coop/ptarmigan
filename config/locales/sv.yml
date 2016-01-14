@@ -272,3 +272,7 @@ sv:
     zero: 'Datum'
     one: 'Datum'
     other: 'Datum'  
+  madhouse:
+    buy_tickets: 'Köp biljett'
+    tickets: 'Biljett'
+    buy: 'Köp'

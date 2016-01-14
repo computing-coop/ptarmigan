@@ -19,9 +19,16 @@ $(document).foundation();
 function toggleCalendar() {
 
   if ( jQuery('#calendar_container').css("left") == "0px")  {
-    jQuery('#calendar_container').animate({left:"-85%"}, 100);
+    jQuery('#calendar_container').animate({left:"-85%"}, 600);
+    jQuery('#calendar_container').animate({top: parseInt($('#container').offset().top) + 'px' }, 600);
+
+    jQuery('#calendar_container').css('position', 'fixed');
   } else {
-    jQuery('#calendar_container').animate({left:"0%"}, 100);
+    
+    var eTop = $('#calendar_container').offset().top; 
+    jQuery('#calendar_container').css('position', 'absolute');
+    jQuery('#calendar_container').css('top', parseInt(eTop) + 'px'); 
+        jQuery('#calendar_container').animate({left:"0%"}, 100);
   }
 
 }

@@ -27,7 +27,7 @@ fi:
   what_is_ptarmigan: "Mikä on Ptarmigan?"
   join_our_mailing_list: "Liity sähköpostilistallemme!"
   map: 'Kartta'
-  free: "ilmainen pääsy"
+  free: "Ilmainen sisäänpääsy"
   podcasts: 'Podcastit'
   news: "Uutiset"
   read_more: "lue lisää"
@@ -45,27 +45,71 @@ fi:
     posted_by: '%{poster} julkaissut %{when}'
     previous_post: 'Edellinen'
     next_post: 'Seuraava'
+    previous_event: 'Edellinen'
+    next_event: 'Seuraava'
     share: 'Jaa:'
+    buy_tickets: 'Ostaa liput'
+    tickets: 'Liput'
+    buy: 'Osta'
+    facebook_link: 'Tapahtuma Facebookissa'
   date:
-    formats:
-      default: "%e. %Bta %Y"
-      long: "%A%e. %Bta %Y"
-      short: "%e.%m.%Y"
-    first_day_of_week: 1
-    day_names: [sunnuntai, maanantai, tiistai, keskiviikko, torstai, perjantai, lauantai]
-    abbr_day_names: [su, ma, ti, ke, to, pe, la]
-    month_names: [~, tammikuu, helmikuu, maaliskuu, huhtikuu, toukokuu, kesäkuu, heinäkuu, elokuu, syyskuu, lokakuu, marraskuu, joulukuu]
-    abbr_month_names: [~, tammi, helmi, maalis, huhti, touko, kesä, heinä, elo, syys, loka, marras, joulu]
-    order:
+      abbr_day_names:
+      - su
+      - ma
+      - ti
+      - ke
+      - to
+      - pe
+      - la
+      abbr_month_names:
+      -
+      - tammi
+      - helmi
+      - maalis
+      - huhti
+      - touko
+      - kesä
+      - heinä
+      - elo
+      - syys
+      - loka
+      - marras
+      - joulu
+      day_names:
+      - sunnuntai
+      - maanantai
+      - tiistai
+      - keskiviikko
+      - torstai
+      - perjantai
+      - lauantai
+      formats:
+        default: "%-d.%-m.%Y"
+        long: "%A %e. %Bta %Y"
+        short: "%d. %b"
+      month_names:
+      -
+      - tammikuu
+      - helmikuu
+      - maaliskuu
+      - huhtikuu
+      - toukokuu
+      - kesäkuu
+      - heinäkuu
+      - elokuu
+      - syyskuu
+      - lokakuu
+      - marraskuu
+      - joulukuu
+      order:
       - :day
       - :month
       - :year
- 
   time:
     formats:
       default: "%a, %e. %b %Y %H:%M:%S %z"
       short: "%e. %b %H:%M"
-      long: "%B %d, %Y %H:%M"
+      long: "%d %B %Y %H:%M"
     am: "aamupäivä"
     pm: "iltapäivä"
  

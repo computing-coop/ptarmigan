@@ -17,6 +17,7 @@ class CalendarController < ApplicationController
     @events = []
     @events += events.map(&:instances).flatten
     @events += events.reject{|x| !x.one_day? }
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @events }

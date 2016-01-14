@@ -36,9 +36,14 @@
           = link_to('SV', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv') 
         - else
           %strong SV
-      .title.text-center
+        
+        .right_menu_link.text-center
+          = link_to fa_icon("bars"), '#', onclick: 'javascript: $(".menu_bar").slideToggle();return false;'
+          %br/
+          = link_to t(:menu), '#', onclick: 'javascript: $(".menu_bar").slideToggle();return false;'
+      .title.text-center.front
         =  retina_image_tag theme_image_path('madhousebanner.png')
-        = link_to fa_icon("bars"), '#', onclick: 'javascript: $(".menu_bar").slideToggle();return false;'
+
       .menu_bar.text-center
         .menu_items= render partial: 'layouts/top_menu'    
     = yield

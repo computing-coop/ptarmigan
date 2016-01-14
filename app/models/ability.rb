@@ -11,6 +11,7 @@ class Ability
       can :manage, Event , location: {name: 'Mad House' }
       # can :create, Event, location: {name: 'Mad House' }
       can :manage, Post, location: {name: 'Mad House' }
+      can :manage, Page, location: {name: 'Mad House' }
       can :manage, Flicker, event: {location: {:name => 'Mad House' } }
       # can :create, Flicker,  event: {location: {:name => 'Mad House' } }
       can :manage, Place

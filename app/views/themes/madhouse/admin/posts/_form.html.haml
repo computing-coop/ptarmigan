@@ -10,6 +10,7 @@
       - if f.object.carousel?
         = f.input :hide_carousel, :label => "Remove this post from carousel", :hint => "Get old posts out of the carousel!"
       = f.input :sticky, :label => 'Make "sticky"', :hint => "Will stay at top of frontpage while checked, and also appear in sidebars of other pages"
+      = f.input :postcategories, as: :check_boxes
   .row
     .small-12.columns
       = tabs_for do |tab|

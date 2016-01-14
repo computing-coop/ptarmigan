@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112204120) do
+ActiveRecord::Schema.define(version: 20160114115414) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -482,6 +482,27 @@ ActiveRecord::Schema.define(version: 20160112204120) do
   end
 
   add_index "post_translations", ["post_id"], name: "index_post_translations_on_post_id", using: :btree
+
+  create_table "postcategories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "postcategories_posts", id: false, force: :cascade do |t|
+    t.integer "post_id",         limit: 4, null: false
+    t.integer "postcategory_id", limit: 4, null: false
+  end
+
+  create_table "postcategory_translations", force: :cascade do |t|
+    t.integer  "postcategory_id", limit: 4,   null: false
+    t.string   "locale",          limit: 255, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "name",            limit: 255
+  end
+
+  add_index "postcategory_translations", ["locale"], name: "index_postcategory_translations_on_locale", using: :btree
+  add_index "postcategory_translations", ["postcategory_id"], name: "index_postcategory_translations_on_postcategory_id", using: :btree
 
   create_table "postervotes", force: :cascade do |t|
     t.integer  "place_id",      limit: 4

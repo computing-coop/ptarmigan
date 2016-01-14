@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   paginates_per 7
   extend FriendlyId
   friendly_id :title, :use => :history
-
+  has_and_belongs_to_many :postcategories
   belongs_to :user
   belongs_to :location
   belongs_to :subsite

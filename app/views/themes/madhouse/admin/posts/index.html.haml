@@ -26,6 +26,10 @@
                 %strong= t "madhouse.available_in"
                 - post.translations.each do |t|
                   %span= t.locale
+              .translations
+                %strong Categories:
+                = post.postcategories.map(&:name).join(', ')
+
             %td
               = post.published? ? 'yes' : 'no'
               %br/

@@ -59,13 +59,13 @@ class EventsController < ApplicationController
       end
 
       set_meta_tags :open_graph => {
-        :title => t(:events) + " | Ptarmigan" ,
+        :title => t(:events) ,
         :type  => "ptarmigan:event",
         :url   => url_for({:only_path => false, :controller => :events}),
         }, 
         :canonical => url_for({:only_path => false, :controller => :events}),
-        :keywords => (@location.id == 1 ? 'Helsinki,Finland,' : 'Tallinn,Estonia') + ',Ptarmigan,culture,art,' + @upcoming.map{|x| x.event_type }.join(':').split(/\s*\:\s*/).compact.uniq.join(','),
-        :description => 'Upcoming events at Ptarmigan',
+        :keywords => ( (@location.id == 1 || @location.id == 4) ? 'Helsinki,Finland,' : 'Tallinn,Estonia') + ',culture,art,Mad House,performance,live art' + @upcoming.map{|x| x.event_type }.join(':').split(/\s*\:\s*/).compact.uniq.join(','),
+        :description => t(:upcoming_events),
         :title => t(:events)
 
       respond_to do |format|
@@ -86,7 +86,7 @@ class EventsController < ApplicationController
     unless @event.nil?
       if @event.redirect_url.blank?
         set_meta_tags :open_graph => {
-          :title =>  @event.title + " | Ptarmigan" ,
+          :title =>  @event.title  ,
           :type  => "ptarmigan:event",
           :url   => url_for(@event),
 
@@ -94,8 +94,8 @@ class EventsController < ApplicationController
           }, 
           :canonical => url_for(@event), 
           :keywords => 
-          (@event.location.id == 1 ? 'Helsinki,Finland,' : 'Tallinn,Estonia') + ',Ptarmigan,culture,art, ' + 
-          (@event.event_type.blank? ? '' : @event.event_type.split(/\:/).each(&:strip).join(',')),
+          ((@event.location.id == 1 || @event.location.id == 4) ? 'Helsinki,Finland,' : 'Tallinn,Estonia') + 'performance,culture,art, ' + 
+          (@event.event_type.blank? ? 'Mad House,live art' : @event.event_type.split(/\:/).each(&:strip).join(',')),
           :description => @event.description,
           :title => @event.title
       elsif request.original_url != @event.redirect_url

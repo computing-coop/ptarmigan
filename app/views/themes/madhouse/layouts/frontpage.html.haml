@@ -45,8 +45,8 @@
       .title.text-center.front
         =  retina_image_tag theme_image_path('madhousebanner.png')
 
-      .menu_bar.text-center.hide-for-small-only
-        .menu_items= render partial: 'layouts/top_menu'    
+      .menu_bar.text-center
+        .menu_items.hide-for-small-only= render partial: 'layouts/top_menu'    
       .menu_select.show-for-small-only
         .row
           .small-10.columns.menu_items= render partial: 'layouts/mobile_menu'

@@ -221,7 +221,7 @@ en:
   ct:
     events_list: 'Events List'
     events_tagline: 'By Creative Quarters and Territories in Riga!'
-
+  upcoming_events: 'Upcoming events'
   kompass:
     ptarmigan_location: 'Ptarmigan project rooms, Tallinn, Estonia'
     register_to_attend: 'Register to attend Kompass!'
@@ -245,6 +245,7 @@ en:
     activities: 'Activities'
     who_is_coming: 'Who will be there?'
     more_info: 'More information...'
+
     comes_from: 'What city/town are you coming from?'
     all_participants: "See all participants ..."
     public_space_and_collaboration: 'Public space & collaboration'

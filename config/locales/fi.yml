@@ -222,6 +222,7 @@ fi:
     zero: 'Aikataulu'
     one: 'Aikataulu'
     other: 'Aikataulu'
+  upcoming_events: 'Tulossa'
   madhouse:
     upcoming_events: 'Tulossa'
     posted_by: '%{poster} julkaissut %{when}'

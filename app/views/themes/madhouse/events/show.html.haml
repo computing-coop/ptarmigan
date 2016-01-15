@@ -19,7 +19,7 @@
         .event_image
           = image_tag @event.avatar.url
       .event_info
-        - if @event.cost.blank? || @event.cost == 0
+        - if @event.cost == 0
           = t(:free)
         - else
           = t("madhouse.tickets") + ": "
@@ -64,10 +64,11 @@
           %span.facebook_button= link_to t("madhouse.facebook_link"), "https://www.facebook.com/events/#{@event.facebook}/", target: :_blank
           %br/
         = render partial: 'shared/share_buttons', locals: {url:  CGI::escape("http://#{request.host}#{request.port != 80 ? ":" + request.port.to_s : ''}#{url_for(@event)}"), title: CGI::escape(@event.name)}
+        
   - if @event.is_festival?
     .row
       - @event.instances.group(:title).each_with_index do |instance, index|
-        .medium-3.columns.festival_event{ style: (instance.specialimage? ? "background: url(http://ptarmigan.fi#{instance.specialimage.url}) no-repeat top center; background-size: cover;" : ''), class: [cycle('odd', 'even'), @event.instances.group(:title).last == instance ? :end : false]}
+        .medium-3.columns.festival_event{ style: (instance.specialimage? ? "background: url(#{instance.specialimage.url}) no-repeat top center; background-size: cover;" : ''), class: [cycle('odd', 'even'), @event.instances.group(:title).last == instance ? :end : false]}
           .title= link_to instance.title, [@event, instance]
           .dates
             - dates = []

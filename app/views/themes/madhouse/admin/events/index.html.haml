@@ -50,7 +50,7 @@
                     - unless instance.title.blank?
                       .instance_title
                         = instance.title
-                        = link_to 'View', [event, instance],  target: :_blank, class: [:tiny, :button, :secondary]
+                        = link_to 'View', event_instance_path(event, instance.title.parameterize),  target: :_blank, class: [:tiny, :button, :secondary]
                     = link_to 'Edit details', edit_admin_event_instance_path(event, instance), class: [:button, :tiny]
                     = link_to 'Delete', [:admin, event, instance], method: :delete, data: {confirm: 'Are you really sure?'}, class: [:button, :tiny, :alert]
                     %br/

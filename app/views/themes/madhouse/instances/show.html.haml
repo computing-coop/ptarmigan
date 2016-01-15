@@ -24,14 +24,30 @@
         .event_image
           = image_tag @event.avatar.url
       .event_info
-        - if !@instance.price.blank?
+        - if !@instance.price == 0
           = t :tickets
-
           = ptarmigan_cost(@instance.price)
+          - unless !@instance.discountedprice.blank?
+            = " / "
+            = ptarmigan_cost(@instance.discountedprice)
         - else
-          - unless @event.cost.blank?
+          - if @instance.price.blank?
+            - if @event.cost == 0
+              = t :free
+          - elsif !@event.cost.blank?
             = t :tickets
             = ptarmigan_cost(@event.cost)
+            - unless @event.discountedcost.blank?
+              = " / "
+              = ptarmigan_cost @event.discountedcost
+          - else
+            = t :tickets
+            = ptarmigan_cost(@instance.price)
+            - unless @instance.discounted_price.blank?
+              = " / "
+              = ptarmigan_cost @instance.discounted_price
+            / = t :tickets
+            / = ptarmigan_cost(@event.cost)
         %br/
         = t :location
         - if @instance.place.blank?

@@ -46,7 +46,7 @@ class PagesController < ApplicationController
       if @location.name == 'Mad House'
         @upcoming = Event.published.future.by_location(@location.id)
         @carousel = Flicker.by_location(@location.id).joins(:event).group("events.id")
-        Post.by_location(@location.id).with_carousel.published.each {|x| @carousel.unshift(x) }
+   
         @posts = Post.by_location(@location.id).published.limit(8)
         
         events = @upcoming.to_a.reject{|x| !x.carousel? }
@@ -54,7 +54,7 @@ class PagesController < ApplicationController
         events.sort_by{rand}.each do |e|
           @carousel.unshift(e)
         end
-        
+        Post.by_location(@location.id).with_carousel.published.each {|x| @carousel.unshift(x) }
         
       else  # it's Ptarmigan - an ugly hack for now but will work
         set_meta_tags :open_graph => {

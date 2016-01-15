@@ -1,0 +1,12 @@
+%select#top_mobile_nav
+  %option{value: '/', selected: (controller.controller_name == 'pages' && controller.action_name == 'frontpage' ? :selected : false)}= t("madhouse.home")
+  %option{value: events_path, selected: (controller.controller_name == 'events' ? :selected : false)}= t(:events)
+  %option{value: posts_path, selected: (controller.controller_name == 'posts' ? :selected : false)}= t(:news)
+  - @menu.each do |menu|
+    %option{value: page_path(menu.slug), selected: (controller.controller_name == 'pages' && @page && @page.slug == menu.slug ? :selected : false)}= menu.title
+    
+= content_for :jquery do
+  :plain
+    $('#top_mobile_nav').change(function() {
+      document.location.href = $(this).val();
+    });    

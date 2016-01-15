@@ -6,14 +6,11 @@
         %span.category
           - if slide.class == Flicker
             = t :archive
+            = ": "
           - if slide.class == Event
-            = t :event
-          - if slide.class == Post
-            - if slide.not_news == false
-              = t :news
-            - else
-              = t :blog
-          = ": "
+            = t "madhouse.event"
+            = ": "
+          
         %span.title
           = link_to slide.name,  url_for(slide.carousel_link)
         .date.text-left

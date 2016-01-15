@@ -40,18 +40,6 @@ fi:
   videos: 'videoita'
   performances: 'Performances'
   documents_resources: 'asiakirjat/resurssit'  
-  madhouse:
-    upcoming_events: 'Tulossa'
-    posted_by: '%{poster} julkaissut %{when}'
-    previous_post: 'Edellinen'
-    next_post: 'Seuraava'
-    previous_event: 'Edellinen'
-    next_event: 'Seuraava'
-    share: 'Jaa:'
-    buy_tickets: 'Ostaa liput'
-    tickets: 'Liput'
-    buy: 'Osta'
-    facebook_link: 'Tapahtuma Facebookissa'
   date:
       abbr_day_names:
       - su
@@ -234,3 +222,17 @@ fi:
     zero: 'Aikataulu'
     one: 'Aikataulu'
     other: 'Aikataulu'
+  madhouse:
+    upcoming_events: 'Tulossa'
+    posted_by: '%{poster} julkaissut %{when}'
+    previous_post: 'Edellinen'
+    next_post: 'Seuraava'
+    previous_event: 'Edellinen'
+    next_event: 'Seuraava'
+    share: 'Jaa:'
+    buy_tickets: 'Ostaa liput'
+    tickets: 'Liput'
+    buy: 'Osta'
+    location: 'Paikka'
+    event: 'Tapahtuma'
+    facebook_link: 'Tapahtuma Facebookissa'    

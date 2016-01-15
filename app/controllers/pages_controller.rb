@@ -45,13 +45,13 @@ class PagesController < ApplicationController
       
       if @location.name == 'Mad House'
         @upcoming = Event.published.future.by_location(@location.id)
-        @carousel = Flicker.by_location(@location.id).joins(:event).group("events.id")
+        @carousel = []
+        # @carousel =  Flicker.by_location(@location.id).joins(:event).group("events.id")
    
         @posts = Post.by_location(@location.id).published.limit(8)
-        
+      
         events = @upcoming.to_a.reject{|x| !x.carousel? }
- 
-        events.sort_by{rand}.each do |e|
+         events.sort_by{rand}.each do |e|
           @carousel.unshift(e)
         end
         Post.by_location(@location.id).with_carousel.published.each {|x| @carousel.unshift(x) }

@@ -35,7 +35,11 @@ $xlarge-only: "#{$screen} and (min-width:#{lower-bound($xlarge-range)}) and (max
     .title {
       margin-top: 1.5rem;}
   }
-  
+  #calendar_container {
+    .calendar_tab {
+      font-size: 1.15rem;
+    }
+  }
   .carousel {
     .slide {
       .caption {

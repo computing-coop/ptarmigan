@@ -9,7 +9,7 @@
     
   = link_to post do
     %div{class: column_count == 0 ? :rowd  : :nothing}
-      .single_post.columns.small-6{class: [post.alternateimg? ? (post.alternateimg_aspect? == :portrait ? 'small-6 medium-6 large-3' : (column_count > 12 ? "small-12 medium-#{post.alternateimg_width > 900 ? 12 : 6}  large-3" : "medium-6 small-6 large-6")) : 'small-6 medium-6 large-3', post == @posts.last && column_count < 12 ? '' : false]}
+      .single_post.columns.small-10.small-offset-1.medium-offset-0{class: [post.alternateimg? ? (post.alternateimg_aspect? == :portrait ? 'medium-6 large-3' : (column_count > 12 ? "medium-#{post.alternateimg_width > 900 ? 12 : 6}  large-3" : "medium-6 large-6")) : ' medium-6 large-3', post == @posts.last && column_count < 12 ? '' : false]}
         .inner{style: post.alternateimg? ? "background: url(http://ptarmigan.fi#{post.alternateimg.url(:full)}) no-repeat center center; background-size: cover;" : ''}
           %h3= post.title
           .date

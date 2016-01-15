@@ -234,5 +234,6 @@ fi:
     tickets: 'Liput'
     buy: 'Osta'
     location: 'Paikka'
+    home: 'Etusivu'
     event: 'Tapahtuma'
     facebook_link: 'Tapahtuma Facebookissa'    

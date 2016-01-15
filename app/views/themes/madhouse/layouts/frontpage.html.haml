@@ -38,14 +38,18 @@
           %strong SV
         
         .right_menu_link.text-center
-          = link_to fa_icon("bars"), '#', onclick: 'javascript: $(".menu_bar").slideToggle();return false;'
-          %br/
-          = link_to t(:menu), '#', onclick: 'javascript: $(".menu_bar").slideToggle();return false;'
+          .hide-for-small-only
+            = link_to fa_icon("bars"), '#', onclick: 'javascript: $(".menu_bar").slideToggle();return false;'
+            %br/
+            = link_to t(:menu), '#', onclick: 'javascript: $(".menu_bar").slideToggle();return false;'
       .title.text-center.front
         =  retina_image_tag theme_image_path('madhousebanner.png')
 
-      .menu_bar.text-center
+      .menu_bar.text-center.hide-for-small-only
         .menu_items= render partial: 'layouts/top_menu'    
+      .menu_select.show-for-small-only
+        .row
+          .small-10.columns.menu_items= render partial: 'layouts/mobile_menu'
     = yield
     %footer= render partial: 'layouts/footer'
   :javascript

@@ -209,7 +209,7 @@ sv:
   find_us: "Hitta hit"
   contact: "Kontakt"  
   seeall: "Visa alla"
-  events: "Arrangemang"
+  events: "Evenemang"
   artists: "Konstnärer"
   podcasts: "Podcasts"
   projects: "Projekt"
@@ -268,12 +268,19 @@ sv:
   documents_resources: 'dokument/resurser'
   photos: 'bilder'
   videos: 'videor'
+  event: "Evenemang"
   dates:
     zero: 'Datum'
     one: 'Datum'
     other: 'Datum'  
   madhouse:
-    buy_tickets: 'Köp biljett'
+    upcoming_events: 'Uppkommande evenemang'
+    buy_tickets: 'Köp biljetter'
     tickets: 'Biljett'
     buy: 'Köp'
     home: 'Home'
+    previous_post: 'Föregående'
+    next_post: 'Följande'
+    previous_event: 'Föregående evenemang'
+    next_event: 'Följande evenemang'
+    latest_news: 'Nyheter'

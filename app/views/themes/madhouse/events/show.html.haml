@@ -9,7 +9,7 @@
             - unless @event.ticket_url.blank?
               = link_to @event.ticket_url do
                 = fa_icon 'ticket'
-                = t(:buy_tickets)
+                = t("madhouse.buy_tickets")
             
   .row
 
@@ -31,7 +31,7 @@
             - unless @event.ticket_url.blank?
               %span.ticket_button= link_to fa_icon('ticket') + ' ' + t("madhouse.buy"), @event.ticket_url
         %br/
-        = t :location
+        = t "madhouse.location"
         = ": " + @event.place.name
         = link_to fa_icon('map-marker'), '#', onclick: "$('.google_map').slideToggle(function()  { google.maps.event.trigger(map, 'resize'); map.setCenter(new google.maps.LatLng(#{@event.place.latitude}, #{@event.place.longitude}));            $('p.map_link a').text($('.google_map').is(':visible') ? '#{t(:hide_map)}' : '#{t(:map)}');});return false;"
         .google_map#mapcontainer= render partial: 'shared/small_map'

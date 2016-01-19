@@ -65,6 +65,7 @@ gem "jquery-slick-rails"
 gem 'kaminari'
 gem 'kgio'
 gem 'later_dude', '>= 0.3.1'
+gem 'mailchimp-api', require: 'mailchimp'
 gem 'meta-tags', :require => 'meta_tags'
 gem 'momentjs-rails'
 gem 'nested_form' #, :git => 'git://github.com/ryanb/nested_form.git'

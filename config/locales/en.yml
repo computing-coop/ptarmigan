@@ -279,6 +279,13 @@ en:
     home: 'Home'
     facebook_link: 'See on Facebook'
     buy: 'Buy'
+    mailchimp_error: 'There was an error adding your email address, please try again.'
+    join_our_email_list: 'Subscribe to our email list!'
+    enter_your_email_address: 'Enter your email address'
+    back_to_top: ' Back to top'
+    thanks_signup: "Thank you for signing up!"
+    all_events: ' See all events'
+    all_posts: ' See all posts'
   dates:
     zero: 'Dates'
     one: 'Date'

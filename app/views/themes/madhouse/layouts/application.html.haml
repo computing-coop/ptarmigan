@@ -74,6 +74,11 @@
         
   :javascript
     $(document).ready(function() { #{yield :jquery} 
+      $("input.clearfield").clearField();
+      $('form#email_form').submit(function() {
+        $('button.email_signup').attr('disabled', 'disabled');   
+        $("#loading").toggle();
+      });
       $('#calendar').fullCalendar({
             editable: true,
             header: {

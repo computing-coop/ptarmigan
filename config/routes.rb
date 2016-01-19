@@ -158,6 +158,7 @@ Ptarmigan::Application.routes.draw do
     resources :attendees
   end
   post '/add_to_list', :controller => :application, :action => :add_to_mailchimp
+  post '/madhouse/add_to_list', controller: :application, action: :madhouse_list_add
   root :controller => 'pages', :action => 'frontpage'
   # The priority is based upon order of creation: first created -> highest priority.
 

@@ -5,6 +5,43 @@ def grabURL(url, home)
   open(home,"w").write(open(url).read)
 end
 
+
+namespace :madhouse do
+  desc "Get superfeed"
+  task :get_feed => [:environment] do
+
+    # start with Twitter
+    now = Time.now.to_i
+    twitter_client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = ENV['TWITTER_OMNIAUTH_APP_ID']
+      config.consumer_secret     = ENV['TWITTER_OMNIAUTH_SECRET']
+      config.access_token        = Figaro.env.madhouse_twitter_access_token
+      config.access_token_secret = Figaro.env.madhouse_twitter_access_secret
+    end  
+
+    begin
+      tweets = twitter_client.user_timeline("madhousehel")
+      tweets.each do |tweet|
+        Cash.where(location_id: 4, source: 'twitter',  issued_at: tweet.created_at.to_i, sourceid: tweet.id, title: tweet.text, content: tweet.text, link_url: tweet.uri.to_s).first_or_create
+      end
+
+    rescue Twitter::Error::NotFound
+      # do nothing if twitter isn't connecting
+    end  
+  
+  
+  
+    # instagram ?
+    
+    
+    # facebook ?
+    
+    
+  end
+  
+  
+end
+
 namespace :ptarmigan do
   desc "Make local images from flickr"
   task :get_flickrs => [:environment] do

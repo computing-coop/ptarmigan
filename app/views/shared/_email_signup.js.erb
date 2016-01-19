@@ -5,6 +5,7 @@ $("#loading").toggle();
 <% end %>
 <% if @signup_error %>
   $('#email_error').html('<%= @signup_error %>');
+  $('form#email_form input#email').toggle();
   $('button.email_signup').removeAttr('disabled');
 <% end %>
 

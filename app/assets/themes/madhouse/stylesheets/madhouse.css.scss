@@ -131,11 +131,42 @@ footer {
   margin-top: 1.2rem;
   padding: 1.5rem 0;
   background-color: $madhouseblue;
-  max-height: 150px;
+  max-height: 300px;
 
   bottom: 0;
   //  padding: 1rem;
   
+  .mailing_list {
+    border-bottom: 1px solid white;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    .blurb {
+      color: #FFF;
+      font-family: $signika;
+      font-size: 1.125rem;
+    }
+    #email_error {
+      color: #FFF;
+      font-family: $signika;
+      font-size: 1.125rem;
+    }
+    .email_signup_form {
+      color: #FFF;
+      font-family: $signika;
+      font-size: 1.125rem;
+      input[type=text], input[type=email] {
+        border: none;
+        outline: none;
+        height: 1.9rem;
+        border-radius: 3px;
+        color: #23a4aa;
+        background-color: #E3E2E2;
+      }
+      input.email_signup {
+        display: none;
+      }
+    }
+  }
   .logos {
     img {
       max-height: 75px;
@@ -184,6 +215,12 @@ span.facebook_button {
   }
 }
 .upcoming_events {
+  .smaller {
+    padding-bottom: 0.8rem;
+    font-size: 0.75rem;
+    float: right;
+    margin-right: 0.8rem;
+  }
   h3 {
     font-family: $signika;
     font-weight: 600;
@@ -257,6 +294,12 @@ span.facebook_button {
   background-color: black;
   padding: 1.5rem 0;
   color: white;
+  .smaller {
+    padding-bottom: 0.8rem;
+    font-size: 0.75rem;
+    float: right;
+    margin-right: 0.8rem;
+  }
   a {
 
     &:hover {

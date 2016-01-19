@@ -30,6 +30,24 @@ class ApplicationController < ActionController::Base
         format.js {render :partial => 'shared/email_signup', :content_type => 'text/javascript'}
     end
   end
+  
+  def madhouse_list_add
+    mailchimp = Mailchimp::API.new(Figaro.env.madhouse_mailchimp_api_key)
+
+    begin
+      mailchimp.lists.subscribe(Figaro.env.madhouse_mailchimp_list_id, 
+                         { "email" => params[:email] }
+                         )
+
+      @signup_success = t("madhouse.thanks_signup")
+      @signup_error = nil
+    rescue
+      @signup_error = t("madhouse.mailchimp_error")
+    end
+    respond_to do |format|
+        format.js {render :partial => 'shared/email_signup', :content_type => 'text/javascript'}
+    end
+  end
 
   def exclude_guests
     if user_signed_in?

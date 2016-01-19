@@ -71,4 +71,11 @@
     %footer= render partial: 'layouts/footer'
   :javascript
     $(document).ready(function() { #{yield :jquery} 
+      $("input.clearfield").clearField();
+      $('form#email_form').submit(function() {
+        $('button.email_signup').attr('disabled', 'disabled');   
+        $("#loading").toggle();
+        $('form#email_form input#email').toggle();
+      });
+    
     });

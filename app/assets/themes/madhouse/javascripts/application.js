@@ -3,6 +3,7 @@
 //= require jquery-ui/core
 //= require jquery-ui/tabs
 //= require jquery.slick
+//= require jquery.clearfield
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/lang-all

@@ -68,7 +68,7 @@
   - if @event.is_festival?
     .row
       - @event.instances.group(:title).each_with_index do |instance, index|
-        .medium-3.columns.festival_event{ style: (instance.specialimage? ? "background: url(#{instance.specialimage.url}) no-repeat top center; background-size: cover;" : ''), class: [cycle('odd', 'even'), @event.instances.group(:title).last == instance ? :end : false]}
+        .medium-3.columns.festival_event{ style: (instance.specialimage? ? "background: url(#{instance.specialimage.url}) no-repeat top center; background-size: cover;" : ''), class: [cycle('odd', 'even'), index == (@event.instances.group(:title).to_a.size - 1) ? :end : false]}
           .title= link_to instance.title, [@event, instance]
           .dates
             - dates = []
@@ -83,7 +83,7 @@
           = link_to raw(fa_icon('long-arrow-left') + " #{t("madhouse.previous_event")}: #{@event.previous_event.title}"), @event.previous_event
       .small-4.small-offset-1.columns
         - unless @event.next_event.nil?
-          = link_to raw("#{t("madhouse.next_event")}: #{@event.next_event.title}" + fa_icon('long-arrow-right')), @event.next_event            
+          = link_to raw("#{t("madhouse.next_event")}: #{@event.next_event.title}" + ' ' + fa_icon('long-arrow-right')), @event.next_event            
             
 = content_for :jquery do
   - unless @event.place.latitude.blank?

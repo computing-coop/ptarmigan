@@ -27,6 +27,10 @@ class Instance < ActiveRecord::Base
     }
   end
   
+  def should_generate_new_friendly_id?
+    slug.blank? || title_changed?
+  end
+  
   def future?
     self.start_at >= Date.parse(Time.now.strftime('%Y/%m/%d'))
   end

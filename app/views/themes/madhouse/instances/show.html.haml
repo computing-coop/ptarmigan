@@ -90,7 +90,7 @@
       .small-12.columns.text-left.related_header= t "madhouse.also_related"
     .row
       - @event.instances.group(:title).to_a.delete_if{|x| x.title_en == @instance.title_en }.each_with_index do |instance, index|
-        .medium-3.columns.festival_event{ style: (instance.specialimage? ? "background: url(http://ptarmigan.fi#{instance.specialimage.url}) no-repeat top center; background-size: cover;" : ''), class: [cycle('odd', 'even'), @event.instances.group(:title).to_a[-2] == instance ? :end : false]}
+        .medium-3.columns.festival_event{ style: (instance.specialimage? ? "background: url(http://ptarmigan.fi#{instance.specialimage.url}) no-repeat top center; background-size: cover;" : ''), class: [cycle('odd', 'even'), @event.instances.group(:title).to_a.delete_if{|x| x.title_en == @instance.title_en }[-1] == instance ? :end : false]}
           .title= link_to instance.title, [@event, instance]
           .dates
             - dates = []

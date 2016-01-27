@@ -15,6 +15,9 @@ class PostsController < InheritedResources::Base
         image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg',
         :url   => url_for({:only_path => false, :controller => :posts}),
         }, 
+        :fb             => {
+            :app_id       => Figaro.env.madhouse_facebook_client_id
+          },
         :canonical => url_for({:only_path => false, :controller => :posts}),
         :keywords => 'Mad House,Helsinki,Finland,Suvilahti,culture,art,performance,live art',
         :description => t("madhouse.latest_news"),

@@ -67,7 +67,7 @@ class EventsController < ApplicationController
           }, 
           :fb             => {
               :app_id       => Figaro.env.madhouse_facebook_client_id
-            }
+            },
           :canonical => url_for({:only_path => false, :controller => :events}),
           :keywords => 'Mad House,Helsinki,Finland,Suvilahti,culture,art,performance,live art' + @upcoming.map{|x| x.name }.join(','),
           :description => t(:upcoming_events),

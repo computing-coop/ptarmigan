@@ -60,7 +60,19 @@ class PagesController < ApplicationController
         @social_media = Hash.new
         @social_media['twitter'] = Cash.by_location(@location.id).by_source('twitter').order(issued_at: :desc).limit(6)
         @social_media['other'] = Cash.by_location(@location.id).where(["source = ? OR source = ?", 'facebook', 'instagram']).order(issued_at: :desc).limit(10)
-
+        set_meta_tags :open_graph => {
+          :title => "Mad House Helsinki",
+          :type  => "madhouse:front",
+          image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg',
+          :url   => 'http://madhousehelsinki.fi'
+          }, 
+          :fb             => {
+              :app_id       => Figaro.env.madhouse_facebook_client_id
+            },
+          :canonical => 'http://madhousehelsinki.fi',
+          :keywords => 'Mad House,Helsinki,Finland,Suvilahti,culture,art,performance,live art',
+          :description => 'Mad House is a house for performance and live art in Helsinki. Mad House on räjähdys Suomen esittävän taiteen kentällä. Mad House är en explosion i Finlands performanskonstscen.',
+          :title => "Mad House Helsinki" 
         
       else  # it's Ptarmigan - an ugly hack for now but will work
         set_meta_tags :open_graph => {

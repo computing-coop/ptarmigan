@@ -69,7 +69,21 @@
       .calendar_tab
         = link_to fa_icon("calendar"), '#', onclick: 'javascript:toggleCalendar();return false;'
     #container= yield
-    %footer= render partial: 'layouts/footer'
+    %footer
+      .mailing_list
+        .row
+          .small-8.medium-8.small-centered.columns
+            .row
+              .medium-6.columns.text-right
+                .blurb= t "madhouse.join_our_email_list"
+              .medium-6.columns.end
+                = form_tag url_for('/madhouse/add_to_list'), :id => :email_form, :method => :post, :remote => true do 
+                  #loading{:style => 'display: none'}= image_tag(theme_image_path('spinner.gif'))
+                  #email_error
+                  .email_signup_form   
+                    = text_field_tag :email, t("madhouse.enter_your_email_address"), { :class => "clearfield"}
+                    = submit_tag t(:join), :class => :email_signup      
+      = render partial: 'layouts/footer'
 
         
   :javascript

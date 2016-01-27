@@ -72,14 +72,67 @@
           = link_to fa_icon('envelope') + t("madhouse.all_posts"), posts_path
 
 
+-# social media stream
+
+- link_filter = AutoHtml::Link.new(target: '_blank')
+
+- unless @social_media['twitter'].empty?
+  .social_front.row
+    - @social_media['twitter'].each do |sm|
+      .small-2.twitter.columns
+        .twitter_box
+          = link_to fa_icon('twitter'), sm.link_url, target: :_blank
+
+          = raw link_filter.call(sm.content)
+          .timestamp= link_to timeago_tag(Time.at(sm.issued_at)),  sm.link_url, target: :_blank
+          
+- unless @social_media['other'].empty?
+  .social_other
+    - @social_media['other'].each do |sm|
+      - if sm.source == 'instagram'
+        - next unless sm.image?
+        .slide.instagram_box.columns{style: "background: url(#{sm.image.url}) center center; background-size: cover"}
+          .text
+            = link_to fa_icon('instagram'), sm.link_url, target: :_blank
+            = raw link_filter.call(sm.title)
+            .timestamp= link_to timeago_tag(Time.at(sm.issued_at)),  sm.link_url, target: :_blank
+      - elsif sm.source == 'facebook'
+        - next if sm.title.blank?
+        .slide.facebook_box.columns{style: sm.image? ? "background: url(#{sm.image.url}) center center; backgrond-size: cover; width: #{sm.image_width / 2}px; height: #{sm.image_height / 2}px;" : ''}
+          .text
+            = link_to fa_icon('facebook'), sm.link_url, target: :_blank
+            = raw link_filter.call(truncate_html(sm.title, length: 150))
+            .timestamp= link_to timeago_tag(Time.at(sm.issued_at)),  sm.link_url, target: :_blank
+
+.mailing_list_front
+  .row
+    .small-6.text-center.columns
+      .blurb= t "madhouse.join_our_email_list"
+      = form_tag url_for('/madhouse/add_to_list'), :id => :email_form, :method => :post, :remote => true do 
+        #loading{:style => 'display: none'}= image_tag(theme_image_path('spinner.gif'))
+        #email_error
+        .email_signup_form   
+          = text_field_tag :email, t("madhouse.enter_your_email_address"), { :class => "clearfield"}
+          = submit_tag t(:join), :class => :email_signup
+    .small-6.columns
+      = image_tag theme_image_path('mailing_list_front.jpg')
+
 = content_for :jquery do
   :plain
-
     $('.carousel').slick({
         dots: true,
         autoplay: true,
         autoplaySpeed: 5500
       })
-      
+    $('.social_other').slick({
+        dots: false,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        centerMode: true,
+        variableWidth: true,
+        autoplay: true,
+        autoplaySpeed: 2500
+      })      
       
       

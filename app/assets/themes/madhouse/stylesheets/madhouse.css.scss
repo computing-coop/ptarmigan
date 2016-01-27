@@ -127,8 +127,126 @@ header {
   }
 }
 
+
+.social_other {
+  background-color: $madhouseblue;
+  min-height: 350px;
+  .facebook_box, .instagram_box{
+    margin: 0.5rem;
+    font-size: 0.75rem;
+    border: 1px dotted #FFF;
+    padding: 0.3rem;
+    border-radius: 3px;
+    
+    .text {
+      opacity: 0.8;
+      clear: both;
+      color: #222;
+      background-color: #FFF;
+      padding: 0.4rem 0.7rem;
+      float: left;
+      font-size: 0.7rem;
+      margin: 0.3rem;
+      max-width: 90%;
+      overflow-x: hidden;
+    }
+    .timestamp {
+      font-size: 0.6rem;
+    }
+  }
+  
+  .facebook_box {
+    width: 320px;
+    min-height: 320px;
+    float: left;
+    margin: 0.5rem;
+  }
+  .instagram_box {
+    width: 320px;
+    min-height: 320px;
+    float: left;
+    margin: 0.5rem;
+   }
+}
+
+.social_front {
+
+  clear: both;
+  padding: 0.4rem 0;
+
+  .twitter_box {
+    font-size: 0.75rem;
+    margin: 0.3rem;
+    width: 100%;
+    border-radius: 3px;
+    i {
+      font-size: 1.35rem;
+      margin-right: 0.4rem;
+    }
+    .text {
+      opacity: 0.8;
+      clear: both;
+      color: #222;
+      background-color: #FFF;
+      padding: 0.4rem 0.7rem;
+      float: left;
+      font-size: 0.7rem;
+      margin: 0.3rem;
+      max-width: 90%;
+      overflow-x: hidden;
+    }
+    .timestamp {
+      font-size: 0.6rem;
+    }
+  }
+
+  
+}
+
+.mailing_list_front {
+  background-color: #000;
+  .blurb {
+    padding-top: 150px;
+    color: #FFF;
+    font-family: $signika;
+    font-size: 1.125rem;
+  }
+  #email_error {
+    color: #FFF;
+    font-family: $signika;
+    font-size: 1.125rem;
+  }
+  form#email_form {
+    max-width: 50%;
+    text-align: center;
+    margin: 0 auto; 
+  }
+  .email_signup_form {
+    color: #FFF;
+
+    font-family: $signika;
+    font-size: 1.125rem;
+    input[type=text], input[type=email] {
+      border: none;
+      outline: none;
+      height: 1.9rem;
+      border-radius: 3px;
+      color: #23a4aa;
+      background-color: #E3E2E2;
+    }
+    input.email_signup {
+      display: none;
+    }
+  }
+}
+
+.social_other.slick-slider {
+  margin-bottom: 0 !important;
+}
+
 footer {
-  margin-top: 1.2rem;
+  clear: left;
+//  margin-top: 1.2rem;
   padding: 1.5rem 0;
   background-color: $madhouseblue;
   max-height: 300px;

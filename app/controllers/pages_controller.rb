@@ -56,6 +56,12 @@ class PagesController < ApplicationController
         end
         Post.by_location(@location.id).with_carousel.published.each {|x| @carousel.unshift(x) }
         
+        # frontpage media cache
+        @social_media = Hash.new
+        @social_media['twitter'] = Cash.by_location(@location.id).by_source('twitter').order(issued_at: :desc).limit(6)
+        @social_media['other'] = Cash.by_location(@location.id).where(["source = ? OR source = ?", 'facebook', 'instagram']).order(issued_at: :desc).limit(10)
+
+        
       else  # it's Ptarmigan - an ugly hack for now but will work
         set_meta_tags :open_graph => {
           :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.name} | " : "#{@subsite.human_name} | ")) + "Ptarmigan" ,

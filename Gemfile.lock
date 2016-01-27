@@ -53,6 +53,11 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (6.0.3)
+    auto_html (2.0.0)
+      gemoji (~> 2.1)
+      redcarpet (~> 3.3)
+      rinku (~> 1.7)
+      tag_helper (~> 0.5)
     bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -125,6 +130,8 @@ GEM
     execjs (2.6.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.9.2)
+      faraday (>= 0.7.4, < 0.10)
     figaro (1.1.1)
       thor (~> 0.14)
     flickraw (0.9.8)
@@ -141,6 +148,7 @@ GEM
       jquery-rails (>= 4.0.5, < 5.0.0)
       jquery-ui-rails (>= 5.0.2)
       momentjs-rails (>= 2.9.0)
+    gemoji (2.1.0)
     geocoder (1.2.13)
     git-version-bump (0.15.1)
     globalid (0.3.6)
@@ -153,6 +161,7 @@ GEM
     has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
+    hashie (3.4.3)
     hominid (3.0.5)
     http (0.9.8)
       addressable (~> 2.3)
@@ -172,6 +181,11 @@ GEM
       railties (>= 3.2, < 5)
       responders
     innertube (1.1.0)
+    instagram (1.1.6)
+      faraday (>= 0.7, < 0.10)
+      faraday_middleware (>= 0.8, < 0.10)
+      hashie (>= 0.4.0)
+      multi_json (~> 1.0, >= 1.0.3)
     jquery-easing-rails (0.0.2)
       railties (>= 3.1.0)
     jquery-infinite-pages (0.2.0)
@@ -192,6 +206,10 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.10.0)
+    koala (2.2.0)
+      addressable
+      faraday
+      multi_json
     later_dude (0.3.3)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -222,6 +240,7 @@ GEM
       metaclass (~> 0.0.1)
     momentjs-rails (2.10.6)
       railties (>= 3.1)
+    multi_json (1.11.2)
     multipart-post (2.0.0)
     mysql2 (0.4.2)
     naught (1.1.0)
@@ -292,10 +311,11 @@ GEM
       rake
     recaptcha (1.0.2)
       json
-    redcarpet (3.3.3)
+    redcarpet (3.3.4)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     riddle (1.5.12)
+    rinku (1.7.3)
     rolify (5.0.0)
     sass (3.4.20)
     sass-rails (5.0.4)
@@ -319,6 +339,7 @@ GEM
     sshkit (1.8.1)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    tag_helper (0.5.0)
     thin (1.6.4)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -361,6 +382,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  auto_html (= 2.0.0)
   better_errors
   binding_of_caller (>= 0.6.9.pre2)
   calendrier
@@ -391,6 +413,7 @@ DEPENDENCIES
   hominid
   http_accept_language
   inherited_resources
+  instagram
   jquery-easing-rails
   jquery-infinite-pages
   jquery-rails
@@ -399,6 +422,7 @@ DEPENDENCIES
   jquery_ui_rails_helpers
   kaminari
   kgio
+  koala (~> 2.2)
   later_dude (>= 0.3.1)
   letter_opener
   mailchimp-api

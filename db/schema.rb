@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119104735) do
+ActiveRecord::Schema.define(version: 20160122092118) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -143,16 +143,21 @@ ActiveRecord::Schema.define(version: 20160119104735) do
   end
 
   create_table "cashes", force: :cascade do |t|
-    t.string   "source",      limit: 255
-    t.string   "title",       limit: 255
-    t.string   "link_url",    limit: 255
-    t.text     "content",     limit: 65535
-    t.integer  "order",       limit: 4
+    t.string   "source",             limit: 255
+    t.text     "title",              limit: 65535,             null: false
+    t.string   "link_url",           limit: 255
+    t.text     "content",            limit: 65535
+    t.integer  "order",              limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "location_id", limit: 4,     default: 1, null: false
-    t.integer  "issued_at",   limit: 8
-    t.string   "sourceid",    limit: 255
+    t.integer  "location_id",        limit: 4,     default: 1, null: false
+    t.integer  "issued_at",          limit: 8
+    t.string   "sourceid",           limit: 255
+    t.string   "image_file_name",    limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.string   "image_content_type", limit: 255
+    t.datetime "image_updated_at"
+    t.string   "image_dimensions",   limit: 255
   end
 
   create_table "chatters", force: :cascade do |t|

@@ -25,6 +25,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-datetimepicker'
 end
 
+gem 'auto_html', '2.0.0'
 gem 'cancancan'
 
 gem 'calendrier'
@@ -55,6 +56,7 @@ gem 'has_scope'
 gem 'hominid'#, '2.1.9'
 gem 'http_accept_language'
 gem 'inherited_resources'
+gem 'instagram'
 gem 'jquery-infinite-pages'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -64,6 +66,9 @@ gem "jquery-slick-rails"
 
 gem 'kaminari'
 gem 'kgio'
+
+gem "koala", "~> 2.2"
+
 gem 'later_dude', '>= 0.3.1'
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'meta-tags', :require => 'meta_tags'

@@ -57,16 +57,29 @@ class EventsController < ApplicationController
       else
         @archive = []
       end
-
-      set_meta_tags :open_graph => {
-        :title => t(:events) ,
-        :type  => "ptarmigan:event",
-        :url   => url_for({:only_path => false, :controller => :events}),
-        }, 
-        :canonical => url_for({:only_path => false, :controller => :events}),
-        :keywords => ( (@location.id == 1 || @location.id == 4) ? 'Helsinki,Finland,' : 'Tallinn,Estonia') + ',culture,art,Mad House,performance,live art' + @upcoming.map{|x| x.event_type }.join(':').split(/\s*\:\s*/).compact.uniq.join(','),
-        :description => t(:upcoming_events),
-        :title => t(:events)
+    
+      if @location.id == 4
+        set_meta_tags :open_graph => {
+          :title => "Mad House Helsinki: " + t("madhouse.upcoming_events") ,
+          :type  => "madhouse:event",
+          image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg',
+          :url   => url_for({:only_path => false, :controller => :events}),
+          }, 
+          :canonical => url_for({:only_path => false, :controller => :events}),
+          :keywords => 'Mad House,Helsinki,Finland,Suvilahti,culture,art,performance,live art' + @upcoming.map{|x| x.name }.join(','),
+          :description => t(:upcoming_events),
+          :title => "Mad House Helsinki: "  + t(:events) 
+      else
+        set_meta_tags :open_graph => {
+          :title => t(:events) ,
+          :type  => "ptarmigan:event",
+          :url   => url_for({:only_path => false, :controller => :events}),
+          }, 
+          :canonical => url_for({:only_path => false, :controller => :events}),
+          :keywords => ( (@location.id == 1 || @location.id == 4) ? 'Helsinki,Finland,' : 'Tallinn,Estonia') + ',culture,art,Mad House,performance,live art' + @upcoming.map{|x| x.event_type }.join(':').split(/\s*\:\s*/).compact.uniq.join(','),
+          :description => t(:upcoming_events),
+          :title => t(:events)
+      end
 
       respond_to do |format|
         format.html

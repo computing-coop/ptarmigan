@@ -8,14 +8,28 @@ class PostsController < InheritedResources::Base
     else
       @posts = Post.by_location(@location.id).published.order('published_at DESC, created_at DESC').page params[:page]
     end
-    set_meta_tags :open_graph => {
-      :title => "News | Ptarmigan" ,
-      :type  => "ptarmigan:news",
-      :url   =>  url_for({:only_path => false, :controller => :posts}) },
-      :canonical =>  url_for({:only_path => false, :controller => :posts}) ,
-      :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,proposals,application,residency,culture,art',
-      :description => 'News and other announcements from the Ptarmigan project space.',
-      :title => t(:news)
+    if @location.id == 4
+      set_meta_tags :open_graph => {
+        :title => "Mad House Helsinki: " + t("madhouse.latest_news") ,
+        :type  => "madhouse:posts",
+        image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg',
+        :url   => url_for({:only_path => false, :controller => :posts}),
+        }, 
+        :canonical => url_for({:only_path => false, :controller => :posts}),
+        :keywords => 'Mad House,Helsinki,Finland,Suvilahti,culture,art,performance,live art',
+        :description => t("madhouse.latest_news"),
+        :title => "Mad House Helsinki: "  + t("madhouse.latest_news") 
+    else
+      set_meta_tags :open_graph => {
+        :title => "News | Ptarmigan" ,
+        :type  => "ptarmigan:news",
+        :url   =>  url_for({:only_path => false, :controller => :posts}) },
+        :canonical =>  url_for({:only_path => false, :controller => :posts}) ,
+        :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,proposals,application,residency,culture,art',
+        :description => 'News and other announcements from the Ptarmigan project space.',
+        :title => t(:news)
+    end
+
 
     respond_to do |format|
       format.html

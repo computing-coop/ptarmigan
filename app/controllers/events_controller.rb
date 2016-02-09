@@ -104,7 +104,7 @@ class EventsController < ApplicationController
       if @event.redirect_url.blank?
         set_meta_tags :og => {
           :title =>  @event.title  ,
-          :type  => "ptarmigan:event",
+          :type  => "madhouse:event",
           :url   => url_for(@event),
 
           :image => 'http://' + request.host + @event.avatar.url(:small)

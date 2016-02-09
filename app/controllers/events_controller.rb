@@ -57,23 +57,24 @@ class EventsController < ApplicationController
       else
         @archive = []
       end
-    
+
       if @location.id == 4
-        set_meta_tags :open_graph => {
+
+        set_meta_tags :og => {
           :title => "Mad House Helsinki: " + t("madhouse.upcoming_events") ,
           :type  => "madhouse:event",
           image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg',
           :url   => url_for({:only_path => false, :controller => :events}),
           }, 
-          :fb             => {
-              :app_id       => Figaro.env.madhouse_facebook_client_id
+          :fb  => {
+              :app_id => Figaro.env.madhouse_facebook_client_id
             },
           :canonical => url_for({:only_path => false, :controller => :events}),
           :keywords => 'Mad House,Helsinki,Finland,Suvilahti,culture,art,performance,live art' + @upcoming.map{|x| x.name }.join(','),
           :description => t(:upcoming_events),
           :title => "Mad House Helsinki: "  + t(:events) 
       else
-        set_meta_tags :open_graph => {
+        set_meta_tags :og => {
           :title => t(:events) ,
           :type  => "ptarmigan:event",
           :url   => url_for({:only_path => false, :controller => :events}),
@@ -101,13 +102,16 @@ class EventsController < ApplicationController
     find_event
     unless @event.nil?
       if @event.redirect_url.blank?
-        set_meta_tags :open_graph => {
+        set_meta_tags :og => {
           :title =>  @event.title  ,
           :type  => "ptarmigan:event",
           :url   => url_for(@event),
 
           :image => 'http://' + request.host + @event.avatar.url(:small)
           }, 
+          :fb  => {
+              :app_id => Figaro.env.madhouse_facebook_client_id
+            },
           :canonical => url_for(@event), 
           :keywords => 
           ((@event.location.id == 1 || @event.location.id == 4) ? 'Helsinki,Finland,' : 'Tallinn,Estonia') + 'performance,culture,art, ' + 

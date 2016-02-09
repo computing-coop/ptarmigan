@@ -47,20 +47,33 @@ class PostsController < InheritedResources::Base
     render :template => 'posts/index'
   end
 
- def show
-  @post = Post.friendly.find(params[:id])
-  if request.path != post_path(@post)
-    return redirect_to @post, :status => :moved_permanently
-  end
-  set_meta_tags :open_graph => {
-      :title => @post.title,
-      :type  => "ptarmigan:news",
-      :url   =>  url_for(@post) ,
-      :image => (@post.alternateimg? ? 'http://' + request.host + @post.alternateimg.url(:small)  : (@post.carousel? ? 'http://' + request.host +  @post.carousel.url(:small) : 'http://www.ptarmigan.fi/ptarmigan_two_circles.jpg' ))},
-      :canonical => url_for(@post),
-      :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,proposals,application,residency,culture,art',
-      :description => @post.body,
-      :title => @post.title
+  def show
+    @post = Post.friendly.find(params[:id])
+    if request.path != post_path(@post)
+      return redirect_to @post, :status => :moved_permanently
+    end
+    if @location.id == 4
+      set_meta_tags :og => {
+          :title => @post.title,
+          :type  => "madhousehelsinki:article",
+          :url   =>  url_for(@post) ,
+          :image => (@post.alternateimg? ? 'http://' + request.host + @post.alternateimg.url(:medium)  : (@post.carousel? ? 'http://' + request.host +  @post.carousel.url(:medium) : 'http://www.ptarmigan.fi/ptarmigan_two_circles.jpg' ))
+          },
+          :canonical => url_for(@post),
+          :keywords => 'Helsinki,Finland,Mad House,performance art,live art,Suvilahti',
+          :description => @post.body,
+          :title => @post.title
+    else
+      set_meta_tags :open_graph => {
+          :title => @post.title,
+          :type  => "ptarmigan:news",
+          :url   =>  url_for(@post) ,
+          :image => (@post.alternateimg? ? 'http://' + request.host + @post.alternateimg.url(:medium)  : (@post.carousel? ? 'http://' + request.host +  @post.carousel.url(:medium) : 'http://www.ptarmigan.fi/ptarmigan_two_circles.jpg' ))},
+          :canonical => url_for(@post),
+          :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,proposals,application,residency,culture,art',
+          :description => @post.body,
+          :title => @post.title
+    end
     super
   end
   

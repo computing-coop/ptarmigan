@@ -107,7 +107,7 @@ class EventsController < ApplicationController
           :type  => "madhousehelsinki:article",
           :url   => url_for(@event),
 
-          :image => 'http://' + request.host + @event.avatar.url(:small)
+          :image => 'http://' + request.host + @event.avatar.url(:medium)
           }, 
           :fb  => {
               :app_id => Figaro.env.madhouse_facebook_client_id

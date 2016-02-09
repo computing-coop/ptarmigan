@@ -11,7 +11,7 @@ class PostsController < InheritedResources::Base
     if @location.id == 4
       set_meta_tags :open_graph => {
         :title => "Mad House Helsinki: " + t("madhouse.latest_news") ,
-        :type  => "madhouse:posts",
+        :type  => "madhousehelsinki:posts",
         image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg',
         :url   => url_for({:only_path => false, :controller => :posts}),
         }, 

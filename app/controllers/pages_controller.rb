@@ -62,7 +62,7 @@ class PagesController < ApplicationController
         @social_media['other'] = Cash.by_location(@location.id).where(["source = ? OR source = ?", 'facebook', 'instagram']).order(issued_at: :desc).limit(10)
         set_meta_tags :open_graph => {
           :title => "Mad House Helsinki",
-          :type  => "madhouse:front",
+          :type  => "madhousehelsinki:front",
           image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg',
           :url   => 'http://madhousehelsinki.fi'
           }, 

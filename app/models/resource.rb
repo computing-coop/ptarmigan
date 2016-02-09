@@ -4,7 +4,7 @@ class Resource < ActiveRecord::Base
   belongs_to :project
   belongs_to :artist
   belongs_to :event
-  validates_presence_of :documenttype_id, :name
+  # validates_presence_of :documenttype_id, :name
   belongs_to :documenttype
   validates :attachment, :attachment_presence => true
   scope :by_location, lambda {|x| {:conditions => {:location_id => x} }}
@@ -16,6 +16,10 @@ class Resource < ActiveRecord::Base
                         :url => "/system/icons/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }
+  scope :by_location, -> (x) { where(location_id: x) }
+  validates_attachment_content_type :icon, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  validates :attachment, attachment_presence: true
+  
   Paperclip.interpolates :normalized_resource_file_name do |attachment, style|
     attachment.instance.normalized_resource_file_name
   end

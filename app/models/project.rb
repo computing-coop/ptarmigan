@@ -14,7 +14,7 @@ class Project < ActiveRecord::Base
   translates :description
   accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['description'].blank? }
   validates_presence_of :name
-  scope :by_location, lambda {|x| {:conditions => {:location_id => x} }}
+  scope :by_location, -> (x) { where(location_id: x) }
   scope :proposable, -> () { where(proposable: true ) }
   scope :active, -> () {   where(:active => true )}
   scope :with_carousel, -> () {  where(["active is true AND carousel_file_name is not null AND carousel_file_size > 0" ]) }

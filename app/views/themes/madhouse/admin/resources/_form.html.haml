@@ -1,0 +1,28 @@
+= semantic_form_for [:admin, @resource], html: {multipart: true, :"data-abide" => '', novalidate: false} do |form|
+  .row
+    .small-6.columns
+      = form.input :location_id, as: :hidden
+      = form.input :name, :label => 'Name', :hint => 'name of the document or resource', input_html: {required: ''}
+      = form.input :description, :label => 'Short description of it'
+      -#= form.input :press_page, :label => 'Put on main Ptarmigan "about" page', :hint => "Choose if not specific to an event"
+      -#= form.input :location_id, :as => :select, :collection => Location.all
+    .small-6.columns
+      -#= form.input :documenttype, :label => 'Type of document'
+      -#= form.input :sortorder, :hint => "Optional - sort order resources appear on an event, press, etc page. Enter a number, sort will be numeric ascending"
+      -#= form.input :project, :label => 'Project'
+      -#= form.input :artist, :label => 'Artist'
+      = form.input :event, :label => 'Link to a specific event?', as: :select, :label_method => :title_with_date, collection: Event.by_location(@location.id).published.order('date DESC'), hint: 'Optional'
+      - if @resource.attachment?
+        %em Existing attachment:
+        = @resource.attachment_file_name
+        %small
+          = pluralize(@resource.attachment_file_size, 'byte')
+          
+      = form.input :attachment, :hint => 'The file itself', input_html: {required: @resource.attachment? ? false : ''}, label: @resource.attachment? ? 'Replace attachment with:' : 'Document to upload'
+      - if @resource.icon?
+        .existing-image= image_tag @resource.icon.url(:thumb)
+      = form.input :icon, :hint => 'Optional: an image to make thumbnails of (upload same image for both files here, if above document is an image)'
+            
+  .row
+    .small-12.columns
+      = form.submit 'Save', class: [:button, :small]

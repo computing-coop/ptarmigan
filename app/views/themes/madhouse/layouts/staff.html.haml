@@ -39,6 +39,10 @@
             = link_to admin_places_path do
               = image_tag theme_image_path('/icons/place_icon.jpg')
               %label Places
+          .small-2.columns.end
+            = link_to admin_resources_path do
+              = image_tag theme_image_path('/icons/document_icon.png')
+              %label Documents          
     = yield
   :javascript
     $(document).ready(function() { #{yield :jquery} 

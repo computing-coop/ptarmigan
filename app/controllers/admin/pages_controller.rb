@@ -43,6 +43,7 @@ class Admin::PagesController < ApplicationController
   end
 
   def edit
+    @page = Page.friendly.find(params[:id])
   end
 
   def new

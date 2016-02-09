@@ -15,7 +15,7 @@ class Ability
       can :manage, Flicker, event: {location: {:name => 'Mad House' } }
       # can :create, Flicker,  event: {location: {:name => 'Mad House' } }
       can :manage, Place
-
+      can :manage, Resource, location: {name: 'Mad House' }
     else
       cannot :manage, :all
       cannot :manage, Event

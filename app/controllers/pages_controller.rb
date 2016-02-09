@@ -136,7 +136,7 @@ class PagesController < ApplicationController
     if @location.id == 4
       set_meta_tags :og => {
           :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.name} : " : "#{@subsite.human_name} : ")) + @page.title + " | Mad House Helsinki" ,
-          :type  => "madhousehelsinki:article",
+          :type  => "article",
           :url   =>  url_for(@page),
           image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg'
           },
@@ -147,7 +147,7 @@ class PagesController < ApplicationController
     else
       set_meta_tags :open_graph => {
         :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.name} : " : "#{@subsite.human_name} : ")) + @page.title + " | Ptarmigan" ,
-        :type  => "ptarmigan:article",
+        :type  => "article",
         :url   =>  url_for(@page)},
         :canonical =>  url_for(@page),
         :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,proposals,application,residency,culture,art',

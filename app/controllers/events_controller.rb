@@ -10,13 +10,13 @@ class EventsController < ApplicationController
       @projects = Project.by_location(@location.id).order(:name).page params[:page]
 
     set_meta_tags :open_graph => {
-      :title => t(:events) + " | Ptarmigan" ,
+      :title => t(:events),
       :type  => "ptarmigan:event",
       :url   => url_for({:only_path => false, :controller => :events, :action => :archive}),
       }, 
       :canonical => url_for({:only_path => false, :controller => :events, :action => :archive}),
       :keywords => (@location.id == 1 ? 'Helsinki,Finland,' : 'Tallinn,Estonia') + ',Ptarmigan,culture,art,' + @archive[0..40].map{|x| x.event_type }.join(':').split(/\s*\:\s*/).compact.uniq.join(','),
-      :description => 'Past events at Ptarmigan',
+      :description => 'Past events',
       :title => t(:events)
       
     respond_to do |format|
@@ -27,14 +27,15 @@ class EventsController < ApplicationController
 
   def archives
     @archive = Event.by_location(@location.id).where(['public is true AND date < ?', Time.now.to_date]).order('date DESC').page params[:archive_page]
+
     set_meta_tags :open_graph => {
-        :title => t(:events) + " | Ptarmigan" ,
-        :type  => "ptarmigan:event",
+        :title => t(:events) ,
+        :type  => "article",
         :url   => url_for({:only_path => false, :controller => :events}),
         }, 
         :canonical => url_for({:only_path => false, :controller => :events}),
         :keywords => (@location.id == 1 ? 'Helsinki,Finland,' : 'Tallinn,Estonia') + ',Ptarmigan,culture,art,' + @archive.map{|x| x.event_type }.join(':').split(/\s*\:\s*/).compact.uniq.join(','),
-        :description => 'Upcoming events at Ptarmigan',
+        :description => 'Past events',
         :title => t(:events)
       respond_to do |format|
         format.html { render  :template => 'events/index' }
@@ -62,7 +63,7 @@ class EventsController < ApplicationController
 
         set_meta_tags :og => {
           :title => "Mad House Helsinki: " + t("madhouse.upcoming_events") ,
-          :type  => "madhousehelsinki:article",
+          :type  => "article",
           image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg',
           :url   => url_for({:only_path => false, :controller => :events}),
           }, 
@@ -76,7 +77,7 @@ class EventsController < ApplicationController
       else
         set_meta_tags :og => {
           :title => t(:events) ,
-          :type  => "ptarmigan:event",
+          :type  => "article",
           :url   => url_for({:only_path => false, :controller => :events}),
           }, 
           :canonical => url_for({:only_path => false, :controller => :events}),
@@ -104,7 +105,7 @@ class EventsController < ApplicationController
       if @event.redirect_url.blank? && @location.id == 4
         set_meta_tags :og => {
           :title =>  @event.title  ,
-          :type  => "madhousehelsinki:article",
+          :type  => "article",
           :url   => url_for(@event),
 
           :image => 'http://' + request.host + @event.avatar.url(:medium)

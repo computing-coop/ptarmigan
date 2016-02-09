@@ -62,7 +62,7 @@ class EventsController < ApplicationController
 
         set_meta_tags :og => {
           :title => "Mad House Helsinki: " + t("madhouse.upcoming_events") ,
-          :type  => "madhousehelsinki:event",
+          :type  => "madhousehelsinki:article",
           image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg',
           :url   => url_for({:only_path => false, :controller => :events}),
           }, 
@@ -104,7 +104,7 @@ class EventsController < ApplicationController
       if @event.redirect_url.blank? && @location.id == 4
         set_meta_tags :og => {
           :title =>  @event.title  ,
-          :type  => "madhousehelsinki:event",
+          :type  => "madhousehelsinki:article",
           :url   => url_for(@event),
 
           :image => 'http://' + request.host + @event.avatar.url(:small)

@@ -11,7 +11,7 @@ class PostsController < InheritedResources::Base
     if @location.id == 4
       set_meta_tags :open_graph => {
         :title => "Mad House Helsinki: " + t("madhouse.latest_news") ,
-        :type  => "madhousehelsinki:posts",
+        :type  => "madhousehelsinki:article",
         image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg',
         :url   => url_for({:only_path => false, :controller => :posts}),
         }, 
@@ -25,7 +25,7 @@ class PostsController < InheritedResources::Base
     else
       set_meta_tags :open_graph => {
         :title => "News | Ptarmigan" ,
-        :type  => "ptarmigan:news",
+        :type  => "ptarmigan:article",
         :url   =>  url_for({:only_path => false, :controller => :posts}) },
         :canonical =>  url_for({:only_path => false, :controller => :posts}) ,
         :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,proposals,application,residency,culture,art',

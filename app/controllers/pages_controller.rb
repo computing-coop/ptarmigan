@@ -62,7 +62,7 @@ class PagesController < ApplicationController
         @social_media['other'] = Cash.by_location(@location.id).where(["source = ? OR source = ?", 'facebook', 'instagram']).order(issued_at: :desc).limit(10)
         set_meta_tags :open_graph => {
           :title => "Mad House Helsinki",
-          :type  => "madhousehelsinki:front",
+          :type  => "website",
           image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg',
           :url   => 'http://madhousehelsinki.fi'
           }, 
@@ -77,7 +77,7 @@ class PagesController < ApplicationController
       else  # it's Ptarmigan - an ugly hack for now but will work
         set_meta_tags :open_graph => {
           :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.name} | " : "#{@subsite.human_name} | ")) + "Ptarmigan" ,
-          :type  => "ptarmigan:article",
+          :type  => "website",
           :url   =>   'http://' + (@subsite.nil? ? 'www.' : 'donekino.') + 'ptarmigan.' + @location.locale },
           :canonical =>  'http://www.ptarmigan.' + @location.locale,
           :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,culture,art,workshops,artist-run,project space,maker culture, DIY,experimental, avant-garde, music, sound, visual art,Baltic,residency',

@@ -108,7 +108,7 @@ Ptarmigan::Application.routes.draw do
   get '/admin/:title/history.:format', :controller => 'admin/wikipages', :action => 'history'
 
   get '/admin/wiki/:title/edit', :controller => 'admin/wikipages', :action => 'edit'
-  #get '/calendar(/:year(/:month))' => 'pages#frontpage', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+  get '/territories(/:year(/:month))' => 'pages#frontpage', :as => :ctcalendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
   
   namespace :admin do
     resources :calendar

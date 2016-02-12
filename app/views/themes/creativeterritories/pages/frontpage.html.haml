@@ -1,9 +1,9 @@
 .container
   %center
     .months
-      %span.prev_month= link_to raw('&#8592;'),  calendar_path(:year => params[:month] > 1 ? params[:year] : params[:year] - 1, :month => params[:month] > 1 ? params[:month] - 1 : 12 )
+      %span.prev_month= link_to raw('&#8592;'),  ctcalendar_path(:year => params[:month] > 1 ? params[:year] : params[:year] - 1, :month => params[:month] > 1 ? params[:month] - 1 : 12 )
       %span.active_month= t('dates.ctmonths')[params[:month]]
-      %span.next_month= link_to raw('&#8594;'),  calendar_path(:year => params[:month] < 12 ?  params[:year] : params[:year] + 1, :month => params[:month] < 12 ? (params[:month] + 1) : 1 )
+      %span.next_month= link_to raw('&#8594;'),  ctcalendar_path(:year => params[:month] < 12 ?  params[:year] : params[:year] + 1, :month => params[:month] < 12 ? (params[:month] + 1) : 1 )
 .event_categories_list#sticky-menu
   %nav
     %ul.event_categories
@@ -11,7 +11,7 @@
         %li= link_to ec.name, '#', style: "color: ##{ec.colour}"
         
         
--# = link_to image_tag(entry.calendar_icon(:thumb, nil)), calendar_path(:year => key, :month => k)
+-# = link_to image_tag(entry.calendar_icon(:thumb, nil)), ctcalendar_path(:year => key, :month => k)
 
 = calendrier(:year => params[:year], :month => params[:month], :day => params[:day], :start_on_monday => true, :display => :month, :title => false) do |cell_begin_time, cell_end_time|
 

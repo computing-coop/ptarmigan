@@ -45,6 +45,8 @@ class PagesController < ApplicationController
       
       if @location.name == 'Mad House'
         @upcoming = Event.published.future.by_location(@location.id)
+        @upcoming = @upcoming.sort_by(&:next_date)
+
         @carousel = []
         # @carousel =  Flicker.by_location(@location.id).joins(:event).group("events.id")
    

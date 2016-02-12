@@ -26,8 +26,15 @@
         .small-10.small-offset-1.medium-offset-0.medium-6.large-4.xlarge-3.columns.event{:"data-equalizer-watch" => '', class: (index == 8 ? 'show-for-large-only' : (index > 3 ? 'hide-for-medium-only hide-for-small-only' : false) )}
           .top_box
             = event.title
-            .date= date_range(event.date, event.enddate)
-          .description{style: (event.avatar? ? "background: url(#{event.avatar.url(:medium)}) center center;" : false)}= truncate_html(event.description, length: 180)
+            .date
+              - if event.is_festival?
+                = l event.next_date, format: :short
+              - else
+                = date_range(event.date, event.enddate)
+                
+          .description{style: (event.avatar? ? "background: url(#{event.avatar.url(:medium)}) center center;" : false)}
+
+            = truncate_html(sanitize(event.description, tags: %w(strong em bold b i italic p u)), length: 180)
 
     .row
       .small-3.small-offset-9.columns.text-right

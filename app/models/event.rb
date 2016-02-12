@@ -27,7 +27,7 @@ class Event < ActiveRecord::Base
   scope :has_events_on, -> (*args) { where(['public is true and (date = ? OR (enddate is not null AND (date <= ? AND enddate >= ?)))', args.first, args.first, args.first] )}
   
   scope :in_month, -> (*args) { where( :public => 1,  :date => args.first.to_date.beginning_of_month..args.first.to_date.end_of_month ) }
-  scope :future, -> () { where(['public is true AND date >= ?', Time.now.to_date]).order(:date) }
+  scope :future, -> () { where(['public is true AND (date >= ? || (enddate is not null and enddate >= ?))', Time.now.to_date, Time.now.to_date]).order(:date) }
   scope :published,  -> () {where(:public => true) }
   scope :by_location, -> (x) { where(['location_id = ? AND (subsite_id is null OR show_on_main is true)', x])}
   scope :by_subsite, ->(subsite_id) { where(subsite_id: subsite_id) }
@@ -176,7 +176,10 @@ class Event < ActiveRecord::Base
     self.class.where("location_id = ? and public is true and date > ?", location_id, date).order("date asc").first
   end
   
-    
+  def next_date
+   instances.empty? ? date.to_date : instances.to_a.delete_if{|u| u.start_at <= Time.now}.sort_by(&:start_at).first.start_at
+  end
+  
   def start_time
     if self.notes.nil? || self.notes.match(/\d\d\:\d\d/).nil?
       (date.to_s + ' 20:00').to_datetime

@@ -49,6 +49,8 @@
                     = instance.start_at.strftime("%d %B %H:%M")
                     - unless instance.title.blank?
                       .instance_title
+                        - if instance.specialimage?
+                          = image_tag instance.specialimage.url(:thumb)
                         = instance.title
                         = link_to 'View', event_instance_path(event, instance.title.parameterize),  target: :_blank, class: [:tiny, :button, :secondary]
                     = link_to 'Edit details', edit_admin_event_instance_path(event, instance), class: [:button, :tiny]

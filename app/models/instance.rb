@@ -12,6 +12,8 @@ class Instance < ActiveRecord::Base
   validates_presence_of :event_id, :start_at, :end_at
   validates_attachment_content_type :specialimage, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"] 
   
+  scope :future, -> () { where(['start_at >= ?', Time.now.to_date]).order(:date) }
+  
   def as_json(options = {})
     {
       :id => self.id,

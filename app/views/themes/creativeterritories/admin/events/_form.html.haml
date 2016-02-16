@@ -5,8 +5,8 @@
   %hr
   .twelve.columns
     .six.columns.clearfix.alpha
-      = f.input :date, :as => :string,  :input_html => {:class => 'date-pick'}
-      = f.input :enddate, :as => :string, :input_html => {:class => 'date-pick'}, :label => "Ending date", :hint => 'leave blank unless a multi-day event; not for things that will run past midnight'
+      = f.input :date, :as => :string,  :input_html => {:class => 'datetimepicker', value: f.object.new_record? ? '' : (f.object.date.nil? ? '' : f.object.date.strftime('%Y-%m-%d %H:%M'))}, label: 'Enter the starting date and time of the event'
+      = f.input :enddate, :as => :string, :input_html => {:class => 'datetimepicker', value: f.object.new_record? ? '' : (f.object.enddate.nil? ? '' : f.object.enddate.strftime('%Y-%m-%d %H:%M'))}, :label => "Ending date and time of last performance. You will add individual performances later.", :hint => 'if events run past midnight, put them as 23:59 '
       = f.input :event_time, as: :string, hint: "format: HH:MM", label: 'Start time'
     .six.columns.omega
       = f.input :promoter, :label => "Promoter", :hint => "optional, ex: Totaldobze, can be blank though"
@@ -15,7 +15,7 @@
       Place not on this list? 
       = link_to 'Add it!', new_admin_place_path
   %hr
-  .eight.columns.alpha
+  .twelve.columns.alpha
     = tabs_for do |tab|
       - tab.create('english', 'English') do
         = f.globalize_fields_for :en do |en|
@@ -46,3 +46,4 @@
 = content_for :jquery do
   :plain
     $("#tabs").tabs();
+    $('.datetimepicker').datetimepicker({format:'Y-m-d H:i'});

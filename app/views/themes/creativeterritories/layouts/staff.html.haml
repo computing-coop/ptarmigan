@@ -6,12 +6,13 @@
     %meta{ :"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8" }
     %link{ :rel => "shortcut icon", :href => "/favicon.ico" }
 
-    = stylesheet_link_tag current_theme_stylesheet_path('ptarmigan'), :media => :screen
+    -# = stylesheet_link_tag current_theme_stylesheet_path('ptarmigan'), :media => :screen
     = stylesheet_link_tag 'print', :media => :print
     = stylesheet_link_tag :cms, :media => :screen
+    
     = stylesheet_link_tag  :application, :media => "all"
     = javascript_include_tag :application
-    = javascript_include_tag :cms
+    = javascript_include_tag 'creativeterritories/javascripts/staff', 'data-turbolinks-track' => false 
     -# = javascript_include_tag 'jquery-datepicker', 'jquery-ui', 'jquery.purr', 'best_in_place'
     -# = javascript_include_tag 'date'
     -# = stylesheet_link_tag 'datePicker', 'jquery-ui-1.8.9.custom'
@@ -40,7 +41,7 @@
       :javascript
         $(document).ready(function() {  
           #{yield :jquery}
-          $(".date-pick").datepicker({ dateFormat: "yy-mm-dd" });
+          
 
         });
  

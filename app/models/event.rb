@@ -41,7 +41,7 @@ class Event < ActiveRecord::Base
   serialize :avatar_dimensions 
   after_save :remove_blank_translations
   attr_accessor :remove_avatar, :remove_carousel
-
+  validate :name_present_in_at_least_one_locale
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }
   
@@ -49,6 +49,12 @@ class Event < ActiveRecord::Base
     where( [ "(date >= ?  AND  enddate <= ?) OR ( enddate >= ? AND enddate <= ? ) OR (date >= ? AND date <= ?)  OR (date < ? AND enddate > ? )",
     start_time, end_time, start_time, end_time, start_time, end_time, start_time, end_time])
   }
+  
+  def name_present_in_at_least_one_locale
+    if I18n.available_locales.map { |locale| translation_for(locale).title }.compact.empty?
+      errors.add(:base, "You must specify an event name in at least one available language.")
+    end
+  end
   
   def all_dates
     date

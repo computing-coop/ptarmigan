@@ -46,7 +46,7 @@
             = t(:dates, count: @event.instances.size + 1) + ":"
             %br/
             - if @event.one_day?
-              .instance= l @event.date.to_date, format: :long
+              .instance= l @event.date, format: :long
             - @event.instances.each do |instance|
               .instance= l instance.start_at,  format: :long
               - if instance.future?

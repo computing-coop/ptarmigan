@@ -2,6 +2,7 @@
  *= require cms
  *= require jquery-ui/all
  *= require staff
+ *= require datetimepicker
  *= require jPicker-1.1.6.min
  */
 .staff_suomi {

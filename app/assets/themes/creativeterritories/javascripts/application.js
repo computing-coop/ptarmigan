@@ -1,4 +1,4 @@
-//= require kompass/javascripts/jquery.sticky
+//= require creativeterritories/javascripts/jquery.sticky
 
 //= require featherlight
 

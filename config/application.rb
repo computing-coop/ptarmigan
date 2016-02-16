@@ -62,7 +62,7 @@ module Ptarmigan
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
     config.active_support.escape_html_entities_in_json = true
     config.assets.precompile += %w( *.css *.js *.woff *.eot *.svg *.ttf)
-    config.assets.precompile += %w( common.css print.css  jwplayer.js jwplayer.html5.js cms.css cms.js madhouse/stylesheets/staff.css madhouse/javascripts/staff.js )
+    config.assets.precompile += %w( common.css print.css  jwplayer.js jwplayer.html5.js cms.css cms.js creativeterritories/javascripts/application.js creativeterritories/javascripts/staff.js madhouse/stylesheets/staff.css creativeterritories/stylesheets/application.css madhouse/javascripts/staff.js )
     config.i18n.fallbacks = true
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,

@@ -8,7 +8,8 @@
     //= stylesheet_link_tag :application
     = stylesheet_link_tag 'creativeterritories/stylesheets/application', :media => :screen
     = javascript_include_tag :application
-    = javascript_include_tag theme_javascript_path(:application)
+    = javascript_include_tag 'creativeterritories/javascripts/application'
+    
     %script{:src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyAFlkw7SUgPOTDy8XkWVo_kszw20I22d4g&sensor=false", :type => "text/javascript"}
 
     = csrf_meta_tag

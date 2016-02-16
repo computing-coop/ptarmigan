@@ -1,4 +1,6 @@
 # -*- encoding : utf-8 -*-
+require "date"
+
 class Event < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title_en, :use => [:slugged, :finders, :history]
@@ -17,7 +19,7 @@ class Event < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :larger => "350x350>", :medium => "400x400#",  :small => "240x240>",
                                        :thumb => "100x100>", :archive => "115x115#" },
         :path =>  ":rails_root/public/images/events/:id/:style/:basename.:extension", 
-        :url => "/images/events/:id/:style/:basename.:extension", :default_url => "/assets/missing.png"
+        :url => "/images/events/:id/:style/:basename.:extension", :t_url => "/assets/missing.png"
 
   has_attached_file :carousel, :styles => {:largest => "1600x712#", :new_carousel => "1180x338#", :full => "960x400#", :small => "320x92#", :thumb => "100x100>"}, 
   :path =>  ":rails_root/public/images/carousel/events/:id/:style/:basename.:extension", :url => "/images/carousel/events/:id/:style/:basename.:extension"
@@ -51,7 +53,8 @@ class Event < ActiveRecord::Base
   }
   
   def name_present_in_at_least_one_locale
-    if I18n.available_locales.map { |locale| translation_for(locale).title }.compact.empty?
+
+     if I18n.available_locales.map { |locale| translation_for(locale).title }.compact.empty?
       errors.add(:base, "You must specify an event name in at least one available language.")
     end
   end

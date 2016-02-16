@@ -1,4 +1,8 @@
 lv:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'Pārbaude neizdevās: %{errors}'
   date_range:
     long:
       different_months_same_year: "%{from_month} %{from_day} %{sep} %{until_month} %{until_day}, %{year}"

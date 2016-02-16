@@ -81,6 +81,7 @@ class ApplicationController < ActionController::Base
       end
 
     end
+
     if @location.id == 4
       unless [:en, :fi, :sv].include?(I18n.locale)
         I18n.locale = 'en'

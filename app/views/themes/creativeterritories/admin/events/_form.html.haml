@@ -1,3 +1,5 @@
+- unless event.errors.empty?
+  %h4= event.errors.full_messages.join(', ')
 = semantic_form_for([:admin,  event],  :html => {:multipart => true } ) do |f|
   .twelve.columns
     .six.columns.alpha= f.input :location_id, :label => "Which site?", :as => :hidden
@@ -24,15 +26,17 @@
             = en.text_field :title
           %p
             Description of event
-            = en.text_area :description, rows: 4    
+            %br/
+            = en.text_area :description, rows: 10, cols: 80
       - tab.create('latvian', 'Latvian') do
         = f.globalize_fields_for :lv do |lv|
           %p 
             Title
             = lv.text_field :title
           %p
-            Description of event
-            = lv.text_area :description, rows: 4              
+            Description of event in Latvian
+            %br/
+            = lv.text_area :description, rows: 10, cols: 80          
   .five.columns.omega
     = f.input :eventcategories, as: :check_boxes, collection: Eventcategory.all, label: 'Type of event?', hint: 'Check as many as necessary'
   %hr

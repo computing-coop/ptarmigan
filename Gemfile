@@ -48,7 +48,7 @@ gem 'foundation-rails'#, github: 'dmitryzuev/foundation-rails', branch: 'feature
 gem "friendly_id"
 gem 'fullcalendar-rails'
 gem 'geocoder'
-gem 'globalize', '~> 5.0.0'
+gem 'globalize', '5.0.1'
 # gem 'gmaps4rails'
 # gem 'google-api-client'
 gem 'haml'

@@ -70,7 +70,7 @@ module Ptarmigan
     # config.active_record.schema_format = :sql
     # config.active_record.whitelist_attributes = false
 
-
+    config.i18n.fallbacks = {'lv' => ['en', 'ru'] }
     # Enable the asset pipeline
     config.assets.enabled = true
     config.initialize_on_precompile = false

@@ -235,7 +235,7 @@ GEM
     mime-types (2.99)
     mimemagic (0.3.0)
     mini_portile2 (2.0.0)
-    minitest (5.8.3)
+    minitest (5.8.4)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
     momentjs-rails (2.10.6)
@@ -407,7 +407,7 @@ DEPENDENCIES
   friendly_id
   fullcalendar-rails
   geocoder
-  globalize (~> 5.0.0)
+  globalize (= 5.0.1)
   haml
   has_scope
   hominid

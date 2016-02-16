@@ -4,4 +4,9 @@
  *= require datetimepicker
  */
 
-@import 'foundation';
+
+form {
+  input[type=text] {
+    width: 450px;
+  }
+}

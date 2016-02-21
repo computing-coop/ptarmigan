@@ -51,7 +51,15 @@ class EventsController < ApplicationController
       if @subsite
         @upcoming = Event.by_subsite(@subsite).by_location(@location.id).where(['public is true AND date >= ?', Time.now.to_date]).order(:date).page params[:page]
       else
-        @upcoming = Event.by_location(@location.id).where(['date >= ?', Time.now.to_date]).order(:date).page(params[:page]).per(8)
+        if @location.id == 4
+          @upcoming = Event.primary.published.future.by_location(@location.id).order(:date)
+          @upcoming += Event.one_bar.limit(1)
+          @upcoming = @upcoming.sort_by(&:next_date)
+          @upcoming = Kaminari.paginate_array(@upcoming).page(params[:page]).per(8)
+          
+        else
+          @upcoming = Event.by_location(@location.id).where(['date >= ?', Time.now.to_date]).order(:date).page(params[:page]).per(8)
+        end
       end
       if @upcoming.size < 7 && !@subsite
         @archive = Event.by_location(@location.id).where(['public is true AND date < ?', Time.now.to_date]).order('date DESC').page params[:archive_page]
@@ -96,6 +104,12 @@ class EventsController < ApplicationController
   end
 
 
+  def secondary
+    @location = Location.find(4)
+    @upcoming = Event.by_location(@location).secondary.published.order(:date).page(params[:page]).per(8)
+    @ihana = true
+    render :template => 'events/index'
+  end
 
 
 

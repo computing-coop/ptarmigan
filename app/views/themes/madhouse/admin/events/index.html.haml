@@ -13,6 +13,9 @@
         - if event.avatar?
           %br/
           = image_tag event.avatar.url
+        - if event.secondary == true
+          %br/
+          %strong IHANA BAARI only
       .medium-5.columns
         %span{:class => event.location.locale + "_event"}
           = event.title

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160122092118) do
+ActiveRecord::Schema.define(version: 20160221165157) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -144,7 +144,7 @@ ActiveRecord::Schema.define(version: 20160122092118) do
 
   create_table "cashes", force: :cascade do |t|
     t.string   "source",             limit: 255
-    t.text     "title",              limit: 65535,             null: false
+    t.text     "title",              limit: 65535
     t.string   "link_url",           limit: 255
     t.text     "content",            limit: 65535
     t.integer  "order",              limit: 4
@@ -295,6 +295,7 @@ ActiveRecord::Schema.define(version: 20160122092118) do
     t.string   "ticket_url",              limit: 255
     t.string   "avatar_dimensions",       limit: 255
     t.string   "carousel_dimensions",     limit: 255
+    t.boolean  "secondary",                             default: false, null: false
   end
 
   create_table "expenses", force: :cascade do |t|

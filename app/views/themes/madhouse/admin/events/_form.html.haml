@@ -78,6 +78,7 @@
         = f.check_box :remove_carousel
         Delete carousel image
       = f.input :carousel, :label => 'Carousel image' + (f.object.carousel? ?  ' -- change:' : ''), :hint => raw("Optional, but recommended.  Must be at least 1600x712, will be cropped if larger.")
+      = f.input :secondary, label: 'Ihana Baar-organised event?', hint: 'Tick this box if this event is NOT part of the main Mad House programme'
   %hr
   .row
     .small-6.columns

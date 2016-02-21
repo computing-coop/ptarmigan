@@ -1,4 +1,4 @@
-- @upcoming.future.sort_by(&:date).each do |event|
+- @upcoming.sort_by(&:next_date).each do |event|
 
 
 
@@ -11,9 +11,15 @@
     - column_count += 6
 
   %div{class: column_count == 0 ? :rowd  : :nothing}
-    .single_event.columns.small-12.small-offset-0.medium-offset-0{class: [event.avatar? ? (event.avatar_aspect? == :portrait || column_count == 9 ? 'medium-6 large-3' : (column_count > 12 ? "medium-#{event.avatar_width > 900 ? 12 : 6}  large-3" : "medium-6 large-6") ) : 'medium-6 large-3']}
+    .single_event.columns.small-12.small-offset-0.medium-offset-0{class: [event.avatar? ? (event.avatar_aspect? == :portrait || column_count == 9 ? 'medium-6 large-3' : (column_count == 9 ? "medium-#{event.avatar_width > 900 ? 12 : 6}  large-3" : "medium-6 large-6") ) : 'medium-6 large-3']}
       .inner{style: event.avatar? ? "background: url(http://ptarmigan.fi#{event.avatar.url}) no-repeat center center; background-size: cover;" : ''}
-        %h3= link_to event.title, event
+        %h3
+          - if event.secondary == true && @ihana.nil?
+            = t "madhouse.next_at_ihana"
+          = link_to event.title, event
+        
         .date
           = date_range(event.date, event.enddate)
-        
+          
+        - if event.secondary == true && @ihana.nil?
+          .lower_link= link_to t("madhouse.ihana_bar_programme"), '/ihana'

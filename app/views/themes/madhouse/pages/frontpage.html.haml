@@ -25,7 +25,11 @@
       = link_to event do
         .small-10.small-offset-1.medium-offset-0.medium-6.large-4.xlarge-3.columns.event{:"data-equalizer-watch" => '', class: (index == 8 ? 'show-for-large-only' : (index > 3 ? 'hide-for-medium-only hide-for-small-only' : false) )}
           .top_box
+            - if event.secondary == true
+              = t "madhouse.next_at_ihana"
             = event.title
+            / - if event.secondary == true
+            /   %small= link_to t("madhouse.ihana_bar_programme"), '#'
             .date
               - if event.is_festival?
                 = l event.next_date, format: :short

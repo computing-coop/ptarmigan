@@ -47,6 +47,12 @@ class Event < ActiveRecord::Base
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }
   
+  scope :one_bar, ->() { where(['secondary is true AND public is true AND (date >= ? || (enddate is not null and enddate >= ?))',
+                                             Time.now.to_date, Time.now.to_date]).order(:date).limit(1) }
+                                             
+  scope :future_and_one_bar, -> () { one_bar }
+  scope :primary, -> () { where(secondary: false)}
+  scope :secondary, -> () { where(secondary: true)}     
   scope :between, -> (start_time, end_time) { 
     where( [ "(date >= ?  AND  enddate <= ?) OR ( enddate >= ? AND enddate <= ? ) OR (date >= ? AND date <= ?)  OR (date < ? AND enddate > ? )",
     start_time, end_time, start_time, end_time, start_time, end_time, start_time, end_time])

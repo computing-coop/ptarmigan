@@ -32,6 +32,7 @@ header {
   .icons {
     position: absolute;
     float: left;
+    font-size: 0.7rem;
     a {
       color: $madhouseblue;
     }
@@ -47,19 +48,21 @@ header {
       padding-bottom: 1rem;
     }
   }
-  .languages {
+  .right_menu_link {
     float: right;
     right: 10px;
     position: absolute;
     margin: -0.4rem 1rem 0 1rem;
+
+    font-size: 0.9rem;
+    overflow-y: hidden;
+    text-transform: uppercase;
+    font-family: $signika;
+  }
+  .languages {
+
     font-size: 0.7rem;
-    .right_menu_link {
-      margin-top: 0.2rem;
-      font-size: 0.8rem;
-      overflow-y: hidden;
-      text-transform: uppercase;
-      font-family: $signika;
-    }
+
   }
   
   clear: both;
@@ -653,6 +656,11 @@ span.facebook_button {
 // events index page
 
 .events_index {
+  h2 {
+    font-family: $signika;
+    font-size: 2.2rem;
+    color: #FFF;
+  }
   background-color: black;
   padding: 1.5rem 0;
   color: white;
@@ -714,6 +722,7 @@ span.facebook_button {
     margin-bottom: 1.4rem;
     color: #333;
     height: 500px;
+    
     .inner {
       padding: 0.8rem;
       height: 100%;
@@ -740,6 +749,24 @@ span.facebook_button {
         font-size: 0.7rem;
         margin-top: 0.25rem;
         text-transform: uppercase;
+      }
+      
+      .lower_link {
+        clear: both;
+        position: absolute;
+        right: 2rem;
+        bottom: 1rem;
+        a { color: #EFEFEF; 
+          &:hover {
+            color: $madhouseblue;
+          }
+        }
+        background-color: #222;
+        padding: 0.4rem 0.7rem;
+        float: right;
+        font-size: 1.1rem;
+        margin-top: 0.25rem;
+        text-transform: uppercase; 
       }
     }
   }

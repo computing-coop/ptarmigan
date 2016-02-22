@@ -234,7 +234,7 @@ fi:
     buy_tickets: 'Hanki lippusi'
     tickets: 'Liput'
     buy: 'Osta'
-    next_at_ihana: 'Seuraava Ihanassa Baarissa:'
+    next_at_ihana: 'Seuraavaksi Ihana Baarissa:'
     ihana_bar_programme: 'Ihana Baarin ohjelma...'
     ihana_bar_programme_header: 'Ihana Baarin ohjelma'
     latest_news: 'Uutiset'

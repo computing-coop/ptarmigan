@@ -101,6 +101,7 @@
         $('button.email_signup').attr('disabled', 'disabled');   
         $("#loading").toggle();
       });
+               
       $('#calendar').fullCalendar({
             editable: true,
             header: {
@@ -132,6 +133,7 @@
 
 
         updateEvent = function(the_event) {
+
           return $.update("/calendar/" + the_event.id, {
             event: {
               title: the_event.title,

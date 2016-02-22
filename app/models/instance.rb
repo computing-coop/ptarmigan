@@ -19,8 +19,8 @@ class Instance < ActiveRecord::Base
       :id => self.id,
       :title => self.title.blank? ? self.event.title : self.title,
       :description => self.special_information.blank? ? self.event.description : self.special_information,
-      :start => start_at.rfc822,
-      :end => end_at.nil? ? start_at.rfc822 : end_at.rfc822,
+      :start => start_at.strftime('%Y-%m-%d %H:%M:00'),
+      :end => end_at.nil? ? start_at.strftime('%Y-%m-%d %H:%M:00') : end_at.strftime('%Y-%m-%d %H:%M:00'),
       :allDay => false, 
       :recurring => false,
       :url => self.title.blank? ? Rails.application.routes.url_helpers.event_path(self.event.slug) : 

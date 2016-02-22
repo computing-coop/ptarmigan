@@ -28,11 +28,11 @@
             .project_event_title= link_to r.name, r.attachment.url
             = raw r.description
 
-  - unless project.events.delete_if{|x| !x.public }.blank?
+  - unless project.events.to_a.delete_if{|x| !x.public }.blank?
     .project_hideshow= raw link_to("#{t :see} #{project.name} #{t :events} (#{project.events.size})",  "javascript:$('#project_events_#{project.id.to_s}').slideDown();")
     
     .project_events.twelve.columns{:id => "project_events_#{project.id.to_s}", :style => "display: none;"}
-      - project.events.delete_if{|x| !x.public }.sort{|x, y| y.date <=> x.date}.each_with_index do |e, index|
+      - project.events.to_a.delete_if{|x| !x.public }.sort{|x, y| y.date <=> x.date}.each_with_index do |e, index|
         .project_event.five.columns{:class => (index == (project.events.size - 1) ? "last" : "")}
           .project_event_image.columns.alpha= image_tag e.avatar.url(:thumb) 
           .project_event_metadata.three.columns.omega

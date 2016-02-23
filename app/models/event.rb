@@ -53,6 +53,7 @@ class Event < ActiveRecord::Base
   scope :future_and_one_bar, -> () { one_bar }
   scope :primary, -> () { where(secondary: false)}
   scope :secondary, -> () { where(secondary: true)}     
+  scope :ihana, -> () { where(["secondary is TRUE OR place_id = 158"])}
   scope :between, -> (start_time, end_time) { 
     where( [ "(date >= ?  AND  enddate <= ?) OR ( enddate >= ? AND enddate <= ? ) OR (date >= ? AND date <= ?)  OR (date < ? AND enddate > ? )",
     start_time, end_time, start_time, end_time, start_time, end_time, start_time, end_time])

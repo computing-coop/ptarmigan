@@ -6,6 +6,9 @@
   .small-12.columns#calendar
   
 .events_container
+
+  .row
+    .small-12.columns= paginate @events
   - @events.each_with_index do |event, index|
     .row{class: [cycle('odd', 'even'), @events[index+1] ? (@events[index+1].date.year != event.date.year ? :new_year : false) : false]}
       .small-12.medium-2.columns.span_date
@@ -59,3 +62,5 @@
                     = link_to 'Edit details', edit_admin_event_instance_path(event, instance), class: [:button, :tiny]
                     = link_to 'Delete', [:admin, event, instance], method: :delete, data: {confirm: 'Are you really sure?'}, class: [:button, :tiny, :alert]
                     %br/
+  .row
+    .small-12.columns= paginate @events                    

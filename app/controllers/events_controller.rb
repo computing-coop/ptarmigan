@@ -55,7 +55,7 @@ class EventsController < ApplicationController
           @upcoming = Event.primary.published.future.by_location(@location.id).order(:date)
           @upcoming += Event.one_bar.limit(1)
           @upcoming = @upcoming.sort_by(&:next_date)
-          @upcoming = Kaminari.paginate_array(@upcoming).page(params[:page]).per(8)
+          #@upcoming = Kaminari.paginate_array(@upcoming).page(params[:page]).per(8)
           
         else
           @upcoming = Event.by_location(@location.id).where(['date >= ?', Time.now.to_date]).order(:date).page(params[:page]).per(8)

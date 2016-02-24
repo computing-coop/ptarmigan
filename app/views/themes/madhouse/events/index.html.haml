@@ -15,9 +15,9 @@
       = t("madhouse.ihana_bar_programme_header")
   .event_boxes
     = render partial: 'eventfeed', locals: {column_count: column_count}
-  .row
-    .small-12.columns
-      %p.pagination= link_to_next_page(@upcoming, t(:next), :remote => true) 
+/ .row
+/     .small-12.columns
+/       %p.pagination= link_to_next_page(@upcoming, t(:next), :remote => true)
   
-= content_for :jquery do
-  $('.events_index .pagination').infinitePages();
+-#= content_for :jquery do=
+-# $('.events_index .pagination').infinitePages();

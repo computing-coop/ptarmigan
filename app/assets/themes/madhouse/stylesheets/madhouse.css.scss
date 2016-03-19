@@ -91,6 +91,12 @@ header {
           display: table-cell;
           text-align: center;
           white-space: nowrap;       
+          ul.f-dropdown {
+            li {
+              width: 200px;
+              text-align: left;
+            }
+          }
         }
       }
     }
@@ -319,6 +325,17 @@ span.ticket_button {
       opacity: 0.5;
     }
   }
+}
+
+a.button_link {
+  border: 1px solid $madhouseblue;
+  padding: 0.2rem;
+  border-radius: 5px;
+  margin-left: 7px;
+  font-size: 0.9rem;
+  background-color: $madhouseblue;
+  color: white;
+
 }
 
 span.facebook_button {
@@ -601,6 +618,9 @@ span.facebook_button {
   }
   
   .prev_next {
+    .next_container {
+      text-align: right;
+    }
     margin: 4rem 0;
     font-size: 1.125rem;
     font-family: $signika;

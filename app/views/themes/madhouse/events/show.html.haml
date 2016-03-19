@@ -33,7 +33,7 @@
         %br/
         = t "madhouse.location"
         = ": " + @event.place.name
-        = link_to fa_icon('map-marker'), '#', onclick: "$('.google_map').slideToggle(function()  { google.maps.event.trigger(map, 'resize'); map.setCenter(new google.maps.LatLng(#{@event.place.latitude}, #{@event.place.longitude}));            $('p.map_link a').text($('.google_map').is(':visible') ? '#{t(:hide_map)}' : '#{t(:map)}');});return false;"
+        = link_to fa_icon('map-marker') + t("madhouse.view_map"), '#', onclick: "$('.google_map').slideToggle(function()  { google.maps.event.trigger(map, 'resize'); map.setCenter(new google.maps.LatLng(#{@event.place.latitude}, #{@event.place.longitude}));            $('p.map_link a').text($('.google_map').is(':visible') ? '#{t(:hide_map)}' : '#{t(:map)}');});return false;", class: :button_link
         .google_map#mapcontainer= render partial: 'shared/small_map'
         
         %br/
@@ -51,9 +51,9 @@
               .instance= l instance.start_at,  format: :long
               - if instance.future?
                 - unless instance.ticket_url.blank?
-                  = link_to instance.ticket_url, :target => :_blank do
+                  = link_to instance.ticket_url, class: :button_link, :target => :_blank do
                     = fa_icon 'ticket'
-                    = t(:buy_ticket)
+                    = t("madhouse.buy_ticket")
 
         
     .small-12.medium-6.medium-pull-6.columns
@@ -78,10 +78,10 @@
 
   .prev_next
     .row
-      .small-4.small-offset-1.columns
+      .small-4.columns
         - unless @event.previous_event.nil?
           = link_to raw(fa_icon('long-arrow-left') + " #{t("madhouse.previous_event")}: #{@event.previous_event.title}"), @event.previous_event
-      .small-4.small-offset-1.columns
+      .small-4.small-offset-1.columns.next_container
         - unless @event.next_event.nil?
           = link_to raw("#{t("madhouse.next_event")}: #{@event.next_event.title}" + ' ' + fa_icon('long-arrow-right')), @event.next_event            
             

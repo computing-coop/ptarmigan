@@ -15,7 +15,9 @@
 //= require jquery.infinite-pages
 //= require madhouse/javascripts/calendar
 
+$(document).on('ready page:load', function () {
 $(document).foundation();
+});
 
 function toggleCalendar() {
 

@@ -25,7 +25,7 @@
           = image_tag @event.avatar.url
       .event_info
         - if !@instance.price == 0
-          = t :tickets
+          = t "madhouse.tickets"
           = ptarmigan_cost(@instance.price)
           - unless !@instance.discountedprice.blank?
             = " / "
@@ -35,26 +35,25 @@
             - if @event.cost == 0
               = t :free
           - elsif !@event.cost.blank?
-            = t :tickets
+            = t "madhouse.tickets"
             = ptarmigan_cost(@event.cost)
             - unless @event.discountedcost.blank?
               = " / "
               = ptarmigan_cost @event.discountedcost
           - else
-            = t :tickets
+            = t "madhouse.tickets"
             = ptarmigan_cost(@instance.price)
             - unless @instance.discounted_price.blank?
               = " / "
               = ptarmigan_cost @instance.discounted_price
-            / = t :tickets
-            / = ptarmigan_cost(@event.cost)
+
         %br/
         = t :location
         - if @instance.place.blank?
           = ": " + @event.place.name
         - else
           = ": " + @instance.place.name
-        = link_to fa_icon('map-marker'), '#', onclick: "$('.google_map').slideToggle(function()  { google.maps.event.trigger(map, 'resize'); map.setCenter(new google.maps.LatLng(#{@event.place.latitude}, #{@event.place.longitude}));            $('p.map_link a').text($('.google_map').is(':visible') ? '#{t(:hide_map)}' : '#{t(:map)}');});return false;"
+        = link_to fa_icon('map-marker') + t("madhouse.view_map"), '#', onclick: "$('.google_map').slideToggle(function()  { google.maps.event.trigger(map, 'resize'); map.setCenter(new google.maps.LatLng(#{@event.place.latitude}, #{@event.place.longitude}));            $('p.map_link a').text($('.google_map').is(':visible') ? '#{t(:hide_map)}' : '#{t(:map)}');});return false;", class: :button_link
         .google_map#mapcontainer= render partial: 'shared/small_map'
         
         %br/
@@ -65,17 +64,17 @@
         %br/
         
 
-      
-        = t("madhouse.dates") + ":"
         %br/
+        = t("madhouse.dates") + ":"
         - @instance.siblings.sort_by(&:start_at).each do |instance|
+          %br/
           = date_range(instance.start_at, instance.end_at, format: :with_day)
           - if instance.future?
             - unless instance.ticket_url.blank?
-              = link_to instance.ticket_url, :target => :_blank do
+              = link_to instance.ticket_url, class: :button_link, :target => :_blank do
                 = fa_icon 'ticket'
-                = t(:buy_ticket)
-            %br/
+                = t("madhouse.buy_ticket")
+     
         
     .small-12.medium-6.medium-pull-6.columns
       .event_description

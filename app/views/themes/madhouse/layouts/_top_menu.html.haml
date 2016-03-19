@@ -1,5 +1,16 @@
 %ul.top_nav
-  %li{style: "width: #{(100.to_f / (@menu.size + 2)).to_f}%;"}= link_to t(:events), events_path
-  %li{style: "width: #{(100.to_f / (@menu.size + 2)).to_f}%;"}= link_to t(:news), posts_path
-  - @menu.each do |menu|
-    %li{style: "width: #{(100.to_f / (@menu.size + 2)).to_f}%;"}= link_to menu.title, page_path(menu.slug)
+  %li
+    %a{:"data-dropdown" => :eventdrop, :"aria-controls" => :eventdrop,:"data-options" => "is_hover:true; hover_timeout:5000", :"aria-expanded" => "true", href: events_path}= t(:events)
+    %ul#eventdrop.f-dropdown{:"data-dropdown-content" => '', :"aria-hidden" => "true"}
+      %li= link_to t("madhouse.ihana_bar"), '/ihana'
+  %li{style: "width: 20%;"}= link_to t(:news), posts_path
+  %li= link_to t("madhouse.tickets"), page_path('Tickets')
+  %li= link_to 'Mad House', page_path('what-is-mad-house')
+  / %li
+  /   %a{:"data-dropdown" => :madhouse, :"aria-controls" => :madhouse,:"data-options" => "is_hover:true; hover_timeout:5000", :"aria-expanded" => "true", href: page_path('what-is-mad-house')} Mad House
+  /   %ul#madhouse.f-dropdown{:"data-dropdown-content" => '', :"aria-hidden" => "true"}
+  %li
+    %a{:"data-dropdown" => :contact, :"aria-controls" => :contact,:"data-options" => "is_hover:true; hover_timeout:5000", :"aria-expanded" => "true", href: page_path('contact')}= t("madhouse.contact")
+    %ul#contact.f-dropdown{:"data-dropdown-content" => '', :"aria-hidden" => "true"}
+      %li= link_to t("madhouse.press"), page_path('press')
+      

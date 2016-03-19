@@ -25,7 +25,7 @@
     = display_meta_tags :site => 'Mad House Helsinki'
     = stylesheet_link_tag    'madhouse/stylesheets/application', media: 'screen'
     = javascript_include_tag "vendor/modernizr"
-    = javascript_include_tag 'madhouse/javascripts/application', 'data-turbolinks-track' => true 
+    = javascript_include_tag 'madhouse/javascripts/application', 'data-turbolinks-track' => false 
     %script{:src => "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_API_KEY']}", :type => "text/javascript"}
     = csrf_meta_tags
     %script{:type => "text/javascript"}
@@ -82,7 +82,7 @@
         .row
           .small-8.medium-8.small-centered.columns
             .row
-              .medium-6.columns.text-right
+              .medium-6.columns.text-center
                 .blurb= t "madhouse.join_our_email_list"
               .medium-6.columns.end
                 = form_tag url_for('/madhouse/add_to_list'), :id => :email_form, :method => :post, :remote => true do 

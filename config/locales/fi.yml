@@ -233,6 +233,7 @@ fi:
     share: 'Jaa:'
     buy_tickets: 'Hanki lippusi'
     tickets: 'Liput'
+    season: 'Kausi'
     buy: 'Osta'
     next_at_ihana: 'Seuraavaksi Ihana Baarissa:'
     ihana_bar_programme: 'Ihana Baarin ohjelma...'
@@ -246,3 +247,4 @@ fi:
     facebook_link: 'Tapahtuma Facebookissa' 
     contact: 'Yhteystiedot'
     press: 'Lehdistölle'
+    go_to: 'Go to '

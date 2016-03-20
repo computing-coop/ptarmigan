@@ -332,6 +332,7 @@ en:
     tickets: 'Tickets'
     location: 'Location'
     home: 'Home'
+    season: 'Season'
     facebook_link: 'See on Facebook'
     buy: 'Buy'
     ihana_bar: 'Ihana Bar'
@@ -348,3 +349,4 @@ en:
     view_map: ' View on map'
     contact: 'Contact'
     press: 'Press'
+    go_to: 'Go to '

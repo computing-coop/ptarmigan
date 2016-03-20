@@ -26,23 +26,27 @@ class EventsController < ApplicationController
   end
 
   def archives
-    @archive = Event.by_location(@location.id).where(['public is true AND date < ?', Time.now.to_date]).order('date DESC').page params[:archive_page]
+    @archive = Event.by_location(@location.id).where(['public is true AND date < ?', Time.now.to_date]).order(date: :desc).all #page params[:archive_page]
+    if @location.id == 4
+      
+    else
+      set_meta_tags :open_graph => {
+          :title => t(:events) ,
+          :type  => "article",
+          :url   => url_for({:only_path => false, :controller => :events}),
+          }, 
+          :canonical => url_for({:only_path => false, :controller => :events}),
+          :keywords => (@location.id == 1 ? 'Helsinki,Finland,' : 'Tallinn,Estonia') + ',Ptarmigan,culture,art,' + @archive.map{|x| x.event_type }.join(':').split(/\s*\:\s*/).compact.uniq.join(','),
+          :description => 'Past events',
+          :title => t(:events)
 
-    set_meta_tags :open_graph => {
-        :title => t(:events) ,
-        :type  => "article",
-        :url   => url_for({:only_path => false, :controller => :events}),
-        }, 
-        :canonical => url_for({:only_path => false, :controller => :events}),
-        :keywords => (@location.id == 1 ? 'Helsinki,Finland,' : 'Tallinn,Estonia') + ',Ptarmigan,culture,art,' + @archive.map{|x| x.event_type }.join(':').split(/\s*\:\s*/).compact.uniq.join(','),
-        :description => 'Past events',
-        :title => t(:events)
       respond_to do |format|
         format.html { render  :template => 'events/index' }
         format.rss { render :layout => false}
         format.xml  { render :xml => @archive }
       end
     end
+  end
 
   def index
     if @location.id == 1

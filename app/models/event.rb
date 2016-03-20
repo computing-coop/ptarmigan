@@ -81,8 +81,12 @@ class Event < ActiveRecord::Base
   
   def avatar_aspect?
     if avatar?
-      width, height = avatar_dimensions.split('x')
-      return (width.to_f / height.to_f ).to_f >= 1 ? :landscape : :portrait
+      if avatar_dimensions.nil?
+        return nil
+      else
+        width, height = avatar_dimensions.split('x')
+        return (width.to_f / height.to_f ).to_f >= 1 ? :landscape : :portrait
+      end
     else
       return nil
     end
@@ -193,7 +197,15 @@ class Event < ActiveRecord::Base
   end
   
   def next_date
-   instances.empty? ? date.to_date : instances.to_a.delete_if{|u| u.start_at <= Time.now}.sort_by(&:start_at).first.start_at
+    if instances.empty?
+      date.to_date
+    else
+      if instances.to_a.delete_if{|u| u.start_at <= Time.now}.empty?
+        instances.sort_by(&:start_at).last.start_at
+      else
+        instances.to_a.delete_if{|u| u.start_at <= Time.now}.sort_by(&:start_at).first.start_at
+      end
+    end
   end
   
   def start_time

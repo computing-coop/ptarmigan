@@ -19,6 +19,8 @@ $(document).on('ready page:load', function () {
 $(document).foundation();
 });
 
+
+  
 function toggleCalendar() {
 
   if ( jQuery('#calendar_container').css("left") == "0px")  {
@@ -34,4 +36,14 @@ function toggleCalendar() {
         jQuery('#calendar_container').animate({left:"0%"}, 100);
   }
 
+}
+
+
+function scroll_To(target) { 
+  $('html, body').stop().animate({
+      'scrollTop': $(target).offset().top - 40
+  }, 900, 'swing', function () {
+      //window.location.hash = target;
+  });
+  return false;
 }

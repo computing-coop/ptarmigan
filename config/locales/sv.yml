@@ -278,6 +278,7 @@ sv:
     buy_tickets: 'Köp biljetter'
     tickets: 'Biljett'
     buy: 'Köp'
+    season: 'Season'
     home: 'Home'
     next_at_ihana: 'Till följande i Ihana Baren:'
     ihana_bar_programme: 'Ihana Barens program ...'
@@ -291,3 +292,4 @@ sv:
     ihana_bar: 'Ihana Bar'
     press: 'Press'
     contact: 'Kontaktuppgifter'
+    go_to: 'Go to '

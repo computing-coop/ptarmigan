@@ -1,0 +1,22 @@
+.event_archive
+  .season_strip
+    .row
+      .small-10.columns.small-centered.text-left
+        %h3
+          = t(:archive) + "."
+          = t "madhouse.go_to"
+          = t "madhouse.season" + ": "
+          - @archive.group_by(&:madhouse_season).each do |season|
+            = link_to "#{season.first.to_s}", '#', onclick: 'javascript:scroll_To("#season' + season.first.to_s + '");return false;'
+            - unless season.first == 1
+              = " | "
+  .archive_area
+    - @archive.group_by(&:madhouse_season).each do |season|
+      .row
+        .small-6.columns.small-centered
+          .season_heading{id: "season#{season.first}"}
+            = retina_image_tag(theme_image_path("MHH_season#{season.first}.png"))
+            .smaller= link_to fa_icon('arrow-up') + t("madhouse.back_to_top"), '#', onclick: 'javascript:$("html, body").animate({ scrollTop: 0 }, "slow");return false;'
+        - @upcoming = season.last
+        = render partial: 'events/archivefeed', locals: {column_count: 0}
+            

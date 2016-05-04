@@ -60,6 +60,8 @@
         = image_tag f.object.specialimage.url(:medium)
       = f.input :specialimage
   .row
+    .small-6.columns= f.input :slug, label: 'Override slug'
+  .row
     .small-6.columns= f.submit 'Save', class: [:button]
     
     

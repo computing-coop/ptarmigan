@@ -1,13 +1,13 @@
+
 /*
+ *= require fullcalendar
  *= require_self
  *= require font-awesome
- *= require madhouse/stylesheets/madhouse
- *= require madhouse/stylesheets/foundation_and_overrides
- *= require madhouse/stylesheets/mobile
- *= require fullcalendar
  */
 
-@import 'foundation';
+@import 'madhouse/stylesheets/foundation_and_overrides';
+@import 'madhouse/stylesheets/madhouse';
+@import 'madhouse/stylesheets/mobile';
 @import 'slick';
 @import 'slick-theme';
 @import url(https://fonts.googleapis.com/css?family=Signika:400,700,600&subset=latin,latin-ext);

@@ -22,9 +22,9 @@
     %meta{:content => "#ffffff", :name => "theme-color"}/
     %meta{property: "fb:app_id", content: Figaro.env.madhouse_facebook_client_id.to_s}
     = display_meta_tags :site => 'Mad House Helsinki'
-    = stylesheet_link_tag    'madhouse/stylesheets/application', media: 'screen'
-    = javascript_include_tag "vendor/modernizr"
-    = javascript_include_tag 'madhouse/javascripts/application', 'data-turbolinks-track' => true 
+    = stylesheet_link_tag 'madhouse/stylesheets/application', media: 'screen'
+    -#= javascript_include_tag "vendor/modernizr"
+    = javascript_include_tag 'madhouse/javascripts/application', 'data-turbolinks-track' => false 
     = timeago_script_tag
     = csrf_meta_tags
     %script{:type => "text/javascript"}

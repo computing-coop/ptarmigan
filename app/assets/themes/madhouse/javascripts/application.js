@@ -7,7 +7,6 @@
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/lang-all
-//= require 'foundation/foundation' 
 //= require foundation
 //= require rails-timeago
 //= require locales/jquery.timeago.fi.js
@@ -16,7 +15,7 @@
 //= require madhouse/javascripts/calendar
 
 $(document).on('ready page:load', function () {
-$(document).foundation();
+  $(document).foundation();
 });
 
 

@@ -1,5 +1,9 @@
 %ul.menu.outer
-  %li= link_to t(:events), events_path
+  %ul.vertical.medium-horizontal.menu{"data-responsive-menu" => "drilldown medium-dropdown"}
+    %li.has-submenu
+      = link_to t(:events), events_path
+      %ul.submenu.menu.vertical#contact{"data-submenu" => ""}
+        %li= link_to t("madhouse.archive"), archives_events_path
   -# %a{:"data-dropdown" => :eventdrop, :"aria-controls" => :eventdrop,:"data-options" => "is_hover:true; hover_timeout:5000", :"aria-expanded" => "true", href: events_path}= t(:events)
   -#  %ul#eventdrop.f-dropdown{:"data-dropdown-content" => '', :"aria-hidden" => "true"}
   -#    %li= link_to t("madhouse.ihana_bar"), '/ihana'

@@ -6,7 +6,7 @@
 //= require jquery.clearfield
 //= require moment
 //= require fullcalendar
-//= require fullcalendar/lang-all
+
 //= require foundation
 //= require rails-timeago
 //= require locales/jquery.timeago.fi.js

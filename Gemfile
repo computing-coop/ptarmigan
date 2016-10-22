@@ -1,24 +1,23 @@
-if RUBY_VERSION =~ /1.9/
-    Encoding.default_external = Encoding::UTF_8
-    Encoding.default_internal = Encoding::UTF_8
-end
-source 'http://rubygems.org'
 
+source 'http://rubygems.org'
+ruby '2.3.1'
 gem 'rails', '4.2.7.1'
 gem 'mysql2'
-# Bundle edge Rails instead:
-# gem 'http_accept_language', '1.1.2'
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-# gem 'best_in_place', '1.0.6'
+
+gem 'puma'
+
 group :development do
-  gem "better_errors"
-  gem "binding_of_caller",">= 0.6.9.pre2" # :git => 'git://github.com/banister/binding_of_caller.git', :branch => 'ruby-2.0'
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'letter_opener'
-  gem 'nifty-generators'
-  gem 'meta_request'
-  gem 'quiet_assets'
-  gem 'sextant'
-  gem 'thin'
+  gem 'listen', '~> 3.0.5'
+  gem 'ruby_parser', '>= 3.0.1'
+  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'web-console'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+
 end
 
 source 'https://rails-assets.org' do
@@ -29,11 +28,14 @@ gem 'auto_html', '2.0.0'
 gem 'cancancan'
 
 gem 'calendrier'
-gem 'capistrano', '~> 3.4.0'
+
+
+gem 'capistrano'
 gem 'capistrano-rails'#, '1.1.3'
-gem 'capistrano-faster-assets', '~> 1.0'
 gem 'capistrano-rvm'
 gem 'capistrano-bundler'#, '1.1.4'
+gem 'capistrano3-puma'
+
 # gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git'
 gem 'ckeditor'
 gem 'country_select'
@@ -48,7 +50,7 @@ gem 'foundation-rails'#, github: 'dmitryzuev/foundation-rails', branch: 'feature
 gem "friendly_id"
 gem 'fullcalendar-rails'
 gem 'geocoder'
-gem 'globalize', '5.0.1'
+gem 'globalize', github: 'globalize/globalize', branch: 'master'
 # gem 'gmaps4rails'
 # gem 'google-api-client'
 gem 'haml'
@@ -100,33 +102,9 @@ gem 'twitter' #, '4.4.4'
 
 gem 'sass-rails', '~> 5.0'
 
-group :assets do
-
-  gem 'coffee-rails'
-  gem "uglifier"
-end
+gem 'coffee-rails'
+gem "uglifier", '>= 1.3.0'
 
 
-# Use unicorn as the web server
-# gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19'
-
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
 gem 'mocha', :group => :test

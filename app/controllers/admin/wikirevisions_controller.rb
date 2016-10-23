@@ -1,9 +1,9 @@
 # -*- encoding : utf-8 -*-
-class Admin::WikirevisionsController < ApplicationController
+class Admin::WikirevisionsController < Admin::BaseController
   layout 'staff'
-  before_filter :load_resource, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_and_paginate_resources, :only => [:index]
-  before_filter :authenticate_user!
+  before_action :load_resource, :only => [:show, :edit, :update, :destroy]
+  before_action :load_and_paginate_resources, :only => [:index]
+  before_action :authenticate_user!
   load_and_authorize_resource
   
   # GET /wikirevisions

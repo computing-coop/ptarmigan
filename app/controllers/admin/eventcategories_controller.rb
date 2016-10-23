@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
-class Admin::EventcategoriesController < InheritedResources::Base
+class Admin::EventcategoriesController < Admin::BaseController
   layout 'staff'
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   load_and_authorize_resource
   def create
     create! { admin_eventcategories_path }

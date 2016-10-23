@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Admin::EventsController < Admin::BaseController
   
-  before_filter :find_event
+  before_action :find_event
   # before_filter :exclude_guests
   EVENTS_PER_PAGE = 100
 

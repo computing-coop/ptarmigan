@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Admin::PlacesController < Admin::BaseController
-  before_filter :find_place
+  before_action :find_place
 
 
   def create

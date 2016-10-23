@@ -8,12 +8,12 @@ class ApplicationController < ActionController::Base
   helper LaterDude::CalendarHelper
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   theme :get_location
-  before_filter :get_location
-  before_filter :get_next_events
-  before_filter :get_locale
-  # before_filter :tiib_check
-  before_filter :configure_permitted_parameters, if: :devise_controller?
-  # before_filter :scorestore_check
+  before_action :get_location
+  before_action :get_next_events
+  before_action :get_locale
+  # before_action :tiib_check
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  # before_action :scorestore_check
 
   
   def add_to_mailchimp

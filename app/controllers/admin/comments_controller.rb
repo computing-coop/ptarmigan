@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
-class Admin::CommentsController < InheritedResources::Base
+class Admin::CommentsController < Admin::BaseController
   layout 'staff'
-  before_filter :authenticate_user!
-  before_filter :find_chatter
+  before_action :authenticate_user!
+  before_action :find_chatter
   load_and_authorize_resource
   layout 'staff'
   EVENTS_PER_PAGE = 20

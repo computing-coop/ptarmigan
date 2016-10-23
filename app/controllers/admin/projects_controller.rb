@@ -1,9 +1,9 @@
 # -*- encoding : utf-8 -*-
-class Admin::ProjectsController < ApplicationController
+class Admin::ProjectsController < Admin::BaseController
   
-  before_filter :authenticate_user!
-  before_filter :exclude_guests  
-  before_filter :find_project
+  before_action :authenticate_user!
+  before_action :exclude_guests  
+  before_action :find_project
   layout 'staff'
   has_scope :page, :default => 1
   load_and_authorize_resource

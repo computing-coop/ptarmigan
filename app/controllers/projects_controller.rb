@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class ProjectsController < ApplicationController
   respond_to :html, :xml, :js 
-  before_filter :find_project, :except => [:index, :by_location]
+  before_action :find_project, :except => [:index, :by_location]
 
 
  

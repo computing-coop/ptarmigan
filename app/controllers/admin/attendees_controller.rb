@@ -1,9 +1,9 @@
 # -*- encoding : utf-8 -*-
-class Admin::AttendeesController < InheritedResources::Base
+class Admin::AttendeesController < Admin::BaseController
   has_scope :event
   load_and_authorize_resource
   has_scope :page, :default => 1
-  actions :index, :show, :new, :edit, :create, :update, :destroy
+  
   respond_to :html, :js, :xml, :json
   layout 'staff', :only => [:index, :edit]
   before_filter :authenticate_user!, :only => [:index, :destroy, :edit]

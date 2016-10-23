@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   layout 'staff', :except => :new
-  before_filter :authenticate_user!, :only => [:update,  :edit, :index]
+  before_action :authenticate_user!, :only => [:update,  :edit, :index]
   respond_to :html
 
   

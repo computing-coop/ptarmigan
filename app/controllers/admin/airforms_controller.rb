@@ -1,10 +1,10 @@
 # -*- encoding : utf-8 -*-
-class Admin::AirformsController < InheritedResources::Base
+class Admin::AirformsController < Admin::BaseController
   
-  actions :index, :show, :new, :edit, :create, :update, :destroy
+
   respond_to :html, :js, :xml, :json
-  before_filter :authenticate_user!
-  before_filter :exclude_guests
+  before_action :authenticate_user!
+  before_action :exclude_guests
   load_and_authorize_resource
   protected
     

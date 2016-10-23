@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class PodcastsController < ApplicationController
 
-  before_filter :find_podcast, :except => [:index]
+  before_action :find_podcast, :except => [:index]
   
   def index
     @podcasts = Podcast.published.order('number DESC')

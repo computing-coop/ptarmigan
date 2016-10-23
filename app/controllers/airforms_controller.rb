@@ -1,10 +1,10 @@
 # -*- encoding : utf-8 -*-
-class AirformsController < InheritedResources::Base
+class AirformsController < ApplicationController
   
-  actions :index, :show, :new, :edit, :create, :update, :destroy
+  
   respond_to :html, :js, :xml, :json
   
-  before_filter :applicant_required
+  before_action :applicant_required
   
   def submit
     @airform = Airform.find(params[:id])

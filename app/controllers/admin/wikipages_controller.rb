@@ -1,9 +1,9 @@
 # -*- encoding : utf-8 -*-
-class Admin::WikipagesController < ApplicationController
+class Admin::WikipagesController < Admin::BaseController
   layout 'staff'
-  before_filter :load_resource, :only => [:show, :update]
-  before_filter :load_and_paginate_resources, :only => [:index]
-  before_filter :authenticate_user!
+  before_action :load_resource, :only => [:show, :update]
+  before_action :load_and_paginate_resources, :only => [:index]
+  before_action :authenticate_user!
   has_scope :page, :default => 1
   load_and_authorize_resource
   

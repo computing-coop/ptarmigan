@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
-class Admin::VideosController < ApplicationController
+class Admin::VideosController < Admin::BaseController
   load_and_authorize_resource
-  before_filter :authenticate_user!
-  before_filter :find_video
+  before_action :authenticate_user!
+  before_action :find_video
   layout 'staff'
   has_scope :page, :default => 1
 

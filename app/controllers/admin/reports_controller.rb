@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
-class Admin::ReportsController < ApplicationController
+class Admin::ReportsController < Admin::BaseController
   layout 'staff'
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   has_scope :page, :default => 1
 
   def check_for_icon

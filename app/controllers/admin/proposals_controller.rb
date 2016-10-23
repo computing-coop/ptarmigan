@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
-class Admin::ProposalsController < InheritedResources::Base
+class Admin::ProposalsController < Admin::BaseController
   load_and_authorize_resource
-  before_filter :authenticate_user!
-  before_filter :find_proposal
+  before_action :authenticate_user!
+  before_action :find_proposal
 
   layout 'staff'
   EVENTS_PER_PAGE = 20

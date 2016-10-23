@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class ArtistsController < ApplicationController
 
-  before_filter :find_artist, :except => [:archive, :index]
+  before_action :find_artist, :except => [:archive, :index]
 
 
 

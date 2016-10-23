@@ -22,8 +22,8 @@ class Attendee < ActiveRecord::Base
 
 
   scope :by_event, ->(event_id) { where(:event_id => event_id) }
-  scope :with_profile_pic, -> { where("profile_file_size > 0") }
-  scope :approved, -> { where(approved: true)}
+  scope :with_profile_pic, -> () { where("profile_file_size > 0") }
+  scope :approved, -> () { where(approved: true)}
   # attr_accessible :event_id, :comes_from, :approved, :optional, :work_in_progress_title, :event, :profile, :pay_received, :filmstill, :bio, :name, :email, :phone, :comments, :project_or_organisation, :profile, :invited
   
   after_create :send_notifications

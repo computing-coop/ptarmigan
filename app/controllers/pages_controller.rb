@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class PagesController < ApplicationController
   include Calendrier::EventExtension
-  before_filter :find_page
+  before_action :find_page
 
 
 

@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
-class Admin::PodcastsController < ApplicationController
+class Admin::PodcastsController < Admin::BaseController
   load_and_authorize_resource
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   layout 'staff'
   

@@ -3,7 +3,7 @@ class AttendeesController < ApplicationController
   
   # actions :index, :show, :new, :create, :update
   respond_to :html, :js, :xml, :json
-   before_filter :authenticate_user!, :only => [:destroy]
+   before_action :authenticate_user!, :only => [:destroy]
 
   def check
     attendee = Attendee.where(:event_id => params[:event_id], :email => params[:email])

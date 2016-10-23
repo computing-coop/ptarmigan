@@ -4,7 +4,7 @@ class Admin::FlickersController < Admin::BaseController
   has_scope :page, :default => 1
   respond_to :html, :js, :xml, :json
 
-  before_filter :find_flicker
+  before_action :find_flicker
 
   
   def create

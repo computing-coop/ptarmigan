@@ -2,8 +2,7 @@
 
 # encoding: utf-8
 
-class ProposalsController < InheritedResources::Base
-  actions :index, :create, :thank_you, :new, :axis_of_praxis
+class ProposalsController < ApplicationController
   
   def axis_of_praxis
     set_meta_tags :open_graph => {

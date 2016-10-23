@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
-class Admin::IncomesController < InheritedResources::Base
-  before_filter :authenticate_user!
-  before_filter :exclude_guests  
-  actions :index, :show, :new, :edit, :create, :update, :destroy
+class Admin::IncomesController < Admin::BaseController
+  before_action :authenticate_user!
+  before_action :exclude_guests  
+
   layout 'staff'
   load_and_authorize_resource
   def create

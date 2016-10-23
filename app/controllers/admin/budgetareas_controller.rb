@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
-class Admin::BudgetareasController < InheritedResources::Base
-  before_filter :authenticate_user!
-  actions :index, :show, :new, :edit, :create, :update, :destroy
+class Admin::BudgetareasController < Admin::BaseController
+  before_action :authenticate_user!
+
   respond_to :html, :js, :xml, :json
   layout 'staff'
   has_scope :page, :default => 1

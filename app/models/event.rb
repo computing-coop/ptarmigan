@@ -18,8 +18,8 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :eventcategories
   has_attached_file :avatar, :styles => { :larger => "350x350>", :medium => "400x400#",  :small => "240x240>",
                                        :thumb => "100x100>", :archive => "115x115#" },
-        :path =>  ":rails_root/public/images/events/:id/:style/:basename.:extension", 
-        :url => "/images/events/:id/:style/:basename.:extension", :t_url => "/assets/missing.png"
+         url: ':s3_domain_url',
+        path:  "events/:id/:style/:basename.:extension", :t_url => "/assets/missing.png"
 
   has_attached_file :carousel, :styles => {:largest => "1600x712#", :new_carousel => "1180x338#", :full => "960x400#", :small => "320x92#", :thumb => "100x100>"}, 
   :path =>  ":rails_root/public/images/carousel/events/:id/:style/:basename.:extension", :url => "/images/carousel/events/:id/:style/:basename.:extension"

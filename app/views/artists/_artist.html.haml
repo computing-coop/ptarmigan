@@ -1,4 +1,4 @@
-= content_tag_for :div, artist do
+.artist
 
   - unless artist.avatar_file_name.blank?
     =image_tag artist.avatar.url(:medium) 
@@ -32,10 +32,10 @@
         %br/
         %br/
           
-  - unless artist.events.delete_if{|x| x.public == false}.blank?
+  - unless artist.events.published.empty?
     .project_events
       %strong= "Events featuring #{artist.name}:"
-      - artist.events.delete_if{|x| !x.public }.sort{|x, y| y.date <=> x.date}.each_with_index do |e, index|
+      - artist.events.published.order(date: :desc).each_with_index do |e, index|
         .project_event.clearfix{:class => (index == (artist.events.size - 1) ? "last" : false)}
           .project_event_image= image_tag e.avatar.url(:thumb) 
           .project_event_metadata

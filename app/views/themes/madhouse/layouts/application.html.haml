@@ -69,7 +69,7 @@
       .menu_bar.visible.text-center.hide-for-small-only
         .menu_items= render partial: 'layouts/top_menu'    
       .menu_select.show-for-small-only
-        .row
+        .row.expanded
           .small-10.columns.menu_items= render partial: 'layouts/mobile_menu'        
     .calendar#calendar_container
       #calendar
@@ -79,9 +79,9 @@
     #container= yield
     %footer
       .mailing_list
-        .row
+        .row.expanded
           .small-8.medium-8.small-centered.columns
-            .row
+            .row.expanded
               .medium-6.columns.text-center
                 .blurb= t "madhouse.join_our_email_list"
               .medium-6.columns.end

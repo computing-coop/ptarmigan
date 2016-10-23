@@ -132,7 +132,8 @@ class PagesController < ApplicationController
     resources = Resource.where(["((location_id is null OR location_id = ?) OR all_locations is true)", @location.id])
     @pagelinks = Presslink.where(["((location_id is null OR location_id = ?) OR all_locations is true)", @location.id]).order("sortorder, presslinks.when DESC")
     @resources = resources.reject{|x| x.press_page != true}
-    @other_resources = resources.delete_if{|x| x.item_location != @location}
+    @other_resources = resources.to_a.delete_if{|x| x.item_location != @location}
+    set_meta_tags title: 'Press'
   end
 
 
@@ -165,6 +166,7 @@ class PagesController < ApplicationController
       @contact = Page.where(:slug => 'contact').first
       render :template => 'pages/about'
     else
+      set_meta_tags title: @page.title
       respond_to do |format|
         format.html
         format.xml  { render :xml => @page }

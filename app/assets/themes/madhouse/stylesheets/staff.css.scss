@@ -5,12 +5,28 @@
  *= require fullcalendar
  */
 
-@import 'foundation';
+@import 'madhouse/stylesheets/foundation_and_overrides';
 
-.icons {
+.top-bar {
+  a.item { 
+    border: 1px dotted blue;
+    padding: 0.4rem;
+    border-radius: 2px;
+    text-decoration: none;
+    height: 80px;
+    margin: 0 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
   img {
-    max-width: 15%;
+    max-width: 40px;
     height: auto;
+  }
+}
+
+nav.pagination {
+  span.page, span.next, span.prev, span.first, span.last {
+    float: left !important;
   }
 }
 form {

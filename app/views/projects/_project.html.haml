@@ -1,5 +1,4 @@
-
-= content_tag_for :div, project do
+.project
   %a{:name => project.id.to_s}
   - unless project.avatar_file_name.blank?
     .project_image=image_tag project.avatar.url(:medium) 

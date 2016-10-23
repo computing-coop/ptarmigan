@@ -10,18 +10,20 @@ class Post < ActiveRecord::Base
   has_many :podcasts
 
   has_attached_file :carousel, :styles =>  {:largest => "1600x712#",    :new_carousel => "1200x533#", :full => "960x427", :small => "320x143#", :thumb => "100x100>"},
-                                            :path =>  ":rails_root/public/images/carousel/posts/:id/:style/:normalized_resource_file_name",
-                                          :url =>  "/images/carousel/posts/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"
+                                            # :path =>  ":rails_root/public/images/carousel/posts/:id/:style/:normalized_resource_file_name",
+                                            :url =>':s3_domain_url',
+                                          path:  "carousel/posts/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"
 
   has_attached_file :alternateimg, :styles => {:largest => "1200x500#", 
                                           :full => "960x400#", :small => "300x200#",
                                           :thumb => "100x100>" },
-                                          :path =>  ":rails_root/public/images/posts/alt/:id/:style/:normalized_resource_file_name",
-                                          :url =>  "/images/posts/alt/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"
+                                          # :path =>  ":rails_root/public/images/posts/alt/:id/:style/:normalized_resource_file_name",
+                                          :url =>':s3_domain_url',
+                                          path:  "posts/alt/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"
 
   translates :title, :body, fallbacks_for_empty_translations: true
   # attr_accessible :translations,  :remove_carousel, :embed_above_post, :second_embed_gallery_id, :embed_gallery_id, :subsite_id, :show_on_main, :user_id, :carousel, :not_news, :is_personal, :location_id, :translations_attributes, :hide_carousel, :published, :alternateimg, :sticky, :remove_alternateimg
-  accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['title'].blank? && attributes['body'].blank? }
+  accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['title'].blank? || attributes['body'].blank? }
   scope :by_location, -> (x) { where(['location_id = ? AND (subsite_id is null OR show_on_main is true)', x])}
   scope :by_subsite, -> (x) { where(:subsite_id => x) }
   scope :with_carousel, -> () { where(["hide_carousel is not true AND carousel_file_name is not null AND carousel_file_size > 0" ])}
@@ -62,6 +64,7 @@ class Post < ActiveRecord::Base
   def carousel_link
     self
   end
+  
   
   def alternateimg_width
     if alternateimg?

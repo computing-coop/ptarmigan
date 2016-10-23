@@ -1,4 +1,4 @@
-- content_tag_for :div, project, :class => "front clearfix" do
+.project.front.clearfix
   .project_front_parameters
     - unless project.avatar_file_name.blank?
       =link_to(image_tag(project.avatar.url(:thumb), :width => 60, :align => :left), project_url(:id => project))

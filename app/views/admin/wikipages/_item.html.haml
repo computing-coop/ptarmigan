@@ -1,4 +1,4 @@
-- content_tag_for(:tr, wikipage, :class => cycle(:odd, :even)) do
+%tr[wikipage]{class: cycle('odd', 'even')}
   %td.title= h link_to wikipage.try(:title), admin_wikipage_path(:title => wikipage.title, :id => wikipage.id)
   %td.actions
     = link_to 'History', admin_wikipage_history_path(:title => wikipage.title)

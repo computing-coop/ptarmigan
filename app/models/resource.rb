@@ -9,11 +9,11 @@ class Resource < ActiveRecord::Base
   validates :attachment, :attachment_presence => true
   scope :by_location, lambda {|x| {:conditions => {:location_id => x} }}
   has_attached_file :attachment, :whiny => false,
-                    :path =>  ":rails_root/public/system/attachments/:id/:style/:basename.:extension", 
-                        :url => "/system/attachments/:id/:style/:basename.:extension"
+                           url: ':s3_domain_url',
+                       path: "attachments/:id/:style/:basename.:extension"
   has_attached_file :icon, :styles => { :medium => "400x400>", :thumb => "100x100>" },
-                        :path =>  ":rails_root/public/system/icons/:id/:style/:normalized_resource_file_name", 
-                        :url => "/system/icons/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"
+                                   url: ':s3_domain_url',
+                        path: "icons/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }
   scope :by_location, -> (x) { where(location_id: x) }

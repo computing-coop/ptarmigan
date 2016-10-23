@@ -75,6 +75,10 @@ et:
   daterange: ' - '
   proposal_attachment: 'Lisada võib ühe faili, maksimaalne maht 5 MB.'
   proposals: 'Ettepanekud'
+  ptarmigan_tallinn_is_closed: 'Ptarmigan on nüüdseks suletud.'
+  ptarmigan_helsinki_is_closed: 'Ptarmigan is no longer operating in Helsinki.'
+  ptarmigan_tallinn_closed_explanation: "Ptarmigan tegutses Tallinnas aastatel 2011-2014. Veebilehelt on leitav arhiiv nendel aastatel aset leidnud üritustest. Meie tegevus Tallinnas on lõppenud, kuid mõned liikmed jätkavad nüüd tegutsemist %{href}."
+  temporary_href: "Temporary’s Helsinkis"
   proposal_header: "Ptarmigan on projektipind mille programm sõltub Sinu ideedest! Selle vormiga saad need meile edastada. Sisuks võivad olla nii üksikud performace'id kui ka pikaajalised residentuurid. Saada meile järgnev info ja me võtame Sinuga esimesel võimalusel ühendust."
   proposal_location: 'Kus sa tahaksid oma projekti ette võtta?'
   proposal_organisation: 'Organisatsioon'

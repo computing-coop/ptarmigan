@@ -2,8 +2,8 @@
 class Cash < ActiveRecord::Base
   
   has_attached_file :image, :styles => { :standard => "1080x1080#", :low => "320x320#", :thumbnail => "150x150#"},
-        :path =>  ":rails_root/public/images/social_cache/:id/:style/:basename.:extension", 
-        :url => "/images/social_cache/:id/:style/:basename.:extension", :default_url => "/assets/missing.png"
+          url: ':s3_domain_url',
+        path: "social_cache/:id/:style/:basename.:extension", :default_url => "/assets/missing.png"
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   
   

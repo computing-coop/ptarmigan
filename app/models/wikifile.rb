@@ -4,8 +4,8 @@ class Wikifile < ActiveRecord::Base
   belongs_to :expense, :polymorphic => true
   belongs_to :documenttype
   has_attached_file :attachment,
-    :path =>  ":rails_root/public/wikiattachments/:id/:basename.:extension",
-    :url => "/wikiattachments/:id/:basename.:extension"
+         url: ':s3_domain_url',
+         path: "wikiattachments/:id/:basename.:extension"
   validates_attachment_presence :attachment
   # validates_presence_of :wikiattachment_id, :wikiattachment_type
   #validates_presence_of :documenttype_id

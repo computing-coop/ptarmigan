@@ -72,7 +72,7 @@
             %li= link_to(t(:archive), archive_events_path) 
             %li= link_to(t(:contact), {:controller => 'pages', :action => 'show', :id => 'contact'})
 
-            %li= link_to(t(:stuff_we_like), witnessed_posts_path)
+            -#%li= link_to(t(:stuff_we_like), witnessed_posts_path)
 
         #web2_inline.two.columns.omega
           = link_to(image_tag('layout/rss.png', {:alt => "RSS Feed",:width => 20,  :border => 0}), '/feed.rss')
@@ -81,7 +81,14 @@
           = link_to(image_tag('layout/flickr.png', {:alt => 'flickr', :width => 20, :border => 0}), "http://www.flickr.com/groups/ptarmigan/")
           = link_to(image_tag('layout/vimeo.png', {:alt => 'vimeo', :width => 20, :border => 0}), "http://vimeo.com/ptarmigan")  
 
-        
+    #ptarmigan_is_closed
+      .container
+        .sixteen.columns
+          %center
+            %h1= t :ptarmigan_helsinki_is_closed
+          %p= raw t(:ptarmigan_helsinki_closed_explanation)
+          %p= raw (t :ptarmigan_helsinki_temporary_blurb, href: link_to('Temporary', 'https://temporary.fi', target: :_blank))
+    .container
       #dynamic_wrap.sixteen.columns
         #left_column.eleven.columns.alpha
           .front_box

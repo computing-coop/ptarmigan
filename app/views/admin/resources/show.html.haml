@@ -1,7 +1,7 @@
 %h1.heading
   = "Resource %s" % @resource.id
   
-- content_tag_for(:dl, @resource) do
+%dl[@resource]
   %dt.label= 'Name'
   %dd.name= h @resource.try(:name)
   %dt.label= 'Description'

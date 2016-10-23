@@ -2,7 +2,7 @@
   .headline
     %h2= t :latest
   %ul#twitter_update_list
-  - twitter_status.each do |twit|
+  - twitter_status(1).each do |twit|
     .tweet
       = raw twit.content
       .meta

@@ -1,11 +1,11 @@
 .post_single
   .post_title
-    .row
+    .row.expanded
       .small-10.small-offset-1.medium-8.medium-offset-2.columns
         .blog_title= @post.title
 
   .post_content
-    .row
+    .row.expanded
       .small-10.small-offset-1.medium-8.medium-offset-2.columns
         .post_metadata
           - if @post.is_personal == true
@@ -15,14 +15,14 @@
         
         - if @post.alternateimg?
           .blog_image= image_tag @post.alternateimg.url
-    .row
+    .row.expanded
       .small-10.small-offset-1.medium-8.medium-offset-2.columns
         .blog_body
           = raw @post.body
-          = render partial: 'shared/share_buttons', locals: {url:  CGI::escape("http://#{request.host}#{request.port != 80 ? ":" + request.port.to_s : ''}#{url_for(@post)}"), title: CGI::escape(@post.title)}
+          = render partial: 'shared/share_buttons', locals: {url:  CGI::escape("http://#{request.host}#{request.port != 80 ? ":" + request.port.to_s : ''}#{url_for(@post)}"), title: CGI::escape(@post.title.nil? ? @post.translations.first.title : @post.title )}
 
   .prev_next
-    .row
+    .row.expanded
       .small-4.small-offset-1.columns
         - unless @post.previous_post.nil?
           = link_to raw(fa_icon('long-arrow-left') + " #{t("madhouse.previous_post")}: #{@post.previous_post.title}"), @post.previous_post

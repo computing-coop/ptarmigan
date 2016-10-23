@@ -1,4 +1,4 @@
-- content_tag_for(:tr, airform, :class => cycle(:odd, :even)) do
+%tr{class: cycle('odd', 'even'}[airform]
   %td.project_summary= h airform.try(:project_summary)
   %td.detailed_description= h airform.try(:detailed_description)
   %td.events= h airform.try(:events)

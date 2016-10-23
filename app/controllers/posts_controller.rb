@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
-class PostsController < InheritedResources::Base
-  actions :index, :show
+class PostsController < ApplicationController
+
   
   def index
     if @subsite
@@ -74,7 +74,7 @@ class PostsController < InheritedResources::Base
           :description => @post.body,
           :title => @post.title
     end
-    super
+  
   end
   
   protected

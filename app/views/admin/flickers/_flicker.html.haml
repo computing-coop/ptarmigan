@@ -26,24 +26,3 @@
         %li= link_to 'Edit', edit_admin_flicker_path(flicker)
         %li= link_to 'Destroy', [:admin, flicker], :confirm => 'Are you sure?', :method => :delete
         %li= link_to 'Back', admin_flickers_path
-  -# - info = flickr.photos.getInfo :photo_id => flicker.hostid if flicker.hostid rescue nil
-
-  -# - if info.nil?
-  -#   no info
-  -# - else
-
-  -#   = content_tag_for :div, flicker do
-  -#     %ul
-  -#       %li
-  -#         %strong Event:
-  -#         =h flicker.event.title
-  -#       %li
-  -#         %strong Creator:
-  -#         =h flicker.creator
-  -#       - if flicker.hostid
-  -#         = image_tag( FlickRaw.url_s(info) )
-  -#       - else
-  -#         = image_tag flicker.image.url(:standard)
-  -#       %li
-  -#         %strong Description:
-  -#         =h flicker.description

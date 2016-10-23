@@ -4,8 +4,8 @@ class Chatter < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :user_id, :subject
   has_attached_file :image, :styles => {:regular => "400x400>"},             
-                            :path =>  ":rails_root/public/images/chatter/:id/:style/:basename.:extension",
-                            :url =>  "/images/chatter/:id/:style/:basename.:extension"
+                              url: ':s3_domain_url',
+                            path:  "chatter/:id/:style/:basename.:extension"
 
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }

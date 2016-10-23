@@ -1,4 +1,4 @@
-= content_tag_for :div, artist, :class => "front clearfix" do
+.artist.front.clearfix
   .artist_front_parameters
     - unless artist.avatar_file_name.blank?
       =link_to(image_tag(artist.avatar.url(:thumb), :width => 60, :align => :left), artist_url(:id => artist))

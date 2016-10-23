@@ -1,7 +1,7 @@
 %h2= @flicker.name
 - info = flickr.photos.getInfo :photo_id => @flicker.hostid if @flicker.hostid
 
-= content_tag_for :div, @flicker do
+%div[@flicker]
   %ul
     %li
       %strong Event:

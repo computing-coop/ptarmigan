@@ -1,5 +1,5 @@
 %h2= @video.name
-- content_tag_for :div, @video do
+.video[@video]
   - if @video.videohost.id == 1
     %object{:width => 400, :height => 300}
       %param{:name => :allowfullscreen, :value => :true}

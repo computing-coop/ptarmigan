@@ -10,7 +10,7 @@
   - else
     Your application has been submitted.
   
-- content_tag_for(:dl, @airform) do
+%dl[@airform]
   %h3 Your details
   .application_details
     = "Name: #{@airform.applicant.realname}"

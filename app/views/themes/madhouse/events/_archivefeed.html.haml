@@ -12,7 +12,7 @@
 
   %div{class: column_count == 0 ? :rowd  : :nothing}
     .single_event.columns.small-12.small-offset-0.medium-offset-0{class: [event.avatar? ? (event.avatar_aspect? == :portrait || column_count == 9 ? 'medium-6 large-3' : (column_count == 9 ? "medium-#{event.avatar_width > 900 ? 12 : 6}  large-3" : "medium-6 large-6") ) : 'medium-6 large-3']}
-      .inner{style: event.avatar? ? "background: url(http://ptarmigan.fi#{event.avatar.url}) no-repeat center center; background-size: cover;" : ''}
+      .inner{style: event.avatar? ? "background: url(#{event.avatar.url}) no-repeat center center; background-size: cover;" : ''}
         %h3
           - if event.secondary == true && @ihana.nil?
             = t "madhouse.ihana_bar"

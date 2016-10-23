@@ -32,8 +32,8 @@ class User < ActiveRecord::Base
   # attr_accessible :login, :email, :name, :password, :password_confirmation, :icon
 
   has_attached_file :icon, :styles => { :medium => "400x400>",  :small => "240x240#", :thumb => "100x100>" },
-                            :path =>  ":rails_root/public/images/users/:id/:style/:basename.:extension",
-                            :url =>  "/images/users/:id/:style/:basename.:extension"
+                                 url: ':s3_domain_url',
+                            path:  "users/:id/:style/:basename.:extension"
 
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }  

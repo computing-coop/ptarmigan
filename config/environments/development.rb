@@ -43,6 +43,10 @@ Ptarmigan::Application.configure do
      "http://localhost:3000"
    end
  }
+ config.paperclip_defaults = {
+   :storage => :s3,
+   :bucket => 'creativeterritories-production'
+ }
  config.middleware.insert_before 0, "Rack::Cors" do
     allow do
       origins '*'

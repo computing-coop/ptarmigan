@@ -1,7 +1,7 @@
 %h1.heading
   = "Attendee %s" % @attendee.id
   
-= content_tag_for(:dl, @attendee) do
+%dl[@attendee]
   %dt.label= 'Name'
   %dd.name= h @attendee.try(:name)
   %dt.label= 'Email'

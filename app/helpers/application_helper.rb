@@ -254,9 +254,9 @@ module ApplicationHelper
   end
   
   
-  def twitter_status
+  def twitter_status(location = 4)
 
-    saved_tweet = Cash.where(:source => 'twitter').order(:link_url)
+    saved_tweet = Cash.where(location_id: location, source: 'twitter').order(:link_url)
     last_tweet = saved_tweet.first unless saved_tweet.empty?
     now = Time.now.to_i
     if saved_tweet.empty?

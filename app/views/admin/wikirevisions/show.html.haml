@@ -1,7 +1,7 @@
 %h1.heading
   = "Wikirevision %s" % @wikirevision.id
   
-- content_tag_for(:dl, @wikirevision) do
+%dl[@wikirevision]
   %dt.label= 'User'
   %dd.user= h @wikirevision.try(:user)
   %dt.label= 'Contents'

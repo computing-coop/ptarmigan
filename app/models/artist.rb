@@ -5,12 +5,12 @@ class Artist < ActiveRecord::Base
   friendly_id :name, :use => :history
   has_many :events
   has_attached_file :avatar, :styles => { :new_carousel => "960x400#", :medium => "400x400>", :thumb => "100x100>" },
-                               :path =>  ":rails_root/public/images/artists/:id/:style/:basename.:extension", 
-                               :url => "/images/artists/:id/:style/:basename.:extension", :default_url => "/assets/missing.png"
+                                 :url =>':s3_domain_url',
+                               path:  "artists/:id/:style/:basename.:extension", :default_url => "/assets/missing.png"
                                
   has_attached_file :carousel, :styles => {:largest => "1180x492#", :new_carousel => "960x400#", :full => "600x400#", :small => "300x200#", :thumb => "100x100>"}, 
-                               :path =>  ":rails_root/public/images/carousel/artists/:id/:style/:basename.:extension", 
-                               :url => "/images/carousel/artists/:id/:style/:basename.:extension", :default_url => "/assets/missing.png"
+                                :url =>':s3_domain_url',
+                               path: "carousel/artists/:id/:style/:basename.:extension", :default_url => "/assets/missing.png"
   has_many :resources
   belongs_to :location
   translates :bio

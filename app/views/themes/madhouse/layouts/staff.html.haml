@@ -13,35 +13,42 @@
 
   %body
     %header 
-      .row
+      .row.expanded
         .small-3.columns.end
           = image_tag theme_image_path('top_banner.png')
           = link_to 'Sign out', destroy_user_session_path
-      .icons.icon-bar.six-up
-
-        = link_to admin_events_path, class: :item do
-          = image_tag theme_image_path('/icons/event_icon.png')
-          %label Events
+      .top-bar
+        .top-bar-left
+          %ul.horizontal.menu
+            %li
+              = link_to admin_events_path, class: :item do
+                = image_tag theme_image_path('/icons/event_icon.png')
+                %label Events
        
-        = link_to admin_flickers_path, class: :item  do
-          = image_tag theme_image_path('/icons/archive_icon.jpg')
-          %label Archival images
+            %li
+              = link_to admin_flickers_path, class: :item  do
+                = image_tag theme_image_path('/icons/archive_icon.jpg')
+                %label Archival images
      
-        = link_to admin_posts_path, class: :item  do
-          = image_tag theme_image_path('/icons/post_icon.png')
-          %label Blog posts
+            %li
+              = link_to admin_posts_path, class: :item  do
+                = image_tag theme_image_path('/icons/post_icon.png')
+                %label Blog posts
 
-        = link_to admin_pages_path, class: :item  do
-          = image_tag theme_image_path('/icons/page_icon.png')
-          %label Static pages
+            %li
+              = link_to admin_pages_path, class: :item  do
+                = image_tag theme_image_path('/icons/page_icon.png')
+                %label Static pages
 
-        = link_to admin_places_path, class: :item  do
-          = image_tag theme_image_path('/icons/place_icon.jpg')
-          %label Places
+            %li
+              = link_to admin_places_path, class: :item  do
+                = image_tag theme_image_path('/icons/place_icon.jpg')
+                %label Places
 
-        = link_to admin_resources_path, class: :item  do
-          = image_tag theme_image_path('/icons/document_icon.png')
-          %label Documents          
+            %li
+              = link_to admin_resources_path, class: :item  do
+                = image_tag theme_image_path('/icons/document_icon.png')
+                %label Documents          
     = yield
   :javascript
     $(document).ready(function() { #{yield :jquery} 

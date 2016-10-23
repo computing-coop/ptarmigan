@@ -5,8 +5,8 @@ class Instance < ActiveRecord::Base
   friendly_id :title_en, :use => [:slugged, :finders, :history]
   has_attached_file :specialimage, :styles => { :largest => "1280x800>", :medium => "400x400>",
                                        :thumb => "100x100>", :archive => "115x115#" },
-        :path =>  ":rails_root/public/images/events/instances/:id/:style/:basename.:extension", 
-        :url => "/images/events/instances/:id/:style/:basename.:extension"
+             url: ':s3_domain_url',
+        path: "events/instances/:id/:style/:basename.:extension"
   translates :special_information, :notes
   accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['special_information'].blank? && attributes['notes'].blank? }
   validates_presence_of :event_id, :start_at, :end_at

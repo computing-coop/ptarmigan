@@ -4,8 +4,8 @@ class Flicker < ActiveRecord::Base
   scope :event, -> (e) {  where(:event_id => e) } 
   # attr_accessible :include_in_carousel, :event_id, :image_file_name, :image_file_size, :is_video, :name, :creator, :hostid, :image, :description,  :image_content_type
   has_attached_file :image, 
-                    :path =>  ":rails_root/public/images/contrib/:id/:style/:basename.:extension", 
-                    :url => "/images/contrib/:id/:style/:basename.:extension",
+                         url: ':s3_domain_url',
+                    path: "contrib/:id/:style/:basename.:extension",
                     :styles => {:largest => "1600x712#", 
     :new_carousel => "1200x533#", :full => "960x427", :small => "320x143#",
      :thumb => "100x100>"}, :default_url => "/assets/missing.png"

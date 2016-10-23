@@ -70,7 +70,7 @@ class ProjectsController < ApplicationController
   private
 
   def find_project
-    @project = Project.find(params[:id]) if params[:id]
+    @project = Project.friendly.find(params[:id]) if params[:id]
     if request.path != project_path(@project)
       return redirect_to @project, :status => :moved_permanently
     end  

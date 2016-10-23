@@ -1,5 +1,5 @@
 %h2= "Expense \"#{@expense.to_param}\""
-= content_tag_for :div, @expense do
+%div[@expense]
   %ul
     %li
       %strong Date:

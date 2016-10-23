@@ -1,4 +1,4 @@
-- content_tag_for(:tr, wikirevision, :class => cycle(:odd, :even)) do
+%tr[wikirevision]{class: cycle('odd', 'even')}
   %td.user= h wikirevision.try(:user).login
   %td.contents= h wikirevision.try(:contents)
   %td.page= h wikirevision.try(:wikipage).title

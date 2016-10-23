@@ -63,6 +63,9 @@ class ApplicationController < ActionController::Base
 
   
   def get_locale 
+    Globalize.fallbacks = {:en => [:en, :et, :fi, :ru, :sv, :lv] , :fi => [:fi, :sv, :en, :et, :ru, :lv],
+      et: [:et, :en, :ru, :fi, :sv, :lv], sv:  [:sv, :fi, :en, :et, :ru, :lv], ru:[:ru, :en, :et, :lv, :fi, :sv],
+       lv: [:lv, :en, :ru, :et ] }
     if params[:locale]
       session[:locale] = params[:locale]
     end
@@ -87,6 +90,7 @@ class ApplicationController < ActionController::Base
         I18n.locale = 'en'
       end
     end
+    
   end 
   
   def get_domain

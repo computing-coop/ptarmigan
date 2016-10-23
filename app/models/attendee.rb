@@ -11,14 +11,14 @@ class Attendee < ActiveRecord::Base
   has_attached_file :filmstill, :styles => {:new_carousel => "960x400#", 
       :full => "600x400>", :small => "300x200#",
       :thumb => "100x100>" },
-      :path =>  ":rails_root/public/images/users/attendees/filmstills/:id/:style/:normalized_filmstill_file_name",
-      :url =>  "/images/users/attendees/filmstills/:id/:style/:normalized_filmstill_file_name", :default_url => "/assets/missing.png"
+        url: ':s3_domain_url',
+      path:  "users/attendees/filmstills/:id/:style/:normalized_filmstill_file_name", :default_url => "/assets/missing.png"
 
   has_attached_file :profile, :styles => {
       :full => "600x400>", :small => "300x200#",
       :thumb => "100x100#" },
-      :path =>  ":rails_root/public/images/users/attendees/profiles/:id/:style/:normalized_profile_file_name",
-      :url =>  "/images/users/attendees/profiles/:id/:style/:normalized_profile_file_name", :default_url => "/assets/missing.png"
+       url: ':s3_domain_url',
+      path:  "users/attendees/profiles/:id/:style/:normalized_profile_file_name", :default_url => "/assets/missing.png"
 
 
   scope :by_event, ->(event_id) { where(:event_id => event_id) }

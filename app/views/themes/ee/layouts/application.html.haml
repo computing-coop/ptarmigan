@@ -90,7 +90,13 @@
           = link_to(image_tag('layout/flickr.png', {:alt => 'flickr', :width => 20, :border => 0}), "http://www.flickr.com/groups/ptarmigan/")
           = link_to(image_tag('layout/vimeo.png', {:alt => 'vimeo', :width => 20, :border => 0}), "http://vimeo.com/ptarmigan")  
 
-        
+    #ptarmigan_is_closed
+      .container
+        .sixteen.columns
+          %center
+            %h1= t :ptarmigan_tallinn_is_closed
+          %p= raw t(:ptarmigan_tallinn_closed_explanation, href: link_to(t(:temporary_href), 'https://temporary.fi', target: :_blank))
+    .container
       #dynamic_wrap.sixteen.columns
         #left_column.eleven.columns.alpha
           .front_box

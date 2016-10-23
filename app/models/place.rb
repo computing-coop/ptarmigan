@@ -14,9 +14,10 @@ class Place < ActiveRecord::Base
   # include PublicActivity::Model
   # tracked owner: ->(controller, model) { controller.current_user }
     
-  scope :for_events, -> { where(allow_ptarmigan_events: true)}
-  scope :creativeterritories, -> { where(country: 'LV')}
-  scope :approved_posters, -> { where(approved_for_posters: true)}
+  scope :tallinn, ->() { where(country: 'EE')}
+  scope :for_events, -> (){ where(allow_ptarmigan_events: true)}
+  scope :creativeterritories, -> () { where(country: 'LV')}
+  scope :approved_posters, -> () { where(approved_for_posters: true)}
 
   def address_or_coordinates
     if self.latitude.blank? || self.longitude.blank?
@@ -24,6 +25,15 @@ class Place < ActiveRecord::Base
     else
       reverse_geocode
     end
+  end
+  
+  def to_mapjson
+    {
+      id: id,
+      name: name,
+      lat: latitude,
+      lng: longitude
+    }
   end
   
   

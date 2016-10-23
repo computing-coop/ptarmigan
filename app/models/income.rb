@@ -7,25 +7,25 @@ class Income < ActiveRecord::Base
   belongs_to :budgetarea
   validates_presence_of :location_id, :amount, :when, :source, :what_for
       
-  scope :by_location
-  scope :by_recipient
-  scope :by_month
-  scope :by_payer
-  scope :by_budgetarea
-  scope :i_location, proc { |location| { :conditions => { :location_id => location }}}
-  scope :i_month, proc {|month| {:conditions => ["incomes.when >= ? AND incomes.when <= ?", 
+  # scope :by_location
+  # scope :by_recipient
+  # scope :by_month
+  # scope :by_payer
+  # scope :by_budgetarea
+  scope :i_location, -> (location) { where(location_id: location)}
+  scope :i_month, -> (month) { where(["incomes.when >= ? AND incomes.when <= ?", 
       Date.new(*(Date.parse(month).strftime('%Y %m') + " 1").split.map{|x| x.to_i }),
-     Date.new(*(Date.parse(month).strftime('%Y %m') + " -1").split.map{|x| x.to_i })]
-    }}
-  scope :by_year, proc {|year| {:conditions => ["incomes.when >= ? AND incomes.when <= ?", 
-    Date.parse(year + "-01-01").to_s,
-    Date.parse(year + "-12-31").to_s]
-  }}      
-  scope :i_budgetarea, proc {|budgetarea| { :conditions => {:budgetarea_id => budgetarea }}}
-  scope :i_event, proc {|event| {:conditions => {:event_id => event}}}
-  scope :i_source, proc {|payer| {:conditions => {:source => payer}}}
+     Date.new(*(Date.parse(month).strftime('%Y %m') + " -1").split.map{|x| x.to_i })])}
 
-  scope :render_csv
+  scope :by_year, ->(year) {where(["incomes.when >= ? AND incomes.when <= ?", 
+    Date.parse(year + "-01-01").to_s,
+    Date.parse(year + "-12-31").to_s])}
+
+  scope :i_budgetarea,->(budgetarea) { where(budgetarea_id: budgetarea)}
+  scope :i_event, ->(event) { where(event_id: event)}
+  scope :i_source, ->(payer) { where(source: payer)}
+
+ 
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }
       

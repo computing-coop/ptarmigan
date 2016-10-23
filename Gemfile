@@ -52,7 +52,7 @@ gem "friendly_id"
 gem 'fullcalendar-rails'
 gem 'geocoder'
 gem 'globalize', github: 'globalize/globalize', branch: 'master'
-# gem 'gmaps4rails'
+gem 'gmaps4rails'
 # gem 'google-api-client'
 gem 'haml'
 gem 'has_scope'
@@ -94,10 +94,11 @@ gem 'skeleton-rails',  github: 'helios-technologies/skeleton-rails'
 gem 'themes_for_rails', github: 'cenotaph/themes_for_rails', branch: 'master'
 gem 'execjs'
 
-gem 'thinking-sphinx', '3.0.0'
+gem 'thinking-sphinx', '~> 3.2.0'
 gem 'tlsmail', :group => :production
 gem 'truncate_html'
 gem 'twitter' #, '4.4.4'
+gem 'underscore-rails'
 # gem 'will_paginate', '~> 3.0.pre2'
 # gem 'will_filter', "~> 3.1.0"
 

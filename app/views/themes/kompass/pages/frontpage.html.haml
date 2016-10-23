@@ -1,5 +1,5 @@
 - overview = @pages.first.body.split(/\n/)
-.front_overview{:style => "background: url(http://ptarmigan.ee/system/kompass/kompassbg#{1 + rand(6)}.jpg) no-repeat center center; background-size: cover;"}
+.front_overview{:style => "background: url(http://creativeterritories-production.s3.amazonaws.com/kompass/kompassbg#{1 + rand(6)}.jpg) no-repeat center center; background-size: cover;"}
   .container.sixteen.columns
     .text_box
       %h4= raw overview[0]

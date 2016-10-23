@@ -7,6 +7,9 @@
     %link{ :rel => "alternate", :type => "application/rss+xml", :title => "Ptarmigan RSS", :href => "/feed.rss"}
     %link{:href => "http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,700,400italic&subset=latin,latin-ext", :rel => "stylesheet", :type => "text/css"}/
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,300,600&subset=latin,latin-ext", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "//maps.google.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_API_KEY']}"}
+    %script{:src => "//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"}
+    %script{:src => "//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js", :type => "text/javascript"}
     = stylesheet_link_tag :application
     = stylesheet_link_tag 'kuulutused/stylesheets/application', :media => :screen
     = javascript_include_tag :application
@@ -31,5 +34,7 @@
         .six.columns.omega.icons
           = link_to image_tag(theme_image_path('github.png'), :height => 30), 'http://github.com/cenotaph/ptarmigan'
           = link_to image_tag(theme_image_path('tiny_ptarmigan.png'), :height => 30), 'http://ptarmigan.ee/'
-
-      = yield :scripts
+    :javascript                
+      $(document).ready(function() {
+        #{yield :scripts}
+      });    

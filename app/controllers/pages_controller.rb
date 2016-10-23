@@ -15,10 +15,15 @@ class PagesController < ApplicationController
   
     if !@subsite.nil?
       if @subsite.name == 'kuulutused' 
-        @places = Place.approved_posters.delete_if{|x| x.votes_against >= 5}
-        @json = @places.to_gmaps4rails do |place,marker|
-          marker.json({:id => place.id})
-        end
+        @places = Place.tallinn.approved_posters.to_a.delete_if{|x| x.votes_against >= 5}
+        # @json = Gmaps4rails.build_markers(@places) do |user, marker|
+        #   marker.id user.id
+        #   marker.lat user.latitude
+        #   marker.lng user.longitude
+        # end
+        # @json = @places.to_gmaps4rails do |place,marker|
+        #   marker.json({:id => place.id})
+        # end
       elsif @subsite.name == 'creativeterritories'
         @events = @subsite.events.published
         @events = sort_events(@events)
@@ -36,7 +41,7 @@ class PagesController < ApplicationController
       elsif @subsite.name == 'kompass'
         @pages = Page.by_subsite(@subsite)
         @event = @subsite.events.first
-        @random_participants = @event.attendees.delete_if{|x| x.profile.blank? }
+        @random_participants = @event.attendees.to_a.delete_if{|x| x.profile.blank? }
       else
         @posts = Post.by_subsite(@subsite).published.order('created_at DESC').page params[:page]
       end

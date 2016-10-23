@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
-class AttendeesController < InheritedResources::Base
+class AttendeesController < ApplicationController
   
-  actions :index, :show, :new, :create, :update
+  # actions :index, :show, :new, :create, :update
   respond_to :html, :js, :xml, :json
    before_filter :authenticate_user!, :only => [:destroy]
 
@@ -28,7 +28,7 @@ class AttendeesController < InheritedResources::Base
       flash[:error] = 'You can only view attendees of a specific event, not all.'
       redirect_to '/'
     else
-      @event = Event.find(params[:event_id])
+      @event = Event.friendly.find(params[:event_id])
       if @event.show_guests_to_public == false && !user_signed_in?
         flash[:error] = 'This event does not publicise the attendee list.'
         redirect_to '/'

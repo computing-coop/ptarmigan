@@ -7,26 +7,24 @@ class Expense < ActiveRecord::Base
   belongs_to :budgetarea
   validates_presence_of :location_id, :amount, :when, :recipient, :what_for
   resourcify
-  scope :i_month
-  scope :i_location
-  scope :i_budgetarea
-  scope :i_event
-  scope :i_source
-  scope :by_location, proc { |location| { :conditions => { :location_id => location }}}
-  scope :by_recipient, proc {|recipient| { :conditions => { :recipient => recipient }}}
-  scope :by_month, proc {|month| {:conditions => ["expenses.when >= ? AND expenses.when <= ?", 
+  # scope :i_month
+  # scope :i_location
+  # scope :i_budgetarea
+  # scope :i_event
+  # scope :i_source
+  scope :by_location, -> (location) { where(location_id: location) }
+  scope :by_recipient, -> (recipient) { where(recipeient: recipient) }
+  scope :by_month, -> (month) { where(["expenses.when >= ? AND expenses.when <= ?", 
       Date.new(*(Date.parse(month).strftime('%Y %m') + " 1").split.map{|x| x.to_i }),
-     Date.new(*(Date.parse(month).strftime('%Y %m') + " -1").split.map{|x| x.to_i })]
-    }}
-  scope :by_year, proc {|year| {:conditions => ["expenses.when >= ? AND expenses.when <= ?", 
+     Date.new(*(Date.parse(month).strftime('%Y %m') + " -1").split.map{|x| x.to_i }) ] )}
+  scope :by_year, ->(year)  { where(["expenses.when >= ? AND expenses.when <= ?", 
     Date.parse(year + "-01-01").to_s,
-    Date.parse(year + "-12-31").to_s]
-  }}    
-  scope :by_budgetarea, proc {|budgetarea| { :conditions => {:budgetarea_id => budgetarea }}}
-  scope :by_event, proc {|event| {:conditions => {:event_id => event}}}
-  scope :by_payer, proc {|payer| {:conditions => {:paid_by => payer}}}
-  scope :has_receipt, where(:has_receipt => true)
-  scope :render_csv
+    Date.parse(year + "-12-31").to_s] )}    
+  scope :by_budgetarea, -> (budgetarea)  { where(budgetarea_id: budgetarea) }
+  scope :by_event, ->(event) { where(event_id: event)}
+  scope :by_payer, -> (payer) { where(paid_by: payer)}
+  scope :has_receipt, ->() {where(has_receipt: true) }
+
   FILTERS = [
               {:scope => "all", :label => "All"},
               {:scope => "by_location", :label => "Which Ptarmigan?"},

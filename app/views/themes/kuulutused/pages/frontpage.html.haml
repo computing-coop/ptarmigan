@@ -4,43 +4,43 @@
   
 
 
-#big_map= gmaps(:map_options => {:raw => "{styles: myStyle}" },  "markers" => { "data" => @json, "options" => {"auto_zoom" => true, "auto_adjust" => true}  })
+#big_map
+-#= gmaps(:map_options => {:raw => "{styles: myStyle}" },  "markers" => { "data" => @json, "options" => {"auto_zoom" => true, "auto_adjust" => true}  })
 .three.columns
   #message
   #infobox
 
-  
+
 = content_for :scripts do
-  :javascript
+  :plain
+    var myStyle = [ 
+      { featureType: "all", stylers: [ { weight: 1.7}, 
+         { "hue": "#00bbff"}, { saturation: -9 },
+      { lightness: 14}, {gamma: 0.42}] }
+      
+    ];
+    handler = Gmaps.build('Google');
+    handler.buildMap({
+        provider: {
+          disableDefaultUI: true,
+          styles: myStyle
+          // pass in other Google Maps API options here
+        },
+        internal: {
+          id: 'big_map'
+        }
+      },
+      function(){
+        markers = handler.addMarkers(#{raw @places.map(&:to_mapjson).to_json});
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      }
+    );
+    
     function onMarkerClick(marker, event){
       return function(event){
         $('#infobox').load("/places/" + marker.id);
       }
     }
-    var myStyle = [ 
-      { featureType: "all", stylers: [ { weight: 1.7}, 
-         { "hue": "#00bbff"}, { saturation: -9 },
-      { lightness: 14}, {gamma: 0.42}] }
-        
-    ];
-    
-    Gmaps.map.listen_to_markers = function(markers){
-      for(var i = 0; i < markers.length; i++){
-        marker = markers[i];
-        var the_id = markers[i].id;
-        google.maps.event.addListener(marker.serviceObject, 'click', onMarkerClick(marker, event));
-        google.maps.event.addListener(marker.serviceObject, 'click', function() {
-          
-          $('#big_map').css('width', '75%');
-          $('#big_map').css('float', 'left');
-     
-          $('#infobox').css('display', 'block');
-          
-        });
-      }
-    }
 
-    Gmaps.map.callback = function(){
-      Gmaps.map.listen_to_markers(Gmaps.map.markers);
-    }
 

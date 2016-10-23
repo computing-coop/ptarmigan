@@ -143,6 +143,11 @@ class ApplicationController < ActionController::Base
   end
 
   def search
+    if @location.id < 3
+      locations = [1, 2]
+    else
+      locations = @location.id
+    end
     if params[:search].blank?
       @hits = []
       @nosearch = 1
@@ -150,7 +155,7 @@ class ApplicationController < ActionController::Base
       batch = ThinkingSphinx::BatchedSearch.new
       
       [Artist, Project, Event, Post, Page, Resource].each do |cat|
-        batch.searches << cat.search(params[:search])
+        batch.searches << cat.search(params[:search], with: { location_id: locations})
       end  
       batch.populate
       @hits = batch.searches.compact.map(&:first).compact

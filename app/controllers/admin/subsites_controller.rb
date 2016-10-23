@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Admin::SubsitesController < Admin::BaseController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   respond_to :html, :js, :xml, :json
   layout 'staff'

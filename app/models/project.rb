@@ -8,8 +8,9 @@ class Project < ActiveRecord::Base
                url: ':s3_domain_url',
         path: "/projects/:id/:style/:basename.:extension", :default_url => "/assets/missing.png"
   has_attached_file :carousel, :styles => {:largest => "1180x492#",
-                                          :new_carousel => "960x400#", :full => "600x400#", :small => "300x200#", :thumb => "100x100>"}, :path =>  ":rails_root/public/images/carousel/projects/:id/:style/:basename.:extension",
-                          :url =>  "/images/carousel/projects/:id/:style/:basename.:extension"
+                                          :new_carousel => "960x400#", :full => "600x400#", :small => "300x200#", :thumb => "100x100>"},
+                                            url: ':s3_domain_url',
+                          path: "/carousel/projects/:id/:style/:basename.:extension"
   has_many :resources
   translates :description
   accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['description'].blank? }

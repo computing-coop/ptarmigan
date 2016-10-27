@@ -35,3 +35,6 @@ Capfile
 config/deploy/*
 # Ignore application configuration
 /config/application.yml
+
+# special fonts
+app/assets/themes/creativeterritories/fonts/*

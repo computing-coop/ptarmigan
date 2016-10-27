@@ -11,9 +11,16 @@ class Admin::SubsitesController < Admin::BaseController
   end
   
   def update
-    update! { admin_subsites_path }
+    @subsite = Subsite.find(params[:id])
+    if @subsite.update_attributes(subsite_params)
+      flash[:notice] = 'Subsite info updated.'
+      redirect_to '/admin'
+    end
   end
+  
   protected
 
-
+  def subsite_params
+    params.require(:subsite).permit([:name, :human_name, :fallback_theme, :location_id, :hide_from_carousel])
+  end
 end

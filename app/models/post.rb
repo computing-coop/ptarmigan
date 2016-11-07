@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
   belongs_to :subsite
   has_many :podcasts
 
-  has_attached_file :carousel, :styles =>  {:largest => "1600x712#",    :new_carousel => "1200x533#", :full => "960x427", :small => "320x143#", :thumb => "100x100>"},
+  has_attached_file :carousel, :styles =>  {:largest => "1600x712#",    :new_carousel => "1600x712#", :full => "960x427", :small => "320x143#", :thumb => "100x100>"},
                                             # :path =>  ":rails_root/public/images/carousel/posts/:id/:style/:normalized_resource_file_name",
                                             :url =>':s3_domain_url',
                                           path:  "carousel/posts/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"

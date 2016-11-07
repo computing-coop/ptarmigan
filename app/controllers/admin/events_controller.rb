@@ -40,11 +40,16 @@ class Admin::EventsController < Admin::BaseController
   end
   
   def edit
+    @event = Event.friendly.find(params[:id])
+    if @subsite && @subsite.theme == 'creativeterritories'
+      @event.location_id = 3
+      @event.subsite_id = 5
+    end
   end
   
   def index
     if @subsite
-     if @subsite.name == 'creativeterritories'
+     if @subsite.theme == 'creativeterritories'
         @events = Event.by_subsite(@subsite.id).order('date DESC').page(params[:page])
       else
         @events = Event.page(params[:page]).per(50).order('date DESC')
@@ -67,7 +72,7 @@ class Admin::EventsController < Admin::BaseController
   def new
 
     @event = Event.new(:location_id => @subsite.nil? ? @location.try(:id) : @subsite.try(:id), :place_id => nil)
-    if @subsite && @subsite.name == 'creativeterritories'
+    if @subsite && @subsite.theme == 'creativeterritories'
       @event.location_id = 3
       @event.subsite_id = 5
     end

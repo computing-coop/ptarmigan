@@ -105,28 +105,32 @@ class ApplicationController < ActionController::Base
         @location = Location.where(:name => 'Mad House').first
         "madhouse"
       else
-        @location = Location.where(:locale => 'ee').first
+        @location = Location.where(:locale => 'fi').first
       
         "ee"
       end
     end
+
   end
 
   def get_location
-    subsites = Subsite.all.map{|x| x.name}
-    toplevel = request.host.match(/^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\./)
+    subsites = Subsite.all.map{|x| x.name.split(/\,/)}.flatten
+    toplevel = request.host.match(/^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*)\./)
     if !toplevel.nil?
-      if subsites.include?(toplevel[1]) 
-        @subsite = Subsite.where(:name => toplevel[1]).first
+      tl =  toplevel[1] == 'www' ? toplevel[2] : toplevel[1]
+      if subsites.include?(tl) 
+        @subsite = Subsite.all.to_a.delete_if{|x| !x.name.split(/\,/).include?(tl)}.first
+        die unless @subsite
         @location = @subsite.location
 
-        @subsite.name
+        @subsite.name.split(/\,/).first
       else
         get_domain
       end
     else
       get_domain
     end
+
   end
   
   def get_next_events

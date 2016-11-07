@@ -283,6 +283,14 @@ en:
   ct:
     events_list: 'Events List'
     events_tagline: 'By Creative Quarters and Territories in Riga!'
+    events: 'Events'
+    calendar: 'Calendar'
+    for: 'for'
+    culture: 'Culture'
+    lovers: 'Lovers'
+    filtering: 'Filtering'
+    engine: 'Engine'
+    
   upcoming_events: 'Upcoming events'
   kompass:
     ptarmigan_location: 'Ptarmigan project rooms, Tallinn, Estonia'

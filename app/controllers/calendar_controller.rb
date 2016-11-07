@@ -13,10 +13,22 @@ class CalendarController < ApplicationController
 # end
   def index
     events = Event.where(nil)
+ 
     events = Event.by_location(@location.id).published.between(params['start'], params['end']) if (params['start'] && params['end'])
+    
     @events = []
-    @events += events.map(&:instances).flatten
-    @events += events.reject{|x| !x.one_day? }
+    #if @location.id != 3
+   
+      @events += events.map(&:instances).flatten 
+      no_instances = events.to_a.delete_if{|x| !x.instances.empty? }
+      # unless no_instances.nil?
+     #    @events += no_instances
+     #  end
+      @events += events.reject{|x| !x.one_day? }
+         
+    # else
+#       @events = events
+#     end
 
     respond_to do |format|
       format.html # index.html.erb

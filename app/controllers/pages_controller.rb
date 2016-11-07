@@ -12,9 +12,9 @@ class PagesController < ApplicationController
   end
   
   def frontpage
-  
+    
     if !@subsite.nil?
-      if @subsite.name == 'kuulutused' 
+      if @subsite.theme == 'kuulutused' 
         @places = Place.tallinn.approved_posters.to_a.delete_if{|x| x.votes_against >= 5}
         # @json = Gmaps4rails.build_markers(@places) do |user, marker|
         #   marker.id user.id
@@ -24,7 +24,8 @@ class PagesController < ApplicationController
         # @json = @places.to_gmaps4rails do |place,marker|
         #   marker.json({:id => place.id})
         # end
-      elsif @subsite.name == 'creativeterritories'
+      elsif @subsite.theme == 'creativeterritories'
+     
         @events = @subsite.events.published
         @events = sort_events(@events)
         @eventcategories = Eventcategory.all
@@ -38,7 +39,7 @@ class PagesController < ApplicationController
         params[:month] = params[:month].to_i
         params[:year] = params[:year].to_i
 
-      elsif @subsite.name == 'kompass'
+      elsif @subsite.theme == 'kompass'
         @pages = Page.by_subsite(@subsite)
         @event = @subsite.events.first
         @random_participants = @event.attendees.to_a.delete_if{|x| x.profile.blank? }
@@ -85,7 +86,7 @@ class PagesController < ApplicationController
         
       else  # it's Ptarmigan - an ugly hack for now but will work
         set_meta_tags :open_graph => {
-          :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.name} | " : "#{@subsite.human_name} | ")) + "Ptarmigan" ,
+          :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.theme} | " : "#{@subsite.human_name} | ")) + "Ptarmigan" ,
           :type  => "website",
           :url   =>   'http://' + (@subsite.nil? ? 'www.' : 'donekino.') + 'ptarmigan.' + @location.locale },
           :canonical =>  'http://www.ptarmigan.' + @location.locale,
@@ -145,7 +146,7 @@ class PagesController < ApplicationController
   def show
     if @location.id == 4
       set_meta_tags :og => {
-          :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.name} : " : "#{@subsite.human_name} : ")) + @page.title + " | Mad House Helsinki" ,
+          :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.theme} : " : "#{@subsite.human_name} : ")) + @page.title + " | Mad House Helsinki" ,
           :type  => "article",
           :url   =>  url_for(@page),
           image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg'
@@ -153,16 +154,16 @@ class PagesController < ApplicationController
         :canonical =>  url_for(@page),
         :keywords => 'Helsinki,Finland,performance art,theatre,Suvilahti,culture,art,live art',
         :description => @page.description,
-        :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.name} : " : "#{@subsite.human_name} : ")) +  @page.title.humanize
+        :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.theme} : " : "#{@subsite.human_name} : ")) +  @page.title.humanize
     else
       set_meta_tags :open_graph => {
-        :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.name} : " : "#{@subsite.human_name} : ")) + @page.title + " | Ptarmigan" ,
+        :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.theme} : " : "#{@subsite.human_name} : ")) + @page.title + " | Ptarmigan" ,
         :type  => "article",
         :url   =>  url_for(@page)},
         :canonical =>  url_for(@page),
         :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,proposals,application,residency,culture,art',
         :description => @page.description,
-        :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.name} : " : "#{@subsite.human_name} : ")) +  @page.title.humanize
+        :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.theme} : " : "#{@subsite.human_name} : ")) +  @page.title.humanize
     end
     if params[:id] == 'about' && @subsite.nil?
       @who_we_are = Page.by_location(@location.id).where(:slug => 'who_we_are').first

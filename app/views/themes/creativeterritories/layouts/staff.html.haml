@@ -7,6 +7,7 @@
     %link{ :rel => "shortcut icon", :href => "/favicon.ico" }
 
     -# = stylesheet_link_tag current_theme_stylesheet_path('ptarmigan'), :media => :screen
+    = stylesheet_link_tag 'creativeterritories/stylesheets/application', :media => :screen
     = stylesheet_link_tag 'print', :media => :print
     = stylesheet_link_tag :cms, :media => :screen
     = stylesheet_link_tag 'creativeterritories/stylesheets/staff', :media => :screen
@@ -37,12 +38,13 @@
                 = content_tag :div, flash[:warning], :class => "warning" if flash[:warning]
                 = content_tag :div, flash[:error],   :class => "error"   if flash[:error]
 
-          = yield
-      :javascript
-        $(document).ready(function() {  
-          #{yield :jquery}
-          
+    = yield
 
-        });
  
     #footer
+    :javascript
+      $(document).ready(function() {  
+        #{yield :jquery}
+        
+
+      });

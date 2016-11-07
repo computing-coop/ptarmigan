@@ -1,49 +1,120 @@
-.container
-  %center
-    .months
-      %span.prev_month= link_to raw('&#8592;'),  ctcalendar_path(:year => params[:month] > 1 ? params[:year] : params[:year] - 1, :month => params[:month] > 1 ? params[:month] - 1 : 12 )
-      %span.active_month= t('dates.ctmonths')[params[:month]]
-      %span.next_month= link_to raw('&#8594;'),  ctcalendar_path(:year => params[:month] < 12 ?  params[:year] : params[:year] + 1, :month => params[:month] < 12 ? (params[:month] + 1) : 1 )
-.event_categories_list#sticky-menu
-  %nav
-    %ul.event_categories
-      - @eventcategories.each do |ec|
-        %li= link_to ec.name, '#', style: "color: ##{ec.colour}"
-        
-        
+.row.expanded
+  .large-9.columns.calendar_outer_frame
+    = render partial: 'layouts/cities_header'
+    .row
+      .large-12.columns.banner_ad this is an ad
+    .row
+      .large-12.columns.the_calendar
+        %nav
+          %ul.event_categories
+            %li.month_title= params[:year].to_s + "/" + I18n.t("date.month_names")[params[:month]]
+            - @eventcategories.each do |ec|
+              %li= link_to ec.name, '#'
+        #calendar
+  
 -# = link_to image_tag(entry.calendar_icon(:thumb, nil)), ctcalendar_path(:year => key, :month => k)
 
-= calendrier(:year => params[:year], :month => params[:month], :day => params[:day], :start_on_monday => true, :display => :month, :title => false) do |cell_begin_time, cell_end_time|
 
-  - if count_sorted_events(@events, cell_begin_time, cell_end_time) > 0 
-  
+= content_for :jquery do 
+  :plain
+    function renderViewColumns(view, element) {
+      element.find('th.fc-day-header.fc-widget-header').each(function() {
+        var theDate = moment($(this).data('date')); /* th.data-date="YYYY-MM-DD" */
+        $(this).html(buildDateColumnHeader(theDate));
+      });
+
+      function buildDateColumnHeader(theDate) {
+        var container = document.createElement('div');
+        var DDD = document.createElement('div');
+        var ddMMM = document.createElement('div');
+        DDD.textContent = theDate.format('D').toUpperCase();
+        ddMMM.textContent = theDate.format('dddd');
+        DDD.className = "ct-day";
+        container.appendChild(DDD);
+        container.appendChild(ddMMM);
+        return container;
+      }
+    }
     
-    %ul.events
-      - yield_sorted_events(@events, cell_begin_time, cell_end_time) do |obj| 
-        %li{style: "#{obj.bordercss}", :"data-featherlight" => "#event_#{obj.id.to_s}"}
-          = [obj.event_time, obj.name].join(' ')
-          - unless obj.promoter.blank?
-            .smaller= "by #{obj.promoter}"
-          .smaller= "at #{obj.place.name}"
-        .obscured{id: "event_#{obj.id.to_s}"}
-          .title= obj.name
-          .date
-            = l obj.date, :format => :short
-            - unless obj.enddate.blank?
-              = "#{t(:daterange)} #{l obj.enddate, :format => :short}"
-          - unless obj.promoter.blank?
-            .promoter= "by #{obj.promoter}"
-          .place
-            = "at #{obj.place.name}"
-            - if obj.place.latitude && obj.place.longitude
-              = link_to t(:map), "http://maps.google.com/maps?q=#{obj.place.latitude},#{obj.place.longitude}", target: :_blank
-          .description= simple_format(obj.description)
+      $('#calendar').fullCalendar({
+            editable: true,
+            header: {
+              left: ''
+            },
+            defaultView: 'basicWeek',
+            contentHeight: '400px',
+            lang: '#{I18n.locale.to_s}',
+            contentHeight: 'auto',
+            firstDay: 1,
+            viewRender: renderViewColumns,
+            views: {
+              week: {
+                columnFormat: 'd\n<span class="weekday">dddd</span>'
+              }
+            },
+            fixedWeekCount: false,
+            slotMinutes: 60,
+            eventBorderColor: 'green',
+            eventSources: [
+              {
+                url: '/calendar'
+              }
+            ],
+            timeFormat: 'H:mm',
+            dragOpacity: "0.5",
+            eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+              return updateEvent(event);
+            },
+            
+            eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
+              return updateEvent(event);
+            }
+          });
 
-          - if obj.facebook
-            %p= link_to 'Facebook', 'http://www.facebook.com/event.php?eid=' + obj.facebook.to_s, target: :_blank
-          - if obj.otherweb
-            %p= link_to t(:more), obj.otherweb, target: :_blank
-          - unless obj.eventcategories.empty?
-            .event_categories 
-              - obj.eventcategories.each do |ec|
-                %span{style: "color: ##{ec.colour};"}= ec.name
+
+        updateEvent = function(the_event) {
+
+          return $.update("/calendar/" + the_event.id, {
+            event: {
+              title: the_event.title,
+              starts_at: "" + the_event.start,
+              ends_at: "" + the_event.end,
+              description: the_event.description
+            }
+          });
+        };
+
+/ = calendrier(:year => params[:year], :month => params[:month], day: params[:day], start_on_monday: true, display: :week, :title => false) do |cell_begin_time, cell_end_time|
+/
+/   - if count_sorted_events(@events, cell_begin_time, cell_end_time) > 0
+/
+/
+/     %ul.events
+/       - yield_sorted_events(@events, cell_begin_time, cell_end_time) do |obj|
+/         %li{style: "#{obj.bordercss}", :"data-featherlight" => "#event_#{obj.id.to_s}"}
+/           = [obj.event_time, obj.name].join(' ')
+/           - unless obj.promoter.blank?
+/             .smaller= "by #{obj.promoter}"
+/           .smaller= "at #{obj.place.name}"
+/         .obscured{id: "event_#{obj.id.to_s}"}
+/           .title= obj.name
+/           .date
+/             = l obj.date, :format => :short
+/             - unless obj.enddate.blank?
+/               = "#{t(:daterange)} #{l obj.enddate, :format => :short}"
+/           - unless obj.promoter.blank?
+/             .promoter= "by #{obj.promoter}"
+/           .place
+/             = "at #{obj.place.name}"
+/             - if obj.place.latitude && obj.place.longitude
+/               = link_to t(:map), "http://maps.google.com/maps?q=#{obj.place.latitude},#{obj.place.longitude}", target: :_blank
+/           .description= simple_format(obj.description)
+/
+/           - if obj.facebook
+/             %p= link_to 'Facebook', 'http://www.facebook.com/event.php?eid=' + obj.facebook.to_s, target: :_blank
+/           - if obj.otherweb
+/             %p= link_to t(:more), obj.otherweb, target: :_blank
+/           - unless obj.eventcategories.empty?
+/             .event_categories
+/               - obj.eventcategories.each do |ec|
+/                 %span{style: "color: ##{ec.colour};"}= ec.name

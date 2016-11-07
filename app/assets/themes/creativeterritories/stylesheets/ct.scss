@@ -1,0 +1,185 @@
+
+.demi, span.demi {
+  font-family: 'Rift-Demi';
+}
+
+.ital, span.ital {
+  font-family: 'Rift-Italic';
+}
+
+header {
+  min-height: 8.25rem;
+  
+  .left_header_title {
+    font-family: 'Rift-Regular';
+    font-size: 4.2rem;
+    line-height: 2.9rem;
+    .top_line {
+      border-bottom: 1px solid black;
+    }
+    
+  }
+  
+  .filtering_engine {
+    .title {
+      font-size: 2.625rem; 
+      line-height: 1.9rem;
+      font-family: 'Rift-Regular';
+      border-bottom: 1px solid black;
+    }
+  }
+}
+
+
+#main {
+  .calendar_outer_frame {
+    margin-left: 3.5%;
+  
+    .cities {
+      ul {
+        padding: 0;
+        margin: 0;
+        li {
+          list-style-type: none;
+          font-family: 'Rift-Regular';
+          font-size: 3.55rem;
+          text-transform: uppercase;
+          color: #666699;
+          float: left;
+          padding-right: 1.25rem;
+        
+          &.active {
+            color: black;
+          }
+        }
+      }
+    }
+  
+    .banner_ad {
+      height: 75px;
+      margin: 1.25rem 0;
+      width: 100%;
+      background-color: green;
+
+    }
+  }
+  
+  .the_calendar {
+    nav {
+      border: 1px solid black;
+      padding: 0;
+      float: left;
+      ul {
+        margin: 0;
+        padding: 0;
+        font-family: 'Rift-Bold';
+        li {
+          padding: 0.25rem;
+          list-style-type: none;
+          float: left;
+          text-transform: uppercase;
+          font-size: 1rem;
+          color: black;
+          a { color: black; }
+          &.month_title {
+            background-color: black;
+            color: white;
+            padding-right: 1.125rem;
+            font-size: 1.125rem;
+            letter-spacing: 0.1rem;
+            margin-right: 0.75rem;
+          }
+        }
+      }
+    }
+    
+  }
+}
+
+#calendar {
+  
+  .fc-toolbar {
+    .fc-right {
+      button {
+        display: none;
+      }
+      .fc-button-group {
+        display: none;
+      }
+    }
+  }
+  
+  .fc-view {
+    table {
+      tr {
+        background-color: white;
+      }
+      thead.fc-head {
+        border: none;
+        tr {
+          td.fc-head-container {
+            padding: 0;
+            .fc-widget-header {
+              table {
+                thead {
+                  border: none;
+                  .fc-day-header {
+                    font-family: 'Rift-Light';
+                    font-size: 0.75rem;
+                    .ct-day {
+                      font-family: 'Rift-Bold';
+                      font-size: 1.875rem;
+                      line-height: 1;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    .fc-bg {
+      display: none;
+    }
+    .fc-body {
+      border: none;
+      .fc-widget-content {
+        padding: 0;
+    
+        .fc-day-grid-container {
+          border-collapse: inherit;
+          .fc-content-skeleton {
+            table {
+              border-collapse: inherit;
+              tbody {
+                border: none;
+                tr {
+                  td {
+                    width: 142px !important;
+                    &.fc-event-container {
+                      vertical-align: top;
+                      a.fc-event {
+                        color: black;
+                        .fc-content {
+                          font-size: 0.722rm;
+                          font-family: 'Rift-Light';
+                          span.fc-title {
+                            font-family: 'Rift-Demi';
+                            
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+}

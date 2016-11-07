@@ -1,283 +1,101 @@
 /*
- *= require normalize
- *= require skeleton1200
-
- *= require creativeterritories/stylesheets/calendar
- *= require featherlight
- *= require creativeterritories/stylesheets/mobile
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require creativeterritories/stylesheets/ct
  */
 
-$main_color: #FFF4BC;
-
-* {
-  font-family: 'Open Sans', sans-serif;
-  box-sizing: border-box;
-}
-header {
-  padding-top: 1.3rem;
-  position: relative;
-  .logo {
-    width: 280px;
-  }
-  .title_container {
-    float: left;
-  }
-  .language_container {
-    float: right;
+@import 'creativeterritories/stylesheets/foundation_and_overrides';
 
 
-    ul.language {
-      float: right;
-      margin: 0;
-      li {
-        font-size: 0.8rem;
-        font-weight: bold;
-        float: left;
-        list-style-type: none;
-        padding: 0 0.2rem;
-        a {
-          color: #49ff9b;
-        }
-      }
-    }
-  }
-}
-
-#sticky-menu-sticky-wrapper.is-sticky {
-  #sticky-menu {
-    width: 100%;
-    background-color: white;
-    ul.event_categories {
-      margin: 0;
-      padding: 0;
-    }
-  }
-}
-
-.event_categories_list {
-
-  ul.event_categories {
-    text-align: justify;
-    &:after{ 
-      content: '';
-      display: inline-block;
-      width: 100%;
-    }
-    li {
-      display: inline-block;
-      list-style-type: none;
-      font-weight: bold;
-      font-size: 1.5rem;
-      padding-right: 1rem;
-
-      white-space: nowrap;
-      text-align: center;
-    }
-  }
-}
+/**
+ * @license
+ * MyFonts Webfont Build ID 3295590, 2016-10-13T17:34:15-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Rift-BoldItalic by Fort Foundry
+ * URL: http://www.myfonts.com/fonts/fort-foundry/rift/bold-italic/
+ * 
+ * Webfont: Rift-Italic by Fort Foundry
+ * URL: http://www.myfonts.com/fonts/fort-foundry/rift/italic/
+ * 
+ * Webfont: Rift-DemiItalic by Fort Foundry
+ * URL: http://www.myfonts.com/fonts/fort-foundry/rift/demi-italic/
+ * 
+ * Webfont: Rift-LightItalic by Fort Foundry
+ * URL: http://www.myfonts.com/fonts/fort-foundry/rift/light-italic/
+ * 
+ * Webfont: Rift-MediumItalic by Fort Foundry
+ * URL: http://www.myfonts.com/fonts/fort-foundry/rift/medium-italic/
+ * 
+ * Webfont: Rift-Bold by Fort Foundry
+ * URL: http://www.myfonts.com/fonts/fort-foundry/rift/bold/
+ * 
+ * Webfont: Rift-Demi by Fort Foundry
+ * URL: http://www.myfonts.com/fonts/fort-foundry/rift/demi/
+ * 
+ * Webfont: Rift-Light by Fort Foundry
+ * URL: http://www.myfonts.com/fonts/fort-foundry/rift/light/
+ * 
+ * Webfont: Rift-Medium by Fort Foundry
+ * URL: http://www.myfonts.com/fonts/fort-foundry/rift/medium/
+ * 
+ * Webfont: Rift-Regular by Fort Foundry
+ * URL: http://www.myfonts.com/fonts/fort-foundry/rift/regular/
+ * 
+ * 
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=3295590
+ * Licensed pageviews: 10,000
+ * Webfonts copyright: Copyright &#x00A9; 2016 by Mattox Shuler. All rights reserved.
+ * 
+ * © 2016 MyFonts Inc
+*/
 
 
-.event_list_title_box {
-  font-size: 4rem;
-  font-weight: bold;
-  text-align: center;
-  a { color: #FFF; }
-  background-color: black;
-  padding: 1.2rem;
-}
-.event_list_tagline {
- font-size: 1.4rem;
- text-transform: uppercase;
- margin-top: 0.3rem;
- font-weight: bold;
- color: #000;
- text-align: center;
-}
-a {
-  text-decoration: none;
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/324966");
 
-}
-
-a:hover {
-  color: $main_color;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-.gmnoprint img { max-width: none !important; }
-body {
-  margin: 0px;
-}
-
-/* superfish overrides */
-
-.sf-menu, .sf-menu * {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  width: 100%;
-}
-.sf-menu li {
-
-
-  cursor: pointer;
-  position: relative;
-}
-.sf-menu ul {
-  position: absolute;
-  display: none;
-  top: 100%;
-  left: 0;
-  z-index: 99;
-  margin: 0;
-}
-.sf-menu li {
-  a {
-    color: #000;
-    &:hover {
-      color: #fff4bc;
-    }
-  }
-  &:hover {
-    color: #fff4bc;
-  }
-}
-.sf-menu ul li ul {
-  margin: 0px;
-
-}
-
-.sf-menu li ul li {
-  width: 100% !important;
-  background-color: #FFF;
-  color: #FFF;
-
-  margin-bottom: 0px;
-  border-bottom: 1px solid $main_color;
-  padding: 4px;
-}
-.sf-menu li:hover ul li {
-  color: #fff4bc;
-}
-.sf-menu li ul li a {
-  font-size: 0.6em;
-}
-.sf-menu li ul li:hover a {
-  color: $main_color;
-}
-.sf-menu > li {
-  float: left;
-}
-.sf-menu li:hover > ul,
-.sf-menu li.sfHover > ul {
-  display: block;
-  border-top: 1px solid $main_color;
-  margin-top: 4px;
-
-}
-
-.sf-menu a {
-  display: block;
-  position: relative;
-}
-.sf-menu ul ul {
-  top: 0;
-  left: 100%;
-}
-
-
-.sf-menu {
-  float: left;
-  margin-bottom: 1em;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  position: relative;
   
-  .sf-sub-indicator {
-    display: none;
-  }
-  a {
-    display: block;
-    position: relative;
-  }
-  ul {
-    margin-top: 0px;
-    padding-top: 5px;
-    width: 24vw;
-    background-color: #000;
-    li {
-      margin-bottom: 3px;
-      padding-left: 5px;
+@font-face {font-family: 'Rift-BoldItalic';src: url('/assets/creativeterritories/fonts/324966_0_0.eot');src: url('/assets/creativeterritories/fonts/324966_0_0.eot?#iefix') format('embedded-opentype'),url('/assets/creativeterritories/fonts/324966_0_0.woff2') format('woff2'),url('/assets/creativeterritories/fonts/324966_0_0.woff') format('woff'),url('/assets/creativeterritories/fonts/324966_0_0.ttf') format('truetype');}
+ 
   
-      a {
-        font-size: 16px;
-        line-height: 18px;
-        &:hover {
-          padding-top: 0px;
-          padding-bottom: 0px;
-          text-decoration: none;
-          border-bottom: none;
-        }
-      }
-
-    }
-  }
-  li {
-    white-space: nowrap;
-    -webkit-transition: background .2s;
-    transition: background .2s;
-    
-
-
-  }
-}
-
-
-.months {
-  clear: left;
-  font-weight: bold;
-  margin-left: auto;
-  margin-right: auto;
-  .active_month {
-    font-size: 1.5rem; 
-    margin: 0 1rem;
-    vertical-align: super;
-  }
-  span.prev_month, span.next_month {
-    padding-bottom: 1rem;
-    a {
-      color: #49ff9b;
-      font-size: 2.5rem;
-      font-weight: bold;
-    }
-  }
-
-}
-footer {
-  p {
-    font-size: 0.7em;
-    color: #555;
-    a {
-      color: #555;
-    }
-  }
-  .footer_info {
-    padding-top: 40px;
-    padding-left: 2rem;
-    border-top: 1px solid #49ff9b;
-    ul {
-      float: left;
-      padding:0;
-      width: 100%;
-      opacity: 0.75;
-      li {
-        list-style-type: none;
-        float: left;
-        margin-right: 3em;
-      }
-    }
-  }
-}
+@font-face {font-family: 'Rift-Italic';src: url('/assets/creativeterritories/fonts/324966_1_0.eot');src: url('/assets/creativeterritories/fonts/324966_1_0.eot?#iefix') format('embedded-opentype'),url('/assets/creativeterritories/fonts/324966_1_0.woff2') format('woff2'),url('/assets/creativeterritories/fonts/324966_1_0.woff') format('woff'),url('/assets/creativeterritories/fonts/324966_1_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'Rift-DemiItalic';src: url('/assets/creativeterritories/fonts/324966_2_0.eot');src: url('/assets/creativeterritories/fonts/324966_2_0.eot?#iefix') format('embedded-opentype'),url('/assets/creativeterritories/fonts/324966_2_0.woff2') format('woff2'),url('/assets/creativeterritories/fonts/324966_2_0.woff') format('woff'),url('/assets/creativeterritories/fonts/324966_2_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'Rift-LightItalic';src: url('/assets/creativeterritories/fonts/324966_3_0.eot');src: url('/assets/creativeterritories/fonts/324966_3_0.eot?#iefix') format('embedded-opentype'),url('/assets/creativeterritories/fonts/324966_3_0.woff2') format('woff2'),url('/assets/creativeterritories/fonts/324966_3_0.woff') format('woff'),url('/assets/creativeterritories/fonts/324966_3_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'Rift-MediumItalic';src: url('/assets/creativeterritories/fonts/324966_4_0.eot');src: url('/assets/creativeterritories/fonts/324966_4_0.eot?#iefix') format('embedded-opentype'),url('/assets/creativeterritories/fonts/324966_4_0.woff2') format('woff2'),url('/assets/creativeterritories/fonts/324966_4_0.woff') format('woff'),url('/assets/creativeterritories/fonts/324966_4_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'Rift-Bold';src: url('/assets/creativeterritories/fonts/324966_5_0.eot');src: url('/assets/creativeterritories/fonts/324966_5_0.eot?#iefix') format('embedded-opentype'),url('/assets/creativeterritories/fonts/324966_5_0.woff2') format('woff2'),url('/assets/creativeterritories/fonts/324966_5_0.woff') format('woff'),url('/assets/creativeterritories/fonts/324966_5_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'Rift-Demi';src: url('/assets/creativeterritories/fonts/324966_6_0.eot');src: url('/assets/creativeterritories/fonts/324966_6_0.eot?#iefix') format('embedded-opentype'),url('/assets/creativeterritories/fonts/324966_6_0.woff2') format('woff2'),url('/assets/creativeterritories/fonts/324966_6_0.woff') format('woff'),url('/assets/creativeterritories/fonts/324966_6_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'Rift-Light';src: url('/assets/creativeterritories/fonts/324966_7_0.eot');src: url('/assets/creativeterritories/fonts/324966_7_0.eot?#iefix') format('embedded-opentype'),url('/assets/creativeterritories/fonts/324966_7_0.woff2') format('woff2'),url('/assets/creativeterritories/fonts/324966_7_0.woff') format('woff'),url('/assets/creativeterritories/fonts/324966_7_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'Rift-Medium';src: url('/assets/creativeterritories/fonts/324966_8_0.eot');src: url('/assets/creativeterritories/fonts/324966_8_0.eot?#iefix') format('embedded-opentype'),url('/assets/creativeterritories/fonts/324966_8_0.woff2') format('woff2'),url('/assets/creativeterritories/fonts/324966_8_0.woff') format('woff'),url('/assets/creativeterritories/fonts/324966_8_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'Rift-Regular';src: url('/assets/creativeterritories/fonts/324966_9_0.eot');src: url('/assets/creativeterritories/fonts/324966_9_0.eot?#iefix') format('embedded-opentype'),url('/assets/creativeterritories/fonts/324966_9_0.woff2') format('woff2'),url('/assets/creativeterritories/fonts/324966_9_0.woff') format('woff'),url('/assets/creativeterritories/fonts/324966_9_0.ttf') format('truetype');}
+ 

@@ -40,7 +40,6 @@
         = raw @event.notes.to_s.gsub(/\n/, '<br />')
   
 
-
         - unless @event.is_festival?
           .aikataulu
             = t(:dates, count: @event.instances.size + 1) + ":"
@@ -48,7 +47,9 @@
             - if @event.one_day?
               .instance= l @event.date, format: :long
             - @event.instances.each do |instance|
-              .instance= l instance.start_at,  format: :long
+              .instance
+                = instance.title + ": " unless instance.title.blank?
+                = l instance.start_at,  format: :long
               - if instance.future?
                 - unless instance.ticket_url.blank?
                   = link_to instance.ticket_url, class: :button_link, :target => :_blank do

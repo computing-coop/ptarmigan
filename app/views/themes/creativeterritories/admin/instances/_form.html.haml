@@ -1,0 +1,71 @@
+.row
+  .small-12.columns
+    %h2
+      performance of 
+      = @event.name
+    %h3
+      Overall duration:
+      = date_range(@event.date, @event.enddate)
+    
+= semantic_form_for([:admin, @event, @instance], html: {multipart: true}) do |f|
+  .row
+    .small-6.medium-4.columns= f.input :start_at, as: :string, input_html: {class: :datetimepicker, value: f.object.new_record? ? '' : (f.object.start_at.nil? ? '' : f.object.start_at.strftime('%Y-%m-%d %H:%M'))}
+  .row
+    .small-6.medium-4.columns= f.input :end_at,  as: :string, input_html: {class: :datetimepicker, value: f.object.new_record? ? '' : (f.object.end_at.nil? ? '' : f.object.end_at.strftime('%Y-%m-%d %H:%M'))}
+  .row
+    .small-8.columns= f.input :title, label: 'Custom title for this performance', hint: 'Optional'
+  .row
+    .small-10.columns
+      = tabs_for do |tab|
+        - tab.create('english', 'English') do
+          = f.globalize_fields_for :en do |en|
+            %p
+              Custom description of this night's performance:
+              = en.cktext_area :special_information
+            %p
+              Notes and other metadata
+              = en.text_area :notes
+              
+        - tab.create('finnish', 'Finnish') do
+          = f.globalize_fields_for :fi do |fi|
+
+            %p
+              Custom description of this night's performance:
+              = fi.cktext_area :special_information
+            %p
+              Notes and other metadata
+              = fi.text_area :notes               
+        - tab.create('swedish', 'Swedish') do
+          = f.globalize_fields_for :sv do |sv|
+            %p
+              Custom description of this night's performance:
+              = sv.cktext_area :special_information
+            %p
+              Notes and other metadata
+              = sv.text_area :notes
+                            
+  .row
+    .small-6.columns
+      = f.input :place, :as => :select, :collection => @location.places.map{|x| [x.name + "/" + x.address1, x.id]}, :hint => "Leave blank if it's the same as the parent event (#{@event.place.name}).", :include_blank => true, label: 'Location (if different from parent event):'
+      = f.input :ticket_url, label: 'URL to ticket link'
+  .row
+    .small-6.columns
+      = f.input :price, label: 'Ticket price for this performance', hint: "Leave blank and it will inherit the price from the master event"
+      = f.input :discounted_price, label: 'Discounted ticket price for this performance', hint: "Leave blank and it will inherit the price from the master event"
+      - if @event.avatar?
+        = image_tag @event.avatar.url(:medium)
+      %p Will use the event's image unless you wish to upload a special one for this instance of the performance:
+      - if f.object.specialimage?
+        existing unique image:
+        = image_tag f.object.specialimage.url(:medium)
+      = f.input :specialimage
+  .row
+    .small-6.columns= f.input :slug, label: 'Override slug'
+  .row
+    .small-6.columns= f.submit 'Save', class: [:button]
+    
+    
+= content_for :jquery do
+  :plain
+    $("#tabs").tabs();
+    $('.datetimepicker').datetimepicker({format:'Y-m-d H:i'});

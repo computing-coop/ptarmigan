@@ -12,4 +12,9 @@ class Subsite < ActiveRecord::Base
       :path =>  ":rails_root/public/images/subsites/projects/:id/:style/:basename.:extension",
       :url =>  "/images/carousel/subsites/:id/:style/:basename.:extension"
 
+
+  def theme
+    name.split(/,/).first
+  end
+  
 end

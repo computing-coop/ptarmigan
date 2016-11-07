@@ -1,4 +1,8 @@
 //= require creativeterritories/javascripts/jquery.sticky
+//= require foundation
+//= require moment
+//= require fullcalendar
+// = require featherlight
 
-//= require featherlight
 
+$(function(){ $(document).foundation(); });

@@ -25,13 +25,13 @@ class Event < ActiveRecord::Base
   :path =>  ":rails_root/public/images/carousel/events/:id/:style/:basename.:extension", :url => "/images/carousel/events/:id/:style/:basename.:extension"
   translates :notes, :description, :title, fallbacks_for_empty_translations: true
   accepts_nested_attributes_for :translations, reject_if: proc { |attr| attr['title'].blank? || attr['description'].blank? }
-  #has_many :translations
+
   scope :has_events_on, -> (*args) { where(['public is true and (date = ? OR (enddate is not null AND (date <= ? AND enddate >= ?)))', args.first, args.first, args.first] )}
   
   scope :in_month, -> (*args) { where( :public => 1,  :date => args.first.to_date.beginning_of_month..args.first.to_date.end_of_month ) }
   scope :future, -> () { where(['public is true AND (date >= ? || (enddate is not null and enddate >= ?))', Time.now.to_date, Time.now.to_date]).order(:date) }
   scope :published,  -> () {where(:public => true) }
-  scope :by_location, -> (x) { where(['location_id = ? AND (subsite_id is null OR show_on_main is true)', x])}
+  scope :by_location, -> (x) { where(['location_id = ?', x])} # AND (subsite_id is null OR show_on_main is true)', x])}
   scope :by_subsite, ->(subsite_id) { where(subsite_id: subsite_id) }
   validates_presence_of :location_id, :date, :place_id  
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
@@ -91,17 +91,17 @@ class Event < ActiveRecord::Base
       return nil
     end
   end
-  
-  def is_festival?
-    if instances.empty?
-      return false
-    elsif instances.map(&:title).delete_if(&:blank?).empty?
-      return false
-    else
-      true
-    end
-  end
-    
+  #
+  # def is_festival?
+  #   if instances.empty?
+  #     return false
+  #   elsif instances.map(&:title).delete_if(&:blank?).empty?
+  #     return false
+  #   else
+  #     true
+  #   end
+  # end
+  #
   
   def as_json(options = {})
     {
@@ -252,8 +252,10 @@ class Event < ActiveRecord::Base
       if date.month < 9
         3
       else
-        4
+        ''
       end
+    elsif date.year == 2017
+      4
     else
       false
     end

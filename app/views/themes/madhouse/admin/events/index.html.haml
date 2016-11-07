@@ -18,7 +18,7 @@
           = image_tag event.avatar.url
         - if event.secondary == true
           %br/
-          %strong IHANA BAARI only
+          %strong bar event
       .medium-5.columns
         %span{:class => event.location.locale + "_event"}
           = event.title
@@ -51,8 +51,9 @@
               - event.instances.order(start_at: :desc).in_groups_of(3).each do |group|
                 .small-6.columns
                   - group.each do |instance|
+                  
                     - next if instance.nil?
-                    = instance.start_at.strftime("%d %B %H:%M")
+                    = date_range(instance.start_at, instance.end_at)
                     - unless instance.title.blank?
                       .instance_title
                         - if instance.specialimage?

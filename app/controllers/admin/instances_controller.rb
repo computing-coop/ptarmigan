@@ -3,6 +3,7 @@ class Admin::InstancesController < Admin::BaseController
   def create
     @event = Event.friendly.find(params[:event_id])
     @event.instances << Instance.new(instance_params)
+
     if @event.save
       respond_with @event, location: -> { admin_events_path }
     end

@@ -47,8 +47,9 @@
         = link_to fa_icon("instagram"), 'http://www.instagram.com/madhousehelsinki', target: :_blank
         = link_to fa_icon("flickr"), 'https://www.flickr.com/photos/129272798@N06', target: :_blank
         = link_to fa_icon("rss"), '/feed.rss', target: :_blank
-        |
 
+        
+      .text-center.end.languages
         - if I18n.locale.to_s != 'en'
           = link_to('EN', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en')
         - else
@@ -63,12 +64,7 @@
           = link_to('SV', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv') 
         - else
           %strong SV
-        
-      .right_menu_link.text-center.end
-        .hide-for-small-only
-          = link_to fa_icon("bars"), '#', onclick: 'javascript: $(".menu_bar").slideToggle();return false;'
-          %br/
-          = link_to t(:menu), '#', onclick: 'javascript: $(".menu_bar").slideToggle();return false;'
+
       .title.text-center.front
         =  retina_image_tag theme_image_path('madhousebanner.png')
 

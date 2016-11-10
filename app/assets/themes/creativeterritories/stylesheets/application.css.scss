@@ -11,7 +11,9 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_self
+ *= require font-awesome
  *= require creativeterritories/stylesheets/ct
+ *= require creativeterritories/stylesheets/mini-calendar
  */
 
 @import 'creativeterritories/stylesheets/foundation_and_overrides';

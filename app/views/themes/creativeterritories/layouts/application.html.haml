@@ -85,5 +85,23 @@
 :javascript
   $(document).ready(function() {
     $("#sticky-menu").sticky({ topSpacing: 0 });
+    $('#minicalendar').fullCalendar({
+      height: 140,
+      customButtons: {
+        prev: {
+            icon: ' fa fa-chevron-left'
+        },
+        next: {
+          icon: ' fa fa-chevron-right'
+        }
+      },
+      header: {
+        left: 'prev',
+        right: 'title',
+        center: 'next'
+      },
+      titleFormat: "YYYY MMMM"
+      
+    });
     #{yield :jquery}
   });    

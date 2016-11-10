@@ -18,6 +18,9 @@ class Instance < ActiveRecord::Base
     {
       :id => self.id,
       :title => self.title.blank? ? self.event.title : self.title,
+      :notes => self.event.notes,
+      :place => self.event.place.name,
+      :promoter => self.event.promoter.blank? ? "<br />" : "<br />by " +  self.event.promoter + "<br />",
       :description => self.special_information.blank? ? self.event.description : self.special_information,
       :start => start_at.strftime('%Y-%m-%d %H:%M:00'),
       :end => end_at.nil? ? start_at.strftime('%Y-%m-%d %H:%M:00') : end_at.strftime('%Y-%m-%d %H:%M:00'),

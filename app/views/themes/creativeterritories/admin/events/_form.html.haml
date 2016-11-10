@@ -1,51 +1,64 @@
 - unless event.errors.empty?
   %h4= event.errors.full_messages.join(', ')
 = semantic_form_for([:admin,  event],  :html => {:multipart => true } ) do |f|
-  .twelve.columns
-    .six.columns.alpha= f.input :location_id, :label => "Which site?", :as => :hidden
-    .six.columns.omega= f.input :subsite_id, :label => 'Assign to sub-site', :hint => 'will appear in content of subdomain',  as: :hidden
+  .row.expanded
+    .small-6.columns.alpha= f.input :location_id, :label => "Which site?", :as => :hidden
+    .small-6.columns.omega= f.input :subsite_id, :label => 'Assign to sub-site', :hint => 'will appear in content of subdomain',  as: :hidden
   %hr
-  .twelve.columns
-    .six.columns.clearfix.alpha
+  .row.expanded
+    .small-6.columns.clearfix.alpha
       = f.input :date, :as => :string,  :input_html => {:class => 'datetimepicker', value: f.object.new_record? ? '' : (f.object.date.nil? ? '' : f.object.date.strftime('%Y-%m-%d %H:%M'))}, label: 'Enter the starting date and time of the event'
       = f.input :enddate, :as => :string, :input_html => {:class => 'datetimepicker', value: f.object.new_record? ? '' : (f.object.enddate.nil? ? '' : f.object.enddate.strftime('%Y-%m-%d %H:%M'))}, :label => "Ending date and time of last performance. You will add individual performances later.", :hint => 'if events run past midnight, put them as 23:59 '
-      = f.input :event_time, as: :string, hint: "format: HH:MM", label: 'Start time'
-    .six.columns.omega
+      
+      -#= f.input :event_time, as: :string, hint: "format: HH:MM", label: 'Start time'
+
+    .small-6.columns.omega
       = f.input :promoter, :label => "Promoter", :hint => "optional, ex: Totaldobze, can be blank though"
       = f.input :place, :as => :select, :collection => Place.creativeterritories.map{|x| [x.name + "/" + x.address1, x.id]}, :include_blank => true
       %br/
       Place not on this list? 
       = link_to 'Add it!', new_admin_place_path
   %hr
-  .twelve.columns.alpha
-    = tabs_for do |tab|
-      - tab.create('english', 'English') do
-        = f.globalize_fields_for :en do |en|
-          %p 
-            Title
-            = en.text_field :title
-          %p
-            Description of event
-            %br/
-            = en.text_area :description, rows: 10, cols: 80
-      - tab.create('latvian', 'Latvian') do
-        = f.globalize_fields_for :lv do |lv|
-          %p 
-            Title
-            = lv.text_field :title
-          %p
-            Description of event in Latvian
-            %br/
-            = lv.text_area :description, rows: 10, cols: 80          
-  .five.columns.omega
-    = f.input :eventcategories, as: :check_boxes, collection: Eventcategory.all, label: 'Type of event?', hint: 'Check as many as necessary'
+  .row.expanded
+    .small-12.medium-9.columns
+      = tabs_for do |tab|
+        - tab.create('english', 'English') do
+          = f.globalize_fields_for :en do |en|
+            %p 
+              Title
+              = en.text_field :title
+            %p
+              Description of event
+              %br/
+              = en.text_area :description, rows: 10, cols: 80
+            %p
+              Artist, performer or other one-line info
+              %br/
+              = en.text_field :notes
+              
+        - tab.create('latvian', 'Latvian') do
+          = f.globalize_fields_for :lv do |lv|
+            %p 
+              Title
+              = lv.text_field :title
+            %p
+              Description of event in Latvian
+              %br/
+              = lv.text_area :description, rows: 10, cols: 80
+            %p
+              Artist, performer or other one-line info
+              %br/
+              = lv.text_field :notes 
+  .row.expanded
+    .small-12.columns
+      = f.input :eventcategories, as: :check_boxes, collection: Eventcategory.all, label: 'Type of event?', hint: 'Check as many as necessary'
   %hr
   .thirteen.columns
-    .six.columns.alpha= f.input :facebook, :label =>  'ID of Facebook event (12 digits or so)'
-    .six.columns.omega= f.input :otherweb, label: 'Non-facebook web link', hint: 'Include full URL with http://'
-  .sixteen.columns
-    .six.columns.omega= f.input :public, :label => 'Publish to site?', :hint => "If unchecked, event will only be seen by staff. Leave unchecked unless you are ready to announce this."    
-  .sixteen.columns= f.submit 'Save'
+    .small-6.columns.alpha= f.input :facebook, :label =>  'ID of Facebook event (12 digits or so)'
+    .small-6.columns.omega= f.input :otherweb, label: 'Non-facebook web link', hint: 'Include full URL with http://'
+  .small-6teen.columns
+    .small-6.columns.omega= f.input :public, :label => 'Publish to site?', :hint => "If unchecked, event will only be seen by staff. Leave unchecked unless you are ready to announce this."    
+  .small-6teen.columns= f.submit 'Save'
   
 = content_for :jquery do
   :plain

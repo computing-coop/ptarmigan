@@ -6,7 +6,37 @@
 
 
 form {
+  li {
+    list-style-type: none;
+  }
+  color: black;
   input[type=text] {
     width: 450px;
+  }
+  label {
+    &.label {
+      color: black;
+      background: none;
+    }
+    
+    font-size: 1.1rem;
+  }
+}
+
+nav.pagination {
+  span {
+    float: left;
+  }
+}
+
+.events_container {
+  .event {
+    
+    &.odd {
+      background-color: #EDE;
+    }
+    .title {
+      font-size: 1.4rem;
+    }
   }
 }

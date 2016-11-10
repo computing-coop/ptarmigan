@@ -9,58 +9,60 @@
 
   .row.expanded
     .small-12.columns= paginate @events
+    
   - @events.each_with_index do |event, index|
-    .row.expanded{class: [cycle('odd', 'even'), @events[index+1] ? (@events[index+1].date.year != event.date.year ? :new_year : false) : false]}
-      .small-12.medium-2.columns.span_date
-        %span{:class => :smaller_font}= date_range(event.date, event.enddate)
-        - if event.avatar?
-          %br/
-          = image_tag event.avatar.url
-        - if event.secondary == true
-          %br/
-          %strong IHANA BAARI only
-      .medium-5.columns
-        %span{:class => event.location.locale + "_event"}
-          = event.title
-          = link_to 'View', event, target: :_blank, class: [:tiny, :button, :secondary]
-          -if event[:public] == false
-            %span{:class => 'read_more'}
-              %font{:color => 'red'} (Not yet public)
-        - if event.one_day?
-          .small-12.columns
-            One-night event
-        - else
-          .small-12.columns= link_to 'Add a performance', new_admin_event_instance_path(event_id: event.slug), class: [:button, :small]              
-      .medium-5.columns      
-        %span.smaller_font
+    .row.expanded
+      .event.small-12.columns{class: [cycle('odd', 'even'), @events[index+1] ? (@events[index+1].date.year != event.date.year ? :new_year : false) : false]}
+        .row.expanded
+          .medium-2.columns.span_date
+            %span{:class => :smaller_font}= date_range(event.date, event.enddate)
+            - if event.avatar?
+              %br/
+              = image_tag event.avatar.url
+
+          .medium-5.columns
+            %span{:class => event.location.locale + "_event"}
+              .title= event.title
+              = link_to 'View', event, target: :_blank, class: [:tiny, :button, :secondary]
+              -if event[:public] == false
+                %span{:class => 'read_more'}
+                  %font{:color => 'red'} (Not yet public)
+            - if event.one_day?
+              .small-12.columns
+                One-night event
+            - else
+              .small-12.columns= link_to 'Add a performance', new_admin_event_instance_path(event_id: event.slug), class: [:button, :small]              
+          .medium-5.columns      
+            %span.smaller_font
           
-          - if can? :update, event
-            = link_to 'Edit', edit_admin_event_path(event), class: [:tiny, :button]
-          %span.delete= link_to 'Remove', admin_event_path(event), data: {:confirm => 'Are you sure?'}, :method => :delete, class: [:tiny, :button, :alert]
-    - cycle('odd', 'even')
-    .row.expanded.instances{class: cycle('odd', 'even')}
-      .small-10.medium-offset-2.columns
+              - if can? :update, event
+                = link_to 'Edit', edit_admin_event_path(event), class: [:tiny, :button]
+              %span.delete= link_to 'Remove', admin_event_path(event), data: {:confirm => 'Are you sure?'}, :method => :delete, class: [:tiny, :button, :alert]
+        - cycle('odd', 'even')
 
-        .fo
-          - if event.instances.empty?
-            .small-12.columns
-              No occurances yet defined for this event.
+      .row.expanded.instances.event{class: [cycle('odd', 'even')] }
+        .small-10.medium-offset-2.columns
 
-          - else
-            .row.expanded
-              - event.instances.order(start_at: :desc).in_groups_of(3).each do |group|
-                .small-6.columns
-                  - group.each do |instance|
-                    - next if instance.nil?
-                    = date_range(instance.start_at, instance.end_at)
-                    - unless instance.title.blank?
-                      .instance_title
-                        - if instance.specialimage?
-                          = image_tag instance.specialimage.url(:thumb)
-                        = instance.title
-                        = link_to 'View', event_instance_path(event, instance.title.parameterize),  target: :_blank, class: [:tiny, :button, :secondary]
-                    = link_to 'Edit details', edit_admin_event_instance_path(event, instance), class: [:button, :tiny]
-                    = link_to 'Delete', [:admin, event, instance], method: :delete, data: {confirm: 'Are you really sure?'}, class: [:button, :tiny, :alert]
-                    %br/
+          .fo
+            - if event.instances.empty?
+              .small-12.columns
+                No occurances yet defined for this event.
+
+            - else
+              .row.expanded
+                - event.instances.order(start_at: :desc).in_groups_of(3).each do |group|
+                  .small-6.columns
+                    - group.each do |instance|
+                      - next if instance.nil?
+                      = date_range(instance.start_at, instance.end_at)
+                      - unless instance.title.blank?
+                        .instance_title
+                          - if instance.specialimage?
+                            = image_tag instance.specialimage.url(:thumb)
+                          = instance.title
+                          = link_to 'View', event_instance_path(event, instance.title.parameterize),  target: :_blank, class: [:tiny, :button, :secondary]
+                      = link_to 'Edit details', edit_admin_event_instance_path(event, instance), class: [:button, :tiny]
+                      = link_to 'Delete', [:admin, event, instance], method: :delete, data: {confirm: 'Are you really sure?'}, class: [:button, :tiny, :alert]
+                      %br/
   .row.expanded
     .small-12.columns= paginate @events                    

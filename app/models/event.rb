@@ -107,6 +107,9 @@ class Event < ActiveRecord::Base
     {
       :id => self.id,
       :title => self.title,
+      :notes => self.notes,
+      :place => self.place.name,
+      :promoter => "<br />" + self.promoter,
       :description => self.description || "",
       :start => date.strftime('%Y-%m-%d %H:%M:00'),
       :end => enddate.nil? ? date.strftime('%Y-%m-%d %H:%M:00') : enddate.strftime('%Y-%m-%d %H:%M:00'),

@@ -21,16 +21,18 @@
           %li.blue
             = link_to t("ct.creative_territories"), '#'
             %ul#creative_territories.menu
+              - Place.creativeterritories.creative_quarters.order(:name).each do |place|
+                %li= link_to place.name, '#'
           %li.green
             = link_to t("ct.other_venues"), '#'
             %ul#other_venues.menu
-              - Place.creativeterritories.order(:name).each do |place|
-                %li= place.name
+              - Place.creativeterritories.other_venues.order(:name).each do |place|
+                %li= link_to  place.name, '#'
           %li
             = link_to t("ct.disciplines"), '#'
             %ul#disciplines.vertical.menu
               - Eventcategory.all.order(:name).each do |cat|
-                %li= cat.name
+                %li= link_to cat.name, '#'
           %li
             = link_to t("ct.culture_map"), '#'
           %li

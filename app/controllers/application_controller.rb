@@ -14,7 +14,14 @@ class ApplicationController < ActionController::Base
   # before_action :tiib_check
   before_action :configure_permitted_parameters, if: :devise_controller?
   # before_action :scorestore_check
-
+  
+  def protect_with_staging_password
+    if @subsite.theme == 'creativeterritories'
+      authenticate_or_request_with_http_basic('Developer only! (for now)') do |username, password|
+        username == 'creative' && password == 'territories'
+      end
+    end
+  end
   
   def add_to_mailchimp
     h = Hominid::Base.new({:api_key => MAILCHIMP_API_KEY})
@@ -116,14 +123,20 @@ class ApplicationController < ActionController::Base
   def get_location
     subsites = Subsite.all.map{|x| x.name.split(/\,/)}.flatten
     toplevel = request.host.match(/^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*)\./)
+    if toplevel.nil?
+      toplevel = request.host.match(/^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*)\./)
+    end
     if !toplevel.nil?
       tl =  toplevel[1] == 'www' ? toplevel[2] : toplevel[1]
+
       if subsites.include?(tl) 
+
         @subsite = Subsite.all.to_a.delete_if{|x| !x.name.split(/\,/).include?(tl)}.first
         die unless @subsite
         @location = @subsite.location
 
         @subsite.name.split(/\,/).first
+        protect_with_staging_password
       else
         get_domain
       end

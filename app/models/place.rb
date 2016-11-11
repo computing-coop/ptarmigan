@@ -17,6 +17,8 @@ class Place < ActiveRecord::Base
   scope :tallinn, ->() { where(country: 'EE')}
   scope :for_events, -> (){ where(allow_ptarmigan_events: true)}
   scope :creativeterritories, -> () { where(country: 'LV')}
+  scope :creative_quarters, -> () { where(creative_quarters: true)}
+  scope :other_venues, -> () { where(creative_quarters: false)}
   scope :approved_posters, -> () { where(approved_for_posters: true)}
 
   def address_or_coordinates

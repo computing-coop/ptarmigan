@@ -59,6 +59,12 @@ header {
             li {
               text-align: left;
               border: none;
+              font-family: 'Rift-Regular';
+              font-size: 0.750rem;
+              a { color: black;
+                &:hover { color: white;
+                }
+              }
               background-color: #a3afb2;
             }
           }

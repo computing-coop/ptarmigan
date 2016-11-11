@@ -134,9 +134,10 @@ class ApplicationController < ActionController::Base
         @subsite = Subsite.all.to_a.delete_if{|x| !x.name.split(/\,/).include?(tl)}.first
         die unless @subsite
         @location = @subsite.location
-
-        @subsite.name.split(/\,/).first
         protect_with_staging_password
+        @subsite.name.split(/\,/).first
+        
+
       else
         get_domain
       end

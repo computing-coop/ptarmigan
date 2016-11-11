@@ -1,19 +1,30 @@
 = semantic_form_for([:admin, @place]) do |f|
-  .six.columns.alpha
-    = f.input :name
-    = f.input :address1
-    = f.input :address2
-    = f.input :city, input_html: {value: 'Rīga'}
-    = f.input :country, input_html: {value: 'LV'}
-    = f.input :postcode
-    -#= f.input :map_url
-  .six.columns.omega
-    %p For poster database that we'll make in the future.
-    %p If you leave latitude and longitude blank, the system should be able to figure it out automatically.
-    = f.input :latitude
-    = f.input :longitude
-    = f.input :approved_for_posters, :hint => "Check to approve for poster map"
-    = f.input :allow_ptarmigan_events, as: :hidden, value: 1
-  .twelve.columns
-    = f.actions do
-      = f.submit
+  .row.expanded
+    .small-12.medium-6.columns
+      .row.expanded
+        .small-12.medium-5.columns= f.input :name
+      .row.expanded
+        .small-12.medium-5.columns= f.input :address1
+      .row.expanded
+        .small-12.medium-5.columns= f.input :address2
+      .row.expanded
+        .small-12.medium-5.columns= f.input :city, input_html: {value: 'Rīga'}
+      .row.expanded
+        .small-12.medium-5.columns= f.input :country, input_html: {value: 'LV'}
+      .row.expanded
+        .small-12.medium-5.columns= f.input :postcode
+    .small-12.medium-6.columns
+      .row.expanded.expanded
+        .small-12.medium-5.columns
+          %p If you leave latitude and longitude blank, the system should be able to figure it out automatically.
+      .row.expanded.expanded
+        .small-12.medium-5.columns
+          = f.input :latitude
+          = f.input :longitude
+      .row.expanded.expanded
+        .small-12.medium-5.columns
+          = f.input :creative_quarters, as: :boolean, label: 'Mark as "Creative Quarter"'
+          = f.input :allow_ptarmigan_events, as: :hidden, value: 1
+      .row.expanded.expanded
+        .small-12.medium-5.columns
+          = f.submit 'save'

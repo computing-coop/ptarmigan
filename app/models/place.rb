@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Place < ActiveRecord::Base
-  has_many :events
+  has_many :events,  dependent: :delete_all
   has_many :instances
   has_and_belongs_to_many :locations
   geocoded_by :full_address

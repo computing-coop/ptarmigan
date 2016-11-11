@@ -1,0 +1,25 @@
+.row
+  .small-12.columns
+    %h3 Locations/places
+    = link_to 'Create new place', new_admin_place_path, class: [:button]
+    
+- if !@places.empty?
+  .projects
+    - @places.each do |place|
+      .row.expanded
+        .place[place]{class: cycle('odd', 'even')}
+          .small-3.columns
+            .title
+              %strong= h place.name
+              .event_count
+                = pluralize(place.events.count, 'event')      
+          .small-6.columns
+            %span.smaller_text= place.full_address
+          .small-3.columns
+            %span.smaller_text
+            = link_to 'Edit', edit_admin_place_path(place), class: [:button, :small]
+            %span.delete= link_to 'Delete', admin_place_url(:id => place), data: {confirm: 'Are you sure?'}, class: [:button, :small, :alert], :method => :delete
+
+- else
+  %p There are no places to show yet.
+  = link_to 'Create new place', new_admin_place_path, class: [:button]

@@ -33,7 +33,7 @@ class Admin::PlacesController < Admin::BaseController
 
   def index
     if @subsite
-      if @subsite.name == 'creativeterritories'
+      if @subsite.theme == 'creativeterritories'
         @places = Place.where(country: 'LV')
       end
     end
@@ -89,7 +89,7 @@ class Admin::PlacesController < Admin::BaseController
   protected
 
   def places_params 
-    params.require(:place).permit( [:name, :address1, :address2, :city, :country, :postcode, :map_url, :latitude, :longitude, :approved_for_posters, :allow_ptarmigan_eents, location_ids: [] ])
+    params.require(:place).permit( [:name, :address1, :address2, :city, :country, :postcode, :creative_quarters, :map_url, :latitude, :longitude, :approved_for_posters, :allow_ptarmigan_eents, location_ids: [] ])
   end
   
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107114956) do
+ActiveRecord::Schema.define(version: 20161111104527) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "trackable_id"
@@ -452,6 +452,7 @@ ActiveRecord::Schema.define(version: 20161107114956) do
     t.float    "longitude",              limit: 53
     t.boolean  "approved_for_posters"
     t.boolean  "allow_ptarmigan_events"
+    t.boolean  "creative_quarters",                 default: false, null: false
   end
 
   create_table "podcasts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

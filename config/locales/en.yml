@@ -290,6 +290,13 @@ en:
     lovers: 'Lovers'
     filtering: 'Filtering'
     engine: 'Engine'
+    creative_territories: 'Creative quarters and territories'
+    other_venues: 'Other venues'
+    disciplines: 'Disciplines'
+    culture_map: 'Culture Map'
+    festivals: 'Festivals'
+    more_cities: 'More cities'
+    about_site: 'About site'
     
   upcoming_events: 'Upcoming events'
   kompass:

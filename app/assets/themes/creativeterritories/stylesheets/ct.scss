@@ -27,7 +27,53 @@ header {
       font-family: 'Rift-Regular';
       border-bottom: 1px solid black;
     }
+    .filter_menu {
+      
+      ul.categories {
+        float: left;
+        li {
+          
+          text-transform: uppercase;
+          font-family: 'Rift-Bold';
+          a { color: white; 
+            padding: 0.188rem;
+            }
+          font-size: 0.875rem;
+          border: 1px solid #333;
+          background-color: #6b7a89;
+          text-align: right;
+          float: right;
+          clear: right;
+          padding: 0;
+          &.blue {
+            background-color: #336699;
+            max-width: 118px;
+          }
+          &.green {
+            max-width: 103px;
+            background-color: #339933;
+          }
+          ul {
+            float: left;
+            
+            li {
+              text-align: left;
+              border: none;
+              background-color: #a3afb2;
+            }
+          }
+        }
+      }
+      
+      .secondary_menu {
+        
+        ul {
+          display: none;
+        }
+      }
+    }
   }
+  
 }
 
 

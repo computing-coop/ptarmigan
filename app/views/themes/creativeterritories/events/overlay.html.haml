@@ -1,0 +1,27 @@
+.map_overlay
+  %button.close-button{"aria-label" => "Close modal", "data-close" => "", :type => "button"}
+    %span{"aria-hidden" => "true"}= raw "&times;"
+  %h1= @event.eventcategories.map(&:name).join(' / ')
+
+  .date= date_range(@event.date, @event.enddate)
+  .location=  @event.place.name
+  - unless @event.promoter.blank?
+    .promoter
+      by
+      = @event.promoter
+
+  - unless @event.cost.blank?
+    .cost
+      = ptarmigan_cost(@event.cost)
+      - unless @event.ticket_url.blank?
+        = link_to t("ct.buy_tickets_here"), @event.ticket_url
+      
+  .title= @event.title
+  .description
+    = raw  @event.description
+
+  - unless @event.facebook.blank?
+    = link_to @event.facebook do
+      = fa_icon 'facebook'
+      = 'Facebook'
+      

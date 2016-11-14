@@ -92,14 +92,15 @@
             eventRender: function(event, element, view) {
           
                 if (view.name === "basicWeek") {
-                  $("footer").prepend('<div class="small reveal" id="overlay_' + event.id +  '" data-reveal><h1>' + event.title + '</h1></div>');
+                  
                   element.find(".fc-content")
                     .append(event.notes + event.promoter +  event.place);
-                  element.find(".fc-content").parent('a').attr('data-open', "overlay_" + event.id);
+                  element.find(".fc-content").parent('a').attr('onClick', "$.ajax('" + event.cturl + "').done(function(resp){ $('#overlay_" + event.id + "').html(resp).foundation('open');});");
                   element.find(".fc-content").parent('a').attr('href', '#');
                 }
             },
             eventAfterRender: function(event, element,view) {
+              $("footer").prepend('<div class="event_info reveal" id="overlay_' + event.id +  '" data-overlay="false" data-reveal data-h-offset=' + (element.offset().left + 106) + ' data-v-offset=' + (element.offset().top + 4) +'></div>');
               if (moment(event.start).format('YYYY-M-D') == moment(new Date()).format('YYYY-M-D')) {
                 element.parent().addClass('fc-today');
               }

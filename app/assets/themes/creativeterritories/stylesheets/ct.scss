@@ -82,6 +82,46 @@ header {
   
 }
 
+.event_info {
+  max-width: 265px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  &:focus {
+    outline: none;
+  }
+  .corner {
+    float: left;
+    width: 29px;
+    position: relative;
+  }
+  .map_overlay {
+    margin-left: -1px;
+    background-color: white;
+    .text {  padding: 0.8rem 1rem; }
+    width: 230px;
+    border: 1px solid black;
+    float: left;  
+    .close-button {
+      color: black;
+      right: 0.4rem;
+      top: -11px;
+      font-size: 3.2rem;
+    }
+  
+    color: #909090;
+    font-family: 'Rift-Regular';
+    font-size: 0.825rem;
+    a {
+      color: black;
+    }
+    h1 {
+      font-size: 1.2rem;
+      font-family: 'Rift-Regular';
+    }
+  
+  }
+}
 
 #main {
   .calendar_outer_frame {

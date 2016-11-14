@@ -116,6 +116,7 @@ class Event < ActiveRecord::Base
       :allDay => false, 
       :recurring => false,
       :url => Rails.application.routes.url_helpers.event_path(slug),
+      :cturl => Rails.application.routes.url_helpers.event_path(slug)
       #:color => "red"
     }
 

@@ -1,0 +1,32 @@
+.corner
+  = image_tag theme_image_path('corner.png')
+.map_overlay
+  %button.close-button{"aria-label" => "Close modal", "data-close" => "", :type => "button"}
+    %span{"aria-hidden" => "true"}= raw "&times;"
+  .text
+    %h1= @instance.event.eventcategories.map(&:name).join(' / ')
+
+    .date= date_range(@instance.start_at, @instance.end_at)
+    .location= @instance.place.blank? ? @instance.event.place.name : @instance.place.name
+    - unless @instance.event.promoter.blank?
+      .promoter
+        by
+        = @instance.event.promoter
+
+    - unless @instance.event.cost.blank?
+      .cost
+        = ptarmigan_cost(@instance.event.cost)
+        - unless @instance.ticket_url.blank?
+          = link_to t("ct.buy_tickets_here"), @instance.ticket_url
+      
+    .title= @instance.title.blank? ? @instance.event.title : @instance.title
+    .description
+      - unless @instance.special_information.blank?
+        = @instance.special_information
+      = raw  @instance.event.description
+
+    - unless @instance.event.facebook.blank?
+      = link_to @instance.event.facebook do
+        = fa_icon 'facebook'
+        = 'Facebook'
+      

@@ -34,7 +34,7 @@ class Admin::PlacesController < Admin::BaseController
   def index
     if @subsite
       if @subsite.theme == 'creativeterritories'
-        @places = Place.where(country: 'LV')
+        @places = Place.where(country: 'LV').order(:name)
       end
     end
     @places = Place.all if @places.nil?

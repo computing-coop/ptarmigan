@@ -92,7 +92,7 @@
             eventRender: function(event, element, view) {
           
                 if (view.name === "basicWeek") {
-                  element.prepend('<div class="reveal" id="#overlay_' + event.id +  '" data-reveal><h1>' + event.name + '</h1></div>');
+                  $("footer").prepend('<div class="small reveal" id="overlay_' + event.id +  '" data-reveal><h1>' + event.title + '</h1></div>');
                   element.find(".fc-content")
                     .append(event.notes + event.promoter +  event.place);
                   element.find(".fc-content").parent('a').attr('data-open', "overlay_" + event.id);
@@ -114,6 +114,7 @@
                   }).done(function (data) {
                   populateCTFilters($('ul#other_venues'), data);
               });
+              $(document).foundation();
             }
                 
                

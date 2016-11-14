@@ -87,17 +87,16 @@
               return updateEvent(event);
             },
             eventClick: function(calEvent, jsEvent, view) {
-              if (calEvent.url) {
-                     return false;
-                 }
-              $(this).css('border-color', 'red');
+             //
             },
             eventRender: function(event, element, view) {
           
                 if (view.name === "basicWeek") {
-                    element.find(".fc-content")
-                        .append(event.notes + event.promoter +  event.place);
-
+                  element.prepend('<div class="reveal" id="#overlay_' + event.id +  '" data-reveal><h1>' + event.name + '</h1></div>');
+                  element.find(".fc-content")
+                    .append(event.notes + event.promoter +  event.place);
+                  element.find(".fc-content").parent('a').attr('data-open', "overlay_" + event.id);
+                  element.find(".fc-content").parent('a').attr('href', '#');
                 }
             },
             eventAfterRender: function(event, element,view) {

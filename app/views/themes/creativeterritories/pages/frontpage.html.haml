@@ -86,11 +86,18 @@
             eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
               return updateEvent(event);
             },
-          
+            eventClick: function(calEvent, jsEvent, view) {
+              if (calEvent.url) {
+                     return false;
+                 }
+              $(this).css('border-color', 'red');
+            },
             eventRender: function(event, element, view) {
+          
                 if (view.name === "basicWeek") {
                     element.find(".fc-content")
                         .append(event.notes + event.promoter +  event.place);
+
                 }
             },
             eventAfterRender: function(event, element,view) {
@@ -130,6 +137,3 @@
           });
         };
 
-    $('#other_venues').on('change',function(){
-        $('#calendar').fullCalendar('rerenderEvents');
-    })

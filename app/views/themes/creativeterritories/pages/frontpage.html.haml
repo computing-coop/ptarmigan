@@ -10,6 +10,7 @@
             %li.month_title= params[:year].to_s + "/" + I18n.t("date.month_names")[params[:month]]
             - @eventcategories.each do |ec|
               %li= link_to ec.name, '#'
+
         #calendar
   
 -# = link_to image_tag(entry.calendar_icon(:thumb, nil)), ctcalendar_path(:year => key, :month => k)
@@ -37,11 +38,29 @@
     }
     
       $('#calendar').fullCalendar({
-            editable: true,
+
             header: {
               left: ''
             },
             defaultView: 'basicWeek',
+            allDaySlot: true, 
+            dayRender: function(date, cell) {
+              d = new Date();
+              dd = moment(date).format('yyyy-MM-dd');
+              
+              $('.fc-day[data-date="'+ dd +'"]').addClass('cellBg');
+              if (cell.hasClass('fc-today')) { // looking for today's cell
+                  var index = cell.index(); // get the td offset
+                  // var this_cell = $('#calendar .fc-view .fc-body .fc-widget-content .fc-day-grid-container .fc-content-skeleton table tbody tr td').eq(index);
+                  
+                  // this_cell.addClass('fc-today');
+                  // find the corresponding item in header table
+                  var header = $('#calendar thead.fc-head th').eq(index);
+                  header.addClass('fc-today'); 
+
+              }            
+
+            },
             contentHeight: '400px',
             lang: '#{I18n.locale.to_s}',
             contentHeight: 'auto',
@@ -53,8 +72,6 @@
               }
             },
             fixedWeekCount: false,
-            slotMinutes: 60,
-            eventBorderColor: 'green',
             eventSources: [
               {
                 url: '/calendar'
@@ -69,13 +86,32 @@
             eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
               return updateEvent(event);
             },
+          
             eventRender: function(event, element, view) {
                 if (view.name === "basicWeek") {
-
                     element.find(".fc-content")
-                        .append("<br />" + event.notes + event.promoter +  event.place);
+                        .append(event.notes + event.promoter +  event.place);
                 }
+            },
+            eventAfterRender: function(event, element,view) {
+              if (moment(event.start).format('YYYY-M-D') == moment(new Date()).format('YYYY-M-D')) {
+                element.parent().addClass('fc-today');
+              }
+            }, 
+            eventAfterAllRender: function(view) {
+              var starting = $('#calendar').fullCalendar('getView').start.format("YYYY-M-D");
+              var ending = $('#calendar').fullCalendar('getView').end.format("YYYY-M-D");
+              $.ajax({
+                      url: "/places/ctvenues?starting=" + starting + "&ending=" + ending + "&scope=other_venues",
+                      type: 'post',
+                      data: $(this).serialize()
+                  }).done(function (data) {
+                  populateCTFilters($('ul#other_venues'), data);
+              });
             }
+                
+               
+            
           });
 
 
@@ -94,3 +130,6 @@
           });
         };
 
+    $('#other_venues').on('change',function(){
+        $('#calendar').fullCalendar('rerenderEvents');
+    })

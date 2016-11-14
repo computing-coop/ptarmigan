@@ -147,9 +147,14 @@ header {
     
   }
 }
-
+.fc-today, .today,  {
+  background-color: #659b86;
+}
 #calendar {
-  
+
+  .fc-bg {
+    display: none;
+  }
   .fc-toolbar {
     .fc-right {
       button {
@@ -173,11 +178,17 @@ header {
             padding: 0;
             .fc-widget-header {
               table {
+                margin-bottom: 0;
+                padding-bottom: 1rem;
                 thead {
                   border: none;
                   .fc-day-header {
                     font-family: 'Rift-Light';
                     font-size: 0.75rem;
+                    width: 142px !important;
+                    &.fc-today {
+                      background-color: #659b86;
+                    }
                     .ct-day {
                       font-family: 'Rift-Bold';
                       font-size: 1.875rem;
@@ -191,10 +202,8 @@ header {
         }
       }
     }
-    
-    .fc-bg {
-      display: none;
-    }
+
+
     .fc-body {
       border: none;
       .fc-widget-content {
@@ -211,6 +220,9 @@ header {
                   td {
                     width: 142px !important;
                     &.fc-event-container {
+                      &.fc-today {
+                        background-color: #659b86;
+                      }
                       vertical-align: top;
                       a.fc-event {
                         color: black;

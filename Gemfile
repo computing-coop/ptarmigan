@@ -25,6 +25,7 @@ source 'https://rails-assets.org' do
 end
 
 gem 'auto_html', '2.0.0'
+gem 'awesome_nested_set'
 gem 'aws-sdk', '< 2'
 gem 'cancancan'
 

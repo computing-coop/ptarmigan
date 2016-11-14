@@ -26,8 +26,6 @@
           %li.green
             = link_to t("ct.other_venues"), '#'
             %ul#other_venues.menu
-              - Place.creativeterritories.other_venues.order(:name).each do |place|
-                %li= link_to  place.name, '#'
           %li
             = link_to t("ct.disciplines"), '#'
             %ul#disciplines.vertical.menu

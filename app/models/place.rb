@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Place < ActiveRecord::Base
+  acts_as_nested_set
   has_many :events,  dependent: :delete_all
   has_many :instances
   has_and_belongs_to_many :locations
@@ -15,12 +16,16 @@ class Place < ActiveRecord::Base
   # tracked owner: ->(controller, model) { controller.current_user }
     
   scope :tallinn, ->() { where(country: 'EE')}
-  scope :for_events, -> (){ where(allow_ptarmigan_events: true)}
+  scope :for_events, ->() { where(allow_ptarmigan_events: true)}
   scope :creativeterritories, -> () { where(country: 'LV')}
   scope :creative_quarters, -> () { where(creative_quarters: true)}
   scope :other_venues, -> () { where(creative_quarters: false)}
   scope :approved_posters, -> () { where(approved_for_posters: true)}
 
+  scope :events_between, ->(start_at, end_at) {
+    creativeterritories.joins(:events).where(["date(events.date) >= ? and events.public = true and (events.enddate is null or date(events.enddate) <= ?)", start_at, end_at])
+  }
+  
   def address_or_coordinates
     if self.latitude.blank? || self.longitude.blank?
       geocode

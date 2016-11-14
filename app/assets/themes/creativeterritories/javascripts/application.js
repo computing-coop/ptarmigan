@@ -25,3 +25,11 @@ function buildminiTitleHeader(theDate) {
     container.appendChild(ddMMM);
     return container;
 }
+
+function populateCTFilters(select, data) {
+    var items = [];
+    $.each(data, function (id, option) {
+        items.push('<li><a href="#" onClick="alert(\'look for id ' + option.id + '\');">' + option.name + '</a></li>');
+    });  
+    select.html(items.join(''));
+}

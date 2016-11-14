@@ -24,7 +24,7 @@ class Event < ActiveRecord::Base
   has_attached_file :carousel, :styles => {:largest => "1600x712#", :new_carousel => "1180x338#", :full => "960x400#", :small => "320x92#", :thumb => "100x100>"}, 
   :path =>  ":rails_root/public/images/carousel/events/:id/:style/:basename.:extension", :url => "/images/carousel/events/:id/:style/:basename.:extension"
   translates :notes, :description, :title, fallbacks_for_empty_translations: true
-  accepts_nested_attributes_for :translations, reject_if: proc { |attr| attr['title'].blank? || attr['description'].blank? }
+  accepts_nested_attributes_for :translations, reject_if: proc { |attr| attr['title'].blank?  } #|| attr['description'].blank? }
 
   scope :has_events_on, -> (*args) { where(['public is true and (date = ? OR (enddate is not null AND (date <= ? AND enddate >= ?)))', args.first, args.first, args.first] )}
   
@@ -107,9 +107,9 @@ class Event < ActiveRecord::Base
     {
       :id => self.id,
       :title => self.title,
-      :notes => self.notes,
+      :notes => self.notes.blank? ? "<br />" : self.notes + "<br />",
       :place => self.place.name,
-      :promoter => "<br />" + self.promoter,
+      :promoter => self.promoter.blank? ? (self.notes.blank? ? '' : '<br />') : self.promoted + "<br />",
       :description => self.description || "",
       :start => date.strftime('%Y-%m-%d %H:%M:00'),
       :end => enddate.nil? ? date.strftime('%Y-%m-%d %H:%M:00') : enddate.strftime('%Y-%m-%d %H:%M:00'),

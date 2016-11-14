@@ -15,7 +15,7 @@
       .row.expanded
         .small-6.columns.small-centered
           .season_heading.text-center{id: "season#{season.first}"}
-            = retina_image_tag(theme_image_path("MHH_season#{season.first}.png"))  unless season.first > 3
+            = retina_image_tag(theme_image_path("MHH_season#{season.first}.png"))  unless season.first.blank? || season.first.to_i > 3
             .smaller= link_to fa_icon('arrow-up') + t("madhouse.back_to_top"), '#', onclick: 'javascript:$("html, body").animate({ scrollTop: 0 }, "slow");return false;'
         - @upcoming = season.last
         = render partial: 'events/archivefeed', locals: {column_count: 0}

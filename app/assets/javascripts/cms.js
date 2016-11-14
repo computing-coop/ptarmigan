@@ -9,7 +9,8 @@
 // This file is automatically included by javascript_include_tag :defaults
 Date.format = 'yyyy-mm-dd';
 $(function()
-{     $('.date-pick').datepicker({ dateFormat: "yy-mm-dd" });
+{        $('.date-pick').datepicker({ dateFormat: "yy-mm-dd" });
+
 });
 function remove_fields(link) {  
     $(link).prev("input[type=hidden]").val("1");  

@@ -23,7 +23,10 @@
           = f.input :longitude
       .row.expanded.expanded
         .small-12.medium-5.columns
-          = f.input :creative_quarters, as: :boolean, label: 'Mark as "Creative Quarter"'
+          = f.input :creative_quarters, as: :boolean, label: 'This entry is a "Creative Quarter"'
+          - unless f.object.creative_quarters == true
+            = f.input :parent, as: :select, collection: Place.creative_quarters.order(:name), label: 'Part of a Creative Quarter?'
+          
           = f.input :allow_ptarmigan_events, as: :hidden, value: 1
       .row.expanded.expanded
         .small-12.medium-5.columns

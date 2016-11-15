@@ -24,7 +24,7 @@
     
     = display_meta_tags :site => 'Mad House Helsinki'
     = stylesheet_link_tag    'madhouse/stylesheets/application', media: 'screen'
-    = javascript_include_tag "vendor/modernizr"
+
     = javascript_include_tag 'madhouse/javascripts/application', 'data-turbolinks-track' => false 
     %script{:src => "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_API_KEY']}", :type => "text/javascript"}
     = csrf_meta_tags
@@ -102,7 +102,7 @@
         $("#loading").toggle();
       });
                
-      $('#calendar').fullCalendar({
+      $('#calendar').fullCalendar( {
             editable: true,
             header: {
               left: 'prev,next today',
@@ -114,6 +114,7 @@
             lang: '#{I18n.locale.to_s}',
             contentHeight: 'auto',
             firstDay: 1,
+            
             fixedWeekCount: false,
             slotMinutes: 30,
             eventSources: [
@@ -131,7 +132,7 @@
             }
           });
 
-
+      $('#calendar').fullCalendar('gotoDate', '2017-01-01');
         updateEvent = function(the_event) {
 
           return $.update("/calendar/" + the_event.id, {

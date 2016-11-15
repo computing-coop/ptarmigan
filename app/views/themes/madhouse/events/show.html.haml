@@ -21,6 +21,9 @@
       .event_info
         - if @event.cost == 0
           = t(:free)
+        - elsif @event.cost == -1
+          = t("madhouse.tickets") + ": "
+          = t("madhouse.see_below")
         - else
           = t("madhouse.tickets") + ": "
           = ptarmigan_cost(@event.cost)
@@ -49,12 +52,23 @@
             - @event.instances.each do |instance|
               .instance
                 = instance.title + ": " unless instance.title.blank?
-                = l instance.start_at,  format: :long
-              - if instance.future?
-                - unless instance.ticket_url.blank?
-                  = link_to instance.ticket_url, class: :button_link, :target => :_blank do
-                    = fa_icon 'ticket'
-                    = t("madhouse.buy_ticket")
+                - if instance.start_at.to_date != instance.end_at.to_date
+                  %br/
+                  = date_range(instance.start_at, instance.end_at)
+                - else
+                  - if @event.cost == -1
+                    %br/
+                  = l instance.start_at,  format: :long
+                - if instance.future?
+                  - unless instance.ticket_url.blank?
+                    - if @event.cost == -1
+                      = ptarmigan_cost(instance.price)
+                    = link_to instance.ticket_url, class: :button_link, :target => :_blank do
+                      = fa_icon 'ticket'
+                      = t("madhouse.buy_ticket")
+                  - if @event.cost == -1
+                    %br/
+                    %br/
 
         
     .small-12.medium-6.medium-pull-6.columns

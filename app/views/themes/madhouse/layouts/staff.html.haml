@@ -16,7 +16,7 @@
       .row.expanded
         .small-3.columns.end
           = image_tag theme_image_path('top_banner.png')
-          = link_to 'Sign out', destroy_user_session_path
+          = link_to 'Sign out', destroy_user_session_path, method: :delete
       .top-bar
         .top-bar-left
           %ul.horizontal.menu

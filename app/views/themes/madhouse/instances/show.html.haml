@@ -26,6 +26,7 @@
       .event_info
         - if !@instance.price == 0
           = t "madhouse.tickets"
+
           = ptarmigan_cost(@instance.price)
           - unless !@instance.discountedprice.blank?
             = " / "

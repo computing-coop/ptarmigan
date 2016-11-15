@@ -103,7 +103,12 @@ header {
   .map_overlay {
     margin-left: -1px;
     background-color: white;
-    .text {  padding: 0.8rem 1rem; }
+    .text {  padding: 0.8rem 1rem; 
+    
+      .title {
+        padding: 1rem 0;
+      }
+    }
     width: 230px;
     border: 1px solid black;
     float: left;  

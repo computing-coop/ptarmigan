@@ -2,7 +2,7 @@ class PlacesController < ActionController::Base
   theme 'kuulutused'
   
   def ctvenues
-    @places = Place.events_between(params[:starting], params[:ending]).send(params[:scope])
+    @places = Place.events_between(params[:starting], params[:ending]).send(params[:scope]).uniq.order(:name)
     render json: @places.to_json
   end
   

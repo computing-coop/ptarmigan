@@ -1,27 +1,30 @@
+.corner
+  = image_tag theme_image_path('corner.png')
 .map_overlay
   %button.close-button{"aria-label" => "Close modal", "data-close" => "", :type => "button"}
     %span{"aria-hidden" => "true"}= raw "&times;"
-  %h1= @event.eventcategories.map(&:name).join(' / ')
+  .text
+    %h1= @event.eventcategories.map(&:name).join(' / ')
 
-  .date= date_range(@event.date, @event.enddate)
-  .location=  @event.place.name
-  - unless @event.promoter.blank?
-    .promoter
-      by
-      = @event.promoter
+    .date= date_range(@event.date, @event.enddate)
+    .location=  @event.place.name
+    - unless @event.promoter.blank?
+      .promoter
+        by
+        = @event.promoter
 
-  - unless @event.cost.blank?
-    .cost
-      = ptarmigan_cost(@event.cost)
-      - unless @event.ticket_url.blank?
-        = link_to t("ct.buy_tickets_here"), @event.ticket_url
+    - unless @event.cost.blank?
+      .cost
+        = ptarmigan_cost(@event.cost)
+        - unless @event.ticket_url.blank?
+          = link_to t("ct.buy_tickets_here"), @event.ticket_url
       
-  .title= @event.title
-  .description
-    = raw  @event.description
+    .title= @event.title
+    .description
+      = raw  @event.description
 
-  - unless @event.facebook.blank?
-    = link_to @event.facebook do
-      = fa_icon 'facebook'
-      = 'Facebook'
+    - unless @event.facebook.blank?
+      = link_to "https://www.facebook.com/events/#{@event.facebook.to_s}" do
+        = fa_icon 'facebook'
+        = 'Facebook'
       

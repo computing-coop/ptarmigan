@@ -109,7 +109,7 @@ class Event < ActiveRecord::Base
       :title => self.title,
       :notes => self.notes.blank? ? "<br />" : self.notes + "<br />",
       :place => self.place.name,
-      :promoter => self.promoter.blank? ? (self.notes.blank? ? '' : '<br />') : self.promoted + "<br />",
+      :promoter => self.promoter.blank? ? (self.notes.blank? ? '' : '<br />') : self.promoter + "<br />",
       :description => self.description || "",
       :start => date.strftime('%Y-%m-%d %H:%M:00'),
       :end => enddate.nil? ? date.strftime('%Y-%m-%d %H:%M:00') : enddate.strftime('%Y-%m-%d %H:%M:00'),

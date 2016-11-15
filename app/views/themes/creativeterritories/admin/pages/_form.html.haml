@@ -1,0 +1,44 @@
+
+= semantic_form_for([:admin, page], :html => {:multipart => true, :"data-abide" => ''}) do |f|
+  .row.expanded
+    .small-12.medium-9.columns
+      = f.input :location, as: :hidden
+      = f.input :subsite, :label => 'Assign to sub-site', :hint => 'will appear in content of subdomain', as: :hidden
+      = tabs_for do |tab|
+        - tab.create('english', 'English') do
+          = f.globalize_fields_for :en do |en|
+            = en.label :title
+            %br
+            = en.text_field :title
+            %br
+            = en.label :excerpt
+            %br
+            = en.cktext_area :excerpt 
+            %br
+            = en.label :body
+            %br
+            = en.cktext_area :body
+
+        - tab.create('latvian', 'Latvian') do
+          = f.globalize_fields_for :lv do |lv|
+            = lv.label :title
+            %br
+            = lv.text_field :title
+            %br
+            = lv.label :excerpt
+            %br
+            = lv.cktext_area :excerpt
+            %p
+            = lv.label :body
+            %br
+            = lv.cktext_area :body            
+  .row.expanded
+    .small-10.medium-4.columns
+      = f.input :slug
+  .row.expanded
+    .small-10.medium-4.columns= f.submit "Submit"
+    
+:javascript
+  $(function() {
+    $("#tabs").tabs();
+  });

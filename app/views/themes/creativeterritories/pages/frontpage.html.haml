@@ -1,158 +1,173 @@
-.row.expanded
-  .large-9.columns.calendar_outer_frame
-    = render partial: 'layouts/cities_header'
-    .row
-      .large-12.columns.banner_ad this is an ad
-    .row
-      .large-12.columns.the_calendar
-        %nav
-          %ul.event_categories
-            %li.month_title= params[:year].to_s + "/" + I18n.t("date.month_names")[params[:month]]
-            - @eventcategories.each do |ec|
-              %li= link_to ec.name, '#'
-
-        #calendar
+- if Time.current.to_date < "2016-11-17".to_date
   
--# = link_to image_tag(entry.calendar_icon(:thumb, nil)), ctcalendar_path(:year => key, :month => k)
+  .row
+    .small-7.columns.small-centered.text-center
+      %h1 coming soon - 17 november
+- else
+
+  .row.expanded
+    .large-9.columns.calendar_outer_frame
+      = render partial: 'layouts/cities_header'
+      .row
+        .large-12.columns.banner_ad this is an ad
+      .row
+        .large-12.columns.the_calendar
+          %nav
+            %ul.event_categories
+              %li.month_title= params[:year].to_s + "/" + I18n.t("date.month_names")[params[:month]]
+              - @eventcategories.each do |ec|
+                %li= link_to ec.name, '#'
+        
+          #prev_week= fa_icon 'chevron-left'
+          
+          #calendar
+          #next_week= fa_icon 'chevron-right'
+  -# = link_to image_tag(entry.calendar_icon(:thumb, nil)), ctcalendar_path(:year => key, :month => k)
 
 
-= content_for :jquery do 
-  :plain
-    function renderViewColumns(view, element) {
-      element.find('th.fc-day-header.fc-widget-header').each(function() {
-        var theDate = moment($(this).data('date')); /* th.data-date="YYYY-MM-DD" */
-        $(this).html(buildDateColumnHeader(theDate));
+  = content_for :jquery do 
+    :plain
+      $('#next_week').click(function(){
+          $('.fc-next-button').click();
       });
-
-      function buildDateColumnHeader(theDate) {
-        var container = document.createElement('div');
-        var DDD = document.createElement('div');
-        var ddMMM = document.createElement('div');
-        DDD.textContent = theDate.format('D').toUpperCase();
-        ddMMM.textContent = theDate.format('dddd');
-        DDD.className = "ct-day";
-        container.appendChild(DDD);
-        container.appendChild(ddMMM);
-        return container;
-      }
-    }
-    
-      $('#calendar').fullCalendar({
-
-            header: {
-              left: ''
-            },
-            defaultView: 'basicWeek',
-            allDaySlot: true, 
-            dayRender: function(date, cell) {
-              d = new Date();
-              dd = moment(date).format('yyyy-MM-dd');
-              
-              $('.fc-day[data-date="'+ dd +'"]').addClass('cellBg');
-              if (cell.hasClass('fc-today')) { // looking for today's cell
-                  var index = cell.index(); // get the td offset
-                  // var this_cell = $('#calendar .fc-view .fc-body .fc-widget-content .fc-day-grid-container .fc-content-skeleton table tbody tr td').eq(index);
-                  
-                  // this_cell.addClass('fc-today');
-                  // find the corresponding item in header table
-                  var header = $('#calendar thead.fc-head th').eq(index);
-                  header.addClass('fc-today'); 
-
-              }            
-
-            },
-            contentHeight: '400px',
-            lang: '#{I18n.locale.to_s}',
-            contentHeight: 'auto',
-            firstDay: 1,
-            viewRender: renderViewColumns,
-            views: {
-              week: {
-                columnFormat: 'd\n<span class="weekday">dddd</span>'
-              }
-            },
-            fixedWeekCount: false,
-            eventSources: [
-              {
-                url: '/calendar'
-              }
-            ],
-            timeFormat: 'H:mm',
-            dragOpacity: "0.5",
-            eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
-              return updateEvent(event);
-            },
-            
-            eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
-              return updateEvent(event);
-            },
-            eventClick: function(calEvent, jsEvent, view) {
-             //
-            },
-            eventRender: function(event, element, view) {
-          
-                if (view.name === "basicWeek") {
-                  
-                  element.find(".fc-content")
-                    .append(event.notes + event.promoter +  event.place);
-                  element.find(".fc-content").parent('a').attr('onClick', "$.ajax('" + event.cturl + "').done(function(resp){ $('#overlay_" + event.id + "').html(resp).foundation('open');});");
-                  element.find(".fc-content").parent('a').attr('href', '#');
-             
-                }
-            },
-            eventAfterRender: function(event, element,view) {
-              if ($('#overlay_' + event.id).length == 0) {
-                $("footer").prepend('<div class="event_info reveal" id="overlay_' + event.id +  '" data-overlay="false" data-reveal data-h-offset=' + (element.offset().left + 106) + ' data-v-offset=' + (element.offset().top + 4) +'></div>').foundation();
-              }
-              if (moment(event.start).format('YYYY-M-D') == moment(new Date()).format('YYYY-M-D')) {
-                element.parent().addClass('fc-today');
-              }
-              element.foundation();
-            }, 
-            eventAfterAllRender: function(view) {
-              $('#calendar .fc-content-skeleton table tbody tr td').eq(moment(new Date()).format('d') -1).addClass('fc-today');
-              if (dontcallback == 1) {
-                $('ul#other_venues li a[data-state="disabled"]').map(function() {
-                  var t = $(this).attr('data-ct-filter');
-                  dontcallback = 0;
-                  $('#calendar').fullCalendar('removeEvents', function(event) {
-                    //alert('event is ' + event.place_id + ' and t is  ' + t);
-                    return parseInt(event.place_id) == parseInt(t);
-                  });
-                }); 
-                ;
-              }
-                  
-              if ($('ul#other_venues li').length == 0) {
-                var starting = $('#calendar').fullCalendar('getView').start.format("YYYY-M-D");
-                var ending = $('#calendar').fullCalendar('getView').end.format("YYYY-M-D");
-                $.ajax({
-                        url: "/places/ctvenues?starting=" + starting + "&ending=" + ending + "&scope=other_venues",
-                        type: 'post',
-                        data: $(this).serialize()
-                    }).done(function (data) {
-                      populateCTFilters($('ul#other_venues'), data);
-                  });
-              }
-  
-             
-          
-          }
+      $('#prev_week').click(function() {
+        $('.fc-prev-button').click()
+      })
+      function renderViewColumns(view, element) {
+        element.find('th.fc-day-header.fc-widget-header').each(function() {
+          var theDate = moment($(this).data('date')); /* th.data-date="YYYY-MM-DD" */
+          $(this).html(buildDateColumnHeader(theDate));
         });
 
+        function buildDateColumnHeader(theDate) {
+          var container = document.createElement('div');
+          var DDD = document.createElement('div');
+          var ddMMM = document.createElement('div');
+          DDD.textContent = theDate.format('D').toUpperCase();
+          ddMMM.textContent = theDate.format('dddd');
+          DDD.className = "ct-day";
+          container.appendChild(DDD);
+          container.appendChild(ddMMM);
+          return container;
+        }
+      }
+    
+        $('#calendar').fullCalendar({
 
-        updateEvent = function(the_event) {
+              header: {
+                left: ''
+              },
+              defaultView: 'basicWeek',
+              allDaySlot: true, 
+              dayRender: function(date, cell) {
+                d = new Date();
+                dd = moment(date).format('yyyy-MM-dd');
+              
+                $('.fc-day[data-date="'+ dd +'"]').addClass('cellBg');
+                if (cell.hasClass('fc-today')) { // looking for today's cell
+                    var index = cell.index(); // get the td offset
+                    // var this_cell = $('#calendar .fc-view .fc-body .fc-widget-content .fc-day-grid-container .fc-content-skeleton table tbody tr td').eq(index);
+                  
+                    // this_cell.addClass('fc-today');
+                    // find the corresponding item in header table
+                    var header = $('#calendar thead.fc-head th').eq(index);
+                    header.addClass('fc-today'); 
 
-          return $.update("/calendar/" + the_event.id, {
-            event: {
-              title: the_event.title,
-              notes: the_event.notes,
-              promoter: the_event.promoter,
-              place: the_event.place,
-              starts_at: "" + the_event.start,
-              ends_at: "" + the_event.end,
-              description: the_event.description
+                }            
+
+              },
+              contentHeight: '400px',
+              lang: '#{I18n.locale.to_s}',
+              contentHeight: 'auto',
+              firstDay: 1,
+              viewRender: renderViewColumns,
+              views: {
+                week: {
+                  columnFormat: 'd\n<span class="weekday">dddd</span>'
+                }
+              },
+              fixedWeekCount: false,
+              eventSources: [
+                {
+                  url: '/calendar'
+                }
+              ],
+              timeFormat: 'H:mm',
+              dragOpacity: "0.5",
+              eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+                return updateEvent(event);
+              },
+            
+              eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
+                return updateEvent(event);
+              },
+              eventClick: function(calEvent, jsEvent, view) {
+               //
+              },
+              eventRender: function(event, element, view) {
+          
+                  if (view.name === "basicWeek") {
+                  
+                    element.find(".fc-content")
+                      .append(event.notes + event.promoter +  event.place);
+                    element.find(".fc-content").parent('a').attr('onClick', "$.ajax('" + event.cturl + "').done(function(resp){ $('#overlay_" + event.id + "').html(resp).foundation('open');});");
+                    element.find(".fc-content").parent('a').attr('href', '#');
+             
+                  }
+              },
+              eventAfterRender: function(event, element,view) {
+                if ($('#overlay_' + event.id).length == 0) {
+                  $("footer").prepend('<div class="event_info reveal" id="overlay_' + event.id +  '" data-overlay="false" data-reveal data-h-offset=' + (element.offset().left + 106) + ' data-v-offset=' + (element.offset().top + 4) +'></div>').foundation();
+                }
+                if (moment(event.start).format('YYYY-M-D') == moment(new Date()).format('YYYY-M-D')) {
+                  element.parent().addClass('fc-today');
+                }
+                element.foundation();
+              }, 
+              eventAfterAllRender: function(view) {
+                $('#calendar .fc-content-skeleton table tbody tr td').eq(moment(new Date()).format('d') -1).addClass('fc-today');
+                if (dontcallback == 1) {
+                  $('ul#other_venues li a[data-state="disabled"]').map(function() {
+                    var t = $(this).attr('data-ct-filter');
+                    dontcallback = 0;
+                    $('#calendar').fullCalendar('removeEvents', function(event) {
+                      //alert('event is ' + event.place_id + ' and t is  ' + t);
+                      return parseInt(event.place_id) == parseInt(t);
+                    });
+                  }); 
+                  ;
+                }
+                  
+                if ($('ul#other_venues li').length == 0) {
+                  var starting = $('#calendar').fullCalendar('getView').start.format("YYYY-M-D");
+                  var ending = $('#calendar').fullCalendar('getView').end.format("YYYY-M-D");
+                  $.ajax({
+                          url: "/places/ctvenues?starting=" + starting + "&ending=" + ending + "&scope=other_venues",
+                          type: 'post',
+                          data: $(this).serialize()
+                      }).done(function (data) {
+                        populateCTFilters($('ul#other_venues'), data);
+                    });
+                }
+  
+             
+          
             }
           });
-        };
+
+
+          updateEvent = function(the_event) {
+
+            return $.update("/calendar/" + the_event.id, {
+              event: {
+                title: the_event.title,
+                notes: the_event.notes,
+                promoter: the_event.promoter,
+                place: the_event.place,
+                starts_at: "" + the_event.start,
+                ends_at: "" + the_event.end,
+                description: the_event.description
+              }
+            });
+          };
 

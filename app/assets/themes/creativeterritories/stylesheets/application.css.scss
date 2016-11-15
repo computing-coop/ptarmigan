@@ -69,35 +69,35 @@
 
 
 /* @import must be at top of file, otherwise CSS will not work */
-@import url("//hello.myfonts.net/count/324966");
+@import font-url("//hello.myfonts.net/count/324966");
 
   
-@font-face {font-family: 'Rift-BoldItalic';src: url('324966_0_0.eot');src: url('324966_0_0.eot?#iefix') format('embedded-opentype'),url('324966_0_0.woff2') format('woff2'),url('324966_0_0.woff') format('woff'),url('324966_0_0.ttf') format('truetype');}
+@font-face {font-family: 'Rift-BoldItalic';src: font-url('324966_0_0.eot');src: font-url('324966_0_0.eot?#iefix') format('embedded-opentype'),font-url('324966_0_0.woff2') format('woff2'),font-url('324966_0_0.woff') format('woff'),font-url('324966_0_0.ttf') format('truetype');}
  
   
-@font-face {font-family: 'Rift-Italic';src: url('324966_1_0.eot');src: url('324966_1_0.eot?#iefix') format('embedded-opentype'),url('324966_1_0.woff2') format('woff2'),url('324966_1_0.woff') format('woff'),url('324966_1_0.ttf') format('truetype');}
+@font-face {font-family: 'Rift-Italic';src: font-url('324966_1_0.eot');src: font-url('324966_1_0.eot?#iefix') format('embedded-opentype'),font-url('324966_1_0.woff2') format('woff2'),font-url('324966_1_0.woff') format('woff'),font-url('324966_1_0.ttf') format('truetype');}
  
   
-@font-face {font-family: 'Rift-DemiItalic';src: url('324966_2_0.eot');src: url('324966_2_0.eot?#iefix') format('embedded-opentype'),url('324966_2_0.woff2') format('woff2'),url('324966_2_0.woff') format('woff'),url('324966_2_0.ttf') format('truetype');}
+@font-face {font-family: 'Rift-DemiItalic';src: font-url('324966_2_0.eot');src: font-url('324966_2_0.eot?#iefix') format('embedded-opentype'),font-url('324966_2_0.woff2') format('woff2'),font-url('324966_2_0.woff') format('woff'),font-url('324966_2_0.ttf') format('truetype');}
  
   
-@font-face {font-family: 'Rift-LightItalic';src: url('324966_3_0.eot');src: url('324966_3_0.eot?#iefix') format('embedded-opentype'),url('324966_3_0.woff2') format('woff2'),url('324966_3_0.woff') format('woff'),url('324966_3_0.ttf') format('truetype');}
+@font-face {font-family: 'Rift-LightItalic';src: font-url('324966_3_0.eot');src: font-url('324966_3_0.eot?#iefix') format('embedded-opentype'),font-url('324966_3_0.woff2') format('woff2'),font-url('324966_3_0.woff') format('woff'),font-url('324966_3_0.ttf') format('truetype');}
  
   
-@font-face {font-family: 'Rift-MediumItalic';src: url('324966_4_0.eot');src: url('324966_4_0.eot?#iefix') format('embedded-opentype'),url('324966_4_0.woff2') format('woff2'),url('324966_4_0.woff') format('woff'),url('324966_4_0.ttf') format('truetype');}
+@font-face {font-family: 'Rift-MediumItalic';src: font-url('324966_4_0.eot');src: font-url('324966_4_0.eot?#iefix') format('embedded-opentype'),font-url('324966_4_0.woff2') format('woff2'),font-url('324966_4_0.woff') format('woff'),font-url('324966_4_0.ttf') format('truetype');}
  
   
-@font-face {font-family: 'Rift-Bold';src: url('324966_5_0.eot');src: url('324966_5_0.eot?#iefix') format('embedded-opentype'),url('324966_5_0.woff2') format('woff2'),url('324966_5_0.woff') format('woff'),url('324966_5_0.ttf') format('truetype');}
+@font-face {font-family: 'Rift-Bold';src: font-url('324966_5_0.eot');src: font-url('324966_5_0.eot?#iefix') format('embedded-opentype'),font-url('324966_5_0.woff2') format('woff2'),font-url('324966_5_0.woff') format('woff'),font-url('324966_5_0.ttf') format('truetype');}
  
   
-@font-face {font-family: 'Rift-Demi';src: url('324966_6_0.eot');src: url('324966_6_0.eot?#iefix') format('embedded-opentype'),url('324966_6_0.woff2') format('woff2'),url('324966_6_0.woff') format('woff'),url('324966_6_0.ttf') format('truetype');}
+@font-face {font-family: 'Rift-Demi';src: font-url('324966_6_0.eot');src: font-url('324966_6_0.eot?#iefix') format('embedded-opentype'),font-url('324966_6_0.woff2') format('woff2'),font-url('324966_6_0.woff') format('woff'),font-url('324966_6_0.ttf') format('truetype');}
  
   
-@font-face {font-family: 'Rift-Light';src: url('324966_7_0.eot');src: url('324966_7_0.eot?#iefix') format('embedded-opentype'),url('324966_7_0.woff2') format('woff2'),url('324966_7_0.woff') format('woff'),url('324966_7_0.ttf') format('truetype');}
+@font-face {font-family: 'Rift-Light';src: font-url('324966_7_0.eot');src: font-url('324966_7_0.eot?#iefix') format('embedded-opentype'),font-url('324966_7_0.woff2') format('woff2'),font-url('324966_7_0.woff') format('woff'),font-url('324966_7_0.ttf') format('truetype');}
  
   
-@font-face {font-family: 'Rift-Medium';src: url('324966_8_0.eot');src: url('324966_8_0.eot?#iefix') format('embedded-opentype'),url('324966_8_0.woff2') format('woff2'),url('324966_8_0.woff') format('woff'),url('324966_8_0.ttf') format('truetype');}
+@font-face {font-family: 'Rift-Medium';src: font-url('324966_8_0.eot');src: font-url('324966_8_0.eot?#iefix') format('embedded-opentype'),font-url('324966_8_0.woff2') format('woff2'),font-url('324966_8_0.woff') format('woff'),font-url('324966_8_0.ttf') format('truetype');}
  
   
-@font-face {font-family: 'Rift-Regular';src: url('324966_9_0.eot');src: url('324966_9_0.eot?#iefix') format('embedded-opentype'),url('324966_9_0.woff2') format('woff2'),url('324966_9_0.woff') format('woff'),url('324966_9_0.ttf') format('truetype');}
+@font-face {font-family: 'Rift-Regular';src: font-url('324966_9_0.eot');src: font-url('324966_9_0.eot?#iefix') format('embedded-opentype'),font-url('324966_9_0.woff2') format('woff2'),font-url('324966_9_0.woff') format('woff'),font-url('324966_9_0.ttf') format('truetype');}
  

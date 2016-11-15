@@ -114,6 +114,7 @@ class Event < ActiveRecord::Base
       :start => date.strftime('%Y-%m-%d %H:%M:00'),
       :end => enddate.nil? ? date.strftime('%Y-%m-%d %H:%M:00') : enddate.strftime('%Y-%m-%d %H:%M:00'),
       :allDay => false, 
+      :place_id => self.place.id,
       :recurring => false,
       :url => Rails.application.routes.url_helpers.event_path(slug),
       :cturl => Rails.application.routes.url_helpers.event_path(slug)

@@ -25,6 +25,7 @@ class Instance < ActiveRecord::Base
       :start => start_at.strftime('%Y-%m-%d %H:%M:00'),
       :end => end_at.nil? ? start_at.strftime('%Y-%m-%d %H:%M:00') : end_at.strftime('%Y-%m-%d %H:%M:00'),
       :allDay => false, 
+      :place_id => self.event.place.id,
       :recurring => false,
       :cturl => Rails.application.routes.url_helpers.event_instance_path(self.event.slug, self.slug),
       :url => self.title.blank? ? Rails.application.routes.url_helpers.event_path(self.event.slug) : 

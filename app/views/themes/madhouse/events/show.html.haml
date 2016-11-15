@@ -22,8 +22,7 @@
         - if @event.cost == 0
           = t(:free)
         - elsif @event.cost == -1
-          = t("madhouse.tickets") + ": "
-          = t("madhouse.see_below")
+          
         - else
           = t("madhouse.tickets") + ": "
           = ptarmigan_cost(@event.cost)

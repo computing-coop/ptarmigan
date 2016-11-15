@@ -110,6 +110,7 @@
               element.foundation();
             }, 
             eventAfterAllRender: function(view) {
+              $('#calendar .fc-content-skeleton table tbody tr td').eq(moment(new Date()).format('d') -1).addClass('fc-today');
               if (dontcallback == 1) {
                 $('ul#other_venues li a[data-state="disabled"]').map(function() {
                   var t = $(this).attr('data-ct-filter');

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116092305) do
+ActiveRecord::Schema.define(version: 20161116130319) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "trackable_id"
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 20161116092305) do
     t.datetime "updated_at"
   end
 
-  create_table "calendarbackgrounds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "calendarbackgrounds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "image_file_name"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
@@ -447,6 +447,16 @@ ActiveRecord::Schema.define(version: 20161116092305) do
     t.integer  "carousel_file_size"
     t.string   "carousel_content_type"
     t.datetime "carousel_updated_at"
+  end
+
+  create_table "place_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "place_id",   null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.index ["locale"], name: "index_place_translations_on_locale", using: :btree
+    t.index ["place_id"], name: "index_place_translations_on_place_id", using: :btree
   end
 
   create_table "places", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

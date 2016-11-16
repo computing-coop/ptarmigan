@@ -2,7 +2,17 @@
   .row.expanded
     .small-12.medium-6.columns
       .row.expanded
-        .small-12.medium-5.columns= f.input :name
+        .small-12.columns
+          = tabs_for do |tab|
+            - tab.create('english', 'English') do
+              = f.globalize_fields_for :en do |en|
+                Name in English:
+                = en.text_field :name
+            - tab.create('latvian', 'Latvian') do
+              = f.globalize_fields_for :lv do |lv| 
+                Name in Latvian:
+                = lv.text_field :name
+          .row.expanded
       .row.expanded
         .small-12.medium-5.columns= f.input :address1
       .row.expanded
@@ -30,4 +40,8 @@
           = f.input :allow_ptarmigan_events, as: :hidden, value: 1
       .row.expanded.expanded
         .small-12.medium-5.columns
-          = f.submit 'save'
+          = f.submit 'save', class: [:button]
+
+= content_for :jquery do
+  :plain
+    $("#tabs").tabs();          

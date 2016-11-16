@@ -14,7 +14,9 @@ class Place < ActiveRecord::Base
   accepts_nested_attributes_for :locations
   # include PublicActivity::Model
   # tracked owner: ->(controller, model) { controller.current_user }
-    
+  
+  translates :name, fallbacks_for_empty_translations: true
+  accepts_nested_attributes_for :translations, reject_if: proc { |attr| attr['name'].blank?  } 
   scope :tallinn, ->() { where(country: 'EE')}
   scope :for_events, ->() { where(allow_ptarmigan_events: true)}
   scope :creativeterritories, -> () { where(country: 'LV')}

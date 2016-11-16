@@ -1,4 +1,7 @@
 #minicalendar {
+  table {
+      table-layout: fixed;
+  }
   thead, table, tbody, tr {
     background: transparent !important;
   }

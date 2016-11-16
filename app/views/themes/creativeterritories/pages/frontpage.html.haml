@@ -7,8 +7,8 @@
 
   .row.expanded
     .large-9.columns.calendar_outer_frame
-      .row
-        .large-12.columns.banner_ad this is an ad
+      / .row
+      /   .large-12.columns.banner_ad this is an ad
       .row
         .large-12.columns.the_calendar
           %nav
@@ -66,10 +66,6 @@
                 $('.fc-day[data-date="'+ dd +'"]').addClass('cellBg');
                 if (cell.hasClass('fc-today')) { // looking for today's cell
                     var index = cell.index(); // get the td offset
-                    // var this_cell = $('#calendar .fc-view .fc-body .fc-widget-content .fc-day-grid-container .fc-content-skeleton table tbody tr td').eq(index);
-                  
-                    // this_cell.addClass('fc-today');
-                    // find the corresponding item in header table
                     var header = $('#calendar thead.fc-head th').eq(index);
                     header.addClass('fc-today'); 
 
@@ -110,20 +106,24 @@
                   
                     element.find(".fc-content")
                       .append(event.notes + event.promoter + event.place);
-                    element.find(".fc-content").parent('a').attr('onClick', "$.ajax('" + event.cturl + "').done(function(resp){ $('#overlay_" + event.id + "').html(resp).foundation('open');});return false;");
+                    element.find(".fc-content").parent('a').attr('onClick', "openEvent('" + event.cturl + "', " + event.id +");return false;");
                     element.find(".fc-content").parent('a').attr('href', '#');
                   
              
                   }
+               
+          
               },
               eventAfterRender: function(event, element,view) {
+         
                 if ($('#overlay_' + event.id).length == 0) {
-                  $("footer").prepend('<div class="event_info reveal" id="overlay_' + event.id +  '" data-overlay="false" data-reveal data-h-offset=' + (element.offset().left + 106) + ' data-v-offset=' + (element.offset().top + 4) +'></div>').foundation();
+                  $("footer").prepend('<div class="event_info reveal" id="overlay_' + event.id +  '" data-overlay="false" data-reveal data-h-offset=' + (element.offset().left + 106) +  '></div>').foundation();
                 }
                 if (moment(event.start).format('YYYY-M-D') == moment(new Date()).format('YYYY-M-D')) {
                   element.parent().addClass('fc-today');
                 }
-                element.addClass(event.categories);
+    
+
                 element.foundation();
               }, 
               eventAfterAllRender: function(view) {
@@ -140,7 +140,14 @@
                       return parseInt(event.place_id) == parseInt(t);
                     });
                   }); 
-                  ;
+                  $('ul#disciplines li a[data-state="disabled"]').map(function() {
+                    var t = $(this).attr('data-ct-filter');
+                    dontcallback = 0;
+                    $('#calendar').fullCalendar('removeEvents', function(event) {
+                      //alert('event is ' + event.place_id + ' and t is  ' + t);
+                      return parseInt(event.place_id) == parseInt(t);
+                    });
+                  });
                 }
                   
                 if ($('ul#other_venues li').length == 0) {

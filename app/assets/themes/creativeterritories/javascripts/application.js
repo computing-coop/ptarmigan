@@ -63,12 +63,54 @@ function setFilters() {
             return parseInt(event.place_id) == parseInt(t);
           });
         });  
-    }
-      //$('#calendar').fullCalendar('rerenderEvents');
+      }
     });
+    $('ul#disciplines li a').click(function() {
+      
+        var choice = $(this);
+        var filter_by = $(this).attr('data-ct-filter');
+        var state = choice.attr('data-state');
+      
+        if (state == 'disabled') {
+          choice.attr('data-state', 'enabled');
+          choice.addClass('active');
+      
+          $('#calendar').fullCalendar('refetchEvents');
+          dontcallback = 1;
+        } else if (state == 'initial') {
+          $('ul#disciplines li a').attr('data-state', 'disabled');
+          choice.attr('data-state', 'enabled') 
+          choice.addClass('active');
+        }
+        
+        else if (state == 'enabled') {
+          choice.attr('data-state', 'disabled');
+          choice.removeClass('active');
+   
+          $('ul#disciplines li a[data-state="disabled"]').map(function() {
+            var t = $(this).attr('data-ct-filter');
+          
+            $('#calendar').fullCalendar('removeEvents', function(event) {
+              //alert('event is ' + event.place_id + ' and t is  ' + t);
+              return parseInt(event.categories) == parseInt(t);
+            });
+          });  
+        }
+      });
     
 }
 
+function openEvent(url, id) {
+  var voffset = event.clientY;
+  $('#overlay_' + id).attr('data-v-offset', voffset);
+  
+  $.ajax(url).done(function(resp) {
+     $('#overlay_' + id).html(resp).foundation('open');
+   $('#overlay_' + id).css('top', voffset + 'px');
+   });
+   return false;
+}
+                     
 var map = null;
 var riga = null;
 function displayMap() {

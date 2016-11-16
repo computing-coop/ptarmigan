@@ -30,7 +30,7 @@
             = link_to t("ct.disciplines"), '#'
             %ul#disciplines.vertical.menu
               - Eventcategory.all.order(:name).each do |cat|
-                %li= link_to cat.name, '#'
+                %li= link_to cat.name, '#', :'data-state' => :initial, :'data-ct-filter' => cat.id
           %li
             = link_to t("ct.culture_map"), '#', onClick: 'javascript:displayMap();'
           %li

@@ -284,6 +284,10 @@ header {
   background-color: #659b86;
 }
 #calendar {
+  table {
+      table-layout: fixed;
+  }
+  
   thead, table, tbody, tr {
     background: transparent !important;
   }
@@ -320,8 +324,9 @@ header {
                   .fc-day-header {
                     font-family: 'Rift-Light';
                     font-size: 0.75rem;
-                    width: 142px !important;
+//                    min-width: 116px;
                     &.fc-today {
+                      min-width: 100px;
                       background-color: #659b86;
                     }
                     .ct-day {
@@ -353,9 +358,10 @@ header {
                 border: none;
                 tr {
                   td {
-                    width: 142px !important;
+//                    min-width: 116px;
                     &.fc-event-container {
                       &.fc-today {
+                        min-width: 100px;
                         background-color: #659b86;
                       }
                       vertical-align: top;

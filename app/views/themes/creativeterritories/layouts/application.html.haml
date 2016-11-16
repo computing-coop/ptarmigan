@@ -34,7 +34,7 @@
 
     %meta{ :content => "1 day", :name => "revisit-after" }
 
-  %body{style: "background-image: url(#{@calendar_background.image.url(:large)});"}
+  %body{style: !@calendar_background.nil? ? "background-image: url(#{@calendar_background.image.url(:large)});" : false}
     #fb-root
     :javascript
       (function(d, s, id) {

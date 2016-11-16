@@ -107,7 +107,7 @@ class Event < ActiveRecord::Base
     {
       :id => self.id,
       :title => self.title,
-      :notes => self.notes.blank? ? "<br />" : self.notes + "<br />",
+      :notes => self.notes.blank? ? "<br />" : "<br />" + self.notes,      
       :place => self.place.name,
       :promoter => self.promoter.blank? ? (self.notes.blank? ? '' : '<br />') : self.promoter + "<br />",
       :description => self.description || "",
@@ -116,6 +116,7 @@ class Event < ActiveRecord::Base
       :allDay => false, 
       :place_id => self.place.id,
       :recurring => false,
+      :categories => self.eventcategories.empty? ? [] : self.eventcategories.map(&:slug),
       :url => Rails.application.routes.url_helpers.event_path(slug),
       :cturl => Rails.application.routes.url_helpers.event_path(slug)
       #:color => "red"

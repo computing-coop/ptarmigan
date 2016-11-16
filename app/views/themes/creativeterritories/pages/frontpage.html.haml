@@ -109,9 +109,10 @@
                   if (view.name === "basicWeek") {
                   
                     element.find(".fc-content")
-                      .append(event.notes + event.promoter +  event.place);
-                    element.find(".fc-content").parent('a').attr('onClick', "$.ajax('" + event.cturl + "').done(function(resp){ $('#overlay_" + event.id + "').html(resp).foundation('open');});");
+                      .append(event.notes + event.promoter + event.place);
+                    element.find(".fc-content").parent('a').attr('onClick', "$.ajax('" + event.cturl + "').done(function(resp){ $('#overlay_" + event.id + "').html(resp).foundation('open');});return false;");
                     element.find(".fc-content").parent('a').attr('href', '#');
+                  
              
                   }
               },
@@ -122,10 +123,14 @@
                 if (moment(event.start).format('YYYY-M-D') == moment(new Date()).format('YYYY-M-D')) {
                   element.parent().addClass('fc-today');
                 }
+                element.addClass(event.categories);
                 element.foundation();
               }, 
               eventAfterAllRender: function(view) {
-                $('#calendar .fc-content-skeleton table tbody tr td').eq(moment(new Date()).format('d') -1).addClass('fc-today');
+                var today = moment(new Date()).format('YYYY-M-D');
+                if ($('#calendar td[data-date=' + today + ']').length > 0) {
+                  $('#calendar .fc-content-skeleton table tbody tr td').eq(moment(new Date()).format('d') -1).addClass('fc-today');
+                }
                 if (dontcallback == 1) {
                   $('ul#other_venues li a[data-state="disabled"]').map(function() {
                     var t = $(this).attr('data-ct-filter');

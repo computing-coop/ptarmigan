@@ -7,6 +7,11 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
       can :manage, :all
+    elsif user.has_role? :riga_staff
+      can :manage, Event
+      can :manage, Calendarbackground
+      can :manage, Instance
+      can :manage, Place
     elsif user.has_role? :madhouse_staff
       can :manage, Event , location: {name: 'Mad House' }
       # can :create, Event, location: {name: 'Mad House' }
@@ -20,6 +25,7 @@ class Ability
       cannot :manage, :all
       cannot :manage, Event
       can :manage, Place
+
     end
     #
     # The first argument to `can` is the action you are giving the user

@@ -1,5 +1,5 @@
-- if Time.current.to_date < "2016-11-17".to_date
-  
+- if Time.current.to_date < "2016-11-17".to_date && !user_signed_in?
+
   .row
     .small-7.columns.small-centered.text-center
       %h1 coming soon - 17 november
@@ -18,10 +18,10 @@
               - @eventcategories.each do |ec|
                 %li= link_to ec.name, '#'
         
-          #prev_week= fa_icon 'chevron-left'
+          #prev_week <
           
           #calendar
-          #next_week= fa_icon 'chevron-right'
+          #next_week >
   -# = link_to image_tag(entry.calendar_icon(:thumb, nil)), ctcalendar_path(:year => key, :month => k)
 
 

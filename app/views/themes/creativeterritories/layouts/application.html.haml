@@ -34,7 +34,7 @@
 
     %meta{ :content => "1 day", :name => "revisit-after" }
 
-  %body
+  %body{style: "background-image: url(#{@calendar_background.image.url(:large)});"}
     #fb-root
     :javascript
       (function(d, s, id) {
@@ -58,7 +58,7 @@
   $(document).ready(function() {
     $("#sticky-menu").sticky({ topSpacing: 0 });
     $('#minicalendar').fullCalendar({
-      height: 150,
+      height: 170,
       firstDay: 1,
       customButtons: {
         prev: {
@@ -73,7 +73,10 @@
         right: 'title',
         center: 'next'
       },
-      titleFormat: "YYYY MMMM"
+      titleFormat: "YYYY MMMM",
+      eventAfterAllRender: function() {
+        $('#minicalendar td.fc-day-top.fc-today').siblings().css('background-color', 'white');
+      }
       
     });
     #{yield :jquery}

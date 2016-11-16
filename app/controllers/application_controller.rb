@@ -134,6 +134,7 @@ class ApplicationController < ActionController::Base
         @subsite = Subsite.all.to_a.delete_if{|x| !x.name.split(/\,/).include?(tl)}.first
         die unless @subsite
         @location = @subsite.location
+        @calendar_background = Calendarbackground.active.order_by_rand.first 
         # protect_with_staging_password
         @subsite.name.split(/\,/).first
         

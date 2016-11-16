@@ -14,16 +14,11 @@ class PagesController < ApplicationController
   def frontpage
     
     if !@subsite.nil?
+      
       if @subsite.theme == 'kuulutused' 
         @places = Place.tallinn.approved_posters.to_a.delete_if{|x| x.votes_against >= 5}
-        # @json = Gmaps4rails.build_markers(@places) do |user, marker|
-        #   marker.id user.id
-        #   marker.lat user.latitude
-        #   marker.lng user.longitude
-        # end
-        # @json = @places.to_gmaps4rails do |place,marker|
-        #   marker.json({:id => place.id})
-        # end
+
+        
       elsif @subsite.theme == 'creativeterritories'
      
         @events = @subsite.events.published
@@ -38,7 +33,7 @@ class PagesController < ApplicationController
         params[:day] = 15
         params[:month] = params[:month].to_i
         params[:year] = params[:year].to_i
-
+        
       elsif @subsite.theme == 'kompass'
         @pages = Page.by_subsite(@subsite)
         @event = @subsite.events.first

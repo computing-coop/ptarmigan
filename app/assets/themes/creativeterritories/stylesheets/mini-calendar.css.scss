@@ -1,5 +1,13 @@
 #minicalendar {
-  
+  thead, table, tbody, tr {
+    background: transparent !important;
+  }
+  span.fc-day-number {
+    color: #333 !important;
+  }
+  .fc-today {
+    background-color: white;
+  }
   .fc-toolbar {
     margin-left: 4rem;
     .fc-left, .fc-center {

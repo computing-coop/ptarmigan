@@ -20,7 +20,7 @@
     -#= javascript_include_tag :ckeditor
     = csrf_meta_tag 
   %body
-    #admin_top_column.clearfix
+    #admin_top_column
       #nav= render :partial => 'layouts/staffsidebar.en'
 
     #dynamic{:class => 'staff_' + @location.name.downcase}

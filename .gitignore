@@ -41,3 +41,4 @@ app/assets/themes/creativeterritories/fonts/*.woff
 app/assets/themes/creativeterritories/fonts/*.ttf
 app/assets/themes/creativeterritories/fonts/*.woff2
 app/assets/themes/creativeterritories/fonts/*.eot
+test/*

@@ -1,0 +1,10 @@
+= semantic_form_for [:admin, @calendarbackground], html: {multipart: true, :'data-abide' => '' } do |f|
+  .row.expanded
+    .small-8.medium-4.columns
+      - if f.object.image?
+        = image_tag f.object.image.url(:small)
+      = f.input :image, input_html: {required: f.object.new_record? ? '' : false}, label: f.object.image? ? 'Change image' : 'Choose image'
+  .row.expanded
+    .small-8.medium-4.columns= f.input :active
+  .row.expanded
+    .small-8.medium-4.columns= f.submit 'Save'

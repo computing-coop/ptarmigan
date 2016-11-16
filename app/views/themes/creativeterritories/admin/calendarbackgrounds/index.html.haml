@@ -1,0 +1,23 @@
+.cms_grid
+
+  .row.expanded 
+    .small-12.columns
+      %h2 Calendar backgrounds
+      - @calendarbackgrounds.each do |cb|
+        .row.expanded
+          .calendarbackground.columns{class: cycle('odd', 'even')}
+            .small-2.columns
+              = image_tag cb.image.url(:small)
+            .small-2.columns
+              - if cb.active?
+                Active!
+              - else
+                not active
+            .small-6.columns.end
+              = link_to 'Edit', edit_admin_calendarbackground_path(cb), class: [:button, :small]
+              = link_to 'Delete', [:admin, cb], method: :delete, class: [:button, :alert, :small], data: {confirm: 'Are you sure?'}
+            
+            
+  .row.expanded 
+    .small-12.columns
+      = link_to 'New calendar background', new_admin_calendarbackground_path,  class: [:button, :small]

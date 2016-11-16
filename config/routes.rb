@@ -118,6 +118,7 @@ Ptarmigan::Application.routes.draw do
   
   namespace :admin do
     resources :calendar
+    resources :calendarbackgrounds
     resources :events do
       resources :instances
     end

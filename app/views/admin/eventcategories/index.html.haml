@@ -1,20 +1,22 @@
-%h3 Event categories
+.cms_grid
+  .row.expanded
+    .small-12.columns
+      %h3 Event categories
 
-= button_to 'new event category', new_admin_eventcategory_path, :method => :get
-= paginate(@eventcategories)
-
-.events
-  - @eventcategories.each do |ec|
-    .category{style: "background-color: ##{ec.colour}" }
-      = ec.name
-      %span.smaller_font
-        = link_to '(edit)', edit_admin_eventcategory_path(ec)
-        %span.delete= link_to '[delete]', [:admin, ec], data: {:confirm => 'Are you sure?'}, :method => :delete
+      = link_to 'new event category', new_admin_eventcategory_path, :method => :get, class: [:button, :small]
 
 
+  .events
+    - @eventcategories.each do |ec|
+      .row.expanded
+        .columns.category
+          = ec.name
+          %span.smaller_font
+            = link_to 'Edit', edit_admin_eventcategory_path(ec), class: [:button, :small]
+          %span.delete= link_to 'Delete', [:admin, ec], data: {:confirm => 'Are you sure?'}, :method => :delete, class: [:button, :alert, :small]
 
-= paginate(@eventcategories)
-%br/
-%br/
 
-= button_to 'new event category', new_admin_eventcategory_path, :method => :get
+
+
+  .row.expanded
+    .small-12.columns= link_to 'new event category', new_admin_eventcategory_path, :method => :get, class: [:button, :small]

@@ -1,15 +1,19 @@
 = semantic_form_for [:admin, @eventcategory] do |f|
-  = f.input :colour, :as => :string, :input_html => {:class => :colourpicker }
-  = tabs_for do |tab|
-    - tab.create('english', 'English') do
-      = f.globalize_fields_for :en do |en|
-        Name in English:
-        = en.text_field :name
-    - tab.create('latvian', 'Latvian') do
-      = f.globalize_fields_for :lv do |lv| 
-        Name in Latvian:
-        = lv.text_field :name
-  = f.submit 'Save'        
+  .row.expanded
+    .small-12.medium-5.columns= f.input :colour, :as => :string, :input_html => {:class => :colourpicker }
+  .row.expanded
+    .small-12.columns
+      = tabs_for do |tab|
+        - tab.create('english', 'English') do
+          = f.globalize_fields_for :en do |en|
+            Name in English:
+            = en.text_field :name
+        - tab.create('latvian', 'Latvian') do
+          = f.globalize_fields_for :lv do |lv| 
+            Name in Latvian:
+            = lv.text_field :name
+  .row.expanded
+    .small-12.medium-5.columns= f.submit 'Save'        
 
 = content_for :jquery do
   :plain

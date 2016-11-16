@@ -18,7 +18,7 @@
 
     .small-6.columns.omega
       = f.input :promoter, :label => "Promoter", :hint => "optional, ex: Totaldobze, can be blank though"
-      = f.input :place, :as => :select, :collection => Place.creativeterritories.map{|x| [x.name + "/" + x.address1, x.id]}, :include_blank => true, input_html: {required: ''}
+      = f.input :place, :as => :select, :collection => Place.creativeterritories.order(:name).map{|x| [x.name + "/" + x.address1, x.id]}, :include_blank => true, input_html: {required: ''}
       %br/
       Place not on this list? 
       = link_to 'Add it!', new_admin_place_path

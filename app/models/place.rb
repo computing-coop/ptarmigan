@@ -24,10 +24,12 @@ class Place < ActiveRecord::Base
   scope :other_venues, -> () { where(creative_quarters: false)}
   scope :approved_posters, -> () { where(approved_for_posters: true)}
 
-  scope :events_between, ->(start_at, end_at) {
-    creativeterritories.joins(:events).where(["date(events.date) >= ? and events.public = true and (events.enddate is null or date(events.enddate) <= ?)", start_at, end_at])
+  scope :events_between, ->(start_at, end_at) { 
+    creativeterritories.joins(:events).where([ "(events.date >= ?  AND  events.enddate <= ?) OR ( events.enddate >= ? AND events.enddate <= ? ) OR (events.date >= ? AND events.date <= ?)  OR (events.date < ? AND events.enddate > ? )",
+    start_at, end_at, start_at, end_at, start_at, end_at, start_at, end_at])  
   }
-  
+
+ 
   def address_or_coordinates
     if self.latitude.blank? || self.longitude.blank?
       geocode

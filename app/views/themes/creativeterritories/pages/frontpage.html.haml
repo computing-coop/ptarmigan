@@ -24,7 +24,8 @@
   -# = link_to image_tag(entry.calendar_icon(:thumb, nil)), ctcalendar_path(:year => key, :month => k)
 
 
-  = content_for :jquery do 
+  = content_for :jquery do
+    = render partial: 'shared/map.js'
     :plain
       $('#next_week').click(function(){
           $('.fc-next-button').click();

@@ -197,29 +197,38 @@ header {
   }
 }
 
+#map {
+  width: 100%;
+  height: 700px;
+  display: none;
+}
+.cities_header {
+  margin-left: 3.5%;
+  .cities {
+    ul {
+      padding: 0;
+      margin: 0;
+      li {
+        list-style-type: none;
+        font-family: 'Rift-Regular';
+        font-size: 3.55rem;
+        text-transform: uppercase;
+        color: #666699;
+        float: left;
+        padding-right: 1.25rem;
+      
+        &.active {
+          color: black;
+        }
+      }
+    }
+  }
+}
 #main {
   .calendar_outer_frame {
     margin-left: 3.5%;
   
-    .cities {
-      ul {
-        padding: 0;
-        margin: 0;
-        li {
-          list-style-type: none;
-          font-family: 'Rift-Regular';
-          font-size: 3.55rem;
-          text-transform: uppercase;
-          color: #666699;
-          float: left;
-          padding-right: 1.25rem;
-        
-          &.active {
-            color: black;
-          }
-        }
-      }
-    }
+
   
     .banner_ad {
       height: 75px;

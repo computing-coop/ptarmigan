@@ -32,7 +32,7 @@
               - Eventcategory.all.order(:name).each do |cat|
                 %li= link_to cat.name, '#'
           %li
-            = link_to t("ct.culture_map"), '#'
+            = link_to t("ct.culture_map"), '#', onClick: 'javascript:displayMap();'
           %li
             = link_to t("ct.festivals"), '#'
             %ul#festivals.menu

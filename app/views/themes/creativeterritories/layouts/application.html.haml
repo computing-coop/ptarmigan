@@ -10,7 +10,7 @@
     = javascript_include_tag :application
     = javascript_include_tag 'creativeterritories/javascripts/application'
     
-    %script{:src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyAFlkw7SUgPOTDy8XkWVo_kszw20I22d4g&sensor=false", :type => "text/javascript"}
+    %script{:src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyAFlkw7SUgPOTDy8XkWVo_kszw20I22d4g", :type => "text/javascript"}
 
     = csrf_meta_tag
 
@@ -46,7 +46,10 @@
       }(document, 'script', 'facebook-jssdk'));
     %header
       .row.expanded= render partial: 'layouts/header'
-      .row.expanded= render partial: 'layouts/cities_header'
+
+      .row.expanded.cities_header
+        .large-9.columns= render partial: 'layouts/cities_header'
+    %section#map
     %section#main= yield
 
     %footer

@@ -1,4 +1,4 @@
-= semantic_form_for([:admin,  event],  :html => {:multipart => true, :'data-abide' => '' } ) do |f|
+= semantic_form_for([:admin,  event],  :html => {:multipart => true, :'data-abide' => '', :novalidate => '' } ) do |f|
   .row
     = f.input :location_id, :label => "Which place?", :as => :hidden, input_html: {value: @location.id }
     .small-6.columns
@@ -61,7 +61,7 @@
   .row
     .small-6.columns
       = f.input :cost, :label => "Cost", :hint => "enter 0 for free events, must be number, no characters besides numbers and . allowed"
-      = f.input :ticket_url, label: 'URL to buy ticket (one-day events only):', hint: 'Only enter a URL if this happens once, otherwise create individual performances and add the individual ticket URLs there'
+      = f.input :ticket_url, label: 'URL to buy ticket (one-day events only):', hint: 'Only enter a URL if this happens once, otherwise create individual performances and add the individual ticket URLs there', input_html: {pattern: :text, validate: :false, type: :text}
       = f.input :donations_requested, :label => 'Donations requested?', :hint => "Check this to replace 'FREE' on site with 'Donations requested'"
       = f.input :discountedcost, :label => "Alternate discount cost?", :hint => "For events that are cheaper for some people (unemployed, members, etc.)"
       = f.input :discountreason, :label => "Discount reason", :hint => "If discount cost above is enteres, this reason for the discount will be displayed on the lower price, eg: 'With mental alaska membership card'"

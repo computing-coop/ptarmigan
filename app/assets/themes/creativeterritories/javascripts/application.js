@@ -102,25 +102,7 @@ function setFilters() {
     
 }
 
-function openEvent(url, id) {
-  var voffset = event.clientY;
-  $('#overlay_' + id).attr('data-v-offset', voffset);
-  
-  $.ajax(url).done(function(resp) {
-     $('#overlay_' + id).html(resp).foundation('open');
-   $('#overlay_' + id).css('top', voffset + 'px');
-   if ($('#overlay_' + id).visible() == false) {
-    
-     var height = $('#overlay_' + id).css('height');
 
-     $('#overlay_' + id).css('top', (parseInt(voffset) - parseInt(height)) + 'px');
-     $('#overlay_' + id + ' .corner').css('display', 'none');
-     $('#overlay_' + id + ' .bottom_corner').css('display', 'block');
-     $('#overlay_' + id + '   .map_overlay').css('margin-left', '28px');
-   }
-   });
-   return false;
-}
                      
 var map = null;
 var riga = null;

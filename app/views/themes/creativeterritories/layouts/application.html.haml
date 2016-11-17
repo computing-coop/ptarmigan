@@ -82,6 +82,7 @@
       fixedWeekCount: false,
       titleFormat: "YYYY MMMM",
       eventAfterAllRender: function() {
+        $('#minicalendar .fc-scroller').css('height', 'initial');
         $('#minicalendar td.fc-day-top').css('background', 'transparent');
         $('#minicalendar .fc-content-skeleton tr').click(function() {
           $('#calendar').fullCalendar('gotoDate', $(this).find('td').eq(0).attr('data-date'));

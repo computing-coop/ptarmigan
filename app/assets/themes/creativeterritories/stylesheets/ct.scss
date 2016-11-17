@@ -1,4 +1,11 @@
 
+	body.is-reveal-open { 
+	    overflow: visible !important;
+	}
+	.reveal-overlay {
+		overflow: hidden;
+	}
+
 .demi, span.demi {
   font-family: 'Rift-Demi';
 }
@@ -9,9 +16,9 @@
 
 html {
   -webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
-          background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 body {
@@ -326,6 +333,7 @@ header {
 }
 .fc-today, .today,  {
   background-color: #659b86;
+  opacity: 0.85;
 }
 #calendar {
   table {
@@ -351,6 +359,7 @@ header {
   
   .fc-view {
     table {
+      float: left;
       tr {
         background-color: white;
       }

@@ -1,7 +1,7 @@
 
 
 .row.expanded
-  .large-9.columns.calendar_outer_frame
+  .large-9.columns.calendar_outer_frame.small-10.medium-10
     / .row
     /   .large-12.columns.banner_ad this is an ad
     .row
@@ -102,9 +102,9 @@
                 
                   element.find(".fc-content")
                     .append(event.notes + event.promoter + event.place);
-                  element.find(".fc-content").parent('a').attr('onClick', "openEvent('" + event.cturl + "', " + event.id +");return false;");
-                  element.find(".fc-content").parent('a').attr('href', '#');
-                
+                  //element.find(".fc-content").parent('a').attr('onClick', "openEvent('" + event.cturl + "', " + event.id +");");
+                  // element.find(".fc-content").parent('a').attr('href', 'javascript:void(0)');
+                  element.find(".fc-content").parent('a').attr('rel', event.id);
            
                 }
              
@@ -112,11 +112,11 @@
             },
             eventAfterRender: function(event, element,view) {
               
-              $('html').css("background", "url(#{@calendar_background.image.url(:large)})  no-repeat center center fixed");
+              $('html').css("background", "url(#{@calendar_background.image.url(:large)})  no-repeat  center center/cover fixed");
               var month = $("#calendar").fullCalendar('getView').start.format('YYYY/MMMM');    
               $('nav ul.event_categories li.month_title').text(month);
               if ($('#overlay_' + event.id).length == 0) {
-                $("footer").prepend('<div class="event_info reveal" id="overlay_' + event.id +  '" data-overlay="false" data-reveal data-h-offset=' + (element.offset().left + 106) +  '></div>').foundation();
+                $("footer").prepend('<div class="event_info reveal" id="overlay_' + event.id +  '" data-overlay="false" data-reveal></div>').foundation();
               }
               if (moment(event.start).format('YYYY-M-D') == moment(new Date()).format('YYYY-M-D')) {
                 element.parent().addClass('fc-today');
@@ -133,7 +133,34 @@
                 $('#minicalendar td.fc-day-top[data-date=' + $(this).attr('data-date') + ']').css('background-color', 'white');
               });
 
-  
+              $('#calendar .fc-event-container a').on('click', function (e) { 
+              
+                e.preventDefault();
+                var voffset = e.clientY;
+                var hoffset = e.clientX;
+             
+                var url = $(this).attr('href');
+                var id = $(this).attr('rel');
+                $('#overlay_' + $(this).attr('rel')).attr('data-h-offset', hoffset + 50);
+                $('#overlay_' + $(this).attr('rel')).attr('data-v-offset', voffset);
+            
+                $.ajax(url).done(function(resp) {
+                   $('#overlay_' + id).html(resp).foundation('open');
+                   $('#overlay_' + id).css('top', voffset + 'px');
+                   $('#overlay_' + id).css('left', parseInt(hoffset + 50) + 'px');
+                 if ($('#overlay_' + id).visible() == false) {
+    
+                   var height = $('#overlay_' + id).css('height');
+
+                   $('#overlay_' + id).css('top', (parseInt(voffset) - parseInt(height)) + 'px');
+                   $('#overlay_' + id + ' .corner').css('display', 'none');
+                   $('#overlay_' + id + ' .bottom_corner').css('display', 'block');
+                   $('#overlay_' + id + '   .map_overlay').css('margin-left', '28px');
+                 }
+                 });
+                 return false;
+               });
+              
               
               var today = moment(new Date()).format('YYYY-M-D');
               if ($('#calendar td[data-date=' + today + ']').length > 0) {

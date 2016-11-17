@@ -7,9 +7,17 @@
   font-family: 'Rift-Italic';
 }
 
-body {
-  background-size: cover;
+html {
+  -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
 }
+
+body {
+  background: none;
+}
+
 header {
   min-height: 8.25rem;
   
@@ -27,11 +35,11 @@ header {
         a { 
           color: black;
           &:hover {
-            font-family: 'Rift-Demi';
+            font-family: 'Rift-Bold';
           }
         }
         .active {
-          font-family: 'Rift-Bold';
+          font-family: 'Rift-Demi';
         }
       }
     }
@@ -46,11 +54,11 @@ header {
         a { 
           color: black;
           &:hover {
-            font-family: 'Rift-Demi';
+            font-family: 'Rift-Bold';
           }
         }
         .active {
-          font-family: 'Rift-Bold';
+          font-family: 'Rift-Demi';
         }
       }
     }

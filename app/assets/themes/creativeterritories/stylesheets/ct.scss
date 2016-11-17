@@ -164,6 +164,12 @@ header {
     width: 29px;
     position: relative;
   }
+  .bottom_corner {
+    float: left;
+    position: absolute;
+    bottom: 0;
+    display: none;  
+  }
   .map_overlay {
     margin-left: -1px;
     background-color: white;

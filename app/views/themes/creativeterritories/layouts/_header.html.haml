@@ -7,10 +7,10 @@
     %span.demi>= t("ct.culture")
     %span.ital>= t("ct.lovers")
     
-.large-3.columns.mini_calendar
+.large-3.columns.mini_calendar{style: 'display: none'}
   #minicalendar
 
-.large-4.columns.filtering_engine
+.large-4.columns.filtering_engine{style: 'display: none'}
   .title
     %span>= t("ct.filtering")
     %span.ital>= t("ct.engine")
@@ -31,11 +31,11 @@
             %ul#disciplines.vertical.menu
               - Eventcategory.all.order(:name).each do |cat|
                 %li= link_to cat.name, '#', :'data-state' => :initial, :'data-ct-filter' => cat.id
-          %li
-            = link_to t("ct.culture_map"), '#', onClick: 'javascript:displayMap();'
-          %li
-            = link_to t("ct.festivals"), '#'
-            %ul#festivals.menu
+          -#%li
+          -#  = link_to t("ct.culture_map"), '#', onClick: 'javascript:displayMap();'
+          -#%li
+          -#  = link_to t("ct.festivals"), '#'
+          -#  %ul#festivals.menu
           %li= t("ct.more_cities")
           %li= link_to t("ct.about_site"), page_path('about')
         

@@ -1,4 +1,5 @@
 //= require creativeterritories/javascripts/jquery.sticky
+//= require creativeterritories/javascripts/jquery.visible.min  
 //= require foundation
 //= require moment
 //= require fullcalendar
@@ -107,12 +108,22 @@ function openEvent(url, id) {
   $.ajax(url).done(function(resp) {
      $('#overlay_' + id).html(resp).foundation('open');
    $('#overlay_' + id).css('top', voffset + 'px');
+   if ($('#overlay_' + id).visible() == false) {
+    
+     var height = $('#overlay_' + id).css('height');
+
+     $('#overlay_' + id).css('top', (parseInt(voffset) - parseInt(height)) + 'px');
+     $('#overlay_' + id + ' .corner').css('display', 'none');
+     $('#overlay_' + id + ' .bottom_corner').css('display', 'block');
+     $('#overlay_' + id + '   .map_overlay').css('margin-left', '28px');
+   }
    });
    return false;
 }
                      
 var map = null;
 var riga = null;
+
 function displayMap() {
     $('#map').slideToggle(function() {
       initialize();

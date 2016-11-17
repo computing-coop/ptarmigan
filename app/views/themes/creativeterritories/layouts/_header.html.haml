@@ -2,12 +2,23 @@
   .top_line
     %span>= t("ct.events")
     %span.demi>= t("ct.calendar")
+    .english
+      - if I18n.locale.to_s != 'en'
+        = link_to 'EN', '/?locale=en'
+      - else
+        %span.active EN
+      
   .bottom_line
     %span.ital>= t("ct.for")
     %span.demi>= t("ct.culture")
     %span.ital>= t("ct.lovers")
-    
-.large-3.columns.mini_calendar{style: 'display: none'}
+    .latvian
+      - if I18n.locale.to_s != 'lv'
+        = link_to 'LV', '/?locale=lv'
+      - else
+        %span.active LV
+      
+.large-2.columns.mini_calendar.text-center.large-offset-1
   #minicalendar
 
 .large-4.columns.filtering_engine{style: 'display: none'}

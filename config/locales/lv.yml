@@ -300,8 +300,18 @@ lv:
     speed_workshops_blurb: "Mums nepieciešami risinājumi! Vienas stundas darbnīcas domātas pilnvērtīgam darbam, nevis tukšām sarunām."    
 
   ct:
-    events_list: 'Events List'
-    events_tagline: 'Piedāvā Radošo kvartālu un teritoriju asociācija!'
+    events_list: 'Pasākumi'
+    events_tagline: 'Radošajos kvartālos un teritorijās'
+    filtering: 'Filtering'
+    engine: 'Engine'
+    creative_territories: 'Radošie kvartāli un teritorijas'
+    other_venues: 'Vairāk vietas un organizatori'
+    disciplines: 'Nozares'
+    culture_map: 'Kultūras karte'
+    festivals: 'Festivāli'
+    more_cities: 'Vairāk pilsētas'
+    about_site: 'Par'
+    buy_tickets_here: 'Iegādāties biļetes'
     ptarmigan_location: 'Ptarmigan projektu telpa, Tallina, Igaunija'
     register_to_attend: 'Reģistrējies un piedalies Forumā!'
     project_or_organisation: 'Ja pārstāvat organizāciju, tad kuru?'

@@ -3,6 +3,7 @@
 //= require foundation
 //= require moment
 //= require fullcalendar
+//= require fullcalendar/lang/lv
 // = require featherlight
 
 

@@ -9,10 +9,10 @@
     color: #333 !important;
   }
   .fc-today {
-    background-color: white;
+    background-color: #659b86;
   }
   .fc-toolbar {
-    margin-left: 4rem;
+    margin-left: 2rem;
     .fc-left, .fc-center {
       float: left;
       padding: 0.2rem;
@@ -58,7 +58,7 @@
                     font-family: 'Rift-Light';
                     font-size: 0.75rem;
                     padding: 0;
-                    width: 43px;
+//                    width: 43px;
                     .ct-day {
                       font-family: 'Rift-Bold';
                       font-size: 1.875rem;
@@ -94,6 +94,14 @@
               border-collapse: inherit;
               thead {
                 border: none;
+                tr {
+                  border: 1px dotted transparent;
+                  cursor: pointer;
+                  box-model: border-box;
+                  &:hover {
+                    border: 1px dotted #FFF;
+                  }
+                }
                 td {
                   &.fc-day-top {
                     padding: 0;

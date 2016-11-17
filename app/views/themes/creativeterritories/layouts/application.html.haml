@@ -61,15 +61,17 @@
 :javascript
   $(document).ready(function() {
     $("#sticky-menu").sticky({ topSpacing: 0 });
+
     $('#minicalendar').fullCalendar({
       height: 170,
+      locale: '#{I18n.locale.to_s}',
       firstDay: 1,
       customButtons: {
         prev: {
-            icon: ' fa fa-chevron-left'
+            text: '◀'
         },
         next: {
-          icon: ' fa fa-chevron-right'
+          text: '►'
         }
       },
       header: {
@@ -77,11 +79,27 @@
         right: 'title',
         center: 'next'
       },
+      fixedWeekCount: false,
       titleFormat: "YYYY MMMM",
       eventAfterAllRender: function() {
-        $('#minicalendar td.fc-day-top.fc-today').siblings().css('background-color', 'white');
+        $('#minicalendar td.fc-day-top').css('background', 'transparent');
+        $('#minicalendar .fc-content-skeleton tr').click(function() {
+          $('#calendar').fullCalendar('gotoDate', $(this).find('td').eq(0).attr('data-date'));
+        });
+        $('#calendar td.fc-day').each(function() {
+          $('#minicalendar td.fc-day-top[data-date=' + $(this).attr('data-date') + ']').css('background-color', 'white');
+        });
+        
+        // $('#minicalendar td.fc-day-top.fc-today').siblings().css('background-color', 'white');
       }
       
     });
+    $('#minicalendar .fc-next-button').click(function(){
+        $('#minicalendar').fullCalendar('next');
+    });
+    $('#minicalendar .fc-prev-button').click(function() {
+      $('#minicalendar').fullCalendar('prev');
+    });
+
     #{yield :jquery}
   });    

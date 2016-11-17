@@ -19,10 +19,40 @@ header {
     line-height: 2.6rem;
     .top_line {
       line-height: 3rem;
+      width: 100%;
+      .english {
+        float: right;
+        text-align: right;
+        font-family: 'Rift-Light';
+        a { 
+          color: black;
+          &:hover {
+            font-family: 'Rift-Demi';
+          }
+        }
+        .active {
+          font-family: 'Rift-Bold';
+        }
+      }
     }
     .bottom_line {
-      float :left;
+      width: 100%;
+      float: right;
       border-top: 1px solid black;
+      .latvian {
+        float: right;
+        text-align: right;
+        font-family: 'Rift-Light';
+        a { 
+          color: black;
+          &:hover {
+            font-family: 'Rift-Demi';
+          }
+        }
+        .active {
+          font-family: 'Rift-Bold';
+        }
+      }
     }
     
   }

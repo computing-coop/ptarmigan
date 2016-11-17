@@ -23,10 +23,10 @@
   = render partial: 'shared/map.js'
   :plain
     $('#next_week').click(function(){
-        $('.fc-next-button').click();
+        $('#calendar .fc-next-button').click();
     });
     $('#prev_week').click(function() {
-      $('.fc-prev-button').click()
+      $('#calendar .fc-prev-button').click()
     })
     function renderViewColumns(view, element) {
       element.find('th.fc-day-header.fc-widget-header').each(function() {
@@ -84,6 +84,7 @@
               }
             ],
             timeFormat: 'H:mm',
+            locale: '#{I18n.locale.to_s}',
             dragOpacity: "0.5",
             eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
               return updateEvent(event);
@@ -110,7 +111,8 @@
         
             },
             eventAfterRender: function(event, element,view) {
-       
+              var month = $("#calendar").fullCalendar('getView').start.format('YYYY/MMMM');    
+              $('nav ul.event_categories li.month_title').text(month);
               if ($('#overlay_' + event.id).length == 0) {
                 $("footer").prepend('<div class="event_info reveal" id="overlay_' + event.id +  '" data-overlay="false" data-reveal data-h-offset=' + (element.offset().left + 106) +  '></div>').foundation();
               }
@@ -122,6 +124,15 @@
               element.foundation();
             }, 
             eventAfterAllRender: function(view) {
+              // sync minicalendar
+              $('#minicalendar').fullCalendar('gotoDate', $('#calendar td.fc-day').eq(0).attr('data-date'));
+              $('#minicalendar td.fc-day-top').css('background', 'transparent');
+              $('#calendar td.fc-day').each(function() {
+                $('#minicalendar td.fc-day-top[data-date=' + $(this).attr('data-date') + ']').css('background-color', 'white');
+              });
+
+  
+              
               var today = moment(new Date()).format('YYYY-M-D');
               if ($('#calendar td[data-date=' + today + ']').length > 0) {
                 $('#calendar .fc-content-skeleton table tbody tr td').eq(moment(new Date()).format('d') -1).addClass('fc-today');

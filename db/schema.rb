@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116130319) do
+ActiveRecord::Schema.define(version: 20161118135801) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "trackable_id"
@@ -255,10 +255,8 @@ ActiveRecord::Schema.define(version: 20161116130319) do
     t.string   "promoter"
     t.string   "event_type"
     t.text     "description_fi",          limit: 65535
-    t.text     "description",             limit: 65535
     t.float    "cost",                    limit: 24
     t.text     "metadata_fi",             limit: 65535
-    t.text     "notes",                   limit: 65535
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -449,7 +447,7 @@ ActiveRecord::Schema.define(version: 20161116130319) do
     t.datetime "carousel_updated_at"
   end
 
-  create_table "place_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "place_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "place_id",   null: false
     t.string   "locale",     null: false
     t.datetime "created_at", null: false
@@ -460,7 +458,6 @@ ActiveRecord::Schema.define(version: 20161116130319) do
   end
 
   create_table "places", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
     t.string   "address1"
     t.string   "address2"
     t.string   "city"

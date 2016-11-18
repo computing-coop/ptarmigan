@@ -14,7 +14,7 @@ class CalendarController < ApplicationController
   def index
     events = Event.where(nil)
  
-    events = Event.by_location(@location.id).published.between(params['start'], params['end']) if (params['start'] && params['end'])
+    events = Event.by_location(@location.id).includes(:translations, :instances => :translations, :eventcategories => :translations, :place => :translations).published.between(params['start'], params['end']) if (params['start'] && params['end'])
     
     @events = []
     #if @location.id != 3

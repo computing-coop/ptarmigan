@@ -80,6 +80,7 @@ class ApplicationController < ActionController::Base
     if session[:locale].blank? || !available.include?(session[:locale].to_s)
 
       I18n.locale = http_accept_language.compatible_language_from(available)
+
       session[:locale] = I18n.locale
     else
       I18n.locale = session[:locale]

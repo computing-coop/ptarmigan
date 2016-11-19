@@ -24,7 +24,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-datetimepicker'
 end
 
-# gem 'active_model_serializers', '~> 0.10.0'
+
 
 gem 'auto_html', '2.0.0'
 gem 'awesome_nested_set'
@@ -88,6 +88,12 @@ gem "rack-cors", group: :development
 gem 'rails-timeago', '~> 2.0'
 gem 'randumb'
 gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'redis-rails', '~> 5.0.1'
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rack-cache'
+
+
 gem 'responders', '>= 2.3.0'
 gem 'redcarpet'
 gem 'rolify'

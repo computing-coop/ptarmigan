@@ -22,6 +22,18 @@
 = content_for :jquery do
   = render partial: 'shared/map.js'
   :plain
+    // if ($('ul#other_venues li').length == 0) {
+    //   var starting =$('#calendar').fullCalendar('getView').start.format("YYYY-M-D");
+    //   var ending = $('#calendar').fullCalendar('getView').end.format("YYYY-M-D");
+    //   $.ajax({
+    //           url: "/places/ctvenues?starting=" + starting + "&ending=" + ending + "&scope=other_venues",
+    //           type: 'post',
+    //           data: $(this).serialize()
+    //       }).done(function (data) {
+    //         populateCTFilters($('ul#other_venues'), data);
+    //     });
+    // }
+    
     $('#next_week').click(function(){
         $('#calendar .fc-next-button').click();
     });
@@ -97,7 +109,7 @@
              //
             },
             eventRender: function(event, element, view) {
-        
+
                 if (view.name === "basicWeek") {
                 
                   element.find(".fc-content")
@@ -107,11 +119,11 @@
                   element.find(".fc-content").parent('a').attr('rel', event.id);
            
                 }
-             
+
         
             },
             eventAfterRender: function(event, element,view) {
-              
+            
               $('html').css("background", "url(#{@calendar_background.image.url(:large)})  no-repeat  center center/cover fixed");
               var month = $("#calendar").fullCalendar('getView').start.format('YYYY/MMMM');    
               $('nav ul.event_categories li.month_title').text(month);
@@ -123,9 +135,11 @@
               }
   
 
-              element.foundation();
+              // element.foundation();
+              
             }, 
             eventAfterAllRender: function(view) {
+              var timerStart = Date.now();
               // sync minicalendar
               $('#minicalendar').fullCalendar('gotoDate', $('#calendar td.fc-day').eq(0).attr('data-date'));
               $('#minicalendar td.fc-day-top').css('background', 'transparent');
@@ -160,8 +174,6 @@
                  });
                  return false;
                });
-              
-              
               var today = moment(new Date()).format('YYYY-M-D');
               if ($('#calendar td[data-date=' + today + ']').length > 0) {
                 $('#calendar .fc-content-skeleton table tbody tr td').eq(moment(new Date()).format('d') -1).addClass('fc-today');
@@ -185,20 +197,8 @@
                 });
               }
                 
-              if ($('ul#other_venues li').length == 0) {
-                var starting = $('#calendar').fullCalendar('getView').start.format("YYYY-M-D");
-                var ending = $('#calendar').fullCalendar('getView').end.format("YYYY-M-D");
-                $.ajax({
-                        url: "/places/ctvenues?starting=" + starting + "&ending=" + ending + "&scope=other_venues",
-                        type: 'post',
-                        data: $(this).serialize()
-                    }).done(function (data) {
-                      populateCTFilters($('ul#other_venues'), data);
-                  });
-              }
-
-           
         
+              console.log("Time until eventAfterAll loaded: ", Date.now()-timerStart);
           }
         });
 

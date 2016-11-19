@@ -1,3 +1,3 @@
-class PlaceSerializer < ActiveModel::Serializer
-  attributes :id, :name, :address1, :city
-end
+# class PlaceSerializer < ActiveModel::Serializer
+#   attributes :id, :name, :address1, :city
+# end

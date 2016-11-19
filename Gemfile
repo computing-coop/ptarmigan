@@ -24,7 +24,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-datetimepicker'
 end
 
-gem 'active_model_serializers', '~> 0.10.0'
+# gem 'active_model_serializers', '~> 0.10.0'
 
 gem 'auto_html', '2.0.0'
 gem 'awesome_nested_set'

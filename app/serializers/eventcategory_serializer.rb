@@ -1,3 +1,3 @@
-class EventcategorySerializer < ActiveModel::Serializer
-  attributes :id
-end
+# class EventcategorySerializer < ActiveModel::Serializer
+#   attributes :id
+# end

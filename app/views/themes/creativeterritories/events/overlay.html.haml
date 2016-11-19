@@ -26,12 +26,12 @@
       = raw  @event.description
 
     - unless @event.facebook.blank?
-      = link_to "https://www.facebook.com/events/#{@event.facebook.to_s}" do
+      = link_to "https://www.facebook.com/events/#{@event.facebook.to_s}", target: :_blank do
         = fa_icon 'facebook'
         = 'Facebook'
       
     - unless @event.otherweb.blank?
       %br/
-      = link_to @event.otherweb do
+      = link_to @event.otherweb, target: :_blank do
         = fa_icon 'external-link'
         = 'Link'

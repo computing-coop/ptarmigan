@@ -30,3 +30,8 @@
         = fa_icon 'facebook'
         = 'Facebook'
       
+    - unless @event.otherweb.blank?
+      %br/
+      = link_to @event.otherweb do
+        = fa_icon 'external-link'
+        = 'Link'

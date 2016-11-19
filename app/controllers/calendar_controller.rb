@@ -40,11 +40,11 @@ class CalendarController < ApplicationController
   
   def render_cached_json(cache_key, opts = {}, &block)
     opts[:expires_in] ||= 1.day
-    logger.warn('cache key is ' + cache_key)
+
 
     expires_in opts[:expires_in], :public => true
     data = Rails.cache.fetch(cache_key, {raw: true}.merge(opts)) do
-      logger.warn('fetching from cache')
+
       block.call.to_json
     end
 

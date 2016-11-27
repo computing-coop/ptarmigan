@@ -57,7 +57,7 @@ class PostsController < ApplicationController
           :title => @post.title,
           :type  => "madhousehelsinki:article",
           :url   =>  url_for(@post) ,
-          :image => (@post.alternateimg? ?  @post.alternateimg.url(:medium)  : (@post.carousel? ?  @post.carousel.url(:medium) : 'http://madhousehelsinki.fi/assets/madhouse/images/MADHOUSE_4kausi_coverphoto.jpg' ))
+          :image => (@post.alternateimg? ?  @post.alternateimg.url(:full)  : (@post.carousel? ?  @post.carousel.url(:medium) : 'http://madhousehelsinki.fi/assets/madhouse/images/MADHOUSE_4kausi_coverphoto.jpg' ))
           },
           :canonical => url_for(@post),
           :keywords => 'Helsinki,Finland,Mad House,performance art,live art,Suvilahti',

@@ -300,6 +300,7 @@ lv:
     speed_workshops_blurb: "Mums nepieciešami risinājumi! Vienas stundas darbnīcas domātas pilnvērtīgam darbam, nevis tukšām sarunām."    
 
   ct:
+    site_title: 'Kultūras kalendārs'
     events_list: 'Pasākumi'
     events_tagline: 'Radošajos kvartālos un teritorijās'
     filtering: 'Filtering'

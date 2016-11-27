@@ -76,7 +76,7 @@ class EventsController < ApplicationController
         set_meta_tags :og => {
           :title => "Mad House Helsinki: " + t("madhouse.upcoming_events") ,
           :type  => "article",
-          image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg',
+          image: 'http://madhousehelsinki.fi/assets/madhouse/images/MADHOUSE_4kausi_coverphoto.jpg',
           :url   => url_for({:only_path => false, :controller => :events}),
           }, 
           :fb  => {
@@ -126,7 +126,7 @@ class EventsController < ApplicationController
           :type  => "article",
           :url   => url_for(@event),
 
-          :image => 'http://' + request.host + @event.avatar.url(:medium)
+          :image =>  @event.avatar.url(:medium)
           }, 
           :fb  => {
               :app_id => Figaro.env.madhouse_facebook_client_id

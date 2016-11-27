@@ -12,7 +12,7 @@ class PostsController < ApplicationController
       set_meta_tags :open_graph => {
         :title => "Mad House Helsinki: " + t("madhouse.latest_news") ,
         :type  => "madhousehelsinki:article",
-        image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg',
+        image: 'http://madhousehelsinki.fi/assets/madhouse/images/MADHOUSE_4kausi_coverphoto.jpg',
         :url   => url_for({:only_path => false, :controller => :posts}),
         }, 
         :fb             => {
@@ -57,7 +57,7 @@ class PostsController < ApplicationController
           :title => @post.title,
           :type  => "madhousehelsinki:article",
           :url   =>  url_for(@post) ,
-          :image => (@post.alternateimg? ? 'http://' + request.host + @post.alternateimg.url(:medium)  : (@post.carousel? ? 'http://' + request.host +  @post.carousel.url(:medium) : 'http://www.ptarmigan.fi/ptarmigan_two_circles.jpg' ))
+          :image => (@post.alternateimg? ?  @post.alternateimg.url(:medium)  : (@post.carousel? ?  @post.carousel.url(:medium) : 'http://madhousehelsinki.fi/assets/madhouse/images/MADHOUSE_4kausi_coverphoto.jpg' ))
           },
           :canonical => url_for(@post),
           :keywords => 'Helsinki,Finland,Mad House,performance art,live art,Suvilahti',
@@ -68,7 +68,7 @@ class PostsController < ApplicationController
           :title => @post.title,
           :type  => "ptarmigan:news",
           :url   =>  url_for(@post) ,
-          :image => (@post.alternateimg? ? 'http://' + request.host + @post.alternateimg.url(:medium)  : (@post.carousel? ? 'http://' + request.host +  @post.carousel.url(:medium) : 'http://www.ptarmigan.fi/ptarmigan_two_circles.jpg' ))},
+          :image => (@post.alternateimg? ? @post.alternateimg.url(:medium)  : (@post.carousel? ?  @post.carousel.url(:medium) : 'http://www.ptarmigan.fi/ptarmigan_two_circles.jpg' ))},
           :canonical => url_for(@post),
           :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,proposals,application,residency,culture,art',
           :description => @post.body,

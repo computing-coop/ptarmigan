@@ -3,7 +3,12 @@
 	    overflow: visible !important;
 	}
 	.reveal-overlay {
-		overflow: hidden;
+    height: auto;
+    width: 250px;
+    max-height: 85vH;
+    overflow-y:scroll;
+    overflow-x: hidden;
+//    overflow: hidden;
 	}
 
 .demi, span.demi {
@@ -198,7 +203,7 @@ header {
 }
 
 .event_info {
-  max-width: 265px;
+  max-width: 273px;
   background: transparent;
   border: none;
   padding: 0;
@@ -217,6 +222,8 @@ header {
     display: none;  
   }
   .map_overlay {
+    max-height: 80vH;
+    overflow-y: auto;
     margin-left: -1px;
     background-color: white;
     .text {  padding: 0.8rem 1rem; 
@@ -230,7 +237,7 @@ header {
     float: left;  
     .close-button {
       color: black;
-      right: 0.4rem;
+      right: 1.6rem;
       top: -11px;
       font-size: 3.2rem;
     }

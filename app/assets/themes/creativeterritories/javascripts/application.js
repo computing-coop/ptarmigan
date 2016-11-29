@@ -2,6 +2,8 @@
 //= require creativeterritories/javascripts/jquery.visible.min  
 //= require foundation
 //= require moment
+// = require moment/en-gb.js
+// = require moment/lv.js
 //= require fullcalendar
 //= require fullcalendar/lang/lv
 // = require featherlight

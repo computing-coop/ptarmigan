@@ -18,7 +18,7 @@ module Ptarmigan
     # -- all .rb files in that directory are automatically loaded.
     config.cache_classes = true
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
-    config.cache_store = :redis_store, "redis://localhost:6379/0/cache", { expires_in: 90.minutes }
+    config.cache_store = :redis_store, "redis://localhost:6379/0/cache", { expires_in: 2.hours }
     # Full error reports are disabled and caching is turned on
     # config.consider_all_requests_local       = false
     # config.action_controller.perform_caching = true

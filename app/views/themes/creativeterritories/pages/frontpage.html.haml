@@ -47,11 +47,12 @@
       });
 
       function buildDateColumnHeader(theDate) {
+        moment.locale('#{I18n.locale.to_s}');
         var container = document.createElement('div');
         var DDD = document.createElement('div');
         var ddMMM = document.createElement('div');
         DDD.textContent = theDate.format('D').toUpperCase();
-        ddMMM.textContent = theDate.format('dddd');
+        ddMMM.textContent = theDate.format('dddd') ;
         DDD.className = "ct-day";
         container.appendChild(DDD);
         container.appendChild(ddMMM);
@@ -80,7 +81,7 @@
 
             },
             contentHeight: '400px',
-            lang: '#{I18n.locale.to_s}',
+            locale: '#{I18n.locale.to_s}',
             contentHeight: 'auto',
             firstDay: 1,
             viewRender: renderViewColumns,

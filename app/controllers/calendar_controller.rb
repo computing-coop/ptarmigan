@@ -19,27 +19,30 @@ class CalendarController < ApplicationController
     
       @events = []
       #if @location.id != 3
-   
+
         @events += events.map(&:instances).flatten.map(&:as_json)
-        no_instances = events.to_a.delete_if{|x| !x.instances.empty? }.map(&:as_json)
-        # unless no_instances.nil?
-       #    @events += no_instances
-       #  end
-        @events += events.reject{|x| !x.one_day? }
+        no_instances = events.to_a.delete_if{|x| !x.instances.empty? || (x.enddate.to_date - x.date.to_date).to_i > 10 }.map(&:as_json)
+        unless no_instances.nil?
+          @events += no_instances
+        end
+        
+        # delete really long events
+
+         
         @events
       # else
   #       @events = events
   #     end
-      #
+
       # respond_to do |format|
       #   format.html # index.html.erb
       #   format.json { render json:  @events}
       # end
-     end
+    end
   end
   
   def render_cached_json(cache_key, opts = {}, &block)
-    opts[:expires_in] ||= 1.day
+    opts[:expires_in] ||= 1.minute
 
 
     expires_in opts[:expires_in], :public => true

@@ -21,7 +21,7 @@
 .large-2.columns.mini_calendar.text-center.large-offset-1.small-6.medium-3
   #minicalendar
 
-.large-4.columns.filtering_engine{style: 'display: none'}
+.large-4.columns.filtering_engine 
   .title
     %span>= t("ct.filtering")
     %span.ital>= t("ct.engine")
@@ -50,3 +50,8 @@
           %li= t("ct.more_cities")
           %li= link_to t("ct.about_site"), page_path('about')
         
+-# weird absolute-positioned box ads
+- unless @boxy_ads.empty?
+  .boxy_wrapper
+    - @boxy_ads.each do |boxad|
+      .box= link_to image_tag(boxad.boxy.url), boxad.link_url, target: :_blank

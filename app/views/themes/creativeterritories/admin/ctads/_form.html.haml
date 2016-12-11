@@ -1,0 +1,28 @@
+.row.expanded
+  .small-10.medium-8.columns
+    %h2 Advertisement details
+    
+= semantic_form_for [:admin, @ctad], html: {multipart: true, :'data-abide' => ''} do |f|
+  .row.expanded
+    .small-10.medium-8.columns= f.input :name, label: 'Name of ad', input_html: {required: ''}
+  .row.expanded
+    .small-10.medium-8.columns= f.input :notes, label: 'Notes/description', hint: 'No one will see these except staff.'
+  .row.expanded
+    .small-10.medium-8.columns= f.input :link_url, label: 'URL to link ad to', hint: 'include http:// at beginning', input_html: {required: ''}
+  .row.expanded
+    .small-10.medium-8.columns
+      - if f.object.wide?
+        = image_tag f.object.wide.url
+        
+      = f.input :wide, label: 'Banner image', hint: 'Dimensions must be 1000x90px'
+  .row.expanded
+    .small-10.medium-8.columns
+      - if f.object.boxy?
+        = image_tag f.object.boxy.url
+      = f.input :boxy, label: 'Box image for side', hint: 'Dimensions must be 172x235px'  
+  .row.expanded
+    .small-10.medium-8.columns
+      = f.input :active, label: 'Is active?', hint: 'Must be ticked in order to show on site'
+  .row.expanded
+    .small-10.medium-8.columns= f.submit 'Save', class: [:button, :save]
+  

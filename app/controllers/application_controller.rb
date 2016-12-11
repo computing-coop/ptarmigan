@@ -135,7 +135,9 @@ class ApplicationController < ActionController::Base
         @subsite = Subsite.all.to_a.delete_if{|x| !x.name.split(/\,/).include?(tl)}.first
         die unless @subsite
         @location = @subsite.location
-        @calendar_background = Calendarbackground.active.order_by_rand.first 
+        #@calendar_background = Calendarbackground.active.order_by_rand.first
+        @wide_ad = Ctad.uncached { Ctad.active.wide.order_by_rand.first }
+        @boxy_ads =  Ctad.uncached { Ctad.active.box.order_by_rand.limit(2) }
         # protect_with_staging_password
         @subsite.name.split(/\,/).first
         

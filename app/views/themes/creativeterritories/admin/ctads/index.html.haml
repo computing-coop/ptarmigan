@@ -1,0 +1,26 @@
+.row.expanded
+  .small-12.columns
+    %h3 Ads
+    = link_to 'Create new ad', new_admin_ctad_path, class: [:button]
+    
+- if !@ctads.empty?
+  .projects
+    - @ctads.each do |ctad|
+      .row.expanded
+        .ctad[ctad]{class: cycle('odd', 'even')}
+          .small-3.columns
+            .title
+              %strong= h ctad.name
+   
+          .small-6.columns
+            %span.smaller_text= ctad.active == true ? 'active' : 'not active'
+          .small-3.columns
+            %span.smaller_text
+            = link_to 'Edit', edit_admin_ctad_path(ctad), class: [:button, :small]
+            %span.delete= link_to 'Delete', admin_ctad_url(:id => ctad), data: {confirm: 'Are you sure?'}, class: [:button, :small, :alert], :method => :delete
+
+- else
+  .row.expanded
+    .small-12.columns
+      %p There are no ads to show yet.
+      = link_to 'Create new ad', new_admin_ctad_path, class: [:button]

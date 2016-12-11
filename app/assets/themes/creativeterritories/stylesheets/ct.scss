@@ -1,4 +1,4 @@
-
+@import '_settings';
 	body.is-reveal-open { 
 	    overflow: visible !important;
 	}
@@ -163,7 +163,11 @@ header {
   left: 0;
 }
 #next_week{ 
-  left: 75%;
+  left: 77%;
+  @include breakpoint(medium only) {
+    right: 1%;
+    left: initial;
+  }
 }
 .show_page {
   p {
@@ -256,6 +260,22 @@ header {
   }
 }
 
+.wide_wrapper {
+  margin: 0.4rem 0 1.4rem 0;
+}
+
+.boxy_wrapper {
+  @include breakpoint(medium only) {
+    display: none;
+  }
+  position: absolute;
+  right: 5%;
+  top: 8%;
+  max-width: 18%;
+  .box {
+    margin: 1.4rem 0;
+  }
+}
 #map {
   width: 100%;
   height: 700px;

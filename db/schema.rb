@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118135801) do
+ActiveRecord::Schema.define(version: 20161211113405) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "trackable_id"
@@ -207,6 +207,25 @@ ActiveRecord::Schema.define(version: 20161118135801) do
     t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "ctads", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.boolean  "active"
+    t.text     "notes",             limit: 65535
+    t.string   "wide_file_name"
+    t.integer  "wide_file_size"
+    t.string   "wide_content_type"
+    t.datetime "wide_updated_at"
+    t.string   "boxy_file_name"
+    t.integer  "boxy_file_size"
+    t.string   "boxy_content_type"
+    t.datetime "boxy_updated_at"
+    t.string   "boxy_dimensions"
+    t.string   "wide_dimensions"
+    t.string   "name"
+    t.string   "link_url"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "documenttypes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -2,7 +2,8 @@
 !!!
 %html{ :'xml:lang' => "en", :lang => "en" }
   %head
-    %title= "CreativeTerritories staff: #{controller.class.to_s.gsub(/^Admin\:\:/, '').gsub(/Controller/, '')}"
+    = display_meta_tags site: 'CultureMap staff'
+
     %meta{ :"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8" }
     %link{ :rel => "shortcut icon", :href => "/favicon.ico" }
 

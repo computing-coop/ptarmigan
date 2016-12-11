@@ -1,4 +1,8 @@
 #minicalendar {
+  .fc-day-grid-container.fc-scroller {
+      height: auto!important;
+      overflow-y: auto;
+  }
   table {
       table-layout: fixed;
   }

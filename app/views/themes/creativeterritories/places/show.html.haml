@@ -1,0 +1,11 @@
+.infowindow
+  .place_name= @place.name
+
+  - if @place.events.future.empty?
+    %p= t "creativeterritories.no_upcoming_events"
+  - else
+    %ul.events
+      - @place.events.future.each do |p|
+        %li
+          .event= p.name
+          .date= date_range(p.date, p.enddate)

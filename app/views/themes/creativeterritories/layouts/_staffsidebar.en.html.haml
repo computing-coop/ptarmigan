@@ -15,6 +15,6 @@
     - if can? :edit, Place
       %li= link_to_unless current_user.is_guest?,  'Locations/places', admin_places_path
     %li= link_to 'Calendar backgrounds', admin_calendarbackgrounds_path
-
+    %li= link_to 'Ads', admin_ctads_path
 
 

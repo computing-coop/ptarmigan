@@ -31,6 +31,7 @@ Ptarmigan::Application.routes.draw do
   resources :places do
     collection do
       post :ctvenues
+      get :map_markers
     end
     
     member do

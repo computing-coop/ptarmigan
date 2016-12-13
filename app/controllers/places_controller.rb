@@ -1,8 +1,13 @@
 class PlacesController < ActionController::Base
-  theme 'kuulutused'
+  #theme 'kuulutused'
   
   def ctvenues
     @places = Place.events_between(params[:starting], params[:ending]).send(params[:scope]).uniq.order(:name)
+    render json: @places.to_json
+  end
+  
+  def map_markers
+    @places = Place.creativeterritories.includes(:translations)
     render json: @places.to_json
   end
   
@@ -25,6 +30,9 @@ class PlacesController < ActionController::Base
   
   def show
     @place = Place.find(params[:id])
+    if @place.country = 'LV'
+      theme 'creativeterritories'
+    end
   end
   
   def new

@@ -41,8 +41,12 @@
 
       .row.expanded.cities_header
         .large-9.columns= render partial: 'layouts/cities_header'
-    %section#map
-    %section#main= yield
+    %section#map          
+    %section#main
+      - unless @wide_ad.nil?
+        .wide_wrapper
+          = link_to image_tag(@wide_ad.wide.url), @wide_ad.link_url, target: :_blank
+      = yield
 
     %footer
               

@@ -42,6 +42,10 @@ header {
       line-height: 3rem;
       width: 100%;
       .english {
+        @include breakpoint(medium only) {
+          font-size: 0.6em;
+          line-height: 1em;
+        }
         float: right;
         text-align: right;
         font-family: 'Rift-Light';
@@ -61,6 +65,9 @@ header {
       float: right;
       border-top: 1px solid black;
       .latvian {
+        @include breakpoint(medium only) {
+          font-size: 0.6em;
+        }
         float: right;
         text-align: right;
         font-family: 'Rift-Light';
@@ -262,6 +269,8 @@ header {
 
 .wide_wrapper {
   margin: 0.4rem 0 1.4rem 0;
+  padding: 0 1.2rem;
+  max-width: 80%;
 }
 
 .boxy_wrapper {
@@ -276,10 +285,32 @@ header {
     margin: 1.4rem 0;
   }
 }
+
+.infowindow {
+  .place_name {
+    font-family: 'Rift-Demi';
+    font-size: 1.4rem;
+  }
+  ul.events {
+    margin: 1rem 0;
+    padding: 0;
+    li {
+      list-style-type: none;
+      font-family: 'Rift-Regular';
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      .date {
+        font-size: 0.85rem;
+        color: #333;
+      }
+    }
+  }
+}
 #map {
   width: 100%;
-  height: 700px;
+  height: 80%;
   display: none;
+  z-index: 1;
 }
 .cities_header {
   margin-left: 3.5%;

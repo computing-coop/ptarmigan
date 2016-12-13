@@ -4,7 +4,8 @@ ruby '2.3.1'
 gem 'rails', '5.0.0.1'
 gem 'mysql2'
 
-gem 'puma'
+gem 'puma', group: :production
+gem 'thin', group: :development
 
 group :development do
   gem 'better_errors'

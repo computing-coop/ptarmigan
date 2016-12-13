@@ -132,12 +132,55 @@ function initialize() {
     mapTypeId: google.maps.MapTypeId.ROADMAP,
      styles: [ { "elementType": "geometry", "stylers": [ { "color": "#f5f5f5" } ] }, { "elementType": "labels.icon", "stylers": [ { "visibility": "off" } ] }, { "elementType": "labels.text.fill", "stylers": [ { "color": "#616161" } ] }, { "elementType": "labels.text.stroke", "stylers": [ { "color": "#f5f5f5" } ] }, { "featureType": "administrative.land_parcel", "elementType": "labels.text.fill", "stylers": [ { "color": "#bdbdbd" } ] }, { "featureType": "poi", "elementType": "geometry", "stylers": [ { "color": "#eeeeee" } ] }, { "featureType": "poi", "elementType": "labels.text.fill", "stylers": [ { "color": "#757575" } ] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [ { "color": "#e5e5e5" } ] }, { "featureType": "poi.park", "elementType": "labels.text.fill", "stylers": [ { "color": "#9e9e9e" } ] }, { "featureType": "road", "elementType": "geometry", "stylers": [ { "color": "#ffffff" } ] }, { "featureType": "road.arterial", "elementType": "labels.text.fill", "stylers": [ { "color": "#757575" } ] }, { "featureType": "road.highway", "elementType": "geometry", "stylers": [ { "color": "#dadada" } ] }, { "featureType": "road.highway",     "elementType": "labels.text.fill", "stylers": [ { "color": "#616161" } ] }, { "featureType": "road.local", "elementType": "labels.text.fill", "stylers": [ { "color": "#9e9e9e" } ] }, { "featureType": "transit.line", "elementType": "geometry", "stylers": [ { "color": "#e5e5e5" } ] }, { "featureType": "transit.station", "elementType": "geometry", "stylers": [ { "color": "#eeeeee" } ] }, { "featureType": "water", "elementType": "geometry", "stylers": [ { "color": "#c9c9c9" } ] }, { "featureType": "water", "elementType": "labels.text.fill", "stylers": [ { "color": "#9e9e9e" } ] } ]
   };
-  
+  var markers = [];
+  var contents = [];
+  var infowindows = [];
+  var dbids = [];
   map = new google.maps.Map(document.getElementById("map"), mapOptions);
-  var marker = new google.maps.Marker({
-          position: riga,
-          map: map,
-          optimized: false
+  var infowindow = new google.maps.InfoWindow();
+  var infowindow = new google.maps.InfoWindow({
+    content: "this is a window"
+  });
+  
+  $.ajax({
+    url:  '/places/map_markers.js',
+    type: 'GET',
+    datatype: 'json',
+    success : function(data) {
+      for( i = 0; i < data.length; i++ ) {
+        var myLatlng = new google.maps.LatLng(data[i].latitude,data[i].longitude);
+        markers[i] = new google.maps.Marker({
+                                       position: myLatlng,
+                                       map: map,
+                                       title: data[i].name });
+       markers[i].index = i; 
+       dbids[i] = data[i].id
+       console.log('dbids is ' + dbids[i]);
+       infowindows[i] = new google.maps.InfoWindow({
+         content: data[i].name,
+          maxWidth: 300
         });
+        google.maps.event.addListener(markers[i], 'click', function() {
+          // console.log(this.index); // this will give correct index
+          //          console.log(i); //this will always give 10 for you
+          load_content(map, markers[this.index], infowindows[this.index], dbids[this.index]);      
+          // infowindows[this.index].open(map,markers[this.index]);
+          map.panTo(markers[this.index].getPosition());
+        });
+       
+
+      }
+    }
+  });  
 }
 
+
+function load_content(map,marker,infowindow,railsid){
+  $.ajax({
+    url: '/places/' + railsid,
+    success: function(data){
+      infowindow.setContent(data);
+      infowindow.open(map, marker);
+    }
+  });
+}   

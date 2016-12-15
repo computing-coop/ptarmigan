@@ -9,3 +9,7 @@
         %li
           .event= p.name
           .date= date_range(p.date, p.enddate)
+          - unless p.otherweb.blank?
+            = link_to fa_icon('external- link'), p.otherweb, target: :_blank
+          - unless p.facebook.blank?
+            = link_to fa_icon('facebook'), "http://facebook.com/events/#{p.facebook}", target: :_blank

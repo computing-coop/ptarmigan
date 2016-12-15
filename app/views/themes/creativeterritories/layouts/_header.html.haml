@@ -27,7 +27,7 @@
       .small-12.columns
         %ul.categories.menu.vertical
           %li.blue
-            = link_to t(:about), page_path('about')
+            = link_to t("ct.about_site"), page_path('about')
           %li.green= link_to t("ct.culture_map"), '#', onClick: 'javascript:displayMap();'
           - if controller.action_name != 'frontpage'
             %li= link_to t(:home), '/'

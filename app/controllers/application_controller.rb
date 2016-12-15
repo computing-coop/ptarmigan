@@ -138,7 +138,7 @@ class ApplicationController < ActionController::Base
         #@calendar_background = Calendarbackground.active.order_by_rand.first
         unless params[:controller] == 'pages' && params[:action] == 'show'
           @wide_ad = Ctad.uncached { Ctad.active.wide.order_by_rand.first }
-          @boxy_ads =  Ctad.uncached { Ctad.active.box.order_by_rand.limit(2) }
+          @boxy_ads =  Ctad.uncached { Ctad.active.box.order_by_rand.limit(7) }
         end
         # protect_with_staging_password
         @subsite.name.split(/\,/).first

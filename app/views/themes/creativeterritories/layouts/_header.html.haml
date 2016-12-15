@@ -21,7 +21,18 @@
 .large-2.columns.mini_calendar.text-center.large-offset-1.small-6.medium-3
   #minicalendar
 
-.large-3.columns.filtering_engine{style: 'display: none;'}
+.large-3.columns.filtering_engine
+  .filter_menu
+    .row.expanded
+      .small-12.columns
+        %ul.categories.menu.vertical
+          %li.blue
+            = link_to t(:about), page_path('about')
+          %li.green= link_to t("ct.culture_map"), '#', onClick: 'javascript:displayMap();'
+          - if controller.action_name != 'frontpage'
+            %li= link_to t(:home), '/'
+            
+.hidden{style: 'display: none;'}
   .title
     %span>= t("ct.filtering")
     %span.ital>= t("ct.engine")

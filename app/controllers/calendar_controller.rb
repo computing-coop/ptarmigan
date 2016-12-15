@@ -12,7 +12,7 @@ class CalendarController < ApplicationController
 #   end
 # end
   def index
-    render_cached_json("cal_" + params[:start] + "_" + params[:end] + "_" + @location.id.to_s, expires_in: 1.hour) do
+    render_cached_json("cal_" + params[:start] + "_" + params[:end] + "_" + @location.id.to_s + "_" + I18n.locale.to_s, expires_in: 1.hour) do
       events = Event.where(nil)
  
       events = Event.by_location(@location.id).includes(:translations, :instances => :translations, :eventcategories => :translations, :place => :translations).published.between(params['start'], params['end']) if (params['start'] && params['end'])

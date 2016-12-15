@@ -125,7 +125,7 @@
             },
             eventAfterRender: function(event, element,view) {
               
-              $('html').css("background", "url(#{@calendar_background.image.url(:large) rescue ''})  no-repeat  center center/cover fixed");
+              $('html').css("background", "url(#{@calendar_background.image.url(:large)})  no-repeat  center center/cover fixed");
               var month = $("#calendar").fullCalendar('getView').start.format('YYYY/MMMM');    
               $('nav ul.event_categories li.month_title').text(month);
               if ($('#overlay_' + event.id).length == 0) {

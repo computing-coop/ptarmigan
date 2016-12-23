@@ -102,7 +102,7 @@ class ApplicationController < ActionController::Base
   end 
   
   def get_domain
-
+    
     if request.host =~ /ptarmigan\.fi/
       @location = Location.where(:locale => 'fi').first
 
@@ -113,11 +113,12 @@ class ApplicationController < ActionController::Base
         @location = Location.where(:name => 'Mad House').first
         "madhouse"
       else
-        @location = Location.where(:locale => 'fi').first
+        @location = Location.where(:locale => 'ee').first
       
         "ee"
       end
     end
+
 
   end
 

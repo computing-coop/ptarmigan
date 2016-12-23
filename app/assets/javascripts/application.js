@@ -2,7 +2,7 @@
 //= require jquery_ujs
 
 //= require jquery-ui/core
-//= require jquery-ui/tabs
+//= require jquery-ui/widgets/tabs
 //= require galleria
 //= require jquery.clearfield
 //= require jquery.purr

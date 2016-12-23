@@ -46,7 +46,7 @@ Ptarmigan::Application.configure do
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.assets.compress = false
-  config.serve_static_files = true
+  config.public_file_server.enabled = true
   # Expands the lines which load the assets
   config.assets.debug = false
   config.action_controller.asset_host = Proc.new { |source|

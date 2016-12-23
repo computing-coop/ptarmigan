@@ -1,7 +1,7 @@
 
 source 'http://rubygems.org'
-ruby '2.3.1'
-gem 'rails', '5.0.0.1'
+ruby '2.3.3'
+gem 'rails', '5.0.1'
 gem 'mysql2'
 
 gem 'puma', group: :production
@@ -21,10 +21,10 @@ group :development do
 
 end
 
-source 'https://rails-assets.org' do
-  gem 'rails-assets-datetimepicker'
-end
-
+# source 'https://rails-assets.org' do
+#   gem 'rails-assets-datetimepicker'
+# end
+gem 'rails-assets-datetimepicker', source: 'https://rails-assets.org'
 
 
 gem 'auto_html', '2.0.0'

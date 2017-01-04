@@ -6,6 +6,7 @@
     = display_meta_tags :site => 'Mad House Helsinki'
     = stylesheet_link_tag    'madhouse/stylesheets/staff', media: 'screen'
     = javascript_include_tag 'madhouse/javascripts/application', 'data-turbolinks-track' => false 
+    = javascript_include_tag Ckeditor.cdn_url
     = javascript_include_tag 'madhouse/javascripts/staff', 'data-turbolinks-track' => false 
     = csrf_meta_tags
     -#%link{:href => "/posts.rss", :rel => "alternate", :title => "RSS", :type => "application/rss+xml"}/

@@ -42,7 +42,7 @@ gem 'capistrano-bundler'#, '1.1.4'
 gem 'capistrano3-puma'
 
 # gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git'
-gem 'ckeditor'
+gem 'ckeditor', '4.2.0'
 gem 'country_select'
 gem 'dalli'
 gem 'devise'

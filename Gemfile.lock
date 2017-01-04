@@ -289,6 +289,8 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    non-stupid-digest-assets (1.0.9)
+      sprockets (>= 2.0)
     orm_adapter (0.5.0)
     public_activity (1.5.0)
       actionpack (>= 3.0.0)
@@ -513,6 +515,7 @@ DEPENDENCIES
   momentjs-rails
   mysql2
   nested_form
+  non-stupid-digest-assets
   paperclip!
   public_activity
   puma

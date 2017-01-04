@@ -3,12 +3,9 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 require 'i18n/backend/fallbacks'
-if defined?(Bundler)
-  # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups(:assets => %w(development test)))
-  # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
-end
+
+Bundler.require(*Rails.groups)
+
 
 
 module Ptarmigan
@@ -61,10 +58,8 @@ module Ptarmigan
     config.filter_parameters += [:password]
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
     # Enable escaping HTML in JSON.
-    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
     config.active_support.escape_html_entities_in_json = true
-    config.assets.precompile += %w( *.woff *.eot *.svg *.ttf)
-    config.assets.precompile += %w( common.css print.css  jwplayer.js jwplayer.html5.js cms.css cms.js creativeterritories/javascripts/application.js creativeterritories/javascripts/staff.js madhouse/stylesheets/staff.css creativeterritories/stylesheets/application.css madhouse/javascripts/staff.js )
 
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
@@ -73,10 +68,7 @@ module Ptarmigan
     # config.active_record.whitelist_attributes = false
 
     config.i18n.fallbacks = {'lv' => ['en', 'ru'] }
-    # Enable the asset pipeline
-    config.assets.enabled = true
-    config.initialize_on_precompile = false
-    # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
+
+
   end
 end

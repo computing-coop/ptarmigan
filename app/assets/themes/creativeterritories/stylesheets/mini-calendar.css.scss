@@ -19,16 +19,19 @@
     margin-left: 2rem;
     .fc-left, .fc-center {
       float: left;
-      padding: 0.2rem;
+      padding: 1rem 0.2rem 0.2rem 0.2rem;
     }
     .fc-right {
-     
+      margin-right: 0.25rem;
       float: left;
       h2 {
          padding-top: 0.4rem;
         font-size: 0.813rem;
         font-weight: bold;
         font-family: 'Rift-Bold';
+        max-width: 60px;
+        letter-spacing: 3px;
+        margin: 0;
         text-transform: uppercase;
       }
     }
@@ -50,6 +53,7 @@
         background-color: white;
       }
       thead.fc-head {
+        border-spacing: 0;
         border: none;
         tr {
           td.fc-head-container {
@@ -96,6 +100,8 @@
           .fc-content-skeleton {
             table {
               margin-bottom: 0;
+              border-spacing: 0;
+              padding: 0;
               border-collapse: inherit;
               thead {
                 border: none;

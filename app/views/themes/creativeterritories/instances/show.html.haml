@@ -9,7 +9,11 @@
     %h1= @instance.event.eventcategories.map(&:name).join(' / ')
 
     .date= date_range(@instance.start_at, @instance.end_at)
-    .location= @instance.place.blank? ? @instance.event.place.name : @instance.place.name
+    .location
+      - if @instance.place.blank?
+        = link_to @instance.event.place.name , '#', onclick: "javascript:$('.reveal').foundation('close');displayMap(#{@event.place.id});"
+      - else
+         = link_to @instance.place.name, '#', onclick: "javascript:$('.reveal').foundation('close');;isplayMap(#{@event.place.id});"
     - unless @instance.event.promoter.blank?
       .promoter
         by

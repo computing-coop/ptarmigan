@@ -300,6 +300,10 @@ en:
     about_site: 'About site'
     buy_tickets_here: 'Buy tickets here'
     about_site: 'Info'
+    home: 'Home'
+    tickets: 'Tickets'
+    teaser: 'Teaser'
+    article: 'Article'
   upcoming_events: 'Upcoming events'
   kompass:
     ptarmigan_location: 'Ptarmigan project rooms, Tallinn, Estonia'

@@ -59,6 +59,9 @@
   %hr
   .thirteen.columns
     .small-6.columns.alpha= f.input :facebook, :label =>  'ID of Facebook event (12 digits or so)'
+    .small-6.columns.alpha= f.input :ticket_url, :label =>  'URL to off-site tickets'
+    .small-6.columns.alpha= f.input :article_link, :label =>  'URL to article/kritika'
+    .small-6.columns.alpha= f.input :teaser, :label =>  'URL to teaser video'
     .small-6.columns.omega= f.input :otherweb, label: 'Non-facebook web link', hint: 'Include full URL with http://'
   .small-6teen.columns
     .small-6.columns.omega= f.input :public, :label => 'Publish to site?', :hint => "If unchecked, event will only be seen by staff. Leave unchecked unless you are ready to announce this."    

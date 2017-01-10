@@ -30,13 +30,22 @@
       - unless @instance.special_information.blank?
         = @instance.special_information
       = raw  @instance.event.description
-
-    - unless @instance.event.facebook.blank?
-      = link_to @instance.event.facebook do
-        = fa_icon 'facebook'
-        = 'Facebook'
-    - unless @event.otherweb.blank?
-      %br/
-      = link_to @event.otherweb do
-        = fa_icon 'external-link'
-        = 'Link'      
+    %ul.icons 
+      - unless @instance.event.otherweb.blank?
+        
+        %li
+          = link_to @instance.event.otherweb, target: :_blank do
+            = fa_icon 'external-link'
+            = 'www'
+        
+      - unless @instance.event.facebook.blank?
+        %li
+          = link_to "https://www.facebook.com/events/#{@instance.event.facebook.to_s}", target: :_blank do
+            = fa_icon 'facebook'
+            = 'Facebook'
+      - unless @instance.event.article_link.blank?
+        %li= link_to t("ct.article"), @instance.event.article_link, target: :_blank
+      - unless @instance.event.teaser.blank?
+        %li= link_to t("ct.teaser"), @instance.event.teaser, target: :_blank
+      - unless @instance.event.ticket_url.blank?
+        %li= link_to t("ct.tickets"), @instance.event.ticket_url, target: :_blank  

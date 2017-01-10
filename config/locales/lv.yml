@@ -300,6 +300,10 @@ lv:
     speed_workshops_blurb: "Mums nepieciešami risinājumi! Vienas stundas darbnīcas domātas pilnvērtīgam darbam, nevis tukšām sarunām."    
 
   ct:
+    home: 'UZ SĀKUMU'
+    tickets: 'Biļetes'
+    teaser: 'Tīzeris'
+    article: 'Kritika'
     site_title: 'Kultūras kalendārs'
     events_list: 'Pasākumi'
     events_tagline: 'Radošajos kvartālos un teritorijās'
@@ -311,7 +315,7 @@ lv:
     culture_map: 'Kultūras karte'
     festivals: 'Festivāli'
     more_cities: 'Vairāk pilsētas'
-    about_site: 'Kontakti'
+    about_site: 'Info/Kontakti'
     buy_tickets_here: 'Iegādāties biļetes'
     ptarmigan_location: 'Ptarmigan projektu telpa, Tallina, Igaunija'
     register_to_attend: 'Reģistrējies un piedalies Forumā!'

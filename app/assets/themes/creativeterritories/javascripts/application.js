@@ -134,6 +134,7 @@ function initialize(markerid) {
   var mapOptions = {
     center: riga,
     zoom: 15,
+    scrollwheel: false,
     panControl: true,
     mapTypeControl: false,
     streetViewControl: false,

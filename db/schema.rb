@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161211113405) do
+ActiveRecord::Schema.define(version: 20170110122457) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "trackable_id"
@@ -209,7 +209,7 @@ ActiveRecord::Schema.define(version: 20161211113405) do
     t.datetime "updated_at"
   end
 
-  create_table "ctads", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "ctads", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.boolean  "active"
     t.text     "notes",             limit: 65535
     t.string   "wide_file_name"
@@ -317,6 +317,9 @@ ActiveRecord::Schema.define(version: 20161211113405) do
     t.string   "carousel_dimensions"
     t.boolean  "secondary",                             default: false, null: false
     t.boolean  "is_festival"
+    t.string   "teaser"
+    t.string   "article_link"
+    t.index ["location_id"], name: "location_events_index", using: :btree
   end
 
   create_table "expenses", force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8" do |t|
@@ -577,6 +580,7 @@ ActiveRecord::Schema.define(version: 20161211113405) do
     t.datetime "published_at"
     t.string   "carousel_dimensions"
     t.string   "alternateimg_dimensions"
+    t.index ["location_id"], name: "location_posts_index", using: :btree
   end
 
   create_table "presslinks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

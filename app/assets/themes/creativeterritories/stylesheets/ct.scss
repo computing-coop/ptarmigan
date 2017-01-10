@@ -121,7 +121,7 @@ header {
           font-family: 'Rift-Bold';
           letter-spacing: 0.6px;
           a { color: white; 
-            padding: 0.188rem;
+            padding: 0 0.188rem;
             }
           font-size: 0.875rem;
           border: 1px solid #333;
@@ -261,6 +261,15 @@ header {
     
       .title {
         padding: 1rem 0;
+      }
+    }
+    ul.icons {
+      
+      margin:0; padding: 0;
+      li {
+        list-style-type: none;
+        margin-right: 0.4em;
+        float: left;
       }
     }
     width: 230px;

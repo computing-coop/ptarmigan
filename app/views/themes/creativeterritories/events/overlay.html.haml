@@ -24,14 +24,24 @@
     .title= @event.title
     .description
       = raw  @event.description
-
-    - unless @event.facebook.blank?
-      = link_to "https://www.facebook.com/events/#{@event.facebook.to_s}", target: :_blank do
-        = fa_icon 'facebook'
-        = 'Facebook'
+    %ul.icons 
+      - unless @event.otherweb.blank?
+        
+        %li
+          = link_to @event.otherweb, target: :_blank do
+            = fa_icon 'external-link'
+            = 'www'
+        
+      - unless @event.facebook.blank?
+        %li
+          = link_to "https://www.facebook.com/events/#{@event.facebook.to_s}", target: :_blank do
+            = fa_icon 'facebook'
+            = 'Facebook'
+      - unless @event.article_link.blank?
+        %li= link_to t("ct.article"), @event.article_link, target: :_blank
+      - unless @event.teaser.blank?
+        %li= link_to t("ct.teaser"), @event.teaser, target: :_blank
+      - unless @event.ticket_url.blank?
+        %li= link_to t("ct.tickets"), @event.ticket_url, target: :_blank
       
-    - unless @event.otherweb.blank?
-      %br/
-      = link_to @event.otherweb, target: :_blank do
-        = fa_icon 'external-link'
-        = 'Link'
+            

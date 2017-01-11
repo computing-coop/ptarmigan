@@ -1,0 +1,28 @@
+= semantic_form_for [:admin, @radiolink], html: {:'data-abide' => ''} do |f|
+  .row.expanded
+    .small-12.medium-9.columns= f.input :link_url, label: 'URL/link', input_html: {required: ''}
+  .row.expanded
+    .small-12.medium-9.columns
+      = tabs_for do |tab|
+        - tab.create('english', 'English') do
+          %br/
+          = f.globalize_fields_for :en do |en|
+           
+            %p 
+              Link name in English
+              = en.text_field :name
+
+              
+        - tab.create('latvian', 'Latvian') do
+          %br/
+          = f.globalize_fields_for :lv do |lv|
+            %p 
+              Link name in Latvian
+              = lv.text_field :name
+  .row.expanded
+    .small-12.medium-9.columns= f.submit 'Save', class: [:button, :small]
+           
+              
+= content_for :jquery do
+  :plain
+    $("#tabs").tabs();              

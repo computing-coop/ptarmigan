@@ -2,21 +2,13 @@
   .top_line
     %span>= t("ct.events")
     %span.demi>= t("ct.calendar")
-    .english
-      - if I18n.locale.to_s != 'en'
-        = link_to 'EN', '/?locale=en'
-      - else
-        %span.active EN
+
       
   .bottom_line
     %span.ital>= t("ct.for")
     %span.demi>= t("ct.culture")
     %span.ital>= t("ct.lovers")
-    .latvian
-      - if I18n.locale.to_s != 'lv'
-        = link_to 'LV', '/?locale=lv'
-      - else
-        %span.active LV
+
       
 .large-2.mini_calendar.text-center.large-offset-1.small-6.medium-3
   #minicalendar
@@ -26,6 +18,11 @@
     .row.expanded
       .small-12.columns
         %ul.categories.menu.vertical
+          %li
+            - if I18n.locale.to_s != 'lv'
+              = link_to t("ct.in_latvian"), '/?locale=lv'
+            - elsif I18n.locale.to_s != 'en'
+              = link_to t("ct.in_english"), '/?locale=en'
           %li
             = link_to t("ct.about_site"), page_path('about')
           %li= link_to t("ct.culture_map"), '#', onClick: 'javascript:displayMap();'

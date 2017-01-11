@@ -1,0 +1,33 @@
+= semantic_form_for [:admin, @article] do |f|
+  .row.expanded
+    .small-12.medium-9.columns
+      = tabs_for do |tab|
+        - tab.create('english', 'English') do
+          %br/
+          = f.globalize_fields_for :en do |en|
+           
+            %p 
+              Article name
+              = en.text_field :name
+            %p
+              Link to URL of English article
+              %br/
+              = en.text_field :link_url
+              
+        - tab.create('latvian', 'Latvian') do
+          %br/
+          = f.globalize_fields_for :lv do |lv|
+            %p 
+              Article name
+              = lv.text_field :name
+            %p
+              Link to URL of Latvijan article
+              %br/
+              = lv.text_field :link_url
+  .row.expanded
+    .small-12.medium-9.columns= f.submit 'Save', class: [:button, :small]
+           
+              
+= content_for :jquery do
+  :plain
+    $("#tabs").tabs();              

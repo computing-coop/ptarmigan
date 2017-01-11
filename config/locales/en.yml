@@ -304,6 +304,9 @@ en:
     tickets: 'Tickets'
     teaser: 'Teaser'
     article: 'Article'
+    in_latvian: 'LATVISKI'
+    radio_links: 'Broadcasts'
+    texts: 'Texts'
   upcoming_events: 'Upcoming events'
   kompass:
     ptarmigan_location: 'Ptarmigan project rooms, Tallinn, Estonia'

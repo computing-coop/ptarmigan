@@ -118,6 +118,7 @@ Ptarmigan::Application.routes.draw do
   get '/ihana' => 'events#secondary'
   
   namespace :admin do
+    resources :articles
     resources :calendar
     resources :calendarbackgrounds
     resources :ctads
@@ -133,6 +134,7 @@ Ptarmigan::Application.routes.draw do
     resources :projects
     resources :podcasts
     resources :pages
+    resources :radiolinks
     resources :users
     resources :reports do
       collection do

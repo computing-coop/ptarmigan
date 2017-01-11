@@ -13,6 +13,8 @@ class Ability
       can :manage, Instance
       can :manage, Place
       can :manage, Ctad
+      can :manage, Radiolink
+      can :manage, Article
     elsif user.has_role? :madhouse_staff
       can :manage, Event , location: {name: 'Mad House' }
       # can :create, Event, location: {name: 'Mad House' }
@@ -21,13 +23,17 @@ class Ability
       can :manage, Flicker, event: {location: {:name => 'Mad House' } }
       # can :create, Flicker,  event: {location: {:name => 'Mad House' } }
       can :manage, Place
-      cannot :manager, Ctad
+      cannot :manage, Ctad
+      cannot :manage, Article
+      cannot :manage, Radiolink
       can :manage, Resource, location: {name: 'Mad House' }
     else
       cannot :manage, :all
       cannot :manage, Event
       cannot :manage, Ctad
       can :manage, Place
+      cannot :manage, Article
+      cannot :manage, Radiolink
 
     end
     #

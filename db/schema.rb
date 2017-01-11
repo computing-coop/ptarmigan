@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170110122457) do
+ActiveRecord::Schema.define(version: 20170111090048) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "trackable_id"
@@ -68,6 +68,24 @@ ActiveRecord::Schema.define(version: 20170110122457) do
     t.text     "address",                   limit: 65535,              null: false
     t.string   "phone",                                                null: false
     t.index ["login"], name: "index_applicants_on_login", unique: true, using: :btree
+  end
+
+  create_table "article_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "article_id", null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.string   "link_url"
+    t.index ["article_id"], name: "index_article_translations_on_article_id", using: :btree
+    t.index ["locale"], name: "index_article_translations_on_locale", using: :btree
+  end
+
+  create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "location_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["location_id"], name: "index_articles_on_location_id", using: :btree
   end
 
   create_table "artist_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -667,6 +685,24 @@ ActiveRecord::Schema.define(version: 20170110122457) do
     t.datetime "attachment_updated_at"
     t.boolean  "menuize"
     t.boolean  "archived"
+  end
+
+  create_table "radiolink_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "radiolink_id", null: false
+    t.string   "locale",       null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "name"
+    t.index ["locale"], name: "index_radiolink_translations_on_locale", using: :btree
+    t.index ["radiolink_id"], name: "index_radiolink_translations_on_radiolink_id", using: :btree
+  end
+
+  create_table "radiolinks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "link_url"
+    t.integer  "location_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["location_id"], name: "index_radiolinks_on_location_id", using: :btree
   end
 
   create_table "resources", force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8" do |t|

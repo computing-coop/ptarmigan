@@ -1,0 +1,12 @@
+.row.expanded
+  .small-12.columns
+    = link_to 'New radiolink', new_admin_radiolink_path, class: [:button, :tiny]
+- @radiolinks.each do |radiolink|
+  .row.expanded
+    .small-10.columns
+      = radiolink.name
+    .small-2.columns
+      - if can? :edit, radiolink
+        = link_to 'Edit', edit_admin_radiolink_path(radiolink), class: [:button, :tiny]
+      - if can? :destroy, radiolink
+        = link_to 'Destroy', [:admin, @radiolink], method: :delete, data: {confirm: 'are you sure?'}, class: [:button, :tiny, :alert]

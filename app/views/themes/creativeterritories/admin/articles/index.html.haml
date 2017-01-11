@@ -1,0 +1,12 @@
+.row.expanded
+  .small-12.columns
+    = link_to 'New article', new_admin_article_path, class: [:button, :tiny]
+- @articles.each do |article|
+  .row.expanded
+    .small-10.columns
+      = article.name
+    .small-2.columns
+      - if can? :edit, article
+        = link_to 'Edit', edit_admin_article_path(article), class: [:button, :tiny]
+      - if can? :destroy, article
+        = link_to 'Destroy', [:admin, @article], method: :delete, data: {confirm: 'are you sure?'}, class: [:button, :tiny, :alert]

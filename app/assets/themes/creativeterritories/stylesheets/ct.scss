@@ -435,11 +435,14 @@ header {
   background-color: #659b86;
   opacity: 0.85;
 }
+#calendar .fc-view table thead.fc-head tr td.fc-head-container .fc-widget-header table {
+  padding-bottom: 0 !important;
+}
 #calendar {
   table {
       table-layout: fixed;
   }
-  
+
   thead, table, tbody, tr {
     background: transparent !important;
   }

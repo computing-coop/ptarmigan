@@ -36,12 +36,20 @@ body {
   background: none;
 }
 
+
 header {
   min-height: 8.25rem;
+  .flush {
+    margin-left:0;
+    padding-left: 0;
+  }
   .mini_calendar {
     float: left;
     @include breakpoint(small only) {
         clear: both;
+    }
+    @include breakpoint(medium only) {
+      clear: left;
     }
   }
   .left_header_title {  
@@ -116,7 +124,7 @@ header {
       ul.categories {
         float: left;
         li {
-          
+      
           text-transform: uppercase;
           font-family: 'Rift-Bold';
           letter-spacing: 0.6px;
@@ -146,11 +154,13 @@ header {
           }
           ul {
             float: left;
-            
+            min-width: initial;
             li {
               opacity: 1;
               text-align: left;
               border: none;
+              width: initial;
+              float: left;
               font-family: 'Rift-Regular';
               font-size: 0.750rem;
               a { color: black;
@@ -308,7 +318,7 @@ header {
   }
   position: absolute;
   right: 5%;
-  top: 8%;
+  top: 20%;
   max-width: 18%;
   .box {
     margin: 1.4rem 0 3rem 0;

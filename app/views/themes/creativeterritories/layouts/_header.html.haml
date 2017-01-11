@@ -1,23 +1,25 @@
-.large-6.left_header_title.medium-9.small-6
-  .top_line
-    %span>= t("ct.events")
-    %span.demi>= t("ct.calendar")
+.medium-9.columns.flush
+  .row
+    .large-6.medium-12.left_header_title
+      .top_line
+        %span>= t("ct.events")
+        %span.demi>= t("ct.calendar")
 
       
-  .bottom_line
-    %span.ital>= t("ct.for")
-    %span.demi>= t("ct.culture")
-    %span.ital>= t("ct.lovers")
+      .bottom_line
+        %span.ital>= t("ct.for")
+        %span.demi>= t("ct.culture")
+        %span.ital>= t("ct.lovers")
 
       
-.large-2.mini_calendar.text-center.large-offset-1.small-6.medium-3
-  #minicalendar
+    .large-3.medium-4.mini_calendar.text-center.small-offset-1.small-6
+      #minicalendar
 
-.large-3.columns.filtering_engine
+.medium-3.columns.filtering_engine
   .filter_menu
     .row.expanded
       .small-12.columns
-        %ul.categories.menu.vertical
+        %ul.categories.menu.vertical.dropdown{:"data-dropdown-menu" => ''}
           %li
             - if I18n.locale.to_s != 'lv'
               = link_to t("ct.in_latvian"), '/?locale=lv'
@@ -28,7 +30,16 @@
           %li= link_to t("ct.culture_map"), '#', onClick: 'javascript:displayMap();'
           - if controller.action_name != 'frontpage'
             %li= link_to t("ct.home"), '/'
-            
+          %li
+            = link_to t("ct.radio_links"), '#'
+            %ul#radiolinks.menu
+              - Radiolink.by_location(@location.id).each do |rl|
+                %li= link_to rl.name, rl.link_url
+          %li
+            = link_to t("ct.texts"), '#'
+            %ul#articles.menu
+              - Article.by_location(@location.id).each do |rl|
+                %li= link_to rl.name, rl.link_url            
 .hidden{style: 'display: none;'}
   .title
     %span>= t("ct.filtering")
@@ -52,6 +63,7 @@
                 %li= link_to cat.name, '#', :'data-state' => :initial, :'data-ct-filter' => cat.id
           %li
             = link_to t("ct.culture_map"), '#', onClick: 'javascript:displayMap();'
+
           -#%li
           -#  = link_to t("ct.festivals"), '#'
           -#  %ul#festivals.menu

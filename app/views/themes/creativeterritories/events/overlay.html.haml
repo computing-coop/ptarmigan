@@ -9,7 +9,7 @@
     %h1= @event.eventcategories.map(&:name).join(' / ')
 
     .date= date_range(@event.date, @event.enddate)
-    .location=  link_to @event.place.name, '#', onclick: "javascript:$('.reveal').foundation('close');displayMap(#{@event.place.id});"
+    .location=  link_to @event.place.name, '#', onclick: "javascript:$('.reveal').foundation('close');displayMap(#{@event.place.id}, '#{session[:locale].to_s}');"
     - unless @event.promoter.blank?
       .promoter
         by

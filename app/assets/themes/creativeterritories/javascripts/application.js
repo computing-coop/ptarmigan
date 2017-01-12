@@ -129,7 +129,7 @@ function zoom_to_marker(marker_id) {
   load_content(map, mm, i, marker_id);
   map.setZoom(17);
 }
-function initialize(markerid) {
+function initialize(markerid, locale) {
   riga = new google.maps.LatLng(56.9496487, 24.1051864);
   var mapOptions = {
     center: riga,
@@ -157,7 +157,7 @@ function initialize(markerid) {
   // });
   
   $.ajax({
-    url:  '/places/map_markers.js',
+    url:  '/places/map_markers.js?locale=' + locale,
     type: 'GET',
     datatype: 'json',
     success : function(data) {

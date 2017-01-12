@@ -27,7 +27,7 @@
               = link_to t("ct.in_english"), '/?locale=en'
           %li
             = link_to t("ct.about_site"), page_path('about')
-          %li= link_to t("ct.culture_map"), '#', onClick: 'javascript:displayMap();'
+          %li= link_to t("ct.culture_map"), '#', onClick: "javascript:displayMap(null, '#{session[:locale].to_s}');"
           - if controller.action_name != 'frontpage'
             %li= link_to t("ct.home"), '/'
           %li

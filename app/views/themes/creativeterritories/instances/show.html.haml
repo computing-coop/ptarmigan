@@ -11,9 +11,9 @@
     .date= date_range(@instance.start_at, @instance.end_at)
     .location
       - if @instance.place.blank?
-        = link_to @instance.event.place.name , '#', onclick: "javascript:$('.reveal').foundation('close');displayMap(#{@event.place.id});"
+        = link_to @instance.event.place.name , '#', onclick: "javascript:$('.reveal').foundation('close');displayMap(#{@event.place.id}, '#{session[:locale].to_s}');"
       - else
-         = link_to @instance.place.name, '#', onclick: "javascript:$('.reveal').foundation('close');;isplayMap(#{@event.place.id});"
+         = link_to @instance.place.name, '#', onclick: "javascript:$('.reveal').foundation('close');;isplayMap(#{@event.place.id}, '#{session[:locale].to_s}');"
     - unless @instance.event.promoter.blank?
       .promoter
         by

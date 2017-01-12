@@ -125,9 +125,10 @@ class EventsController < ApplicationController
           :title =>  @event.title  ,
           :type  => "article",
           locale: {
-            _:  session[:locale] + '_' + (session[:locale].to_s == 'sv' ? 'SE' : session[:locale].upcase)
+            _:  session[:locale].to_s + '_' + (session[:locale].to_s == 'sv' ? 'SE' : session[:locale].to_s.upcase)
             
           },
+          ,
           
           :url   => url_for(@event),
 

@@ -124,6 +124,11 @@ class EventsController < ApplicationController
         set_meta_tags :og => {
           :title =>  @event.title  ,
           :type  => "article",
+          locale: {
+            _:  session[:locale] + '_' + (session[:locale].to_s == 'sv' ? 'SE' : session[:locale].upcase)
+            
+          },
+          
           :url   => url_for(@event),
 
           :image =>  @event.avatar.url(:medium)

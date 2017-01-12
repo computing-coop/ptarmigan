@@ -143,6 +143,10 @@ class PagesController < ApplicationController
       set_meta_tags :og => {
           :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.theme} : " : "#{@subsite.human_name} : ")) + @page.title + " | Mad House Helsinki" ,
           :type  => "article",
+          locale: {
+            _:  session[:locale] + '_' + (session[:locale].to_s == 'sv' ? 'SE' : session[:locale].upcase)
+            
+          },
           :url   =>  url_for(@page),
           image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg'
           },

@@ -23,6 +23,12 @@
     %meta{property: "fb:app_id", content: Figaro.env.madhouse_facebook_client_id.to_s}
     
     = display_meta_tags :site => 'Mad House Helsinki'
+    - unless I18n.locale.to_s == 'en'
+      %meta{property: 'og:locale:alternate', content: 'en_US'}
+    - unless I18n.locale.to_s == 'fi'
+      %meta{property: 'og:locale:alternate', content: 'fi_FI'}
+    - unless I18n.locale.to_s == 'sv'
+      %meta{property: 'og:locale:alternate', content: 'sv_SE'}      
     = stylesheet_link_tag 'madhouse/stylesheets/application', media: 'screen'
 
     = javascript_include_tag 'madhouse/javascripts/application', 'data-turbolinks-track' => false 

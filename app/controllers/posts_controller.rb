@@ -56,6 +56,10 @@ class PostsController < ApplicationController
       set_meta_tags :og => {
           :title => @post.title,
           :type  => "madhousehelsinki:article",
+          locale: {
+            _:  session[:locale] + '_' + (session[:locale].to_s == 'sv' ? 'SE' : session[:locale].upcase)
+            
+          },
           :url   =>  url_for(@post) ,
           :image => (@post.alternateimg? ?  @post.alternateimg.url(:full)  : (@post.carousel? ?  @post.carousel.url(:medium) : 'http://madhousehelsinki.fi/assets/madhouse/images/MADHOUSE_4kausi_coverphoto.jpg' ))
           },

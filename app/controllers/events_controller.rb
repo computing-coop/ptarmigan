@@ -128,8 +128,7 @@ class EventsController < ApplicationController
             _:  session[:locale].to_s + '_' + (session[:locale].to_s == 'sv' ? 'SE' : session[:locale].to_s.upcase)
             
           },
-          ,
-          
+
           :url   => url_for(@event),
 
           :image =>  @event.avatar.url(:medium)

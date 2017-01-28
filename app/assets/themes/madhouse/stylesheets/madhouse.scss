@@ -42,8 +42,13 @@ header {
   .title {
     min-height: 50px;
     text-align: center;
+    @include breakpoint(small only) {
+     
+      margin-top: 2.5rem;
+    }
     &.front {
       padding-bottom: 1rem;
+
     }
   }
   .right_menu_link {
@@ -134,6 +139,9 @@ header {
           color: $madhouseblue;
         }
         font-size: 1.5rem;
+        @include breakpoint(small only) {
+          font-size: 0.9em;
+        }
       }
       .date {
         clear: left;
@@ -373,6 +381,7 @@ span.facebook_button {
   }
   .event {
     margin: 1rem 0;
+ 
     .top_box {
       overflow-y: hidden;
       padding: 0.7rem;
@@ -381,6 +390,9 @@ span.facebook_button {
       font-size: 1.15rem;
       line-height: 1.5rem;
       height: 120px;
+      @include breakpoint(small only) {
+        height: initial;
+      }
       background-color: $madhouseblue;
       color: white;
       .date {
@@ -464,6 +476,9 @@ span.facebook_button {
       margin-bottom: 1.4rem;
       color: #333;
       height: 500px;
+      @include breakpoint(small only) {
+        height: 250px;
+      }
       .inner {
         padding: 0.8rem;
         height: 100%;
@@ -476,6 +491,9 @@ span.facebook_button {
           padding: 0.4rem 0.7rem;
           font-family: $signika;
           margin-bottom: 0;
+          @include breakpoint(small only) {
+            font-size: 1.2em;
+          }
         }
         .date {
           clear: both;
@@ -549,6 +567,9 @@ span.facebook_button {
     margin-bottom: 3.125rem;
     color: white;
     padding: 2.8rem 0 2.8rem 4rem;
+    @include breakpoint(small only) {
+      padding: 1.2rem 0 1.2rem 4rem;
+    }
     a {
       color: $madhouseblue;
     }
@@ -556,6 +577,10 @@ span.facebook_button {
       font-family: $signika;
       font-size: 2.375rem;
       line-height: 2.5rem;
+      @include breakpoint(small only) {
+        font-size: 1.2rem;
+        line-height: 1.75rem;
+      }
       color: white;
     }
     h4 {
@@ -575,6 +600,9 @@ span.facebook_button {
     font-family: $signika;
     line-height: 1.625rem;
     font-size: 1.125rem;
+    @include breakpoint(small only) {
+      font-size: 0.8em;
+    }
     .aikataulu {
       margin-top: 1.5rem;
       .instance {
@@ -625,6 +653,9 @@ span.facebook_button {
     }
     margin: 4rem 0;
     font-size: 1.125rem;
+    @include breakpoint(small only) {
+      font-size: 0.8rem;
+    }
     font-family: $signika;
     a {
       color: $madhouseblue;
@@ -645,6 +676,11 @@ span.facebook_button {
       font-size: 2rem;
       line-height: 2.4rem;
       color: #FFF;
+      @include breakpoint(small only) {
+        font-size: 1.2rem;
+        line-height: 1.75rem;
+        padding-left: 1.9rem;
+      }
     }
   }
   
@@ -666,6 +702,9 @@ span.facebook_button {
   .prev_next {
     margin: 4rem 0;
     font-size: 1.125rem;
+    @include breakpoint(small only) {
+      font-size: 0.75em;
+    }
     font-family: $signika;
     a {
       color: $madhouseblue;

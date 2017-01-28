@@ -23,7 +23,7 @@
       %h3= t "madhouse.upcoming_events"
     - @upcoming.take(9).each_with_index do |event, index|
       = link_to event do
-        .small-10.small-offset-1.medium-offset-0.medium-6.large-4.xlarge-3.columns.event{:"data-equalizer-watch" => '', class: (index == 8 ? 'show-for-large-only' : (index > 3 ? 'hide-for-medium-only hide-for-small-only' : false) )}
+        .small-12.medium-offset-0.medium-6.large-4.xlarge-3.columns.event{:"data-equalizer-watch" => '', class: (index == 8 ? 'show-for-large-only' : (index > 3 ? 'hide-for-medium-only hide-for-small-only' : false) )}
           .top_box
             - if event.secondary == true
               = t "madhouse.next_at_ihana"
@@ -41,7 +41,7 @@
             = truncate_html(sanitize(event.description, tags: %w(strong em bold b i italic p u)), length: 180)
 
     .row
-      .small-3.small-offset-9.columns.text-right
+      .small-10.small-offset-1.columns.text-right
         .smaller
           = link_to fa_icon('arrow-up') + t("madhouse.back_to_top"), '#', onclick: 'javascript:$("html, body").animate({ scrollTop: 0 }, "slow");return false;'
         .smaller
@@ -53,7 +53,7 @@
   .front_posts_container
     .row
       - column_count = 3
-      .latest_post_container.columns.large-3.small-10.small-offset-1.medium-offset-0
+      .latest_post_container.columns.large-3.small-12.medium-offset-0
         .inner
           %h3= t("madhouse.latest_news")
           - @posts.take(4).each do |post|
@@ -71,7 +71,7 @@
           - column_count += 6
         = link_to post do
           %div{class: column_count == 0 ? :rowd  : :nothing}
-            .single_post.columns.small-10.small-offset-1.medium-offset-0{class: [post.alternateimg? ? (post.alternateimg_aspect? == :portrait ? 'medium-6 large-3' : (column_count > 12 ? "medium-#{post.alternateimg_width > 900 ? 12 : 6}  large-3" : "medium-6  large-6")) : 'medium-6 large-3', ( post == @posts.last || post == @posts[-2]) && column_count < 12 ? 'hide-for-large-up' : false]}
+            .single_post.columns.small-12.medium-offset-0{class: [post.alternateimg? ? (post.alternateimg_aspect? == :portrait ? 'medium-6 large-3' : (column_count > 12 ? "medium-#{post.alternateimg_width > 900 ? 12 : 6}  large-3" : "medium-6  large-6")) : 'medium-6 large-3', ( post == @posts.last || post == @posts[-2]) && column_count < 12 ? 'hide-for-large-up' : false]}
               .inner{style: post.alternateimg? ? "background: url(#{post.alternateimg.url(:full)}) no-repeat center center; background-size: cover;" : ''}
                 %h3= post.title.nil? ? post.translations.first.title : post.title
                 .date

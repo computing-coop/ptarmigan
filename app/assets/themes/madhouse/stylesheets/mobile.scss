@@ -33,7 +33,9 @@ $xlarge-only: "#{$screen} and (min-width:#{lower-bound($xlarge-range)}) and (max
       top: 8px;
     }
     .title {
-      margin-top: 1.5rem;}
+      margin-top: 2.5rem;
+      
+    }
   }
   #calendar_container {
     .calendar_tab {

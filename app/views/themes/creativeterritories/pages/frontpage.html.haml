@@ -130,7 +130,8 @@
               var month = $("#calendar").fullCalendar('getView').start.format('YYYY/MMMM');    
               $('nav ul.event_categories li.month_title').text(month);
               if ($('#overlay_' + event.id).length == 0) {
-                $("footer").prepend('<div class="event_info reveal" id="overlay_' + event.id +  '" data-overlay="false"  data-multiple-opened="false" data-reveal></div>').foundation();
+                $("footer").prepend('<div class="event_info reveal" id="overlay_' + event.id +  '" data-overlay="false"  data-multiple-opened="false" data-close-on-click="true" data-reveal></div>');
+                // .foundation();
               }
               if (moment(event.start).format('YYYY-M-D') == moment(new Date()).format('YYYY-M-D')) {
                 element.parent().addClass('fc-today');
@@ -141,6 +142,7 @@
               
             }, 
             eventAfterAllRender: function(view) {
+              $("footer").foundation();
               var timerStart = Date.now();
               // sync minicalendar
               $('#minicalendar').fullCalendar('gotoDate', $('#calendar td.fc-day').eq(0).attr('data-date'));
@@ -150,7 +152,7 @@
               });
 
               $('#calendar .fc-event-container a').on('click', function (e) { 
-              
+                $('.reveal').foundation('close'); 
                 e.preventDefault();
                 var voffset = e.clientY;
                 var hoffset = e.clientX;
@@ -200,7 +202,7 @@
               }
                 
         
-              console.log("Time until eventAfterAll loaded: ", Date.now()-timerStart);
+              // console.log("Time until eventAfterAll loaded: ", Date.now()-timerStart);
           }
         });
 

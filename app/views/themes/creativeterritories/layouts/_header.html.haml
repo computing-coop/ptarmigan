@@ -34,12 +34,12 @@
             = link_to t("ct.radio_links"), '#'
             %ul#radiolinks.menu
               - Radiolink.by_location(@location.id).each do |rl|
-                %li= link_to rl.name, rl.link_url
+                %li= link_to rl.name, rl.link_url, target: :_blank
           %li
             = link_to t("ct.texts"), '#'
             %ul#articles.menu
               - Article.by_location(@location.id).each do |rl|
-                %li= link_to rl.name, rl.link_url            
+                %li= link_to rl.name, rl.link_url, target: :_blank           
 .hidden{style: 'display: none;'}
   .title
     %span>= t("ct.filtering")

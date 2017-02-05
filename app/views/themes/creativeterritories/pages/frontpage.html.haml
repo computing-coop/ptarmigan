@@ -142,6 +142,21 @@
               
             }, 
             eventAfterAllRender: function(view) {
+              
+              $("#calendar td.fc-event-container").mouseover(function(){
+                  var columnNo = $(this).index();
+    
+                  $("#calendar tr td:nth-child(" + (columnNo+1) + ")").css("background-color", "white");
+                  $("#calendar tr td:nth-child(" + (columnNo+1) + ")").css("opacity", "0.85");
+                  $("#calendar th.fc-day-header:nth-child(" + (columnNo+1) + ")").css("background-color", "white");
+              }).mouseout(function() {
+                var columnNo = $(this).index();
+  
+                $("#calendar tr td:nth-child(" + (columnNo+1) + ")").css("background-color", "initial");
+                $("#calendar tr td:nth-child(" + (columnNo+1) + ")").css("opacity", "1");
+                $("#calendar th.fc-day-header:nth-child(" + (columnNo+1) + ")").css("background-color", "initial");
+              });
+              
               $("footer").foundation();
               var timerStart = Date.now();
               // sync minicalendar

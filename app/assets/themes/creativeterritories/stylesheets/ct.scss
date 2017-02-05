@@ -432,7 +432,7 @@ header {
   }
 }
 .fc-today, .today,  {
-  background-color: #659b86;
+  background-color: #659b86 !important;
   opacity: 0.85;
 }
 #calendar .fc-view table thead.fc-head tr td.fc-head-container .fc-widget-header table {
@@ -483,7 +483,7 @@ header {
 //                    min-width: 116px;
                     &.fc-today {
                       min-width: 100px;
-                      background-color: #659b86;
+                      background-color: #659b86 !important;
                     }
                     .ct-day {
                       font-family: 'Rift-Bold';
@@ -516,9 +516,12 @@ header {
                   td {
 //                    min-width: 116px;
                     &.fc-event-container {
+                      &:hover {
+                        background-color: white;
+                      }
                       &.fc-today {
                         min-width: 100px;
-                        background-color: #659b86;
+                        background-color: #659b86 !important;
                       }
                       vertical-align: top;
                       a.fc-event {

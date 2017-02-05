@@ -82,6 +82,7 @@
   
       .calendar_tab
         = link_to fa_icon("calendar"), '#', onclick: 'javascript:toggleCalendar();return false;'
+  
     #container= yield
     %footer
       .mailing_list
@@ -107,8 +108,11 @@
         $('button.email_signup').attr('disabled', 'disabled');   
         $("#loading").toggle();
       });
-               
-      $('#calendar').fullCalendar( {
+      
+      var $fc = $("#calendar");   
+      
+      var screenWidth = $(window).width();
+      var options = { 
             editable: true,
             header: {
               left: 'prev,next today',
@@ -136,9 +140,44 @@
             eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
               return updateEvent(event);
             }
-          });
+          };
+      var mobileOptions = {
+        editable: true,
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'listWeek,listMonth'
+        },
+        defaultView: 'listMonth',
 
-      $('#calendar').fullCalendar('gotoDate', '2017-01-01');
+        lang: '#{I18n.locale.to_s}',
+        contentHeight: 'auto',
+        firstDay: 1,
+        
+        fixedWeekCount: false,
+        slotMinutes: 30,
+        eventSources: [
+          {
+            url: '/calendar'
+          }
+        ],
+        timeFormat: 'H:mm',
+        dragOpacity: "0.5",
+        eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+          return updateEvent(event);
+        },
+        eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
+          return updateEvent(event);
+        }
+      };
+          
+      if (screenWidth < 700) {
+        $fc.fullCalendar(mobileOptions);
+        } else {
+          $fc.fullCalendar(options);
+        };
+
+
         updateEvent = function(the_event) {
 
           return $.update("/calendar/" + the_event.id, {

@@ -1,0 +1,54 @@
+= semantic_form_for [:admin, @carouselvideo], html: {multipart: true} do |f|
+
+  .row
+    .small-12.medium-5.columns
+      = f.input :video_url
+  .row
+    .small-12.medium-5.columns= f.input :location_id, as: :hidden
+  .row
+    .small-12.medium-5.columns= f.input :stillimage
+  .row
+    .small-12.medium-8.columns
+      = tabs_for do |tab|
+        - tab.create('english', 'English') do
+          = f.globalize_fields_for :en do |en|
+            %p
+              %br/
+              %br/
+              Title of video in English
+              = en.text_field :title
+            %p
+              Subtitle of video in English
+              %br/
+              = en.text_field :subtitle
+        - tab.create('finnish', 'Finnish') do
+          = f.globalize_fields_for :fi do |fi|
+            %p
+              %br/
+              %br/
+              Title of video in Finnish
+              = fi.text_field :title
+            %p
+              Subtitle of video in Finnish
+              %br/
+              = fi.text_field :subtitle
+        - tab.create('swedish', 'Swedish') do
+          = f.globalize_fields_for :sv do |sv|
+            %p
+              %br/
+              %br/
+              Title of video in Swedish
+              = sv.text_field :title
+            %p
+              Subtitle of video in Swedish
+              %br/
+              = sv.text_field :subtitle
+
+  .row
+    .small-12.medium-5.columns= f.input :published, :label => "Publish on site!", :hint => "leave unchecked for draft mode"              
+  .row
+    .small-12.medium-5.columns
+      = f.submit 'Save'
+= content_for :jquery do
+  :plain
+    $("#tabs").tabs();    

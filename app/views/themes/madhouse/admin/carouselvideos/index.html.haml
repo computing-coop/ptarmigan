@@ -1,0 +1,25 @@
+.row
+  .small-12.columns
+    %h2 Carousel videos
+    %p click a title to edit.
+    = link_to 'Create new carousel video', new_admin_carouselvideo_path, class: [:button]
+
+.row
+  .small-12.columns
+    %table
+      %thead
+        %th
+        %th Title
+        %th Published?
+        %th
+      %tbody
+        - @carouselvideos.each do |cv|
+          %tr
+            %td= cv.id.to_s
+            %td= cv.title
+            %td= cv.published == true ? 'yes' : 'no'
+            %td
+              - if can? :edit, cv
+                = link_to 'Edit', edit_admin_carouselvideo_path(cv), class: [:button, :tiny]
+              - if can? :destroy, cv
+                = link_to 'Delete', [:admin, cv], method: :delete, class: [:button, :alert, :tiny]

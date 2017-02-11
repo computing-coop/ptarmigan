@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170111090048) do
+ActiveRecord::Schema.define(version: 20170211191439) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "trackable_id"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20170111090048) do
     t.index ["login"], name: "index_applicants_on_login", unique: true, using: :btree
   end
 
-  create_table "article_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "article_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "article_id", null: false
     t.string   "locale",     null: false
     t.datetime "created_at", null: false
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20170111090048) do
     t.index ["locale"], name: "index_article_translations_on_locale", using: :btree
   end
 
-  create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "location_id", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -165,6 +165,33 @@ ActiveRecord::Schema.define(version: 20170111090048) do
     t.boolean  "active",             default: false, null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+  end
+
+  create_table "carouselvideo_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "carouselvideo_id", null: false
+    t.string   "locale",           null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "title"
+    t.string   "subtitle"
+    t.index ["carouselvideo_id"], name: "index_carouselvideo_translations_on_carouselvideo_id", using: :btree
+    t.index ["locale"], name: "index_carouselvideo_translations_on_locale", using: :btree
+  end
+
+  create_table "carouselvideos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "location_id"
+    t.integer  "subsite_id"
+    t.boolean  "published"
+    t.string   "video_url"
+    t.integer  "video_height"
+    t.integer  "video_width"
+    t.string   "stillimage_file_name"
+    t.integer  "stillimage_file_size"
+    t.string   "stillimage_content_type"
+    t.datetime "stillimage_updated_at"
+    t.string   "link_url"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "cashes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -687,7 +714,7 @@ ActiveRecord::Schema.define(version: 20170111090048) do
     t.boolean  "archived"
   end
 
-  create_table "radiolink_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "radiolink_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "radiolink_id", null: false
     t.string   "locale",       null: false
     t.datetime "created_at",   null: false
@@ -697,7 +724,7 @@ ActiveRecord::Schema.define(version: 20170111090048) do
     t.index ["radiolink_id"], name: "index_radiolink_translations_on_radiolink_id", using: :btree
   end
 
-  create_table "radiolinks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "radiolinks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "link_url"
     t.integer  "location_id", null: false
     t.datetime "created_at",  null: false

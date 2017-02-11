@@ -121,6 +121,7 @@ Ptarmigan::Application.routes.draw do
     resources :articles
     resources :calendar
     resources :calendarbackgrounds
+    resources :carouselvideos
     resources :ctads
     resources :events do
       resources :instances

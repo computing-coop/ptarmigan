@@ -48,7 +48,11 @@
             %li
               = link_to admin_resources_path, class: :item  do
                 = image_tag theme_image_path('/icons/document_icon.png')
-                %label Documents          
+                %label Documents
+            %li
+              = link_to admin_carouselvideos_path, class: :item do
+                = image_tag theme_image_path('/icons/video_icon.png')
+                %label Carousel vids
     = yield
   :javascript
     $(document).ready(function() { #{yield :jquery} 

@@ -37,7 +37,7 @@ class Admin::CarouselvideosController < Admin::BaseController
   
   def carouselvideo_params
     params.require(:carouselvideo).permit(:video_url, :link_url, :stillimage, :published, :location_id, :subsite_id,
-      translation_attributes: [:id, :locale, :title, :subtitle])
+      translations_attributes: [:id, :locale, :title, :subtitle])
   end
   
 end

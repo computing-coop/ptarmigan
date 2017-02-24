@@ -1,20 +1,28 @@
 .carousel
   - @carousel.each do |slide|
     .slide
-      = image_tag slide.image.url(:largest)
-      .caption
-        %span.category
-          - if slide.class == Flicker
-            = t :archive
-            = ": "
-          - if slide.class == Event
-            = t "madhouse.event"
-            = ": "
+      - if slide.class == Carouselvideo
+        - if slide.video_url =~ /vimeo\.com/
+
+          .embesd-container= raw slide.fetch(slide.video_url)["html"]
+        - else
+          = image_tag slide.stillimage.url(:largest)
+
+      - else
+        = image_tag slide.image.url(:largest)
+        .caption
+          %span.category
+            - if slide.class == Flicker
+              = t :archive
+              = ": "
+            - if slide.class == Event
+              = t "madhouse.event"
+              = ": "
           
-        %span.title
-          = link_to slide.name,  url_for(slide.carousel_link)
-        .date.text-left
-          = slide.carousel_date.empty? ? '' : slide.carousel_date.map{|x| l x, :format => :long}.join(' - ')
+          %span.title
+            = link_to slide.name,  url_for(slide.carousel_link)
+          .date.text-left
+            = slide.carousel_date.empty? ? '' : slide.carousel_date.map{|x| l x, :format => :long}.join(' - ')
 
 - unless @upcoming.empty?             
   .upcoming_events.row{:"data-equalizer" => ''}

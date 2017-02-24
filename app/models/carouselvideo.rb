@@ -1,4 +1,5 @@
 class Carouselvideo < ApplicationRecord
+  include Oembed::Client
   belongs_to :location
   belongs_to :subsite
 
@@ -10,6 +11,8 @@ class Carouselvideo < ApplicationRecord
   accepts_nested_attributes_for :translations, :reject_if => proc { |attributes| attributes['title'].blank?  }
   scope :by_location, -> (x) { where(['location_id = ?', x])}
   scope :by_subsite, -> (x) { where(:subsite_id => x) }
+  scope :published, -> () { where(published: true) }
+  
   validates_attachment_content_type :stillimage, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   
   def carousel_image?
@@ -20,5 +23,9 @@ class Carouselvideo < ApplicationRecord
     return false unless carousel_image?
     "#{self.id}-#{self.stillimage_file_name.gsub( /[^a-zA-Z0-9_\.]/, '_')}"
   end  
+  
+  def endpoint_uri
+    'https://vimeo.com/api/oembed.json'
+  end
   
 end

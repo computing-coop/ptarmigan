@@ -114,7 +114,7 @@ gem 'underscore-rails'
 # gem 'will_filter', "~> 3.1.0"
 
 gem 'sass-rails', '~> 5.0'
-
+gem 'oembed'
 gem 'coffee-rails'
 gem "uglifier", '>= 1.3.0'
 

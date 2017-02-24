@@ -60,7 +60,7 @@ class PagesController < ApplicationController
         end
 
         Post.by_location(@location.id).with_carousel.published.order(published_at: :desc).each {|x| @carousel.push(x) }
-
+        Carouselvideo.by_location(@location.id).published.each {|x| @carousel.unshift(x) }
         # frontpage media cache
         @social_media = Hash.new
         @social_media['twitter'] = Cash.by_location(@location.id).by_source('twitter').order(issued_at: :desc).limit(6)

@@ -52,7 +52,7 @@
         var DDD = document.createElement('div');
         var ddMMM = document.createElement('div');
         DDD.textContent = theDate.format('D').toUpperCase();
-        ddMMM.textContent = theDate.format('dddd') ;
+        ddMMM.textContent = theDate.format('dddd');
         DDD.className = "ct-day";
         container.appendChild(DDD);
         container.appendChild(ddMMM);
@@ -70,12 +70,13 @@
             dayRender: function(date, cell) {
               d = new Date();
               dd = moment(date).format('yyyy-MM-dd');
-            
+              $('#calendar thead.fc-head th').eq(cell.index()).addClass("day_" + moment(date).format('dddd'));
               $('.fc-day[data-date="'+ dd +'"]').addClass('cellBg');
               if (cell.hasClass('fc-today')) { // looking for today's cell
                   var index = cell.index(); // get the td offset
                   var header = $('#calendar thead.fc-head th').eq(index);
-                  header.addClass('fc-today'); 
+                  header.addClass('fc-today');
+                  
 
               }            
 
@@ -136,25 +137,32 @@
               if (moment(event.start).format('YYYY-M-D') == moment(new Date()).format('YYYY-M-D')) {
                 element.parent().addClass('fc-today');
               }
-  
-
+              
+              element.parent().addClass('day_' + moment(event.start).format('dddd'));
+              
               // element.foundation();
               
             }, 
             eventAfterAllRender: function(view) {
               
+              
               $("#calendar td.fc-event-container").mouseover(function(){
                   var columnNo = $(this).index();
+             
+                  var theDay = $(this).attr('class').split(/\s+/).filter(function (e) { return /^day_/.test(e) });
+                  
     
-                  $("#calendar tr td:nth-child(" + (columnNo+1) + ")").css("background-color", "white");
-                  $("#calendar tr td:nth-child(" + (columnNo+1) + ")").css("opacity", "0.85");
-                  $("#calendar th.fc-day-header:nth-child(" + (columnNo+1) + ")").css("background-color", "white");
+                  $('#calendar tr td.'  + theDay).css("background-color", "white");
+                  $('#calendar tr td.' + theDay).css("opacity", "0.85");
+                  
+                  $('#calendar th.' + theDay).css("background-color", "white");
               }).mouseout(function() {
+                var theDay = $(this).attr('class').split(/\s+/).filter(function (e) { return /^day_/.test(e) });
                 var columnNo = $(this).index();
-  
-                $("#calendar tr td:nth-child(" + (columnNo+1) + ")").css("background-color", "initial");
-                $("#calendar tr td:nth-child(" + (columnNo+1) + ")").css("opacity", "1");
-                $("#calendar th.fc-day-header:nth-child(" + (columnNo+1) + ")").css("background-color", "initial");
+                
+                $('#calendar tr td.' + theDay).css("background-color", "initial");
+                $('#calendar tr td.' + theDay).css("opacity", "1");
+                $('#calendar th.' + theDay).css("background-color", "initial");
               });
               
               $("footer").foundation();

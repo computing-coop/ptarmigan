@@ -1,1 +1,1 @@
-$redis = Redis::Namespace.new("creativeterritories", :redis => Redis.new)
+# $redis = Redis::Namespace.new("creativeterritories", :redis => Redis.new)

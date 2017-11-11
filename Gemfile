@@ -1,6 +1,6 @@
 
 source 'http://rubygems.org'
-ruby '2.3.3'
+ruby '2.4.2'
 gem 'rails', '5.0.1'
 gem 'mysql2'
 
@@ -18,7 +18,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-
+  
 end
 
 # source 'https://rails-assets.org' do
@@ -29,7 +29,7 @@ gem 'rails-assets-datetimepicker', source: 'https://rails-assets.org'
 
 gem 'auto_html', '2.0.0'
 gem 'awesome_nested_set'
-gem 'aws-sdk', '< 2'
+gem 'aws-sdk', '3'
 gem 'cancancan'
 
 gem 'calendrier'
@@ -70,7 +70,7 @@ gem 'jquery-ui-rails'
 gem 'jquery-easing-rails'
 gem 'jquery_ui_rails_helpers'
 gem "jquery-slick-rails"
-
+gem 'json', '~> 2.0'
 gem 'kaminari'
 gem 'kgio'
 
@@ -112,7 +112,7 @@ gem 'twitter' #, '4.4.4'
 gem 'underscore-rails'
 # gem 'will_paginate', '~> 3.0.pre2'
 # gem 'will_filter', "~> 3.1.0"
-
+gem 'xmlrpc'
 gem 'sass-rails', '~> 5.0'
 gem 'oembed'
 gem 'coffee-rails'

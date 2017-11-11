@@ -5,7 +5,7 @@ Ptarmigan::Application.configure do
   # Code is not reloaded between requests
   config.cache_classes = true
   config.eager_load = true
-  
+
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
@@ -50,7 +50,10 @@ Ptarmigan::Application.configure do
   # config.threadsafe!
   config.paperclip_defaults = {
     :storage => :s3,
-    :bucket => 'creativeterritories-production'
+     s3_region: 'eu-west-1',
+    :bucket => 'creativeterritories-production',
+    :s3_host_name => "creativeterritories-production.s3.amazonaws.com", # Added entry
+ :url => ":s3_host_name"
   }
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)

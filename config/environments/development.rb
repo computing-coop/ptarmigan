@@ -58,7 +58,10 @@ Ptarmigan::Application.configure do
  }
  config.paperclip_defaults = {
    :storage => :s3,
-   :bucket => 'creativeterritories-production'
+   s3_region: 'eu-west-1',
+   :bucket => 'creativeterritories-development',
+   :s3_host_name => "s3.amazonaws.com", # Added entry
+:url => ":s3_host_name"
  }
  config.middleware.insert_before 0, "Rack::Cors" do
     allow do
@@ -66,7 +69,6 @@ Ptarmigan::Application.configure do
       resource '*', :headers => :any, :methods => [:get, :post, :options]
     end
   end
- 
- 
-end
 
+
+end

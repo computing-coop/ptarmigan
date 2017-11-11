@@ -1,7 +1,7 @@
 
 source 'http://rubygems.org'
 ruby '2.4.2'
-gem 'rails', '5.0.1'
+gem 'rails', '5.1.4'
 gem 'mysql2'
 
 gem 'puma', group: :production
@@ -18,7 +18,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  
+
 end
 
 # source 'https://rails-assets.org' do
@@ -42,7 +42,7 @@ gem 'capistrano-bundler'#, '1.1.4'
 gem 'capistrano3-puma'
 
 # gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git'
-gem 'ckeditor', '4.2.0'
+gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'country_select'
 gem 'dalli'
 gem 'devise'
@@ -83,17 +83,17 @@ gem 'meta-tags', :require => 'meta_tags'
 gem 'momentjs-rails'
 gem 'nested_form' #, :git => 'git://github.com/ryanb/nested_form.git'
 
-gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
+gem "paperclip", "~> 5.0.0"
 gem 'public_activity'
 gem 'rack-cache'
 gem "rack-cors", group: :development
 gem 'rails-timeago', '~> 2.0'
 gem 'randumb'
 gem 'recaptcha', :require => 'recaptcha/rails'
-gem 'redis-rails', '~> 5.0.1'
-gem 'redis'
-gem 'redis-namespace'
-gem 'redis-rack-cache'
+# gem 'redis-rails', '~> 5.0.1'
+# gem 'redis'
+# gem 'redis-namespace'
+# gem 'redis-rack-cache'
 
 
 gem 'responders', '>= 2.3.0'

@@ -35,7 +35,7 @@ Ptarmigan::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
-  config.active_record.raise_in_transactional_callbacks = true
+  # config.active_record.raise_in_transactional_callbacks = true
 
   # Raise exception on mass assignment protection for Active Record models
   config.eager_load = false
@@ -63,7 +63,7 @@ Ptarmigan::Application.configure do
    :s3_host_name => "s3.amazonaws.com", # Added entry
 :url => ":s3_host_name"
  }
- config.middleware.insert_before 0, "Rack::Cors" do
+ config.middleware.insert_before 0, Rack::Cors do
     allow do
       origins '*'
       resource '*', :headers => :any, :methods => [:get, :post, :options]

@@ -1,7 +1,8 @@
-# -*- encoding : utf-8 -*-
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 require 'rails/all'
+
+
 require 'i18n/backend/fallbacks'
 
 Bundler.require(*Rails.groups)
@@ -13,6 +14,7 @@ module Ptarmigan
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    config.load_defaults 5.1
     config.cache_classes = true
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
     # config.cache_store = :redis_store, "redis://localhost:6379/0/cache", { expires_in: 2.hours }
@@ -32,7 +34,7 @@ module Ptarmigan
     # config.assets.digest = true
 
     # Specifies the header that your server uses for sending files
-    # config.action_dispatch.x_sendfile_header = "X-Sendfile"    
+    # config.action_dispatch.x_sendfile_header = "X-Sendfile"
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
 
@@ -54,7 +56,7 @@ module Ptarmigan
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
     config.i18n.fallbacks = true
-    
+
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)

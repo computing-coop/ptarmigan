@@ -42,3 +42,5 @@ app/assets/themes/creativeterritories/fonts/*.ttf
 app/assets/themes/creativeterritories/fonts/*.woff2
 app/assets/themes/creativeterritories/fonts/*.eot
 test/*
+# Ignore encrypted secrets key file.
+config/secrets.yml.key

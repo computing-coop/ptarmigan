@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   has_and_belongs_to_many :postcategories
   belongs_to :user
   belongs_to :location
-  belongs_to :subsite
+  belongs_to :subsite, optional: true
   has_many :podcasts
 
   has_attached_file :carousel, :styles =>  {:largest => "1600x712#",    :new_carousel => "1600x712#", :full => "960x427", :small => "320x143#", :thumb => "100x100>"},
@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
                                             :url =>':s3_domain_url',
                                           path:  "carousel/posts/:id/:style/:normalized_resource_file_name", :default_url => "/assets/missing.png"
 
-  has_attached_file :alternateimg, :styles => {:largest => "1200x500#", 
+  has_attached_file :alternateimg, :styles => {:largest => "1200x500#",
                                           :full => "960x400#", :small => "300x200#",
                                           :thumb => "100x100>" },
                                           # :path =>  ":rails_root/public/images/posts/alt/:id/:style/:normalized_resource_file_name",
@@ -34,7 +34,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :location_id
   validates_attachment_content_type :alternateimg, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates_attachment_content_type :carousel, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-  
+
   attr_accessor :remove_carousel, :remove_alternateimg
   before_validation { carousel.clear if remove_carousel == '1' }
   before_validation { alternateimg.clear if remove_alternateimg == '1' }
@@ -48,24 +48,24 @@ class Post < ActiveRecord::Base
   serialize :carousel_dimensions
   serialize :alternateimg_dimensions
   after_save :remove_blank_translations
-  
+
   def carousel_image?
     carousel_content_type =~ %r{^(image|(x-)?application)/(bmp|gif|jpeg|jpg|pjpeg|png|x-png)$}
   end
-  
+
   def alternateimg_image?
     alternateimg_content_type =~ %r{^(image|(x-)?application)/(bmp|gif|jpeg|jpg|pjpeg|png|x-png)$}
   end
-  
+
   def remove_blank_translations
     translations.each{|x| x.destroy if  x.title.nil? && x.body.nil? }
   end
-  
+
   def carousel_link
     self
   end
-  
-  
+
+
   def alternateimg_width
     if alternateimg?
       width, height = alternateimg_dimensions.split('x')
@@ -74,7 +74,7 @@ class Post < ActiveRecord::Base
       return 0
     end
   end
-  
+
   def alternateimg_aspect?
     if alternateimg?
       width, height = alternateimg_dimensions.split('x')
@@ -83,7 +83,7 @@ class Post < ActiveRecord::Base
       return nil
     end
   end
-  
+
   def carousel_date
     [created_at]
   end
@@ -93,11 +93,11 @@ class Post < ActiveRecord::Base
       self.published_at ||= Time.now
     end
   end
-  
+
   def description
     body
   end
-  
+
   def embedded_images
     out = []
     if embed_gallery_id.blank? && second_embed_gallery_id.blank?
@@ -113,13 +113,13 @@ class Post < ActiveRecord::Base
     else
       out.flatten
     end
-  end        
-      
-      
+  end
+
+
   def rss_description(locale = :en)
     out = ""
     if carousel?
-      out += ActionController::Base.helpers.image_tag("http://ptarmigan.fi" + carousel.url(:full)) 
+      out += ActionController::Base.helpers.image_tag("http://ptarmigan.fi" + carousel.url(:full))
     end
     out += "<p>posted #{I18n.l(feed_date.to_date, :format => :long)}"
     if subsite
@@ -137,22 +137,22 @@ class Post < ActiveRecord::Base
   def icon
     carousel
   end
-  
+
   def image
     carousel
   end
 
 
-  
+
   def normalized_resource_file_name
     return false unless carousel_image?
     "#{self.id}-#{self.carousel_file_name.gsub( /[^a-zA-Z0-9_\.]/, '_')}"
-  end  
+  end
   def name
     title
   end
 
-          
+
   def previous_post
     self.class.where("location_id = ? and published is true and published_at < ?", location_id, published_at).order("published_at desc").first
   end
@@ -160,7 +160,7 @@ class Post < ActiveRecord::Base
   def next_post
     self.class.where("location_id = ? and published is true and published_at > ?", location_id, published_at).order("published_at asc").first
   end
-  
+
   private
 
   # Retrieves dimensions for image assets
@@ -181,6 +181,6 @@ class Post < ActiveRecord::Base
       end
     end
   end
-  
-  
+
+
 end

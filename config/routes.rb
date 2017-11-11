@@ -27,34 +27,34 @@ Ptarmigan::Application.routes.draw do
   # signup '/air/signup', :controller => 'applicants', :action => 'new'
   # activate '/air/activate/:activation_code', :controller => 'applicants', :action => 'activate', :activation_code => nil
   resources :applicants
-  
+
   resources :places do
     collection do
       post :ctvenues
       get :map_markers
     end
-    
+
     member do
       post :vote
     end
   end
-  
+
   resources :podcasts
-  
+
   resources :proposals do
     collection do
       get :thank_you
       get :axis_of_praxis
     end
   end
-  
+
   get '/air', :controller => 'pages', :action => 'air'
   # connect '/en/pages/air', :controller => 'pages', :action => 'air'
   # connect '/fi/pages/air', :controller => 'pages', :action => 'air'
 
 
   get '/admin', :controller => 'admin/reports', :action => :index
-  
+
   get '/staff', :controller => 'admin/reports', :action => :index
   # resources :calendar do
   #   collection do
@@ -98,9 +98,9 @@ Ptarmigan::Application.routes.draw do
       get :witnessed
     end
   end
-    
+
   resources :institutions
-  
+
   get '/admin/wiki',  :controller => 'admin/wikipages',  :action => 'show', :title => 'Home page'
   get '/admin/wiki/:title', :controller => 'admin/wikipages',  :action => 'show', :title => :title
 
@@ -115,8 +115,8 @@ Ptarmigan::Application.routes.draw do
 
   get '/admin/wiki/:title/edit', :controller => 'admin/wikipages', :action => 'edit'
   get '/territories(/:year(/:month))' => 'pages#frontpage', :as => :ctcalendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
-  get '/ihana' => 'events#secondary'
-  
+  get '/madhousebar' => 'events#secondary'
+
   namespace :admin do
     resources :articles
     resources :calendar
@@ -190,7 +190,7 @@ Ptarmigan::Application.routes.draw do
 
   # Sample resource route with sub-resources:
   #   resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+
   # Sample resource route with more complex sub-resources
   #   resources :products do |products|
   #     products.resources :comments
@@ -213,5 +213,5 @@ Ptarmigan::Application.routes.draw do
   # consider removing the them or commenting them out if you're using named routes and resources.
   # match '/:controller/:action/:id'
 #   match '/:controller/:action/:id.:format'
-  
+
 end

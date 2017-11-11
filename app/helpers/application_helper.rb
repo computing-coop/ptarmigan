@@ -2,7 +2,7 @@
 
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  
+
   DAYS_IN_WEEK = 7
     HOURS_IN_DAY = 24
 
@@ -11,7 +11,7 @@ module ApplicationHelper
   def awesome_truncate(text, length = 30, truncate_string = "...")
     return if text.nil?
     l = length - 3
-    text.gsub(/<\/?[^>]*>/,  "").length > length ? text.gsub(/<\/?[^>]*>/,  " ")[/\A.{#{l}}\w*\;?/m][/.*[\w\;]/m]  + truncate_string : text
+    text.gsub(/<\/?[^>]*>/,  "").length > length ? text.gsub(/<\/?[^>]*>/,  " ")[/\A.{#{l}}\w*\;?/m][/.*[\w\;]/m]  + truncate_string : text rescue text
   end
 
   def calendar_circles(arry)
@@ -41,7 +41,7 @@ module ApplicationHelper
     if until_date.nil? # || from_date.class == Date
       if from_date.class == Date
         return I18n.l(from_date.to_date, :format => :long)
-      elsif from_date.range_time.blank? 
+      elsif from_date.range_time.blank?
         return I18n.l(from_date.to_date, :format => :short)
       else
         return I18n.l(from_date, :format => :long)
@@ -57,7 +57,7 @@ module ApplicationHelper
         month_names = I18n.t("date.month_names")
       end
       day_names = I18n.t("date.day_names")
-      
+
       from_weekday = day_names[from_date.wday]
       from_day = from_date.day
       from_month = month_names[from_date.month]
@@ -68,13 +68,13 @@ module ApplicationHelper
         if from_date.day == until_date.day
           if until_date.strftime("%H:%M") == from_date.strftime("%H:%M")
             if from_date.strftime("%H:%M") == "00:00"
-              I18n.t("date_range.#{format}.same_day_no_time", from_weekday: from_weekday, from_day: from_date.day, from_month: from_month, year: from_date.year, start_time: from_date.strftime("%H:%M"), sep: separator, end_time: until_date.strftime("%H:%M"), :format => :long)      
+              I18n.t("date_range.#{format}.same_day_no_time", from_weekday: from_weekday, from_day: from_date.day, from_month: from_month, year: from_date.year, start_time: from_date.strftime("%H:%M"), sep: separator, end_time: until_date.strftime("%H:%M"), :format => :long)
             else
-              I18n.t("date_range.#{format}.same_day_start_time", from_weekday: from_weekday, from_day: from_date.day, from_month: from_month, year: from_date.year, start_time: from_date.strftime("%H:%M"), sep: separator, end_time: until_date.strftime("%H:%M"), :format => :long)      
+              I18n.t("date_range.#{format}.same_day_start_time", from_weekday: from_weekday, from_day: from_date.day, from_month: from_month, year: from_date.year, start_time: from_date.strftime("%H:%M"), sep: separator, end_time: until_date.strftime("%H:%M"), :format => :long)
             end
           else
             if until_date.strftime("%H:%M") == '23:59'
-              I18n.t("date_range.#{format}.same_day_start_time", from_weekday: from_weekday, from_day: from_date.day, from_month: from_month, year: from_date.year, start_time: from_date.strftime("%H:%M"), sep: separator, end_time: until_date.strftime("%H:%M"), :format => :long)      
+              I18n.t("date_range.#{format}.same_day_start_time", from_weekday: from_weekday, from_day: from_date.day, from_month: from_month, year: from_date.year, start_time: from_date.strftime("%H:%M"), sep: separator, end_time: until_date.strftime("%H:%M"), :format => :long)
             else
               I18n.t("date_range.#{format}.same_day", from_weekday: from_weekday, from_day: from_date.day, from_month: from_month, year: from_date.year, start_time: from_date.strftime("%H:%M"), sep: separator, end_time: until_date.strftime("%H:%M"), :format => :long)
             end
@@ -96,7 +96,7 @@ module ApplicationHelper
     end
   end
 
- 
+
   def event_calendar
     lambda do |day|
       unless Event.has_events_on(day).blank?
@@ -106,7 +106,7 @@ module ApplicationHelper
       end
     end
   end
-  
+
   def event_name(event)
     if event.nil?
       return ""
@@ -114,35 +114,35 @@ module ApplicationHelper
       return event.title
     end
   end
-  
+
   def facebook_link(event, front = true)
-    
+
     if front == false
       width = 20
     else
       width = 16
     end
 
-    
+
     if event.publicschool.blank?
       out = ''
     else
       out = link_to(image_tag('layout/tps.png', {:alt => 'Public School Helsinki class page', :border => 0, :width => width}), 'http://helsinki.thepublicschool.org/class/' + event.publicschool.to_s)
     end
-    
-    
+
+
     if event.facebook.blank?
       out += ""
     else
       out += link_to(image_tag('layout/facebook.png', {:alt => 'facebook event', :border => 0, :width => width}) + " facebook", 'http://www.facebook.com/event.php?eid=' + event.facebook.to_s)
     end
-    
+
     if event.videos.empty?
       out += ''
     else
       out += link_to(image_tag('layout/vimeo.png', {:alt => 'videos from this event', :border => 0, :width => width}) + " " + t(:videos), event_path(:id => event) + "#videos")
     end
-    
+
     if event.flickers.empty?
       out += ''
     else
@@ -156,7 +156,7 @@ module ApplicationHelper
     end
     return raw out
   end
-  
+
   def generate_active_cloud
     cloud = []
     cloud += Wikipage.where(:menuize => true)
@@ -164,24 +164,24 @@ module ApplicationHelper
     cloud += Proposal.where(:menuize => true)
     cloud.sort_by{|x| x.updated_at }.reverse.map{|x| raw("<div class=\"active_link\">") + link_to(x.title, [:admin, x]) + raw(" <span class=\"active_type\">[#{x.class.to_s}]</span></div>")}.join('&nbsp;').html_safe
   end
-  
+
   def is_admin_page?
     return true if controller.controller_path =~ /^admin\//
-    
+
   end
-  
+
   def link_to_add_fields(name, f, association)
     new_object = f.object.class.reflect_on_association(association).klass.new
     fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
       render('admin/wikirevisions/' + association.to_s.singularize + "_fields", :ff => builder)
     end
-    link_to_function(name, ("add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")) 
+    link_to_function(name, ("add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")"))
   end
-    
+
   def localised_image(source, options = {})
       image_tag("layout/#{I18n.locale}/#{source}", options)
   end
-  
+
   def old_select_tag_for_filter(model, nvpairs, params)
     options = { :query => params[:query] }
     _url = url_for(eval("admin_#{model}_url(options)"))
@@ -190,7 +190,7 @@ module ApplicationHelper
     _html << %{onchange="window.location='#{_url}' + '?show=' + this.value">}
     nvpairs.each do |pair|
       _html << %{<option value="#{pair[:scope]}"}
-      if params[:show] == pair[:scope] || ((params[:show].nil? || 
+      if params[:show] == pair[:scope] || ((params[:show].nil? ||
   params[:show].empty?) && pair[:scope] == "all")
         _html << %{ selected="selected"}
       end
@@ -212,7 +212,7 @@ module ApplicationHelper
       javascript_tag("$('#results').pageless(#{opts.to_json});")
   end
 
-    
+
   def ptarmigan_cost(cost, donations = nil)
     if cost == 0
       if donations == true
@@ -220,11 +220,13 @@ module ApplicationHelper
       else
         t :free
       end
-    else 
+    elsif cost =~ /\D/
+      cost.html_safe
+    else
        number_to_currency(cost, :unit => '&euro;'.html_safe)
     end
   end
-  
+
   def read_more
     if I18n.locale.to_s == 'en'
       return '(read more)'
@@ -234,13 +236,13 @@ module ApplicationHelper
       return '(read more)'
     end
   end
-    
+
   def retina_image_tag(default_name, options={})
       retina_name = default_name.gsub(%r{\.\w+$}, '@2x\0')
       image_tag(default_name, options.merge('data-interchange' => "[#{asset_path(retina_name)}, (retina)]"))
     end
-      
-    
+
+
   def to_url(website)
     if website =~ /^http:\/\//
       return website
@@ -256,8 +258,8 @@ module ApplicationHelper
     out += "<span class='st_email' st_title='" + item.name + "' st_url='http://#{request.host}" + url_for(item) + "'  displayText=''></span><span class='st_fblike' st_title='" + item.name + "' st_url='http://#{request.host}" + url_for(item) + "'  displayText=''></span>"
     return out.html_safe
   end
-  
-  
+
+
   def twitter_status(location = 4)
 
     saved_tweet = Cash.where(location_id: location, source: 'twitter').order(:link_url)
@@ -268,7 +270,7 @@ module ApplicationHelper
         regex = Regexp.new '((https?:\/\/|www\.)([-\w\.]+)+(:\d+)?(\/([\w\/_\.]*(\?\S+)?)?)?)'
         twit = twitter_client.user_timeline("PtarmiganHki")[0..4]
         # out = [twit.text.gsub( regex, '<a href="\1">\1</a>').gsub(/\@([a-zA-Z0-9_]+)/, '<a href="http://www.twitter.com/#!/\1">@\1</a>'), twit.created_at, twit.id]
-      rescue 
+      rescue
         twit =  ['Sorry, can\'t connect to Twitter right now - maybe you can <a href="http://www.twitter.com/hyksos">try</a>.', Time.now, 0]
       end
       twit.each_with_index do |out, index|
@@ -293,7 +295,7 @@ module ApplicationHelper
           end
           return Cash.where(:source => 'twitter').order(:link_url)
         end
-      rescue 
+      rescue
         return saved_tweet
       end
     end
@@ -335,7 +337,7 @@ module ApplicationHelper
     if object
       if object.respond_to?('name')
         link_to object.name, [:admin, object]
-      else 
+      else
         link_to object_type.downcase, [:admin, object]
       end
     else
@@ -357,7 +359,7 @@ module ApplicationHelper
             object.icon.url(:thumb)
           end
         end
-      else 
+      else
         image_path(object.icon)
       end
     else
@@ -368,7 +370,7 @@ module ApplicationHelper
 
   def calendrier(options = {}, &block)
 
-      
+
     year = options[:year] || Time.now.year
     month = options[:month] || Time.now.month
     day = options[:day] || Time.now.day
@@ -400,7 +402,7 @@ module ApplicationHelper
       weeks_in_month.times do |week_index|
         (0...DAYS_IN_WEEK).each do |day_index|
           day_counter += 1 if (day_index == first_day_of_month || day_counter != 0)
-          if (day_counter == 0 && day_index != first_day_of_month) || (day_counter != 0 && day_counter > days_in_month) 
+          if (day_counter == 0 && day_index != first_day_of_month) || (day_counter != 0 && day_counter > days_in_month)
             if week_index == 0  # pad with previous
               days_arr << (Time.utc(year, month, 1).at_beginning_of_week + day_index.days).day
             else
@@ -408,10 +410,10 @@ module ApplicationHelper
             end
               #ays_arr << (Time.utc(year, month, 1).end_of_month
           end
-          days_arr << day_counter if (day_counter == 0 && day_index == first_day_of_month) || (day_counter != 0 && day_counter <= days_in_month) 
+          days_arr << day_counter if (day_counter == 0 && day_index == first_day_of_month) || (day_counter != 0 && day_counter <= days_in_month)
         end
       end
-     
+
       table_content = []
       while days_arr.length > 0
         table_content_row = []
@@ -448,11 +450,11 @@ module ApplicationHelper
         end
         table_content << table_content_row
       end
-  
+
 
     builder.render(table_head, table_content).html_safe
   end
-  
-  
-  
+
+
+
 end

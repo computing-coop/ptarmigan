@@ -5,7 +5,7 @@ body {
    margin:0;
    padding:0;
    height:100%;
-  
+
 }
 
 
@@ -16,7 +16,7 @@ a {
   -o-transition:color .2s ease-in;
   -webkit-transition:color .2s ease-in;
   &:hover {
-   color: $madhouselightblue; 
+   color: $madhouselightblue;
   }
 }
 
@@ -43,7 +43,7 @@ header {
     min-height: 50px;
     text-align: center;
     @include breakpoint(small only) {
-     
+
       margin-top: 2.5rem;
     }
     &.front {
@@ -70,9 +70,9 @@ header {
     font-size: 0.9rem;
 
   }
-  
+
   clear: both;
-  
+
   .menu_bar {
     clear: both;
     font-size: 0.9rem;
@@ -92,8 +92,8 @@ header {
         margin: 0;
         li {
           display: table-cell;
-          text-align: center;
-          white-space: nowrap;       
+          text-align: left;
+          white-space: nowrap;
           ul.f-dropdown {
             li {
               width: 200px;
@@ -107,7 +107,7 @@ header {
 }
 
 .carousel {
-  
+
   .slick-dots {
     width: 97%;
   }
@@ -150,8 +150,12 @@ header {
   }
 }
 
-
+.calendar_front {
+  padding: 2.5rem 0;
+}
 .social_other {
+  clear: left;
+  width: 100%;
   background-color: $madhouseblue;
   min-height: 350px;
   .facebook_box, .instagram_box{
@@ -160,7 +164,7 @@ header {
     border: 1px dotted #FFF;
     padding: 0.3rem;
     border-radius: 3px;
-    
+
     .text {
       opacity: 0.8;
       clear: both;
@@ -177,7 +181,7 @@ header {
       font-size: 0.6rem;
     }
   }
-  
+
   .facebook_box {
     width: 320px;
     min-height: 320px;
@@ -223,7 +227,7 @@ header {
     }
   }
 
-  
+
 }
 
 .mailing_list_front {
@@ -242,7 +246,7 @@ header {
   form#email_form {
     max-width: 50%;
     text-align: center;
-    margin: 0 auto; 
+    margin: 0 auto;
   }
   .email_signup_form {
     color: #FFF;
@@ -267,6 +271,23 @@ header {
   margin-bottom: 0 !important;
 }
 
+.email_signup_form {
+  color: #FFF;
+  font-family: $signika;
+  font-size: 1.125rem;
+  input[type=text], input[type=email] {
+    border: none;
+    outline: none;
+    height: 1.9rem;
+    border-radius: 3px;
+    color: #23a4aa;
+    background-color: #E3E2E2;
+  }
+  input.email_signup {
+    display: none;
+  }
+}
+
 footer {
   clear: left;
 //  margin-top: 1.2rem;
@@ -276,7 +297,7 @@ footer {
 
   bottom: 0;
   //  padding: 1rem;
-  
+
   .mailing_list {
     border-bottom: 1px solid white;
     padding-bottom: 1rem;
@@ -291,22 +312,7 @@ footer {
       font-family: $signika;
       font-size: 1.125rem;
     }
-    .email_signup_form {
-      color: #FFF;
-      font-family: $signika;
-      font-size: 1.125rem;
-      input[type=text], input[type=email] {
-        border: none;
-        outline: none;
-        height: 1.9rem;
-        border-radius: 3px;
-        color: #23a4aa;
-        background-color: #E3E2E2;
-      }
-      input.email_signup {
-        display: none;
-      }
-    }
+
   }
   .logos {
     img {
@@ -315,7 +321,7 @@ footer {
       padding: 0 1rem;
     }
   }
-  
+
 }
 
 span.ticket_button {
@@ -381,7 +387,7 @@ span.facebook_button {
   }
   .event {
     margin: 1rem 0;
- 
+
     .top_box {
       overflow-y: hidden;
       padding: 0.7rem;
@@ -417,14 +423,14 @@ span.facebook_button {
       border-left: 1px solid $madhouseblue;
       border-right: 1px solid $madhouseblue;
       border-bottom: 1px solid $madhouseblue;
-      
+
     }
 
   }
 }
 
 .page  {
-  
+
   .page_banner {
     padding: 1.4rem 0;
     background-color: $madhouseblue;
@@ -447,7 +453,7 @@ span.facebook_button {
   }
 }
 .front_posts_container {
-  background-color: black;
+  background-color: white;
   padding: 1.5rem 0;
   color: white;
   .smaller {
@@ -459,10 +465,10 @@ span.facebook_button {
   a {
 
     &:hover {
-     
+
      .single_post {
-       
-       opacity: 0.9; 
+
+       opacity: 0.9;
        .inner {
          h3 {
            color: $madhouselightblue;
@@ -483,7 +489,7 @@ span.facebook_button {
         padding: 0.8rem;
         height: 100%;
         h3 {
-          color: #EFEFEF; 
+          color: #EFEFEF;
           float: left;
           font-size: 1.625rem;
           line-height: 1.8rem;
@@ -508,12 +514,12 @@ span.facebook_button {
       }
     }
   }
-  
+
   .latest_post_container {
-    background-color: #000;
+
     color: white;
     padding: 0rem 1.1rem;
-    height: 500px;
+
     overflow: hidden;
     .inner {
       padding: 0.8rem;
@@ -525,7 +531,7 @@ span.facebook_button {
       font-size: 1.8rem;
       line-height: 2rem;
       margin-bottom: 0.8rem;
-      
+
       color: #FFF;
     }
     .post_entry {
@@ -554,7 +560,7 @@ span.facebook_button {
 }
 
 .event {
-  
+
   .related_header {
     margin-top: 4rem;
     font-family: $signika;
@@ -593,7 +599,35 @@ span.facebook_button {
     line-height: 1.375rem;
     color: #333;
   }
-  
+  .event_image {
+    .overlay_icon {
+      display: none;
+    }
+    &.video {
+      cursor: pointer;
+      .video_embed {
+        position: absolute;
+        top: 0;
+        display: none;
+      }
+      .overlay_icon {
+        display: block;
+        position: absolute;
+        top: 20%;
+        left: 40%;
+        width: 20%
+
+      }
+      &:hover {
+        opacity: 0.8;
+        .overlay_icon img {
+          -webkit-filter: invert(100%); //* chrome, safari
+
+          filter: invert(100%);
+        }
+      }
+    }
+  }
   .event_info, .event_info p {
     margin-top: 1.5rem;
     color: $madhouseblue;
@@ -626,7 +660,7 @@ span.facebook_button {
     &.even {
       background-color: #222;
     }
-    
+
     .title {
       margin-top: 0.5rem;
       font-family: $signika;
@@ -646,7 +680,7 @@ span.facebook_button {
       float: left;
     }
   }
-  
+
   .prev_next {
     .next_container {
       text-align: right;
@@ -661,8 +695,8 @@ span.facebook_button {
       color: $madhouseblue;
     }
   }
-  
-  
+
+
 }
 
 .post_single {
@@ -683,7 +717,7 @@ span.facebook_button {
       }
     }
   }
-  
+
   .post_content {
     .post_metadata {
       font-size: 0.8rem;
@@ -710,7 +744,7 @@ span.facebook_button {
       color: $madhouseblue;
     }
   }
-  
+
 }
 
 #mapcontainer {
@@ -720,7 +754,7 @@ span.facebook_button {
 
 // events index page
 
-.events_index {
+.events_index, .front_upcoming {
   h2 {
     font-family: $signika;
     font-size: 2.2rem;
@@ -745,7 +779,7 @@ span.facebook_button {
       font-size: 1.8rem;
       line-height: 2rem;
       margin-bottom: 0.8rem;
-      
+
       color: #FFF;
     }
     .event_entry {
@@ -771,14 +805,14 @@ span.facebook_button {
       }
     }
   }
-  
-  
+
+
   h3 {
     font-family: $signika;
     font-size: 1.8rem;
     line-height: 2rem;
     margin-bottom: 0.8rem;
-    
+
     color: #FFF;
   }
   .single_event {
@@ -787,12 +821,12 @@ span.facebook_button {
     margin-bottom: 1.4rem;
     color: #333;
     height: 500px;
-    
+
     .inner {
       padding: 0.8rem;
       height: 100%;
       h3 {
-        a { color: #EFEFEF; 
+        a { color: #EFEFEF;
           &:hover {
             color: $madhouseblue;
           }
@@ -815,13 +849,13 @@ span.facebook_button {
         margin-top: 0.25rem;
         text-transform: uppercase;
       }
-      
+
       .lower_link {
         clear: both;
         position: absolute;
         right: 2rem;
         bottom: 1rem;
-        a { color: #EFEFEF; 
+        a { color: #EFEFEF;
           &:hover {
             color: $madhouseblue;
           }
@@ -831,9 +865,17 @@ span.facebook_button {
         float: right;
         font-size: 1.1rem;
         margin-top: 0.25rem;
-        text-transform: uppercase; 
+        text-transform: uppercase;
       }
     }
+  }
+}
+
+.front_upcoming {
+  background-color: white;
+  padding: 0;
+  .single_event {
+    background-color: white;
   }
 }
 
@@ -846,7 +888,7 @@ span.facebook_button {
   opacity: 0.95;
   background-color: $madhouselightblue;
   padding: 1.5rem;
-  
+
   #calendar {
     float: left;
     .fc-event-container .fc-event {
@@ -868,11 +910,11 @@ span.facebook_button {
           cursor: pointer;
         }
       }
-      
+
       h2 {
         font-size: 1.2rem;
         font-family: $signika;
-      
+
       }
       .fc-center {
 
@@ -925,7 +967,7 @@ span.facebook_button {
         height: 100%;
         h3 {
           color: grey;
-          a { color: #EFEFEF; 
+          a { color: #EFEFEF;
             &:hover {
               color: $madhouseblue;
             }
@@ -948,13 +990,13 @@ span.facebook_button {
           margin-top: 0.25rem;
           text-transform: uppercase;
         }
-      
+
         .lower_link {
           clear: both;
           position: absolute;
           right: 2rem;
           bottom: 1rem;
-          a { color: #EFEFEF; 
+          a { color: #EFEFEF;
             &:hover {
               color: $madhouseblue;
             }
@@ -964,7 +1006,7 @@ span.facebook_button {
           float: right;
           font-size: 1.1rem;
           margin-top: 0.25rem;
-          text-transform: uppercase; 
+          text-transform: uppercase;
         }
       }
     }
@@ -973,4 +1015,3 @@ span.facebook_button {
 
 .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto; }
 .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-

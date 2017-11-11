@@ -5,7 +5,7 @@
   - if column_count >= 12
     - column_count = 0
 
-  - if !event.avatar? || event.avatar_aspect? == :portrait 
+  - if !event.avatar? || event.avatar_aspect? == :portrait
     - column_count += 3
   - else
     - column_count += 6
@@ -17,9 +17,9 @@
           - if event.secondary == true && @ihana.nil?
             = t "madhouse.next_at_ihana"
           = link_to event.title, event
-        
+
         .date
           = date_range(event.date, event.enddate)
-          
+
         - if event.secondary == true && @ihana.nil?
           .lower_link= link_to t("madhouse.ihana_bar_programme"), '/ihana'

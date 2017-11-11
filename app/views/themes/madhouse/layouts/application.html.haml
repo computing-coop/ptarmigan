@@ -21,17 +21,17 @@
     %meta{:content => "/ms-icon-144x144.png", :name => "msapplication-TileImage"}/
     %meta{:content => "#ffffff", :name => "theme-color"}/
     %meta{property: "fb:app_id", content: Figaro.env.madhouse_facebook_client_id.to_s}
-    
+
     = display_meta_tags :site => 'Mad House Helsinki'
     - unless I18n.locale.to_s == 'en'
       %meta{property: 'og:locale:alternate', content: 'en_US'}
     - unless I18n.locale.to_s == 'fi'
       %meta{property: 'og:locale:alternate', content: 'fi_FI'}
     - unless I18n.locale.to_s == 'sv'
-      %meta{property: 'og:locale:alternate', content: 'sv_SE'}      
+      %meta{property: 'og:locale:alternate', content: 'sv_SE'}
     = stylesheet_link_tag 'madhouse/stylesheets/application', media: 'screen'
 
-    = javascript_include_tag 'madhouse/javascripts/application', 'data-turbolinks-track' => false 
+    = javascript_include_tag 'madhouse/javascripts/application', 'data-turbolinks-track' => false
     %script{:src => "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_API_KEY']}", :type => "text/javascript"}
     = csrf_meta_tags
     %script{:type => "text/javascript"}
@@ -44,7 +44,7 @@
       ga('send', 'pageview');
 
   %body
-    %header 
+    %header
       .icons.text-left
         = link_to fa_icon("twitter"), 'http://www.twitter.com/madhousehel', target: :_blank
         = link_to fa_icon("facebook"), 'http://www.facebook.com/madhousehelsinki', target: :_blank
@@ -63,7 +63,7 @@
           %strong FI
         |
         - if I18n.locale.to_s != 'sv'
-          = link_to('SV', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv') 
+          = link_to('SV', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv')
         - else
           %strong SV
       .title.text-center
@@ -73,16 +73,16 @@
           =  link_to retina_image_tag(theme_image_path('madhousebanner.png')), '/'
         -#= link_to fa_icon("bars"), '#', onclick: 'javascript: $(".menu_bar").slideToggle();return false;'
       .menu_bar.visible.text-center.hide-for-small-only
-        .menu_items= render partial: 'layouts/top_menu'    
+        .menu_items= render partial: 'layouts/top_menu'
       .menu_select.show-for-small-only
         .row.expanded
-          .small-10.small-centered.columns.menu_items= render partial: 'layouts/mobile_menu'        
+          .small-10.small-centered.columns.menu_items= render partial: 'layouts/mobile_menu'
     .calendar#calendar_container
       #calendar
-  
+
       .calendar_tab
         = link_to fa_icon("calendar"), '#', onclick: 'javascript:toggleCalendar();return false;'
-  
+
     #container= yield
     %footer
       .mailing_list
@@ -92,27 +92,27 @@
               .medium-6.columns.text-center
                 .blurb= t "madhouse.join_our_email_list"
               .medium-6.columns.end
-                = form_tag url_for('/madhouse/add_to_list'), :id => :email_form, :method => :post, :remote => true do 
+                = form_tag url_for('/madhouse/add_to_list'), :id => :email_form, :method => :post, :remote => true do
                   #loading{:style => 'display: none'}= image_tag(theme_image_path('spinner.gif'))
                   #email_error
-                  .email_signup_form   
+                  .email_signup_form
                     = text_field_tag :email, t("madhouse.enter_your_email_address"), { :class => "clearfield"}
-                    = submit_tag t(:join), :class => :email_signup      
+                    = submit_tag t(:join), :class => :email_signup
       = render partial: 'layouts/footer'
 
-        
+
   :javascript
-    $(document).ready(function() { #{yield :jquery} 
+    $(document).ready(function() { #{yield :jquery}
       $("input.clearfield").clearField();
       $('form#email_form').submit(function() {
-        $('button.email_signup').attr('disabled', 'disabled');   
+        $('button.email_signup').attr('disabled', 'disabled');
         $("#loading").toggle();
       });
-      
-      var $fc = $("#calendar");   
-      
+
+      var $fc = $("#calendar");
+
       var screenWidth = $(window).width();
-      var options = { 
+      var options = {
             editable: true,
             header: {
               left: 'prev,next today',
@@ -124,7 +124,7 @@
             lang: '#{I18n.locale.to_s}',
             contentHeight: 'auto',
             firstDay: 1,
-            
+
             fixedWeekCount: false,
             slotMinutes: 30,
             eventSources: [
@@ -153,7 +153,7 @@
         lang: '#{I18n.locale.to_s}',
         contentHeight: 'auto',
         firstDay: 1,
-        
+
         fixedWeekCount: false,
         slotMinutes: 30,
         eventSources: [
@@ -170,7 +170,7 @@
           return updateEvent(event);
         }
       };
-          
+
       if (screenWidth < 700) {
         $fc.fullCalendar(mobileOptions);
         } else {
@@ -178,19 +178,18 @@
         };
 
 
-        updateEvent = function(the_event) {
+    var updateEvent = function(the_event) {
 
-          return $.update("/calendar/" + the_event.id, {
-            event: {
-              title: the_event.title,
-              starts_at: "" + the_event.start,
-              ends_at: "" + the_event.end,
-              description: the_event.description
-            }
-          });
-        };
+      return $.update("/calendar/" + the_event.id, {
+        event: {
+          title: the_event.title,
+          starts_at: "" + the_event.start,
+          ends_at: "" + the_event.end,
+          description: the_event.description
+        }
+      });
+    };
 
-      
-    
-    
+
+
     });

@@ -19,7 +19,7 @@ $(document).on('ready page:load', function () {
 });
 
 
-  
+
 function toggleCalendar() {
 
   if ( jQuery('#calendar_container').css("left") == "0px")  {
@@ -28,17 +28,17 @@ function toggleCalendar() {
 
     jQuery('#calendar_container').css('position', 'fixed');
   } else {
-    
-    var eTop = $('#calendar_container').offset().top; 
+
+    var eTop = $('#calendar_container').offset().top;
     jQuery('#calendar_container').css('position', 'absolute');
-    jQuery('#calendar_container').css('top', parseInt(eTop) + 'px'); 
+    jQuery('#calendar_container').css('top', parseInt(eTop) + 'px');
         jQuery('#calendar_container').animate({left:"0%"}, 100);
   }
 
 }
 
 
-function scroll_To(target) { 
+function scroll_To(target) {
   $('html, body').stop().animate({
       'scrollTop': $(target).offset().top - 40
   }, 900, 'swing', function () {

@@ -1,3 +1,5 @@
+= event.errors.full_messages
+
 = semantic_form_for([:admin,  event],  :html => {:multipart => true, :'data-abide' => '', :novalidate => '' } ) do |f|
   .row
     = f.input :location_id, :label => "Which place?", :as => :hidden, input_html: {value: @location.id }
@@ -7,7 +9,7 @@
       = f.input :enddate, :as => :string, :input_html => {:class => :datetimepicker, required: '', value: f.object.new_record? ? '' : (f.object.enddate.nil? ? '' : f.object.enddate.strftime('%Y-%m-%d %H:%M'))}, :label => "Ending date and time of last performance. You will add individual performances later.", :hint => 'if events run past midnight, put them as 23:59'
   .row
     .small-6.columns= f.input :place, :as => :select, :collection => @location.places.map{|x| [x.name + "/" + x.address1, x.id]}, :hint => "Make sure you got this right.", :include_blank => false, input_html: {required: ''}, include_blank: true
-    .small-6.columns= f.input :promoter, :label => "External promoter", :hint => "optional, ex: Äänen Lumo, usually blank though"      
+    .small-6.columns= f.input :promoter, :label => "External promoter", :hint => "optional, ex: Äänen Lumo, usually blank though"
 
 
     -#= f.input :event_type, :label => "Event type", :hint => "usually a set of keywords separated by colons, that we haven't set up to link as tags YET"
@@ -16,7 +18,7 @@
       = tabs_for do |tab|
         - tab.create('english', 'English') do
           = f.globalize_fields_for :en do |en|
-            %p 
+            %p
               Title/name of event
               = en.text_field :title, input_html: {required: ''}
             %p.inline-hints
@@ -42,25 +44,26 @@
               Huomautukset ja metatiedot
               %br/
               = fi.text_area :notes, {:cols => 40, :rows => 5}
-               
+
         - tab.create('swedish', 'Swedish') do
           = f.globalize_fields_for :sv do |sv|
-            %p 
+            %p
               Title
               = sv.text_field :title
             %p
               Description of event
               = sv.cktext_area :description
             %p
-              Notes and metadata 
+              Notes and metadata
               %br/
-              = sv.text_area :notes, {:cols => 40, :rows => 5}      
+              = sv.text_area :notes, {:cols => 40, :rows => 5}
   .row
     .small-12.columns
       %h4 Other information
   .row
     .small-6.columns
-      = f.input :cost, :label => "Cost", :hint => "enter 0 for free events, must be number, no characters besides numbers and . allowed"
+      = f.input :video_link, label: 'URL to video (Vimeo, Youtube)'
+      = f.input :cost, :label => "Cost", :hint => "enter whatever you want now, it's a free text field."
       = f.input :ticket_url, label: 'URL to buy ticket (one-day events only):', hint: 'Only enter a URL if this happens once, otherwise create individual performances and add the individual ticket URLs there', input_html: {pattern: :text, validate: :false, type: :text}
       = f.input :donations_requested, :label => 'Donations requested?', :hint => "Check this to replace 'FREE' on site with 'Donations requested'"
       = f.input :discountedcost, :label => "Alternate discount cost?", :hint => "For events that are cheaper for some people (unemployed, members, etc.)"
@@ -100,11 +103,9 @@
 
 
   = f.actions do
-    = f.submit "Save this event!"
+    = f.submit "Save this event!", class: [:button]
 
 = content_for :jquery do
   :plain
     $("#tabs").tabs();
     $('.datetimepicker').datetimepicker({format:'Y-m-d H:i'});
- 
-  

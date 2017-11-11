@@ -10,17 +10,17 @@ class PagesController < ApplicationController
       @airforms = Airform.find_all_by_applicant_id(current_applicant.id)
     end
   end
-  
+
   def frontpage
-    
+
     if !@subsite.nil?
-      
-      if @subsite.theme == 'kuulutused' 
+
+      if @subsite.theme == 'kuulutused'
         @places = Place.tallinn.approved_posters.to_a.delete_if{|x| x.votes_against >= 5}
 
-        
+
       elsif @subsite.theme == 'creativeterritories'
-     
+
         @events = @subsite.events.published
         @events = sort_events(@events)
         @eventcategories = Eventcategory.all
@@ -33,7 +33,7 @@ class PagesController < ApplicationController
         params[:day] = 15
         params[:month] = params[:month].to_i
         params[:year] = params[:year].to_i
-        
+
       elsif @subsite.theme == 'kompass'
         @pages = Page.by_subsite(@subsite)
         @event = @subsite.events.first
@@ -42,25 +42,26 @@ class PagesController < ApplicationController
         @posts = Post.by_subsite(@subsite).published.order('created_at DESC').page params[:page]
       end
     else
-      
-      
+
+
       if @location.name == 'Mad House'
         @upcoming = Event.primary.published.future.by_location(@location.id)
         @upcoming += Event.secondary.published.future.by_location(@location.id).order(date: :asc).limit(1)
         @upcoming = @upcoming.sort_by(&:next_date)
-
-        @carousel = []
+        #
+        # @carousel = []
         # @carousel =  Flicker.by_location(@location.id).joins(:event).group("events.id")
-   
-        @posts = Post.by_location(@location.id).published.limit(9)
-      
-        events = @upcoming.to_a.reject{|x| !x.carousel? }
-         events.sort_by{rand}.each do |e|
-          @carousel.unshift(e)
-        end
+        @first_events = @upcoming.take(6)
+        @upcoming = @upcoming[6..-1].take(8)
+        @posts = Post.by_location(@location.id).published.limit(10)
+        #
+        # events = @upcoming.to_a.reject{|x| !x.carousel? }
+        #  events.sort_by{rand}.each do |e|
+        #   @carousel.unshift(e)
+        # end
 
-        Post.by_location(@location.id).with_carousel.published.order(published_at: :desc).each {|x| @carousel.push(x) }
-        Carouselvideo.by_location(@location.id).published.each {|x| @carousel.unshift(x) }
+        # Post.by_location(@location.id).with_carousel.published.order(published_at: :desc).each {|x| @carousel.push(x) }
+        # Carouselvideo.by_location(@location.id).published.each {|x| @carousel.unshift(x) }
         # frontpage media cache
         @social_media = Hash.new
         @social_media['twitter'] = Cash.by_location(@location.id).by_source('twitter').order(issued_at: :desc).limit(6)
@@ -70,15 +71,15 @@ class PagesController < ApplicationController
           :type  => "website",
           image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg',
           :url   => 'http://madhousehelsinki.fi'
-          }, 
+          },
           :fb             => {
               :app_id       => Figaro.env.madhouse_facebook_client_id
             },
           :canonical => 'http://madhousehelsinki.fi',
           :keywords => 'Mad House,Helsinki,Finland,Suvilahti,culture,art,performance,live art',
           :description => 'Mad House is a house for performance and live art in Helsinki. Mad House on räjähdys Suomen esittävän taiteen kentällä. Mad House är en explosion i Finlands performanskonstscen.',
-          :title => "Mad House Helsinki" 
-        
+          :title => "Mad House Helsinki"
+
       else  # it's Ptarmigan - an ugly hack for now but will work
         set_meta_tags :open_graph => {
           :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.theme} | " : "#{@subsite.human_name} | ")) + "Ptarmigan" ,
@@ -113,7 +114,7 @@ class PagesController < ApplicationController
         end
 
         Post.by_location(@location.id).with_carousel.published.each {|x| @new_carousel.unshift(x) }
- 
+
         if @subsite
           @posts = Post.by_subsite(@subsite).published.order('sticky DESC, created_at DESC').page(params[:page]).per(1)
         else
@@ -121,14 +122,14 @@ class PagesController < ApplicationController
         end
         @new_carousel = @new_carousel[0..14]
       end
-      
+
       respond_to do |format|
         format.html { render :layout => 'frontpage' }
         format.xml  { render :xml => @page }
       end
     end
   end
-  
+
   def press
     resources = Resource.where(["((location_id is null OR location_id = ?) OR all_locations is true)", @location.id])
     @pagelinks = Presslink.where(["((location_id is null OR location_id = ?) OR all_locations is true)", @location.id]).order("sortorder, presslinks.when DESC")
@@ -145,9 +146,9 @@ class PagesController < ApplicationController
           :type  => "article",
           locale: {
             _:  session[:locale].to_s + '_' + (session[:locale].to_s == 'sv' ? 'SE' : session[:locale].to_s.upcase)
-            
+
           },
-          
+
           :url   =>  url_for(@page),
           image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg'
           },
@@ -194,7 +195,7 @@ class PagesController < ApplicationController
         else
           @page = @page.first
         end
-      end  
+      end
     end
   end
 

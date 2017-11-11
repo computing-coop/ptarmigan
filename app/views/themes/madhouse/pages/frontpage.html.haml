@@ -1,94 +1,60 @@
-.carousel
-  - @carousel.each do |slide|
-    .slide
-      - if slide.class == Carouselvideo
-        - if slide.video_url =~ /vimeo\.com/
+-# .carousel
+-#   - @carousel.each do |slide|
+-#     .slide
+-#       - if slide.class == Carouselvideo
+-#         - if slide.video_url =~ /vimeo\.com/
+-#
+-#           .embesd-container= raw slide.fetch(slide.video_url)["html"]
+-#         - else
+-#           = image_tag slide.stillimage.url(:largest)
+-#
+-#       - else
+-#         = image_tag slide.image.url(:largest)
+-#         .caption
+-#           %span.category
+-#             - if slide.class == Flicker
+-#               = t :archive
+-#               = ": "
+-#             - if slide.class == Event
+-#               = t "madhouse.event"
+-#               = ": "
+-#
+-#           %span.title
+-#             = link_to slide.name,  url_for(slide.carousel_link)
+-#           .date.text-left
+-#             = slide.carousel_date.empty? ? '' : slide.carousel_date.map{|x| l x, :format => :long}.join(' - ')
 
-          .embesd-container= raw slide.fetch(slide.video_url)["html"]
-        - else
-          = image_tag slide.stillimage.url(:largest)
+- unless @first_events.empty?
 
-      - else
-        = image_tag slide.image.url(:largest)
-        .caption
-          %span.category
-            - if slide.class == Flicker
-              = t :archive
-              = ": "
-            - if slide.class == Event
-              = t "madhouse.event"
-              = ": "
-          
-          %span.title
-            = link_to slide.name,  url_for(slide.carousel_link)
-          .date.text-left
-            = slide.carousel_date.empty? ? '' : slide.carousel_date.map{|x| l x, :format => :long}.join(' - ')
-
-- unless @upcoming.empty?             
-  .upcoming_events.row{:"data-equalizer" => ''}
-  
-    .text-center
-      %h3= t "madhouse.upcoming_events"
-    - @upcoming.take(9).each_with_index do |event, index|
-      = link_to event do
-        .small-12.medium-offset-0.medium-6.large-4.xlarge-3.columns.event{:"data-equalizer-watch" => '', class: (index == 8 ? 'show-for-large-only' : (index > 3 ? 'hide-for-medium-only hide-for-small-only' : false) )}
-          .top_box
-            - if event.secondary == true
-              = t "madhouse.next_at_ihana"
-            = event.title
-            / - if event.secondary == true
-            /   %small= link_to t("madhouse.ihana_bar_programme"), '#'
-            .date
-              - if event.is_festival?
-                = l event.next_date, format: :short
-              - else
-                = date_range(event.date, event.enddate)
-                
-          .description{style: (event.avatar? ? "background: url(#{event.avatar.url(:medium)}) center center;" : false)}
-
-            = truncate_html(sanitize(event.description, tags: %w(strong em bold b i italic p u)), length: 180)
-
-    .row
-      .small-10.small-offset-1.columns.text-right
-        .smaller
-          = link_to fa_icon('arrow-up') + t("madhouse.back_to_top"), '#', onclick: 'javascript:$("html, body").animate({ scrollTop: 0 }, "slow");return false;'
-        .smaller
-          = link_to fa_icon('star') + t("madhouse.all_events"), events_path
-
-        
-        
-- unless @posts.empty?
   .front_posts_container
-    .row
-      - column_count = 3
-      .latest_post_container.columns.large-3.small-12.medium-offset-0
-        .inner
-          %h3= t("madhouse.latest_news")
-          - @posts.take(4).each do |post|
-            .post_entry
-              .title= link_to post.title.nil? ? post.translations.first.title : post.title, post
-              .date= timeago_tag post.published_at
+    .row.expanded
 
-      - @posts.each do |post|
-        - if column_count >= 12
-          - column_count = 0
-          
-        - if post.alternateimg_aspect? == :portrait || !post.alternateimg?
-          - column_count += 3
-        - else
-          - column_count += 6
-        = link_to post do
-          %div{class: column_count == 0 ? :rowd  : :nothing}
-            .single_post.columns.small-12.medium-offset-0{class: [post.alternateimg? ? (post.alternateimg_aspect? == :portrait ? 'medium-6 large-3' : (column_count > 12 ? "medium-#{post.alternateimg_width > 900 ? 12 : 6}  large-3" : "medium-6  large-6")) : 'medium-6 large-3', ( post == @posts.last || post == @posts[-2]) && column_count < 12 ? 'hide-for-large-up' : false]}
-              .inner{style: post.alternateimg? ? "background: url(#{post.alternateimg.url(:full)}) no-repeat center center; background-size: cover;" : ''}
-                %h3= post.title.nil? ? post.translations.first.title : post.title
-                .date
-                  = t("madhouse.posted_by", poster: post.is_personal == true ? post.user.name : 'Mad House', when: l(post.published_at.to_date, format: :long))
-    .row
-      .small-3.small-offset-9.columns.text-right
-        .smaller= link_to fa_icon('arrow-up') + t("madhouse.back_to_top"), '#', onclick: 'javascript:$("html, body").animate({ scrollTop: 0 }, "slow");return false;'
-        .smaller
-          = link_to fa_icon('envelope') + t("madhouse.all_posts"), posts_path
+      - column_count = 3
+      .front_upcoming.large-9.large-push-3.columns.small-12
+        .small-up-1.medium-up-2.large-up-3.xlarge-up-4.row.expanded{:"data-equalizer-watch" => ''}
+          - @first_events.each_with_index do |event, index|
+
+            = link_to event do
+              .single_event.column
+                .inner{style: event.avatar? ? "background: url(#{event.avatar.url}) no-repeat center center; background-size: cover;" : ''}
+                  %h3
+                    - if event.secondary == true && @ihana.nil?
+                      = t "madhouse.next_at_ihana"
+                    = link_to event.title, event
+
+                  .date
+                    = date_range(event.date, event.enddate)
+
+                  - if event.secondary == true && @ihana.nil?
+                    .lower_link= link_to t("madhouse.ihana_bar_programme"), '/madhousebar'
+        .row.expanded
+          .small-10.small-offset-1.columns.text-right
+            .smaller
+              = link_to fa_icon('arrow-up') + t("madhouse.back_to_top"), '#', onclick: 'javascript:$("html, body").animate({ scrollTop: 0 }, "slow");return false;'
+            .smaller
+              = link_to fa_icon('star') + t("madhouse.all_events"), events_path
+      .latest_post_container.columns.large-3.large-pull-9.small-12.medium-offset-0
+        = render partial: 'shared/news_sidebar'
 
 
 -# social media stream
@@ -96,15 +62,21 @@
 - link_filter = AutoHtml::Link.new(target: '_blank')
 
 - unless @social_media['twitter'].empty?
-  .social_front.row
+  .social_front.row.expanded
     - @social_media['twitter'].each do |sm|
-      .small-2.twitter.columns
+      .small-6.medium-4.large-2.twitter.columns
         .twitter_box
           = link_to fa_icon('twitter'), sm.link_url, target: :_blank
 
           = raw link_filter.call(sm.content)
           .timestamp= link_to timeago_tag(Time.at(sm.issued_at)),  sm.link_url, target: :_blank
-          
+
+- unless @upcoming.empty?
+  - column_count = 0
+  .events_index
+    .event_boxes
+      = render partial: 'events/eventfeed', locals: {column_count: column_count}
+
 - unless @social_media['other'].empty?
   .social_other
     - @social_media['other'].each do |sm|
@@ -123,28 +95,16 @@
             = raw link_filter.call(truncate_html(sm.title, length: 150))
             .timestamp= link_to timeago_tag(Time.at(sm.issued_at)),  sm.link_url, target: :_blank
 
-.mailing_list_front
+.calendar_front#calendar_container
   .row
-    .small-6.text-center.columns
-      .blurb= t "madhouse.join_our_email_list"
-      = form_tag url_for('/madhouse/add_to_list'), :id => :email_form, :method => :post, :remote => true do 
-        #loading{:style => 'display: none'}= image_tag(theme_image_path('spinner.gif'))
-        #email_error
-        .email_signup_form   
-          = text_field_tag :email, t("madhouse.enter_your_email_address"), { :class => "clearfield"}
-          = submit_tag t(:join), :class => :email_signup
-    .small-6.columns
-      = image_tag theme_image_path('mailing_list_front.jpg')
+    .small-12.columns#calendar
+
+
+
 
 = content_for :jquery do
   :plain
-    $('.carousel').slick({
-        dots: true,
-        
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 5500
-      })
+
     $('.social_other').slick({
         dots: false,
         infinite: true,
@@ -155,6 +115,104 @@
         variableWidth: true,
         autoplay: true,
         autoplaySpeed: 2500
-      })      
-      
-      
+    });
+    var $fc = $("#calendar");
+
+    var screenWidth = $(window).width();
+    var options = {
+          editable: true,
+          header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+          },
+          defaultView: 'month',
+          contentHeight: '600px',
+          lang: '#{I18n.locale.to_s}',
+          contentHeight: 'auto',
+          firstDay: 1,
+
+          fixedWeekCount: false,
+          slotMinutes: 30,
+          eventSources: [
+            {
+              url: '/calendar'
+            }
+          ],
+          timeFormat: 'H:mm',
+          dragOpacity: "0.5",
+          eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+            return updateEvent(event);
+          },
+          eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
+            return updateEvent(event);
+          }
+        };
+    var mobileOptions = {
+      editable: true,
+      header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: ''
+      },
+      defaultView: 'listMonth',
+
+      lang: '#{I18n.locale.to_s}',
+      contentHeight: 'auto',
+      firstDay: 1,
+
+      fixedWeekCount: false,
+      slotMinutes: 30,
+      eventSources: [
+        {
+          url: '/calendar'
+        }
+      ],
+      timeFormat: 'H:mm',
+      dragOpacity: "0.5",
+      eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+        return updateEvent(event);
+      },
+      eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
+        return updateEvent(event);
+      }
+    };
+
+    if (screenWidth < 700) {
+      $fc.fullCalendar(mobileOptions);
+    } else {
+      $fc.fullCalendar(options);
+    };
+    var today = new Date();
+    var d = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    if (d < '2018-01-01') {
+      $fc.fullCalendar('gotoDate', '2018-01-01');
+    }
+
+    var  updateEvent = function(the_event) {
+
+        return $.update("/calendar/" + the_event.id, {
+          event: {
+            title: the_event.title,
+            starts_at: "" + the_event.start,
+            ends_at: "" + the_event.end,
+            description: the_event.description
+          }
+        });
+      };
+
+    $(window).resize(function() {
+
+      screenWidth = $(window).width();
+      $fc.fullCalendar('destroy');
+      if (screenWidth < 700) {
+        $fc.fullCalendar(mobileOptions);
+        } else {
+          $fc.fullCalendar(options);
+        };
+      var today = new Date();
+      var d = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+      if (d < '2018-01-01') {
+        $fc.fullCalendar('gotoDate', '2018-01-01');
+      }
+    });

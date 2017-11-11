@@ -5,14 +5,19 @@
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     = display_meta_tags :site => 'Mad House Helsinki'
     = stylesheet_link_tag    'madhouse/stylesheets/staff', media: 'screen'
-    = javascript_include_tag 'madhouse/javascripts/application', 'data-turbolinks-track' => false 
+    = javascript_include_tag 'madhouse/javascripts/application', 'data-turbolinks-track' => false
     = javascript_include_tag Ckeditor.cdn_url
-    = javascript_include_tag 'madhouse/javascripts/staff', 'data-turbolinks-track' => false 
+    = javascript_include_tag 'madhouse/javascripts/staff', 'data-turbolinks-track' => false
     = csrf_meta_tags
     -#%link{:href => "/posts.rss", :rel => "alternate", :title => "RSS", :type => "application/rss+xml"}/
 
   %body
-    %header 
+    #flash
+      - unless flash.empty?
+        = content_tag :div, flash[:notice],  :class => "notice"  if flash[:notice]
+        = content_tag :div, flash[:warning], :class => "warning" if flash[:warning]
+        = content_tag :div, flash[:error],   :class => "error"   if flash[:error]
+    %header
       .row.expanded
         .small-3.columns.end
           = image_tag theme_image_path('top_banner.png')
@@ -24,12 +29,12 @@
               = link_to admin_events_path, class: :item do
                 = image_tag theme_image_path('/icons/event_icon.png')
                 %label Events
-       
+
             %li
               = link_to admin_flickers_path, class: :item  do
                 = image_tag theme_image_path('/icons/archive_icon.jpg')
                 %label Archival images
-     
+
             %li
               = link_to admin_posts_path, class: :item  do
                 = image_tag theme_image_path('/icons/post_icon.png')
@@ -55,5 +60,5 @@
                 %label Carousel vids
     = yield
   :javascript
-    $(document).ready(function() { #{yield :jquery} 
+    $(document).ready(function() { #{yield :jquery}
     });

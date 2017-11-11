@@ -10,7 +10,7 @@
     .six.columns.clearfix.alpha
       = f.input :date, :as => :string,  :input_html => {:class => 'date-pick'}
       = f.input :enddate, :as => :string, :input_html => {:class => 'date-pick'}, :label => "Ending date", :hint => 'leave blank unless a multi-day event; not for things that will run past midnight'
-      = f.input :promoter, :label => "Promoter", :hint => "optional, ex: Äänen Lumo, usually blank though"      
+      = f.input :promoter, :label => "Promoter", :hint => "optional, ex: Äänen Lumo, usually blank though"
     .six.columns.clearfix.omega
       = f.input :place, :as => :select,:collection => Place.for_events.map{|x| [x.name + "/" + x.address1, x.id]}, :hint => "Don't accidentally pick the old Ptarmigan on Nilsiänkatu!", :include_blank => true
 
@@ -19,7 +19,7 @@
     = tabs_for do |tab|
       - tab.create('english', 'English') do
         = f.globalize_fields_for :en do |en|
-          %p 
+          %p
             Title
             = en.text_field :title
             Note: you must enter content in all three fields (title, description, notes) for a language
@@ -55,10 +55,10 @@
           %p
             Märkmed ja metaandmeid (algusaeg, jne)
             %br/
-            = et.text_area :notes, {:cols => 40, :rows => 5}          
+            = et.text_area :notes, {:cols => 40, :rows => 5}
       - tab.create('russian', 'Russian') do
         = f.globalize_fields_for :ru do |ru|
-          %p 
+          %p
             Title
             = ru.text_field :title
             Note: you must enter content in all three fields (title, description, notes) for a language
@@ -68,10 +68,10 @@
           %p
             Заметки и метаданные (время начала, и т.д.)
             %br/
-            = ru.text_area :notes, {:cols => 40, :rows => 5}  
+            = ru.text_area :notes, {:cols => 40, :rows => 5}
       - tab.create('latvian', 'Latvian') do
         = f.globalize_fields_for :lv do |lv|
-          %p 
+          %p
             Title
             = lv.text_field :title
             Note: you must enter content in all three fields (title, description, notes) for a language
@@ -81,10 +81,10 @@
           %p
             Notes and metadata (start time, etc.)
             %br/
-            = lv.text_area :notes, {:cols => 40, :rows => 5}                    
+            = lv.text_area :notes, {:cols => 40, :rows => 5}
       - tab.create('swedish', 'Swedish') do
         = f.globalize_fields_for :sv do |sv|
-          %p 
+          %p
             Title
             = sv.text_field :title
           %p
@@ -93,13 +93,13 @@
           %p
             Notes and metadata (start time, etc.)
             %br/
-            = sv.text_area :notes, {:cols => 40, :rows => 5}      
+            = sv.text_area :notes, {:cols => 40, :rows => 5}
   .twelve.columns
     %h4 Other information
     .six.columns.alpha
-      = f.input :cost, :label => "Cost", :hint => "enter 0 for free events, must be number, no characters besides numbers and . allowed"
+      = f.input :cost, :label => "Cost", :hint => "enter whatever you want now, it's a free text field"
       = f.input :donations_requested, :label => 'Donations requested?', :hint => "Check this to replace 'FREE' on site with 'Donations requested'"
-      = f.input :discountedcost, :label => "Alternate discount cost?", :hint => "For events that are cheaper for some people (unemployed, members, etc.)"
+      = f.input :discountedcost, :label => "Alternate discount cost?", :hint => "this still has to be a number. Just use the cost as a text field now."
       = f.input :discountreason, :label => "Discount reason", :hint => "If discount cost above is enteres, this reason for the discount will be displayed on the lower price, eg: 'With mental alaska membership card'"
     .six.columns.omega
       = f.input :artist, :collection => Artist.order("startdate DESC").map{|x| [x.name[0..40], x.id]}, :hint => "Choose an artist if this event related directly to a resident artist"

@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Page < ActiveRecord::Base
   belongs_to :location
-  belongs_to :subsite
+  belongs_to :subsite, optional: true
   scope :by_location, ->(x) { where(location_id: x)}
   scope :by_subsite, ->(x) { where(subsite_id: x)}
   translates :title, :excerpt, :body
@@ -12,7 +12,7 @@ class Page < ActiveRecord::Base
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller.current_user }
 
-  has_attached_file :carousel, :styles => {:new_carousel => "960x400#", 
+  has_attached_file :carousel, :styles => {:new_carousel => "960x400#",
     :full => "600x400>", :small => "300x200#",
     :thumb => "100x100>" },
     :path =>  ":rails_root/public/images/carousel/pages/:id/:style/:normalized_resource_file_name",
@@ -29,7 +29,7 @@ class Page < ActiveRecord::Base
   def name
     title
   end
-  
+
   def description
     body
   end

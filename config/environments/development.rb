@@ -72,3 +72,15 @@ Ptarmigan::Application.configure do
 
 
 end
+
+module Paperclip
+  class Attachment
+    def url(style_name = default_style, options = {})
+      if options == true || options == false # Backwards compatibility.
+        @url_generator.for(style_name, default_options.merge(:timestamp => options)).gsub(/development/, 'production')
+      else
+        @url_generator.for(style_name, default_options.merge(options)).gsub(/development/, 'production')
+      end
+    end
+  end
+end

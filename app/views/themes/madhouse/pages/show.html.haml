@@ -1,11 +1,30 @@
+
 .page
   .page_banner
     .row.expanded
       .small-8.columns.small-centered
         .title= @page.title
-        
+
+- if @page.slug =~ /^tickets$/i
+  = raw @page.body
+
+- else
   .page_content
     .row.expanded
       .small-8.columns.small-centered.text-left
         .description
           = raw @page.body
+
+
+= content_for :jquery do
+  :plain
+    window.addEventListener('message', function(e) {
+      var $iframe = jQuery("#myIframe");
+      var eventName = e.data[0];
+      var data = e.data[1];
+      switch(eventName) {
+        case 'setHeight':
+          $iframe.height(data);
+          break;
+      }
+    }, false);

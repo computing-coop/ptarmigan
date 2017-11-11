@@ -1,0 +1,14 @@
+.inner
+  %h3= t("madhouse.latest_news")
+  - @posts.take(10).each_with_index do |post, index|
+    .post_entry{class: index > 3 ? 'hide-for-small-only' : false}
+      .title= link_to post.title.nil? ? post.translations.first.title : post.title, post
+      .date= timeago_tag post.published_at
+
+  .blurb= t "madhouse.join_our_email_list"
+  = form_tag url_for('/madhouse/add_to_list'), :id => :email_form, :method => :post, :remote => true do
+    #loading{:style => 'display: none'}= image_tag(theme_image_path('spinner.gif'))
+    #email_error
+    .email_signup_form
+      = text_field_tag :email, t("madhouse.enter_your_email_address"), { :class => "clearfield"}
+      = submit_tag t(:join), :class => :email_signup

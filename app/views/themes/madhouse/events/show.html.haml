@@ -4,6 +4,11 @@
       .small-12.columns
         %h1= @event.title
 
+        - unless @event.doublebills.empty?
+          .event_doublebills
+            = t "madhouse.ticket_also_includes"
+            - @event.doublebills.each do |db|
+              = link_to db.name, db, target: :_blank
         .event_metadata
           - if @event.future?
             - unless @event.ticket_url.blank?

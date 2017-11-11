@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171111123444) do
+ActiveRecord::Schema.define(version: 20171111142540) do
 
   create_table "activities", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "trackable_id"
@@ -277,6 +277,12 @@ ActiveRecord::Schema.define(version: 20171111123444) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "doublebills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "event_id"
+    t.integer "doublebill_id"
+    t.index ["event_id"], name: "index_doublebills_on_event_id"
   end
 
   create_table "event_translations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

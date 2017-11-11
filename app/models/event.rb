@@ -16,6 +16,11 @@ class Event < ActiveRecord::Base
   has_many :attendees, :dependent => :destroy
   has_and_belongs_to_many :eventcategories
   accepts_nested_attributes_for :eventcategories
+
+  has_and_belongs_to_many :doublebills, class_name: "Event",
+                                   join_table: "doublebills",
+                                   association_foreign_key: "doublebill_id"
+  accepts_nested_attributes_for :doublebills
   has_attached_file :avatar, :styles => { :larger => "350x350>", :medium => "400x400#",  :small => "240x240>",
                                        :thumb => "100x100>", :archive => "115x115#" },
          url: ':s3_domain_url',

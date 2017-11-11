@@ -3,12 +3,13 @@
  *= require jquery-ui/tabs
  *= require datetimepicker
  *= require fullcalendar
+ *= require chosen
  */
 
 @import 'madhouse/stylesheets/foundation_and_overrides';
 
 .top-bar {
-  a.item { 
+  a.item {
     border: 1px dotted blue;
     padding: 0.4rem;
     border-radius: 2px;
@@ -45,7 +46,7 @@ form {
   input[type=text],input[type=number] {
     margin-bottom: 0;
   }
-  
+
   p.inline-hints {
     font-size: 0.74rem;
     color: #666;

@@ -40,7 +40,7 @@ gem 'capistrano-rails'#, '1.1.3'
 gem 'capistrano-rvm'
 gem 'capistrano-bundler'#, '1.1.4'
 gem 'capistrano3-puma'
-
+gem 'chosen-rails'
 # gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'country_select'

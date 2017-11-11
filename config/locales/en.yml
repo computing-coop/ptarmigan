@@ -61,7 +61,7 @@ en:
     order:
     - :year
     - :month
-    - :day    
+    - :day
     formats:
       default: "%d-%m-%Y"
       long: "%d %B, %Y"
@@ -89,7 +89,7 @@ en:
       same_day_no_time: "%{from_day} %{from_month} %{year}"
       different_months_same_year: "%{from_day} %{from_month} %{sep} %{until_day} %{until_month} %{year}"
       different_years: "%{from_day} %{from_month} %{from_year} %{sep} %{until_day} %{until_month} %{until_year}"
-      same_month: "%{from_day} %{sep} %{until_day} %{month} %{year}"  
+      same_month: "%{from_day} %{sep} %{until_day} %{month} %{year}"
       same_month_no_time: "%{from_day} %{sep} %{until_day} %{month} %{year}"
   number:
     currency:
@@ -124,7 +124,7 @@ en:
     - september
     - october
     - november
-    - december      
+    - december
   errors_with_form: 'There were errors with your registration.'
   verify_you_are_human: 'Please verify that you are human:'
   am_i_registered: 'Am I already registered?'
@@ -145,7 +145,7 @@ en:
   residencies: "Residencies"
   ago: 'ago'
   find_us: "Find us"
-  contact: "Contact"  
+  contact: "Contact"
   see: "See"
   seeall: "See all"
   event: "Event"
@@ -279,7 +279,7 @@ en:
     vote: 'vote'
     for: 'for'
     against: 'against'
-    vote_for: 'Vote for'  
+    vote_for: 'Vote for'
   ct:
     site_title: 'Culturemap'
     events_list: 'Events List'
@@ -382,3 +382,4 @@ en:
     press: 'Press'
     go_to: 'Go to '
     see_below: 'See below...'
+    ticket_also_includes: 'Ticket also includes admission to: '

@@ -94,6 +94,10 @@ header {
           display: table-cell;
           text-align: left;
           white-space: nowrap;
+          &.is-submenu-item {
+            background-color: white;
+            position: absolute;
+          }
           ul.f-dropdown {
             li {
               width: 200px;

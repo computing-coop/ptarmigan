@@ -271,6 +271,8 @@ class Event < ActiveRecord::Base
       end
     elsif date.year == 2017
       4
+    elsif date.year == 2018
+      5
     else
       false
     end

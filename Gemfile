@@ -35,7 +35,7 @@ gem 'cancancan'
 gem 'calendrier'
 
 
-gem 'capistrano'
+gem 'capistrano', '3.7.1'
 gem 'capistrano-rails'#, '1.1.3'
 gem 'capistrano-rvm'
 gem 'capistrano-bundler'#, '1.1.4'

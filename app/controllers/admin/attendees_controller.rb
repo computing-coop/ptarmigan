@@ -6,7 +6,7 @@ class Admin::AttendeesController < Admin::BaseController
   
   respond_to :html, :js, :xml, :json
   layout 'staff', :only => [:index, :edit]
-  before_filter :authenticate_user!, :only => [:index, :destroy, :edit]
+  before_action :authenticate_user!, :only => [:index, :destroy, :edit]
   def create
     @attendee = Attendee.create(params[:attendee])
     if @attendee.save

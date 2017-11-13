@@ -52,7 +52,7 @@ class PagesController < ApplicationController
         # @carousel = []
         # @carousel =  Flicker.by_location(@location.id).joins(:event).group("events.id")
         @first_events = @upcoming.take(6)
-        @upcoming = @upcoming[6..-1].take(8)
+        @upcoming = @upcoming[6..-1].take(8) unless @upcoming.empty?
         @posts = Post.by_location(@location.id).published.limit(10)
         #
         # events = @upcoming.to_a.reject{|x| !x.carousel? }

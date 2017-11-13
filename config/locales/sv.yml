@@ -199,15 +199,15 @@ sv:
       default: "%a, %e %b %Y %H:%M:%S %z"
       long: "%e %B %Y %H:%M"
       short: "%e %b %H:%M"
-    pm: ''  
+    pm: ''
   googlecalendar: "Ptarmigans arrangemang kan också visas som Google Kalender."
-  about: "Om oss" 
+  about: "Om oss"
   calendar: "Kalender"
   current: "Ström"
   archive: "Arkiv"
   residencies: "Residencies"
   find_us: "Hitta hit"
-  contact: "Kontakt"  
+  contact: "Kontakt"
   seeall: "Visa alla"
   events: "Evenemang"
   artists: "Konstnärer"
@@ -247,7 +247,7 @@ sv:
   proposal_organisation: 'Organisation eller grupp'
   optional: 'valfritt'
   postal_address: 'Postadress'
-  country: 'Vistelseland' 
+  country: 'Vistelseland'
   proposal_phone: 'Telefonnummer (inklusive landskod)'
   proposal_shortdescription: 'Vänligen beskriv ditt projekt i mindre än 100 ord.'
   proposal_duration: 'Hur lång tid behöver du uppskattningsvis för att utföra projektet? (t.ex. en kväll, två månader, en vecka, osv.) När skulle vara en lämplig tid för dig att utföra projektet?'
@@ -264,7 +264,7 @@ sv:
   send_proposal: 'Skicka ditt förslag!'
   inactive_projects: 'Inaktiva projekt'
   nope: 'nix!'
-  project_spiel: "Vi kallar Ptarmigan för ett 'projektrum' och uppskattar återkommande arrangemang som bygger på tidigare erfarenheter. Ofta utgör våra arrangemang delar av mer omfattande projekt. Vi är alltjämt öppna för förslag både vad gäller nya projekt och nya arrangemang inom ramverket av våra befintliga teman."  
+  project_spiel: "Vi kallar Ptarmigan för ett 'projektrum' och uppskattar återkommande arrangemang som bygger på tidigare erfarenheter. Ofta utgör våra arrangemang delar av mer omfattande projekt. Vi är alltjämt öppna för förslag både vad gäller nya projekt och nya arrangemang inom ramverket av våra befintliga teman."
   documents_resources: 'dokument/resurser'
   photos: 'bilder'
   videos: 'videor'
@@ -272,7 +272,7 @@ sv:
   dates:
     zero: 'Datum'
     one: 'Datum'
-    other: 'Datum'  
+    other: 'Datum'
   madhouse:
     upcoming_events: 'Uppkommande evenemang'
     buy_tickets: 'Köp biljetter'
@@ -293,3 +293,4 @@ sv:
     press: 'Press'
     contact: 'Kontaktuppgifter'
     go_to: 'Go to '
+    ticket_also_includes: 'Med samma biljett: '

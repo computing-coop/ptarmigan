@@ -31,7 +31,7 @@
 
       - column_count = 3
       .front_upcoming.large-9.large-push-3.columns.small-12
-        .small-up-1.medium-up-2.large-up-3.xlarge-up-4.row.expanded{:"data-equalizer-watch" => ''}
+        .small-up-1.medium-up-2.row.expanded{:"data-equalizer-watch" => '', class: @first_events.size < 3 ? false : 'large-up-3 xlarge-up-4'}
           - @first_events.each_with_index do |event, index|
 
             = link_to event do
@@ -71,7 +71,7 @@
           = raw link_filter.call(sm.content)
           .timestamp= link_to timeago_tag(Time.at(sm.issued_at)),  sm.link_url, target: :_blank
 
-- unless @upcoming.empty?
+- unless @upcoming.empty? || @upcoming == @first_events
   - column_count = 0
   .events_index
     .event_boxes

@@ -10,26 +10,34 @@ class Admin::PostsController < Admin::BaseController
   def edit
     @post = Post.friendly.find(params[:id])
   end
-  
+
+  def destroy
+    @post = Post.friendly.find(params[:id])
+    if can? :destroy, @post
+      @post.destroy
+    end
+    redirect_to admin_posts_path
+  end
+
   def new
     @post = Post.new
   end
-  
+
   def index
     @posts = Post.by_location(@location.id).order('published_at DESC, created_at DESC').page(params[:page]).per(50)
   end
-  
+
   def show
     redirect_to post_path(:id => params[:id])
   end
-  
+
   def update
     @post = Post.friendly.find(params[:id])
     respond_to do |format|
       if @post.update_attributes(post_params)
         # expire_fragment(@event.location.name + '_projects_page')
         flash[:notice] = 'Post was successfully updated.'
-        format.html { 
+        format.html {
             redirect_to admin_posts_path
         }
         format.xml  { head :ok }
@@ -39,9 +47,9 @@ class Admin::PostsController < Admin::BaseController
       end
     end
   end
-    
+
   protected
-  
+
   def post_params
     params.require(:post).permit([:user_id, :location_id, :published, :remove_carousel, :remove_alternateimg, :is_personal, :carousel, :hide_carousel, :slug, :not_news,
         :subsite_id, :show_on_main, :published_at, :embed_gallery_id, :embed_above_post, :second_embed_gallery_id, :sticky,

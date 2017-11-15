@@ -20,7 +20,7 @@ Ptarmigan::Application.routes.draw do
   get "ckeditor/pictures", :via => :post, :controller => 'ckeditor/pictures', :action => :create
   post '/search/simple', :controller => 'application', :action => 'search'
   resources :airforms, :member => {:submit => :get}, :collection => {:submitted => :get}
-
+  get '/aiparty', controller: 'events', action: 'show', id: 'aiparty'
   # logout '/air/logout', :controller => 'sessions', :action => 'destroy'
   # login '/air/login', :controller => 'sessions', :action => 'new_applicant'
   # register '/air/register', :controller => 'applicants', :action => 'create'

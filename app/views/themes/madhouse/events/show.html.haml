@@ -87,7 +87,7 @@
         - unless @event.facebook.blank?
           %span.facebook_button= link_to t("madhouse.facebook_link"), "https://www.facebook.com/events/#{@event.facebook}/", target: :_blank
           %br/
-        = render partial: 'shared/share_buttons', locals: {url:  CGI::escape("http://#{request.host}#{request.port != 80 ? ":" + request.port.to_s : ''}#{url_for(@event)}"), title: CGI::escape(@event.name)}
+        = render partial: 'shared/share_buttons', locals: {url:  CGI::escape("http://#{request.host}#{request.port != 80 ? ":" + request.port.to_s : ''}#{url_for(@event)}"), title: CGI::escape(@event.name.to_s) }
 
   - if @event.is_festival?
     .row

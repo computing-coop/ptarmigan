@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
   friendly_id :title, :use => :history
   has_and_belongs_to_many :postcategories
   belongs_to :user
-  belongs_to :location
+  belongs_to :location, optional: true
   belongs_to :subsite, optional: true
   has_many :podcasts
 

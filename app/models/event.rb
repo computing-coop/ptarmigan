@@ -135,9 +135,11 @@ class Event < ActiveRecord::Base
       self.slug = title_en.to_param
     end
     if new_record?
-      if !Event.find_by(slug: slug).nil?
-        sequence = Event.where("slug LIKE ?", "#{self.slug}--%").count + 2
-        slug = "#{slug}--#{sequence}"
+
+      if !Event.find_by(slug: self.slug).nil?
+        sequence = Event.where("slug LIKE ?", "#{self.slug}%").count + 2
+        self.slug = "#{self.slug}--#{sequence}"
+
       end
     else
 

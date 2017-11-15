@@ -131,7 +131,9 @@ class Event < ActiveRecord::Base
   end
 
   def check_slug
-
+    if self.slug.blank?
+      self.slug = title_en.to_param
+    end
     if new_record?
       if !Event.find_by(slug: slug).nil?
         sequence = Event.where("slug LIKE ?", "#{self.slug}--%").count + 2

@@ -75,7 +75,7 @@ gem 'kaminari'
 gem 'kgio'
 
 gem "koala", "~> 2.2"
-# gem "non-stupid-digest-assets"
+gem "non-stupid-digest-assets"   # seems to be needed for themes_for_rails ?
 
 gem 'later_dude', '>= 0.3.1'
 gem 'mailchimp-api', require: 'mailchimp'

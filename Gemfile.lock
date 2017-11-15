@@ -734,6 +734,8 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
+    non-stupid-digest-assets (1.0.9)
+      sprockets (>= 2.0)
     oembed (0.2.0)
     orm_adapter (0.5.0)
     paperclip (5.0.0)
@@ -948,6 +950,7 @@ DEPENDENCIES
   momentjs-rails
   mysql2
   nested_form
+  non-stupid-digest-assets
   oembed
   paperclip (~> 5.0.0)
   public_activity

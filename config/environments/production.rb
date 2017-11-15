@@ -50,9 +50,9 @@ Ptarmigan::Application.configure do
   # config.threadsafe!
   config.paperclip_defaults = {
     :storage => :s3,
-     s3_region: 'eu-west-1',
+     s3_region: 'eu-central-1',
     :bucket => 'creativeterritories-production',
-    :s3_host_name => "s3.amazonaws.com", # Added entry
+    :s3_host_name => "s3.eu-central-1.amazonaws.com", # Added entry
  :url => ":s3_host_name"
   }
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

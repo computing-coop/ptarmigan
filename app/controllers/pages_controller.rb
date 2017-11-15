@@ -93,7 +93,7 @@ class PagesController < ApplicationController
           :title => nil
         @upcoming = Event.published.future.by_location(@location.id).where(:hide_from_front => false).where("subsite_id is null OR show_on_main = true")
         @new_carousel = Flicker.joins(:event).where(:include_in_carousel => true).where("events.location_id = ?", @location.id).group("events.id")
-        @new_carousel = @new_carousel.to_a.sort_by{ rand }[0..5]
+        @new_carousel = @new_carousel.take(6)
 
         @about = Page.find_by_slug('about')
         @where = Page.where(:slug => 'where').by_location(@location.id).first

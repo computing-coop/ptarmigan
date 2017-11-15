@@ -122,8 +122,8 @@ class Event < ActiveRecord::Base
       :place_id => self.place.id,
       :recurring => false,
       :categories => self.eventcategories.empty? ? [] : self.eventcategories.map(&:slug),
-      :url => Rails.application.routes.url_helpers.event_path(slug),
-      :cturl => Rails.application.routes.url_helpers.event_path(slug)
+      :url => slug.blank? ? '' : Rails.application.routes.url_helpers.event_path(slug),
+      :cturl => slug.blank? ? '' : Rails.application.routes.url_helpers.event_path(slug)
       #:color => "red"
     }
 

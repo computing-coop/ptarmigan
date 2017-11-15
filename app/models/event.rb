@@ -44,6 +44,7 @@ class Event < ActiveRecord::Base
   alias_attribute :name, :title
   before_save :perform_avatar_removal
   before_save :extract_dimensions
+  before_save :check_slug
   serialize :carousel_dimensions
   serialize :avatar_dimensions
   after_save :remove_blank_translations
@@ -127,6 +128,23 @@ class Event < ActiveRecord::Base
       #:color => "red"
     }
 
+  end
+
+  def check_slug
+
+    if new_record?
+      if !Event.find_by(slug: slug).nil?
+        sequence = Event.where("slug LIKE ?", "#{self.slug}--%").count + 2
+        slug = "#{slug}--#{sequence}"
+      end
+    else
+
+      if !Event.where(['id <> ?', id]).find_by(slug: self.slug).nil?
+
+        sequence = Event.where("slug LIKE ?", "#{self.slug}--%").count + 2
+        self.slug = "#{self.slug}--#{sequence}"
+      end
+    end
   end
 
   def carousel_image?

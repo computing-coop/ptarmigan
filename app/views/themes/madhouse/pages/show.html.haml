@@ -5,15 +5,12 @@
       .small-8.columns.small-centered
         .title= @page.title
 
-- if @page.slug =~ /^tickets$/i
-  = raw @page.body
 
-- else
-  .page_content
-    .row.expanded
-      .small-8.columns.small-centered.text-left
-        .description
-          = raw @page.body
+.page_content
+  .row.expanded
+    .small-8.columns.small-centered.text-left
+      .description
+        = raw @page.body
 
 
 = content_for :jquery do

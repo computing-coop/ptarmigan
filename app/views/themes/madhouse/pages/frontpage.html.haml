@@ -25,8 +25,13 @@
 -#             = slide.carousel_date.empty? ? '' : slide.carousel_date.map{|x| l x, :format => :long}.join(' - ')
 
 - unless @first_events.empty?
-
+  .mad_banner
+    .text-center
+      %h2
+        = t("madhouse.season")
+        5
   .front_posts_container
+
     .row.expanded
 
       - column_count = 3

@@ -110,6 +110,8 @@ header {
   }
 }
 
+
+
 .carousel {
 
   .slick-dots {
@@ -457,7 +459,19 @@ span.facebook_button {
     }
   }
 }
+
+.mad_banner {
+  background-color: $madhouseblue;
+  h2 {
+    font-family: $signika;
+    color: white;
+    text-transform: uppercase;
+  }
+  padding: 0.4rem 0;
+}
+
 .front_posts_container {
+
   background-color: white;
   padding: 1.5rem 0;
   color: white;

@@ -21,7 +21,7 @@
     %meta{:content => "/ms-icon-144x144.png", :name => "msapplication-TileImage"}/
     %meta{:content => "#ffffff", :name => "theme-color"}/
     %meta{property: "fb:app_id", content: Figaro.env.madhouse_facebook_client_id.to_s}
-
+    %link{:href => "https://fonts.googleapis.com/css?family=Signika", :rel => "stylesheet"}
     = display_meta_tags :site => 'Mad House Helsinki'
     - unless I18n.locale.to_s == 'en'
       %meta{property: 'og:locale:alternate', content: 'en_US'}

@@ -21,10 +21,11 @@
     %meta{:content => "/ms-icon-144x144.png", :name => "msapplication-TileImage"}/
     %meta{:content => "#ffffff", :name => "theme-color"}/
     %meta{property: "fb:app_id", content: Figaro.env.madhouse_facebook_client_id.to_s}
+    %link{:href => "https://fonts.googleapis.com/css?family=Signika", :rel => "stylesheet"}
     = display_meta_tags :site => 'Mad House Helsinki'
     = stylesheet_link_tag 'madhouse/stylesheets/application', media: 'screen'
     -#= javascript_include_tag "vendor/modernizr"
-    = javascript_include_tag 'madhouse/javascripts/application', 'data-turbolinks-track' => false 
+    = javascript_include_tag 'madhouse/javascripts/application', 'data-turbolinks-track' => false
     = timeago_script_tag
     = csrf_meta_tags
     %script{:type => "text/javascript"}
@@ -35,7 +36,7 @@
 
       ga('create', 'UA-53860540-1', 'auto');
       ga('send', 'pageview');
-      
+
     -#%link{:href => "/posts.rss", :rel => "alternate", :title => "RSS", :type => "application/rss+xml"}/
 
   %body
@@ -48,7 +49,7 @@
         = link_to fa_icon("flickr"), 'https://www.flickr.com/photos/129272798@N06', target: :_blank
         = link_to fa_icon("rss"), '/feed.rss', target: :_blank
 
-        
+
       .text-center.end.languages
         - if I18n.locale.to_s != 'en'
           = link_to('EN', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en')
@@ -61,7 +62,7 @@
           %strong FI
         |
         - if I18n.locale.to_s != 'sv'
-          = link_to('SV', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv') 
+          = link_to('SV', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv')
         - else
           %strong SV
 
@@ -69,19 +70,19 @@
         =  retina_image_tag theme_image_path('madhousebanner.png')
 
       .menu_bar.text-center
-        .menu_items.hide-for-small-only= render partial: 'layouts/top_menu'    
+        .menu_items.hide-for-small-only= render partial: 'layouts/top_menu'
       .menu_select.show-for-small-only
         .row
           .small-10.columns.menu_items= render partial: 'layouts/mobile_menu'
     = yield
     %footer= render partial: 'layouts/footer'
   :javascript
-    $(document).ready(function() { #{yield :jquery} 
+    $(document).ready(function() { #{yield :jquery}
       $("input.clearfield").clearField();
       $('form#email_form').submit(function() {
-        $('button.email_signup').attr('disabled', 'disabled');   
+        $('button.email_signup').attr('disabled', 'disabled');
         $("#loading").toggle();
         $('form#email_form input#email').toggle();
       });
-    
+
     });

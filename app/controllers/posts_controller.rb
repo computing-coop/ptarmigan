@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class PostsController < ApplicationController
 
-  
+
   def index
     if @subsite
       @posts = Post.by_subsite(@subsite).published.order('created_at DESC').page params[:page]
@@ -14,14 +14,14 @@ class PostsController < ApplicationController
         :type  => "madhousehelsinki:article",
         image: 'http://madhousehelsinki.fi/assets/madhouse/images/MADHOUSE_4kausi_coverphoto.jpg',
         :url   => url_for({:only_path => false, :controller => :posts}),
-        }, 
+        },
         :fb             => {
             :app_id       => Figaro.env.madhouse_facebook_client_id
           },
         :canonical => url_for({:only_path => false, :controller => :posts}),
         :keywords => 'Mad House,Helsinki,Finland,Suvilahti,culture,art,performance,live art',
         :description => t("madhouse.latest_news"),
-        :title => "Mad House Helsinki: "  + t("madhouse.latest_news") 
+        :title => "Mad House Helsinki: "  + t("madhouse.latest_news")
     else
       set_meta_tags :open_graph => {
         :title => "News | Ptarmigan" ,
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
       format.xml  { render :xml => @posts }
     end
   end
-  
+
   def witnessed
     @posts = Post.by_location(@location.id).published.not_news.order('created_at DESC').page params[:page]
     render :template => 'posts/index'
@@ -58,9 +58,10 @@ class PostsController < ApplicationController
           :type  => "madhousehelsinki:article",
           locale: {
             _:  session[:locale].to_s + '_' + (session[:locale].to_s == 'sv' ? 'SE' : session[:locale].to_s.upcase)
-            
+
           },
           :url   =>  url_for(@post) ,
+          description: @post.body,
           :image => (@post.alternateimg? ?  @post.alternateimg.url(:full)  : (@post.carousel? ?  @post.carousel.url(:medium) : 'http://madhousehelsinki.fi/assets/madhouse/images/MADHOUSE_4kausi_coverphoto.jpg' ))
           },
           :canonical => url_for(@post),
@@ -78,14 +79,14 @@ class PostsController < ApplicationController
           :description => @post.body,
           :title => @post.title
     end
-  
+
   end
-  
+
   protected
 
   def collection
     @posts ||= end_of_association_chain.paginate(:page => params[:page])
     @posts = @posts.reverse
   end
-       
+
 end

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   # before_action :tiib_check
   before_action :configure_permitted_parameters, if: :devise_controller?
   # before_action :scorestore_check
-  
+
   def protect_with_staging_password
     if @subsite.theme == 'creativeterritories'
       authenticate_or_request_with_http_basic('Developer only! (for now)') do |username, password|
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-  
+
   def add_to_mailchimp
     h = Hominid::Base.new({:api_key => MAILCHIMP_API_KEY})
     list = h.find_list_id_by_name("Ptarmigan announcements")
@@ -37,12 +37,12 @@ class ApplicationController < ActionController::Base
         format.js {render :partial => 'shared/email_signup', :content_type => 'text/javascript'}
     end
   end
-  
+
   def madhouse_list_add
     mailchimp = Mailchimp::API.new(Figaro.env.madhouse_mailchimp_api_key)
 
     begin
-      mailchimp.lists.subscribe(Figaro.env.madhouse_mailchimp_list_id, 
+      mailchimp.lists.subscribe(Figaro.env.madhouse_mailchimp_list_id,
                          { "email" => params[:email] }
                          )
 
@@ -68,13 +68,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  
-  def get_locale 
+
+  def get_locale
     Globalize.fallbacks = {:en => [:en, :et, :fi, :ru, :sv, :lv] , :fi => [:fi, :sv, :en, :et, :ru, :lv],
       et: [:et, :en, :ru, :fi, :sv, :lv], sv:  [:sv, :fi, :en, :et, :ru, :lv], ru:[:ru, :en, :et, :lv, :fi, :sv],
        lv: [:lv, :en, :ru, :et ] }
     if params[:locale]
       session[:locale] = params[:locale]
+    end
+    if params[:fb_locale]
+      session[:locale] = params[:fb_locale].gsub(/\_\w\w$/, '')
     end
     available  = %w{en fi et ru lv sv}
     if session[:locale].blank? || !available.include?(session[:locale].to_s)
@@ -98,11 +101,11 @@ class ApplicationController < ActionController::Base
         I18n.locale = 'en'
       end
     end
-    
-  end 
-  
+
+  end
+
   def get_domain
-    
+
     if request.host =~ /ptarmigan\.fi/
       @location = Location.where(:locale => 'fi').first
 
@@ -114,7 +117,7 @@ class ApplicationController < ActionController::Base
         "madhouse"
       else
         @location = Location.where(:locale => 'ee').first
-      
+
         "ee"
       end
     end
@@ -131,7 +134,7 @@ class ApplicationController < ActionController::Base
     if !toplevel.nil?
       tl =  toplevel[1] == 'www' ? toplevel[2] : toplevel[1]
 
-      if subsites.include?(tl) 
+      if subsites.include?(tl)
 
         @subsite = Subsite.all.to_a.delete_if{|x| !x.name.split(/\,/).include?(tl)}.first
         die unless @subsite
@@ -143,7 +146,7 @@ class ApplicationController < ActionController::Base
         end
         # protect_with_staging_password
         @subsite.name.split(/\,/).first
-        
+
 
       else
         get_domain
@@ -153,7 +156,7 @@ class ApplicationController < ActionController::Base
     end
 
   end
-  
+
   def get_next_events
     if @location.name == 'Mad House'
       @menu = Page.by_location(@location.id).all
@@ -178,10 +181,10 @@ class ApplicationController < ActionController::Base
       @nosearch = 1
     else
       batch = ThinkingSphinx::BatchedSearch.new
-      
+
       [Artist, Project, Event, Post, Page, Resource].each do |cat|
         batch.searches << cat.search(params[:search], with: { location_id: locations})
-      end  
+      end
       batch.populate
       @hits = batch.searches.compact.map(&:first).compact
 
@@ -189,7 +192,7 @@ class ApplicationController < ActionController::Base
     end
     render :template => 'shared/searchresults'
   end
-  
+
   protected
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -228,15 +231,15 @@ class ApplicationController < ActionController::Base
             s = Cash.new(:source => "scorestore", :title => e.first, :link_url => e.last.first, :content => e.last.last)
             s.save!
           end
-          return Cash.where(:source => "scorestore").order("created_at DESC")      
+          return Cash.where(:source => "scorestore").order("created_at DESC")
         end
       rescue
         return last_scorestore_update
       end
     end
   end
-  
-  
+
+
   def tiib_check
     require 'open-uri'
     last_tiib_update = Cash.where(:source => "tiib").order("created_at DESC")
@@ -267,7 +270,7 @@ class ApplicationController < ActionController::Base
             s = Cash.new(:source => "tiib", :title => e.first, :link_url => e.last.first, :content => e.last.last)
             s.save!
           end
-          return Cash.where(:source => "tiib").order("created_at DESC")      
+          return Cash.where(:source => "tiib").order("created_at DESC")
         end
       rescue
         return last_tiib_update
@@ -281,19 +284,19 @@ class ApplicationController < ActionController::Base
       config.consumer_secret     = ENV['TWITTER_OMNIAUTH_SECRET']
       config.access_token        = ENV['TWITTER_ACCESS_TOKEN']
       config.access_token_secret = ENV['TWITTER_ACCESS_SECRET']
-    end  
+    end
   end
 
-  
+
   protected
-  
+
   def configure_permitted_parameters
     added_attrs = [:username, :email, :password, :password_confirmation, :remember_me]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
 
   end
-  
+
   # def configure_permitted_parameters
   #   devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :slug, :avatar, :password, :remember_token, :remember_created_at, :sign_in_count) }
   #   devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:name, :icon,  :slug, :avatar, :username, :email,  authentications_attributes: [:id, :provider, :username ], role_ids: [] )}

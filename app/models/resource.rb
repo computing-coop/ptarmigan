@@ -1,11 +1,11 @@
 # -*- encoding : utf-8 -*-
 class Resource < ActiveRecord::Base
-  
-  belongs_to :project
-  belongs_to :artist
-  belongs_to :event
+
+  belongs_to :project, optional: true
+  belongs_to :artist, optional: true
+  belongs_to :event, optional: true
   # validates_presence_of :documenttype_id, :name
-  belongs_to :documenttype
+  belongs_to :documenttype, optional: true
   validates :attachment, :attachment_presence => true
   scope :by_location, lambda {|x| {:conditions => {:location_id => x} }}
   has_attached_file :attachment, :whiny => false,
@@ -19,7 +19,7 @@ class Resource < ActiveRecord::Base
   scope :by_location, -> (x) { where(location_id: x) }
   validates_attachment_content_type :icon, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates :attachment, attachment_presence: true
-  
+
   Paperclip.interpolates :normalized_resource_file_name do |attachment, style|
     attachment.instance.normalized_resource_file_name
   end
@@ -47,7 +47,7 @@ class Resource < ActiveRecord::Base
   end
 
   def item
-    if !event_id.nil? 
+    if !event_id.nil?
       event
     elsif !project_id.nil?
       project
@@ -60,7 +60,7 @@ class Resource < ActiveRecord::Base
 
   def location
     self.location_id.nil? ? item_location : Location.find(self.location_id)
-  end 
+  end
 
   def item_location
     self.item.nil? ? nil : item.location

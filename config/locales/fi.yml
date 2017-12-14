@@ -30,6 +30,7 @@ fi:
   free: "Ilmainen sisäänpääsy"
   podcasts: 'Podcastit'
   news: "Uutiset"
+  search: 'Hae'
   read_more: "lue lisää"
   language: "kieli"
   thanks_signup: "Kiitos liittymisestäsi sähköpostilistallemme!"

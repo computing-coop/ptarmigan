@@ -105,7 +105,7 @@ gem 'skeleton-rails',  github: 'helios-technologies/skeleton-rails'
 gem 'themes_for_rails', github: 'cenotaph/themes_for_rails', branch: 'master'
 gem 'execjs'
 
-gem 'thinking-sphinx', '~> 3.2.0'
+gem 'thinking-sphinx', '~> 3.4.2'
 gem 'tlsmail', :group => :production
 gem 'truncate_html'
 gem 'twitter' #, '4.4.4'

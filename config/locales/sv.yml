@@ -230,6 +230,7 @@ sv:
   event_full: 'Detta arrangemang är tyvärr fullbokat.'
   join_our_mailing_list: "Prenumerera på vår mejllista!"
   join: "prenumerera"
+  search: 'Sök'
   your_name: "Ditt namn"
   coming_up: "Kommande"
   your_email: "Din mejladress"

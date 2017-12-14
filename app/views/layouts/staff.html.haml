@@ -6,7 +6,7 @@
     %meta{ :"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8" }
     %link{ :rel => "shortcut icon", :href => "/favicon.ico" }
 
-    = stylesheet_link_tag current_theme_stylesheet_path('ptarmigan'), :media => :screen
+    = stylesheet_link_tag theme_stylesheet_path('ptarmigan'), :media => :screen
     = stylesheet_link_tag 'print', :media => :print
     = stylesheet_link_tag :cms, :media => :screen
     = stylesheet_link_tag  :application, :media => "all"
@@ -16,20 +16,20 @@
     -# = javascript_include_tag 'date'
     -# = stylesheet_link_tag 'datePicker', 'jquery-ui-1.8.9.custom'
     -#= javascript_include_tag :ckeditor
-    = csrf_meta_tag 
+    = csrf_meta_tag
   %body
     #admin_top_column.clearfix
-      #logo= link_to(image_tag(current_theme_image_path('/layout/ptarmigan.png'), :width => 300), '/')
+      #logo= link_to(image_tag(theme_image_path('/layout/ptarmigan.png'), :width => 300), '/')
       #nav
         .public
           %h4 Public site:
           = render :partial => 'layouts/sidebar'
         .small
-          .one.column.alpha{:style=> 'float: left; '} Search: 
+          .one.column.alpha{:style=> 'float: left; '} Search:
           .three.columns.omega
             = form_tag "/admin/reports/search", :method => "post" do |f|
               = text_field_tag :search
-          
+
         -# - unless controller.controller_name == 'reports'
         -#   .active.clearfix
         -#     %h4 Active lately:
@@ -50,10 +50,10 @@
 
           = yield
       :javascript
-        $(document).ready(function() {  
+        $(document).ready(function() {
           #{yield :jquery}
           $(".date-pick").datepicker({ dateFormat: "yy-mm-dd" });
 
         });
- 
+
     #footer

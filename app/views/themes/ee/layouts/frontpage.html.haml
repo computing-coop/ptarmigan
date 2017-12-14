@@ -32,19 +32,19 @@
       #top_bar.sixteen.columns
         #logo_container.eleven.columns.alpha
           #logo
-            = link_to(image_tag(current_theme_image_path('layout/ptarmigan.png')), '/')
-          
+            = link_to(image_tag(theme_image_path('layout/ptarmigan.png')), '/')
+
         #top_nav_container.three.columns.omega
           #language
             = link_to(image_tag('system/ee_flag.gif', :width => 20, :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'et')
             = link_to(image_tag('system/uk_flag.gif', :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en')
             = link_to(image_tag('system/ru_flag.gif', :width => 20, :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'ru')
             = link_to(image_tag('system/fi.gif', :width => 20, :border => 0),:controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'fi')
-            = link_to(image_tag('system/se_flag.gif', :width => 20, :border => 0),:controller =>   controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv')            
+            = link_to(image_tag('system/se_flag.gif', :width => 20, :border => 0),:controller =>   controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv')
           #country_menu.alpha.omega.columns= render :partial => 'layouts/country_menu'
           - if user_signed_in?
             %li= link_to('staff', '/staff')
-            %li= link_to('sign out', '/users/sign_out') 
+            %li= link_to('sign out', '/users/sign_out')
         #top_nav_mobile
           %select#country_change
             %option{:selected => (request.host =~ /fi$/ ? false : :selected), :value => :ee} Tallinn
@@ -52,13 +52,13 @@
           %select#language_change
             %option{:selected => (I18n.locale == :et ? :selected : false), :value => :et} Eesti
             %option{:selected => (I18n.locale == :ru ? :selected : false), :value => :ru} русский
-            %option{:selected => (I18n.locale == :en ? :selected : false), :value => :en} English                
+            %option{:selected => (I18n.locale == :en ? :selected : false), :value => :en} English
             %option{:selected => (I18n.locale == :fi ? :selected : false), :value => :fi} Suomeksi
             %option{:selected => (I18n.locale.to_s == :sv ? :selected : false), :value => :sv} Svensk
           :javascript
             $('#country_change').change(function() {
               document.location.href = "http://ptarmigan." + $(this).val();
-            });  
+            });
             $('#language_change').change(function() {
               document.location.href = "#{request.url.gsub(/\?*locale\=\D\D\-*\D*\D*/, '')}?locale=" + $(this).val();
             });
@@ -67,13 +67,13 @@
           %ul
             %li.first= link_to(t(:events), events_path)
             %li= link_to( t(:projects) , projects_path)
-            %li= link_to(t(:artists), artists_path)              
+            %li= link_to(t(:artists), artists_path)
             %li= link_to(t(:news), posts_path)
             %li= link_to(t(:podcasts), podcasts_path)
             %li= link_to(t(:about), {:controller => 'pages', :action => 'show', :id => 'about'})
             %li= link_to(t(:press), {:controller  => 'pages', :action => 'press', :id => 'press'})
 
-            %li= link_to(t(:archive), archive_events_path) 
+            %li= link_to(t(:archive), archive_events_path)
             %li= link_to(t(:contact), {:controller => 'pages', :action => 'show', :id => 'contact'})
 
         #web2_inline.two.columns.omega
@@ -81,8 +81,8 @@
           = link_to(image_tag('layout/facebook.png', {:alt => 'facebook', :width => 20, :border => 0}), 'http://www.facebook.com/home.php#/pages/Ptarmigan/114272652824')
           = link_to(image_tag('layout/twitter.png', {:alt => 'twitter', :width => 20, :border => 0}),   "http://twitter.com/PtarmiganHki")
           = link_to(image_tag('layout/flickr.png', {:alt => 'flickr', :width => 20, :border => 0}), "http://www.flickr.com/groups/ptarmigan/")
-          = link_to(image_tag('layout/vimeo.png', {:alt => 'vimeo', :width => 20, :border => 0}), "http://vimeo.com/ptarmigan")  
- 
+          = link_to(image_tag('layout/vimeo.png', {:alt => 'vimeo', :width => 20, :border => 0}), "http://vimeo.com/ptarmigan")
+
         .front_box
           #flash
             - unless flash.empty?
@@ -95,7 +95,7 @@
           %center
             %h1= t :ptarmigan_tallinn_is_closed
           %p= raw t(:ptarmigan_tallinn_closed_explanation, href: link_to(t(:temporary_href), 'https://temporary.fi', target: :_blank))
-        
+
     .container
       #dynamic_wrap.sixteen.columns
         = render :partial => 'shared/new_carousel', :locals => {:new_carousel => @new_carousel}
@@ -104,9 +104,9 @@
         .ptarmigan_footer
           = link_to 'MTÜ Ptarmigan', 'mailto:tallinn at ptarmigan dotee'
           | Toom-Kooli 13
-          | 10130 Tallinn, Estonia 
+          | 10130 Tallinn, Estonia
           |
-          = link_to 'GitHub', 'https://github.com/cenotaph/ptarmigan' 
+          = link_to 'GitHub', 'https://github.com/cenotaph/ptarmigan'
 :javascript
   $(document).ready(function() {
     #{yield :jquery}

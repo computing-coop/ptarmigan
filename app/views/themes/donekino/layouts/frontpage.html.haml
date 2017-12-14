@@ -33,30 +33,30 @@
       #top_bar.sixteen.columns
         #logo_container.fourteen.columns.alpha
           #logo
-            .four.columns.alpha.dk_box= link_to(image_tag(current_theme_image_path('layout/logo2014.png')), '/')
+            .four.columns.alpha.dk_box= link_to(image_tag(theme_image_path('layout/logo2014.png')), '/')
             .nine.columns.omega#logo_words
-              = link_to(image_tag(current_theme_image_path('layout/donekino_words2014.png')), '/')
+              = link_to(image_tag(theme_image_path('layout/donekino_words2014.png')), '/')
               #date_header
                 %strong
                   = t :tallinn
                   = date_range('2014-08-15'.to_date, '2014-08-17'.to_date, :format => :long)
-            
+
           -# #country_menu= render :partial => 'layouts/country_menu'
           - if user_signed_in?
             %li= link_to('staff', '/staff')
-            %li= link_to('sign out', '/users/sign_out') 
+            %li= link_to('sign out', '/users/sign_out')
       -# #main_menu.sixteen.columns
       -#   #nav.thirteen.columns.alpha
       -#     %ul
       -#       %li.first= link_to(t(:events), events_path)
       -#       %li= link_to( t(:projects) , projects_path)
-      -#       %li= link_to(t(:artists), artists_path)              
+      -#       %li= link_to(t(:artists), artists_path)
       -#       %li= link_to(t(:news), posts_path)
       -#       %li= link_to(t(:proposals), proposals_path)
       -#       %li= link_to(t(:about), {:controller => 'pages', :action => 'show', :id => 'about'})
       -#       %li= link_to(t(:press), {:controller  => 'pages', :action => 'press', :id => 'press'})
 
-      -#       %li= link_to(t(:archive), archive_events_path) 
+      -#       %li= link_to(t(:archive), archive_events_path)
       -#       %li= link_to(t(:contact), {:controller => 'pages', :action => 'show', :id => 'contact'})
 
         -# #web2_inline.two.columns.omega
@@ -64,8 +64,8 @@
         -#   = link_to(image_tag('layout/facebook.png', {:alt => 'facebook', :width => 20, :border => 0}), 'http://www.facebook.com/home.php#/pages/Ptarmigan/114272652824')
         -#   = link_to(image_tag('layout/twitter.png', {:alt => 'twitter', :width => 20, :border => 0}),   "http://twitter.com/PtarmiganHki")
         -#   = link_to(image_tag('layout/flickr.png', {:alt => 'flickr', :width => 20, :border => 0}), "http://www.flickr.com/groups/ptarmigan/")
-        -#   = link_to(image_tag('layout/vimeo.png', {:alt => 'vimeo', :width => 20, :border => 0}), "http://vimeo.com/ptarmigan")  
- 
+        -#   = link_to(image_tag('layout/vimeo.png', {:alt => 'vimeo', :width => 20, :border => 0}), "http://vimeo.com/ptarmigan")
+
         .front_box
           #flash
             - unless flash.empty?
@@ -82,9 +82,9 @@
         .ptarmigan_footer
           = link_to 'MTÜ Ptarmigan', 'mailto:tallinn at ptarmigan dotee'
           | Toom-Kooli 13
-          | 10130 Tallinn, Estonia 
+          | 10130 Tallinn, Estonia
           |
-          = link_to 'GitHub', 'https://github.com/cenotaph/ptarmigan' 
+          = link_to 'GitHub', 'https://github.com/cenotaph/ptarmigan'
 :javascript
   $(document).ready(function() {
     #{yield :jquery}

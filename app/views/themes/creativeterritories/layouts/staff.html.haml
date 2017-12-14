@@ -7,7 +7,7 @@
     %meta{ :"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8" }
     %link{ :rel => "shortcut icon", :href => "/favicon.ico" }
 
-    -# = stylesheet_link_tag current_theme_stylesheet_path('ptarmigan'), :media => :screen
+    -# = stylesheet_link_tag theme_stylesheet_path('ptarmigan'), :media => :screen
     = stylesheet_link_tag 'creativeterritories/stylesheets/application', :media => :screen
     = stylesheet_link_tag 'print', :media => :print
     -#= stylesheet_link_tag :cms, :media => :screen
@@ -15,12 +15,12 @@
     = stylesheet_link_tag  :application, :media => "all"
     = javascript_include_tag :application
     = javascript_include_tag Ckeditor.cdn_url
-    = javascript_include_tag 'creativeterritories/javascripts/staff', 'data-turbolinks-track' => false 
+    = javascript_include_tag 'creativeterritories/javascripts/staff', 'data-turbolinks-track' => false
     -# = javascript_include_tag 'jquery-datepicker', 'jquery-ui', 'jquery.purr', 'best_in_place'
     -# = javascript_include_tag 'date'
     -# = stylesheet_link_tag 'datePicker', 'jquery-ui-1.8.9.custom'
     -#= javascript_include_tag :ckeditor
-    = csrf_meta_tag 
+    = csrf_meta_tag
   %body
     #admin_top_column
       #nav= render :partial => 'layouts/staffsidebar.en'
@@ -41,12 +41,11 @@
 
     = yield
 
- 
+
     #footer
     :javascript
-      $(document).ready(function() {  
+      $(document).ready(function() {
         #{yield :jquery}
-        
+
 
       });
-      

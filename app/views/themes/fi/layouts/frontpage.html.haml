@@ -7,7 +7,7 @@
     %link{ :rel => "shortcut icon", :href => "/favicon.ico" }
 
     %link{ :rel => "alternate", :type => "application/rss+xml", :title => "Ptarmigan RSS", :href => "/feed.rss"}
-    
+
     = stylesheet_link_tag :application
     = stylesheet_link_tag 'fi/stylesheets/application', :media => :screen
     = javascript_include_tag :application
@@ -25,28 +25,28 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
- 
+
 
   %body
     .container
       #top_bar.sixteen.columns
         #logo_container.eleven.columns.lalpha
           #logo
-            = link_to(image_tag(current_theme_image_path('layout/ptarmigan.png')), '/')
-          
+            = link_to(image_tag(theme_image_path('layout/ptarmigan.png')), '/')
+
         #top_nav_container.three.columns.omega
           #language
             = link_to(image_tag('system/fi.gif', :width => 20, :border => 0),:controller =>   controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'fi')
-            = link_to(image_tag('system/se_flag.gif', :width => 20, :border => 0),:controller =>   controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv')                  
+            = link_to(image_tag('system/se_flag.gif', :width => 20, :border => 0),:controller =>   controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv')
             = link_to(image_tag('system/uk_flag.gif', :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en')
             = link_to(image_tag('system/ee_flag.gif', :width => 20, :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'et')
-            
+
             = link_to(image_tag('system/ru_flag.gif', :width => 20, :border => 0), :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'ru')
-                     
+
           #country_menu= render :partial => 'layouts/country_menu'
           - if user_signed_in?
             %li= link_to('staff', '/staff')
-            %li= link_to('sign out', '/users/sign_out')              
+            %li= link_to('sign out', '/users/sign_out')
         #top_nav_mobile
           %select#country_change
             %option{:selected => (request.host =~ /ee$/ ? false : :selected), :value => :fi} Helsinki
@@ -60,7 +60,7 @@
           :javascript
             $('#country_change').change(function() {
               document.location.href = "http://ptarmigan." + $(this).val();
-            });  
+            });
             $('#language_change').change(function() {
               document.location.href = "#{request.url.gsub(/\?*locale\=\D\D\-*\D*\D*/, '')}?locale=" + $(this).val();
             });
@@ -80,7 +80,7 @@
           = link_to(image_tag('layout/facebook.png', {:alt => 'facebook', :width => 20, :border => 0}), 'http://www.facebook.com/home.php#/pages/Ptarmigan/114272652824')
           = link_to(image_tag('layout/twitter.png', {:alt => 'twitter', :width => 20, :border => 0}),   "http://twitter.com/PtarmiganHki")
           = link_to(image_tag('layout/flickr.png', {:alt => 'flickr', :width => 20, :border => 0}), "http://www.flickr.com/groups/ptarmigan/")
-          = link_to(image_tag('layout/vimeo.png', {:alt => 'vimeo', :width => 20, :border => 0}), "http://vimeo.com/ptarmigan")  
+          = link_to(image_tag('layout/vimeo.png', {:alt => 'vimeo', :width => 20, :border => 0}), "http://vimeo.com/ptarmigan")
         .front_box
           #flash
             - unless flash.empty?
@@ -100,9 +100,9 @@
         = render :partial => 'shared/new_carousel', :locals => {:new_carousel => @new_carousel}
         .container= yield
 
-    
+
     #footer
-      = link_to 'Ptarmigan ry', 'mailto:helsinki@ptarmigan.fi' 
+      = link_to 'Ptarmigan ry', 'mailto:helsinki@ptarmigan.fi'
       |
       Helsinki, Finland
       |
@@ -113,13 +113,10 @@
   $(document).ready(function() {
     var toggleLoading = function() { $("#loading").toggle() };
         $('button.email_signup').click(function() {
-          $('button.email_signup').attr('disabled', 'disabled');   
+          $('button.email_signup').attr('disabled', 'disabled');
           toggleLoading();
           $('#email_form').submit();
         });
         $("input.clearfield").clearField();
     #{yield :jquery}
-  });    
-
-
-
+  });

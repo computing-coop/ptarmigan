@@ -65,7 +65,9 @@
           = link_to('SV', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv')
         - else
           %strong SV
-
+      .search
+        = form_tag "/search/simple", :method => "post" do |f|
+          = text_field_tag :search, t(:search) + '...', { :class => "clearfield"}
       .title.text-center.front
         =  retina_image_tag theme_image_path('madhousebanner.png')
 

@@ -383,3 +383,5 @@ en:
     go_to: 'Go to '
     see_below: 'See below...'
     ticket_also_includes: 'Ticket also includes admission to: '
+    searched_for: 'Search results for: '
+    post: 'News' 

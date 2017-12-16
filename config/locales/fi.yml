@@ -19,6 +19,7 @@ fi:
   helsinki: "Helsinki"
   latest: "Uusimmat"
   tallinn: "Tallinna"
+  no_searchterm: 'Ei hakutuloksiai: '
   both: "sekä!"
   presented_by: "presented by"
   join: 'Liity!'
@@ -250,3 +251,6 @@ fi:
     press: 'Lehdistölle'
     go_to: 'Go to '
     ticket_also_includes: 'Samalla lipulla: '
+    searched_for: 'Hakutulokset: '
+    post: 'Uutiset'
+    page: 'Sivu'

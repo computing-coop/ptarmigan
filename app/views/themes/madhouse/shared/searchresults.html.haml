@@ -1,0 +1,58 @@
+.mad_banner_search
+  .row
+    .small-12.columns.text-left
+
+      %h3
+        - if @nosearch == 1
+          = t :no_searchterm
+        - else
+          = t "madhouse.searched_for"
+          %em= "\"#{@searchterm}\" (#{@hits.size})"
+
+.row
+  .small-12.columns.search_results
+
+    - if @hits.blank? && @nosearch != 1
+      = t :no_searchterm
+      %em= "\"#{@searchterm}\" (#{@hits.size})"
+    - else
+      .row.small-up-2.medium-up-3.large-up-4
+        - @hits.each do |hit|
+          .hit.column
+            .search_image
+              - if hit.respond_to?('avatar')
+                = image_tag hit.avatar.url(:medium)
+              - elsif hit.respond_to?('alternateimg')
+                - if hit.alternateimg?
+                  = image_tag hit.alternateimg.url(:small)
+              - else
+                &nbsp;
+
+            .search_other
+              .hit_title{:class => (hit.respond_to?('location_id') ? (hit.location_id == 1 ? 'helsinki' : 'tallinn') : '')}
+                = t "madhouse." + hit.class.to_s.downcase
+                = ": "
+                - if hit.class == Resource
+                  = link_to hit.source_name, hit.source_resource
+                - else
+                  = link_to hit.name, hit
+                - if hit.class == Project
+                  = hit.respond_to?('location_id') ? " [#{hit.location_id == 1 ? 'Helsinki' : 'Tallinn'}]" : ''
+
+              - if hit.respond_to?(:date)
+                .hit_date
+                  - if hit.date.class == Array
+                    - unless hit.date.empty?
+                      = l hit.date.first, :format => :long
+                      = " - "
+                      = l hit.date.last, :format => :long
+                  - else
+                    = l hit.date, :format => :long
+                  = hit.respond_to?('location_id') ? " [#{hit.location_id == 1 ? 'Helsinki' : 'Tallinn'}]" : ''
+              - elsif hit.class == Artist
+                .hit_date
+                  = l(hit.startdate, :format => :long) + " - " + l(hit.enddate, :format => :long)
+                  = hit.respond_to?('location_id') ? " [#{hit.location_id == 1 ? 'Helsinki' : 'Tallinn'}]" : ''
+              .hit_desc
+                = raw awesome_truncate(hit.description, 500)
+                = link_to t(:read_more), hit unless hit.class == Resource

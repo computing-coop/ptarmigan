@@ -269,6 +269,7 @@ sv:
   documents_resources: 'dokument/resurser'
   photos: 'bilder'
   videos: 'videor'
+  no_searchterm: 'Inga sökresultat för: '
   event: "Evenemang"
   dates:
     zero: 'Datum'
@@ -295,3 +296,7 @@ sv:
     contact: 'Kontaktuppgifter'
     go_to: 'Go to '
     ticket_also_includes: 'Med samma biljett: '
+    searched_for: 'Sökresultat: '
+    post: 'Nyheter'
+    event: 'Evenemang'
+    page: 'Blad'

@@ -18,6 +18,9 @@ a {
   &:hover {
    color: $madhouselightblue;
   }
+  &:visited {
+    color: $madhouseblue;
+  }
 }
 
 #container {
@@ -111,7 +114,7 @@ header {
             background-color: white;
             position: absolute;
           }
-          ul.f-dropdown {
+          ul.dropdown {
             li {
               width: 200px;
               text-align: left;
@@ -123,7 +126,12 @@ header {
   }
 }
 
-
+.dropdown.menu .is-active > a {
+  color: $madhouseblue;
+}
+.dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after {
+  border-color: $madhouseblue transparent transparent;
+}
 
 .carousel {
 
@@ -483,6 +491,34 @@ span.facebook_button {
   padding: 0.4rem 0;
 }
 
+.mad_banner_search {
+  background-color: $madhouseblue;
+  h3 {
+    font-family: $signika;
+    color: white;
+    text-transform: uppercase;
+  }
+  padding: 0.4rem 0;
+}
+
+.search_results {
+  padding: 2rem 0;
+  .hit {
+    font-family: $signika;
+    .search_other {
+      .hit_title {
+        font-family: $signika;
+        font-size: 1.2rem;
+      }
+      .hit_desc p, .hit_desc {
+        font-family: "Verdana", "Arial", sans-serif;
+        font-size: 0.875rem;
+        line-height: 1.375rem;
+        color: #333;
+      }
+    }
+  }
+}
 .front_posts_container {
 
   background-color: white;

@@ -1,7 +1,7 @@
 
 source 'http://rubygems.org'
-ruby '2.4.2'
-gem 'rails', '5.1.4'
+ruby '2.4.3'
+gem 'rails' , '5.1.4'
 gem 'mysql2'
 
 gem 'puma', group: :production
@@ -35,7 +35,7 @@ gem 'cancancan'
 gem 'calendrier'
 
 
-gem 'capistrano', '3.7.1'
+gem 'capistrano', '3.10.1'
 gem 'capistrano-rails'#, '1.1.3'
 gem 'capistrano-rvm'
 gem 'capistrano-bundler'#, '1.1.4'
@@ -83,7 +83,7 @@ gem 'meta-tags', :require => 'meta_tags'
 gem 'momentjs-rails'
 gem 'nested_form' #, :git => 'git://github.com/ryanb/nested_form.git'
 
-gem "paperclip", "~> 5.0.0"
+gem "paperclip", "5.1.0"
 gem 'public_activity'
 gem 'rack-cache'
 gem "rack-cors", group: :development

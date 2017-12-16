@@ -53,19 +53,30 @@
         = link_to fa_icon("rss"), '/feed.rss', target: :_blank
       .languages.end
         - if I18n.locale.to_s != 'en'
-          = link_to('EN', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en')
+          - if controller.action_name != 'search'
+            = link_to('EN', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'en')
+          - elsif @searchterm
+
+            = link_to 'EN', search_simple_path(search: @searchterm, locale: :en), method: :post
         - else
           %strong EN
         |
         - if I18n.locale.to_s != 'fi'
-          = link_to('FI', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'fi')
+          - if controller.action_name != 'search'
+            = link_to('FI', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'fi')
+          - elsif @searchterm
+            = link_to 'FI', search_simple_path(search: @searchterm, locale: :fi), method: :post
         - else
           %strong FI
         |
         - if I18n.locale.to_s != 'sv'
-          = link_to('SV', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv')
+          - if controller.action_name != 'search'
+            = link_to('SV', :controller => controller.controller_name, :action => controller.action_name, :id => params[:id], :locale => 'sv')
+          - elsif @searchterm
+            = link_to 'SV', search_simple_path(search: @searchterm, locale: :sv), method: :post
         - else
           %strong SV
+
       .search
         = form_tag "/search/simple", :method => "post" do |f|
           = text_field_tag :search, t(:search) + '...', { :class => "clearfield"}

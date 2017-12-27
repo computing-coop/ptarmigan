@@ -61,12 +61,12 @@ class PostsController < ApplicationController
 
           },
           :url   =>  url_for(@post) ,
-          description: ActionView::Base.full_sanitizer.sanitize(truncate(@post.body, length: 300)),
+          description: ActionView::Base.full_sanitizer.sanitize(truncate(strip_tags(@post.body), length: 300)),
           :image => (@post.alternateimg? ?  @post.alternateimg.url(:full)  : (@post.carousel? ?  @post.carousel.url(:medium) : 'http://madhousehelsinki.fi/assets/madhouse/images/MADHOUSE_4kausi_coverphoto.jpg' ))
           },
           :canonical => url_for(@post),
           :keywords => 'Helsinki,Finland,Mad House,performance art,live art,Suvilahti',
-          :description => ActionView::Base.full_sanitizer.sanitize(truncate(@post.body, length: 400)),
+          :description => ActionView::Base.full_sanitizer.sanitize(truncate(strip_tags(@post.body), length: 400)),
           :title => @post.title
     else
       set_meta_tags :open_graph => {

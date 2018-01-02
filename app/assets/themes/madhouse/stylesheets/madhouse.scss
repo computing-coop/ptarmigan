@@ -946,7 +946,9 @@ span.facebook_button {
     background-color: white;
   }
 }
-
+a.fc-event:visited {
+  color: white !important;
+}
 // calendar pull-tab
 .calendar {
   width: 85%;
@@ -961,6 +963,7 @@ span.facebook_button {
     float: left;
     .fc-event-container .fc-event {
       background-color: $madhouseblue;
+
     }
     .fc-day-grid-event .fc-content {
       white-space: inherit;

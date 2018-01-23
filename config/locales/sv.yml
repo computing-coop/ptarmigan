@@ -300,3 +300,4 @@ sv:
     post: 'Nyheter'
     event: 'Evenemang'
     page: 'Blad'
+    accessibility: 'Tillgänglighet'

@@ -113,7 +113,7 @@ class Admin::EventsController < Admin::BaseController
 
   def event_params
      params.require(:event).permit( [:date, :promoter, :event_type, :cost, :metadata, :notes, :avatar, :public, :enddate,
-      :discountedcost, :project_id, :discountreason, :facebook, :registration_required, :registration_limit, :location_id,
+      :discountedcost, :project_id, :discountreason, :facebook, :registration_required, :registration_limit, :location_id, :is_workshop,
       :place_id, :registration_recipient, :registration_optional_q, :featured, :hide_from_front, :carousel, :remove_carousel,
       :donations_requested, :hide_registrants, :slug, :subsite_id, :show_on_main, :show_guests_to_public, :ticket_url, :teaser, :article_link,
       :require_approval, :redirect_url, :otherweb, :event_time, :secondary, :is_festival, :video_link,

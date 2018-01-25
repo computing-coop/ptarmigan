@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171111142540) do
+ActiveRecord::Schema.define(version: 20180125155447) do
 
   create_table "activities", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "trackable_id"
@@ -371,6 +371,7 @@ ActiveRecord::Schema.define(version: 20171111142540) do
     t.string "teaser"
     t.string "article_link"
     t.string "video_link"
+    t.boolean "is_workshop", default: false, null: false
     t.index ["location_id"], name: "location_events_index"
   end
 

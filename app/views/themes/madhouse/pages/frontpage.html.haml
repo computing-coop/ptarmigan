@@ -41,9 +41,9 @@
 
             = link_to event do
               .single_event.column
-                .inner{style: event.avatar? ? "background: url(#{event.avatar.url}) no-repeat center center; background-size: cover;" : ''}
+                .inner{style: event.avatar? ? "background: url(#{event.avatar.url(:medium)}) no-repeat center center; background-size: cover;" : ''}
                   %h3
-                    - if event.secondary == true && @ihana.nil?
+                    - if event.secondary == true 
                       = t "madhouse.next_at_ihana"
                     = link_to event.title, event
 
@@ -52,6 +52,23 @@
 
                   - if event.secondary == true && @ihana.nil?
                     .lower_link= link_to t("madhouse.ihana_bar_programme"), '/madhousebar'
+          - unless @secondary.empty?
+            .single_event.columns
+              .inner.blue
+                %h3= t :next_at_mad_bar
+                - last = nil
+                - @secondary.each do |sec|
+                  - if sec.slug == 'hamletprivate'
+                    - last = sec
+                  - else
+                    .secondary_event
+                      .sec_title= link_to sec.title, sec
+                      .date= date_range(sec.date, sec.enddate)
+                - unless last.nil?
+                  .secondary_event
+                    .sec_title= link_to last.title, last
+                    .date= date_range(last.date, last.enddate)
+
         .row.expanded
           .small-10.small-offset-1.columns.text-right
             .smaller

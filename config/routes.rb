@@ -116,7 +116,8 @@ Ptarmigan::Application.routes.draw do
   get '/admin/wiki/:title/edit', :controller => 'admin/wikipages', :action => 'edit'
   get '/territories(/:year(/:month))' => 'pages#frontpage', :as => :ctcalendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
   get '/madhousebar' => 'events#secondary'
-
+  get '/madbar' => 'events#secondary'
+  get '/workshops' => 'events#workshops'
   namespace :admin do
     resources :articles
     resources :calendar

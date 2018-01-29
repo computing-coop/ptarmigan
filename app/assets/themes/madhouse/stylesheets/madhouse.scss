@@ -909,6 +909,26 @@ span.facebook_button {
     .inner {
       padding: 0.8rem;
       height: 100%;
+      &.blue {
+        h3 {
+          margin-bottom: 2rem;
+        }
+        background-color: $madhouseblue;
+
+        .secondary_event {
+          margin: 2rem 0;
+          clear: both;
+          .sec_title {
+            a { color: white; }
+            font-family: $signika;
+            font-size: 1.2rem;
+          }
+          .date {
+            clear: both;
+            margin-bottom: 2.5rem;
+          }
+        }
+      }
       h3 {
         a { color: #EFEFEF;
           &:hover {

@@ -10,9 +10,14 @@
   /           .title= link_to event.title, event
   /           .date= timeago_tag event.all_dates
   - column_count = 0
-  - unless @ihana.nil?
-    %h2.text-center
-      = t("madhouse.ihana_bar_programme_header")
+  - if action_name =='workshops'
+    %h2.text-center= t "madhouse.workshops"
+  - else
+    - if @ihana.nil?
+      %h2.text-center= t "madhouse.upcoming_events"
+    - else
+      %h2.text-center
+        = t("madhouse.mad_bar_programme_header")
   .event_boxes
     = render partial: 'eventfeed', locals: {column_count: column_count}
 / .row

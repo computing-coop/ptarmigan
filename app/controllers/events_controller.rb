@@ -57,7 +57,7 @@ class EventsController < ApplicationController
       else
         if @location.id == 4
           @upcoming = Event.primary.published.future.by_location(@location.id).order(:date)
-          @upcoming += Event.one_bar.limit(1)
+          #@upcoming += Event.one_bar.limit(1)
           @upcoming = @upcoming.sort_by(&:next_date)
           #@upcoming = Kaminari.paginate_array(@upcoming).page(params[:page]).per(8)
           
@@ -115,7 +115,12 @@ class EventsController < ApplicationController
     render :template => 'events/index'
   end
 
+  def workshops
+    @location = Location.find(4)
+    @upcoming = Event.by_location(@location).workshop.future.published.order(:date).page(params[:page]).per(8)
 
+    render :template => 'events/index'
+  end
 
   def show
     find_event

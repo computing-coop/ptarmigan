@@ -21,7 +21,7 @@ class Event < ActiveRecord::Base
                                    join_table: "doublebills",
                                    association_foreign_key: "doublebill_id"
   accepts_nested_attributes_for :doublebills
-  has_attached_file :avatar, :styles => { :larger => "350x350>", :medium => "400x400#",  :small => "240x240>",
+  has_attached_file :avatar, :styles => { :larger => "750x750>", :medium => "600x600#",  :small => "240x240>",
                                        :thumb => "100x100>", :archive => "115x115#" },
          url: ':s3_domain_url',
         path:  "events/:id/:style/:basename.:extension", :t_url => "/assets/missing.png"
@@ -57,8 +57,10 @@ class Event < ActiveRecord::Base
                                              Time.now.to_date, Time.now.to_date]).order(:date).limit(1) }
 
   scope :future_and_one_bar, -> () { one_bar }
-  scope :primary, -> () { where(secondary: false)}
-  scope :secondary, -> () { where(secondary: true)}
+  scope :primary, -> () { where(["secondary is not true && is_workshop is not true"]) }
+  scope :workshop, -> () { where(is_workshop: true) }
+  scope :secondary, -> () { where(["secondary = ? OR is_workshop = ?", true, true])}
+  scope :bar, -> () { where(secondary: true)}
   scope :ihana, -> () { where(["secondary is TRUE OR place_id = 158"])}
   scope :between, -> (start_time, end_time) {
     where( [ "(date >= ?  AND  enddate <= ?) OR ( enddate >= ? AND enddate <= ? ) OR (date >= ? AND date <= ?)  OR (date < ? AND enddate > ? )",

@@ -110,14 +110,14 @@ class EventsController < ApplicationController
 
   def secondary
     @location = Location.find(4)
-    @upcoming = Event.by_location(@location).ihana.future.published.order(:date).page(params[:page]).per(8)
+    @upcoming = Event.by_location(@location).ihana.future.published.order(:date).all
     @ihana = true
     render :template => 'events/index'
   end
 
   def workshops
     @location = Location.find(4)
-    @upcoming = Event.by_location(@location).workshop.future.published.order(:date).page(params[:page]).per(8)
+    @upcoming = Event.by_location(@location).workshop.future.published.order(:date).all
 
     render :template => 'events/index'
   end

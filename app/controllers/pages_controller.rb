@@ -48,7 +48,7 @@ class PagesController < ApplicationController
         @upcoming = Event.primary.published.future.by_location(@location.id)
         @secondary = Event.secondary.published.future.by_location(@location.id).order(date: :asc).limit(3)
         @upcoming = @upcoming.sort_by(&:next_date)
-        #
+        # #
         # @carousel = []
         # @carousel =  Flicker.by_location(@location.id).joins(:event).group("events.id")
         @first_events = @upcoming.take(5)

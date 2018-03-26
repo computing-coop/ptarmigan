@@ -1,30 +1,22 @@
--# .carousel
--#   - @carousel.each do |slide|
--#     .slide
--#       - if slide.class == Carouselvideo
--#         - if slide.video_url =~ /vimeo\.com/
--#
--#           .embesd-container= raw slide.fetch(slide.video_url)["html"]
--#         - else
--#           = image_tag slide.stillimage.url(:largest)
--#
--#       - else
--#         = image_tag slide.image.url(:largest)
--#         .caption
--#           %span.category
--#             - if slide.class == Flicker
--#               = t :archive
--#               = ": "
--#             - if slide.class == Event
--#               = t "madhouse.event"
--#               = ": "
--#
--#           %span.title
--#             = link_to slide.name,  url_for(slide.carousel_link)
--#           .date.text-left
--#             = slide.carousel_date.empty? ? '' : slide.carousel_date.map{|x| l x, :format => :long}.join(' - ')
 
-- unless @first_events.empty?
+- if @first_events.empty?
+  .front_posts_container
+    .row.expanded.post_boxes
+      - column_count = 3
+      .latest_post_container.columns.large-3.small-10.small-offset-1.medium-offset-0
+        .inner
+          %h3.text-center= t("madhouse.latest_news")
+          - @posts.take(4).each do |post|
+            .post_entry
+              .title= link_to post.title, post
+              .date= timeago_tag post.published_at
+              
+
+      = render partial: 'posts/postfeed', locals: {column_count: column_count}
+
+
+
+- else 
   .mad_banner
     .text-center
       %h2

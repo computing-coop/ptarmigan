@@ -50,11 +50,19 @@ Ptarmigan::Application.configure do
   # config.threadsafe!
   config.paperclip_defaults = {
     :storage => :s3,
-     s3_region: 'eu-central-1',
-    :bucket => 'creativeterritories-production',
-    :s3_host_name => "s3.eu-central-1.amazonaws.com", # Added entry
- :url => ":s3_host_name"
+    s3_credentials: {
+     bucket: 'creativeterritories-production',
+     s3_region: 'us-east-1',
+     access_key_id:  ENV.fetch('WASABI_ACCESS_KEY'),
+       secret_access_key: ENV.fetch('WASABI_SECRET'),
+       s3_host_name: "s3.wasabisys.com"  
+     },
+     s3_options: {
+       endpoint: "https://s3.wasabisys.com"
+     },
+     s3_host_name: 's3.wasabisys.com'
   }
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
   # config.i18n.fallbacks = true

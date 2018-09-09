@@ -58,10 +58,17 @@ Ptarmigan::Application.configure do
  }
  config.paperclip_defaults = {
    :storage => :s3,
-   s3_region: 'eu-west-1',
-   :bucket => 'creativeterritories-development',
-   :s3_host_name => "s3.amazonaws.com", # Added entry
-:url => ":s3_host_name"
+   s3_credentials: {
+    bucket: 'creativeterritories-development',
+    s3_region: 'us-east-1',
+    access_key_id:  ENV.fetch('WASABI_ACCESS_KEY'),
+      secret_access_key: ENV.fetch('WASABI_SECRET'),
+      s3_host_name: "s3.wasabisys.com"  
+    },
+    s3_options: {
+      endpoint: "https://s3.wasabisys.com"
+    },
+    s3_host_name: 's3.wasabisys.com'
  }
  config.middleware.insert_before 0, Rack::Cors do
     allow do

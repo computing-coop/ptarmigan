@@ -1,7 +1,7 @@
 
 source 'http://rubygems.org'
 ruby '2.4.3'
-gem 'rails' , '5.1.4'
+gem 'rails' , '5.1.6'
 gem 'mysql2'
 
 gem 'puma', group: :production
@@ -29,7 +29,8 @@ gem 'rails-assets-datetimepicker', source: 'https://rails-assets.org'
 
 gem 'auto_html', '2.0.0'
 gem 'awesome_nested_set'
-gem 'aws-sdk', '3'
+gem 'aws-sdk'
+gem 'aws-sdk-s3', '~> 1'
 gem 'cancancan'
 
 gem 'calendrier'
@@ -51,7 +52,7 @@ gem 'flickraw'
 gem 'figaro'
 gem "font-awesome-rails"
 gem 'formtastic'
-gem 'foundation-rails'#, github: 'dmitryzuev/foundation-rails', branch: 'feature-foundation6 '
+gem 'foundation-rails', '6.4.1.3'# github: 'dmitryzuev/foundation-rails', branch: 'feature-foundation6 '
 gem "friendly_id"
 gem 'fullcalendar-rails'
 gem 'geocoder'
@@ -99,7 +100,7 @@ gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'responders', '>= 2.3.0'
 gem 'redcarpet'
 gem 'rolify'
-gem 'sass'
+gem 'sassc-rails'
 gem 'skeleton-rails',  github: 'helios-technologies/skeleton-rails'
 #gem 'superfish-rails'
 gem 'themes_for_rails', github: 'cenotaph/themes_for_rails', branch: 'master'

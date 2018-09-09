@@ -30,7 +30,7 @@ Ptarmigan::Application.configure do
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
-  config.log_level = :info
+  config.log_level = :error
   #
   # config.cache_store = :dalli_store
   # config.action_dispatch.rack_cache = {

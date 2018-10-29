@@ -51,7 +51,7 @@ class ProjectsController < ApplicationController
       :title => @project.name + " | Ptarmigan" ,
       :type  => "ptarmigan:project",
       :url   => url_for(@project),
-      :image => 'http://' + request.host + @project.avatar.url(:small)
+      :image => 'https://' + request.host + @project.avatar.url(:small)
       }, 
       :canonical => url_for(@project),
       :keywords => (@project.location.id == 1 ? 'Helsinki,Finland,' : 'Tallinn,Estonia') + ',Ptarmigan,culture,art,project,' + @project.name,

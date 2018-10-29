@@ -12,7 +12,7 @@ class PostsController < ApplicationController
       set_meta_tags :open_graph => {
         :title => "Mad House Helsinki: " + t("madhouse.latest_news") ,
         :type  => "madhousehelsinki:article",
-        image: 'http://madhousehelsinki.fi/assets/madhouse/images/MADHOUSE_4kausi_coverphoto.jpg',
+        image: 'https://madhousehelsinki.fi/assets/madhouse/images/MADHOUSE_4kausi_coverphoto.jpg',
         :url   => url_for({:only_path => false, :controller => :posts}),
         },
         :fb             => {
@@ -62,7 +62,7 @@ class PostsController < ApplicationController
           },
           :url   =>  url_for(@post) ,
           description: ActionView::Base.full_sanitizer.sanitize(truncate(strip_tags(@post.body), length: 300)),
-          :image => (@post.alternateimg? ?  @post.alternateimg.url(:full)  : (@post.carousel? ?  @post.carousel.url(:medium) : 'http://madhousehelsinki.fi/assets/madhouse/images/MADHOUSE_4kausi_coverphoto.jpg' ))
+          :image => (@post.alternateimg? ?  @post.alternateimg.url(:full)  : (@post.carousel? ?  @post.carousel.url(:medium) : 'https://madhousehelsinki.fi/assets/madhouse/images/MADHOUSE_4kausi_coverphoto.jpg' ))
           },
           :canonical => url_for(@post),
           :keywords => 'Helsinki,Finland,Mad House,performance art,live art,Suvilahti',
@@ -73,7 +73,7 @@ class PostsController < ApplicationController
           :title => @post.title,
           :type  => "ptarmigan:news",
           :url   =>  url_for(@post) ,
-          :image => (@post.alternateimg? ? @post.alternateimg.url(:medium)  : (@post.carousel? ?  @post.carousel.url(:medium) : 'http://www.ptarmigan.fi/ptarmigan_two_circles.jpg' ))},
+          :image => (@post.alternateimg? ? @post.alternateimg.url(:medium)  : (@post.carousel? ?  @post.carousel.url(:medium) : 'https://www.ptarmigan.fi/ptarmigan_two_circles.jpg' ))},
           :canonical => url_for(@post),
           :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,proposals,application,residency,culture,art',
           :description => @post.body,

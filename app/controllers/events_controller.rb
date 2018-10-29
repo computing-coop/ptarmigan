@@ -76,7 +76,7 @@ class EventsController < ApplicationController
         set_meta_tags :og => {
           :title => "Mad House Helsinki: " + t("madhouse.upcoming_events") ,
           :type  => "article",
-          image: 'http://madhousehelsinki.fi/assets/madhouse/images/MADHOUSE_4kausi_coverphoto.jpg',
+          image: 'https://madhousehelsinki.fi/assets/madhouse/images/MADHOUSE_4kausi_coverphoto.jpg',
           :url   => url_for({:only_path => false, :controller => :events}),
           }, 
           :fb  => {

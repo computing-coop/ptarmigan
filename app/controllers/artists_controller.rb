@@ -38,7 +38,7 @@ end
       :title => @artist.name + " | Ptarmigan" ,
       :type  => "ptarmigan:artist",
       :url   => url_for(@artist),
-      :image => 'http://' + request.host + @artist.avatar.url(:small)
+      :image => 'https://' + request.host + @artist.avatar.url(:small)
       }, 
       :canonical => url_for(@artist),
       :keywords => (@artist.location.id == 1 ? 'Helsinki,Finland,' : 'Tallinn,Estonia') + ',Ptarmigan,culture,art,artist,' + @artist.name,

@@ -71,13 +71,13 @@ class PagesController < ApplicationController
         set_meta_tags :open_graph => {
           :title => "Mad House Helsinki",
           :type  => "website",
-          image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg',
-          :url   => 'http://madhousehelsinki.fi'
+          image: 'https://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg',
+          :url   => 'https://madhousehelsinki.fi'
           },
           :fb             => {
               :app_id       => Figaro.env.madhouse_facebook_client_id
             },
-          :canonical => 'http://madhousehelsinki.fi',
+          :canonical => 'https://madhousehelsinki.fi',
           :keywords => 'Mad House,Helsinki,Finland,Suvilahti,culture,art,performance,live art',
           :description => 'Mad House is a house for performance and live art in Helsinki. Mad House on räjähdys Suomen esittävän taiteen kentällä. Mad House är en explosion i Finlands performanskonstscen.',
           :title => "Mad House Helsinki"
@@ -86,8 +86,8 @@ class PagesController < ApplicationController
         set_meta_tags :open_graph => {
           :title => (@subsite.nil? ? "" : (@subsite.human_name.blank? ? "#{@subsite.theme} | " : "#{@subsite.human_name} | ")) + "Ptarmigan" ,
           :type  => "website",
-          :url   =>   'http://' + (@subsite.nil? ? 'www.' : 'donekino.') + 'ptarmigan.' + @location.locale },
-          :canonical =>  'http://www.ptarmigan.' + @location.locale,
+          :url   =>   'https://' + (@subsite.nil? ? 'www.' : 'donekino.') + 'ptarmigan.' + @location.locale },
+          :canonical =>  'https://www.ptarmigan.' + @location.locale,
           :keywords => 'Helsinki,Finland,Tallinn,Estonia,Ptarmigan,culture,art,workshops,artist-run,project space,maker culture, DIY,experimental, avant-garde, music, sound, visual art,Baltic,residency',
           :description => 'Ptarmigan is a cultural platform in ' + (@location.locale == 'fi' ? "Helsinki, Finland" : "Tallinn, Estonia."),
           :title => nil
@@ -152,7 +152,7 @@ class PagesController < ApplicationController
           },
 
           :url   =>  url_for(@page),
-          image: 'http://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg'
+          image: 'https://madhousehelsinki.fi/assets/madhouse/images/mad_house_box_2016.jpg'
           },
         :canonical =>  url_for(@page),
         :keywords => 'Helsinki,Finland,performance art,theatre,Suvilahti,culture,art,live art',

@@ -26,7 +26,7 @@ class EventsController < ApplicationController
   end
 
   def archives
-    @archive = Event.by_location(@location.id).where(['public is true AND date < ?', Time.now.to_date]).order(date: :desc).all #page params[:archive_page]
+    @archive = Event.by_location(@location.id).where(['public is true AND date < ?', Time.now.to_date]).order(date: :desc).page(params[:archive_page])
     if @location.id == 4
       
     else

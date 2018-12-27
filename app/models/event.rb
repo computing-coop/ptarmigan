@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :doublebills
   has_attached_file :avatar, :styles => { :larger => "750x750>", :medium => "600x600#",  :small => "240x240>",
                                        :thumb => "100x100>", :archive => "115x115#" },
-         url: ':s3_domain_url', :s3_protocol => :https,
+          :s3_protocol => :https,
         path:  "events/:id/:style/:basename.:extension", :t_url => "/assets/missing.png"
 
   has_attached_file :carousel, :styles => {:largest => "1600x712#", :new_carousel => "1180x338#", :full => "960x400#", :small => "320x92#", :thumb => "100x100>"},

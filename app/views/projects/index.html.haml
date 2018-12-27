@@ -68,7 +68,7 @@
           %p= raw(I18n.localize(group.first, :format => "%B %Y"))
         - group.last.each do |event|
           .archive_box{:class => event.location.locale}
-            = link_to(event, html_options = {:class => 'brick', :style => 'background-image: url(\'http://ptarmigan.ee' + event.avatar.url(:archive) + '\');' } ) do
+            = link_to(event, html_options = {:class => 'brick', :style => 'background-image: url(\'' + event.avatar.url(:archive) + '\');' } ) do
               .inside_block
               .user_hover{:style => "font-size: " + (event.name.size > 35 ? '12px;' : '17px;')}= event.name
 

@@ -7,6 +7,7 @@
           = t "madhouse.go_to"
           = t "madhouse.season" + ": "
           - @archive.group_by(&:madhouse_season).each do |season|
+            - next if season.first == ''
             = link_to "#{season.first.to_s}", '#', onclick: 'javascript:scroll_To("#season' + season.first.to_s + '");return false;' 
             - unless season.first == 1
               = " | "

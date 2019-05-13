@@ -45,7 +45,7 @@ class PagesController < ApplicationController
 
 
       if @location.name == 'Mad House'
-        @upcoming = Event.primary.published.future.by_location(@location.id)
+        @upcoming =  [] #Event.primary.published.future.by_location(@location.id)
         @secondary = Event.secondary.published.future.by_location(@location.id).order(date: :asc).limit(3)
         @upcoming = @upcoming.sort_by(&:next_date)
         # #

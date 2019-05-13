@@ -227,6 +227,7 @@ fi:
   upcoming_events: 'Tulossa'
   madhouse:
     upcoming_events: 'Tulossa'
+    upcoming_events: 'Tulossa'
     posted_by: '%{poster} julkaissut %{when}'
     previous_post: 'Edellinen'
     next_post: 'Seuraava'

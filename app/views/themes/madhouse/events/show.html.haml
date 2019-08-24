@@ -58,7 +58,7 @@
             %br/
             - if @event.one_day?
               .instance= l @event.date, format: :long
-            - @event.instances.each do |instance|
+            - @event.instances.sort_by(&:start_at).each do |instance|
               .instance
                 = instance.title + ": " unless instance.title.blank?
                 - if instance.start_at.to_date != instance.end_at.to_date

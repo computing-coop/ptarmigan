@@ -45,15 +45,15 @@ class PagesController < ApplicationController
 
 
       if @location.name == 'Mad House'
-        @upcoming =  [] #Event.primary.published.future.by_location(@location.id)
-        @secondary = Event.secondary.published.future.by_location(@location.id).order(date: :asc).limit(3)
+        @upcoming =  Event.primary.published.future.by_location(@location.id)
+        @secondary = [] #Event.secondary.published.future.by_location(@location.id).order(date: :asc).limit(3)
         @upcoming = @upcoming.sort_by(&:next_date)
         # #
         # @carousel = []
         # @carousel =  Flicker.by_location(@location.id).joins(:event).group("events.id")
-        @first_events = @upcoming.take(5)
+        @first_events = @upcoming.take(6)
         unless @upcoming.empty? || @upcoming.size < 7
-          @upcoming = @upcoming[5..-1].take(8)
+          @upcoming = @upcoming[6..-1].take(8)
         end
         @posts = Post.by_location(@location.id).published.limit(10)
         #

@@ -1,7 +1,7 @@
 
 source 'http://rubygems.org'
 ruby '2.6.5'
-gem 'rails' , '5.1.6'
+gem 'rails' , '5.1.7'
 gem 'mysql2'
 
 gem 'puma', '~> 4.3.1', group: :production
@@ -84,7 +84,7 @@ gem 'meta-tags', :require => 'meta_tags'
 gem 'momentjs-rails'
 gem 'nested_form' #, :git => 'git://github.com/ryanb/nested_form.git'
 
-gem "paperclip", "5.1.0"
+gem "paperclip", "5.2.0"
 gem 'public_activity'
 gem 'rack-cache'
 gem "rack-cors", group: :development

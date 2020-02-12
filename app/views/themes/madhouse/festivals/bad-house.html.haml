@@ -11,7 +11,7 @@
       = link_to t('madhouse.scroll_to_programme'),  '#', class: :button, onClick: 'scroll_To("#programme");return false;'
   .row
     .small-12.columns
-      %p= @festival.description
+      %p= raw @festival.description
 
 
 

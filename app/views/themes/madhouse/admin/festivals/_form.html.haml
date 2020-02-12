@@ -17,19 +17,19 @@
             %p
               Festival description text:
               %br/
-              = en.text_area :description, {:cols => 40, :rows => 5}
+              = en.cktext_area :description, {:cols => 40, :rows => 5}
         - tab.create('finnish', 'Finnish') do
           = f.globalize_fields_for :fi do |fi|   
             %p
               Festival description text:
               %br/
-              = fi.text_area :description, {:cols => 40, :rows => 5}
+              = fi.cktext_area :description, {:cols => 40, :rows => 5}
         - tab.create('swedish', 'Swedish') do
           = f.globalize_fields_for :sv do |sv|
             %p
               Festival description text:
               %br/
-              = sv.text_area :notes, {:cols => 40, :rows => 5}
+              = sv.cktext_area :notes, {:cols => 40, :rows => 5}
   .row
     .small-12.columns
       = f.input :custom_css              

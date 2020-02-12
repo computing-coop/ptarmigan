@@ -76,7 +76,7 @@ header {
   .search {
     float: right;
     right: 10px;
-    top: 3rem;
+    top: 2.55rem;
     position: absolute;
     margin: -0.4rem 1rem 0 1rem;
     font-size: 0.9rem;
@@ -358,10 +358,11 @@ footer {
 
   }
   .logos {
+    background-color: $madhouseblue;
     .columns { margin-bottom: 1rem;  }
     img {
-      max-height: 75px;
-      max-width: 20%;
+      // max-height: 75px;
+      // max-width: 20%;
       padding: 0 1rem;
     }
   }
@@ -982,6 +983,9 @@ span.facebook_button {
     background-color: white;
   }
 }
+a.fc-event.bad-house {
+  background-color: #333;
+}
 a.fc-event:visited {
   color: white !important;
 }
@@ -999,7 +1003,9 @@ a.fc-event:visited {
     float: left;
     .fc-event-container .fc-event {
       background-color: $madhouseblue;
-
+      &.bad-house {
+        background-color: #333;
+      }
     }
     .fc-day-grid-event .fc-content {
       white-space: inherit;
@@ -1038,7 +1044,14 @@ a.fc-event:visited {
     padding: 0.75rem;
     font-size: 2.15rem;
     left: 100%;
-
+    a {
+      i {
+        color: black;
+        &:visited {
+          color: black;
+        }
+      }
+    }
     position: absolute;
     background-color: #8be1e5;
     margin: -24px 0 0 0;

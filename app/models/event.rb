@@ -6,6 +6,7 @@ class Event < ActiveRecord::Base
   friendly_id :title_en, :use => [:slugged, :finders, :history]
   has_many :instances
   belongs_to :location
+  belongs_to :festival
   belongs_to :artist, optional: true
   belongs_to :project, optional: true
   belongs_to :subsite, optional: true

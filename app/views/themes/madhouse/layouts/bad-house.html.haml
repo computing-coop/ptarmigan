@@ -22,7 +22,6 @@
     %meta{:content => "#ffffff", :name => "theme-color"}/
     %meta{property: "fb:app_id", content: Figaro.env.madhouse_facebook_client_id.to_s}
     %link{:href => "https://fonts.googleapis.com/css?family=Signika", :rel => "stylesheet"}
-    -#%link{:href => "https://fonts.googleapis.com/css?family=Roboto+Mono:300,500&display=swap", :rel => "stylesheet"}/
     = display_meta_tags :site => 'Mad House Helsinki'
     - unless I18n.locale.to_s == 'en'
       %meta{property: 'og:locale:alternate', content: 'en_US'}
@@ -31,7 +30,7 @@
     - unless I18n.locale.to_s == 'sv'
       %meta{property: 'og:locale:alternate', content: 'sv_SE'}
     = stylesheet_link_tag 'madhouse/stylesheets/application', media: 'screen'
-
+    = stylesheet_link_tag 'madhouse/stylesheets/bad-house', media: 'screen'
     = javascript_include_tag 'madhouse/javascripts/application', 'data-turbolinks-track' => false
     %script{:src => "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_API_KEY']}", :type => "text/javascript"}
     = csrf_meta_tags
@@ -99,7 +98,8 @@
       .calendar_tab
         = link_to fa_icon("calendar"), '#', onclick: 'javascript:toggleCalendar();return false;'
 
-    #container= yield
+    #container
+      = yield
     %footer
       .mailing_list
         .row.expanded

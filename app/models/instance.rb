@@ -28,6 +28,7 @@ class Instance < ActiveRecord::Base
       :categories => self.event.eventcategories.empty? ? [] : self.event.eventcategories.map(&:slug),
       :place_id => self.event.place.id,
       :recurring => false,
+      :className => self.event.festival.blank? ? false : self.event.festival.slug,
       :cturl => Rails.application.routes.url_helpers.event_instance_path(self.event.slug, self.slug),
       :url => self.title.blank? ? Rails.application.routes.url_helpers.event_path(self.event.slug) :
         Rails.application.routes.url_helpers.event_instance_path(self.event.slug, self.title.parameterize)

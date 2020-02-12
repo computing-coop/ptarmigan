@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180125155447) do
+ActiveRecord::Schema.define(version: 20200206120949) do
 
   create_table "activities", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "trackable_id"
@@ -372,6 +372,8 @@ ActiveRecord::Schema.define(version: 20180125155447) do
     t.string "article_link"
     t.string "video_link"
     t.boolean "is_workshop", default: false, null: false
+    t.integer "festival_id"
+    t.index ["festival_id"], name: "index_events_on_festival_id"
     t.index ["location_id"], name: "location_events_index"
   end
 
@@ -388,6 +390,26 @@ ActiveRecord::Schema.define(version: 20180125155447) do
     t.integer "budgetarea_id"
     t.boolean "has_receipt"
     t.integer "location_id"
+  end
+
+  create_table "festival_translations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci" do |t|
+    t.bigint "festival_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "description"
+    t.index ["festival_id"], name: "index_festival_translations_on_festival_id"
+    t.index ["locale"], name: "index_festival_translations_on_locale"
+  end
+
+  create_table "festivals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci" do |t|
+    t.string "name"
+    t.string "slug"
+    t.date "start_at"
+    t.date "end_at"
+    t.text "custom_css"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "flickers", id: :integer, force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8" do |t|

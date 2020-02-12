@@ -1,0 +1,187 @@
+.event
+  .event_title_bar
+    .row
+      .x-large-12.small-8.columns
+        %h1= @event.title
+
+        - unless @event.doublebills.empty?
+          .event_doublebills
+            = t "madhouse.ticket_also_includes"
+            - @event.doublebills.each do |db|
+              = link_to db.name, db, target: :_blank
+        .event_metadata
+          - if @event.future?
+            - unless @event.ticket_url.blank?
+              = link_to @event.ticket_url do
+                = fa_icon 'ticket'
+                = t("madhouse.buy_tickets")
+
+  .row
+
+
+    .small-12.medium-push-6.medium-6.columns
+      - if @event.avatar?
+        .event_image{class: !@event.video_link.blank? ? :video : false}
+          = image_tag @event.avatar.url
+          .overlay_icon= image_tag 'play_button.png'
+          - unless @event.video_link.blank?
+            .video_embed
+              %iframe{id: :video,  src: '', frameborder: 0, :'allowfullscreen' => '', 'webkitallowfullscreen' => '',  'mozallowfullscreen' => ''}
+
+      .event_info
+        - if @event.cost == 0
+          = t(:free)
+        - elsif @event.cost == -1
+
+        - else
+          = t("madhouse.tickets") + ": "
+          = raw ptarmigan_cost(@event.cost)
+          - unless @event.discountedcost.blank?
+            = " / "
+            = ptarmigan_cost(@event.discountedcost)
+          - if @event.future?
+            - unless @event.ticket_url.blank?
+              %span.ticket_button= link_to fa_icon('ticket') + ' ' + t("madhouse.buy"), @event.ticket_url
+        %br/
+        = t "madhouse.location"
+        = ": " + @event.place.name
+        = link_to fa_icon('map-marker') + t("madhouse.view_map"), '#', onclick: "$('.google_map').slideToggle(function()  { google.maps.event.trigger(map, 'resize'); map.setCenter(new google.maps.LatLng(#{@event.place.latitude}, #{@event.place.longitude}));            $('p.map_link a').text($('.google_map').is(':visible') ? '#{t(:hide_map)}' : '#{t(:map)}');});return false;", class: :button_link
+        .google_map#mapcontainer= render partial: 'shared/small_map'
+
+        %br/
+        = raw @event.notes.to_s.gsub(/\n/, '<br />')
+
+
+        - unless @event.is_festival?
+          .aikataulu
+            = t(:dates, count: @event.instances.size + 1) + ":"
+            %br/
+            - if @event.one_day?
+              .instance= l @event.date, format: :long
+            - @event.instances.sort_by(&:start_at).each do |instance|
+              .instance
+                = instance.title + ": " unless instance.title.blank?
+                - if instance.start_at.to_date != instance.end_at.to_date
+                  %br/
+                  = date_range(instance.start_at, instance.end_at)
+                - else
+                  - if @event.cost == -1
+                    %br/
+                  = l instance.start_at,  format: :long
+                - if instance.future?
+                  - unless instance.ticket_url.blank?
+                    - if @event.cost == -1
+                      = ptarmigan_cost(instance.price)
+                    = link_to instance.ticket_url, class: :button_link, :target => :_blank do
+                      = fa_icon 'ticket'
+                      = t("madhouse.buy_ticket")
+                  - if @event.cost == -1
+                    %br/
+                    %br/
+
+
+    .small-12.medium-6.medium-pull-6.columns
+      .event_description
+        = raw @event.description
+        %br/
+        - unless @event.facebook.blank?
+          %span.facebook_button= link_to t("madhouse.facebook_link"), "https://www.facebook.com/events/#{@event.facebook}/", target: :_blank
+          %br/
+        = render partial: 'shared/share_buttons', locals: {url:  CGI::escape("http://#{request.host}#{request.port != 80 ? ":" + request.port.to_s : ''}#{url_for(@event)}"), title: CGI::escape(@event.name.to_s) }
+
+  - if @event.is_festival?
+    .row
+      - @event.instances.group(:title).each_with_index do |instance, index|
+        .medium-3.columns.festival_event{ style: (instance.specialimage? ? "background: url(#{instance.specialimage.url}) no-repeat top center; background-size: cover;" : ''), class: [cycle('odd', 'even'), index == (@event.instances.group(:title).to_a.size - 1) ? :end : false]}
+          .title= link_to instance.title, [@event, instance]
+          .dates
+            - dates = []
+            - instance.siblings.sort_by(&:start_at).map(&:start_at).each do |date|
+              - dates.push(l(date.to_date, format: :short))
+            = dates.join(' / ')
+
+  .prev_next
+    .row
+      .small-4.columns
+        - unless @event.previous_event.nil?
+          = link_to raw(fa_icon('long-arrow-left') + " #{t("madhouse.previous_event")}: #{@event.previous_event.title}"), @event.previous_event
+      .small-4.small-offset-1.columns.next_container
+        - unless @event.next_event.nil?
+          = link_to raw("#{t("madhouse.next_event")}: #{@event.next_event.title}" + ' ' + fa_icon('long-arrow-right')), @event.next_event
+
+= content_for :jquery do
+  - unless @event.video_link.blank?
+    :plain
+      $('iframe').attr('height', parseInt($('.event_image img').css('height')));
+      $('iframe').attr('width', parseInt($('.event_image img').css('width')));
+      $('.event_image').css('height', $('.event_image img').css('height'));
+      $('.overlay_icon').on('click', function(ev) {
+        $('.event_image img').hide();
+        $('.video_embed').css('display', 'block');
+        $("#video")[0].src = "#{@event.generate_video_link}";
+        ev.preventDefault();
+
+      });
+  - unless @event.place.latitude.blank?
+    :plain
+
+      function initialize() {
+        var myLatlng = new google.maps.LatLng(#{@event.place.latitude}, #{@event.place.longitude});
+        var myOptions = { zoom: 14,
+              center: myLatlng,
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+              styles:
+                [
+                  {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                      { "color": "#23a4aa" }
+                    ]
+                  },{
+                    "featureType": "road.highway",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                      { "color": "#333333" }
+                    ]
+                  },{
+                    "featureType": "water",
+                    "elementType": "geometry",
+                    "stylers": [
+                      { "visibility": "on" },
+                      { "color": "#23a4aa" },
+                      { "saturation": 81 },
+                      { "lightness": 28 },
+                      { "gamma": 4.17 }
+                    ]
+                  },{
+                    "featureType": "road.arterial",
+                    "stylers": [
+                      { "color": "#23a4aa" },
+                      { "weight": 0.3 },
+                      { "invert_lightness": true }
+                    ]
+                  },{
+                    "featureType": "road.local",
+                    "stylers": [
+                      { "color": "#23a4aa" },
+                      { "saturation": -64 },
+                      { "lightness": 7 },
+                      { "gamma": 2.94 }
+                    ]
+                  },{
+                  }
+                ]
+           }
+
+
+        map = new google.maps.Map(document.getElementById('mapcontainer'), myOptions);
+        var marker = new google.maps.Marker({  position: myLatlng, map: map,
+          title: '#{escape_javascript(@event.name)}',
+
+          map: map
+        });
+        return map;
+      }
+      //map = initialize();
+      map = google.maps.event.addDomListener(window, 'load', initialize);

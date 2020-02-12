@@ -118,7 +118,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'oembed'
 gem 'coffee-rails'
 gem "uglifier", '>= 1.3.0'
-
+gem 'validates_timeliness', '~> 5.0.0.alpha3'
 
 
 gem 'mocha', :group => :test

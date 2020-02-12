@@ -147,11 +147,16 @@ class EventsController < ApplicationController
           (@event.event_type.blank? ? 'Mad House,live art' : @event.event_type.split(/\:/).each(&:strip).join(',')),
           :description => @event.description,
           :title => @event.title
+        if @event.festival
+          render layout: @event.festival.slug, template: 'events/' + @event.festival.slug
+        else
+          render
+        end
       elsif @event.location_id == 3  && request.xhr?
         render template: 'events/overlay', layout: false
       elsif request.original_url != @event.redirect_url
         if @subsite || @event.subsite
-          redirect_to @event.redirect_url 
+          redirect_to @event.redirect_url
         end
       end
     end

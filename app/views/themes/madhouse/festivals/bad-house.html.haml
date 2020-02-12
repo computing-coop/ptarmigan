@@ -1,0 +1,30 @@
+.badhouse_container#top
+  .row
+    .small-12.columns
+      = image_tag theme_image_path('badhouse/bad_house_header.png')
+  .row
+    .small-12.columns.text-center
+      %h3= date_range(@festival.start_at, @festival.end_at, format: :long)
+
+  .row
+    .small-12.columns.hide-for-medium
+      = link_to t('madhouse.scroll_to_programme'),  '#', class: :button, onClick: 'scroll_To("#programme");return false;'
+  .row
+    .small-12.columns
+      %p= @festival.description
+
+
+
+  .events_container
+    .row
+      .small-12.columns.text-center.event_header#programme        
+        %h2= t('madhouse.programme')
+        = link_to t('madhouse.back_to_top'), '#', class: [:button, :tiny, 'float-right', 'hide-for-medium'], onClick: 'scroll_To("#top");return false;'
+    - @festival.events.sort_by(&:next_date).each do |event|
+      = link_to event do
+        .row.event{class: cycle('even', 'odd')}
+          .small-12.medium-4.columns
+            = image_tag event.avatar.url
+          .small-12.medium-8.columns
+            %h2= event.title
+            %h6= date_range(event.date, event.enddate)

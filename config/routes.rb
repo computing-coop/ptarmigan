@@ -27,7 +27,7 @@ Ptarmigan::Application.routes.draw do
   # signup '/air/signup', :controller => 'applicants', :action => 'new'
   # activate '/air/activate/:activation_code', :controller => 'applicants', :action => 'activate', :activation_code => nil
   resources :applicants
-
+  resources :festivals
   resources :places do
     collection do
       post :ctvenues
@@ -128,6 +128,7 @@ Ptarmigan::Application.routes.draw do
       resources :instances
     end
     resources :eventcategories
+    resources :festivals
     resources :wikirevisions
     resources :wikipages
     resources :documents
@@ -172,6 +173,7 @@ Ptarmigan::Application.routes.draw do
   end
   post '/add_to_list', :controller => :application, :action => :add_to_mailchimp
   post '/madhouse/add_to_list', controller: :application, action: :madhouse_list_add
+  get '/badhouse', to: 'festivals#show', id: 'bad-house'
   root :controller => 'pages', :action => 'frontpage'
   # The priority is based upon order of creation: first created -> highest priority.
 

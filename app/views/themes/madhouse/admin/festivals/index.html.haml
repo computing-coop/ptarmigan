@@ -1,0 +1,25 @@
+.row.expanded
+  .small-12.columns#calendar
+  
+.events_container.row
+  .small-12.columns
+
+    - if !@festivals.empty?
+      .page_container
+        %table{:cellpadding => 5, :cellspacing => 5, :border => 0}
+          %thead
+            %th Name
+            %th Dates
+            %th Actions
+          %tbody
+            - @festivals.each do |festival|
+              %tr
+                %td= festival.name
+                %td= date_range(festival.start_at, festival.end_at, format: :short)
+                %td
+                  = link_to 'Edit', edit_admin_festival_path(festival), class: [:button, :tiny]
+                  
+                  = link_to 'Delete', [:admin, festival], data: {:confirm => 'Are you sure?'}, :method => :delete, class: [:button, :tiny, :alert]
+    - else
+      %p There are no festivals to show yet.
+    = link_to  'Create new festival', new_admin_festival_path, class: [:button]

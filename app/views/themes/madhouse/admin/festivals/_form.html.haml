@@ -1,0 +1,42 @@
+- unless @festival.errors.full_messages.empty?
+  = @festival.errors.full_messages.join
+
+= semantic_form_for([:admin,  @festival],  :html => {:multipart => true, :'data-abide' => '', :novalidate => '' } ) do |f|
+  .row
+    .small-6.columns
+      = f.input :name
+  .row
+    .small-6.columns
+      = f.input :start_at, as: :string,  input_html: {:class => :datetimepicker, required: '', value: f.object.new_record? ? '' : (f.object.start_at.nil? ? '' : f.object.start_at.strftime('%Y-%m-%d'))}, label: 'Enter the starting date of the festival'
+      = f.input :end_at, as: :string, input_html: {:class => :datetimepicker, required: '', value: f.object.new_record? ? '' : (f.object.end_at.nil? ? '' : f.object.end_at.strftime('%Y-%m-%d'))}, label: 'Enter the ending date of the festival'
+  .row
+    .small-12.columns
+      = tabs_for do |tab|
+        - tab.create('english', 'English') do
+          = f.globalize_fields_for :en do |en|
+            %p
+              Festival description text:
+              %br/
+              = en.text_area :description, {:cols => 40, :rows => 5}
+        - tab.create('finnish', 'Finnish') do
+          = f.globalize_fields_for :fi do |fi|   
+            %p
+              Festival description text:
+              %br/
+              = fi.text_area :description, {:cols => 40, :rows => 5}
+        - tab.create('swedish', 'Swedish') do
+          = f.globalize_fields_for :sv do |sv|
+            %p
+              Festival description text:
+              %br/
+              = sv.text_area :notes, {:cols => 40, :rows => 5}
+  .row
+    .small-12.columns
+      = f.input :custom_css              
+  = f.actions do
+    = f.submit "Save this festival!", class: [:button]
+
+= content_for :jquery do
+  :plain
+    $("#tabs").tabs();
+    $('.datetimepicker').datetimepicker({format:'Y-m-d'});

@@ -49,7 +49,10 @@
               = link_to admin_places_path, class: :item  do
                 = image_tag theme_image_path('/icons/place_icon.jpg')
                 %label Places
-
+            %li
+              = link_to admin_festivals_path, class: :item do
+                = image_tag theme_image_path('/icons/event_icon.png')
+                %label Festivals
             %li
               = link_to admin_resources_path, class: :item  do
                 = image_tag theme_image_path('/icons/document_icon.png')

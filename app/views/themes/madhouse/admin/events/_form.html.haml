@@ -87,7 +87,8 @@
   %hr
   .row
     .small-6.columns
-      = f.input :is_festival, label: 'Is this a festival?'
+      = f.input :is_festival, label: 'Is this a pre-2020 festival?', hint: 'This is for the older definition of festivals, before 2020.'
+      = f.input :festival, label: 'Part of a festival?', hint: 'If selected, event will render with special template (which must exist!)'
       = f.input :facebook, :label =>  'ID of Facebook event (12 digits or so)'
       /= f.input :publicschool, :label => 'ID of Public school class (4 digits or so)'
       = f.input :hide_from_front, :label => 'Hide from frontpage upcoming events listing?'

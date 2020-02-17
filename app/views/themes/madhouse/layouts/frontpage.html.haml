@@ -69,7 +69,7 @@
         = form_tag "/search/simple", :method => "post" do |f|
           = text_field_tag :search, t(:search) + '...', { :class => "clearfield"}
       .title.text-center.front
-        =  retina_image_tag theme_image_path('new_top_banner.png')
+        =  retina_image_tag theme_image_path('MHH_Textlogo_RGB_Turquoise.png'), height: 75, width: 850
 
       .menu_bar.text-center
         .menu_items.hide-for-small-only= render partial: 'layouts/top_menu'

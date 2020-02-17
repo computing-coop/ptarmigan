@@ -86,7 +86,7 @@
         - if @event && @event.madhouse_season
           = link_to retina_image_tag(theme_image_path("MHH_season#{@event.madhouse_season}.png")), '/'
         - else
-          =  link_to retina_image_tag(theme_image_path('new_top_banner.png')), '/'
+          =  link_to retina_image_tag(theme_image_path('MHH_Textlogo_RGB_Turquoise.png')), '/'
         -#= link_to fa_icon("bars"), '#', onclick: 'javascript: $(".menu_bar").slideToggle();return false;'
       .menu_bar.visible.text-center.hide-for-small-only
         .menu_items= render partial: 'layouts/top_menu'

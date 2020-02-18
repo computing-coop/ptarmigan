@@ -65,7 +65,7 @@ a {
   }
   .event_image {
     img {
-      filter: grayscale(1);
+      // filter: grayscale(1);
     }
   }
   .prev_next {
@@ -124,7 +124,7 @@ footer {
   .event {
     .event_title_bar {
       padding-left: 0rem;
-      background-image: url(/assets/madhouse/images/badhouse/badhouse_banner_small.png);
+      background-image: url(/assets/madhouse/images/badhouse/badhouse_banner_full.png);
       background-repeat: no-repeat;
       background-position: center right;
       background-size: 35%;

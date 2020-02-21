@@ -31,7 +31,7 @@ a {
   .event_title_bar {
     background-color: white;
     color: black;
-    background-image: url(/assets/madhouse/images/badhouse/badhouse_banner_full.png);
+    background-image: url(/assets/madhouse/images/badhouse/bad_house_header.png);
     background-repeat: no-repeat;
     background-position: center right;
     background-size: 32%;
@@ -124,7 +124,7 @@ footer {
   .event {
     .event_title_bar {
       padding-left: 0rem;
-      background-image: url(/assets/madhouse/images/badhouse/badhouse_banner_full.png);
+      background-image: url(/assets/madhouse/images/badhouse/bad_house_header.png);
       background-repeat: no-repeat;
       background-position: center right;
       background-size: 35%;
@@ -145,7 +145,7 @@ footer {
 @media screen and (min-width: 40em) and (max-width: 64em) {
   .event {
     .event_title_bar {
-      background-image: url(/assets/madhouse/images/badhouse/badhouse_banner_small.png);
+      background-image: url(/assets/madhouse/images/badhouse/bad_house_header.png);
       background-repeat: no-repeat;
       background-position: center right;
 

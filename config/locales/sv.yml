@@ -276,6 +276,8 @@ sv:
     one: 'Datum'
     other: 'Datum'
   madhouse:
+    programme: 'Program'
+    scroll_to_programme: 'Program'
     upcoming: 'Uppkommande'
     upcoming_events: 'Uppkommande evenemang'
     buy_tickets: 'Köp biljetter'

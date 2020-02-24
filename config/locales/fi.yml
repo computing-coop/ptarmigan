@@ -226,6 +226,8 @@ fi:
     other: 'Aikataulu'
   upcoming_events: 'Tulossa'
   madhouse:
+    programme: 'Ohjelma'
+    scroll_to_programme: 'Ohjelma'
     upcoming_events: 'Tulossa'
     upcoming_events: 'Tulossa'
     posted_by: '%{poster} julkaissut %{when}'

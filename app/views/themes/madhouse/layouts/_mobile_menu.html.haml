@@ -4,7 +4,7 @@
   %option{value: posts_path, selected: (controller.controller_name == 'posts' ? :selected : false)}= t(:news)
   - @menu.each do |menu|
     %option{value: page_path(menu.slug), selected: (controller.controller_name == 'pages' && @page && @page.slug == menu.slug ? :selected : false)}= menu.title
-    
+  %option{value: '/badhouse', selected: (controller.controller_name == 'festivals' ? :selected : false)}Bad House
 = content_for :jquery do
   :plain
     $('#top_mobile_nav').change(function() {

@@ -31,10 +31,14 @@ a {
   .event_title_bar {
     background-color: white;
     color: black;
-    background-image: url(/assets/madhouse/images/badhouse/bad_house_header.png);
-    background-repeat: no-repeat;
-    background-position: center right;
-    background-size: 32%;
+    .event_row_frame {
+      background-image: url(/assets/madhouse/images/badhouse/bad_house_header.png);
+      background-repeat: no-repeat;
+      background-position: center right;
+      background-size: 32%;
+      padding: 2.8rem 0 2.8rem 0rem;
+    }
+    padding: 0.4rem 0;
     h1 {
       color: black;
     }
@@ -123,12 +127,16 @@ footer {
   }
   .event {
     .event_title_bar {
+      margin-bottom: 0;
       padding-left: 0rem;
-      background-image: url(/assets/madhouse/images/badhouse/bad_house_header.png);
-      background-repeat: no-repeat;
-      background-position: center right;
-      background-size: 35%;
-      margin-bottom: 1rem;
+      .event_row_frame {
+        background-image: url(/assets/madhouse/images/badhouse/bad_house_header.png);
+        background-repeat: no-repeat;
+        background-position: center right;
+        background-size: 35%;
+        padding: 0;
+      }
+      padding: 0.4rem 0;
     }
   }
   .events_container {
@@ -143,12 +151,15 @@ footer {
 
 
 @media screen and (min-width: 40em) and (max-width: 64em) {
+
   .event {
     .event_title_bar {
-      background-image: url(/assets/madhouse/images/badhouse/bad_house_header.png);
-      background-repeat: no-repeat;
-      background-position: center right;
-
+      .event_row_frame {
+        background-image: url(/assets/madhouse/images/badhouse/bad_house_header.png);
+        background-repeat: no-repeat;
+        background-position: center right;
+        padding:  0.5rem 0 0.5rem 2.5rem;
+      }
       margin-bottom: 2rem;
     }
   }

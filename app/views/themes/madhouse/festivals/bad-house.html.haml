@@ -20,7 +20,7 @@
       .small-12.columns.text-center.event_header#programme        
         %h2= t('madhouse.programme')
         = link_to t('madhouse.back_to_top'), '#', class: [:button, :tiny, 'float-right', 'hide-for-medium'], onClick: 'scroll_To("#top");return false;'
-    - @festival.events.sort_by(&:next_date).each do |event|
+    - @festival.events.published.sort_by(&:next_date).each do |event|
       = link_to event do
         .row.event{class: cycle('even', 'odd')}
           .small-12.medium-4.columns

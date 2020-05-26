@@ -4,7 +4,7 @@ ruby '2.6.5'
 gem 'rails' , '5.1.7'
 gem 'mysql2'
 
-gem 'puma', '~> 4.3.1', group: :production
+gem 'puma', '~> 4.3.5', group: :production
 gem 'thin', group: :development
 
 group :development do

@@ -16,13 +16,14 @@
     %ul.vertical.medium-horizontal.nested.menu{"data-responsive-menu" => "drilldown medium-dropdown"}
       %li.has-submenu
         = link_to 'Mad House', page_path('what-is-mad-house')
-        %ul.submenu.menu.vertical#accessibility{"data-submenu" => ""}
-          %li= link_to t("madhouse.accessibility"), page_path('accessibility')
+        -# %ul.submenu.menu.vertical#accessibility{"data-submenu" => ""}
+        -#   %li= link_to t("madhouse.accessibility"), page_path('accessibility')
   %li
     %ul.vertical.medium-horizontal.nested.menu{"data-responsive-menu" => "drilldown medium-dropdown"}
       %li.has-submenu
         = link_to t("madhouse.contact"), page_path('contact')
         %ul.submenu.menu.vertical#contact{"data-submenu" => ""}
           %li= link_to t("madhouse.press"), page_path('press')
+          %li= link_to t("madhouse.accessibility"), page_path('accessibility')
       
   %li= link_to 'Bad House', '/badhouse'

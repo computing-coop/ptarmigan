@@ -276,7 +276,7 @@ sv:
     one: 'Datum'
     other: 'Datum'
   madhouse:
-    arriving_and_tickets: 'Anländer och Biljett'
+    arriving_and_tickets: 'Ankomst och Biljett'
     programme: 'Program'
     scroll_to_programme: 'Program'
     upcoming: 'Uppkommande'

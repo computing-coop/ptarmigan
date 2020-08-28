@@ -251,6 +251,7 @@ fi:
     other: 'Aikataulu'
   upcoming_events: 'Tulossa'
   madhouse:
+    arriving_and_tickets: 'Saapuminen ja Liput'
     programme: 'Ohjelma'
     scroll_to_programme: 'Ohjelma'
     upcoming_events: 'Tulossa'

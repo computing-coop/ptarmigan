@@ -1,4 +1,4 @@
-%ul.menu.outer.expanded
+%ul.menu.outer.align-center
   %li
     %ul.vertical.medium-horizontal.menu{:"data-responsive-menu" => "drilldown medium-dropdown"}
       %li.has-submenu
@@ -11,19 +11,23 @@
   -#  %ul#eventdrop.f-dropdown{:"data-dropdown-content" => '', :"aria-hidden" => "true"}
   -#    %li= link_to t("madhouse.ihana_bar"), '/ihana'
   %li= link_to t(:news), posts_path
-  %li= link_to t("madhouse.tickets"), page_path('Tickets')
+  %li
+    %ul.vertical.medium-horizontal.nested.menu{"data-responsive-menu" => "drilldown medium-dropdown"}
+      %li.has-submenu
+        = link_to t("madhouse.arriving_and_tickets"), page_path('Tickets')
+        %ul.submenu.menu.vertical#tickets{"data-submenu" => ""}
+          %li= link_to t("madhouse.accessibility"), page_path('accessibility')
   %li
     %ul.vertical.medium-horizontal.nested.menu{"data-responsive-menu" => "drilldown medium-dropdown"}
       %li.has-submenu
         = link_to 'Mad House', page_path('what-is-mad-house')
-        -# %ul.submenu.menu.vertical#accessibility{"data-submenu" => ""}
-        -#   %li= link_to t("madhouse.accessibility"), page_path('accessibility')
-  %li
-    %ul.vertical.medium-horizontal.nested.menu{"data-responsive-menu" => "drilldown medium-dropdown"}
-      %li.has-submenu
-        = link_to t("madhouse.contact"), page_path('contact')
-        %ul.submenu.menu.vertical#contact{"data-submenu" => ""}
+        %ul.submenu.menu.vertical#about{"data-submenu" => ""}
+          %li= link_to t(:about), page_path('what-is-mad-house')
+          %li= link_to 'Bad House', '/badhouse'
           %li= link_to t("madhouse.press"), page_path('press')
-          %li= link_to t("madhouse.accessibility"), page_path('accessibility')
+          = link_to t("madhouse.contact"), page_path('contact')
+  %li= link_to 'Publication', 'https://publication.madhousehelsinki.fi'
+          
+          
       
-  %li= link_to 'Bad House', '/badhouse'
+  

@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/cenotaph/themes_for_rails.git
+  remote: https://github.com/cenotaph/themes_for_rails.git
   revision: bd732664565cd00016ba26507a8bf9d28638e71a
   branch: master
   specs:
@@ -7,24 +7,24 @@ GIT
       rails (>= 4.2.2)
 
 GIT
-  remote: git://github.com/galetahub/ckeditor.git
-  revision: bfe47345606e5dc977f8928d9d9db207232671d6
+  remote: https://github.com/galetahub/ckeditor.git
+  revision: f9e48420ccb6dc99f4453397554a6ae60bc2274b
   specs:
-    ckeditor (5.0.0)
+    ckeditor (5.1.0)
       orm_adapter (~> 0.5.0)
 
 GIT
-  remote: git://github.com/globalize/globalize.git
-  revision: 6207a3b49d9705120ceed460af0d0af78c8bfaf3
+  remote: https://github.com/globalize/globalize.git
+  revision: 256763ab17266cc247de281ec232ed0ceefd00dd
   branch: master
   specs:
-    globalize (5.3.0)
-      activemodel (>= 4.2, < 6.1)
-      activerecord (>= 4.2, < 6.1)
+    globalize (6.0.0)
+      activemodel (>= 4.2, < 7.0)
+      activerecord (>= 4.2, < 7.0)
       request_store (~> 1.0)
 
 GIT
-  remote: git://github.com/helios-technologies/skeleton-rails.git
+  remote: https://github.com/helios-technologies/skeleton-rails.git
   revision: 6e46649d29006643b33c95b82bc9d0e28df2f8cc
   specs:
     skeleton-rails (1.1.0)
@@ -1250,7 +1250,7 @@ GEM
     recaptcha (5.2.1)
       json
     redcarpet (3.5.0)
-    request_store (1.4.1)
+    request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.0)
       actionpack (>= 5.0)
@@ -1442,7 +1442,7 @@ DEPENDENCIES
   xmlrpc
 
 RUBY VERSION
-   ruby 2.6.5p114
+   ruby 2.7.2p137
 
 BUNDLED WITH
-   1.17.3
+   2.1.4

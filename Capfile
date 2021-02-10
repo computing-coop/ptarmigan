@@ -8,6 +8,8 @@ require 'capistrano/rails'
 require "capistrano/rvm"
 require 'capistrano/puma'
 install_plugin Capistrano::Puma
+nstall_plugin Capistrano::Puma::Nginx
+install_plugin Capistrano::Puma::Systemd
 require 'thinking_sphinx/capistrano'
 require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'

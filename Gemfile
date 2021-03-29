@@ -1,7 +1,7 @@
 
 source 'http://rubygems.org'
 ruby '2.7.2'
-gem 'rails' , '5.1.7'
+gem 'rails' , '5.2.5'
 gem 'mysql2'
 
 gem 'puma', '~> 5.0', group: :production

@@ -11,11 +11,7 @@
   -#  %ul#eventdrop.f-dropdown{:"data-dropdown-content" => '', :"aria-hidden" => "true"}
   -#    %li= link_to t("madhouse.ihana_bar"), '/ihana'
   %li= link_to t(:news), posts_path
-  %li
-    %ul.vertical.medium-horizontal.nested.menu{"data-responsive-menu" => "drilldown medium-dropdown"}
-      %li
-        = link_to 'Bad House', '/badhouse'
-  
+
           
   %li
     %ul.vertical.medium-horizontal.nested.menu{"data-responsive-menu" => "drilldown medium-dropdown"}
@@ -23,6 +19,7 @@
         = link_to 'Mad House', page_path('what-is-mad-house')
         %ul.submenu.menu.vertical#about{"data-submenu" => ""}
           %li= link_to t(:about), page_path('what-is-mad-house')
+          %li= link_to 'Bad House', '/badhouse'
           %li= link_to t("madhouse.arriving_and_tickets"), page_path('Tickets')
           %li= link_to t("madhouse.accessibility"), page_path('accessibility')
           %li= link_to t("madhouse.press"), page_path('press')

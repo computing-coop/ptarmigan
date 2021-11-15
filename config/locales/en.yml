@@ -186,10 +186,10 @@ en:
   your_email: "Your email:"
   ptarmigan_tallinn_is_closed: 'Ptarmigan is now closed.'
   ptarmigan_helsinki_is_closed: 'Ptarmigan is no longer operating in Helsinki.'
-  ptarmigan_tallinn_closed_explanation: "Ptarmigan operated in Tallinn from 2011-2014. This website exists as an archive of its activities during this time. We no longer maintain any presence in Tallinn, but some people involved with Ptarmigan are now operating %{href}."
+  ptarmigan_tallinn_closed_explanation: "Ptarmigan operated in Tallinn from 2011-2014. We no longer maintain any presence in Tallinn, but this website will continue to serve as an archive of the activities produced at Ptarmigan during these years."
   temporary_href: 'Temporary in Helsinki'
-  ptarmigan_helsinki_closed_explanation: 'Ptarmigan existed as a project space in Vallila from 2009-2011 and a mobile curatorial/creative platfom until 2014. We no longer exist as an organised collective, but this website will continue to serve as an archive of the activities produced as Ptarmigan during these years.'
-  ptarmigan_helsinki_temporary_blurb: 'Some of the people who were involved with Ptarmigan are now operating %{href}.'
+  ptarmigan_helsinki_closed_explanation: 'Ptarmigan existed as a project space in Vallila from 2009-2011 and a mobile curatorial/creative platform until 2014. We no longer exist as an organised collective, but this website will continue to serve as an archive of the activities produced as/at Ptarmigan during these years.'
+  ptarmigan_helsinki_temporary_blurb: ''
 
   event_archive_first: 'Ptarmigan is an event-driven project space. Since we began in July 2009, we have organised '
   event_archive_second: ' events at Ptarmigan - '

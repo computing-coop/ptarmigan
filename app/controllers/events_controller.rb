@@ -26,10 +26,11 @@ class EventsController < ApplicationController
   end
 
   def archives
-    @archive = Event.by_location(@location.id).where(['public is true AND date < ?', Time.now.to_date]).order(date: :desc) #.page(params[:archive_page])
+   #.page(params[:archive_page])
     if @location.id == 4
-      
+      @archive = Event.by_location(@location.id).where(['public is true AND date < ?', Time.now.to_date]).order(date: :desc) 
     else
+      @archive = Event.by_location(@location.id).where(['public is true AND date < ?', Time.now.to_date]).order(date: :desc).page(params[:archive_page])
       set_meta_tags :open_graph => {
           :title => t(:events) ,
           :type  => "article",

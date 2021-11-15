@@ -94,7 +94,7 @@
           %center
             %h1= t :ptarmigan_helsinki_is_closed
           %p= raw t(:ptarmigan_helsinki_closed_explanation)
-          %p= raw (t :ptarmigan_helsinki_temporary_blurb, href: link_to('Temporary', 'https://temporary.fi', target: :_blank))
+          -# %p= raw (t :ptarmigan_helsinki_temporary_blurb, href: link_to('Temporary', 'https://temporary.fi', target: :_blank))
     .container
       #dynamic_wrap.sixteen.columns
         = render :partial => 'shared/new_carousel', :locals => {:new_carousel => @new_carousel}

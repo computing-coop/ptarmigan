@@ -1,7 +1,7 @@
 
 source 'http://rubygems.org'
-ruby '2.7.2'
-gem 'rails' , '5.2.5'
+ruby '2.7.4'
+gem 'rails' , '5.2.6'
 gem 'mysql2'
 
 gem 'puma', '~> 5.0', group: :production
@@ -81,10 +81,11 @@ gem "non-stupid-digest-assets"   # seems to be needed for themes_for_rails ?
 gem 'later_dude', '>= 0.3.1'
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'meta-tags', :require => 'meta_tags'
+
 gem 'momentjs-rails'
 gem 'nested_form' #, :git => 'git://github.com/ryanb/nested_form.git'
 
-gem "paperclip", "5.2.0"
+gem "kt-paperclip" #ip", "5.2.0"
 gem 'public_activity'
 gem 'rack-cache'
 gem "rack-cors", group: :development
